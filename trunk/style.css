@@ -1,0 +1,117 @@
+div.sexy-bookmarks {
+}
+
+div.sexy-bookmarks ul.socials {
+width:100% !important;
+margin:0 !important;
+padding:0 !important;
+}
+
+div.sexy-bookmarks ul.socials li {
+	display:inline-block !important;
+	float:left !important;
+	list-style-type:none !important;
+	margin:0 !important;
+	height:29px !important;
+	width:50px !important;
+	cursor:pointer !important;
+	padding:0 !important;
+}
+
+div.sexy-bookmarks ul.socials a {
+	display:block !important;
+	width:50px !important;
+	height:29px !important;
+	font-size:0 !important;
+	color:transparent !important;
+	
+}
+
+.furl, .furl:hover, .digg, .digg:hover, .reddit, .reddit:hover, .stumble, .stumble:hover, .delicious, .delicious:hover, .yahoo, .yahoo:hover, .blinklist, .blinklist:hover, .technorati, .technorati:hover, .facebook, .facebook:hover, .twitter, .twitter:hover, .myspace, .myspace:hover, .mixx, .mixx:hover, .script-style, .script-style:hover, .designfloat, .designfloat:hover  {
+	background:url('sprite-trans.png') no-repeat !important;
+}
+
+.furl {
+	background-position:-300px top !important;
+}
+.furl:hover {
+	background-position:-300px bottom !important;
+}
+.digg {
+	background-position:-500px top !important;
+}
+.digg:hover {
+	background-position:-500px bottom !important;
+}
+.reddit {
+	background-position:-100px top !important;
+}
+.reddit:hover {
+	background-position:-100px bottom !important;
+}
+.stumble {
+	background-position:-50px top !important;
+}
+.stumble:hover {
+	background-position:-50px bottom !important;
+}
+.delicious {
+	background-position:left top !important;
+}
+.delicious:hover {
+	background-position:left bottom !important;
+}
+.yahoo {
+	background-position:-650px top !important;
+}
+.yahoo:hover {
+	background-position:-650px bottom !important;
+}
+.blinklist {
+	background-position:-600px top !important;
+}
+.blinklist:hover {
+	background-position:-600px bottom !important;
+}
+.technorati {
+	background-position:-700px top !important;
+}
+.technorati:hover {
+	background-position:-700px bottom !important;
+}
+.myspace {
+	background-position:-200px top !important;
+}
+.myspace:hover {
+	background-position:-200px bottom !important;
+}
+.twitter {
+	background-position:-350px top !important;
+}
+.twitter:hover {
+	background-position:-350px bottom !important;
+}
+.facebook {
+	background-position:-450px top !important;
+}
+.facebook:hover {
+	background-position:-450px bottom !important;
+}
+.mixx {
+	background-position:-250px top !important;
+}
+.mixx:hover {
+	background-position:-250px bottom !important;
+}
+.script-style {
+	background-position:-400px top !important;
+}
+.script-style:hover {
+	background-position:-400px bottom !important;
+}
+.designfloat {
+	background-position:-550px top !important;
+}
+.designfloat:hover {
+	background-position:-550px bottom !important;
+}
