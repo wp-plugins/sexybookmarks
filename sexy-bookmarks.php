@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: SexyBookmarks
-Plugin URI: http://wordpress.org/extend/plugins/sexybookmarks
+Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
 Version: 1.2
 Author: Josh Jones
