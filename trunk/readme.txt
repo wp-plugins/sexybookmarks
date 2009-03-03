@@ -27,7 +27,8 @@ As per a feature request, I have now added the ability to choose whether to disp
 
 == Screenshots ==
 
-None
+1. A quick preview of the final outcome
+2. A look at the plugin options
 
 == Installation ==
 
