@@ -27,91 +27,91 @@ div.sexy-bookmarks ul.socials a {
 	
 }
 
-.furl, .furl:hover, .digg, .digg:hover, .reddit, .reddit:hover, .stumble, .stumble:hover, .delicious, .delicious:hover, .yahoo, .yahoo:hover, .blinklist, .blinklist:hover, .technorati, .technorati:hover, .facebook, .facebook:hover, .twitter, .twitter:hover, .myspace, .myspace:hover, .mixx, .mixx:hover, .script-style, .script-style:hover, .designfloat, .designfloat:hover  {
+.sexy-furl, .sexy-furl:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumble, .sexy-stumble:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoo, .sexy-yahoo:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-script-style, .sexy-script-style:hover, .sexy-designfloat, .sexy-designfloat:hover  {
 	background:url('sprite-trans.png') no-repeat !important;
 }
 
-.furl {
+.sexy-furl {
 	background-position:-300px top !important;
 }
-.furl:hover {
+.sexy-furl:hover {
 	background-position:-300px bottom !important;
 }
-.digg {
+.sexy-digg {
 	background-position:-500px top !important;
 }
-.digg:hover {
+.sexy-digg:hover {
 	background-position:-500px bottom !important;
 }
-.reddit {
+.sexy-reddit {
 	background-position:-100px top !important;
 }
-.reddit:hover {
+.sexy-reddit:hover {
 	background-position:-100px bottom !important;
 }
-.stumble {
+.sexy-stumble {
 	background-position:-50px top !important;
 }
-.stumble:hover {
+.sexy-stumble:hover {
 	background-position:-50px bottom !important;
 }
-.delicious {
+.sexy-delicious {
 	background-position:left top !important;
 }
-.delicious:hover {
+.sexy-delicious:hover {
 	background-position:left bottom !important;
 }
-.yahoo {
+.sexy-yahoo {
 	background-position:-650px top !important;
 }
-.yahoo:hover {
+.sexy-yahoo:hover {
 	background-position:-650px bottom !important;
 }
-.blinklist {
+.sexy-blinklist {
 	background-position:-600px top !important;
 }
-.blinklist:hover {
+.sexy-blinklist:hover {
 	background-position:-600px bottom !important;
 }
-.technorati {
+.sexy-technorati {
 	background-position:-700px top !important;
 }
-.technorati:hover {
+.sexy-technorati:hover {
 	background-position:-700px bottom !important;
 }
-.myspace {
+.sexy-myspace {
 	background-position:-200px top !important;
 }
-.myspace:hover {
+.sexy-myspace:hover {
 	background-position:-200px bottom !important;
 }
-.twitter {
+.sexy-twitter {
 	background-position:-350px top !important;
 }
-.twitter:hover {
+.sexy-twitter:hover {
 	background-position:-350px bottom !important;
 }
-.facebook {
+.sexy-facebook {
 	background-position:-450px top !important;
 }
-.facebook:hover {
+.sexy-facebook:hover {
 	background-position:-450px bottom !important;
 }
-.mixx {
+.sexy-mixx {
 	background-position:-250px top !important;
 }
-.mixx:hover {
+.sexy-mixx:hover {
 	background-position:-250px bottom !important;
 }
-.script-style {
+.sexy-script-style {
 	background-position:-400px top !important;
 }
-.script-style:hover {
+.sexy-script-style:hover {
 	background-position:-400px bottom !important;
 }
-.designfloat {
+.sexy-designfloat {
 	background-position:-550px top !important;
 }
-.designfloat:hover {
+.sexy-designfloat:hover {
 	background-position:-550px bottom !important;
 }
