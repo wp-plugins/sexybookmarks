@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
-Version: 1.2
+Version: 1.2.1
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','1.2');
+define('vNum','1.2.1');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -38,7 +38,7 @@ define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(d
 
 //add defaults to an array
 $plugopts = array(
-'position' => 'below','bookmark','reloption','targetopt','xtrastyle'=> array('scriptstyle','blinklist','delicious','digg','furl','reddit','yahoomyweb','stumbleupon','technorati','mixx','myspace','designfloat','facebook','twitter')
+'position' => 'below','bookmark','reloption','targetopt','xtrastyle'=> array('sexy-scriptstyle','sexy-blinklist','sexy-delicious','sexy-digg','sexy-furl','sexy-reddit','sexy-yahoomyweb','sexy-stumbleupon','sexy-technorati','sexy-mixx','sexy-myspace','sexy-designfloat','sexy-facebook','sexy-twitter')
 );
 
 //add 2 db
@@ -140,20 +140,20 @@ if($status_message != '')
   <tr>
    <td align="left" valign="top" nowrap><strong><label for="position">Preferred Networks:</label></strong> </td>
    <td>
-    <span class="scriptstyle"></span> <input <?php echo (@in_array("scriptstyle", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="scriptstyle" /> Script & Style <br />
-    <span class="blinklist"></span> <input <?php echo (@in_array("blinklist", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="blinklist" /> Blinklist <br />
-    <span class="delicious"></span> <input <?php echo (@in_array("delicious", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="delicious" /> del.icio.us <br />
-    <span class="digg"></span> <input <?php echo (@in_array("digg", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="digg" /> Digg <br />
-    <span class="furl"></span> <input <?php echo (@in_array("furl", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="furl" /> Furl <br />
-    <span class="reddit"></span> <input <?php echo (@in_array("reddit", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="reddit" /> Reddit <br />
-    <span class="yahoomyweb"></span> <input <?php echo (@in_array("yahoomyweb", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="yahoomyweb" /> Yahoo MyWeb <br />
-    <span class="stumbleupon"></span> <input <?php echo (@in_array("stumbleupon", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="stumbleupon" /> StumbleUpon <br />
-    <span class="technorati"></span> <input <?php echo (@in_array("technorati", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="technorati" /> Technorati <br />
-    <span class="mixx"></span> <input <?php echo (@in_array("mixx", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="mixx" /> Mixx <br />
-    <span class="myspace"></span> <input <?php echo (@in_array("myspace", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="myspace" /> MySpace <br />
-    <span class="designfloat"></span> <input <?php echo (@in_array("designfloat", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="designfloat" /> DesignFloat <br />
-    <span class="facebook"></span> <input <?php echo (@in_array("facebook", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="facebook" /> Facebook <br />
-	<span class="twitter"></span> <input <?php echo (@in_array("twitter", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="twitter" /> Twitter <br />
+    <span class="sexy-scriptstyle"></span> <input <?php echo (@in_array("scriptstyle", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="scriptstyle" /> Script & Style <br />
+    <span class="sexy-blinklist"></span> <input <?php echo (@in_array("blinklist", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="blinklist" /> Blinklist <br />
+    <span class="sexy-delicious"></span> <input <?php echo (@in_array("delicious", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="delicious" /> del.icio.us <br />
+    <span class="sexy-digg"></span> <input <?php echo (@in_array("digg", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="digg" /> Digg <br />
+    <span class="sexy-furl"></span> <input <?php echo (@in_array("furl", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="furl" /> Furl <br />
+    <span class="sexy-reddit"></span> <input <?php echo (@in_array("reddit", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="reddit" /> Reddit <br />
+    <span class="sexy-yahoomyweb"></span> <input <?php echo (@in_array("yahoomyweb", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="yahoomyweb" /> Yahoo MyWeb <br />
+    <span class="sexy-stumbleupon"></span> <input <?php echo (@in_array("stumbleupon", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="stumbleupon" /> StumbleUpon <br />
+    <span class="sexy-technorati"></span> <input <?php echo (@in_array("technorati", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="technorati" /> Technorati <br />
+    <span class="sexy-mixx"></span> <input <?php echo (@in_array("mixx", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="mixx" /> Mixx <br />
+    <span class="sexy-myspace"></span> <input <?php echo (@in_array("myspace", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="myspace" /> MySpace <br />
+    <span class="sexy-designfloat"></span> <input <?php echo (@in_array("designfloat", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="designfloat" /> DesignFloat <br />
+    <span class="sexy-facebook"></span> <input <?php echo (@in_array("facebook", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="facebook" /> Facebook <br />
+	<span class="sexy-twitter"></span> <input <?php echo (@in_array("twitter", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="twitter" /> Twitter <br />
    </td>
   <tr>
    <td><br /><br /></td>
@@ -184,46 +184,46 @@ function position_menu($post_content) {
 	//write the menu
 	$socials = '<div class="sexy-bookmarks" style="'.__($plugopts['xtrastyle']).'"><ul class="socials">'.
 	(in_array("scriptstyle", $plugopts['bookmark'])?
-	'<li class="script-style"><a href="http://scriptandstyle.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to Script &amp; Style"> </a></li>' : '').
+	'<li class="sexy-script-style"><a href="http://scriptandstyle.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to Script &amp; Style"> </a></li>' : '').
 	
 	(in_array("blinklist", $plugopts['bookmark'])?
-	'<li class="blinklist"><a href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url='.$perms.'&amp;Title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Blinklist"> </a></li>' : '').
+	'<li class="sexy-blinklist"><a href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url='.$perms.'&amp;Title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Blinklist"> </a></li>' : '').
 	
 	(in_array("delicious", $plugopts['bookmark'])?
-	'<li class="delicious"><a href="http://del.icio.us/post?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on del.icio.us"> </a></li>' : '').
+	'<li class="sexy-delicious"><a href="http://del.icio.us/post?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on del.icio.us"> </a></li>' : '').
 	
 	(in_array("digg", $plugopts['bookmark'])?
-	'<li class="digg"><a href="http://digg.com/submit?phase=2&amp;url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Digg this!"> </a></li>' : '').
+	'<li class="sexy-digg"><a href="http://digg.com/submit?phase=2&amp;url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Digg this!"> </a></li>' : '').
 	
 	(in_array("furl", $plugopts['bookmark'])?
-	'<li class="furl"><a href="http://www.furl.net/storeIt.jsp?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Furl"> </a></li>' : '').
+	'<li class="sexy-furl"><a href="http://www.furl.net/storeIt.jsp?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Furl"> </a></li>' : '').
 	
 	(in_array("reddit", $plugopts['bookmark'])?
-	'<li class="reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
+	'<li class="sexy-reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
 	
 	(in_array("yahoomyweb", $plugopts['bookmark'])?
-	'<li class="yahoo"><a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Save this to Yahoo MyWeb"> </a></li>' : '').
+	'<li class="sexy-yahoo"><a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Save this to Yahoo MyWeb"> </a></li>' : '').
 	
 	(in_array("stumbleupon", $plugopts['bookmark'])?
-	'<li class="stumble"><a href="http://www.stumbleupon.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Stumble upon something good? Share it on StumbleUpon"> </a></li>' : '').
+	'<li class="sexy-stumble"><a href="http://www.stumbleupon.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Stumble upon something good? Share it on StumbleUpon"> </a></li>' : '').
 
 	(in_array("technorati", $plugopts['bookmark'])?
-	'<li class="technorati"><a href="http://technorati.com/faves?add='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Technorati"> </a></li>' : '').
+	'<li class="sexy-technorati"><a href="http://technorati.com/faves?add='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Technorati"> </a></li>' : '').
 	
 	(in_array("mixx", $plugopts['bookmark'])?
-	'<li class="mixx"><a href="http://www.mixx.com/submit?page_url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Mixx"> </a></li>' : '').
+	'<li class="sexy-mixx"><a href="http://www.mixx.com/submit?page_url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Mixx"> </a></li>' : '').
 	
 	(in_array("myspace", $plugopts['bookmark'])?
-	'<li class="myspace"><a href="http://www.myspace.com/Modules/PostTo/Pages/?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Post this to MySpace"> </a></li>' : '').
+	'<li class="sexy-myspace"><a href="http://www.myspace.com/Modules/PostTo/Pages/?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Post this to MySpace"> </a></li>' : '').
 	
 	(in_array("designfloat", $plugopts['bookmark'])?
-	'<li class="designfloat"><a href="http://www.designfloat.com/submit.php?url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to DesignFloat"> </a></li>' : '').
+	'<li class="sexy-designfloat"><a href="http://www.designfloat.com/submit.php?url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to DesignFloat"> </a></li>' : '').
 	
 	(in_array("facebook", $plugopts['bookmark'])?
-	'<li class="facebook"><a href="http://www.facebook.com/share.php?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Facebook"> </a></li>' : '').
+	'<li class="sexy-facebook"><a href="http://www.facebook.com/share.php?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Facebook"> </a></li>' : '').
 
 	(in_array("twitter", $plugopts['bookmark'])?
-	'<li class="twitter"><a href="http://www.twitter.com/home?status=Currently+Reading:+'.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
+	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status=Currently+Reading:+'.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
 	
 	'</ul></div>';
 
@@ -268,21 +268,20 @@ display:inline-block;
 height:29px;
 width:50px;
 }	
-span.scriptstyle { background-position:-400px bottom !important; }
-span.mixx { background-position:-250px bottom !important; }
-span.facebook { background-position:-450px bottom !important; }
-span.flickr { background-position:-250px bottom !important; }
-span.myspace { background-position:-200px bottom !important; }
-span.blinklist { background-position:-600px bottom !important; }
-span.yahoomyweb { background-position:-650px bottom !important; }
-span.delicious { background-position:left bottom !important; }
-span.stumbleupon { background-position:-50px bottom !important; }
-span.reddit { background-position:-100px bottom !important; }
-span.digg { background-position:-500px bottom !important; }
-span.furl { background-position:-300px bottom !important; }
-span.twitter { background-position:-350px bottom !important; }
-span.technorati { background-position:-700px bottom !important; }
-span.designfloat { background-position:-550px bottom !important; }
+span.sexy-scriptstyle { background-position:-400px bottom !important; }
+span.sexy-mixx { background-position:-250px bottom !important; }
+span.sexy-facebook { background-position:-450px bottom !important; }
+span.sexy-myspace { background-position:-200px bottom !important; }
+span.sexy-blinklist { background-position:-600px bottom !important; }
+span.sexy-yahoomyweb { background-position:-650px bottom !important; }
+span.sexy-delicious { background-position:left bottom !important; }
+span.sexy-stumbleupon { background-position:-50px bottom !important; }
+span.sexy-reddit { background-position:-100px bottom !important; }
+span.sexy-digg { background-position:-500px bottom !important; }
+span.sexy-furl { background-position:-300px bottom !important; }
+span.sexy-twitter { background-position:-350px bottom !important; }
+span.sexy-technorati { background-position:-700px bottom !important; }
+span.sexy-designfloat { background-position:-550px bottom !important; }
 </style>";
 }
 
