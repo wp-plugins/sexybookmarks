@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
-Version: 1.2.1
+Version: 1.2.2
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,9 +30,9 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','1.2.1');
+define('vNum','1.2.2');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-
+define('IMGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/images/');
 
 
 
@@ -87,7 +87,22 @@ if($status_message != '')
  <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
  <div style="position:relative;top:0;left:0;margin:18px 0 10px 0;">
   <strong><label for="xtrastyle">You can style the DIV that holds the menu here:</label></strong><br />
-  <textarea name="xtrastyle" id="xtrastyle" cols="65" rows="8" style="text-indent:0;"><?php if ( $plugopts['xtrastyle'] != '' ) { echo $plugopts['xtrastyle']; } else { echo 'background:url('.plugins_url('sexy-bookmarks/sexy-trans.png').') no-repeat left bottom;'."\n".'margin:0 !important;'."\n".'padding:25px 0 0 10px !important;'."\n".'width:100% !important;'."\n".'height:29px;/*the height of the icons (29px)*/'."\n".'display:block !important;'."\n".'clear:both !important;';} ?></textarea>
+   <textarea name="xtrastyle" id="xtrastyle" cols="65" rows="8" style="text-indent:0;">
+<?php 
+$default_sexy = "background:url(".IMGPATH."sexy-trans.png) no-repeat left bottom;"."\n"."margin:0 !important;"."\n"."padding:25px 0 0 10px !important;"."\n"."width:100% !important;"."\n"."height:29px;/*the height of the icons (29px)*/"."\n"."display:block !important;"."\n"."clear:both !important;";
+
+
+if ( $plugopts['xtrastyle'] != '' ) { 
+	echo $plugopts['xtrastyle']; 
+} 
+elseif ( $plugopts['xtrastyle'] == '' || 'Array' ) 
+	echo $default_sexy;
+
+else {
+	echo "If you see this message, please delete the contents of this textarea and click \"Save Changes\".";
+}
+?>
+</textarea>
  </div>
  <input type="hidden" name="save_changes" value="1" />
  <table width="440px" cellpadding="4" cellspacing="0">
@@ -260,10 +275,10 @@ h2.sexy {
 display:inline;
 width:auto;
 padding-left:15px;
-background:url(".PLUGPATH."icon.png) no-repeat left 15px;
+background:url(".IMGPATH."sexy-icon.png) no-repeat left 15px;
 }
 form#sexy-bookmarks span {
-background:url(".PLUGPATH."sprite-trans.png) no-repeat;
+background:url(".IMGPATH."sexy-sprite.png) no-repeat;
 display:inline-block;
 height:29px;
 width:50px;
