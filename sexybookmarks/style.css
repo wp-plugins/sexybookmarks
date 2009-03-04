@@ -1,0 +1,117 @@
+div.sexy-bookmarks {
+}
+
+div.sexy-bookmarks ul.socials {
+width:100% !important;
+margin:0 !important;
+padding:0 !important;
+}
+
+div.sexy-bookmarks ul.socials li {
+	display:inline-block !important;
+	float:left !important;
+	list-style-type:none !important;
+	margin:0 !important;
+	height:29px !important;
+	width:50px !important;
+	cursor:pointer !important;
+	padding:0 !important;
+}
+
+div.sexy-bookmarks ul.socials a {
+	display:block !important;
+	width:50px !important;
+	height:29px !important;
+	font-size:0 !important;
+	color:transparent !important;
+	
+}
+
+.sexy-furl, .sexy-furl:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumble, .sexy-stumble:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoo, .sexy-yahoo:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-script-style, .sexy-script-style:hover, .sexy-designfloat, .sexy-designfloat:hover  {
+	background:url('sprite-trans.png') no-repeat !important;
+}
+
+.sexy-furl {
+	background-position:-300px top !important;
+}
+.sexy-furl:hover {
+	background-position:-300px bottom !important;
+}
+.sexy-digg {
+	background-position:-500px top !important;
+}
+.sexy-digg:hover {
+	background-position:-500px bottom !important;
+}
+.sexy-reddit {
+	background-position:-100px top !important;
+}
+.sexy-reddit:hover {
+	background-position:-100px bottom !important;
+}
+.sexy-stumble {
+	background-position:-50px top !important;
+}
+.sexy-stumble:hover {
+	background-position:-50px bottom !important;
+}
+.sexy-delicious {
+	background-position:left top !important;
+}
+.sexy-delicious:hover {
+	background-position:left bottom !important;
+}
+.sexy-yahoo {
+	background-position:-650px top !important;
+}
+.sexy-yahoo:hover {
+	background-position:-650px bottom !important;
+}
+.sexy-blinklist {
+	background-position:-600px top !important;
+}
+.sexy-blinklist:hover {
+	background-position:-600px bottom !important;
+}
+.sexy-technorati {
+	background-position:-700px top !important;
+}
+.sexy-technorati:hover {
+	background-position:-700px bottom !important;
+}
+.sexy-myspace {
+	background-position:-200px top !important;
+}
+.sexy-myspace:hover {
+	background-position:-200px bottom !important;
+}
+.sexy-twitter {
+	background-position:-350px top !important;
+}
+.sexy-twitter:hover {
+	background-position:-350px bottom !important;
+}
+.sexy-facebook {
+	background-position:-450px top !important;
+}
+.sexy-facebook:hover {
+	background-position:-450px bottom !important;
+}
+.sexy-mixx {
+	background-position:-250px top !important;
+}
+.sexy-mixx:hover {
+	background-position:-250px bottom !important;
+}
+.sexy-script-style {
+	background-position:-400px top !important;
+}
+.sexy-script-style:hover {
+	background-position:-400px bottom !important;
+}
+.sexy-designfloat {
+	background-position:-550px top !important;
+}
+.sexy-designfloat:hover {
+	background-position:-550px bottom !important;
+}
