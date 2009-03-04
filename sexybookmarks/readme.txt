@@ -73,4 +73,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.1.4	Resolved issue that caused the menu to be placed at top of post even if "below post" was chosen
 * 1.2		Critical namespace update, also added function to allow you to choose page, post, or both
 * 1.2.1	Fixed issue people have been having with an additional overlay of the menu where it shouldn't be (other plugin conflicts)
-* 1.2.2	Corrected a css bug causing the DIV's background image to show
+* 1.2.2	Corrected a CSS bug causing the DIV's background image to show
