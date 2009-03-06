@@ -9,11 +9,11 @@ Stable tag: 1.3.1
 Adds a social bookmarking menu to your posts and/or pages
 
 == Description ==
+=v1.3.1 Notice=
+If you downloaded version 1.3 and your plugin quit working, I'm sorry. I accidentally uploaded the wrong copy of the plugin to the svn. However, version 1.3.1 fixes my goof and also adds more features (see changelog)
+
 
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
-
-
-As per a feature request, I have now added the ability to choose whether to display the menu on posts, pages, or both.
 
 == Credits ==
 
@@ -23,8 +23,9 @@ As per a feature request, I have now added the ability to choose whether to disp
 
 = Thanks =
 
-* Thanks to [Script & Style](http://scriptandstyle.com/ "Script and Style Web Development Bookmarking Site") for helping generate a "buzz" about the original menu!
-* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help!
+* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
+* Thanks to [Nile](http://unlinkthis.net/) for his continue help optimizing the code.
+
 
 == Screenshots ==
 
