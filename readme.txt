@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 Adds a social bookmarking menu to your posts and/or pages
 
@@ -14,6 +14,7 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 
 
 As per a feature request, I have now added the ability to choose whether to display the menu on posts, pages, or both.
+
 == Credits ==
 
 * Credit goes to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
@@ -74,3 +75,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.2		Critical namespace update, also added function to allow you to choose page, post, or both
 * 1.2.1	Fixed issue people have been having with an additional overlay of the menu where it shouldn't be (other plugin conflicts)
 * 1.3		Corrected a css bug causing the DIV's background image to show
+* 1.3.1	Fixed my goof from last night that caused images to disappear. Also added extra functionality for Twitter link (auto @reply with your Twitter id) and runs URLs through the API at [IS.GD](http://is.gd) to automatically shorten URLs for the Twitter link.

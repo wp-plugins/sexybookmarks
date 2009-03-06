@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
-Version: 1.3
+Version: 1.3.1
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,9 +30,9 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','1.3');
+define('vNum','1.3.1');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-define('IMGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/images/');
+
 
 
 
@@ -72,6 +72,7 @@ function settings_page() {
 		$plugopts['targetopt'] = $_POST['targetopt'];
 		$plugopts['bookmark'] = $_POST['bookmark'];
 		$plugopts['pageorpost'] = $_POST['pageorpost'];
+		$plugopts['twittid'] = $_POST['twittid'];
 		update_option(OPTIONS, $plugopts);
   }
 }
@@ -89,13 +90,13 @@ if($status_message != '')
   <strong><label for="xtrastyle">You can style the DIV that holds the menu here:</label></strong><br />
    <textarea name="xtrastyle" id="xtrastyle" cols="65" rows="8" style="text-indent:0;">
 <?php 
-$default_sexy = "background:url(".IMGPATH."sexy-trans.png) no-repeat left bottom;"."\n"."margin:0 !important;"."\n"."padding:25px 0 0 10px !important;"."\n"."width:100% !important;"."\n"."height:29px;/*the height of the icons (29px)*/"."\n"."display:block !important;"."\n"."clear:both !important;";
+$default_sexy = "background:url(".PLUGPATH."sexy-trans.png) no-repeat left bottom;\nmargin:0 !important;\npadding:25px 0 0 10px !important;\nwidth:100% !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
 
 
-if ( $plugopts['xtrastyle'] != '' ) { 
+if (!empty($plugopts['xtrastyle'])) {
 	echo $plugopts['xtrastyle']; 
 } 
-elseif ( $plugopts['xtrastyle'] == '' || 'Array' ) 
+elseif ( empty($plugopts['xtrastyle']) || $plugopts['xtrastyle'] == 'Array' )
 	echo $default_sexy;
 
 else {
@@ -106,6 +107,15 @@ else {
  </div>
  <input type="hidden" name="save_changes" value="1" />
  <table width="440px" cellpadding="4" cellspacing="0">
+  <tr>
+   <td><br /><br /></td>
+  </tr>
+  <tr>
+   <td align="left" valign="top" nowrap><strong><label for="twittid">Twitter ID:</label></strong> </td>
+   <td>
+    <input type="text" id="twittid" name="twittid" value="<?php echo $plugopts['twittid']; ?>" />
+   </td>
+  </tr>
   <tr>
    <td><br /><br /></td>
   </tr>
@@ -195,6 +205,16 @@ function position_menu($post_content) {
 	$tarwin = $plugopts['targetopt'];
 	$title = urlencode(get_the_title());
 	$perms = get_permalink();
+	$fetch_url = file_get_contents("http://is.gd/api.php?longurl=".$perms);
+	$mini_clean = urlencode($fetch_url);
+    $short_title = substr($title, 0, 60)."...";
+	if(!empty($plugopts['twittid'])) {
+		$post_by = "by: @".$plugopts['twittid'];
+	}
+	else {
+		$post_by ="";
+	}
+
 
 	//write the menu
 	$socials = '<div class="sexy-bookmarks" style="'.__($plugopts['xtrastyle']).'"><ul class="socials">'.
@@ -238,7 +258,7 @@ function position_menu($post_content) {
 	'<li class="sexy-facebook"><a href="http://www.facebook.com/share.php?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Facebook"> </a></li>' : '').
 
 	(in_array("twitter", $plugopts['bookmark'])?
-	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status=Currently+Reading:+'.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
+	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status=Currently+Reading:+'.$short_title.' - '.$post_by.' '.$mini_clean.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
 	
 	'</ul></div>';
 
@@ -275,10 +295,10 @@ h2.sexy {
 display:inline;
 width:auto;
 padding-left:15px;
-background:url(".IMGPATH."sexy-icon.png) no-repeat left 15px;
+background:url(".PLUGPATH."sexy-icon.png) no-repeat left 15px;
 }
 form#sexy-bookmarks span {
-background:url(".IMGPATH."sexy-sprite.png) no-repeat;
+background:url(".PLUGPATH."sexy-sprite.png) no-repeat;
 display:inline-block;
 height:29px;
 width:50px;
