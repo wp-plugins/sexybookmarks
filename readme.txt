@@ -9,7 +9,7 @@ Stable tag: 1.3.1
 Adds a social bookmarking menu to your posts and/or pages
 
 == Description ==
-=v1.3.1 Notice=
+
 If you downloaded version 1.3 and your plugin quit working, I'm sorry. I accidentally uploaded the wrong copy of the plugin to the svn. However, version 1.3.1 fixes my goof and also adds more features (see changelog)
 
 
@@ -24,7 +24,7 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 = Thanks =
 
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Nile](http://unlinkthis.net/) for his continue help optimizing the code.
+* Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
 
 
 == Screenshots ==
