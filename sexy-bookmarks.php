@@ -90,7 +90,7 @@ if($status_message != '')
   <strong><label for="xtrastyle">You can style the DIV that holds the menu here:</label></strong><br />
    <textarea name="xtrastyle" id="xtrastyle" cols="65" rows="8" style="text-indent:0;">
 <?php 
-$default_sexy = "background:url(".PLUGPATH."sexy-trans.png) no-repeat left bottom;\nmargin:0 !important;\npadding:25px 0 0 10px !important;\nwidth:100% !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
+$default_sexy = "background:url(".PLUGPATH."sexy-trans.png) no-repeat left bottom;\nmargin:0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
 
 
 if (!empty($plugopts['xtrastyle'])) {
