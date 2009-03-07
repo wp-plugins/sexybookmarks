@@ -4,16 +4,16 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Adds a social bookmarking menu to your posts and/or pages
 
 == Description ==
 
-If you downloaded version 1.3 and your plugin quit working, I'm sorry. I accidentally uploaded the wrong copy of the plugin to the svn. However, version 1.3.1 fixes my goof and also adds more features (see changelog)
-
-
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
+
+
+As per a feature request, I have now added the ability to choose whether to display the menu on posts, pages, or both.
 
 == Credits ==
 
@@ -23,9 +23,8 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 
 = Thanks =
 
-* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
-
+* Thanks to [Script & Style](http://scriptandstyle.com/ "Script and Style Web Development Bookmarking Site") for helping generate a "buzz" about the original menu!
+* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help!
 
 == Screenshots ==
 
@@ -40,6 +39,13 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 4. Adjust settings to your liking
 4. Enjoy!
 
+= Manual Usage =
+
+If you would like to insert the menu manually, simply choose "Manually insert" from the options page, then place the following code into your theme files where you want the menu to appear:
+
+`<?php if(function_exists('selfserv_sexy')) { selfserv_sexy(); } ?>`
+
+You can still configure the other options available when inserting manually and they will be passed to the function. This is for those of you who have requested to be able to place the menu anywhere you choose... Enjoy!
 
 
 == Frequently Asked Questions ==
@@ -77,3 +83,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.2.1	Fixed issue people have been having with an additional overlay of the menu where it shouldn't be (other plugin conflicts)
 * 1.3		Corrected a css bug causing the DIV's background image to show
 * 1.3.1	Fixed my goof from last night that caused images to disappear. Also added extra functionality for Twitter link (auto @reply with your Twitter id) and runs URLs through the API at [IS.GD](http://is.gd) to automatically shorten URLs for the Twitter link.
+* 1.3.2	Added a custom function so that you can now insert the menu into your theme anywhere you choose
