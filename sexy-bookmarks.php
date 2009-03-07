@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
-Version: 1.3.1
+Version: 1.3.2
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','1.3.1');
+define('vNum','1.3.2');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -123,7 +123,8 @@ else {
    <td align="left" valign="top" nowrap><strong><label for="position">Menu Location:</label></strong> </td>
    <td>
     <input <?php echo (($plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position" type="radio" value="above" /> Above each post<br />
-    <input <?php echo (($plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position" type="radio" value="below" /> Below each post
+    <input <?php echo (($plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position" type="radio" value="below" /> Below each post<br />
+	<input <?php echo (($plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position" type="radio" value="manual" /> Manually insert
    </td>
   </tr>
   <tr>
@@ -141,7 +142,7 @@ else {
   <tr><td><br /><br /></td></tr>
   <tr>
    <td align="left" valign="top" nowrap>
-    <strong><label for="position">Pages, Posts, or Both? </label></strong>
+    <strong><label for="position">Pages, Posts, Both, or Manual? </label></strong>
    </td>
    <td>
 	&nbsp;<input <?php echo (($plugopts['pageorpost'] == "post")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-post" type="radio" value="post" /> Posts 
@@ -196,7 +197,7 @@ else {
 }//closing brace for function "settings_page"
 
 
-//define a few variables
+//create an auto-insertion function
 function position_menu($post_content) {
 
 
@@ -206,15 +207,14 @@ function position_menu($post_content) {
 	$title = urlencode(get_the_title());
 	$perms = get_permalink();
 	$fetch_url = file_get_contents("http://is.gd/api.php?longurl=".$perms);
-	$mini_clean = urlencode($fetch_url);
     $short_title = substr($title, 0, 60)."...";
-	if(!empty($plugopts['twittid'])) {
-		$post_by = "by: @".$plugopts['twittid'];
-	}
-	else {
-		$post_by ="";
-	}
 
+if(!empty($plugopts['twittid'])) {
+	$post_by = "RT+@".$plugopts['twittid'].":+";
+}
+else {
+	$post_by ="";
+}
 
 	//write the menu
 	$socials = '<div class="sexy-bookmarks" style="'.__($plugopts['xtrastyle']).'"><ul class="socials">'.
@@ -258,7 +258,7 @@ function position_menu($post_content) {
 	'<li class="sexy-facebook"><a href="http://www.facebook.com/share.php?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Facebook"> </a></li>' : '').
 
 	(in_array("twitter", $plugopts['bookmark'])?
-	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status=Currently+Reading:+'.$short_title.' - '.$post_by.' '.$mini_clean.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
+	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status='.$post_by.'+'.$short_title.'+-+'.$fetch_url.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
 	
 	'</ul></div>';
 
@@ -268,8 +268,84 @@ function position_menu($post_content) {
 	elseif(is_page() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "page") return $post_content.$socials;
 	elseif( ( is_page() || is_single() ) && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "pagepost") return $socials.$post_content;
 	elseif( ( is_page() || is_single() ) && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "pagepost") return $post_content.$socials;
-	else return $post_content;
+	elseif( $plugopts['position'] == "manual" )  return $post_content;
+	else { return $post_content; }
 }
+
+
+
+
+function selfserv_sexy() {
+
+	global $plugopts;
+	$relopt = $plugopts['reloption'];
+	$tarwin = $plugopts['targetopt'];
+	$title = urlencode(get_the_title());
+	$perms = get_permalink();
+	$fetch_url = file_get_contents("http://is.gd/api.php?longurl=".$perms);
+    $short_title = substr($title, 0, 60)."...";
+
+if(!empty($plugopts['twittid'])) {
+	$post_by = "RT+@".$plugopts['twittid'].":+";
+}
+else {
+	$post_by ="";
+}
+
+	//write the menu
+	$socials = '<div class="sexy-bookmarks" style="'.__($plugopts['xtrastyle']).'"><ul class="socials">'.
+	(in_array("scriptstyle", $plugopts['bookmark'])?
+	'<li class="sexy-script-style"><a href="http://scriptandstyle.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to Script &amp; Style"> </a></li>' : '').
+	
+	(in_array("blinklist", $plugopts['bookmark'])?
+	'<li class="sexy-blinklist"><a href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url='.$perms.'&amp;Title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Blinklist"> </a></li>' : '').
+	
+	(in_array("delicious", $plugopts['bookmark'])?
+	'<li class="sexy-delicious"><a href="http://del.icio.us/post?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on del.icio.us"> </a></li>' : '').
+	
+	(in_array("digg", $plugopts['bookmark'])?
+	'<li class="sexy-digg"><a href="http://digg.com/submit?phase=2&amp;url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Digg this!"> </a></li>' : '').
+	
+	(in_array("furl", $plugopts['bookmark'])?
+	'<li class="sexy-furl"><a href="http://www.furl.net/storeIt.jsp?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Furl"> </a></li>' : '').
+	
+	(in_array("reddit", $plugopts['bookmark'])?
+	'<li class="sexy-reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
+	
+	(in_array("yahoomyweb", $plugopts['bookmark'])?
+	'<li class="sexy-yahoo"><a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Save this to Yahoo MyWeb"> </a></li>' : '').
+	
+	(in_array("stumbleupon", $plugopts['bookmark'])?
+	'<li class="sexy-stumble"><a href="http://www.stumbleupon.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Stumble upon something good? Share it on StumbleUpon"> </a></li>' : '').
+
+	(in_array("technorati", $plugopts['bookmark'])?
+	'<li class="sexy-technorati"><a href="http://technorati.com/faves?add='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Technorati"> </a></li>' : '').
+	
+	(in_array("mixx", $plugopts['bookmark'])?
+	'<li class="sexy-mixx"><a href="http://www.mixx.com/submit?page_url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Mixx"> </a></li>' : '').
+	
+	(in_array("myspace", $plugopts['bookmark'])?
+	'<li class="sexy-myspace"><a href="http://www.myspace.com/Modules/PostTo/Pages/?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Post this to MySpace"> </a></li>' : '').
+	
+	(in_array("designfloat", $plugopts['bookmark'])?
+	'<li class="sexy-designfloat"><a href="http://www.designfloat.com/submit.php?url='.$perms.'&amp;amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Submit this to DesignFloat"> </a></li>' : '').
+	
+	(in_array("facebook", $plugopts['bookmark'])?
+	'<li class="sexy-facebook"><a href="http://www.facebook.com/share.php?u='.$perms.'&amp;amp;t='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Facebook"> </a></li>' : '').
+
+	(in_array("twitter", $plugopts['bookmark'])?
+	'<li class="sexy-twitter"><a href="http://www.twitter.com/home?status='.$post_by.'+'.$short_title.'+-+'.$fetch_url.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Tweet This!"> </a></li>' : '').
+	
+	'</ul></div>';
+
+echo $socials;
+
+
+}
+
+
+
+
 
 
 //write the <head> code
