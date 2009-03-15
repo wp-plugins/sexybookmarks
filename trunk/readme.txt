@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 
 Adds a social bookmarking menu to your posts and/or pages
 
@@ -12,7 +12,7 @@ Adds a social bookmarking menu to your posts and/or pages
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
 
 = Update =
-Now supports manual insertion for those of you who wish to insert the menu anywhere within your Wordpress theme. See the Installation tab for more details.
+Fixed the problem where Twitter links weren't being shortened and in some cases throwing an error.
 
 == Credits ==
 
@@ -83,3 +83,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.3		Corrected a css bug causing the DIV's background image to show
 * 1.3.1	Fixed my goof from last night that caused images to disappear. Also added extra functionality for Twitter link (auto @reply with your Twitter id) and runs URLs through the API at [IS.GD](http://is.gd) to automatically shorten URLs for the Twitter link.
 * 1.3.2	Added a custom function so that you can now insert the menu into your theme anywhere you choose
+* 1.3.3	Fixed Twitter links (http://is.gd has a new api with tighter restrictions, so now the plugin uses http://ri.ms to shorten links)
