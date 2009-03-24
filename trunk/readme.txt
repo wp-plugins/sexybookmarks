@@ -4,15 +4,19 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 
 Adds a social bookmarking menu to your posts and/or pages
 
 == Description ==
+
+= 1.3.4 Update =
+`Now the Twitter links are shortened via a URL shortening service that I created. This ensures that none of you will get errors due to reaching the maximum API usage limit with a third party service. URLS will remain active for 90 days before being purged and recycled in the database.`
+
+
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
 
-= Update =
-Fixed the problem where Twitter links weren't being shortened and in some cases throwing an error.
+
 
 == Credits ==
 

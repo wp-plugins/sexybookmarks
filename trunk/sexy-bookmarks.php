@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings. This plugin is based on the original <a href="http://wordpress.org/extend/plugins/wp-social-bookmark-menu">WP-Social-Bookmark-Menu</a> plugin by <a href="http://undolog.com">Giovambattista Fazioli</a>.
-Version: 1.3.3
+Version: 1.3.4
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','1.3.3');
+define('vNum','1.3.4');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -206,7 +206,7 @@ function position_menu($post_content) {
 	$tarwin = $plugopts['targetopt'];
 	$title = urlencode(get_the_title());
 	$perms = get_permalink();
-	$fetch_url = file_get_contents("http://ri.ms/api-create.php?url=".$perms);
+	$fetch_url = file_get_contents("http://e7t.us/create.php?url=".$perms);
     $short_title = substr($title, 0, 60)."...";
 
 if(!empty($plugopts['twittid'])) {
@@ -282,7 +282,7 @@ function selfserv_sexy() {
 	$tarwin = $plugopts['targetopt'];
 	$title = urlencode(get_the_title());
 	$perms = get_permalink();
-	$fetch_url = file_get_contents("http://ri.ms/api-create.php?url=".$perms);
+	$fetch_url = file_get_contents("http://e7t.us/create.php?url=".$perms);
     $short_title = substr($title, 0, 60)."...";
 
 if(!empty($plugopts['twittid'])) {
