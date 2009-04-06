@@ -29,6 +29,7 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
+* Thanks to Raymond Angana for additional scripting support.
 
 == Screenshots ==
 
