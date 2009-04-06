@@ -1,0 +1,153 @@
+div.wrapit {
+	max-width: 680px;
+	font-weight: normal;
+	font-family:arial, sans-serif;
+	font-size:14px;
+	margin:0 0 0 25px;
+}
+
+h2.sexy {
+	padding-left: 18px;
+	background: url('../images/sexy-icon.png') no-repeat left 3px;
+	font-family:georgia, serif;
+	font-weight:normal;
+	font-size:22px;
+	font-style:italic;
+}
+label.title, span.title {
+	font-weight: bold;
+	font-size:16px;
+	font-family:tahoma, arial, sans-serif;
+}
+span.title {
+	position: absolute;
+}
+div.in1 {
+	margin: 40px 0;
+}
+div.in2 {
+	margin:0;
+	padding:22px 0;
+}
+.iconator {
+	width: 640px;
+}
+.iconator h2 {
+	font-weight: bold;
+	font-size:16px;
+}
+.iconator label {
+	background: transparent url('../images/sexy-sprite.png') no-repeat;
+	width: 60px;
+	height: 45px;
+	float: left;
+	margin: 12px 2px;
+	cursor: help;
+}
+.iconator input {
+	width: 60px;
+	margin: 0 auto;
+	bottom: -31px;
+	position: relative;
+}
+label.sexy-newsvine {
+	background-position:left top;
+}
+label.sexy-linkedin {
+	background-position:-70px top;
+}
+label.sexy-devmarks {
+	background-position:-140px top;
+}
+label.sexy-google {
+	background-position:-210px top;
+}
+label.sexy-scriptstyle {
+	background-position:-280px top;
+}
+label.sexy-mail {
+	background-position:-350px top;
+}
+label.sexy-comfeed {
+	background-position:-420px top;
+}
+label.sexy-twitter {
+	background-position:-490px top;
+}
+label.sexy-technorati {
+	background-position:-560px top;
+}
+label.sexy-stumbleupon {
+	background-position:-630px top;
+}
+label.sexy-reddit {
+	background-position:-700px top;
+}
+label.sexy-myspace {
+	background-position:-770px top;
+}
+label.sexy-mixx {
+	background-position:-840px top;
+}
+label.sexy-furl {
+	background-position:-910px top;
+}
+label.sexy-digg {
+	background-position:-980px top;
+}
+label.sexy-designfloat {
+	background-position:-1050px top;
+}
+label.sexy-yahoomyweb {
+	background-position:-1120px top;
+}
+label.sexy-delicious {
+	background-position:-1190px top;
+}
+label.sexy-blinklist {
+	background-position:-1260px top;
+}
+label.sexy-facebook {
+	background-position:-1330px top;
+}
+.share-sexy {
+	width:140px;
+	height:50px;
+	display:block;
+	background:url('../images/sexy-trans.png') no-repeat left bottom;
+}
+.share-care {
+	width:140px;
+	height:50px;
+	display:block;
+	background:url('../images/sexy-trans.png') no-repeat left top;
+}
+input#bgimg-sexy {
+	left:10px;
+	position:relative;
+	top:58px;
+}
+input#bgimg-caring {
+	left:10px;
+	position:relative;
+	top:58px;	
+}
+.clear {
+	clear:both;
+	height:20px;
+	width:100%;
+}
+.donations {
+background-color:#FFFFE0;
+border-color:#E6DB55;
+-moz-border-radius:3px;
+border-style:solid;
+border-width:1px;
+margin:5px 15px 2px;
+padding:0 0.6em;
+width:210px;
+height:210px;
+position:absolute;
+top:160px;
+right:12px;
+}
