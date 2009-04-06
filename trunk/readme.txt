@@ -4,14 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.3.4
+Stable tag: 2.0
 
 Adds a social bookmarking menu to your posts and/or pages
 
 == Description ==
 
-= 1.3.4 Update =
-Now the Twitter links are shortened via a URL shortening service that I created [http://e7t.us](http://e7t.us). This ensures that none of you will get errors due to reaching the maximum API usage limit with a third party service. URLS will remain active for **1 year** before being purged and recycled in the database.
+= 2.0 Update =
+This is a major overhaul, and it actually came a bit early and unintended. If you were one of the unfortunate ones who downloaded v1.4, I am truly sorry for all of the bugs. I had tried a completely different approach to v1.4, and that approach failed miserably. So, I skipped ahead and developed v2.0 as quickly as possible to try and revive interest in the plugin for those who had such problems with v1.4
+
 
 
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
@@ -32,7 +33,6 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 == Screenshots ==
 
 1. A quick preview of the final outcome
-2. A look at the plugin options
 
 == Installation ==
 
@@ -65,10 +65,6 @@ You can contact me with the name of the site and the URL, and I will work on rel
 
 Absolutely! Please just let me know where the themes will be released so that I can post about it on my site as well!
 
-= The custom background for the container DIV is not showing up… =
-
-I've found a small issues that happens occasionally where the script doesn't communicate the way it's supposed to and therefor the styles for the DIV aren't sent automatically on the first try. If this is happening to you, for now you can fix it by clicking inside the textarea where the custom CSS “default” styles are written, make sure the cursor is at the very end of the styles, press the space bar and add a single space to the end, then save your changes.
-
 = I've found a bug not covered here, where do I report it? =
 
 Please report all bugs via the comment form below for quickest response and notation time. Otherwise, you can choose to email me via the [contact form](http://eight7teen.com/contact "Contact Form") located on my site
@@ -89,3 +85,5 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.3.2	Added a custom function so that you can now insert the menu into your theme anywhere you choose
 * 1.3.3	Fixed Twitter links (http://is.gd has a new api with tighter restrictions, so now the plugin uses http://ri.ms to shorten links)
 * 1.3.4	Done away with all third party URL shortening services. Now using my own service so that you will not receive errors when the max API limit has been reached.
+* 1.4		FAIL - abandoned development and skipped ahead
+* 2.0		Added newsvine, devmarks, linkedin, "Email to friend", and "Subscribe to comments". Also fixed a security issue regarding file_get_contents, it now uses cURL instead. Got rid of the table based layout for the admin options area, and replaced it with DIVs. Also restructured the options area and added another option for choosing the background image of the DIV that contains the menu.
