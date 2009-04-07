@@ -1,10 +1,10 @@
 === SexyBookmarks ===
-Contributors: Josh Jones
+Contributors: [Josh Jones](http://eight7teen.com)
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 Adds a social bookmarking menu to your posts and/or pages
 
@@ -29,7 +29,6 @@ SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/
 
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
-* Thanks to Raymond Angana for additional scripting support.
 
 == Screenshots ==
 
@@ -88,3 +87,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 1.3.4	Done away with all third party URL shortening services. Now using my own service so that you will not receive errors when the max API limit has been reached.
 * 1.4		FAIL - abandoned development and skipped ahead
 * 2.0		Added newsvine, devmarks, linkedin, "Email to friend", and "Subscribe to comments". Also fixed a security issue regarding file_get_contents, it now uses cURL instead. Got rid of the table based layout for the admin options area, and replaced it with DIVs. Also restructured the options area and added another option for choosing the background image of the DIV that contains the menu.
+* 2.0.1	Fixed the problem with your blogname showing up in each post. Also fixed the encoding of : and ? characters.
