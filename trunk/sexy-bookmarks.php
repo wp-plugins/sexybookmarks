@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.0.1
+Version: 2.0.2
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.0.1');
+define('vNum','2.0.2');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -459,10 +459,10 @@ else {
 	'<li class="sexy-reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
 	
 	(in_array("sexy-yahoomyweb", $plugopts['bookmark'])?
-	'<li class="sexy-yahoo"><a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Save this to Yahoo MyWeb"> </a></li>' : '').
+	'<li class="sexy-yahoomyweb"><a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Save this to Yahoo MyWeb"> </a></li>' : '').
 	
 	(in_array("sexy-stumbleupon", $plugopts['bookmark'])?
-	'<li class="sexy-stumble"><a href="http://www.stumbleupon.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Stumble upon something good? Share it on StumbleUpon"> </a></li>' : '').
+	'<li class="sexy-stumbleupon"><a href="http://www.stumbleupon.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Stumble upon something good? Share it on StumbleUpon"> </a></li>' : '').
 
 	(in_array("sexy-technorati", $plugopts['bookmark'])?
 	'<li class="sexy-technorati"><a href="http://technorati.com/faves?add='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Technorati"> </a></li>' : '').
