@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.0.2
+Version: 2.0.3
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.0.2');
+define('vNum','2.0.3');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -487,7 +487,7 @@ else {
 
 
 	(in_array("sexy-newsvine", $plugopts['bookmark'])?
-	'<li class="sexy-devmarks"><a href="http://www.newsvine.com/_tools/seed&save?u='.$perms.'&h='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Seed this on Newsvine"> </a></li>' : '').
+	'<li class="sexy-newsvine"><a href="http://www.newsvine.com/_tools/seed&save?u='.$perms.'&h='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Seed this on Newsvine"> </a></li>' : '').
 
 
 	(in_array("sexy-linkedin", $plugopts['bookmark'])?
@@ -495,6 +495,13 @@ else {
 
 	(in_array("sexy-google", $plugopts['bookmark'])?
 	'<li class="sexy-google"><a href="http://www.google.com/bookmarks/mark?op=add&bkmk='.$perms.'title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Add this to Google Bookmarks"> </a></li>' : '').
+
+	(in_array("sexy-comfeed", $plugopts['bookmark'])?
+	'<li class="sexy-comfeed"><a href="'.$perms.'/feed'.'" title="Subscribe to the comments for this post?"> </a></li>' : '').
+
+
+	(in_array("sexy-mail", $plugopts['bookmark'])?
+	'<li class="sexy-mail"><a href="mailto:?&subject='.$mail_subject.'&body='.$strip_teaser.' - '.$perms.'" title="Email this to a friend?"> </a></li>' : '').
 
 	'</ul></div>';
 
