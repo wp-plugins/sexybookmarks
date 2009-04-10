@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 
 Adds a social bookmarking menu to your posts and/or pages
 
@@ -89,3 +89,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.0		Added newsvine, devmarks, linkedin, "Email to friend", and "Subscribe to comments". Also fixed a security issue regarding file_get_contents, it now uses cURL instead. Got rid of the table based layout for the admin options area, and replaced it with DIVs. Also restructured the options area and added another option for choosing the background image of the DIV that contains the menu.
 * 2.0.1	Fixed the problem with your blogname showing up in each post. Also fixed the encoding of : and ? characters.
 * 2.0.2	Fixed the display error for Yahoo and Stumbleupon when using manual method.
+* 2.0.3	Fixed error causing RSS and Email icons not to show up when using manual method.
