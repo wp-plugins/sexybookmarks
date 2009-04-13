@@ -293,7 +293,7 @@ function position_menu($post_content) {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php&url=".$perms;
+	$first_url = "http://e7t.us/create.php?url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -424,7 +424,7 @@ function selfserv_sexy() {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php&url=".$perms;
+	$first_url = "http://e7t.us/create.php?url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
