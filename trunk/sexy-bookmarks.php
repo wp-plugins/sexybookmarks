@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.0.3
+Version: 2.1
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.0.3');
+define('vNum','2.1');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -42,6 +42,7 @@ $plugopts = array(
   'reloption' => 'nofollow', // 'nofollow', or ''
   'targetopt' => 'blank', // 'blank' or 'self'
   'bgimg' => 'top', // 'sexy' or 'caring'
+  'pageorpost' => '',
   'bookmark' => 
     array(
       'sexy-scriptstyle',
@@ -173,12 +174,16 @@ else {
 				<label><input <?php echo (($plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
 			</div>
 		</div>
-		<div class="in1"><span class="title">Pages, Posts, or Both?</span>
+		<div class="in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="title">Posts, pages, or the whole shebang?</span>
 			<div class="in2">
 
-				<label><input <?php echo (($plugopts['pageorpost'] == "post")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-post" type="radio" value="post" /> Posts</label>
-				<label><input <?php echo (($plugopts['pageorpost'] == "page")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-page" type="radio" value="page" /> Pages</label>
-				<label><input <?php echo (( $plugopts['pageorpost'] == "pagepost")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-pagepost" type="radio" value="pagepost" /> Both</label>
+				<label><input <?php echo (($plugopts['pageorpost'] == "post")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-post" type="radio" value="post" /> Posts</label><br />
+				<label><input <?php echo (($plugopts['pageorpost'] == "page")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-page" type="radio" value="page" /> Pages</label><br />
+				<label><input <?php echo (($plugopts['pageorpost'] == "index")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-index" type="radio" value="index" /> Index</label><br />
+				<label><input <?php echo (( $plugopts['pageorpost'] == "pagepost")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-pagepost" type="radio" value="pagepost" /> Posts & Pages</label><br />
+				<label><input <?php echo (( $plugopts['pageorpost'] == "postindex")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-postindex" type="radio" value="postindex" /> Posts & Index</label><br />
+				<label><input <?php echo (( $plugopts['pageorpost'] == "pageindex")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-pageindex" type="radio" value="pageindex" /> Pages & Index</label><br />
+				<label><input <?php echo (( $plugopts['pageorpost'] == "all")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-all" type="radio" value="all" /> All</label>
 			</div>
 		</div>
 
@@ -288,7 +293,7 @@ function position_menu($post_content) {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php?url=".$perms;
+	$first_url = "http://e7t.us/betanew/?api=s6l2k9&u=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -382,7 +387,7 @@ else {
 
 
 	(in_array("sexy-mail", $plugopts['bookmark'])?
-	'<li class="sexy-mail"><a href="mailto:?&subject='.$mail_subject.'&body='.$strip_teaser.' - '.$perms.'" title="Email this to a friend?"> </a></li>' : '').
+	'<li class="sexy-mail"><a href="mailto:?&subject='.$mail_subject.'&body='.strip_tags($strip_teaser).' - '.$perms.'" title="Email this to a friend?"> </a></li>' : '').
 
 	'</ul></div>';
 
@@ -390,8 +395,19 @@ else {
 	elseif(is_single() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "post") return $post_content.$socials;
 	elseif(is_page() && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "page") return $socials.$post_content;
 	elseif(is_page() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "page") return $post_content.$socials;
+	elseif(is_home() && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "index") return $socials.$post_content;
+	elseif(is_home() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "index") return $post_content.$socials;
+
 	elseif( ( is_page() || is_single() ) && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "pagepost") return $socials.$post_content;
 	elseif( ( is_page() || is_single() ) && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "pagepost") return $post_content.$socials;
+	elseif( ( is_single() || is_home() ) && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "postindex") return $socials.$post_content;
+	elseif( ( is_single() || is_home() ) && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "postindex") return $post_content.$socials;
+	elseif( ( is_page() || is_home() ) && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "pageindex") return $socials.$post_content;
+	elseif( ( is_page() || is_home() ) && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "pageindex") return $post_content.$socials;
+	
+	elseif( ( is_single() || is_home() || is_page ) && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "all") return $socials.$post_content;
+	elseif( ( is_single() || is_home() || is_page ) && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "all") return $post_content.$socials;
+
 	elseif( $plugopts['position'] == "manual" )  return $post_content;
 	else { return $post_content; }
 }
@@ -408,7 +424,7 @@ function selfserv_sexy() {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php?url=".$perms;
+	$first_url = "http://e7t.us/betanew/?api=s6l2k9&u=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -501,7 +517,7 @@ else {
 
 
 	(in_array("sexy-mail", $plugopts['bookmark'])?
-	'<li class="sexy-mail"><a href="mailto:?&subject='.$mail_subject.'&body='.$strip_teaser.' - '.$perms.'" title="Email this to a friend?"> </a></li>' : '').
+	'<li class="sexy-mail"><a href="mailto:?&subject='.$mail_subject.'&body='.strip_tags($strip_teaser).' - '.$perms.'" title="Email this to a friend?"> </a></li>' : '').
 
 	'</ul></div>';
 

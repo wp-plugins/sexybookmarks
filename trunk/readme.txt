@@ -4,14 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.0.3
+Stable tag: 2.1
 
-Adds a social bookmarking menu to your posts and/or pages
+Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
 
 == Description ==
 
-= 2.0 Update =
-This is a major overhaul, and it actually came a bit early and unintended. If you were one of the unfortunate ones who downloaded v1.4, I am truly sorry for all of the bugs. I had tried a completely different approach to v1.4, and that approach failed miserably. So, I skipped ahead and developed v2.0 as quickly as possible to try and revive interest in the plugin for those who had such problems with v1.4
+= 2.1 Update =
+Version 2.1 adds the ability to have the menu show up on your blog's main page for those of you who use themes that display the full post content on the main page. There are also a couple of small bug fixes as well.
 
 
 
@@ -90,3 +90,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.0.1	Fixed the problem with your blogname showing up in each post. Also fixed the encoding of : and ? characters.
 * 2.0.2	Fixed the display error for Yahoo and Stumbleupon when using manual method.
 * 2.0.3	Fixed error causing RSS and Email icons not to show up when using manual method.
+* 2.1		Added ability to display menu on main page, 2 minor bug fixes with email link, Shortened URLs are now static and do not change with each page refresh.
