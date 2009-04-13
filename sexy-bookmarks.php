@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.1
+Version: 2.1.1
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.1');
+define('vNum','2.1.1');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -293,7 +293,7 @@ function position_menu($post_content) {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/betanew/?api=s6l2k9&u=".$perms;
+	$first_url = "http://e7t.us/create.php&url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -383,7 +383,7 @@ else {
 	'<li class="sexy-google"><a href="http://www.google.com/bookmarks/mark?op=add&bkmk='.$perms.'title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Add this to Google Bookmarks"> </a></li>' : '').
 
 	(in_array("sexy-comfeed", $plugopts['bookmark'])?
-	'<li class="sexy-comfeed"><a href="'.$perms.'/feed'.'" title="Subscribe to the comments for this post?"> </a></li>' : '').
+	'<li class="sexy-comfeed"><a href="'.$perms.'feed'.'" title="Subscribe to the comments for this post?"> </a></li>' : '').
 
 
 	(in_array("sexy-mail", $plugopts['bookmark'])?
@@ -424,7 +424,7 @@ function selfserv_sexy() {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/betanew/?api=s6l2k9&u=".$perms;
+	$first_url = "http://e7t.us/create.php&url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -513,7 +513,7 @@ else {
 	'<li class="sexy-google"><a href="http://www.google.com/bookmarks/mark?op=add&bkmk='.$perms.'title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Add this to Google Bookmarks"> </a></li>' : '').
 
 	(in_array("sexy-comfeed", $plugopts['bookmark'])?
-	'<li class="sexy-comfeed"><a href="'.$perms.'/feed'.'" title="Subscribe to the comments for this post?"> </a></li>' : '').
+	'<li class="sexy-comfeed"><a href="'.$perms.'feed'.'" title="Subscribe to the comments for this post?"> </a></li>' : '').
 
 
 	(in_array("sexy-mail", $plugopts['bookmark'])?
