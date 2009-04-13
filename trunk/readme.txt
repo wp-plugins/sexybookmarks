@@ -4,14 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.1
+Stable tag: 2.1.1
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
 
 == Description ==
 
-= 2.1 Update =
-Version 2.1 adds the ability to have the menu show up on your blog's main page for those of you who use themes that display the full post content on the main page. There are also a couple of small bug fixes as well.
+= 2.1.1 Update =
+Sorry to all of you who had issues with v2.1 crashing your site due to timeouts with the URL shortener. I have reverted back to the old shortening service rather than this newfangled crap idea I had. I'll be implementing a couple of other bug fixes soon, but wanted to get this fix out ASAP.
 
 
 
