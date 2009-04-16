@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.1.1
+Version: 2.1.2
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.1.1');
+define('vNum','2.1.2');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -42,6 +42,7 @@ $plugopts = array(
   'reloption' => 'nofollow', // 'nofollow', or ''
   'targetopt' => 'blank', // 'blank' or 'self'
   'bgimg' => 'top', // 'sexy' or 'caring'
+  'shorty' => 'rims',
   'pageorpost' => '',
   'bookmark' => 
     array(
@@ -107,6 +108,7 @@ function settings_page() {
 		$plugopts['reloption'] = $_POST['reloption'];
 		$plugopts['targetopt'] = $_POST['targetopt'];
 		$plugopts['bookmark'] = $_POST['bookmark'];
+		$plugopts['shorty'] = $_POST['shorty'];
 		$plugopts['pageorpost'] = $_POST['pageorpost'];
 		$plugopts['twittid'] = $_POST['twittid'];
 		$plugopts['bgimg'] = $_POST['bgimg'];
@@ -123,6 +125,10 @@ elseif($status_message != '') {
 	echo '<div id="message" class="updated fade" style="margin-top:25px;"><p>'.$status_message.'</p></div>';
 }
 ?>
+
+
+
+
 <div class="donations">
 	<h4 align='center'>Fuel the sexiness...</h4>
 	<p><a href="http://eight7teen.com/sexy-bookmarks">SexyBookmarks</a> is fueled by Mt. Dew... You wouldn't want it running out of fuel, would you? Please donate.</p>
@@ -172,6 +178,17 @@ else {
 			<div class="in2">
 				<label><input <?php echo (($plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="nofollow" /> Yes</label>
 				<label><input <?php echo (($plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
+			</div>
+		</div>
+		<div class="in1"><span class="title">Which URL Shortening Service?</span>
+			<div class="in2">
+				<select name="shorty" id="shorty">
+				 <option <?php echo (($plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
+				 <option <?php echo (($plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
+				 <option <?php echo (($plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
+				 <option <?php echo (($plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
+				 <option <?php echo (($plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+				</select>
 			</div>
 		</div>
 		<div class="in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="title">Posts, pages, or the whole shebang?</span>
@@ -282,6 +299,10 @@ else {
 }//closing brace for function "settings_page"
 
 
+
+
+
+
 //create an auto-insertion function
 function position_menu($post_content) {
 
@@ -293,7 +314,6 @@ function position_menu($post_content) {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php?url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -304,17 +324,53 @@ function position_menu($post_content) {
 
 
 //Use cURL to retrieve the shortened URL
-$ch = curl_init();
+if($plugopts['shorty'] == "rims") {
+	$first_url = "http://ri.ms/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "tinyarrow") {
+	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "cligs") {
+	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
+}
+elseif($plugopts['shorty'] == "tiny") {
+	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "snip") {
+	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
+}
+else {
+	$first_url = "http://e7t.us/create.php?url=".$perms;
+}
+
+if(function_exists('curl_init')) {
+if(in_array("sexy-twitter", $plugopts['bookmark'])) {
+	$ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_URL, $first_url);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+
 $fetch_url = curl_exec($ch);
 curl_close($ch);
+}}
+elseif(!function_exists('curl_init') && function_exists('file_get_contents')) {
+	if(in_array("sexy-twitter", $plugopts['bookmark'])) {
+	$fetch_url = file_get_contents($first_url);
+}}
+else {
+	$fetch_url = $perms;
+}
+
 
 if($plugopts['bgimg'] == 'top') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left top;";
 }
-else {
+elseif($plugopts['bgimg'] == 'bottom') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left -149px;";
+}
+elseif($plugopts['bgimg'] == 'none') {
+	$bgchosen = "background:none;";
 }
 
 if(!empty($plugopts['twittid'])) {
@@ -411,10 +467,19 @@ else {
 	elseif( $plugopts['position'] == "manual" )  return $post_content;
 	else { return $post_content; }
 }
+//end position_menu...
 
 
 
 
+
+
+
+
+
+
+
+// This function is what allows people to insert the menu wherever they please rather than above/below a post...
 function selfserv_sexy() {
 
 	global $plugopts;
@@ -424,7 +489,6 @@ function selfserv_sexy() {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-	$first_url = "http://e7t.us/create.php?url=".$perms;
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."[..]"));
 	$post_summary = stripslashes($sexy_content);
@@ -433,12 +497,45 @@ function selfserv_sexy() {
 	$strip_teaser = stripslashes($sexy_teaser);
 	$mail_subject = urldecode(substr($title, 0, 60)."...");
 
+
 //Use cURL to retrieve the shortened URL
-$ch = curl_init();
+if($plugopts['shorty'] == "rims") {
+	$first_url = "http://ri.ms/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "tinyarrow") {
+	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "cligs") {
+	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
+}
+elseif($plugopts['shorty'] == "tiny") {
+	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+}
+elseif($plugopts['shorty'] == "snip") {
+	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
+}
+else {
+	$first_url = "http://e7t.us/create.php?url=".$perms;
+}
+
+
+if(function_exists('curl_init')) {
+if(in_array("sexy-twitter", $plugopts['bookmark'])) {
+	$ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_URL, $first_url);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 $fetch_url = curl_exec($ch);
 curl_close($ch);
+}}
+elseif(!function_exists('curl_init') && function_exists('file_get_contents')) {
+	if(in_array("sexy-twitter", $plugopts['bookmark'])) {
+	$fetch_url = file_get_contents($first_url);
+}}
+else {
+	$fetch_url = $perms;
+}
 
 if($plugopts['bgimg'] == 'top') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left top;";
@@ -522,9 +619,11 @@ else {
 	'</ul></div>';
 
 echo $socials;
-
-
 }
+// End self-serv sexy...
+
+
+
 
 
 
@@ -556,6 +655,10 @@ function sexy_admin() {
   wp_print_styles('sexy-bookmarks');
 }
 
+
+
+//add a sidebar menu link
+//hook the menu to "the_content"
 add_action('admin_menu', 'menu_link');
 add_filter('the_content', 'position_menu');
 ?>

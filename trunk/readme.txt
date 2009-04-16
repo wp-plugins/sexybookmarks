@@ -4,14 +4,19 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
 
 == Description ==
 
-= 2.1.1 Update =
-Sorry to all of you who had issues with v2.1 crashing your site due to timeouts with the URL shortener. I have reverted back to the old shortening service rather than this newfangled crap idea I had. I'll be implementing a couple of other bug fixes soon, but wanted to get this fix out ASAP.
+= 2.1.2 Update =
+Added the ability to choose which URL shortening service you'd like to use. Please keep in mind that there are no guarantees as to whether or not the short URLs will work since I have no affiliation with any of the URL shortening services.
+I removed my own personal URL shortening service due to heavy spamming that caused the database to grow exponentially overnight, thus breaking the site and in turn causing your sites to freeze up due to timeouts.
+
+Also added a shorter timeout function for the cURL command, as well as a stipulation that will only run the command IF the Twitter icon is selected to appear in the menu. Lastly, I added a fallback for those of you whose servers don't have cURL enabled. Now if cURL isn't enabled, it will try to run file_get_contents(). However, if that too is not enabled... Then it will simply use the permalink from your post as a last resort.
+
+________________________________________________________
 
 
 
@@ -91,3 +96,5 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.0.2	Fixed the display error for Yahoo and Stumbleupon when using manual method.
 * 2.0.3	Fixed error causing RSS and Email icons not to show up when using manual method.
 * 2.1		Added ability to display menu on main page, 2 minor bug fixes with email link, Shortened URLs are now static and do not change with each page refresh.
+* 2.1.1	Fixed the bug causing your sites to crash right and left due to timeouts with the URL shortening service
+* 2.1.2	Added ability to choose which URL shortening service to use. Also added a fallback to file_get_contents() if cURL is not enabled on your server. Then if all else fails and file_get_contents() isn't enabled either, the URL won't be shortened and will simply print the permalink of the post.
