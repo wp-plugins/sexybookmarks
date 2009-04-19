@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.1.3
+Version: 2.1.4
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -36,7 +36,7 @@ Additional Special Thanks Goes To:
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.1.3');
+define('vNum','2.1.4');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 
@@ -187,7 +187,7 @@ elseif($status_message != '') {
 
 
 
-<div class="donations">
+<div class="sexy-donations">
 	<h4 align='center'>Fuel the sexiness...</h4>
 	<p><a href="http://eight7teen.com/sexy-bookmarks">SexyBookmarks</a> is fueled by Mt. Dew... You wouldn't want it running out of fuel, would you? Please donate.</p>
 	<p>Thanks!<br /><span style="font-style:italic;font-family:georgia;font-weight:normal;">Josh Jones</span><br /></p>
@@ -197,11 +197,11 @@ elseif($status_message != '') {
 </div></div>
 
 <h2 class="sexy">SexyBookmarks</h2>
-<div class="wrapit">
+<div class="sexy-wrapit">
 
 	 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
-		<div class="in1">
-			<label for="xtrastyle" class="title">You can style the DIV that holds the menu here:</label>
+		<div class="sexy-in1">
+			<label for="xtrastyle" class="sexy-title">You can style the DIV that holds the menu here:</label>
 			<textarea id="xtrastyle" name="xtrastyle" cols="52" rows="8" style="font-family:monospace;font-weight:bold;font-size:15px;padding:5px;"><?php 
 $default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
 if (!empty($plugopts['xtrastyle'])) {
@@ -214,14 +214,14 @@ else {
 }
 ?></textarea>
 		</div>
-		<div class="in1"><span class="title"><label for="twittid">Twitter ID:</label></span>
-			<div class="in2">
+		<div class="sexy-in1"><span class="sexy-title"><label for="twittid">Twitter ID:</label></span>
+			<div class="sexy-in2">
 				<input type="text" id="twittid" name="twittid" value="<?php echo $plugopts['twittid']; ?>" />
 			</div>
 
 		</div>
-		<div class="in1"><span class="title">Menu Location:</span>
-			<div class="in2">			
+		<div class="sexy-in1"><span class="sexy-title">Menu Location:</span>
+			<div class="sexy-in2">			
 				<label><input <?php echo (($plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" />
 				Above each post</label>
 				<br />
@@ -232,16 +232,16 @@ else {
 				Manually insert</label>
 			</div>
 		</div>
-		<div class="in1"><span class="title">Add nofollow to the links?</span>
-			<div class="in2">
+		<div class="sexy-in1"><span class="sexy-title">Add nofollow to the links?</span>
+			<div class="sexy-in2">
 				<label><input <?php echo (($plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="nofollow" /> Yes</label>
 				<label><input <?php echo (($plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
 			</div>
 		</div>
 
 <!-- Disabled until I can delete the contents of the custom field each time a new service is selected from this list 
-		<div class="in1"><span class="title">Which URL Shortening Service?</span>
-			<div class="in2">
+		<div class="sexy-in1"><span class="sexy-title">Which URL Shortening Service?</span>
+			<div class="sexy-in2">
 				<select name="shorty" id="shorty">
 				 <option <?php echo (($plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
 				 <option <?php echo (($plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
@@ -254,8 +254,8 @@ else {
 		</div>
 -->
 
-		<div class="in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="title">Posts, pages, or the whole shebang?</span>
-			<div class="in2">
+		<div class="sexy-in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="sexy-title">Posts, pages, or the whole shebang?</span>
+			<div class="sexy-in2">
 
 				<label><input <?php echo (($plugopts['pageorpost'] == "post")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-post" type="radio" value="post" /> Posts</label><br />
 				<label><input <?php echo (($plugopts['pageorpost'] == "page")? 'checked="checked"' : ""); ?> name="pageorpost" id="pageorpost-page" type="radio" value="page" /> Pages</label><br />
@@ -267,13 +267,13 @@ else {
 			</div>
 		</div>
 
-		<div class="in1"><span class="title">Open links in new window?</span>
-			<div class="in2">
+		<div class="sexy-in1"><span class="sexy-title">Open links in new window?</span>
+			<div class="sexy-in2">
 				<label><input <?php echo (($plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> Yes</label>
 				<label><input <?php echo (($plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
 			</div>
 		</div>
-		<div class="notice">
+		<div class="sexy-notice">
 			<h3>v2.1.3 Notice</h3>
 				<p>Furl no longer exists. As of April 17th, 2009 they were absorbed by Diigo. Therefor, I have completely removed the Furl icon from the list and replaced it with a Diigo icon as well as adjusting the code for submissions to Diigo.</p>
 				<p>Learn more about transferring your Furl account to Diigo: <a href="http://www.diigo.com/import_all/transfer_furl">http://www.diigo.com/import_all/transfer_furl</a></p>
@@ -342,9 +342,9 @@ else {
 			</label>
 		</div>
 		</div>
-<div class="clear"></div>
-		<div class="in1" title="Leave blank for no background image"><span class="title">Which background image would you like to use?</span>
-			<div class="in2">
+<div class="sexy-clear"></div>
+		<div class="sexy-in1" title="Leave blank for no background image"><span class="sexy-title">Which background image would you like to use?</span>
+			<div class="sexy-in2">
 				<label class="bgimg"><input <?php echo (($plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" />
 				<span class="share-sexy"> </span></label>
 				<br />
@@ -352,8 +352,8 @@ else {
 				<span class="share-care"> </span></label>
 			</div>
 		</div>
-		<div class="in1"><span class="title">Display bookmarks in RSS feed?</span>
-			<div class="in2">			
+		<div class="sexy-in1"><span class="sexy-title">Display bookmarks in RSS feed?</span>
+			<div class="sexy-in2">			
 				<label><input <?php echo (($plugopts['showfeed'] == "show")? 'checked="checked"' : ""); ?> name="showfeed" id="feed-show" type="radio" value="show" />
 				Yes</label>
 				<br />
@@ -361,7 +361,7 @@ else {
 				No</label>
 			</div>
 		</div>
-		<div class="in1">
+		<div class="sexy-in1">
 			<input type="hidden" name="save_changes" value="1" />
 			<div class="submit"><input type="submit" value="Save Changes" /></div>
 		</div>

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
 
@@ -103,3 +103,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.1.1	Fixed the bug causing your sites to crash right and left due to timeouts with the URL shortening service
 * 2.1.2	Added ability to choose which URL shortening service to use. Also added a fallback to file_get_contents() if cURL is not enabled on your server. Then if all else fails and file_get_contents() isn't enabled either, the URL won't be shortened and will simply print the permalink of the post.
 * 2.1.3	Replaced cURL command with custom function to reduce server load. Replaced Furl with Diigo since Furl no longer exists. Now only fetching short URL if Twitter is selected to be displayed in the menu.
+* 2.1.4	Fixed small bug that was messing up the "Quick Edit" styles in the dashboard (minor update, not critical)
