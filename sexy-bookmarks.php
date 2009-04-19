@@ -3,14 +3,20 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts that allows visitors to easily submit them to some of the most popular social bookmarking sites. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.1.2
+Version: 2.1.3
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
  
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Eight7Teen (email : josh@eight7teen.com)
-	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
+
+Additional Special Thanks Goes To:
+
+	1. Kieran Smith (email : undisclosed)
+	2. Nile (email: undisclosed)
+	3. Norman Yung (email: undisclosed)
+
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -30,8 +36,57 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.1.2');
+define('vNum','2.1.3');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+
+
+
+
+
+// Thanks to Norman Yung for reducing the weight and frequency of the cURL command with this function
+function get_fetch_url($first_url, $perms) {
+	global $post;
+	$fetch_url=trim(get_post_meta($post->ID, '_sexybookmarks_shortUrl', true));
+	if (!empty($fetch_url) && md5($perms)==get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) {
+		// no curl fetch neccessary.
+	} else { //fetch and store
+
+// Modified Norman's function to account for users who may not have cURL enabled on their server
+	if(function_exists('curl_init')) {
+		//Use cURL to retrieve the shortened URL
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_URL, $first_url);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		$fetch_url = curl_exec($ch);
+		curl_close($ch);
+	}
+	elseif(!function_exists('curl_init') && function_exists('file_get_contents')) {
+		$fetch_url = file_get_contents($first_url);
+	}
+	else {
+		$fetch_url = $perms;
+	}
+
+
+		// add/update values
+		// tries updates first, then add if field does not already exist
+		if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
+			add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
+		}
+		if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
+			add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
+		}
+	}
+	return $fetch_url;
+}
+
+
+
+
+
+
 
 
 
@@ -41,16 +96,17 @@ $plugopts = array(
   'position' => 'below', // below, above, or manual
   'reloption' => 'nofollow', // 'nofollow', or ''
   'targetopt' => 'blank', // 'blank' or 'self'
-  'bgimg' => 'top', // 'sexy' or 'caring'
-  'shorty' => 'rims',
+  'bgimg' => '', // '', 'top' or 'bottom' ('' = "no image" | top = "Sharing is sexy" | bottom = "Sharing is caring")
+  'shorty' => 'e7t', // 'e7t', 'rims', 'tiny', 'cligs', 'snip', or 'tinyarrow'
   'pageorpost' => '',
+  'showfeed' => 'hide', // 'hide' or 'show'
   'bookmark' => 
     array(
       'sexy-scriptstyle',
       'sexy-blinklist',
       'sexy-delicious',
       'sexy-digg',
-      'sexy-furl',
+      'sexy-diigo',
       'sexy-reddit',
       'sexy-yahoomyweb',
       'sexy-stumbleupon',
@@ -112,6 +168,7 @@ function settings_page() {
 		$plugopts['pageorpost'] = $_POST['pageorpost'];
 		$plugopts['twittid'] = $_POST['twittid'];
 		$plugopts['bgimg'] = $_POST['bgimg'];
+		$plugopts['showfeed'] = $_POST['showfeed'];
 		update_option(OPTIONS, $plugopts);
   }
 }
@@ -125,6 +182,7 @@ elseif($status_message != '') {
 	echo '<div id="message" class="updated fade" style="margin-top:25px;"><p>'.$status_message.'</p></div>';
 }
 ?>
+
 
 
 
@@ -180,9 +238,12 @@ else {
 				<label><input <?php echo (($plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
 			</div>
 		</div>
+
+<!-- Disabled until I can delete the contents of the custom field each time a new service is selected from this list 
 		<div class="in1"><span class="title">Which URL Shortening Service?</span>
 			<div class="in2">
 				<select name="shorty" id="shorty">
+				 <option <?php echo (($plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
 				 <option <?php echo (($plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
 				 <option <?php echo (($plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
 				 <option <?php echo (($plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
@@ -191,6 +252,8 @@ else {
 				</select>
 			</div>
 		</div>
+-->
+
 		<div class="in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="title">Posts, pages, or the whole shebang?</span>
 			<div class="in2">
 
@@ -210,7 +273,11 @@ else {
 				<label><input <?php echo (($plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
 			</div>
 		</div>
-
+		<div class="notice">
+			<h3>v2.1.3 Notice</h3>
+				<p>Furl no longer exists. As of April 17th, 2009 they were absorbed by Diigo. Therefor, I have completely removed the Furl icon from the list and replaced it with a Diigo icon as well as adjusting the code for submissions to Diigo.</p>
+				<p>Learn more about transferring your Furl account to Diigo: <a href="http://www.diigo.com/import_all/transfer_furl">http://www.diigo.com/import_all/transfer_furl</a></p>
+		<div style="width:100%;height:20px;"></div>
 		<div class="iconator">
 			<h2>Preferred Networks:</h2>
 			<label class="sexy-newsvine" title="Check this box to include Newsvine in your bookmarking menu">
@@ -252,8 +319,8 @@ else {
 			<label class="sexy-mixx" title="Check this box to include Mixx in your bookmarking menu">
 			<input <?php echo (@in_array("sexy-mixx", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="sexy-mixx" />
 			</label>
-			<label class="sexy-furl" title="Check this box to include Furl in your bookmarking menu">
-			<input <?php echo (@in_array("sexy-furl", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="sexy-furl" />
+			<label class="sexy-diigo" title="Check this box to include Diigo in your bookmarking menu">
+			<input <?php echo (@in_array("sexy-diigo", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="sexy-diigo" />
 			</label>
 			<label class="sexy-digg" title="Check this box to include Digg in your bookmarking menu">
 			<input <?php echo (@in_array("sexy-digg", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="sexy-digg" />
@@ -274,8 +341,9 @@ else {
 			<input <?php echo (@in_array("sexy-facebook", $plugopts['bookmark'])? 'checked="checked"' : ""); ?> name="bookmark[]" id="bookmark[]" type="checkbox" value="sexy-facebook" />
 			</label>
 		</div>
+		</div>
 <div class="clear"></div>
-		<div class="in1"><span class="title">Which background image would you like to use?</span>
+		<div class="in1" title="Leave blank for no background image"><span class="title">Which background image would you like to use?</span>
 			<div class="in2">
 				<label class="bgimg"><input <?php echo (($plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" />
 				<span class="share-sexy"> </span></label>
@@ -284,7 +352,15 @@ else {
 				<span class="share-care"> </span></label>
 			</div>
 		</div>
-
+		<div class="in1"><span class="title">Display bookmarks in RSS feed?</span>
+			<div class="in2">			
+				<label><input <?php echo (($plugopts['showfeed'] == "show")? 'checked="checked"' : ""); ?> name="showfeed" id="feed-show" type="radio" value="show" />
+				Yes</label>
+				<br />
+				<label><input <?php echo (($plugopts['showfeed'] == "hide")? 'checked="checked"' : ""); ?> name="showfeed" id="feed-hide" type="radio" value="hide" />
+				No</label>
+			</div>
+		</div>
 		<div class="in1">
 			<input type="hidden" name="save_changes" value="1" />
 			<div class="submit"><input type="submit" value="Save Changes" /></div>
@@ -323,62 +399,56 @@ function position_menu($post_content) {
 	$mail_subject = urldecode(substr($title, 0, 60)."...");
 
 
-//Use cURL to retrieve the shortened URL
-if($plugopts['shorty'] == "rims") {
-	$first_url = "http://ri.ms/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "tinyarrow") {
-	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "cligs") {
-	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
-}
-elseif($plugopts['shorty'] == "tiny") {
-	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "snip") {
-	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
-}
-else {
+// Determine which URL shortening service to use
+#if($plugopts['shorty'] == "e7t") {
+#	$first_url = "http://e7t.us/create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "rims") {
+#	$first_url = "http://ri.ms/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "tinyarrow") {
+#	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "cligs") {
+#	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "tiny") {
+#	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "snip") {
+#	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
+#}
+#else {
 	$first_url = "http://e7t.us/create.php?url=".$perms;
-}
-
-if(function_exists('curl_init')) {
-if(in_array("sexy-twitter", $plugopts['bookmark'])) {
-	$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_URL, $first_url);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-
-$fetch_url = curl_exec($ch);
-curl_close($ch);
-}}
-elseif(!function_exists('curl_init') && function_exists('file_get_contents')) {
-	if(in_array("sexy-twitter", $plugopts['bookmark'])) {
-	$fetch_url = file_get_contents($first_url);
-}}
-else {
-	$fetch_url = $perms;
-}
+#}
 
 
+// Only fetch or TRY to fetch a shortened URL if Twitter is selected to appear in the menu (thanks Norman)
+if (in_array("sexy-twitter", $plugopts['bookmark'])) $fetch_url=get_fetch_url($first_url, $perms);
+
+
+
+// Determine which background image to display in the DIV that contains the icons
 if($plugopts['bgimg'] == 'top') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left top;";
 }
 elseif($plugopts['bgimg'] == 'bottom') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left -149px;";
 }
-elseif($plugopts['bgimg'] == 'none') {
+elseif(empty($plugopts['bgimg'])) {
 	$bgchosen = "background:none;";
 }
 
+
+// Determine how to format the user's tweets (with or without a link to your Twitter profile if you have one)
 if(!empty($plugopts['twittid'])) {
 	$post_by = "RT+@".$plugopts['twittid'].":+";
 }
 else {
 	$post_by ="";
 }
+
+
 
 	//write the menu
 	$socials = '<div class="sexy-bookmarks" style="'.__($bgchosen).__($plugopts['xtrastyle']).'"><ul class="socials">'.
@@ -394,8 +464,8 @@ else {
 	(in_array("sexy-digg", $plugopts['bookmark'])?
 	'<li class="sexy-digg"><a href="http://digg.com/submit?phase=2&amp;url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Digg this!"> </a></li>' : '').
 	
-	(in_array("sexy-furl", $plugopts['bookmark'])?
-	'<li class="sexy-furl"><a href="http://www.furl.net/storeIt.jsp?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Furl"> </a></li>' : '').
+	(in_array("sexy-diigo", $plugopts['bookmark'])?
+	'<li class="sexy-diigo"><a href="http://www.diigo.com/post?url='.$perms.'&title='.$title.'&desc='.$strip_teaser.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Post this on Diigo"> </a></li>' : '').
 	
 	(in_array("sexy-reddit", $plugopts['bookmark'])?
 	'<li class="sexy-reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
@@ -447,7 +517,9 @@ else {
 
 	'</ul></div>';
 
-	if(is_single() && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "post") return $socials.$post_content;
+	if (is_feed() && $plugopts['showfeed'] == "hide") return $post_content;
+
+	elseif(is_single() && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "post") return $socials.$post_content;
 	elseif(is_single() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "post") return $post_content.$socials;
 	elseif(is_page() && $plugopts['position'] == "above" && $plugopts['pageorpost'] == "page") return $socials.$post_content;
 	elseif(is_page() && $plugopts['position'] == "below" && $plugopts['pageorpost'] == "page") return $post_content.$socials;
@@ -498,58 +570,56 @@ function selfserv_sexy() {
 	$mail_subject = urldecode(substr($title, 0, 60)."...");
 
 
-//Use cURL to retrieve the shortened URL
-if($plugopts['shorty'] == "rims") {
-	$first_url = "http://ri.ms/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "tinyarrow") {
-	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "cligs") {
-	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
-}
-elseif($plugopts['shorty'] == "tiny") {
-	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-}
-elseif($plugopts['shorty'] == "snip") {
-	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
-}
-else {
+// Determine which URL shortening service to use
+#if($plugopts['shorty'] == "e7t") {
+#	$first_url = "http://e7t.us/create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "rims") {
+#	$first_url = "http://ri.ms/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "tinyarrow") {
+#	$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "cligs") {
+#	$first_url = "http://cli.gs/api/v1/cligs/create?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "tiny") {
+#	$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+#}
+#elseif($plugopts['shorty'] == "snip") {
+#	$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
+#}
+#else {
 	$first_url = "http://e7t.us/create.php?url=".$perms;
-}
+#}
 
 
-if(function_exists('curl_init')) {
-if(in_array("sexy-twitter", $plugopts['bookmark'])) {
-	$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_URL, $first_url);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-$fetch_url = curl_exec($ch);
-curl_close($ch);
-}}
-elseif(!function_exists('curl_init') && function_exists('file_get_contents')) {
-	if(in_array("sexy-twitter", $plugopts['bookmark'])) {
-	$fetch_url = file_get_contents($first_url);
-}}
-else {
-	$fetch_url = $perms;
-}
+// Only fetch or TRY to fetch a shortened URL if Twitter is selected to appear in the menu (thanks Norman)
+if (in_array("sexy-twitter", $plugopts['bookmark'])) $fetch_url=get_fetch_url($first_url, $perms);
 
+
+
+// Determine which background image to display in the DIV that contains the icons
 if($plugopts['bgimg'] == 'top') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left top;";
 }
-else {
+elseif($plugopts['bgimg'] == 'bottom') {
 	$bgchosen = "background:url('".PLUGPATH."images/sexy-trans.png') no-repeat left -149px;";
 }
+elseif(empty($plugopts['bgimg'])) {
+	$bgchosen = "background:none;";
+}
 
+
+// Determine how to format the user's tweets (with or without a link to your Twitter profile if you have one)
 if(!empty($plugopts['twittid'])) {
 	$post_by = "RT+@".$plugopts['twittid'].":+";
 }
 else {
 	$post_by ="";
 }
+
+
 
 	//write the menu
 	$socials = '<div class="sexy-bookmarks" style="'.__($bgchosen).__($plugopts['xtrastyle']).'"><ul class="socials">'.
@@ -565,8 +635,8 @@ else {
 	(in_array("sexy-digg", $plugopts['bookmark'])?
 	'<li class="sexy-digg"><a href="http://digg.com/submit?phase=2&amp;url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Digg this!"> </a></li>' : '').
 	
-	(in_array("sexy-furl", $plugopts['bookmark'])?
-	'<li class="sexy-furl"><a href="http://www.furl.net/storeIt.jsp?t='.$title.'&amp;u='.$perms.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Furl"> </a></li>' : '').
+	(in_array("sexy-diigo", $plugopts['bookmark'])?
+	'<li class="sexy-diigo"><a href="http://www.diigo.com/post?url='.$perms.'&title='.$title.'&desc='.$strip_teaser.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Post this on Diigo"> </a></li>' : '').
 	
 	(in_array("sexy-reddit", $plugopts['bookmark'])?
 	'<li class="sexy-reddit"><a href="http://reddit.com/submit?url='.$perms.'&amp;title='.$title.'" target="'.$tarwin.'" rel="'.$relopt.'" title="Share this on Reddit"> </a></li>' : '').
