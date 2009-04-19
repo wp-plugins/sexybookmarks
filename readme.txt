@@ -4,19 +4,21 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
 
 == Description ==
 
-= 2.1.3 Update =
-`Everyone say thanks to Norman Yung for most of the improvements in v2.1.3`
-Now the plugin will ONLY fetch a short URL if Twitter is selected to be displayed in the menu. Also, if the script is told to fetch a short URL, it will first determine whether the user has cURL enabled or not so as to prevent errors for those of you who don't.
+= Recent Updates =
+`Everyone say thanks to Norman Yung for most of the recent improvements`
+*Now the plugin will ONLY fetch a short URL if Twitter is selected to be displayed in the menu. Also, if the script is told to fetch a short URL, it will first determine whether the user has cURL enabled or not so as to prevent errors for those of you who don't.
 
-Short URLs will now be stored in a variable and called from there rather than the script fetching (or trying to fetch) a new short URL each time the page loads. (this will drastically help your server)
+*Short URLs will now be stored in a variable and called from there rather than the script fetching (or trying to fetch) a new short URL each time the page loads. (this will drastically help your server)
 
-Also added the ability to be able to choose to display the bookmarks in your feed content
+*Also added the ability to be able to choose to display the bookmarks in your feed content
+
+*Fixed bug causing email link to break layouts in some cases
 
 
 
@@ -104,3 +106,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.1.2	Added ability to choose which URL shortening service to use. Also added a fallback to file_get_contents() if cURL is not enabled on your server. Then if all else fails and file_get_contents() isn't enabled either, the URL won't be shortened and will simply print the permalink of the post.
 * 2.1.3	Replaced cURL command with custom function to reduce server load. Replaced Furl with Diigo since Furl no longer exists. Now only fetching short URL if Twitter is selected to be displayed in the menu.
 * 2.1.4	Fixed small bug that was messing up the "Quick Edit" styles in the dashboard (minor update, not critical)
+* 2.1.5	Fixed bug causing email link to break layouts in some cases (minor update, only critical to those using NextGen plugin)
