@@ -578,6 +578,12 @@ function selfserv_sexy() {
 	$strip_teaser = stripslashes($sexy_teaser);
 	$mail_subject = urldecode(substr($title, 0, 60)."...");
 
+if(strpos($strip_teaser, '[')) {
+	$strip_teaser = "";
+}
+elseif(strpos($strip_teaser, ']')) {
+	$strip_teaser = "";
+}
 
 // Determine which URL shortening service to use
 #if($plugopts['shorty'] == "e7t") {
