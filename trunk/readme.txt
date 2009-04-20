@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 2.7.1
 Stable tag: 2.1.5
 
-Adds a social bookmarking menu to your posts, pages, index, or any combination of the three
+Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
