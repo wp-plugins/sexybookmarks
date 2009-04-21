@@ -1,24 +1,19 @@
 === SexyBookmarks ===
-Contributors: eight7teen
+Contributors: eight7teen, Norman Yung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.1.5
+Stable tag: 2.2
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-`Everyone say thanks to Norman Yung for most of the recent improvements`
-*Now the plugin will ONLY fetch a short URL if Twitter is selected to be displayed in the menu. Also, if the script is told to fetch a short URL, it will first determine whether the user has cURL enabled or not so as to prevent errors for those of you who don't.
-
-*Short URLs will now be stored in a variable and called from there rather than the script fetching (or trying to fetch) a new short URL each time the page loads. (this will drastically help your server)
-
-*Also added the ability to be able to choose to display the bookmarks in your feed content
-
-*Fixed bug causing email link to break layouts in some cases
+Bookmarks are now draggable so that you can display them in whatever order you wish. 
+You can select your own URL shortening service. 
+Efficiency has been nearly doubled thru code organization and optimization, so now there's less strain on your server.
 
 
 
@@ -27,16 +22,21 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
 
 
+== Latest News ==
+I would like to announce that I am now being assisted in the development of this plugin by [Norman Yung](http://www.robotwithaheart.com). He has offered up several great improvements, and furthermore, has offered to continue helping develop the plugin. 
+
+
+Also, be looking for v3.0 to include a unique translation system for those who wish to use this plugin in their native language. Not only will the plugin text(s) be translated, but the plugin will offer certain languages with more bookmarking sites to include the sites which are most popular in that region! Coming soon!
+
 
 == Credits ==
 
-* Credit goes to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
-* Credit goes to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
 * Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
 
 = Thanks =
-
+* Thanks [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
+*Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
 * Thanks to [Norman Yung](http://www.robotwithaheart.com/) for the tremendous help in further developing this plugin
@@ -107,3 +107,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.1.3	Replaced cURL command with custom function to reduce server load. Replaced Furl with Diigo since Furl no longer exists. Now only fetching short URL if Twitter is selected to be displayed in the menu.
 * 2.1.4	Fixed small bug that was messing up the "Quick Edit" styles in the dashboard (minor update, not critical)
 * 2.1.5	Fixed bug causing email link to break layouts in some cases (minor update, only critical to those using NextGen plugin)
+* 2.2		Icons are now rearrangeable as well as you can now pick your own URL shortening service. Code is more efficient and puts less strain on the server.
