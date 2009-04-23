@@ -349,8 +349,8 @@ function bookmark_list_item($name, $opts=array()) {
 		$url,
 		$plugopts['targetopt'],
 		$plugopts['reloption'],
-		$bookmarks[$opt['name']]['share'],
-		$bookmarks[$opt['name']]['share']
+		$bookmarks[$name]['share'],
+		$bookmarks[$name]['share']
 	);
 }
 
@@ -361,7 +361,7 @@ function get_sexy() {
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$perms = get_permalink();
-    $short_title = substr($title, 0, 60)."...";
+	$short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(strip_tags(substr(get_the_content(), 0, 220)."..."));
 	$post_summary = stripslashes($sexy_content);
 	$site_name = get_bloginfo('name');
