@@ -89,7 +89,7 @@ $donate_link = $donations[rand(0, count($donations) - 1)];
 	$status_message = "";
 	$error_message = "";
 	if(isset($_POST['save_changes'])) {
-		$status_message = 'Your changes have been saved successfully!&nbsp;--->> &nbsp;<a href="'.$donate_link.'">Donate?</a>';
+		$status_message = 'Your changes have been saved successfully! &nbsp; --->> &nbsp; <a href="'.$donate_link.'">Donate?</a>';
 		
 		//was there an error?
 		if($_POST['position'] == '') {		
