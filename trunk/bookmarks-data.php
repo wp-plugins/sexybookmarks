@@ -1,4 +1,4 @@
-<?
+<?php
 // array of bookmarks
 $bookmarks=array(
 	'sexy-scriptstyle'=>array(
