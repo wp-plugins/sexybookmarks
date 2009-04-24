@@ -54,17 +54,17 @@ $bookmarks=array(
 	'sexy-myspace'=>array(
 		'check'=>'Check this box to include MySpace in your bookmarking menu',
 		'share'=>'Post this to MySpace',
-		'baseUrl'=>'http://www.myspace.com/Modules/PostTo/Pages/?u=PERMALINK&amp;amp;t=TITLE',
+		'baseUrl'=>'http://www.myspace.com/Modules/PostTo/Pages/?u=PERMALINK&amp;t=TITLE',
 	),
 	'sexy-designfloat'=>array(
 		'check'=>'Check this box to include DesignFloat in your bookmarking menu',
 		'share'=>'Submit this to DesignFloat',
-		'baseUrl'=>'http://www.designfloat.com/submit.php?url=PERMALINK&amp;amp;title=TITLE',
+		'baseUrl'=>'http://www.designfloat.com/submit.php?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-facebook'=>array(
 		'check'=>'Check this box to include Facebook in your bookmarking menu',
 		'share'=>'Share this on Facebook',
-		'baseUrl'=>'http://www.facebook.com/share.php?u=PERMALINK&amp;amp;t=TITLE',
+		'baseUrl'=>'http://www.facebook.com/share.php?u=PERMALINK&amp;t=TITLE',
 	),
 	'sexy-twitter'=>array(
 		'check'=>'Check this box to include Twitter in your bookmarking menu',
@@ -74,7 +74,7 @@ $bookmarks=array(
 	'sexy-mail'=>array(
 		'check'=>'Check this box to include \'Email to a Friend\' link in your bookmarking menu',
 		'share'=>'Email this to a friend?',
-		'baseUrl'=>'mailto:?&subject=MAIL_SUBJECT&body=STRIP_TEASER - PERMALINK',
+		'baseUrl'=>'mailto:?&amp;subject=MAIL_SUBJECT&amp;body=STRIP_TEASER - PERMALINK',
 	),
 	'sexy-comfeed'=>array(
 		'check'=>'Check this box to include a \'Subscribe to Comments\' link in your bookmarking menu',
@@ -84,22 +84,22 @@ $bookmarks=array(
 	'sexy-linkedin'=>array(
 		'check'=>'Check this box to include Linkedin in your bookmarking menu',
 		'share'=>'Share this on Linkedin',
-		'baseUrl'=>'http://www.linkedin.com/shareArticle?mini=true&url=PERMALINK&title=TITLE&summary=POST_SUMMARY&source=SITE_NAME',
+		'baseUrl'=>'http://www.linkedin.com/shareArticle?mini=true&amp;url=PERMALINK&amp;title=TITLE&amp;summary=POST_SUMMARY&amp;source=SITE_NAME',
 	),
 	'sexy-newsvine'=>array(
 		'check'=>'Check this box to include Newsvine in your bookmarking menu',
 		'share'=>'Seed this on Newsvine',
-		'baseUrl'=>'http://www.newsvine.com/_tools/seed&save?u=PERMALINK&h=TITLE',
+		'baseUrl'=>'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 	),
 	'sexy-devmarks'=>array(
 		'check'=>'Check this box to include Devmarks in your bookmarking menu',
 		'share'=>'Share this on Devmarks',
-		'baseUrl'=>'http://devmarks.com/index.php?posttext=POST_SUMMARY&posturl=PERMALINK&posttitle=TITLE',
+		'baseUrl'=>'http://devmarks.com/index.php?posttext=POST_SUMMARY&amp;posturl=PERMALINK&amp;posttitle=TITLE',
 	),
 	'sexy-google'=>array(
 		'check'=>'Check this box to include Google Bookmarks in your bookmarking menu',
 		'share'=>'Add this to Google Bookmarks',
-		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&bkmk=PERMALINKtitle=TITLE',
+		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINKtitle=TITLE',
 	),
 );
 ?>
