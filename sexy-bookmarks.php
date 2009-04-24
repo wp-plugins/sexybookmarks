@@ -180,6 +180,7 @@ else {
 		<div class="in1"><span class="title">Which URL Shortening Service?</span>
 			<div class="in2">
 				<select name="shorty" id="shorty">
+				 <option <?php echo (($plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
 				 <option <?php echo (($plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
 				 <option <?php echo (($plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
 				 <option <?php echo (($plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
@@ -254,7 +255,10 @@ function get_fetch_url() {
 	$perms=get_permalink();
 	
 	// which short url service should be used?
-	if($plugopts['shorty'] == "rims") {
+	if($plugopts['shorty'] == "e7t") {
+		$first_url = "http:/e7t.us/create.php?url=".$perms;
+	}
+	elseif($plugopts['shorty'] == "rims") {
 		$first_url = "http://ri.ms/api-create.php?url=".$perms;
 	} elseif($plugopts['shorty'] == "tinyarrow") {
 		$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
