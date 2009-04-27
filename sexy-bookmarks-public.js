@@ -12,5 +12,5 @@ jQuery(document).ready(function() {
 					height: sexyBaseHeight+'px'
 				}, {duration: 400, queue: false});
 			}
-		);	
+		);
 	});
