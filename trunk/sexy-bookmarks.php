@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.2.2
+Version: 2.2.3
 Author: Josh Jones
 Author URI: http://eight7teen.com
 
@@ -30,7 +30,7 @@ Author URI: http://eight7teen.com
 
 define('PLUGINNAME','SexyBookmarks');
 define('OPTIONS','SexyBookmarks');
-define('vNum','2.2.2');
+define('vNum','2.2.3');
 define('PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
@@ -47,6 +47,7 @@ $plugopts = array(
 	'xtrastyle' => '',
 	'feed' => '1', // 1 or 0
 	'expand' => '1',
+	'autocenter' => '0',
 );
 
 
@@ -114,6 +115,7 @@ $donate_link = $donations[rand(0, count($donations) - 1)];
 			$plugopts['bgimg'] = $_POST['bgimg'];
 			$plugopts['feed'] = $_POST['feed'];
 			$plugopts['expand'] = $_POST['expand'];
+			$plugopts['autocenter'] = $_POST['autocenter'];
 			update_option(OPTIONS, $plugopts);
 		}
 	}
@@ -141,6 +143,13 @@ daze sitting in front of a computer.</p>
 <div class="wrapit">
 
 	 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
+		<div class="in1"><span class="title">Auto-center the bookmarks?</span>
+			<div class="in2">
+				<label><input <?php echo (($plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /> Yes</label>
+				<label><input <?php echo (($plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /> No</label>
+				<p>(Note: selecting <b>yes</b> above will void any custom styles applied below.)</p>
+			</div>
+		</div>
 		<div class="in1">
 			<label for="xtrastyle" class="title">You can style the DIV that holds the menu here:</label>
 			<textarea id="xtrastyle" name="xtrastyle" cols="52" rows="8" style="font-family:monospace;font-weight:bold;font-size:15px;padding:5px;"><?php 
@@ -403,10 +412,12 @@ if( (strpos($sexy_content, '[') || strpos($sexy_content,']')) ) {
 	}
 	
 	// do not add inline styles to the feed.
-	$style=is_feed()?'':' style="'.__($bgchosen).__($plugopts['xtrastyle']).'"';
+	$style=' style="'.__($bgchosen).(($plugopts['autocenter'])?'':__($plugopts['xtrastyle'])).'"';
+	if (is_feed()) $style='';
 	$expand=$plugopts['expand']?' sexy-bookmarks-expand':'';
+	$autocenter=$plugopts['autocenter']?' sexy-bookmarks-center':'';
 	//write the menu
-	$socials = '<div class="sexy-bookmarks'.$expand.'"'.$style.'><ul class="socials">';
+	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.'"'.$style.'><ul class="socials">';
 	foreach ($plugopts['bookmark'] as $name) {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
