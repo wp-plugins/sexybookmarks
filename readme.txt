@@ -1,5 +1,5 @@
 === SexyBookmarks ===
-Contributors: eight7teen, Norman Yung
+Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
