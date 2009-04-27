@@ -1,10 +1,15 @@
 div.sexy-bookmarks {
+	clear: both !important;
 }
-
+div.sexy-bookmarks-expand {
+	height: 29px;
+	overflow: hidden;
+}
 div.sexy-bookmarks ul.socials {
 	width:100% !important;
 	margin:0 !important;
 	padding:0 !important;
+	float: left;
 }
 
 div.sexy-bookmarks ul.socials li {
