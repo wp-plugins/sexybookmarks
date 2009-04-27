@@ -110,3 +110,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.2		Icons are now rearrangeable as well as you can now pick your own URL shortening service. Code is more efficient and puts less strain on the server.
 * 2.2.1	Fixed problem with short tags that caused an array to print at top of your pages. Fixed urlencode of subject and body of email link. Also fixed code validity and now the title text shows up correctly rather than displaying the word "Array" when hovering over links.
 * 2.2.2 Added option to vertically expand multi-rowed bookmark lines on mouseover using jquery.
+* 2.2.3 Added option to auto-center the bookmarks menu (via JS).
