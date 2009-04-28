@@ -201,8 +201,8 @@ function sexy_settings_page() {
 
 			
 			<span class="sexy_option">Add nofollow to the links?</span>
-			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="nofollow" /> Yes</label>
-			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
+			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> Yes</label>
+			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> No</label>
 			
 			<span class="sexy_option">Which URL Shortening Service?</span>
 			<select name="shorty" id="shorty">
