@@ -74,20 +74,29 @@ function sexy_network_input_select($name, $hint) {
 	);
 }
 
-
-
+function sexy_donation_box() {
+	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
+	$donations = array(
+	"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
+	"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
+	);
+	$donate_link = $donations[rand(0, count($donations) - 1)];
+	$donate_img = PLUGPATH.'/images/sexy-donational-button.png';
+	$h=<<<EOF
+<div class="sexy-donations">
+<p>SexyBookmarks is fueld primarily by a spark of ingenuity that can only be attained while in a caffeine induced sleepless daze sitting in front of a computer.</p>
+<p>So if you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
+<div class="sexy-donate-button"><a href="{$donate_link}" title="Help support the development of this plugin by donating!"><img src="{$donate_img}" /></a></div>
+</div>
+EOF;
+	return $h;
+}
 
 //write settings page
 function sexy_settings_page() {
+	global $sexy_plugopts, $sexy_bookmarks_data;
 
-// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
-$donations = array(
-"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
-"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
-);
-$donate_link = $donations[rand(0, count($donations) - 1)];
-
-	global $sexy_plugopts, $sexy_bookmarks_data, $_POST;
+	// processing form submission
 	$status_message = "";
 	$error_message = "";
 	if(isset($_POST['save_changes'])) {
@@ -122,143 +131,123 @@ $donate_link = $donations[rand(0, count($donations) - 1)];
 
 	//if there was an error,
 	//display it in my new fancy schmancy divs
-	if($error_message != '') {
+	if ($error_message != '') {
 		echo '<div id="message" class="sexy-errors"><p>'.$error_message.'</p></div><div style="clear:both;"></div>';
-	}
-	elseif($status_message != '') {
+	} elseif ($status_message != '') {
 		echo '<div id="message" class="sexy-infos"><p>'.$status_message.'</p></div><div style="clear:both;"></div>';
 	}
 ?>
-
-
-<div class="sexy-donations">
-<p>SexyBookmarks is fueld primarily by a spark of ingenuity 
-that can only be attained while in a caffeine induced sleepless
-daze sitting in front of a computer.</p>
-<p>So if you think this plugin is worth a couple of bucks... Please help induce our
-<strong>&quot;caffeine comas&quot;</strong> by donating.</p>
-<div class="sexy-donate-button"><a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!"><img src="<?php echo PLUGPATH.'/images/sexy-donational-button.png'; ?>" /></a></div>
-</div>
 <h2 class="sexy">SexyBookmarks</h2>
-<div class="wrapit">
-
-	 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
-		<div class="in1"><span class="title">Auto-center the bookmarks?</span>
-			<div class="in2">
-				<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /> Yes</label>
-				<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /> No</label>
-				<p>(Note: selecting <b>yes</b> above will void any custom styles applied below.)</p>
-			</div>
-		</div>
-		<div class="in1">
-			<label for="xtrastyle" class="title">You can style the DIV that holds the menu here:</label>
-			<textarea id="xtrastyle" name="xtrastyle" cols="52" rows="8" style="font-family:monospace;font-weight:bold;font-size:15px;padding:5px;"><?php 
-$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
-if (!empty($sexy_plugopts['xtrastyle'])) {
-	echo $sexy_plugopts['xtrastyle']; 
-} 
-elseif ( empty($sexy_plugopts['xtrastyle']) )
-	echo $default_sexy;
-else {
-	echo "If you see this message, please delete the contents of this textarea and click \"Save Changes\".";
-}
-?></textarea>
-		</div>
-		<div class="in1"><span class="title"><label for="twittid">Twitter ID:</label></span>
-			<div class="in2">
-				<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
-			</div>
-
-		</div>
-		<div class="in1"><span class="title">Menu Location:</span>
-			<div class="in2">			
-				<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" />
-				Above each post</label>
-				<br />
-				<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" />
-				Below each post</label>
-				<br />
-			    <label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" />
-				Manually insert</label>
-			</div>
-		</div>
-		<div class="in1"><span class="title">Add nofollow to the links?</span>
-			<div class="in2">
-				<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="nofollow" /> Yes</label>
-				<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
-			</div>
-		</div>
-		<div class="in1"><span class="title">Which URL Shortening Service?</span>
-			<div class="in2">
-				<select name="shorty" id="shorty">
-				 <option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
-				 <option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
-				 <option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
-				 <option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
-				 <option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
-				</select>
-			</div>
-		</div>
-		<div class="in1" title="Now the plugin supports insertion on your site's main page for those of you who use themes that post the entire content of posts on the homepage."><span class="title">Posts, pages, or the whole shebang?</span>
-			<div class="in2">
-				<select name="pageorpost" id="pageorpost">
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "post")? 'selected="selected"' : ""); ?> value="post">Posts Only</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "page")? 'selected="selected"' : ""); ?> value="page">Pages Only</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "index")? 'selected="selected"' : ""); ?> value="index">Index Only</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "pagepost")? 'selected="selected"' : ""); ?> value="pagepost">Posts &amp; Pages</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "postindex")? 'selected="selected"' : ""); ?> value="postindex">Posts &amp; Index</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "pageindex")? 'selected="selected"' : ""); ?> value="pageindex">Pages &amp; Index</option>
-				 <option <?php echo (($sexy_plugopts['pageorpost'] == "postpageindex")? 'selected="selected"' : ""); ?> value="postpageindex" title="THE WHOLE SHEBANG!">Posts, Pages, &amp; Index</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="in1"><span class="title">Open links in new window?</span>
-			<div class="in2">
-				<label><input <?php echo (($sexy_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> Yes</label>
-				<label><input <?php echo (($sexy_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
-			</div>
-		</div>
-
-		<div class="iconator" id="iconator">
-			<h2>Preferred Networks: (drag to reorder)</h2><?
-foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
-$unused_networks=array_diff(array_keys($sexy_bookmarks_data), $sexy_plugopts['bookmark']);
-foreach ($unused_networks as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
+<?php 
+//echo sexy_donation_box(); 
 ?>
-		</div>
-		<div class="clear"></div>
-		<div class="in1"><span class="title">Animate-expand multi-lined bookmarks?</span>
-			<div class="in2">
-				<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" name="expand-yes" type="radio" value="1" />Yes</label>
-				<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" name="expand-no" type="radio" value="0" />No</label>
-			</div>
-		</div>
-		<div class="in1"><span class="title">Which background image would you like to use?</span>
-			<div class="in2">
-				<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" />
-				<span class="share-sexy"> </span></label>
-				<br />
-				<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "top")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="top" />
-				<span class="share-care"> </span></label>
-				<br />
-				<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" /> &nbsp;&nbsp;(none)
-				</label>
-			</div>
-		</div>
-		<div class="in1"><span class="title">Feed Settings</span>
-			<div class="in2">			
-				<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" />
-				Show in feed</label>
-				<br />
-				<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" />
-				Hide in feed</label>
-			</div>
-		</div>
-		<div class="in1">
-			<input type="hidden" name="save_changes" value="1" />
-			<div class="submit"><input type="submit" value="Save Changes" /></div>
-		</div>
+<div class="sexy_wrapit">
+	<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
+	
+		<fieldset class="iconator" id="iconator">
+			<legend>Enabled Networks</legend>
+			<p>Select the Networks to display. Drag to reorder.</p>
+<?php
+	foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
+	$unused_networks=array_diff(array_keys($sexy_bookmarks_data), $sexy_plugopts['bookmark']);
+	foreach ($unused_networks as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
+?>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Look &amp; Feel</legend>
+			<span class="sexy_option">Animate-expand multi-lined bookmarks?</span>
+			<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" />Yes</label>
+			<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" />No</label>
+			
+			<span class="sexy_option">Which background image would you like to use?</span>
+			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" />
+			<span class="share-sexy"> </span></label>
+			<br />
+			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "top")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="top" />
+			<span class="share-care"> </span></label>
+			<br />
+			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" /> &nbsp;&nbsp;(none)
+			</label>
+						
+			<span class="sexy_option">Auto-center the bookmarks?</span>
+			<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /> Yes</label>
+			<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /> No</label>
+			<p>(Note: selecting <b>yes</b> above will void any custom styles applied below.)</p>
+				
+			
+			<label for="xtrastyle">You can style the DIV that holds the menu here:</label><br/>
+			<textarea id="xtrastyle" name="xtrastyle">
+<?php 
+	$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
+	if (!empty($sexy_plugopts['xtrastyle'])) {
+		echo $sexy_plugopts['xtrastyle']; 
+	} 
+	elseif ( empty($sexy_plugopts['xtrastyle']) )
+		echo $default_sexy;
+	else {
+		echo "If you see this message, please delete the contents of this textarea and click \"Save Changes\".";
+	}
+?>
+			</textarea>
+
+		</fieldset>
+		
+		<fieldset>
+			<legend>Functionality</legend>
+			<span class="sexy_option">Twitter ID:</span>
+			<label for="twittid">Twitter ID:</label>
+			<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
+
+			
+			<span class="sexy_option">Add nofollow to the links?</span>
+			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="nofollow" /> Yes</label>
+			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption" type="radio" value="" /> No</label>
+			
+			<span class="sexy_option">Which URL Shortening Service?</span>
+			<select name="shorty" id="shorty">
+				<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
+				<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
+				<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
+				<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
+				<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+			</select>
+					
+			<span class="sexy_option">Open links in new window?</span>
+			<label><input <?php echo (($sexy_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> Yes</label>
+			<label><input <?php echo (($sexy_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Placement</legend>
+			<span class="sexy_option">Menu Location:</span>
+			<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> Above each post</label>
+			<br />
+			<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> Below each post</label>
+			<br />
+			<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> Manually insert</label>
+
+			<span class="sexy_option">Posts, pages, or the whole shebang?</span>
+			<select name="pageorpost" id="pageorpost">
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "post")? 'selected="selected"' : ""); ?> value="post">Posts Only</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "page")? 'selected="selected"' : ""); ?> value="page">Pages Only</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "index")? 'selected="selected"' : ""); ?> value="index">Index Only</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "pagepost")? 'selected="selected"' : ""); ?> value="pagepost">Posts &amp; Pages</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "postindex")? 'selected="selected"' : ""); ?> value="postindex">Posts &amp; Index</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "pageindex")? 'selected="selected"' : ""); ?> value="pageindex">Pages &amp; Index</option>
+				<option <?php echo (($sexy_plugopts['pageorpost'] == "postpageindex")? 'selected="selected"' : ""); ?> value="postpageindex" title="THE WHOLE SHEBANG!">Posts, Pages, &amp; Index</option>
+			</select>
+		
+			<span class="sexy_option">Feed Settings</span>
+			<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> Show in feed</label>
+			<br />
+			<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> Hide in feed</label>
+
+		</fieldset>
+		<input type="hidden" name="save_changes" value="1" />
+		<input type="submit" value="Save Changes" />
+
 	</form>
 </div>
 

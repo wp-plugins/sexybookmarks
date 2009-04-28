@@ -2,13 +2,13 @@ body {
 background:#f9f9f9;
 }
 
-div.wrapit {
+div.sexy_wrapit {
 	background:#f9f9f9;
 	max-width: 680px;
 	font-weight: normal;
 	font-family:arial, sans-serif;
 	font-size:14px;
-	margin:0 0 0 25px;
+	padding-left: 18px;
 }
 
 h2.sexy {
@@ -19,20 +19,21 @@ h2.sexy {
 	font-size:22px;
 	font-style:italic;
 }
-label.title, span.title {
+
+.sexy_wrapit fieldset {
+	margin-top: 20px;
+	padding: 0 18px 18px 18px;
+	border: 1px dotted #666;
+	clear: both;
+}
+
+.sexy_wrapit fieldset legend {
+	font-size: 18px;
+}
+span.sexy_option {
+	display: block;
+	margin-top: 12px;
 	font-weight: bold;
-	font-size:16px;
-	font-family:tahoma, arial, sans-serif;
-}
-span.title {
-	position: absolute;
-}
-div.in1 {
-	margin: 40px 0;
-}
-div.in2 {
-	margin:0;
-	padding:22px 0;
 }
 .iconator {
 	width: 640px;
@@ -151,11 +152,6 @@ input#bgimg-none {
 	top:2px;	
 }
 
-.clear {
-	clear:both;
-	height:20px;
-	width:100%;
-}
 .sexy-errors {
 background:transparent url('../images/error-right.png') no-repeat scroll right top;
 float:left;
