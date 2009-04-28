@@ -101,5 +101,15 @@ $bookmarks=array(
 		'share'=>'Add this to Google Bookmarks',
 		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINKtitle=TITLE',
 	),
+	'sexy-misterwong'=>array(
+		'check'=>'Check this box to include Mister Wong in your bookmarking menu',
+		'share'=>'Add this to Mister Wong',
+		'baseUrl'=>'http://www.mister-wong.com/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=sexybookmarks',
+	),
+	'sexy-izeby'=>array(
+		'check'=>'Check this box to include Izeby in your bookmarking menu',
+		'share'=>'Add this to Izeby',
+		'baseUrl'=>'http://izeby.com/add_story.php?story_url=PERMALINK',
+	),
 );
 ?>
