@@ -1,6 +1,6 @@
 <?php
 // array of bookmarks
-$bookmarks=array(
+$sexy_bookmarks_data=array(
 	'sexy-scriptstyle'=>array(
 		'check'=>'Check this box to include Script &amp; Style in your bookmarking menu',
 		'share'=>'Submit this to Script &amp; Style',
