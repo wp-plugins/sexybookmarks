@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -112,5 +112,5 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.2		Icons are now rearrangeable as well as you can now pick your own URL shortening service. Code is more efficient and puts less strain on the server.
 * 2.2.1	Fixed problem with short tags that caused an array to print at top of your pages. Fixed urlencode of subject and body of email link. Also fixed code validity and now the title text shows up correctly rather than displaying the word "Array" when hovering over links.
 * 2.2.2 Added option to vertically expand multi-rowed bookmark lines on mouseover using jquery
-* 2.2.3 Added option to auto-center the bookmarks menu (via JS)
-* 2.2.? Added Izeby and Mister Wong
+* 2.2.3 Fixed minor CSS issue introduced in 2.2.2. Added option to auto-center the bookmarks menu (via JS).
+* 2.2.4 Added Izeby and Mister Wong
