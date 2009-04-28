@@ -11,9 +11,11 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
-Bookmarks are now draggable so that you can display them in whatever order you wish. 
-You can select your own URL shortening service. 
-Efficiency has been nearly doubled thru code organization and optimization, so now there's less strain on your server.
+* Bookmarks are now draggable so that you can arrange them in any order you wish
+* Code is more optimized and efficient
+* Now uses jQuery to automatically center the menu in your theme
+* Option available for an auto-expanding DIV when bookmarks take up more than one row
+* Added [Izeby](http://izeby.com) and [Mister Wong](http://mister-wong.com)
 
 
 
@@ -109,5 +111,6 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.1.5	Fixed bug causing email link to break layouts in some cases (minor update, only critical to those using NextGen plugin)
 * 2.2		Icons are now rearrangeable as well as you can now pick your own URL shortening service. Code is more efficient and puts less strain on the server.
 * 2.2.1	Fixed problem with short tags that caused an array to print at top of your pages. Fixed urlencode of subject and body of email link. Also fixed code validity and now the title text shows up correctly rather than displaying the word "Array" when hovering over links.
-* 2.2.2 Added option to vertically expand multi-rowed bookmark lines on mouseover using jquery.
-* 2.2.3 Added option to auto-center the bookmarks menu (via JS).
+* 2.2.2 Added option to vertically expand multi-rowed bookmark lines on mouseover using jquery
+* 2.2.3 Added option to auto-center the bookmarks menu (via JS)
+* 2.2.? Added Izeby and Mister Wong
