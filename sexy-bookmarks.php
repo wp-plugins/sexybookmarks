@@ -232,7 +232,7 @@ function sexy_settings_page() {
 
 		</fieldset>
 		<input type="hidden" name="save_changes" value="1" />
-<?php /* TODO: style this box */ ?>
+
 		<div class="sexy-donations">
 			<h2>Fuel the Sexiness</h2>
 			<p>If you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
@@ -373,33 +373,30 @@ function get_sexy() {
 	$mail_subject = str_replace('+','%20',$mail_subject);
 
 
-// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
-if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
-	$post_summary = "";
-}
-if( (strpos($sexy_content, '[') || strpos($sexy_content,']')) ) {
-	$sexy_content = "";
-}
-
-
-
+	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
+	if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
+		$post_summary = "";
+	}
+	if( (strpos($sexy_content, '[') || strpos($sexy_content,']')) ) {
+		$sexy_content = "";
+	}
 
 	// select the background
 	if($sexy_plugopts['bgimg'] == 'top') {
-		$bgchosen = "background:url(".PLUGPATH."images/sexy-trans.png) no-repeat left top;";
+		$bgchosen = ' sexy-bookmarks-bg-sexy';
 	} elseif($sexy_plugopts['bgimg'] == 'bottom') {
-		$bgchosen = "background:url(".PLUGPATH."images/sexy-trans.png) no-repeat left -149px;";
+		$bgchosen = ' sexy-bookmarks-bg-caring';
 	} elseif($sexy_plugopts['bgimg'] == 'none') {
-		$bgchosen = "background:none;";
+		$bgchosen = '';
 	}
 	
 	// do not add inline styles to the feed.
-	$style=' style="'.__($bgchosen).(($sexy_plugopts['autocenter'])?'':__($sexy_plugopts['xtrastyle'])).'"';
+	$style=($sexy_plugopts['autocenter'])?'':' style="'.__($sexy_plugopts['xtrastyle']).'"';
 	if (is_feed()) $style='';
 	$expand=$sexy_plugopts['expand']?' sexy-bookmarks-expand':'';
 	$autocenter=$sexy_plugopts['autocenter']?' sexy-bookmarks-center':'';
 	//write the menu
-	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.'"'.$style.'><ul class="socials">';
+	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'><ul class="socials">';
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
