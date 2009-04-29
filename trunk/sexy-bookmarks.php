@@ -84,7 +84,7 @@ function sexy_settings_page() {
 		"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
 	);
 	$donate_link = $donations[rand(0, count($donations) - 1)];
-	$donate_img = PLUGPATH.'/images/sexy-donational-button.png';
+	$donate_img = 'https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif';
 
 	// processing form submission
 	$status_message = "";
@@ -234,12 +234,12 @@ function sexy_settings_page() {
 		<input type="hidden" name="save_changes" value="1" />
 <?php /* TODO: style this box */ ?>
 		<div class="sexy-donations">
-			<p>SexyBookmarks is fueld primarily by a spark of ingenuity that can only be attained while in a caffeine induced sleepless daze sitting in front of a computer.</p>
-			<p>So if you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
+			<h2>Fuel the Sexiness</h2>
+			<p>If you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
 			<div class="sexy-donate-button"><a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!"><img src="<?php echo $donate_img; ?>" /></a></div>
 		</div>
 
-		<span class="submit"><input type="submit" value="Save Changes" /></span>
+		<div class="submit"><input type="submit" value="Save Changes" /></div>
 
 	</form>
 </div>
