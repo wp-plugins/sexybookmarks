@@ -21,6 +21,7 @@ h2.sexy {
 }
 .sexy_wrapit fieldset legend {
 	font-size: 18px;
+	background: #f9f9f9;
 }
 .sexy_option {
 	display: block;
@@ -55,6 +56,20 @@ h2.sexy {
 #xtrastyle {
 	width: 100%;
 	height: 110px;
+}
+.sexy-donations {
+	width: 240px;
+	background: #fdd;
+	margin: 20px 0;
+	padding: 18px;
+	border: 1px dotted #666;
+	text-align: center;
+}
+.sexy-donations p {
+	text-align: left;
+}
+.sexy-donations h2 { 
+	margin-top: 0;
 }
 .sexy-errors {
 	background:transparent url('../images/error-right.png') no-repeat scroll right top;
