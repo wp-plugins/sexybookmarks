@@ -4,13 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.2.4
+Stable tag: 2.3.0
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
+* Reorganized grouping of options in admin-configuration page.
 * Bookmarks are now draggable so that you can arrange them in any order you wish
 * Code is more optimized and efficient
 * Now uses jQuery to automatically center the menu in your theme
