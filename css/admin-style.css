@@ -1,9 +1,4 @@
-body {
-background:#f9f9f9;
-}
-
 div.sexy_wrapit {
-	background:#f9f9f9;
 	max-width: 680px;
 	font-weight: normal;
 	font-family:arial, sans-serif;
@@ -58,6 +53,128 @@ span.sexy_option {
 	bottom: -31px;
 	position: relative;
 }
+.share-sexy {
+	width:140px;
+	height:50px;
+	display:block;
+	background:url('../images/sexy-trans.png') no-repeat left bottom;
+}
+.share-care {
+	width:140px;
+	height:50px;
+	display:block;
+	background:url('../images/sexy-trans.png') no-repeat left top;
+}
+input#bgimg-sexy {
+	left:10px;
+	position:relative;
+	top:58px;
+}
+input#bgimg-caring {
+	left:10px;
+	position:relative;
+	top:58px;	
+}
+input#bgimg-none {
+	left:10px;
+	position:relative;
+	top:2px;	
+}
+
+.sexy-errors {
+	background:transparent url('../images/error-right.png') no-repeat scroll right top;
+	float:left;
+	height:71px;
+	margin:15px 0 -15px 0;
+	padding:0 14px 0 0;
+	position:relative;
+	left:40px;
+}
+.sexy-errors p {
+	background:transparent url('../images/error-left.png') no-repeat scroll left top;
+	color:#101010;
+	font-family:corbel,verdana,sans-serif;
+	font-size:1.1em;
+	height:71px;
+	line-height:46px;
+	margin:0 0 0 -43px;
+	padding:0 10px 0 50px;
+}
+.sexy-errors p a {
+	color:#990000;
+	text-decoration:underline;
+	font-weight:bold;
+	font-style:italic;
+	font-size:1.2em;
+}
+.sexy-infos {
+	background:transparent url('../images/info-right.png') no-repeat scroll right top;
+	float:left;
+	height:71px;
+	margin:15px 0 -15px 0;
+	padding:0 14px 0 0;
+	position:relative;
+	left:40px;
+}
+.sexy-infos p {
+	background:transparent url('../images/info-left.png') no-repeat scroll left top;
+	color:#101010;
+	font-family:corbel,verdana,sans-serif;
+	font-size:1.1em;
+	height:71px;
+	line-height:46px;
+	margin:0 0 0 -43px;
+	padding:0 10px 0 50px;
+}
+.sexy-infos p a {
+	color:#4a8eef;
+	text-decoration:underline;
+	font-weight:bold;
+	font-style:italic;
+	font-size:1.2em;
+}
+.sexy-warning {
+	background:transparent url('../images/warn-right.png') no-repeat scroll right top;
+	float:left;
+	height:71px;
+	margin:15px 0 -15px 0;
+	padding:0 14px 0 0;
+	position:relative;
+	left:40px;
+}
+.sexy-warning p {
+	background:transparent url('../images/warn-left.png') no-repeat scroll left top;
+	color:#101010;
+	font-family:corbel,verdana,sans-serif;
+	font-size:1.1em;
+	height:71px;
+	line-height:46px;
+	margin:0 0 0 -43px;
+	padding:0 10px 0 50px;
+}
+.sexy-donations {
+	width:335px;
+	height:277px;
+	background:url('../images/sexy-donational-bg.png') no-repeat 0 0;
+	position:absolute;
+	top:154px;
+	right:0;
+	padding:50px 20px 20px 19px;
+}
+.sexy-donations p {
+	font-family:corbel, verdana, sans-serif;
+	font-size:13px;
+	color:#a0a0a0;
+	padding:0 35px 0 0;
+}
+.sexy-donate-button{
+	width:180px;
+	height:45px;
+	border:0;
+	margin:0 auto;
+	margin-top:25px;
+}
+
 label.sexy-newsvine {
 	background-position:left top;
 }
@@ -123,125 +240,4 @@ label.sexy-misterwong {
 }
 label.sexy-izeby {
 	background-position:-1470px top;
-}
-.share-sexy {
-	width:140px;
-	height:50px;
-	display:block;
-	background:url('../images/sexy-trans.png') no-repeat left bottom;
-}
-.share-care {
-	width:140px;
-	height:50px;
-	display:block;
-	background:url('../images/sexy-trans.png') no-repeat left top;
-}
-input#bgimg-sexy {
-	left:10px;
-	position:relative;
-	top:58px;
-}
-input#bgimg-caring {
-	left:10px;
-	position:relative;
-	top:58px;	
-}
-input#bgimg-none {
-	left:10px;
-	position:relative;
-	top:2px;	
-}
-
-.sexy-errors {
-background:transparent url('../images/error-right.png') no-repeat scroll right top;
-float:left;
-height:71px;
-margin:15px 0 -15px 0;
-padding:0 14px 0 0;
-position:relative;
-left:40px;
-}
-.sexy-errors p {
-background:transparent url('../images/error-left.png') no-repeat scroll left top;
-color:#101010;
-font-family:corbel,verdana,sans-serif;
-font-size:1.1em;
-height:71px;
-line-height:46px;
-margin:0 0 0 -43px;
-padding:0 10px 0 50px;
-}
-.sexy-errors p a {
-color:#990000;
-text-decoration:underline;
-font-weight:bold;
-font-style:italic;
-font-size:1.2em;
-}
-.sexy-infos {
-background:transparent url('../images/info-right.png') no-repeat scroll right top;
-float:left;
-height:71px;
-margin:15px 0 -15px 0;
-padding:0 14px 0 0;
-position:relative;
-left:40px;
-}
-.sexy-infos p {
-background:transparent url('../images/info-left.png') no-repeat scroll left top;
-color:#101010;
-font-family:corbel,verdana,sans-serif;
-font-size:1.1em;
-height:71px;
-line-height:46px;
-margin:0 0 0 -43px;
-padding:0 10px 0 50px;
-}
-.sexy-infos p a {
-color:#4a8eef;
-text-decoration:underline;
-font-weight:bold;
-font-style:italic;
-font-size:1.2em;
-}
-.sexy-warning {
-background:transparent url('../images/warn-right.png') no-repeat scroll right top;
-float:left;
-height:71px;
-margin:15px 0 -15px 0;
-padding:0 14px 0 0;
-position:relative;
-left:40px;
-}
-.sexy-warning p {
-background:transparent url('../images/warn-left.png') no-repeat scroll left top;
-color:#101010;
-font-family:corbel,verdana,sans-serif;
-font-size:1.1em;
-height:71px;
-line-height:46px;
-margin:0 0 0 -43px;
-padding:0 10px 0 50px;
-}
-.sexy-donations {
-width:335px;
-height:277px;
-background:url('../images/sexy-donational-bg.png') no-repeat 0 0;
-position:absolute;
-top:154px;
-right:0;
-padding:50px 20px 20px 19px;
-}
-.sexy-donations p {
-font-family:corbel, verdana, sans-serif;
-font-size:13px;
-color:#a0a0a0;
-padding:0 35px 0 0;
-}
-.sexy-donate-button{
-width:180px;
-height:45px;
-border:0;
-margin:0 auto;
-margin-top:25px;
 }
