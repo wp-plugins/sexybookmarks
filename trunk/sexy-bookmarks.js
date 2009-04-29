@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-	if (jQuery('#iconator')) jQuery('#iconator').sortable();
+	if (jQuery('#iconator')) jQuery('#sexy-networks').sortable();
 	if (jQuery('#sexy-bookmarks')) {
 		jQuery('#autocenter-yes').click(sexyToggleCustomCss);
 		jQuery('#autocenter-no').click(sexyToggleCustomCss);

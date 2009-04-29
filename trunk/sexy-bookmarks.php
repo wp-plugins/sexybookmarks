@@ -136,12 +136,12 @@ function sexy_settings_page() {
 	
 		<fieldset class="iconator" id="iconator">
 			<legend>Enabled Networks</legend>
-			<p>Select the Networks to display. Drag to reorder.</p>
+			<p>Select the Networks to display. Drag to reorder.</p><div id="sexy-networks">
 <?php
 	foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
 	$unused_networks=array_diff(array_keys($sexy_bookmarks_data), $sexy_plugopts['bookmark']);
 	foreach ($unused_networks as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
-?>
+?></div>
 		</fieldset>
 		
 		<fieldset>
