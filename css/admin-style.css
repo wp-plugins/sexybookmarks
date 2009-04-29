@@ -5,7 +5,6 @@ div.sexy_wrapit {
 	font-size:14px;
 	padding-left: 18px;
 }
-
 h2.sexy {
 	padding-left: 18px;
 	background: url('../images/sexy-icon.png') no-repeat left 3px;
@@ -14,29 +13,19 @@ h2.sexy {
 	font-size:22px;
 	font-style:italic;
 }
-
 .sexy_wrapit fieldset {
 	margin-top: 20px;
 	padding: 0 18px 18px 18px;
 	border: 1px dotted #666;
 	clear: both;
 }
-
 .sexy_wrapit fieldset legend {
 	font-size: 18px;
 }
-span.sexy_option {
+.sexy_option {
 	display: block;
 	margin-top: 12px;
 	font-weight: bold;
-}
-.iconator {
-	width: 640px;
-}
-
-.iconator h2 {
-	font-weight: bold;
-	font-size:16px;
 }
 .iconator label {
 	background-image: url('../images/sexy-sprite.png');
@@ -46,41 +35,27 @@ span.sexy_option {
 	float: left;
 	margin: 12px 2px;
 	cursor: move;
+	text-align: center;
 }
-.iconator input {
-	width: 60px;
-	margin: 0 auto;
-	bottom: -31px;
-	position: relative;
+.iconator label input {
+	margin-top: 30px;
 }
 .share-sexy {
-	width:140px;
-	height:50px;
-	display:block;
-	background:url('../images/sexy-trans.png') no-repeat left bottom;
+	background:url('../images/sexy-trans.png') no-repeat 0 -150px;
 }
 .share-care {
-	width:140px;
-	height:50px;
+	background:url('../images/sexy-trans.png') no-repeat 0 0;
+}
+.bgimg {
 	display:block;
-	background:url('../images/sexy-trans.png') no-repeat left top;
+	width: 150px;
+	float: left;
+	padding-top: 50px;
 }
-input#bgimg-sexy {
-	left:10px;
-	position:relative;
-	top:58px;
+#xtrastyle {
+	width: 100%;
+	height: 110px;
 }
-input#bgimg-caring {
-	left:10px;
-	position:relative;
-	top:58px;	
-}
-input#bgimg-none {
-	left:10px;
-	position:relative;
-	top:2px;	
-}
-
 .sexy-errors {
 	background:transparent url('../images/error-right.png') no-repeat scroll right top;
 	float:left;
@@ -152,28 +127,6 @@ input#bgimg-none {
 	margin:0 0 0 -43px;
 	padding:0 10px 0 50px;
 }
-.sexy-donations {
-	width:335px;
-	height:277px;
-	background:url('../images/sexy-donational-bg.png') no-repeat 0 0;
-	position:absolute;
-	top:154px;
-	right:0;
-	padding:50px 20px 20px 19px;
-}
-.sexy-donations p {
-	font-family:corbel, verdana, sans-serif;
-	font-size:13px;
-	color:#a0a0a0;
-	padding:0 35px 0 0;
-}
-.sexy-donate-button{
-	width:180px;
-	height:45px;
-	border:0;
-	margin:0 auto;
-	margin-top:25px;
-}
 
 label.sexy-newsvine {
 	background-position:left top;
@@ -240,4 +193,7 @@ label.sexy-misterwong {
 }
 label.sexy-izeby {
 	background-position:-1470px top;
+}
+.clear {
+	clear: both;
 }

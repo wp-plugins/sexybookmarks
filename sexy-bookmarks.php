@@ -74,27 +74,17 @@ function sexy_network_input_select($name, $hint) {
 	);
 }
 
-function sexy_donation_box() {
-	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
-	$donations = array(
-	"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
-	"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
-	);
-	$donate_link = $donations[rand(0, count($donations) - 1)];
-	$donate_img = PLUGPATH.'/images/sexy-donational-button.png';
-	$h=<<<EOF
-<div class="sexy-donations">
-<p>SexyBookmarks is fueld primarily by a spark of ingenuity that can only be attained while in a caffeine induced sleepless daze sitting in front of a computer.</p>
-<p>So if you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
-<div class="sexy-donate-button"><a href="{$donate_link}" title="Help support the development of this plugin by donating!"><img src="{$donate_img}" /></a></div>
-</div>
-EOF;
-	return $h;
-}
-
 //write settings page
 function sexy_settings_page() {
 	global $sexy_plugopts, $sexy_bookmarks_data;
+
+	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
+	$donations = array(
+		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
+		"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
+	);
+	$donate_link = $donations[rand(0, count($donations) - 1)];
+	$donate_img = PLUGPATH.'/images/sexy-donational-button.png';
 
 	// processing form submission
 	$status_message = "";
@@ -156,24 +146,20 @@ function sexy_settings_page() {
 		
 		<fieldset>
 			<legend>Look &amp; Feel</legend>
+			<span class="sexy_option">Which background image would you like to use?</span>
+			<label class="bgimg share-sexy"><input <?php echo (($sexy_plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" /></label>
+			<label class="bgimg share-care"><input <?php echo (($sexy_plugopts['bgimg'] == "top")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="top" /></label>
+			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" />(none)</label>
+			<div class="clear"></div>
+						
 			<span class="sexy_option">Animate-expand multi-lined bookmarks?</span>
 			<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" />Yes</label>
 			<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" />No</label>
 			
-			<span class="sexy_option">Which background image would you like to use?</span>
-			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" />
-			<span class="share-sexy"> </span></label>
-			<br />
-			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "top")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="top" />
-			<span class="share-care"> </span></label>
-			<br />
-			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" /> &nbsp;&nbsp;(none)
-			</label>
-						
 			<span class="sexy_option">Auto-center the bookmarks?</span>
-			<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /> Yes</label>
-			<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /> No</label>
-			<p>(Note: selecting <b>yes</b> above will void any custom styles applied below.)</p>
+			<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" />Yes</label>
+			<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" />No</label>
+			<p>(Note: selecting <b>Yes</b> above will void any custom styles applied below.)</p>
 				
 			
 			<label for="xtrastyle">You can style the DIV that holds the menu here:</label><br/>
@@ -195,7 +181,7 @@ function sexy_settings_page() {
 		
 		<fieldset>
 			<legend>Functionality</legend>
-			<span class="sexy_option">Twitter ID:</span>
+			<span class="sexy_option">Twitter:</span>
 			<label for="twittid">Twitter ID:</label>
 			<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
 
@@ -246,7 +232,14 @@ function sexy_settings_page() {
 
 		</fieldset>
 		<input type="hidden" name="save_changes" value="1" />
-		<input type="submit" value="Save Changes" />
+<?php /* TODO: style this box */ ?>
+		<div class="sexy-donations">
+			<p>SexyBookmarks is fueld primarily by a spark of ingenuity that can only be attained while in a caffeine induced sleepless daze sitting in front of a computer.</p>
+			<p>So if you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
+			<div class="sexy-donate-button"><a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!"><img src="<?php echo $donate_img; ?>" /></a></div>
+		</div>
+
+		<span class="submit"><input type="submit" value="Save Changes" /></span>
 
 	</form>
 </div>
