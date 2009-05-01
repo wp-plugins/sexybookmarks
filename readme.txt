@@ -116,3 +116,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.2.3 Fixed minor CSS issue introduced in 2.2.2. Added option to auto-center the bookmarks menu (via JS).
 * 2.2.4 Added Izeby and Mister Wong
 * 2.3.0 Restyled the admin panel and logically grouped the options/settings. Removed use of inline styles (most of them anyway). A minor bug fix for servers that don't support short tags (i.e. you're getting all the Array Array Array messages).
+* 2.3.1 Fix auto-centering js not included when it should be.
