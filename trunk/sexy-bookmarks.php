@@ -367,10 +367,12 @@ function get_sexy() {
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,250));
 	$sexy_content = str_replace('+','%20',$sexy_content);
+	$sexy_content = str_replace("&#8217;","'",$sexy_content);
 	$post_summary = stripslashes($sexy_content);
 	$site_name = get_bloginfo('name');
 	$mail_subject = urlencode(get_the_title());
 	$mail_subject = str_replace('+','%20',$mail_subject);
+	$mail_subject = str_replace("&#8217;","'",$mail_subject);
 
 
 	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
