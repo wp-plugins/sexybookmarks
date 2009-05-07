@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.3.2');
+define('SEXY_vNum','2.3.3');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
