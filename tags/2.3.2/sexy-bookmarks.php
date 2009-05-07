@@ -269,7 +269,7 @@ function sexy_get_fetch_url() {
 	} elseif($sexy_plugopts['shorty'] == "tiny") {
 		$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
 	} elseif($sexy_plugopts['shorty'] == "snip") {
-		$first_url = "http://snipr.com/site/snip?&amp;r=simple&amp;link=".$perms;
+		$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
 	}
 	
 	$fetch_url=get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
