@@ -4,6 +4,12 @@ jQuery(document).ready(function() {
 		jQuery('#autocenter-yes').click(sexyToggleCustomCss);
 		jQuery('#autocenter-no').click(sexyToggleCustomCss);
 		sexyToggleCustomCss();
+		
+		jQuery('#clearShortUrls').click(function() {
+			if (this.checked) {
+				this.checked=confirm("Selecting this option clears ALL short URLs and cannot be undone.\nAre you sure?");
+			}
+		});
 	}
 });
 
