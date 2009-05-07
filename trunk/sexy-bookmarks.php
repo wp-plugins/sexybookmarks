@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.3.2
+Version: 2.3.3
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -135,7 +135,7 @@ function sexy_settings_page() {
 	}
 ?>
 <h2 class="sexy">SexyBookmarks</h2>
-<div class="wrap">
+<div class="wrap sexy-wrap">
 	<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
 	
 		<fieldset class="iconator" id="iconator">
