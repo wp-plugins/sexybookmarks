@@ -1,4 +1,4 @@
-div.wrap {
+div.sexy-wrap {
 	max-width: 680px;
 	font-weight: normal;
 	font-family:arial, sans-serif;
@@ -13,13 +13,13 @@ h2.sexy {
 	font-size:22px;
 	font-style:italic;
 }
-.wrap fieldset {
+.sexy-wrap fieldset {
 	margin-top: 20px;
 	padding: 0 18px 18px 18px;
 	border: 1px dotted #666;
 	clear: both;
 }
-.wrap fieldset legend {
+.sexy-wrap fieldset legend {
 	font-size: 18px;
 	background: #f9f9f9;
 }
