@@ -1,4 +1,4 @@
-div.sexy_wrapit {
+div.wrap {
 	max-width: 680px;
 	font-weight: normal;
 	font-family:arial, sans-serif;
@@ -13,13 +13,13 @@ h2.sexy {
 	font-size:22px;
 	font-style:italic;
 }
-.sexy_wrapit fieldset {
+.wrap fieldset {
 	margin-top: 20px;
 	padding: 0 18px 18px 18px;
 	border: 1px dotted #666;
 	clear: both;
 }
-.sexy_wrapit fieldset legend {
+.wrap fieldset legend {
 	font-size: 18px;
 	background: #f9f9f9;
 }
@@ -40,6 +40,14 @@ h2.sexy {
 }
 .iconator label input {
 	margin-top: 30px;
+}
+#clearShortUrlsLabel {
+	font-size: 11px;
+	height: 14px;
+	line-height: 14px;
+}
+#clearShortUrls {
+	margin-right: 4px;
 }
 .share-sexy {
 	background:url('../images/sexy-trans.png') no-repeat 0 -150px;
