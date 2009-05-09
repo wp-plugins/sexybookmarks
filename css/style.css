@@ -44,7 +44,7 @@ div.sexy-bookmarks ul.socials a:hover {
 	background-color:none !important;
 }
 
-.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoomyweb, .sexy-yahoomyweb:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, .sexy-mail, .sexy-mail:hover, .sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover  {
+.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoomyweb, .sexy-yahoomyweb:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, .sexy-mail, .sexy-mail:hover, .sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-tumblr, .sexy-tumblr:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover  {
 	background:url('../images/sexy-sprite.png') no-repeat !important;
 }
 
@@ -180,4 +180,22 @@ div.sexy-bookmarks ul.socials a:hover {
 }
 .sexy-izeby:hover {
 	background-position:-1470px top !important;
+}
+.sexy-tumblr {
+	background-position:-1540px bottom !important;
+}
+.sexy-tumblr:hover {
+	background-position:-1540px top !important;
+}
+.sexy-tipd {
+	background-position:-1610px bottom !important;
+}
+.sexy-tipd:hover {
+	background-position:-1610px top !important;
+}
+.sexy-pfbuzz {
+	background-position:-1680px bottom !important;
+}
+.sexy-pfbuzz:hover {
+	background-position:-1680px top !important;
 }
