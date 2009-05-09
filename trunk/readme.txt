@@ -4,21 +4,19 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.3.4a
+Stable tag: 2.4
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
+* Added Tipd, Tumblr, and PFBuzz
 * A few semi-minor CSS fixes that were affecting some of you.
 * Added option to reset/refresh all stored short URLs.
-* Reorganized grouping of options in admin-configuration page.
 * Bookmarks are now draggable so that you can arrange them in any order you wish
-* Code is more optimized and efficient
 * Now uses jQuery to automatically center the menu in your theme
 * Option available for an auto-expanding DIV when bookmarks take up more than one row
-* Added [Izeby](http://izeby.com) and [Mister Wong](http://mister-wong.com)
 
 
 
@@ -122,3 +120,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.3.2 Added option to reset/refresh all stored short URLs.
 * 2.3.3 Fix Snipr link. Quick fix CSS issue that was being bad.
 * 2.3.4 Small CSS fix for those of you who don't get the "hover" effect on mouseover
+* 2.4 Added Tipd, Tumblr, and PFBuzz to the list
