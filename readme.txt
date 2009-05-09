@@ -4,13 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.3.3
+Stable tag: 2.3.4a
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
+* A few semi-minor CSS fixes that were affecting some of you.
 * Added option to reset/refresh all stored short URLs.
 * Reorganized grouping of options in admin-configuration page.
 * Bookmarks are now draggable so that you can arrange them in any order you wish
@@ -120,3 +121,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.3.1 Fix auto-centering js not included when it should be. Also fixed minor bug causing apostrophes to not be encoded properly for email subject/body
 * 2.3.2 Added option to reset/refresh all stored short URLs.
 * 2.3.3 Fix Snipr link. Quick fix CSS issue that was being bad.
+* 2.3.4 Small CSS fix for those of you who don't get the "hover" effect on mouseover
