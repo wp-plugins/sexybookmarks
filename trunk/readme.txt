@@ -11,10 +11,10 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
+* Small CSS fix for stubborn bullets in menu
 * Added Tipd, Tumblr, and PFBuzz
 * A few semi-minor CSS fixes that were affecting some of you.
 * Added option to reset/refresh all stored short URLs.
-* Bookmarks are now draggable so that you can arrange them in any order you wish
 * Now uses jQuery to automatically center the menu in your theme
 * Option available for an auto-expanding DIV when bookmarks take up more than one row
 
@@ -121,3 +121,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.3.3 Fix Snipr link. Quick fix CSS issue that was being bad.
 * 2.3.4 Small CSS fix for those of you who don't get the "hover" effect on mouseover
 * 2.4 Added Tipd, Tumblr, and PFBuzz to the list
+* 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet
