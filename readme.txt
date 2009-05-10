@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.4
+Stable tag: 2.4.1
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -121,4 +121,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.3.3 Fix Snipr link. Quick fix CSS issue that was being bad.
 * 2.3.4 Small CSS fix for those of you who don't get the "hover" effect on mouseover
 * 2.4 Added Tipd, Tumblr, and PFBuzz to the list
-* 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Also fixed validation error for PFBuzz link.
+* 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Fixed validation error for PFBuzz link. Also fixed italian accent characters not being encoded properly.

@@ -365,6 +365,11 @@ function get_sexy() {
 	$title = urlencode(get_the_title());
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
+	$title = str_replace('%C3%B9','ù',$title);
+	$title = str_replace('%C3%A0','à',$title);
+	$title = str_replace('%C3%A8','è',$title);
+	$title = str_replace('%C3%AC','ì',$title);
+	$title = str_replace('%C3%B2','ò',$title);
 	$perms = urlencode(get_permalink());
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,250));
