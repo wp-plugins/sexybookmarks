@@ -121,4 +121,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.3.3 Fix Snipr link. Quick fix CSS issue that was being bad.
 * 2.3.4 Small CSS fix for those of you who don't get the "hover" effect on mouseover
 * 2.4 Added Tipd, Tumblr, and PFBuzz to the list
-* 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet
+* 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Also fixed validation error for PFBuzz link.

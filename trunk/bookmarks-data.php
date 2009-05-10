@@ -124,7 +124,7 @@ $sexy_bookmarks_data=array(
 	'sexy-pfbuzz'=>array(
 		'check'=>'Check this box to include PFBuzz in your bookmarking menu',
 		'share'=>'Share this on PFBuzz',
-		'baseUrl'=>'http://pfbuzz.com/submit?url=PERMALINK&title=TITLE',
+		'baseUrl'=>'http://pfbuzz.com/submit?url=PERMALINK&amp;title=TITLE',
 	),
 );
 ?>
