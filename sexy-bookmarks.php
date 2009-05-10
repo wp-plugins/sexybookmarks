@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.4
+Version: 2.4.1
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.4');
+define('SEXY_vNum','2.4.1');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
@@ -365,6 +365,11 @@ function get_sexy() {
 	$title = urlencode(get_the_title());
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
+	$title = str_replace('%C3%B9','ù',$title);
+	$title = str_replace('%C3%A0','à',$title);
+	$title = str_replace('%C3%A8','è',$title);
+	$title = str_replace('%C3%AC','ì',$title);
+	$title = str_replace('%C3%B2','ò',$title);
 	$perms = urlencode(get_permalink());
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,250));
