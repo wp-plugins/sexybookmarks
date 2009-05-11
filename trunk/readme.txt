@@ -124,3 +124,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.4 Added Tipd, Tumblr, and PFBuzz to the list
 * 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Fixed validation error for PFBuzz link. Also fixed italian accent characters not being encoded properly.
 * 2.4.2 Fixed typo with one of the URL shortening services. Also fixed the subscribe to comments feed error I created.
+* 2.4.3 Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service.

@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.4.2
+Version: 2.4.3
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.4.2');
+define('SEXY_vNum','2.4.3');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
@@ -47,6 +47,8 @@ $sexy_plugopts = array(
 	'feed' => '1', // 1 or 0
 	'expand' => '1',
 	'autocenter' => '0',
+	'ybuzzcat' => 'science',
+	'ybuzzmed' => 'text',
 );
 
 
@@ -110,6 +112,8 @@ function sexy_settings_page() {
 			$sexy_plugopts['shorty'] = $_POST['shorty'];
 			$sexy_plugopts['pageorpost'] = $_POST['pageorpost'];
 			$sexy_plugopts['twittid'] = $_POST['twittid'];
+			$sexy_plugopts['ybuzzcat'] = $_POST['ybuzzcat'];
+			$sexy_plugopts['ybuzzmed'] = $_POST['ybuzzmed'];
 			$sexy_plugopts['bgimg'] = $_POST['bgimg'];
 			$sexy_plugopts['feed'] = $_POST['feed'];
 			$sexy_plugopts['expand'] = $_POST['expand'];
@@ -189,7 +193,28 @@ function sexy_settings_page() {
 			<label for="twittid">Twitter ID:</label>
 			<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
 
-			
+			<span class="sexy_option">Yahoo! Buzz Defaults:</span>
+			<label for="ybuzzcat">Default Content Category: </label><br />
+			<select name="ybuzzcat" id="ybuzzcat">
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "entertainment")? 'selected="selected"' : ""); ?> value="entertainment">Entertainment</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "lifestyle")? 'selected="selected"' : ""); ?> value="lifestyle">Lifestyle</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "health")? 'selected="selected"' : ""); ?> value="health">Health</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "usnews")? 'selected="selected"' : ""); ?> value="usnews">U.S. News</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "business")? 'selected="selected"' : ""); ?> value="business">Business</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "politics")? 'selected="selected"' : ""); ?> value="politics">Politics</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "science")? 'selected="selected"' : ""); ?> value="science">Sci/Tech</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "world_news")? 'selected="selected"' : ""); ?> value="world_news">World</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "sports")? 'selected="selected"' : ""); ?> value="sports">Sports</option>
+				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "travel")? 'selected="selected"' : ""); ?> value="travel">Travel</option>
+			</select><br />
+			<label for="ybuzzmed">Default Media Type: </label><br />
+			<select name="ybuzzmed" id="ybuzzmed">
+				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "text")? 'selected="selected"' : ""); ?> value="text">Text</option>
+				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "image")? 'selected="selected"' : ""); ?> value="image">Image</option>
+				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "audio")? 'selected="selected"' : ""); ?> value="audio">Audio</option>
+				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video">Video</option>
+			</select>
+
 			<span class="sexy_option">Add nofollow to the links?</span>
 			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> Yes</label>
 			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> No</label>
@@ -373,7 +398,7 @@ function get_sexy() {
 	$perms = urlencode(get_permalink());
 	$feedperms = get_permalink();
     $short_title = substr($title, 0, 60)."...";
-	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,250));
+	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
 	$sexy_content = str_replace("&#8217;","'",$sexy_content);
 	$post_summary = stripslashes($sexy_content);
@@ -381,6 +406,8 @@ function get_sexy() {
 	$mail_subject = urlencode(get_the_title());
 	$mail_subject = str_replace('+','%20',$mail_subject);
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
+	$y_cat = $sexy_plugopts['ybuzzcat'];
+	$y_med = $sexy_plugopts['ybuzzmed'];
 
 
 	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
@@ -442,6 +469,14 @@ function get_sexy() {
 		} elseif ($name=='sexy-comfeed') {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$feedperms,
+			));
+		} elseif ($name=='sexy-yahoobuzz') {
+			$socials.=bookmark_list_item($name, array(
+				'permalink'=>$perms,
+				'title'=>$title,
+				'yahooteaser'=>$sexy_content,
+				'yahoocategory'=>$y_cat,
+				'yahoomediatype'=>$y_med,
 			));
 		} else {
 			$socials.=bookmark_list_item($name, array(
