@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.4.3
+Version: 2.4.4
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.4.3');
+define('SEXY_vNum','2.4.4');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
@@ -396,7 +396,7 @@ function get_sexy() {
 	$title = str_replace('%C3%AC','ì',$title);
 	$title = str_replace('%C3%B2','ò',$title);
 	$perms = urlencode(get_permalink());
-	$feedperms = get_permalink();
+	$feedperms = strtolower(get_permalink());
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
@@ -409,6 +409,12 @@ function get_sexy() {
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
 
+	// Fix to check permalink structure before assuming how to output the feed link
+	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) { $feedstructure = '&feed=comments-rss2'; }
+	else {
+		if ('/' == $feedperms[strlen($feedperms) - 1]) { $feedstructure = 'feed'; } 
+		else { $feedstructure = '/feed'; }
+	}
 
 	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
 	if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
@@ -468,7 +474,7 @@ function get_sexy() {
 			));
 		} elseif ($name=='sexy-comfeed') {
 			$socials.=bookmark_list_item($name, array(
-				'permalink'=>$feedperms,
+				'permalink'=>$feedperms.$feedstructure,
 			));
 		} elseif ($name=='sexy-yahoobuzz') {
 			$socials.=bookmark_list_item($name, array(

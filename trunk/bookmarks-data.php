@@ -79,7 +79,7 @@ $sexy_bookmarks_data=array(
 	'sexy-comfeed'=>array(
 		'check'=>'Check this box to include a \'Subscribe to Comments\' link in your bookmarking menu',
 		'share'=>'Subscribe to the comments for this post?',
-		'baseUrl'=>'PERMALINKfeed'.'',
+		'baseUrl'=>'PERMALINK',
 	),
 	'sexy-linkedin'=>array(
 		'check'=>'Check this box to include Linkedin in your bookmarking menu',
