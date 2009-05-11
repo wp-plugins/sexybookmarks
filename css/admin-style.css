@@ -199,7 +199,7 @@ label.sexy-digg {
 label.sexy-designfloat {
 	background-position:-1050px top;
 }
-label.sexy-yahoomyweb {
+label.sexy-yahoobuzz {
 	background-position:-1120px top;
 }
 label.sexy-delicious {
@@ -216,6 +216,15 @@ label.sexy-misterwong {
 }
 label.sexy-izeby {
 	background-position:-1470px top;
+}
+label.sexy-tumblr {
+	background-position:-1540px top;
+}
+label.sexy-tipd {
+	background-position:-1610px top;
+}
+label.sexy-pfbuzz {
+	background-position:-1680px top;
 }
 .clear {
 	clear: both;
