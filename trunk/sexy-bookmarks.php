@@ -371,6 +371,7 @@ function get_sexy() {
 	$title = str_replace('%C3%AC','ì',$title);
 	$title = str_replace('%C3%B2','ò',$title);
 	$perms = urlencode(get_permalink());
+	$feedperms = get_permalink();
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,250));
 	$sexy_content = str_replace('+','%20',$sexy_content);
@@ -437,6 +438,10 @@ function get_sexy() {
 				'post_summary'=>$post_summary,
 				'permalink'=>$perms,
 				'title'=>$title,
+			));
+		} elseif ($name=='sexy-comfeed') {
+			$socials.=bookmark_list_item($name, array(
+				'permalink'=>$feedperms,
 			));
 		} else {
 			$socials.=bookmark_list_item($name, array(
