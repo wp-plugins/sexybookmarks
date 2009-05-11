@@ -48,7 +48,7 @@ div.sexy-bookmarks ul.socials a:hover {
 	background-color:none !important;
 }
 
-.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoomyweb, .sexy-yahoomyweb:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, .sexy-mail, .sexy-mail:hover, .sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-tumblr, .sexy-tumblr:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover  {
+.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoobuzz, .sexy-yahoobuzz:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, .sexy-mail, .sexy-mail:hover, .sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-tumblr, .sexy-tumblr:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover  {
 	background:url('../images/sexy-sprite.png') no-repeat !important;
 }
 
@@ -82,10 +82,10 @@ div.sexy-bookmarks ul.socials a:hover {
 .sexy-delicious:hover {
 	background-position:-1190px top !important;
 }
-.sexy-yahoomyweb {
+.sexy-yahoobuzz {
 	background-position:-1120px bottom !important;
 }
-.sexy-yahoomyweb:hover {
+.sexy-yahoobuzz:hover {
 	background-position:-1120px top !important;
 }
 .sexy-blinklist {
@@ -103,7 +103,6 @@ div.sexy-bookmarks ul.socials a:hover {
 .sexy-myspace {
 	background-position:-770px bottom !important;
 }
-
 .sexy-myspace:hover {
 	background-position:-770px top !important;
 }
