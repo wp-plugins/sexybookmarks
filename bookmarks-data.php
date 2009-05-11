@@ -31,10 +31,10 @@ $sexy_bookmarks_data=array(
 		'share'=>'Share this on Reddit',
 		'baseUrl'=>'http://reddit.com/submit?url=PERMALINK&amp;title=TITLE',
 	),
-	'sexy-yahoomyweb'=>array(
-		'check'=>'Check this box to include Yahoo! MyWeb in your bookmarking menu',
-		'share'=>'Save this to Yahoo MyWeb',
-		'baseUrl'=>'http://myweb2.search.yahoo.com/myresults/bookmarklet?t=TITLE&amp;u=PERMALINK',
+	'sexy-yahoobuzz'=>array(
+		'check'=>'Check this box to include Yahoo! Buzz in your bookmarking menu',
+		'share'=>'Buzz up!',
+		'baseUrl'=>'http://buzz.yahoo.com/submit/?submitUrl=PERMALINK&amp;submitHeadline=TITLE&amp;submitSummary=YAHOOTEASER&amp;submitCategory=YAHOOCATEGORY&amp;submitAssetType=YAHOOMEDIATYPE',
 	),
 	'sexy-stumbleupon'=>array(
 		'check'=>'Check this box to include Stumbleupon in your bookmarking menu',
