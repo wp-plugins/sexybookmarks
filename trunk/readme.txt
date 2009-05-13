@@ -11,28 +11,22 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
+* A few minor CSS fixes/tweaks
 * Added a check of permalink structure so that ALL subscribe to comments links will work no matter how your permalinks are set up.
 * Fixed css error causing Tipd, Tumblr, and PFBuzz images to disappear
 * Fixed Subscribe to comments feed link and a typo in one of the URL shortening services
 * Fixed Italian accent characters not being encoded properly
 * Small CSS fix for stubborn bullets in menu
 * Added Tipd, Tumblr, and PFBuzz
-* A few semi-minor CSS fixes that were affecting some of you.
 * Added option to reset/refresh all stored short URLs.
 
 
-
-
-
-
-SexyBookmarks is based on [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu) by [Giovambattista Fazioli](http://undolog.com). Where WP-Social-Bookmark-Menu allows you to choose which sites to display and whether to display the menu above or below the post, SexyBookmarks extends that capability and adds several new functions for you to choose from. SexyBookmarks allows you to choose the sites you wish to display, choose your "target" attribute, set the "rel" attribute, and choose whether to display above or below the post. The plugin also allows you to enter your own custom CSS into a textarea to style the DIV that contains the menu, but that is purely optional.
-
-
-== Latest News ==
+= Latest News =
 I would like to announce that I am now being assisted in the development of this plugin by [Norman Yung](http://www.robotwithaheart.com). He has offered up several great improvements, and furthermore, has offered to continue helping develop the plugin. 
 
 
 Also, be looking for v3.0 to include a unique translation system for those who wish to use this plugin in their native language. Not only will the plugin text(s) be translated, but the plugin will offer certain languages with more bookmarking sites to include the sites which are most popular in that region! Coming soon!
+
 
 
 == Credits ==
@@ -42,7 +36,7 @@ Also, be looking for v3.0 to include a unique translation system for those who w
 
 = Thanks =
 * Thanks [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
-*Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
+* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
 * Thanks to [Norman Yung](http://www.robotwithaheart.com/) for the tremendous help in further developing this plugin
@@ -127,4 +121,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Fixed validation error for PFBuzz link. Also fixed italian accent characters not being encoded properly.
 * 2.4.2 Fixed typo with one of the URL shortening services. Also fixed the subscribe to comments feed error I created.
 * 2.4.3 Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
-* 2.4.4 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured.
+* 2.4.4 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image.
