@@ -1,4 +1,9 @@
 jQuery(document).ready(function() {
+
+// xhtml 1.0 strict way of using target _self
+$('a[rel^="normal"]').attr('target', '_self');
+
+
 	var sexyBaseHeight=jQuery('.sexy-bookmarks').height();
 	var sexyFullHeight=jQuery('.sexy-bookmarks ul.socials').height();
 	if (sexyFullHeight>sexyBaseHeight) {
@@ -15,7 +20,6 @@ jQuery(document).ready(function() {
 			}
 		);
 	}
-
 	// autocentering
 	if (jQuery('.sexy-bookmarks-center')) {
 		var sexyFullWidth=jQuery('.sexy-bookmarks').width();
@@ -25,9 +29,5 @@ jQuery(document).ready(function() {
 		var sexyRowWidth=Math.min(numPerRow, sexyBookmarkCount)*sexyBookmarkWidth;
 		var sexyLeftMargin=(sexyFullWidth-sexyRowWidth)/2;
 		jQuery('.sexy-bookmarks-center').css('margin-left', sexyLeftMargin+'px');
-	}
-
-	// xhtml 1.0 strict compliant way to use target attribute _self
-	$('a[rel="normal"][href]').attr('target', '_self');
-	
+	}	
 });

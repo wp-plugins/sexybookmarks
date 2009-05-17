@@ -50,16 +50,24 @@ h2.sexy {
 	margin-right: 4px;
 }
 .share-sexy {
-	background:url('../images/sexy-trans.png') no-repeat 0 -150px;
+	background:url('../images/sexy-trans.png') no-repeat 0 -141px;
 }
 .share-care {
 	background:url('../images/sexy-trans.png') no-repeat 0 0;
 }
+.share-wealth {
+	background:url('../images/sexy-trans.png') no-repeat 0 bottom;
+	padding:50px 0 0 25px !important;
+}
 .bgimg {
 	display:block;
-	width: 150px;
+	width: 195px;
 	float: left;
-	padding-top: 50px;
+	padding:50px 0 0 10px;
+	margin:10px 0 0 0;
+}
+.hidden {
+	display:none;
 }
 #xtrastyle {
 	width: 100%;

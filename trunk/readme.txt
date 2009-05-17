@@ -11,26 +11,25 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
+* Added new background image (share the wealth)
+* Added new "smart options" to admin area
+* SexyBookmarks now works in harmony with the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) so that you can now host your own Short URLs rather than using a third party service.
+* Added patch by [Sascha Carlin](http://itst.net/) to really enhance the capabilites of the "manual mode" and the use of only one implementation/instance of the menu.
+* Fixed CSS problem for those of you who get colored boxes on hover
 * A few minor CSS fixes/tweaks
 * Added a check of permalink structure so that ALL subscribe to comments links will work no matter how your permalinks are set up.
 * Fixed css error causing Tipd, Tumblr, and PFBuzz images to disappear
 * Fixed Subscribe to comments feed link and a typo in one of the URL shortening services
-* Fixed Italian accent characters not being encoded properly
-* Small CSS fix for stubborn bullets in menu
 * Added Tipd, Tumblr, and PFBuzz
-* Added option to reset/refresh all stored short URLs.
 
 
 = Latest News =
-I would like to announce that I am now being assisted in the development of this plugin by [Norman Yung](http://www.robotwithaheart.com). He has offered up several great improvements, and furthermore, has offered to continue helping develop the plugin. 
-
-
-Also, be looking for v3.0 to include a unique translation system for those who wish to use this plugin in their native language. Not only will the plugin text(s) be translated, but the plugin will offer certain languages with more bookmarking sites to include the sites which are most popular in that region! Coming soon!
+There are many big changes in v2.4.4/2.5! Take a look at the changelog to see everything you can now use in your plugin... Also, if you are interested in translating the plugin to your language please contact me for more details. I am working on releasing a localized version of the plugin in v3.0
 
 
 
 == Credits ==
-
+* Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
 * Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
 
@@ -38,8 +37,7 @@ Also, be looking for v3.0 to include a unique translation system for those who w
 * Thanks [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Nile](http://unlinkthis.net/) for his continued help optimizing the code.
-* Thanks to [Norman Yung](http://www.robotwithaheart.com/) for the tremendous help in further developing this plugin
+* Thanks to [Crey Design](http://creydesign.com) for the new background image.
 
 == Screenshots ==
 
@@ -54,6 +52,7 @@ Also, be looking for v3.0 to include a unique translation system for those who w
 4. Enjoy!
 
 = Manual Usage =
+**As of v2.4.4 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
 
 If you would like to insert the menu manually, simply choose "Manually insert" from the options page, then place the following code into your theme files where you want the menu to appear:
 
@@ -121,4 +120,5 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Fixed validation error for PFBuzz link. Also fixed italian accent characters not being encoded properly.
 * 2.4.2 Fixed typo with one of the URL shortening services. Also fixed the subscribe to comments feed error I created.
 * 2.4.3 Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
-* 2.4.4 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image.
+* 2.4.4 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article.
+* 2.5 Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
