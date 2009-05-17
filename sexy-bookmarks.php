@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.4.4
+Version: 2.5
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.4.4');
+define('SEXY_vNum','2.5');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
 require_once('bookmarks-data.php');
@@ -39,7 +39,8 @@ $sexy_plugopts = array(
 	'position' => '', // below, above, or manual
 	'reloption' => 'nofollow', // 'nofollow', or ''
 	'targetopt' => 'blank', // 'blank' or 'self'
-	'bgimg' => '', // 'top' or 'bottom'
+	'bgimg-yes' => '', // 'yes' or blank
+	'bgimg' => '', // 'sexy', 'caring', 'wealth'
 	'shorty' => '',
 	'pageorpost' => '',
 	'bookmark' => array_keys($sexy_bookmarks_data),
@@ -67,10 +68,11 @@ function sexy_menu_link() {
 
 function sexy_network_input_select($name, $hint) {
 	global $sexy_plugopts;
-	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s" /></label>',
+	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /></label>',
 		$name,
 		$hint,
 		@in_array($name, $sexy_plugopts['bookmark'])?'checked="checked" ':"",
+		$name,
 		$name
 	);
 }
@@ -103,6 +105,9 @@ function sexy_settings_page() {
 		elseif($_POST['pageorpost'] == '') {
 			$error_message = 'Please choose where you want the menu displayed.';
 		}
+		elseif($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) { // check to see if they have the plugin activated
+			$error_message = "You must first download and activate <a href=\"http://wordpress.org/extend/plugins/twitter-friendly-links/\">Twitter Friendly Links Plugin</a> before hosting your own short URLs...";
+		}
 		else {
 			$sexy_plugopts['position'] = $_POST['position'];
 			$sexy_plugopts['xtrastyle'] = $_POST['xtrastyle'];
@@ -114,6 +119,7 @@ function sexy_settings_page() {
 			$sexy_plugopts['twittid'] = $_POST['twittid'];
 			$sexy_plugopts['ybuzzcat'] = $_POST['ybuzzcat'];
 			$sexy_plugopts['ybuzzmed'] = $_POST['ybuzzmed'];
+			$sexy_plugopts['bgimg-yes'] = $_POST['bgimg-yes'];
 			$sexy_plugopts['bgimg'] = $_POST['bgimg'];
 			$sexy_plugopts['feed'] = $_POST['feed'];
 			$sexy_plugopts['expand'] = $_POST['expand'];
@@ -121,12 +127,19 @@ function sexy_settings_page() {
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 		
+		if(in_array('sexy-yahoobuzz', $sexy_plugopts['bookmark'])) {
+			$ybuzz_default_class = "";
+		}
+		else {
+			$ybuzz_default_class = "hidden";
+		}
+
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query("
 				DELETE FROM $wpdb->postmeta 
 				WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash'
 			");
-			echo '<div id="message" class="sexy-infos"><p>'.$dump.' Short URLs have been reset.<br/></p></div><div style="clear:both;"></div>';
+			echo '<div id="message" class="sexy-warning"><p>'.$dump.' Short URLs have been reset.<br/></p></div><div style="clear:both;"></div>';
 		}
 	}
 
@@ -154,10 +167,13 @@ function sexy_settings_page() {
 		
 		<fieldset>
 			<legend>Look &amp; Feel</legend>
-			<span class="sexy_option">Which background image would you like to use?</span>
-			<label class="bgimg share-sexy"><input <?php echo (($sexy_plugopts['bgimg'] == "bottom")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="bottom" /></label>
-			<label class="bgimg share-care"><input <?php echo (($sexy_plugopts['bgimg'] == "top")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="top" /></label>
-			<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" />(none)</label>
+			<span class="sexy_option">Use a background image? <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked=""' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" /></span>
+			<div id="bgimgs" <?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>class="hidden"<?php } else { echo " "; }?>>
+			<label class="bgimg share-sexy"><input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" /></label>
+			<label class="bgimg share-care"><input <?php echo (($sexy_plugopts['bgimg'] == "caring")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="caring" /></label>
+			<label class="bgimg share-wealth"><input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" /></label>
+			<!--<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" />(none)</label>-->
+			</div>
 			<div class="clear"></div>
 						
 			<span class="sexy_option">Animate-expand multi-lined bookmarks?</span>
@@ -192,7 +208,7 @@ function sexy_settings_page() {
 			<span class="sexy_option">Twitter:</span>
 			<label for="twittid">Twitter ID:</label>
 			<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
-
+		<div id="ybuzz-defaults" class="<?php echo $ybuzz_default_class; ?>">
 			<span class="sexy_option">Yahoo! Buzz Defaults:</span>
 			<label for="ybuzzcat">Default Content Category: </label><br />
 			<select name="ybuzzcat" id="ybuzzcat">
@@ -214,13 +230,13 @@ function sexy_settings_page() {
 				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "audio")? 'selected="selected"' : ""); ?> value="audio">Audio</option>
 				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video">Video</option>
 			</select>
-
+		</div>
 			<span class="sexy_option">Add nofollow to the links?</span>
 			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> Yes</label>
 			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> No</label>
-			
 			<span class="sexy_option">Which URL Shortening Service?</span>
 			<select name="shorty" id="shorty">
+				<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp">Twitter Friendly Links Plugin</option>
 				<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
 				<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
 				<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
@@ -281,7 +297,8 @@ function sexy_settings_page() {
 
 function sexy_get_fetch_url() {
 	global $post, $sexy_plugopts;
-	$perms=get_permalink();
+	if($plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
+	else { $perms = get_permalink(); }
 	
 	// which short url service should be used?
 	if($sexy_plugopts['shorty'] == "e7t") {
@@ -327,8 +344,14 @@ function sexy_get_fetch_url() {
 			if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
 				add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
 			}
-		} else { // failed. use permalink.
-			$fetch_url=$perms;
+		} else { # check to see if they want to host their own short URLs
+				    # notice that this is done outside of the cURL command as well as the post_meta section
+				     # since it is a self-hosted solution there is no need to fetch the URL or store it because it's already stored in the database
+				if($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link')) {
+					$fetch_url = permalink_to_twitter_link($perms);
+				} else {  // failed. use permalink.
+					$fetch_url=$perms;
+				  }
 		}
 	}
 	return $fetch_url;
@@ -367,27 +390,46 @@ function sexy_position_menu($post_content) {
 
 function bookmark_list_item($name, $opts=array()) {
 	global $sexy_plugopts, $sexy_bookmarks_data;
-	
+	if($sexy_plugopts['targetopt'] == "_blank") {
+		$xhtml_target = "external";
+	} else {
+		$xhtml_target = "normal";
+	}
 	$url=$sexy_bookmarks_data[$name]['baseUrl'];
 	foreach ($opts as $key=>$value) {
 		$url=str_replace(strtoupper($key), $value, $url);
 	}
 	
 	return sprintf(
-		'<li class="%s"><a href="%s" target="%s" rel="%s" title="%s">%s</a></li>',
+		'<li class="%s"><a href="%s" rel="%s %s" title="%s">%s</a></li>',
 		$name,
 		$url,
-		$sexy_plugopts['targetopt'],
+		$xhtml_target,
 		$sexy_plugopts['reloption'],
 		$sexy_bookmarks_data[$name]['share'],
 		$sexy_bookmarks_data[$name]['share']
 	);
 }
 
+
+
 function get_sexy() {
 	global $sexy_plugopts;
 	
-	$title = urlencode(get_the_title());
+if($plugopts['position'] == 'manual') { 
+	$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+	$title = urlencode(get_bloginfo('name') . wp_title('-', false));
+	$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+	$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+}
+else { 
+	$perms = get_permalink(); 
+	$title = urlencode(get_the_title()); 
+	$feedperms = strtolower(get_permalink());
+	$mail_subject = urlencode(get_the_title());
+}
+
+
 	$title = str_replace('%3A',':',$title);
 	$title = str_replace('%3F','?',$title);
 	$title = str_replace('%C3%B9','ù',$title);
@@ -395,26 +437,32 @@ function get_sexy() {
 	$title = str_replace('%C3%A8','è',$title);
 	$title = str_replace('%C3%AC','ì',$title);
 	$title = str_replace('%C3%B2','ò',$title);
-	$perms = urlencode(get_permalink());
-	$feedperms = strtolower(get_permalink());
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
 	$sexy_content = str_replace("&#8217;","'",$sexy_content);
 	$post_summary = stripslashes($sexy_content);
 	$site_name = get_bloginfo('name');
-	$mail_subject = urlencode(get_the_title());
 	$mail_subject = str_replace('+','%20',$mail_subject);
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
+	
 
-	// Fix to check permalink structure before assuming how to output the feed link
-	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) { $feedstructure = '&feed=comments-rss2'; }
-	else {
-		if ('/' == $feedperms[strlen($feedperms) - 1]) { $feedstructure = 'feed'; } 
-		else { $feedstructure = '/feed'; }
-	}
+
+        if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
+                $feedstructure = '&feed=comments-rss2';
+        } else {
+                if ('/' == $feedperms[strlen($feedperms) - 1]) {
+                        $feedstructure = 'feed';
+                } 
+				else {
+                        $feedstructure = '/feed';
+                }
+        }
+
+
+
 
 	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
 	if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
@@ -425,12 +473,14 @@ function get_sexy() {
 	}
 
 	// select the background
-	if($sexy_plugopts['bgimg'] == 'top') {
-		$bgchosen = ' sexy-bookmarks-bg-sexy';
-	} elseif($sexy_plugopts['bgimg'] == 'bottom') {
-		$bgchosen = ' sexy-bookmarks-bg-caring';
-	} elseif($sexy_plugopts['bgimg'] == 'none') {
+	if(!isset($sexy_plugopts['bgimg-yes'])) {
 		$bgchosen = '';
+	} elseif($sexy_plugopts['bgimg'] == 'sexy') {
+		$bgchosen = ' sexy-bookmarks-bg-sexy';
+	} elseif($sexy_plugopts['bgimg'] == 'caring') {
+		$bgchosen = ' sexy-bookmarks-bg-caring';
+	}  elseif($sexy_plugopts['bgimg'] == 'wealth') {
+		$bgchosen = ' sexy-bookmarks-bg-wealth';
 	}
 	
 	// do not add inline styles to the feed.
@@ -505,10 +555,15 @@ function selfserv_sexy() {
 add_action('wp_head', 'sexy_public');
 function sexy_public() {
 	global $sexy_plugopts;
+	if($sexy_plugopts['targetopt'] == '_blank') {
+		$public_script = "sexy-bookmarks-blank-public.js";
+	} else {
+		$public_script = "sexy-bookmarks-self-public.js";
+	}
 	echo "\n\n".'<!-- Start Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n";
 	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 	if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter']) {
-		wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'sexy-bookmarks-public.js', array('jquery'), SEXY_vNum);
+		wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.$public_script, array('jquery'), SEXY_vNum);
 		wp_print_scripts('sexy-bookmarks-public-js');
 	}
 	wp_print_styles('sexy-bookmarks');
