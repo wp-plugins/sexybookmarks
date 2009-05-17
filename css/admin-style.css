@@ -50,16 +50,24 @@ h2.sexy {
 	margin-right: 4px;
 }
 .share-sexy {
-	background:url('../images/sexy-trans.png') no-repeat 0 -150px;
+	background:url('../images/sexy-trans.png') no-repeat 0 -141px;
 }
 .share-care {
 	background:url('../images/sexy-trans.png') no-repeat 0 0;
 }
+.share-wealth {
+	background:url('../images/sexy-trans.png') no-repeat 0 bottom;
+	padding:50px 0 0 25px !important;
+}
 .bgimg {
 	display:block;
-	width: 150px;
+	width: 195px;
 	float: left;
-	padding-top: 50px;
+	padding:50px 0 0 10px;
+	margin:10px 0 0 0;
+}
+.hidden {
+	display:none;
 }
 #xtrastyle {
 	width: 100%;
@@ -199,7 +207,7 @@ label.sexy-digg {
 label.sexy-designfloat {
 	background-position:-1050px top;
 }
-label.sexy-yahoomyweb {
+label.sexy-yahoobuzz {
 	background-position:-1120px top;
 }
 label.sexy-delicious {
@@ -216,6 +224,15 @@ label.sexy-misterwong {
 }
 label.sexy-izeby {
 	background-position:-1470px top;
+}
+label.sexy-tumblr {
+	background-position:-1540px top;
+}
+label.sexy-tipd {
+	background-position:-1610px top;
+}
+label.sexy-pfbuzz {
+	background-position:-1680px top;
 }
 .clear {
 	clear: both;

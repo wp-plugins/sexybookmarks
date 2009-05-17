@@ -24,7 +24,7 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 
 
 = Latest News =
-There are many big changes in v2.4.4/2.5! Take a look at the changelog to see everything you can now use in your plugin... Also, if you are interested in translating the plugin to your language please contact me for more details. I am working on releasing a localized version of the plugin in v3.0
+There are many big changes in v2.5! Take a look at the changelog to see everything you can now use in your plugin... Also, if you are interested in translating the plugin to your language please contact me for more details. I am working on releasing a localized version of the plugin in v3.0
 
 
 
@@ -52,7 +52,7 @@ There are many big changes in v2.4.4/2.5! Take a look at the changelog to see ev
 4. Enjoy!
 
 = Manual Usage =
-**As of v2.4.4 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
+**As of v2.5 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
 
 If you would like to insert the menu manually, simply choose "Manually insert" from the options page, then place the following code into your theme files where you want the menu to appear:
 
@@ -120,5 +120,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.4.1 Small CSS fix for anyone having CSS generated content placed in the menu by their theme's stylesheet. Fixed validation error for PFBuzz link. Also fixed italian accent characters not being encoded properly.
 * 2.4.2 Fixed typo with one of the URL shortening services. Also fixed the subscribe to comments feed error I created.
 * 2.4.3 Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
-* 2.4.4 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article.
-* 2.5 Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
+* 2.5 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article. Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
