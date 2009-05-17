@@ -7,12 +7,17 @@ div.sexy-bookmarks-expand {
 	overflow: hidden;
 }
 div.sexy-bookmarks-bg-sexy {
-	padding:25px 0 0 10px;
-	background: url(../images/sexy-trans.png) no-repeat left top;
+	padding:28px 0 0 10px;
+	background: url(../images/sexy-trans.png) no-repeat left -141px;
 }
 div.sexy-bookmarks-bg-caring {
-	padding:25px 0 0 10px;
-	background: url(../images/sexy-trans.png) no-repeat left -149px;
+	padding:26px 0 0 10px;
+	background: url(../images/sexy-trans.png) no-repeat left 0;
+}
+div.sexy-bookmarks-bg-wealth {
+	margin-left:15px !important;
+	padding:35px 0 0 20px;
+	background: url(../images/sexy-trans.png) no-repeat left -265px;
 }
 div.sexy-bookmarks ul.socials {
 	width:100% !important;
