@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 
 // xhtml 1.0 strict way of using target _self
-$('a[rel^="normal"]').attr('target', '_self');
+jQuery('a[rel^="normal"]').attr('target', '_self');
 
 
 	var sexyBaseHeight=jQuery('.sexy-bookmarks').height();
