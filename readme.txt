@@ -4,13 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 2.5
+Stable tag: 2.5.1
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
+* Fixed problem with auto-centering and animation slide effect not working
 * Added new background image (share the wealth)
 * Added new "smart options" to admin area
 * SexyBookmarks now works in harmony with the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) so that you can now host your own Short URLs rather than using a third party service.
@@ -18,9 +19,7 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 * Fixed CSS problem for those of you who get colored boxes on hover
 * A few minor CSS fixes/tweaks
 * Added a check of permalink structure so that ALL subscribe to comments links will work no matter how your permalinks are set up.
-* Fixed css error causing Tipd, Tumblr, and PFBuzz images to disappear
-* Fixed Subscribe to comments feed link and a typo in one of the URL shortening services
-* Added Tipd, Tumblr, and PFBuzz
+
 
 
 = Latest News =
@@ -121,3 +120,4 @@ Please report all bugs via the comment form below for quickest response and nota
 * 2.4.2 Fixed typo with one of the URL shortening services. Also fixed the subscribe to comments feed error I created.
 * 2.4.3 Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
 * 2.5 Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article. Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
+* 2.5.1 - Fixed problem with auto-centering and animation slide effect not working

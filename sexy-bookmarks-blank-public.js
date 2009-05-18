@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 
 // xhtml 1.0 strict way of using target _blank
-$('a[rel^="external"]').attr("target", "_blank");
+jQuery('a[rel^="external"]').attr("target", "_blank");
 
 	var sexyBaseHeight=jQuery('.sexy-bookmarks').height();
 	var sexyFullHeight=jQuery('.sexy-bookmarks ul.socials').height();
