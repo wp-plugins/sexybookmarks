@@ -81,7 +81,7 @@ Please report all bugs via the comment form below for quickest response and nota
 
 == Changelog ==
 
-* 2.5.2	Refactored some JS code. Limited the jQuery selector for "external" links within the .sexy-bookmarks div. Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links.
+* 2.5.2	Refactored some JS code. Limited the jQuery selector for "external" links within the .sexy-bookmarks div. Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links. Also added a few more BG images to choose from.
 * 2.5.1	Fixed problem with auto-centering and animation slide effect not working
 * 2.5	Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article. Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
 * 2.4.3	Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
