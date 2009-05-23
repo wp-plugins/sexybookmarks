@@ -50,10 +50,16 @@ h2.sexy {
 	margin-right: 4px;
 }
 .share-sexy {
-	background:url('../images/sexy-trans.png') no-repeat 0 -141px;
+	background:url('../images/sexy-trans.png') no-repeat 0 -346px;
 }
 .share-care {
 	background:url('../images/sexy-trans.png') no-repeat 0 0;
+}
+.share-care-old {
+	background:url('../images/sexy-trans.png') no-repeat 0 -746px;
+}
+.share-love {
+	background:url('../images/sexy-trans.png') no-repeat 0 -1146px;
 }
 .share-wealth {
 	background:url('../images/sexy-trans.png') no-repeat 0 bottom;

@@ -6,18 +6,30 @@ div.sexy-bookmarks-expand {
 	height: 29px;
 	overflow: hidden;
 }
+.sexy-bookmarks-bg-sexy, .sexy-bookmarks-bg-caring, .sexy-bookmarks-bg-caring-old, .sexy-bookmarks-bg-love, .sexy-bookmarks-bg-wealth {
+	background-image:url('../images/sexy-trans.png') !important;
+	background-repeat: no-repeat;
+}
 div.sexy-bookmarks-bg-sexy {
-	padding:28px 0 0 10px;
-	background: url(../images/sexy-trans.png) no-repeat left -141px;
+	padding: 28px 0 0 10px;
+	background-position: left -348px !important;
 }
 div.sexy-bookmarks-bg-caring {
-	padding:26px 0 0 10px;
-	background: url(../images/sexy-trans.png) no-repeat left 0;
+	padding: 26px 0 0 10px;
+	background-position: left 0 !important;
 }
+div.sexy-bookmarks-bg-caring-old {
+	padding: 26px 0 0 10px;
+	background-position: left -748px !important;
+}
+div.sexy-bookmarks-bg-love {
+	padding: 26px 0 0 10px;
+	background-position: left -1148px !important;
+}	
 div.sexy-bookmarks-bg-wealth {
-	margin-left:15px !important;
-	padding:35px 0 0 20px;
-	background: url(../images/sexy-trans.png) no-repeat left -265px;
+	margin-left: 15px !important;
+	padding: 35px 0 0 20px;
+	background-position: left -1535px !important;
 }
 div.sexy-bookmarks ul.socials {
 	width:100% !important;
