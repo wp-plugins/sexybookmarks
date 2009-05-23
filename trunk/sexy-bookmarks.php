@@ -171,6 +171,8 @@ function sexy_settings_page() {
 			<div id="bgimgs" <?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>class="hidden"<?php } else { echo " "; }?>>
 			<label class="bgimg share-sexy"><input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" /></label>
 			<label class="bgimg share-care"><input <?php echo (($sexy_plugopts['bgimg'] == "caring")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="caring" /></label>
+			<label class="bgimg share-care-old"><input <?php echo (($sexy_plugopts['bgimg'] == "care-old")? 'checked="checked"' : ""); ?> id="bgimg-care-old" name="bgimg" type="radio" value="care-old" /></label>
+			<label class="bgimg share-love"><input <?php echo (($sexy_plugopts['bgimg'] == "love")? 'checked="checked"' : ""); ?> id="bgimg-love" name="bgimg" type="radio" value="love" /></label>
 			<label class="bgimg share-wealth"><input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" /></label>
 			<!--<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" />(none)</label>-->
 			</div>
@@ -471,6 +473,10 @@ function get_sexy() {
 		$bgchosen = ' sexy-bookmarks-bg-sexy';
 	} elseif($sexy_plugopts['bgimg'] == 'caring') {
 		$bgchosen = ' sexy-bookmarks-bg-caring';
+	} elseif($sexy_plugopts['bgimg'] == 'care-old') {
+		$bgchosen = ' sexy-bookmarks-bg-caring-old';
+	} elseif($sexy_plugopts['bgimg'] == 'love') {
+		$bgchosen = ' sexy-bookmarks-bg-love';
 	}  elseif($sexy_plugopts['bgimg'] == 'wealth') {
 		$bgchosen = ' sexy-bookmarks-bg-wealth';
 	}
