@@ -399,11 +399,11 @@ function bookmark_list_item($name, $opts=array()) {
 	}
 	
 	return sprintf(
-		'<li class="%s"><a href="%s" rel="%s%s" title="%s">%s</a></li>',
+		'<li class="%s"><a href="%s" rel="%s"%s title="%s">%s</a></li>',
 		$name,
 		$url,
 		$sexy_plugopts['reloption'],
-		$sexy_plugopts['targetopt']=="_blank"?' external':'',
+		$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
 		$sexy_bookmarks_data[$name]['share'],
 		$sexy_bookmarks_data[$name]['share']
 	);
