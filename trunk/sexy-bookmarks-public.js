@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 
 	// xhtml 1.0 strict way of using target _blank
-	jQuery('.sexy-bookmarks a[rel="external"]').attr("target", "_blank");
+	jQuery('.sexy-bookmarks a.external').attr("target", "_blank");
 
 	// this block sets the auto vertical expand when there are more than 
 	// one row of bookmarks.
