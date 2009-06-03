@@ -83,7 +83,7 @@ function sexy_settings_page() {
 
 	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
 	$donations = array(
-		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
+		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=norman%40robotwithaheart%2ecom&lc=US&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted",
 		"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
 	);
 	$donate_link = $donations[rand(0, count($donations) - 1)];
