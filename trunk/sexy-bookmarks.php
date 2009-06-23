@@ -31,8 +31,10 @@ Author URI: http://eight7teen.com
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','2.5.2');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
 require_once('bookmarks-data.php');
+
 
 //add defaults to an array
 $sexy_plugopts = array(
@@ -50,6 +52,7 @@ $sexy_plugopts = array(
 	'autocenter' => '0',
 	'ybuzzcat' => 'science',
 	'ybuzzmed' => 'text',
+	'warn-choice' => '',
 );
 
 
@@ -64,7 +67,9 @@ function sexy_menu_link() {
 	if (function_exists('add_options_page')) {
 		add_options_page('SexyBookmarks', 'SexyBookmarks', 8, basename(__FILE__), 'sexy_settings_page');
 	}
+	
 }
+
 
 function sexy_network_input_select($name, $hint) {
 	global $sexy_plugopts;
@@ -83,7 +88,7 @@ function sexy_settings_page() {
 
 	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
 	$donations = array(
-		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=norman%40robotwithaheart%2ecom&lc=US&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted",
+		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
 		"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
 	);
 	$donate_link = $donations[rand(0, count($donations) - 1)];
@@ -93,7 +98,7 @@ function sexy_settings_page() {
 	$status_message = "";
 	$error_message = "";
 	if(isset($_POST['save_changes'])) {
-		$status_message = 'Your changes have been saved successfully! &nbsp; --->> &nbsp; <a href="'.$donate_link.'">Donate?</a>';
+		$status_message = 'Your changes have been saved successfully! | Maybe you would consider <a href="'.$donate_link.'">donating</a>?';
 		
 		//was there an error?
 		if($_POST['position'] == '') {		
@@ -127,6 +132,13 @@ function sexy_settings_page() {
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 		
+		// Check for Tumblr and remove if it is selected
+		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
+			$error_message = "Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.";
+		}
+
+
+
 		if(in_array('sexy-yahoobuzz', $sexy_plugopts['bookmark'])) {
 			$ybuzz_default_class = "";
 		}
@@ -135,161 +147,422 @@ function sexy_settings_page() {
 		}
 
 		if ($_POST['clearShortUrls']) {
-			$dump=$wpdb->query("
-				DELETE FROM $wpdb->postmeta 
-				WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash'
-			");
-			echo '<div id="message" class="sexy-warning"><p>'.$dump.' Short URLs have been reset.<br/></p></div><div style="clear:both;"></div>';
+			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
+			echo  '<div id="message" class="sexy-warning"><div class="dialog-left"><img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.$dump.' Short URLs have been reset.</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 		}
 	}
 
 	//if there was an error,
 	//display it in my new fancy schmancy divs
 	if ($error_message != '') {
-		echo '<div id="message" class="sexy-errors"><p>'.$error_message.'</p></div><div style="clear:both;"></div>';
-	} elseif ($status_message != '') {
-		echo '<div id="message" class="sexy-infos"><p>'.$status_message.'</p></div><div style="clear:both;"></div>';
-	}
-?>
-<h2 class="sexy">SexyBookmarks</h2>
-<div class="wrap sexy-wrap">
-	<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
-	
-		<fieldset class="iconator" id="iconator">
-			<legend>Enabled Networks</legend>
-			<p>Select the Networks to display. Drag to reorder.</p><div id="sexy-networks">
-<?php
-	foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
-	$unused_networks=array_diff(array_keys($sexy_bookmarks_data), $sexy_plugopts['bookmark']);
-	foreach ($unused_networks as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
-?></div>
-		</fieldset>
-		
-		<fieldset>
-			<legend>Look &amp; Feel</legend>
-			<span class="sexy_option">Use a background image? <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked=""' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" /></span>
-			<div id="bgimgs" <?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>class="hidden"<?php } else { echo " "; }?>>
-			<label class="bgimg share-sexy"><input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" /></label>
-			<label class="bgimg share-care"><input <?php echo (($sexy_plugopts['bgimg'] == "caring")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="caring" /></label>
-			<label class="bgimg share-care-old"><input <?php echo (($sexy_plugopts['bgimg'] == "care-old")? 'checked="checked"' : ""); ?> id="bgimg-care-old" name="bgimg" type="radio" value="care-old" /></label>
-			<label class="bgimg share-love"><input <?php echo (($sexy_plugopts['bgimg'] == "love")? 'checked="checked"' : ""); ?> id="bgimg-love" name="bgimg" type="radio" value="love" /></label>
-			<label class="bgimg share-wealth"><input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" /></label>
-			<!--<label class="bgimg"><input <?php echo (($sexy_plugopts['bgimg'] == "none")? 'checked="checked"' : ""); ?> id="bgimg-none" name="bgimg" type="radio" value="none" />(none)</label>-->
+		echo '
+		<div id="message" class="sexy-error">
+			<div class="dialog-left">
+				<img src="'.SEXY_PLUGPATH.'images/icons/error.png" class="dialog-ico" alt=""/>
+				'.$error_message.'
 			</div>
-			<div class="clear"></div>
-						
-			<span class="sexy_option">Animate-expand multi-lined bookmarks?</span>
-			<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" />Yes</label>
-			<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" />No</label>
-			
-			<span class="sexy_option">Auto-center the bookmarks?</span>
-			<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" />Yes</label>
-			<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" />No</label>
-			<p>(Note: selecting <b>Yes</b> above will void any custom styles applied below.)</p>
-				
-			
-			<label for="xtrastyle">You can style the DIV that holds the menu here:</label><br/>
-			<textarea id="xtrastyle" name="xtrastyle">
-<?php 
-	$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
-	if (!empty($sexy_plugopts['xtrastyle'])) {
-		echo $sexy_plugopts['xtrastyle']; 
-	} 
-	elseif ( empty($sexy_plugopts['xtrastyle']) )
-		echo $default_sexy;
-	else {
-		echo "If you see this message, please delete the contents of this textarea and click \"Save Changes\".";
+			<div class="dialog-right">
+				<img src="'.SEXY_PLUGPATH.'images/icons/error-delete.jpg" class="del-x" alt=""/>
+			</div>
+		</div>';
+	} elseif ($status_message != '') {
+		echo '
+		<div id="message" class="sexy-success">
+			<div class="dialog-left">
+				<img src="'.SEXY_PLUGPATH.'images/icons/success.png" class="dialog-ico" alt=""/>
+				'.$status_message.'
+			</div>
+			<div class="dialog-right">
+				<img src="'.SEXY_PLUGPATH.'images/icons/success-delete.jpg" class="del-x" alt=""/>
+			</div>
+		</div>';
 	}
+
+require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
+$plugin = 'SexyBookmarks';
+$plug_api = plugins_api('plugin_information', array('slug' => sanitize_title($plugin) ));
+	if ( is_wp_error($plug_api) ) {
+		wp_die($plug_api);
+	}
+$latest_version = $plug_api->version;
+$your_version = SEXY_vNum;
+
+if (empty($status_message) && version_compare($latest_version, $your_version, '>')) {
+
+	echo '
+	<div class="sexy-warning" id="yourversion">
+		<div class="dialog-left">
+			<img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>
+			You are using an outdated version of the plugin ('.SEXY_vNum.'), please update to the latest version ('.$latest_version.') if you wish to enjoy all available features!
+		</div>
+		<div class="dialog-right">
+			<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
+		</div>
+	</div>'; 	
+}
+elseif (empty($status_message) && version_compare($latest_version, $your_version, '<')) {
+	echo '
+	<div class="sexy-information" id="yourversion">
+		<div class="dialog-left">
+			<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>
+			You are using the development version ('.SEXY_vNum.' beta) of the plugin, please <a href="http://sexybookmarks.net/bug-form/" target="_blank">let us know of any bugs</a> you may encounter!
+		</div>
+		<div class="dialog-right">
+			<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
+		</div>
+	</div>'; 
+}
+else { 
+	## No action taken since they are obviously the same version 
+}
 ?>
-			</textarea>
 
-		</fieldset>
-		
-		<fieldset>
-			<legend>Functionality</legend>
-			<span class="sexy_option">Twitter:</span>
-			<label for="twittid">Twitter ID:</label>
-			<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
-		<div id="ybuzz-defaults" class="<?php echo $ybuzz_default_class; ?>">
-			<span class="sexy_option">Yahoo! Buzz Defaults:</span>
-			<label for="ybuzzcat">Default Content Category: </label><br />
-			<select name="ybuzzcat" id="ybuzzcat">
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "entertainment")? 'selected="selected"' : ""); ?> value="entertainment">Entertainment</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "lifestyle")? 'selected="selected"' : ""); ?> value="lifestyle">Lifestyle</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "health")? 'selected="selected"' : ""); ?> value="health">Health</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "usnews")? 'selected="selected"' : ""); ?> value="usnews">U.S. News</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "business")? 'selected="selected"' : ""); ?> value="business">Business</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "politics")? 'selected="selected"' : ""); ?> value="politics">Politics</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "science")? 'selected="selected"' : ""); ?> value="science">Sci/Tech</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "world_news")? 'selected="selected"' : ""); ?> value="world_news">World</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "sports")? 'selected="selected"' : ""); ?> value="sports">Sports</option>
-				<option <?php echo (($sexy_plugopts['ybuzzcat'] == "travel")? 'selected="selected"' : ""); ?> value="travel">Travel</option>
-			</select><br />
-			<label for="ybuzzmed">Default Media Type: </label><br />
-			<select name="ybuzzmed" id="ybuzzmed">
-				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "text")? 'selected="selected"' : ""); ?> value="text">Text</option>
-				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "image")? 'selected="selected"' : ""); ?> value="image">Image</option>
-				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "audio")? 'selected="selected"' : ""); ?> value="audio">Audio</option>
-				<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video">Video</option>
-			</select>
-		</div>
-			<span class="sexy_option">Add nofollow to the links?</span>
-			<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> Yes</label>
-			<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> No</label>
-			<span class="sexy_option">Which URL Shortening Service?</span>
-			<select name="shorty" id="shorty">
-				<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp">Twitter Friendly Links Plugin</option>
-				<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
-				<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
-				<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
-				<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
-				<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
-			</select>
-			<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/>Reset all Short URLs</label>
-			
-			<span class="sexy_option">Open links in new window?</span>
-			<label><input <?php echo (($sexy_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> Yes</label>
-			<label><input <?php echo (($sexy_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
-			
-		</fieldset>
-		
-		<fieldset>
-			<legend>Placement</legend>
-			<span class="sexy_option">Menu Location:</span>
-			<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> Above each post</label>
-			<br />
-			<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> Below each post</label>
-			<br />
-			<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> Manually insert</label>
-
-			<span class="sexy_option">Posts, pages, or the whole shebang?</span>
-			<select name="pageorpost" id="pageorpost">
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "post")? 'selected="selected"' : ""); ?> value="post">Posts Only</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "page")? 'selected="selected"' : ""); ?> value="page">Pages Only</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "index")? 'selected="selected"' : ""); ?> value="index">Index Only</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "pagepost")? 'selected="selected"' : ""); ?> value="pagepost">Posts &amp; Pages</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "postindex")? 'selected="selected"' : ""); ?> value="postindex">Posts &amp; Index</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "pageindex")? 'selected="selected"' : ""); ?> value="pageindex">Pages &amp; Index</option>
-				<option <?php echo (($sexy_plugopts['pageorpost'] == "postpageindex")? 'selected="selected"' : ""); ?> value="postpageindex" title="THE WHOLE SHEBANG!">Posts, Pages, &amp; Index</option>
-			</select>
-		
-			<span class="sexy_option">Feed Settings</span>
-			<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> Show in feed</label>
-			<br />
-			<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> Hide in feed</label>
-
-		</fieldset>
+<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
+	<div id="sexy-col-left">
+		<ul id="sexy-sortables">
+			<li>
+				<div class="box-mid-head" id="iconator">
+					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/globe-plus.png" alt="" class="box-icons" />
+					<h2>Enabled Networks</h2>
+						<div class="bnav">
+							<a href="javascript:void(null);" class="toggle" id="gle1">
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-plus.png" class="close" alt=""/>
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-min.png" class="open" style="display:none;" alt=""/>
+							</a>
+						</div>
+				</div>
+				<div class="box-mid-body iconator" id="toggle1">
+					<div class="padding">
+						<p>Select the Networks to display. Drag to reorder.</p>
+						<div id="sexy-networks">
+							<?php
+								foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
+								$unused_networks=array_diff(array_keys($sexy_bookmarks_data), $sexy_plugopts['bookmark']);
+								foreach ($unused_networks as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
+							?>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="box-mid-head">
+					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/wrench-screwdriver.png" alt="" class="box-icons" />
+					<h2>Functionality Settings</h2>
+						<div class="bnav">
+							<a href="javascript:void(null);" class="toggle" id="gle2">
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-plus.png" class="close" alt=""/>
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-min.png" class="open" style="display:none;" alt=""/>
+							</a>
+						</div>
+				</div>
+				<div class="box-mid-body" id="toggle2">
+					<div class="padding">
+						<div class="dialog-box-warning" id="clear-warning">
+							<div class="dialog-left">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+								This will clear <u>ALL</u> short URLs. - Are you sure?
+							</div>
+							<div class="dialog-right">
+								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" />Yes</label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" />Cancel</label>
+							</div>
+						</div>  
+						<div id="twitter-defaults">
+							<h3>Twitter Options:</h3>
+							<label for="twittid">Twitter ID:</label>
+							<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
+							<div class="clearbig"></div>
+							<label for="shorty">Which URL Shortener?</label>
+							<select name="shorty" id="shorty">
+								<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp">Twitter Friendly Links Plugin</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+							</select>
+							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/>Reset all Short URLs</label>
+						<div class="clearbig"></div>
+						</div>
+						<div id="ybuzz-defaults">
+							<h3>Yahoo! Buzz Defaults:</h3>
+							<label for="ybuzzcat">Default Content Category: </label>
+							<select name="ybuzzcat" id="ybuzzcat">
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "entertainment")? 'selected="selected"' : ""); ?> value="entertainment">Entertainment</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "lifestyle")? 'selected="selected"' : ""); ?> value="lifestyle">Lifestyle</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "health")? 'selected="selected"' : ""); ?> value="health">Health</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "usnews")? 'selected="selected"' : ""); ?> value="usnews">U.S. News</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "business")? 'selected="selected"' : ""); ?> value="business">Business</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "politics")? 'selected="selected"' : ""); ?> value="politics">Politics</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "science")? 'selected="selected"' : ""); ?> value="science">Sci/Tech</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "world_news")? 'selected="selected"' : ""); ?> value="world_news">World</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "sports")? 'selected="selected"' : ""); ?> value="sports">Sports</option>
+								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "travel")? 'selected="selected"' : ""); ?> value="travel">Travel</option>
+							</select>
+							<div class="clearbig"></div>
+							<label for="ybuzzmed">Default Media Type: </label>
+							<select name="ybuzzmed" id="ybuzzmed">
+								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "text")? 'selected="selected"' : ""); ?> value="text">Text</option>
+								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "image")? 'selected="selected"' : ""); ?> value="image">Image</option>
+								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "audio")? 'selected="selected"' : ""); ?> value="audio">Audio</option>
+								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video">Video</option>
+							</select>
+						<div class="clearbig"></div>
+						</div>
+						<div id="genopts">
+							<h3>General Functionality Options:</h3>
+							<span class="sexy_option">Add nofollow to the links?</span>
+							<label><input <?php echo (($sexy_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> Yes</label>
+							<label><input <?php echo (($sexy_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> No</label>
+							<span class="sexy_option">Open links in new window?</span>
+							<label><input <?php echo (($sexy_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> Yes</label>
+							<label><input <?php echo (($sexy_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> No</label>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="box-mid-head">
+					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/palette.png" alt="" class="box-icons" />
+					<h2>General Look &amp; Feel</h2>
+						<div class="bnav">
+							<a href="javascript:void(null);" class="toggle" id="gle3">
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-plus.png" class="close" alt=""/>
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-min.png" class="open" style="display:none;" alt=""/>
+							</a>
+						</div>
+				</div>
+				<div class="box-mid-body" id="toggle3">
+					<div class="padding">
+						<div class="dialog-box-warning" id="custom-warning">
+							<div class="dialog-left">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+								This will void any custom CSS applied below.
+							</div>
+							<div class="dialog-right">
+								<label><input name="warn-choice" id="custom-warn-yes" type="checkbox" value="ok" />Ok</label> 
+							</div>
+						</div>
+						<span class="sexy_option">Animate-expand multi-lined bookmarks?</span>
+						<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" />Yes</label>
+						<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" />No</label>
+						<span class="sexy_option">Auto-center the bookmarks?</span>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" />Yes</label>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" />No</label>
+						<br />
+						<br />
+						<label for="xtrastyle">You can style the DIV that holds the menu here:</label><br/>
+						<textarea id="xtrastyle" name="xtrastyle"><?php 
+								$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";	
+								if (!empty($sexy_plugopts['xtrastyle'])) {		
+									echo $sexy_plugopts['xtrastyle']; 	
+								} 	
+								elseif (empty($sexy_plugopts['xtrastyle'])) {
+									echo $default_sexy; 
+								}
+								else { 
+									echo "If you see this message, please delete the contents of this textarea and click \"Save Changes\".";	
+								} ?>
+						</textarea>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="box-mid-head">
+					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/image.png" alt="" class="box-icons" />
+					<h2>Background Image</h2>
+					<div class="bnav">
+						<a href="javascript:void(null);" class="toggle" id="gle4">
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-plus.png" class="close" alt=""/>
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-min.png" class="open" style="display:none;" alt=""/>
+						</a>
+					</div>
+				</div>
+				<div class="box-mid-body" id="toggle4">
+					<div class="padding">
+						<span class="sexy_option">
+							Use a background image? <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked=""' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
+						</span>
+						<div id="bgimgs" <?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>class="hidden"<?php } else { echo " "; }?>>
+							<label class="bgimg share-sexy">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" />
+							</label>
+							<label class="bgimg share-care">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "caring")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="caring" />
+							</label>
+							<label class="bgimg share-care-old">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "care-old")? 'checked="checked"' : ""); ?> id="bgimg-care-old" name="bgimg" type="radio" value="care-old" />
+							</label>
+							<label class="bgimg share-love">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "love")? 'checked="checked"' : ""); ?> id="bgimg-love" name="bgimg" type="radio" value="love" />
+							</label>
+							<label class="bgimg share-wealth">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" />
+							</label>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="box-mid-head">
+					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/layout-select-footer.png" alt="" class="box-icons" />
+					<h2>Menu Placement</h2>
+					<div class="bnav">
+						<a href="javascript:void(null);" class="toggle" id="gle5">
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-plus.png" class="close" alt=""/>
+							<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/toggle-min.png" class="open" style="display:none;" alt=""/>
+						</a>
+					</div>
+				</div>
+				<div class="box-mid-body" id="toggle5">
+					<div class="padding">
+						<div class="dialog-box-information" id="info-manual">
+							<div class="dialog-left">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information.png" class="dialog-ico" alt=""/>
+								Need help with this? Find it in the <a href="http://sexybookmarks.net/usage-installation/"> official install guide</a>.
+							</div>
+							<div class="dialog-right">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information-delete.jpg" class="del-x" alt=""/>
+							</div>
+						</div> 
+						<span class="sexy_option">Menu Location (in relevance to content):</span>
+						<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> Above Content</label>
+						<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> Below Content</label>
+						<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> Manual Mode</label>
+						<span class="sexy_option">Posts, pages, or the whole shebang?</span>
+						<select name="pageorpost" id="pageorpost">
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "post")? 'selected="selected"' : ""); ?> value="post">Posts Only</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "page")? 'selected="selected"' : ""); ?> value="page">Pages Only</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "index")? 'selected="selected"' : ""); ?> value="index">Index Only</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "pagepost")? 'selected="selected"' : ""); ?> value="pagepost">Posts &amp; Pages</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "postindex")? 'selected="selected"' : ""); ?> value="postindex">Posts &amp; Index</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "pageindex")? 'selected="selected"' : ""); ?> value="pageindex">Pages &amp; Index</option>
+							<option <?php echo (($sexy_plugopts['pageorpost'] == "postpageindex")? 'selected="selected"' : ""); ?> value="postpageindex" title="THE WHOLE SHEBANG!">Posts, Pages, &amp; Index</option>
+						</select><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="shebang-info" title="Click here for help with this option" alt="Click here for help with this option" />
+						<span class="sexy_option">Show in RSS feed?</span>
+						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> Yes</label>
+						<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> No</label>
+					</div>
+				</div>
+			</li>
+		</ul>
 		<input type="hidden" name="save_changes" value="1" />
-
-		<div class="sexy-donations">
-			<h2>Fuel the Sexiness</h2>
-			<p>If you think this plugin is worth a couple of bucks... Please help induce our <strong>&quot;caffeine comas&quot;</strong> by donating.</p>
-			<div class="sexy-donate-button"><a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!"><img src="<?php echo $donate_img; ?>" /></a></div>
-		</div>
-
 		<div class="submit"><input type="submit" value="Save Changes" /></div>
-
 	</form>
+</div>
+
+<div id="sexy-col-right">
+	<div class="box-right">
+		<div class="box-right-head">
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/plug.png" alt="" class="box-icons" />
+			<h3>Plugin Info</h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<h4>Helpful Plugin Links:</h4>
+				<ul>
+					<li><a href="http://sexybookmarks.net/usage-installation/" target="_blank">Installation &amp; Usage Guide</a></li>
+					<li><a href="http://sexybookmarks.net/faq/" target="_blank">Frequently Asked Questions</a></li>
+					<li><a href="http://sexybookmarks.net/bug-form/" target="_blank">Bug Submission Form</a></li>
+					<li><a href="http://sexybookmarks.net/feature-request/" target="_blank">Feature Request Form</a></li>
+				</ul>
+				<div class="clearbig"></div>
+				<h4>Current Plugin Stats:</h4>
+				<?php
+					// getting the plugin stats
+					require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
+					$sexy_plugin = 'sexybookmarks';
+					$sexy_api = plugins_api('plugin_information', array('slug' => stripslashes( 'sexybookmarks' ) ));
+						if ( is_wp_error($sexy_api) )
+							wp_die($sexy_api);
+					$sexy_latest_version = $sexy_api->version;
+					$sexy_updated_ago = sprintf( __('%s ago'), human_time_diff( strtotime( $sexy_api->last_updated ) ) );
+					$sexy_downloaded_times = number_format( $sexy_api->downloaded );
+					$sexy_plug_rating = ceil( 0.05 * $sexy_api->rating );
+					$sexy_num_ratings = number_format( $sexy_api->num_ratings );
+
+					if ($sexy_plug_rating == "0") {
+						$sexy_plug_rating_class = "sexy-rating";
+					}
+					elseif ($sexy_plug_rating == "1") {
+						$sexy_plug_rating_class = "sexy-rating-1";
+					}
+					elseif ($sexy_plug_rating == "2") {
+						$sexy_plug_rating_class = "sexy-rating-2";
+					}
+					elseif ($sexy_plug_rating == "3") {
+						$sexy_plug_rating_class = "sexy-rating-3";
+					}
+					elseif ($sexy_plug_rating == "4") {
+						$sexy_plug_rating_class = "sexy-rating-4";
+					}
+					elseif ($sexy_plug_rating == "5") {
+						$sexy_plug_rating_class = "sexy-rating-5";
+					}
+				?>
+				<ul>
+					<li><strong>Stable Version:</strong> <span><?php echo $sexy_latest_version; ?></span></li>
+					<li><strong>Last Updated:</strong> <span><?php echo $sexy_updated_ago; ?></span></li>
+					<li><strong>Downloaded:</strong> <span><?php echo $sexy_downloaded_times; ?> times</span></li>
+					<li><strong>User Rating:</strong> <span class="<?php echo $sexy_plug_rating_class; ?>" title="<?php echo $sexy_plug_rating; ?> stars - Based on <?php echo $sexy_num_ratings; ?> votes"> </span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="box-right sexy-donation-box">
+		<div class="box-right-head">
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/money-coin.png" alt="" class="box-icons" />
+			<h3>Support by Donating</h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<p>So we've got big plans for SexyBookmarks, but we can't implement any of them without the proper funding!</p>
+				<p>I'm sure you're aware that the development of and continued support for this plugin is a <i>non-paying</i> <b>job</b>, and as such, all donations or contributions are greatly appreciated!</p>
+				<div class="sexy-donate-button">
+					<a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!" class="sexy-buttons">
+						Make Donation
+					</a>
+					<a href="#" title="Close this box and leave me alone!" class="sexy-buttons boxcloser">
+						Close This Box
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box-right">
+		<div class="box-right-head">
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/currency.png" alt="" class="box-icons" />
+			<h3>Top Supporters</h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<ol>
+					<li><a href="http://webhostingsearch.com">Web Hosting Search</a><span>$55<sup><u>00</u></sup></span></li>
+					<li><a href="http://twittley.com">Joel Vaillancourt</a><span>$25<sup><u>00</u></sup></span></li>
+					<li><a href="http://stephenbaugh.com">Stephen Baugh</a><span>$15<sup><u>00</u></sup></span></li>
+					<li><a href="http://www.blissportraiture.com/">Kimberly Hill</a><span>$10<sup><u>00</u></sup></span></li>
+					<li><a href="http://go-adventuresports.com">GO-AdventureSports</a><span>$10<sup><u>00</u></sup></span></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="box-right">
+		<div class="box-right-head">
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/thumb-up.png" alt="" class="box-icons" />
+			<h3>Plugin Sponsors</h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<ul class="sexy-adslots">
+					<li class="sexy-medium-banner">
+						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 
 <?php
@@ -390,6 +663,9 @@ function sexy_position_menu($post_content) {
 }
 //end sexy_position_menu...
 
+
+
+
 function bookmark_list_item($name, $opts=array()) {
 	global $sexy_plugopts, $sexy_bookmarks_data;
 
@@ -411,9 +687,14 @@ function bookmark_list_item($name, $opts=array()) {
 
 
 
+
+
+
 function get_sexy() {
-	global $sexy_plugopts;
-	
+	global $sexy_plugopts, $wp_query, $post;
+
+	$post = $wp_query->post;
+
 	if($plugopts['position'] == 'manual') { 
 		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
 		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
@@ -421,20 +702,14 @@ function get_sexy() {
 		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
 	else { 
-		$perms = get_permalink(); 
-		$title = urlencode(get_the_title()); 
-		$feedperms = strtolower(get_permalink());
-		$mail_subject = urlencode(get_the_title());
+		$perms = urlencode(get_permalink($post->ID));
+		$title = urlencode($post->post_title);
+		$feedperms = strtolower($perms);
+		$mail_subject = urlencode($post->post_title);
 	}
 
 
-	$title = str_replace('%3A',':',$title);
-	$title = str_replace('%3F','?',$title);
-	$title = str_replace('%C3%B9','ù',$title);
-	$title = str_replace('%C3%A0','à',$title);
-	$title = str_replace('%C3%A8','è',$title);
-	$title = str_replace('%C3%AC','ì',$title);
-	$title = str_replace('%C3%B2','ò',$title);
+	
     $short_title = substr($title, 0, 60)."...";
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
@@ -445,7 +720,13 @@ function get_sexy() {
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
+
+
+
+// Array to replace improperly encoded characters (temporary solution for now)
+
 	
+
 
 	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
 		$feedstructure = '&feed=comments-rss2';
@@ -545,6 +826,11 @@ function get_sexy() {
 	return $socials;
 }
 
+
+
+
+
+
 // This function is what allows people to insert the menu wherever they please rather than above/below a post...
 function selfserv_sexy() {
 	echo get_sexy();
@@ -558,23 +844,24 @@ function sexy_public() {
 	echo "\n\n".'<!-- Start Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n";
 	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 	if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
-		wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'sexy-bookmarks-public.js', array('jquery'), SEXY_vNum);
+		wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), SEXY_vNum);
 		wp_print_scripts('sexy-bookmarks-public-js');
 	}
 	wp_print_styles('sexy-bookmarks');
 	echo '<!-- End Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n\n";
 }
 
-
 //styles for admin area
-add_action('admin_head', 'sexy_admin');
-function sexy_admin() {
-	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-	wp_register_script('sexy-bookmarks-js', SEXY_PLUGPATH.'sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
-	wp_print_styles('sexy-bookmarks');
+add_action( "admin_print_scripts", 'sexy_admin_scripts' );
+add_action( "admin_print_styles", 'sexy_admin_styles' );
+function sexy_admin_scripts() {
+	wp_register_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
 	wp_print_scripts('sexy-bookmarks-js');
 }
-
+function sexy_admin_styles() {
+	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+	wp_print_styles('sexy-bookmarks');
+}
 
 
 //add a sidebar menu link

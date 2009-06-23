@@ -111,11 +111,6 @@ $sexy_bookmarks_data=array(
 		'share'=>'Add this to Izeby',
 		'baseUrl'=>'http://izeby.com/add_story.php?story_url=PERMALINK',
 	),
-	'sexy-tumblr'=>array(
-		'check'=>'Check this box to include Tumblr in your bookmarking menu',
-		'share'=>'Share this on Tumblr',
-		'baseUrl'=>'http://www.tumblr.com/share?v=3&amp;u=PERMALINK&amp;t=TITLE&amp;s=',
-	),
 	'sexy-tipd'=>array(
 		'check'=>'Check this box to include Tipd in your bookmarking menu',
 		'share'=>'Share this on Tipd',
@@ -125,6 +120,16 @@ $sexy_bookmarks_data=array(
 		'check'=>'Check this box to include PFBuzz in your bookmarking menu',
 		'share'=>'Share this on PFBuzz',
 		'baseUrl'=>'http://pfbuzz.com/submit?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-friendfeed'=>array(
+		'check'=>'Check this box to include FriendFeed in your bookmarking menu',
+		'share'=>'Share this on FriendFeed',
+		'baseUrl'=>'http://www.friendfeed.com/share?title=TITLE&amp;link=PERMALINK',
+	),
+	'sexy-blogmarks'=>array(
+		'check'=>'Check this box to include BlogMarks in your bookmarking menu',
+		'share'=>'Mark this on BlogMarks',
+		'baseUrl'=>'http://blogmarks.net/my/new.php?mini=1&amp;simple=1&amp;url=PERMALINK&amp;title=TITLE',
 	),
 );
 ?>
