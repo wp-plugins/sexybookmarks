@@ -88,9 +88,9 @@ color:#337129;
 font-weight:bold;
 height:24px;
 line-height:20px;
-margin:16px 0 0;
+margin:35px 0 0;
 padding:3px 10px 0;
-width:791px;
+width:97%;
 }
 div.sexy-error {
 background:#FEB1B1 none repeat scroll 0 0;
@@ -99,9 +99,9 @@ color:#820101;
 font-weight:bold;
 height:24px;
 line-height:20px;
-margin:16px 0 0;
+margin:35px 0 0;
 padding:3px 10px 0;
-width:791px;
+width:97%;
 }
 div.sexy-information {
 background:#A3D0FF none repeat scroll 0 0;
@@ -113,6 +113,7 @@ height:24px;
 line-height:20px;
 margin:35px 15px 0 0;
 padding:3px 10px 0;
+width:97%;
 }
 div.sexy-warning {
 background:#F0FEB1 none repeat scroll 0 0;
@@ -121,9 +122,9 @@ color:#7F7200;
 font-weight:bold;
 height:24px;
 line-height:20px;
-margin:16px 0 0;
+margin:35px 0 0;
 padding:3px 10px 0;
-width:791px;
+width:97%;
 }
 .sexy-warning a, .sexy-information a, .sexy-error a, .sexy-success a {
 text-decoration:underline;
@@ -206,7 +207,7 @@ background-position:-1400px top;
 label.sexy-izeby {
 background-position:-1470px top;
 }
-label.sexy-tumblr {
+label.sexy-twittley {
 background-position:-1540px top;
 }
 label.sexy-tipd {
@@ -243,6 +244,7 @@ margin:0 10px 0 0;
 }
 .padding {
 padding:10px;
+overflow:hidden;
 }
 div#sexy-col-left {
 float:left;
@@ -505,7 +507,7 @@ height:24px;
 line-height:20px;
 margin-bottom:20px;
 padding:3px 10px 0;
-width:735px;
+width:97.5%;
 }
 div.dialog-box-error {
 background:#FEB1B1 none repeat scroll 0 0;
@@ -517,7 +519,7 @@ height:24px;
 line-height:20px;
 margin-bottom:20px;
 padding:3px 10px 0;
-width:735px;
+width:97.5%;
 }
 div.dialog-box-warning {
 background:#F0FEB1 none repeat scroll 0 0;
@@ -530,7 +532,7 @@ height:24px;
 line-height:20px;
 margin-bottom:10px;
 padding:3px 10px 0;
-width:498px;
+width:97.5%;
 }
 div.dialog-box-information {
 background:#A3D0FF none repeat scroll 0 0;
@@ -543,7 +545,7 @@ height:24px;
 line-height:20px;
 margin-bottom:10px;
 padding:3px 10px 0;
-width:498px;
+width:97.5%;
 }
 img.dialog-ico {
 float:left;
