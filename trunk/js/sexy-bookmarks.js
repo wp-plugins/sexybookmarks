@@ -15,6 +15,16 @@ jQuery(document).ready(function() {
 	opacity:      0.7
 });
 
+// Check for Tumblr and alert of changes
+// then remove completely after accepted
+if (jQuery('#sexy-tumblr').is(':checked')) {
+	jQuery('label.sexy-tumblr').css('background-color', '#df6f6f');
+	jQuery('#sexy-tumblr').removeAttr('checked');
+}
+else if (jQuery('#sexy-tumblr').is(':not(:checked)')) {
+	jQuery('label.sexy-tumblr').css('display', 'none');
+}
+
 
 jQuery('#info-manual').css({ display: 'none' });
 jQuery('#clear-warning').css({ display:'none' });
@@ -75,6 +85,7 @@ jQuery('#bgimg-yes').click(function() {
 });
 
 
+// Apply "smart options" to Yahoo! Buzz
 if (jQuery('#sexy-yahoobuzz').is(':checked')) {
 	jQuery('#ybuzz-defaults').is(':visible');
 }
@@ -88,20 +99,25 @@ jQuery('#sexy-yahoobuzz').click(function() {
 	else {
 		jQuery('#ybuzz-defaults').fadeOut();
 	}
-});	
+});
 
-
-// Check for Tumblr and warn then remove
-if (jQuery('#sexy-tumblr').is(':checked')) {
-	jQuery('label.sexy-tumblr').css('background-color', '#df6f6f');
-	jQuery('#sexy-tumblr').removeAttr('checked');
+// Apply "smart options" to Twittley
+if (jQuery('#sexy-twittley').is(':checked')) {
+	jQuery('#twittley-defaults').is(':visible');
 }
-else if (jQuery('#sexy-tumblr').is(':not(:checked)')) {
-	jQuery('label.sexy-tumblr').css('display', 'none');
+else if (jQuery('#sexy-twittley').is(':not(:checked)')) {
+	jQuery('#twittley-defaults').is(':hidden');
 }
+jQuery('#sexy-twittley').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#twittley-defaults').fadeIn('fast');
+	}
+	else {
+		jQuery('#twittley-defaults').fadeOut();
+	}
+});
 
-
-
+// Apply "smart options" to Twitter
 if (jQuery('#sexy-twitter').is(':checked')) {
 	jQuery('#twitter-defaults').is(':visible');
 }
@@ -135,6 +151,14 @@ jQuery('#position-manual').click(function() {
 	}
 });
 
+jQuery('.dtags-info').click(function() {
+	jQuery('#tag-info').fadeIn('fast');
+});
+
+jQuery('.dtags-close').click(function() {
+	jQuery('#tag-info').fadeOut();
+});
+
 jQuery('.shebang-info').click(function() {
 	jQuery('#info-manual').fadeIn('fast');
 });
@@ -147,8 +171,8 @@ jQuery('#yourversion .del-x').click(function() {
 	jQuery('#yourversion').fadeOut();
 });
 
-jQuery('#message .del-x').click(function() {
-	jQuery('#message').fadeOut();
+jQuery('div#message img.del-x').click(function() {
+	jQuery('div#message').fadeOut();
 });
 
 jQuery('#info-manual img.del-x').click(function() {

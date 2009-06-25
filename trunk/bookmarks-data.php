@@ -74,7 +74,7 @@ $sexy_bookmarks_data=array(
 	'sexy-mail'=>array(
 		'check'=>'Check this box to include \'Email to a Friend\' link in your bookmarking menu',
 		'share'=>'Email this to a friend?',
-		'baseUrl'=>'mailto:?&amp;subject=MAIL_SUBJECT&amp;body=STRIP_TEASER - PERMALINK',
+		'baseUrl'=>'SEXY_PLUGPATHmail/friendmail.php',
 	),
 	'sexy-comfeed'=>array(
 		'check'=>'Check this box to include a \'Subscribe to Comments\' link in your bookmarking menu',
@@ -130,6 +130,11 @@ $sexy_bookmarks_data=array(
 		'check'=>'Check this box to include BlogMarks in your bookmarking menu',
 		'share'=>'Mark this on BlogMarks',
 		'baseUrl'=>'http://blogmarks.net/my/new.php?mini=1&amp;simple=1&amp;url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-twittley'=>array(
+		'check'=>'Check this box to include Twittley in your bookmarking menu',
+		'share'=>'Submit this to Twittley',
+		'baseUrl'=>'http://twittley.com/submit/?title=TITLE&url=PERMALINK&desc=POST_SUMMARY&pcat=TWITT_CAT&tags=DEFAULT_TAGS',
 	),
 );
 ?>

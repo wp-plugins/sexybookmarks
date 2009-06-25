@@ -52,6 +52,8 @@ $sexy_plugopts = array(
 	'autocenter' => '0',
 	'ybuzzcat' => 'science',
 	'ybuzzmed' => 'text',
+	'twittcat' => '',
+	'default_tags' => '',
 	'warn-choice' => '',
 );
 
@@ -110,6 +112,12 @@ function sexy_settings_page() {
 		elseif($_POST['pageorpost'] == '') {
 			$error_message = 'Please choose where you want the menu displayed.';
 		}
+		elseif($_POST['twittcat'] == '' && in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
+			$error_message = 'You need to select the primary category for any articles submitted to Twittley.';
+		}
+		elseif($_POST['defaulttags'] == '' && in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
+			$error_message = 'You need to set at least 1 default tag for any articles submitted to Twittley.';
+		}
 		elseif($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) { // check to see if they have the plugin activated
 			$error_message = "You must first download and activate <a href=\"http://wordpress.org/extend/plugins/twitter-friendly-links/\">Twitter Friendly Links Plugin</a> before hosting your own short URLs...";
 		}
@@ -124,6 +132,8 @@ function sexy_settings_page() {
 			$sexy_plugopts['twittid'] = $_POST['twittid'];
 			$sexy_plugopts['ybuzzcat'] = $_POST['ybuzzcat'];
 			$sexy_plugopts['ybuzzmed'] = $_POST['ybuzzmed'];
+			$sexy_plugopts['twittcat'] = $_POST['twittcat'];
+			$sexy_plugopts['defaulttags'] = $_POST['defaulttags'];
 			$sexy_plugopts['bgimg-yes'] = $_POST['bgimg-yes'];
 			$sexy_plugopts['bgimg'] = $_POST['bgimg'];
 			$sexy_plugopts['feed'] = $_POST['feed'];
@@ -132,19 +142,11 @@ function sexy_settings_page() {
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 		
-		// Check for Tumblr and remove if it is selected
+		// Check for Tumblr and display error, will use jQuery to remove if exists
 		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
 			$error_message = "Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.";
 		}
 
-
-
-		if(in_array('sexy-yahoobuzz', $sexy_plugopts['bookmark'])) {
-			$ybuzz_default_class = "";
-		}
-		else {
-			$ybuzz_default_class = "hidden";
-		}
 
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
@@ -193,7 +195,7 @@ if (empty($status_message) && version_compare($latest_version, $your_version, '>
 	<div class="sexy-warning" id="yourversion">
 		<div class="dialog-left">
 			<img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>
-			You are using an outdated version of the plugin ('.SEXY_vNum.'), please update to the latest version ('.$latest_version.') if you wish to enjoy all available features!
+			You are using an outdated version of the plugin ('.SEXY_vNum.'), please update if you wish to enjoy all available features!
 		</div>
 		<div class="dialog-right">
 			<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
@@ -205,7 +207,7 @@ elseif (empty($status_message) && version_compare($latest_version, $your_version
 	<div class="sexy-information" id="yourversion">
 		<div class="dialog-left">
 			<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>
-			You are using the development version ('.SEXY_vNum.' beta) of the plugin, please <a href="http://sexybookmarks.net/bug-form/" target="_blank">let us know of any bugs</a> you may encounter!
+			You are using the development version of the plugin ('.SEXY_vNum.' beta), please <a href="http://sexybookmarks.net/bug-form/" target="_blank">let us know of any bugs</a> you may encounter!
 		</div>
 		<div class="dialog-right">
 			<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
@@ -307,6 +309,28 @@ else {
 								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video">Video</option>
 							</select>
 						<div class="clearbig"></div>
+						</div>
+						<div id="twittley-defaults">
+							<h3>Twittley Defaults:</h3>
+							<label for="twittcat">Primary Content Category: </label>
+							<select name="twittcat" id="twittcat">
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Technology")? 'selected="selected"' : ""); ?> value="Technology">Technology</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "World &amp; Business")? 'selected="selected"' : ""); ?> value="World &amp; Business">World &amp; Business</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Science")? 'selected="selected"' : ""); ?> value="Science">Science</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Gaming")? 'selected="selected"' : ""); ?> value="Gaming">Gaming</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Lifestyle")? 'selected="selected"' : ""); ?> value="Lifestyle">Lifestyle</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Entertainment")? 'selected="selected"' : ""); ?> value="Entertainment">Entertainment</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Sports")? 'selected="selected"' : ""); ?> value="Sports">Sports</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Offbeat")? 'selected="selected"' : ""); ?> value="Offbeat">Offbeat</option>
+								<option <?php echo (($sexy_plugopts['twittcat'] == "Internet")? 'selected="selected"' : ""); ?> value="Internet">Internet</option>
+							</select>
+							<div class="clearbig"></div>
+							<p id="tag-info" class="hidden">
+								Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different "tag categories" than other posts. This list is used to at least categorize your article in their most general categories if the person submitting the article fails to enter more specific and relevant tags for each individual article. <span title="Click here to close this message" class="dtags-close">[close]</span>
+							</p>
+							<label for="defaulttags">Default Tags: </label>
+							<input type="text" name="defaulttags" id="defaulttags" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="dtags-info" title="Click here for help with this option" alt="Click here for help with this option" />
+							<div class="clearbig"></div>
 						</div>
 						<div id="genopts">
 							<h3>General Functionality Options:</h3>
@@ -720,7 +744,8 @@ function get_sexy() {
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
-
+	$t_cat = $sexy_plugopts['twittcat'];
+	$d_tags = $sexy_plugopts['defaulttags'];
 
 
 // Array to replace improperly encoded characters (temporary solution for now)
@@ -779,7 +804,7 @@ function get_sexy() {
 			));
 		} elseif ($name=='sexy-mail') {
 			$socials.=bookmark_list_item($name, array(
-				'mail_subject'=>$mail_subject,
+				'sexy_plugpath'=>SEXY_PLUGPATH,
 				'strip_teaser'=>$post_summary,
 				'permalink'=>$perms,
 			));
@@ -814,6 +839,14 @@ function get_sexy() {
 				'yahoocategory'=>$y_cat,
 				'yahoomediatype'=>$y_med,
 			));
+		} elseif ($name=='sexy-twittley') {
+			$socials.=bookmark_list_item($name, array(
+				'permalink'=>$perms,
+				'title'=>$title,
+				'post_summary'=>$post_summary,
+				'twitt_cat'=>$t_cat,
+				'default_tags'=>$d_tags,
+			));
 		} else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
@@ -843,12 +876,11 @@ function sexy_public() {
 	
 	echo "\n\n".'<!-- Start Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n";
 	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
+	wp_print_styles('sexy-bookmarks');
 	if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
 		wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), SEXY_vNum);
 		wp_print_scripts('sexy-bookmarks-public-js');
 	}
-	wp_print_styles('sexy-bookmarks');
-	echo '<!-- End Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n\n";
 }
 
 //styles for admin area
