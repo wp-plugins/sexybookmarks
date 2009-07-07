@@ -109,7 +109,7 @@ $sexy_bookmarks_data=array(
 	'sexy-izeby'=>array(
 		'check'=>'Check this box to include Izeby in your bookmarking menu',
 		'share'=>'Add this to Izeby',
-		'baseUrl'=>'http://izeby.com/add_story.php?story_url=PERMALINK',
+		'baseUrl'=>'http://izeby.com/submit.php?url=PERMALINK',
 	),
 	'sexy-tipd'=>array(
 		'check'=>'Check this box to include Tipd in your bookmarking menu',
