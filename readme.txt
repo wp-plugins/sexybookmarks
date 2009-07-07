@@ -1,7 +1,7 @@
 === SexyBookmarks ===
 Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
-Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
+Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: 2.5.1
@@ -11,23 +11,22 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
-* Fixed problem with js and css loading throughout the entire dashboard, now only loads on plugin admin page.
+* Thanks to [Artem Russakovskii](http://beerpla.net), we've fixed problem with js and css loading throughout the entire dashboard, now only loads on plugin admin page.
 * Removed email to a friend link until further notice
+* Completely revamped the plugin backend (both style AND functionality)
 * Fixed problem with auto-centering and animation slide effect not working
 * Added new background image (share the wealth)
 * Added new "smart options" to admin area
 * SexyBookmarks now works in harmony with the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) so that you can now host your own Short URLs rather than using a third party service.
-* Added patch by [Sascha Carlin](http://itst.net/) to really enhance the capabilites of the "manual mode" and the use of only one implementation/instance of the menu.
 
 
 
 = Latest News =
-There are many big changes in v2.5! Take a look at the changelog to see everything you can now use in your plugin... Also, if you are interested in translating the plugin to your language please contact me for more details. I am working on releasing a localized version of the plugin in v3.0
-
+Many big changes in the past 2 updates! Check the changelog for specifics regarding the changes that have happened between v2.5 and v2.5.2 - Also, be looking for the most requested option to be implemented soon... THEMES/SKINS!!! We're working hard to make the plugin as "universal" as possible so that it will work for any blog with any background style.
 
 
 == Credits ==
-* Credit goes to []() for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
+* Credit goes to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
 * Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
 * Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
