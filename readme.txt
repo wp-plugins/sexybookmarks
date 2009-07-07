@@ -3,7 +3,7 @@ Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
 Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo 
 Requires at least: 2.7
-Tested up to: 2.7.1
+Tested up to: 2.8
 Stable tag: 2.5.1
 
 Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
@@ -11,14 +11,13 @@ Adds a social bookmarking menu to your posts, pages, index, or any combination o
 == Description ==
 
 = Recent Updates =
+* Fixed problem with js and css loading throughout the entire dashboard, now only loads on plugin admin page.
+* Removed email to a friend link until further notice
 * Fixed problem with auto-centering and animation slide effect not working
 * Added new background image (share the wealth)
 * Added new "smart options" to admin area
 * SexyBookmarks now works in harmony with the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) so that you can now host your own Short URLs rather than using a third party service.
 * Added patch by [Sascha Carlin](http://itst.net/) to really enhance the capabilites of the "manual mode" and the use of only one implementation/instance of the menu.
-* Fixed CSS problem for those of you who get colored boxes on hover
-* A few minor CSS fixes/tweaks
-* Added a check of permalink structure so that ALL subscribe to comments links will work no matter how your permalinks are set up.
 
 
 
@@ -28,6 +27,7 @@ There are many big changes in v2.5! Take a look at the changelog to see everythi
 
 
 == Credits ==
+* Credit goes to []() for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
 * Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
 * Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
@@ -81,7 +81,7 @@ Please report all bugs via the comment form below for quickest response and nota
 
 == Changelog ==
 
-* 2.5.2	Refactored some JS code. Limited the jQuery selector for "external" links within the .sexy-bookmarks div. Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links. Also added a few more BG images to choose from.
+* 2.5.2	Refactored some JS code. Limited the jQuery selector for "external" links within the .sexy-bookmarks div. Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links. Also added a few more BG images to choose from. Removed email link until further notice. Also fixed the issue with scripts and styles loading throughout the entire dashboard.
 * 2.5.1	Fixed problem with auto-centering and animation slide effect not working
 * 2.5	Added a permalink structure check so that ALL subscribe to comments links will work no matter how your permalinks are configured. Also fixed my css goof for people who's theme was applying a background color rather than the desired image. Lastly, I've added the ability to host your own short URLs by using the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) Oh, and you can now choose to place the menu on your site anywhere **once** and it will work throughout the entire site rather than having it printed on every page/article. Added new "smart options" in the admin area (dependent options). Added new background image "Share the wealth!", also updated the "Sharing is sexy!" and "Sharing is caring!" image(s).
 * 2.4.3	Replaced the deceased Yahoo! MyWeb with Yahoo! Buzz and a few custom features for that particular service. Fixed error with images not showing up for Tipd, Tumblr, and PFBuzz in v2.4.2
