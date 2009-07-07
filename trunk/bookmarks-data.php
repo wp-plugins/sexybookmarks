@@ -71,11 +71,11 @@ $sexy_bookmarks_data=array(
 		'share'=>'Tweet This!',
 		'baseUrl'=>'http://www.twitter.com/home?status=POST_BYSHORT_TITLE+-+FETCH_URL',
 	),
-	'sexy-mail'=>array(
+	/*'sexy-mail'=>array(
 		'check'=>'Check this box to include \'Email to a Friend\' link in your bookmarking menu',
 		'share'=>'Email this to a friend?',
 		'baseUrl'=>'SEXY_PLUGPATHmail/friendmail.php',
-	),
+	),*/
 	'sexy-comfeed'=>array(
 		'check'=>'Check this box to include a \'Subscribe to Comments\' link in your bookmarking menu',
 		'share'=>'Subscribe to the comments for this post?',
