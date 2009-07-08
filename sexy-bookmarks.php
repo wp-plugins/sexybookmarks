@@ -329,7 +329,8 @@ else {
 							</select>
 							<div class="clearbig"></div>
 							<p id="tag-info" class="hidden">
-								Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different "tag categories" than other posts. This list is used to at least categorize your article in their most general categories if the person submitting the article fails to enter more specific and relevant tags for each individual article. <span title="Click here to close this message" class="dtags-close">[close]</span>
+								Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different "tag categories" than other posts.<br />								
+								This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here.<br /><span title="Click here to close this message" class="dtags-close">[close]</span>
 							</p>
 							<label for="defaulttags">Default Tags: </label>
 							<input type="text" name="defaulttags" id="defaulttags" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="dtags-info" title="Click here for help with this option" alt="Click here for help with this option" />
@@ -581,10 +582,10 @@ else {
 			<div class="padding">
 				<ul class="sexy-adslots">
 					<li class="sexy-medium-banner">
-						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="#" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
+						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
 					</li>
 				</ul>
 			</div>
@@ -726,13 +727,13 @@ function get_sexy() {
 		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
 		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
-		#$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+#		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
 	else { 
 		$perms = urlencode(get_permalink($post->ID));
 		$title = urlencode($post->post_title);
 		$feedperms = strtolower($perms);
-		#$mail_subject = urlencode($post->post_title);
+#		$mail_subject = urlencode($post->post_title);
 	}
 
 	
@@ -747,7 +748,17 @@ function get_sexy() {
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
 	$t_cat = $sexy_plugopts['twittcat'];
-	$d_tags = $sexy_plugopts['defaulttags'];
+
+	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
+	$getkeywords = get_the_tags(); if ($getkeywords) { foreach($getkeywords as $tag) { $keywords=$keywords.$tag->name.','; } }
+
+	if (!empty($getkeywords)) {
+		$d_tags=substr($d_tags, 0, count($d_tags)-2);
+	}
+	else {
+		$d_tags = $sexy_plugopts['defaulttags'];
+	}
+
 
 
 	
