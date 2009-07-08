@@ -599,7 +599,7 @@ else {
 
 function sexy_get_fetch_url() {
 	global $post, $sexy_plugopts;
-	if($plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
+	if($sexy_plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
 	else { $perms = get_permalink(); }
 	
 	// which short url service should be used?
@@ -722,7 +722,7 @@ function get_sexy() {
 
 	$post = $wp_query->post;
 
-	if($plugopts['position'] == 'manual') { 
+	if($sexy_plugopts['position'] == 'manual') { 
 		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
 		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
