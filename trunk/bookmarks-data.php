@@ -134,7 +134,12 @@ $sexy_bookmarks_data=array(
 	'sexy-twittley'=>array(
 		'check'=>'Check this box to include Twittley in your bookmarking menu',
 		'share'=>'Submit this to Twittley',
-		'baseUrl'=>'http://twittley.com/submit/?title=TITLE&url=PERMALINK&desc=POST_SUMMARY&pcat=TWITT_CAT&tags=DEFAULT_TAGS',
+		'baseUrl'=>'http://twittley.com/submit/?title=TITLE&amp;url=PERMALINK&amp;desc=POST_SUMMARY&amp;pcat=TWITT_CAT&amp;tags=DEFAULT_TAGS',
+	),
+	'sexy-fwisp'=>array(
+		'check'=>'Check this box to include Fwisp in your bookmarking menu',
+		'share'=>'Share this on Fwisp',
+		'baseUrl'=>'http://fwisp.com/submit?url=PERMALINK',
 	),
 );
 ?>

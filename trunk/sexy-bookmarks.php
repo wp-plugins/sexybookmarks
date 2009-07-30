@@ -44,7 +44,7 @@ $sexy_plugopts = array(
 	'targetopt' => 'blank', // 'blank' or 'self'
 	'bgimg-yes' => '', // 'yes' or blank
 	'bgimg' => '', // 'sexy', 'caring', 'wealth'
-	'shorty' => '',
+	'shorty' => 'e7t', // default is http://e7t.us
 	'pageorpost' => '',
 	'bookmark' => array_keys($sexy_bookmarks_data),
 	'xtrastyle' => '',
@@ -210,7 +210,7 @@ elseif (empty($status_message) && version_compare($latest_version, $your_version
 	<div class="sexy-information" id="yourversion">
 		<div class="dialog-left">
 			<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>
-			You are using the development version of the plugin ('.SEXY_vNum.' beta), please <a href="http://sexybookmarks.net/bug-form/" target="_blank">let us know of any bugs</a> you may encounter!
+			You are using the development version of the plugin ('.SEXY_vNum.' beta), please <a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">let us know of any bugs</a> you may encounter!
 		</div>
 		<div class="dialog-right">
 			<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
@@ -278,12 +278,15 @@ else {
 							<div class="clearbig"></div>
 							<label for="shorty">Which URL Shortener?</label>
 							<select name="shorty" id="shorty">
-								<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp">Twitter Friendly Links Plugin</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "trim")? 'selected="selected"' : ""); ?> value="trim">http://tr.im</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "supr")? 'selected="selected"' : ""); ?> value="supr">http://su.pr</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "shortto")? 'selected="selected"' : ""); ?> value="shortto">http://short.to</option>
+								<option <?php echo (($socialit_plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/>Reset all Short URLs</label>
 						<div class="clearbig"></div>
@@ -408,9 +411,9 @@ else {
 				<div class="box-mid-body" id="toggle4">
 					<div class="padding">
 						<span class="sexy_option">
-							Use a background image? <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked=""' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
+							Use a background image? <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
 						</span>
-						<div id="bgimgs" <?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>class="hidden"<?php } else { echo " "; }?>>
+						<div id="bgimgs" class="<?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>hidden<?php } else { echo ''; }?>">
 							<label class="bgimg share-sexy">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" />
 							</label>
@@ -446,7 +449,7 @@ else {
 						<div class="dialog-box-information" id="info-manual">
 							<div class="dialog-left">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information.png" class="dialog-ico" alt=""/>
-								Need help with this? Find it in the <a href="http://sexybookmarks.net/usage-installation/"> official install guide</a>.
+								Need help with this? Find it in the <a href="http://sexybookmarks.net/documentation/usage-installation"> official install guide</a>.
 							</div>
 							<div class="dialog-right">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information-delete.jpg" class="del-x" alt=""/>
@@ -488,10 +491,12 @@ else {
 			<div class="padding">
 				<h4>Helpful Plugin Links:</h4>
 				<ul>
-					<li><a href="http://sexybookmarks.net/usage-installation/" target="_blank">Installation &amp; Usage Guide</a></li>
-					<li><a href="http://sexybookmarks.net/faq/" target="_blank">Frequently Asked Questions</a></li>
-					<li><a href="http://sexybookmarks.net/bug-form/" target="_blank">Bug Submission Form</a></li>
-					<li><a href="http://sexybookmarks.net/feature-request/" target="_blank">Feature Request Form</a></li>
+					<li><a href="http://sexybookmarks.net/documentation/usage-installation" target="_blank">Installation &amp; Usage Guide</a></li>
+					<li><a href="http://sexybookmarks.net/documentation/faq" target="_blank">Frequently Asked Questions</a></li>
+					<li><a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">Bug Submission Form</a></li>
+					<li><a href="http://sexybookmarks.net/contact-forms/feature-request" target="_blank">Feature Request Form</a></li>
+					<li><a href="http://sexybookmarks.net/platforms" target="_blank">Other SexyBookmarks Platforms</a></li>
+					<li><a href="http://sexybookmarks.net/downloads/sexyfox" target="_blank">SexyFox Firefox Toolbar</a></li>
 				</ul>
 				<div class="clearbig"></div>
 				<h4>Current Plugin Stats:</h4>
@@ -536,6 +541,33 @@ else {
 			</div>
 		</div>
 	</div>
+	<div class="box-right">
+		<div class="box-right-head">
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/thumb-up.png" alt="" class="box-icons" />
+			<h3>Plugin Sponsors</h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<ul class="sexy-adslots">
+					<li class="sexy-medium-banner">
+						<script type="text/javascript">
+							Vertical1240126 = true;
+							ShowAdHereBanner1240126 = true;
+							RepeatAll1240126 = true;
+							NoFollowAll1240126 = false;
+							BannerStyles1240126 = new Array(
+								"a{display:block;font-size:11px;color:#79939F;font-family:verdana,sans-serif;margin:0 0 10px 1px;text-align:center;text-decoration:none;overflow:hidden;}",
+								"img{border:0;clear:right;}",
+								"a.adhere{color:#79939F;font-weight:bold;font-size:12px;outline:1px solid #79939F;background:#F2F2F2;text-align:center;height:60px !important;width:234px !important;}",
+								"a.adhere:hover{outline:1px solid #68828e;background:#f0f0f0;color:#68828e;}"
+							);
+							document.write(unescape("%3Cscript src='"+document.location.protocol+"//s3.buysellads.com/1240126/1240126.js?v="+Date.parse(new Date())+"' type='text/javascript'%3E%3C/script%3E"));
+						</script>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="box-right sexy-donation-box">
 		<div class="box-right-head">
 			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/money-coin.png" alt="" class="box-icons" />
@@ -575,18 +607,16 @@ else {
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/thumb-up.png" alt="" class="box-icons" />
-			<h3>Plugin Sponsors</h3>
+			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/megaphone.png" alt="" class="box-icons" />
+			<h3>Shout-Outs</h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
-				<ul class="sexy-adslots">
-					<li class="sexy-medium-banner">
-						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-						<a href="http://sexybookmarks.net/advertising" title="Reach beyond the scope of normal advertising!">Advertise Here</a>
-					</li>
+				<ul class="credits">
+					<li><a href="http://www.pinvoke.com/">GUI Icons by Pinvoke</a></li>
+					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/">Original Skin Icons by Function</a></li>
+					<li><a href="http://beerpla.net">Bug Patch by Artem Russakovskii</a></li>
+					<li><a href="http://gaut.am/">Twitter encoding fix by Gautam Gupta</a></li>
 				</ul>
 			</div>
 		</div>
@@ -604,17 +634,24 @@ function sexy_get_fetch_url() {
 	else { $perms = get_permalink(); }
 	
 	// which short url service should be used?
-	if($sexy_plugopts['shorty'] == "e7t") {
+	if($socialit_plugopts['shorty'] == "e7t") {
 		$first_url = "http://e7t.us/create.php?url=".$perms;
-	}
-	elseif($sexy_plugopts['shorty'] == "rims") {
+	} elseif($socialit_plugopts['shorty'] == "rims") {
 		$first_url = "http://ri.ms/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
+	} elseif($socialit_plugopts['shorty'] == "tinyarrow") {
 		$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "tiny") {
+	} elseif($socialit_plugopts['shorty'] == "tiny") {
 		$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "snip") {
+	} elseif($socialit_plugopts['shorty'] == "snip") {
 		$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
+	} elseif($socialit_plugopts['shorty'] == "shortto") {
+		$first_url = "http://short.to/s.txt?url=".$perms;
+	} elseif($socialit_plugopts['shorty'] == "cligs") {
+		$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms);
+	} elseif($socialit_plugopts['shorty'] == "supr") {
+		$first_url = "http://su.pr/api?url=".$perms;
+	} elseif($socialit_plugopts['shorty'] == "trim") {
+		$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
 	}
 	
 	$fetch_url=get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
@@ -729,6 +766,12 @@ function get_sexy() {
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 #		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
+	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
+		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
+		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+#		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+	}
 	else { 
 		$perms = urlencode(get_permalink($post->ID));
 		$title = urlencode($post->post_title);
@@ -737,7 +780,14 @@ function get_sexy() {
 	}
 
 	
-    $short_title = substr($title, 0, 60)."...";
+	//determine how to handle post titles for Twitter
+	if (strlen($title) >= 80) {
+		$short_title = substr($title, 0, 80)."[..]";
+	}
+	else {
+		$short_title = $title;
+	}
+
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
 	$sexy_content = str_replace("&#8217;","'",$sexy_content);
@@ -763,7 +813,7 @@ function get_sexy() {
 
 	
 
-
+	// Check permalink setup for proper feed link
 	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
 		$feedstructure = '&feed=comments-rss2';
 	} else {
@@ -810,7 +860,7 @@ function get_sexy() {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
 				'post_by'=>(!empty($sexy_plugopts['twittid']))?"RT+@".$sexy_plugopts['twittid'].":+":'',
-				'short_title'=>$title,
+				'short_title'=>$short_title,
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
 	    }# elseif ($name=='sexy-mail') {

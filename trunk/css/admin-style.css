@@ -153,6 +153,8 @@ label.sexy-tipd {background-position:-1610px top;}
 label.sexy-pfbuzz {background-position:-1680px top;}
 label.sexy-friendfeed {background-position:-1750px top;}
 label.sexy-blogmarks {background-position:-1820px top;}
+label.sexy-fwisp {background-position:-1890px top;}
+
 .clear {
 	clear:both;
 }
@@ -612,4 +614,17 @@ ul.sexy-adslots li.sexy-small-banner a {
 	width:264px;
 	height:47px;
 	background:url('../images/sexy-logo.png') no-repeat 0 0;
+}
+div.box-right-body ul.credits {
+	list-style-type:none;
+	list-style-position:outside;
+}
+div.box-right-body ul.credits li {
+	background:url(../images/icons/star-small.png) no-repeat left 2px;
+	padding-left:17px;
+	line-height:19px;
+	font-size:11px;
+}
+div.box-right-body ul.credits li a {
+	text-decoration:none;
 }

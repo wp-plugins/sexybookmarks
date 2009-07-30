@@ -69,19 +69,10 @@ jQuery('.toggle').click(function(){
 });
 
 
-if (jQuery('#bgimg-yes').is(':checked')) {
-	jQuery('#bgimgs').is(':visible');
-}
-else if (jQuery('#bgimg-yes').is(':not(:checked)')) {
-	jQuery('#bgimgs').is(':hidden');
-}
+
+// Apply "smart options" to BG image
 jQuery('#bgimg-yes').click(function() {
-	if (this.checked) {
-		this.checked=jQuery('#bgimgs').removeClass('hidden');
-	}
-	else {
-		jQuery('#bgimgs').fadeOut();
-	}
+	jQuery('#bgimgs').toggleClass('hidden').toggleClass('');
 });
 
 
@@ -175,6 +166,10 @@ jQuery('div#message img.del-x').click(function() {
 	jQuery('div#message').fadeOut();
 });
 
+jQuery('div#clearurl img.del-x').click(function() {
+	jQuery('div#clearurl').fadeOut();
+});
+
 jQuery('#info-manual img.del-x').click(function() {
 	jQuery('#info-manual').fadeOut();
 });
@@ -183,9 +178,15 @@ jQuery('#info-manual img.del-x').click(function() {
 
 
 jQuery('#clearShortUrls').click(function() {
-	this.checked=jQuery('#clear-warning').fadeIn('fast');
-	this.checked=jQuery(this).is(':not(:checked)');
+    if (jQuery('#clearShortUrls').is(':checked')) {
+        this.checked=jQuery('#clear-warning').fadeIn('fast');
+    }else{
+        this.checked=jQuery(this).is(':not(:checked)');
+    }
+    this.checked=jQuery(this).is(':not(:checked)');
 });
+
+
 
 jQuery('#warn-cancel').click(function() {
 	this.checked=jQuery('#clear-warning').fadeOut();
@@ -195,6 +196,7 @@ jQuery('#warn-cancel').click(function() {
 jQuery('#warn-yes').click(function() {
 	this.checked=jQuery('#clear-warning').fadeOut();
 	this.checked=jQuery('#clearShortUrls').attr('checked', 'checked');
+	this.checked=!this.checked;
 });
 
 }});
