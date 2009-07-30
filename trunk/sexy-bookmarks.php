@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.3b
+Version: 2.5.2.1
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.5.3b');
+define('SEXY_vNum','2.5.2.1');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
@@ -278,15 +278,15 @@ else {
 							<div class="clearbig"></div>
 							<label for="shorty">Which URL Shortener?</label>
 							<select name="shorty" id="shorty">
-								<option <?php echo (($socialit_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "trim")? 'selected="selected"' : ""); ?> value="trim">http://tr.im</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "supr")? 'selected="selected"' : ""); ?> value="supr">http://su.pr</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "shortto")? 'selected="selected"' : ""); ?> value="shortto">http://short.to</option>
-								<option <?php echo (($socialit_plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "trim")? 'selected="selected"' : ""); ?> value="trim">http://tr.im</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "supr")? 'selected="selected"' : ""); ?> value="supr">http://su.pr</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "shortto")? 'selected="selected"' : ""); ?> value="shortto">http://short.to</option>
+								<option <?php echo (($sexy_plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/>Reset all Short URLs</label>
 						<div class="clearbig"></div>
@@ -634,23 +634,23 @@ function sexy_get_fetch_url() {
 	else { $perms = get_permalink(); }
 	
 	// which short url service should be used?
-	if($socialit_plugopts['shorty'] == "e7t") {
+	if($sexy_plugopts['shorty'] == "e7t") {
 		$first_url = "http://e7t.us/create.php?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "rims") {
+	} elseif($sexy_plugopts['shorty'] == "rims") {
 		$first_url = "http://ri.ms/api-create.php?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "tinyarrow") {
+	} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
 		$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "tiny") {
+	} elseif($sexy_plugopts['shorty'] == "tiny") {
 		$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "snip") {
+	} elseif($sexy_plugopts['shorty'] == "snip") {
 		$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "shortto") {
+	} elseif($sexy_plugopts['shorty'] == "shortto") {
 		$first_url = "http://short.to/s.txt?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "cligs") {
+	} elseif($sexy_plugopts['shorty'] == "cligs") {
 		$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms);
-	} elseif($socialit_plugopts['shorty'] == "supr") {
+	} elseif($sexy_plugopts['shorty'] == "supr") {
 		$first_url = "http://su.pr/api?url=".$perms;
-	} elseif($socialit_plugopts['shorty'] == "trim") {
+	} elseif($sexy_plugopts['shorty'] == "trim") {
 		$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
 	}
 	
