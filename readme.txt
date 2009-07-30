@@ -1,25 +1,31 @@
 === SexyBookmarks ===
 Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
-Tags: sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: 2.5.1
 
-Adds a social bookmarking menu to your posts, pages, index, or any combination of the three.
+Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-* Fixed problem with manual mode due to inproper variable name
-* Thanks to [Artem Russakovskii](http://beerpla.net), we've fixed problem with js and css loading throughout the entire dashboard, now only loads on plugin admin page.
-* Removed email to a friend link until further notice
-* Completely revamped the plugin backend (both style AND functionality)
-* Fixed problem with auto-centering and animation slide effect not working
-* Added new background image (share the wealth)
-* Added new "smart options" to admin area
-* SexyBookmarks now works in harmony with the [Twitter Friendly Links Plugin](http://wordpress.org/extend/plugins/twitter-friendly-links/) so that you can now host your own Short URLs rather than using a third party service.
-
+* Added cligs, Supr, Short-to, and Trim as supported URL shortening services
+* Added Fwisp as a supported site
+* FIXED TWITTER ENCODING BUG!!!
+* Also now offering a [FireFox Toolbar](http://sexybookmarks.net/downloads/sexyfox) for bookmarking on the go!
+* Updated/Optimized readme file
+* Updated screenshot
+* Completely redesigned the entire plugin options page
+* Refactored some JS code.
+* Limited the jQuery selector for "external" links within the .sexy-bookmarks div.
+* Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links.
+* Added a few more BG images to choose from.
+* Removed email link until further notice.
+* Fixed the issue with scripts and styles loading throughout the entire dashboard.
+* Fixed small issue with manual mode returning wrong post titles.
+* Added Twittley to the list of sites
 
 
 = Latest News =
@@ -27,13 +33,14 @@ Many big changes in the past 2 updates! Check the changelog for specifics regard
 
 
 == Credits ==
+* Credit goes to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
 * Credit goes to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
 * Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
 * Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
 
 = Thanks =
-* Thanks [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
+* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
@@ -62,10 +69,15 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
+= My jQuery slider/fader doesn't work anymore! =
+Please disable both of the jQuery dependent options (auto-center and animate-expand) in the plugin options area. We are working on a solution to make the plugin FULLY compatible with ALL themes, but have not reached that point yet... Sorry.
+
+= Your plugin broke my site and there's a ton of stuff from another site being displayed!!! =
+This isn't as critical as it may look... Simply choose another URL shortening service and select the "Clear all short URLs" option. Now save the changes and [report which URL shortening service you were using](http://sexybookmarks.net/contact-forms/bug-form/) that broke your site so I can look into it.
 
 = I've uploaded the plugin and activated, but it's not showing up or it's broken… =
 
-This is normally due to styles in your Wordpress theme overriding the styles of the plugin. Check your theme's stylesheet for rules like !important; as these may be overriding the styles defined by the plugin.
+This is normally due to styles in your Wordpress theme overriding the styles of the plugin. Check your theme's stylesheet for rules like `!important;` as these may be overriding the styles defined by the plugin.
 
 = My favorite bookmarking site isn't listed! =
 
@@ -73,16 +85,21 @@ You can contact me with the name of the site and the URL, and I will work on rel
 
 = I'm a Wordpress theme developer, and I'd like to bundle your plugin with my themes. Is this okay? =
 
-Absolutely! Please just let me know where the themes will be released so that I can post about it on my site as well!
+Absolutely! Please just [let me know](http://sexybookmarks.net/contact-forms/contact-us/) where the themes will be released so that I can post about it on my site as well!
 
 = I've found a bug not covered here, where do I report it? =
 
-Please report all bugs via the comment form below for quickest response and notation time. Otherwise, you can choose to email me via the [contact form](http://eight7teen.com/contact "Contact Form") located on my site
+Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contact-forms/bug-form/) for quickest response and notation time.
 
 
 == Changelog ==
 
 =2.5.2=
+* Added cligs, Supr, Short-to, and Trim as supported URL shortening services
+* Added Fwisp as a supported site
+* FIXED TWITTER ENCODING BUG!!!
+* Updated/Optimized readme file
+* Updated screenshot
 * Completely redesigned the entire plugin options page
 * Refactored some JS code.
 * Limited the jQuery selector for "external" links within the .sexy-bookmarks div.
