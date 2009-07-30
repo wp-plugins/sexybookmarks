@@ -93,6 +93,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+=2.5.3=
+* Fixed issue with Twittley returning Forbidden error
 
 =2.5.2=
 * Added cligs, Supr, Short-to, and Trim as supported URL shortening services
