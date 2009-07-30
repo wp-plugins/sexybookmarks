@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 2.5.2
+Stable tag: 2.5.2.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -93,9 +93,11 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.5.3 =
-* Fixed the persistent Twitter encoding issue AGAIN
-* Fixed readme bug
+
+= 2.5.2.1 =
+* Fixed URL shortening bug from 2.5.2
+* Fixed persistent Twitter bug
+* Fixed readme problem
 
 = 2.5.2 =
 * Added cligs, Supr, Short-to, and Trim as supported URL shortening services
