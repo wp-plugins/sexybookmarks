@@ -860,7 +860,7 @@ function get_sexy() {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
 				'post_by'=>(!empty($sexy_plugopts['twittid']))?"RT+@".$sexy_plugopts['twittid'].":+":'',
-				'short_title'=>$short_title,
+				'short_title'=>urldecode($short_title),
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
 	    }# elseif ($name=='sexy-mail') {

@@ -69,7 +69,7 @@ $sexy_bookmarks_data=array(
 	'sexy-twitter'=>array(
 		'check'=>'Check this box to include Twitter in your bookmarking menu',
 		'share'=>'Tweet This!',
-		'baseUrl'=>'http://www.twitter.com/home?status=POST_BYSHORT_TITLE+-+FETCH_URL',
+		'baseUrl'=>'http://twitter.com/home?status=POST_BYSHORT_TITLE+-+FETCH_URL',
 	),
 	/*'sexy-mail'=>array(
 		'check'=>'Check this box to include \'Email to a Friend\' link in your bookmarking menu',
