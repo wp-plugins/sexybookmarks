@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://eight7teen.com/sexy-bookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.2.1
+Version: 2.5.2.2
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,7 +29,7 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.5.2.1');
+define('SEXY_vNum','2.5.2.2');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
@@ -149,11 +149,15 @@ function sexy_settings_page() {
 		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
 			$error_message = "Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.";
 		}
+		// Check for Email link and display error, will use jQuery to remove if exists
+		if(in_array('sexy-mail', $sexy_plugopts['bookmark'])) {
+			$error_message = "We're currently working on a more sophisticated solution for the email link and will re-enable it when finished.";
+		}
 
 
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
-			echo  '<div id="message" class="sexy-warning"><div class="dialog-left"><img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.$dump.' Short URLs have been reset.</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left"><img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.$dump.' Short URLs have been reset.</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 		}
 	}
 
@@ -161,7 +165,7 @@ function sexy_settings_page() {
 	//display it in my new fancy schmancy divs
 	if ($error_message != '') {
 		echo '
-		<div id="message" class="sexy-error">
+		<div id="errmessage" class="sexy-error">
 			<div class="dialog-left">
 				<img src="'.SEXY_PLUGPATH.'images/icons/error.png" class="dialog-ico" alt=""/>
 				'.$error_message.'
@@ -172,7 +176,7 @@ function sexy_settings_page() {
 		</div>';
 	} elseif ($status_message != '') {
 		echo '
-		<div id="message" class="sexy-success">
+		<div id="statmessage" class="sexy-success">
 			<div class="dialog-left">
 				<img src="'.SEXY_PLUGPATH.'images/icons/success.png" class="dialog-ico" alt=""/>
 				'.$status_message.'
@@ -278,6 +282,7 @@ else {
 							<div class="clearbig"></div>
 							<label for="shorty">Which URL Shortener?</label>
 							<select name="shorty" id="shorty">
+								<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp">Twitter Friendly Links Plugin</option>
 								<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
 								<option <?php echo (($sexy_plugopts['shorty'] == "trim")? 'selected="selected"' : ""); ?> value="trim">http://tr.im</option>
 								<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
@@ -595,13 +600,31 @@ else {
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
-				<ol>
-					<li><a href="http://webhostingsearch.com">Web Hosting Search</a><span>$55<sup><u>00</u></sup></span></li>
-					<li><a href="http://twittley.com">Joel Vaillancourt</a><span>$25<sup><u>00</u></sup></span></li>
-					<li><a href="http://stephenbaugh.com">Stephen Baugh</a><span>$15<sup><u>00</u></sup></span></li>
-					<li><a href="http://www.blissportraiture.com/">Kimberly Hill</a><span>$10<sup><u>00</u></sup></span></li>
-					<li><a href="http://go-adventuresports.com">GO-AdventureSports</a><span>$10<sup><u>00</u></sup></span></li>
-				</ol>
+				<script language="JavaScript" type="text/javascript">
+				<!--
+					// Customize the widget by editing the fields below
+					// All fields are required
+
+					// Your Feedity RSS feed URL
+					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UldQVFNb";
+
+					// Number of items to display in the widget
+					feedity_widget_numberofitems = "5";
+
+					// Show feed item published date (values: yes or no)
+					feedity_widget_showdate = "no";
+
+					// Widget box width (in px, pt, em, or %)
+					feedity_widget_width = "236px";
+
+					// Widget background color in hex or by name (eg: #ffffff or white)
+					feedity_widget_backcolor = "#f8f8f8";
+
+					// Widget font/link color in hex or by name (eg: #000000 or black)
+					feedity_widget_fontcolor = "#000000";
+				//-->
+				</script>
+				<script language="JavaScript" type="text/javascript" src="http://feedity.com/js/widget.js"></script>
 			</div>
 		</div>
 	</div>

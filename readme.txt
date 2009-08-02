@@ -4,32 +4,23 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 2.5.2.1
+Stable tag: 2.5.2.2
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-* Added cligs, Supr, Short-to, and Trim as supported URL shortening services
-* Added Fwisp as a supported site
-* FIXED TWITTER ENCODING BUG!!!
-* Also now offering a [FireFox Toolbar](http://sexybookmarks.net/downloads/sexyfox) for bookmarking on the go!
-* Updated/Optimized readme file
-* Updated screenshot
-* Completely redesigned the entire plugin options page
-* Refactored some JS code.
-* Limited the jQuery selector for "external" links within the .sexy-bookmarks div.
-* Do not apply JS when links are set **not** to open in a new window in the case that some other plugin is handling such links.
-* Added a few more BG images to choose from.
-* Removed email link until further notice.
-* Fixed the issue with scripts and styles loading throughout the entire dashboard.
-* Fixed small issue with manual mode returning wrong post titles.
-* Added Twittley to the list of sites
+* Changed icon of Fwisp by request of site owner
+* Fixed status message problem when trying to dismiss more than one
+* Re-added Twitter Friendly Links support after accidental removal
+* Added an automatic check/removal of email link for those who previously had it set
 
 
 = Latest News =
-Many big changes in the past 2 updates! Check the changelog for specifics regarding the changes that have happened between v2.5 and v2.5.2 - Also, be looking for the most requested option to be implemented soon... THEMES/SKINS!!! We're working hard to make the plugin as "universal" as possible so that it will work for any blog with any background style.
+v2.5.2 was the latest "big update" to the plugin. However, do not dismiss the bug patches as unimportant as they may very well fix the issues you are having.
+
+I have taken time to ensure that the changelog is very thorough and up to date as well as optimized for easy reading/navigating so that you can determine whether or not the latest updates are relevant to you.
 
 
 == Credits ==
@@ -69,6 +60,9 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
+= I see blank spaces where icons used to be! =
+This means that whatever service was previously in that space has been removed from the plugin either permanently or temporarily as we work out bugs or incorporate upgraded functionality. To remove the blank space, simply follow the detailed instructions found on the actual [FAQ Page](http://sexybookmarks.net/documentation/faq#17).
+
 = My jQuery slider/fader doesn't work anymore! =
 Please disable both of the jQuery dependent options (auto-center and animate-expand) in the plugin options area. We are working on a solution to make the plugin FULLY compatible with ALL themes, but have not reached that point yet... Sorry.
 
@@ -93,6 +87,11 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.2.2 =
+* Changed icon of Fwisp by request of site owner
+* Fixed status message problem when trying to dismiss more than one
+* Re-added Twitter Friendly Links support after accidental removal
+* Added an automatic check/removal of email link for those who previously had it set
 
 = 2.5.2.1 =
 * Fixed URL shortening bug from 2.5.2

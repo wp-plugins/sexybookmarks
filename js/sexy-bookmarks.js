@@ -26,6 +26,17 @@ else if (jQuery('#sexy-tumblr').is(':not(:checked)')) {
 }
 
 
+// Check for Email link and alert of changes
+// then remove completely after accepted
+if (jQuery('#sexy-mail').is(':checked')) {
+	jQuery('label.sexy-mail').css('background-color', '#df6f6f');
+	jQuery('#sexy-mail').removeAttr('checked');
+}
+else if (jQuery('#sexy-mail').is(':not(:checked)')) {
+	jQuery('label.sexy-mail').css('display', 'none');
+}
+
+
 jQuery('#info-manual').css({ display: 'none' });
 jQuery('#clear-warning').css({ display:'none' });
 jQuery('#custom-warning').css({ display:'none' });
@@ -162,8 +173,16 @@ jQuery('#yourversion .del-x').click(function() {
 	jQuery('#yourversion').fadeOut();
 });
 
-jQuery('div#message img.del-x').click(function() {
-	jQuery('div#message').fadeOut();
+jQuery('div#errmessage img.del-x').click(function() {
+	jQuery('div#errmessage').fadeOut();
+});
+
+jQuery('div#warnmessage img.del-x').click(function() {
+	jQuery('div#warnmessage').fadeOut();
+});
+
+jQuery('div#statmessage img.del-x').click(function() {
+	jQuery('div#statmessage').fadeOut();
 });
 
 jQuery('div#clearurl img.del-x').click(function() {
