@@ -785,19 +785,19 @@ function get_sexy() {
 
 	if($sexy_plugopts['position'] == 'manual') { 
 		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
-		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
+		$title = get_bloginfo('name') . wp_title('-', false);
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 #		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
 	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
 		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
-		$title = urlencode(get_bloginfo('name') . wp_title('-', false));
+		$title = get_bloginfo('name') . wp_title('-', false);
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 #		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
 	else { 
 		$perms = urlencode(get_permalink($post->ID));
-		$title = urlencode($post->post_title);
+		$title = $post->post_title;
 		$feedperms = strtolower($perms);
 #		$mail_subject = urlencode($post->post_title);
 	}
@@ -805,11 +805,12 @@ function get_sexy() {
 	
 	//determine how to handle post titles for Twitter
 	if (strlen($title) >= 80) {
-		$short_title = substr($title, 0, 80)."[..]";
+		$short_title = urlencode(substr($title, 0, 80)."[..]");
 	}
 	else {
-		$short_title = $title;
+		$short_title = urlencode($title);
 	}
+	$title=urlencode($title);
 
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
@@ -883,7 +884,7 @@ function get_sexy() {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
 				'post_by'=>(!empty($sexy_plugopts['twittid']))?"RT+@".$sexy_plugopts['twittid'].":+":'',
-				'short_title'=>urldecode($short_title),
+				'short_title'=>$short_title,
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
 	    }# elseif ($name=='sexy-mail') {
