@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: SexyBookmarks
-Plugin URI: http://eight7teen.com/sexy-bookmarks
+Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.2.2
+Version: 2.5.2.3
 Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
@@ -29,12 +29,97 @@ Author URI: http://eight7teen.com
 */
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.5.2.2');
+define('SEXY_vNum','2.5.2.3');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
 require_once('bookmarks-data.php');
+
+
+
+
+//Checking for mobile browsers and bots
+$isMobile = false;
+$isBot = false;
+
+$op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
+$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+$ac = strtolower($_SERVER['HTTP_ACCEPT']);
+$ip = $_SERVER['REMOTE_ADDR'];
+
+$isMobile = strpos($ac, 'application/vnd.wap.xhtml+xml') !== false
+        || $op != ''
+        || strpos($ua, 'sony') !== false 
+        || strpos($ua, 'symbian') !== false 
+        || strpos($ua, 'nokia') !== false 
+        || strpos($ua, 'samsung') !== false 
+        || strpos($ua, 'mobile') !== false
+        || strpos($ua, 'windows ce') !== false
+        || strpos($ua, 'epoc') !== false
+        || strpos($ua, 'opera mini') !== false
+        || strpos($ua, 'nitro') !== false
+        || strpos($ua, 'j2me') !== false
+        || strpos($ua, 'midp-') !== false
+        || strpos($ua, 'cldc-') !== false
+        || strpos($ua, 'netfront') !== false
+        || strpos($ua, 'mot') !== false
+        || strpos($ua, 'up.browser') !== false
+        || strpos($ua, 'up.link') !== false
+        || strpos($ua, 'audiovox') !== false
+        || strpos($ua, 'blackberry') !== false
+        || strpos($ua, 'ericsson,') !== false
+        || strpos($ua, 'panasonic') !== false
+        || strpos($ua, 'philips') !== false
+        || strpos($ua, 'sanyo') !== false
+        || strpos($ua, 'sharp') !== false
+        || strpos($ua, 'sie-') !== false
+        || strpos($ua, 'portalmmm') !== false
+        || strpos($ua, 'blazer') !== false
+        || strpos($ua, 'avantgo') !== false
+        || strpos($ua, 'danger') !== false
+        || strpos($ua, 'palm') !== false
+        || strpos($ua, 'series60') !== false
+        || strpos($ua, 'palmsource') !== false
+        || strpos($ua, 'pocketpc') !== false
+        || strpos($ua, 'smartphone') !== false
+        || strpos($ua, 'rover') !== false
+        || strpos($ua, 'ipaq') !== false
+        || strpos($ua, 'au-mic,') !== false
+        || strpos($ua, 'alcatel') !== false
+        || strpos($ua, 'ericy') !== false
+        || strpos($ua, 'up.link') !== false
+        || strpos($ua, 'vodafone/') !== false
+        || strpos($ua, 'wap1.') !== false
+        || strpos($ua, 'wap2.') !== false;
+
+        $isBot =  $ip == '66.249.65.39' 
+        || strpos($ua, 'googlebot') !== false 
+        || strpos($ua, 'mediapartners') !== false 
+        || strpos($ua, 'yahooysmcm') !== false 
+        || strpos($ua, 'baiduspider') !== false
+        || strpos($ua, 'msnbot') !== false
+        || strpos($ua, 'slurp') !== false
+        || strpos($ua, 'ask') !== false
+        || strpos($ua, 'teoma') !== false
+        || strpos($ua, 'spider') !== false 
+        || strpos($ua, 'heritrix') !== false 
+        || strpos($ua, 'attentio') !== false 
+        || strpos($ua, 'twiceler') !== false 
+        || strpos($ua, 'irlbot') !== false 
+        || strpos($ua, 'fast crawler') !== false                        
+        || strpos($ua, 'fastmobilecrawl') !== false 
+        || strpos($ua, 'jumpbot') !== false
+        || strpos($ua, 'googlebot-mobile') !== false
+        || strpos($ua, 'yahooseeker') !== false
+        || strpos($ua, 'motionbot') !== false
+        || strpos($ua, 'mediobot') !== false
+        || strpos($ua, 'chtml generic') !== false
+        || strpos($ua, 'nokia6230i/. fast crawler') !== false;
+
+
+
+
 
 
 //add defaults to an array
@@ -43,6 +128,7 @@ $sexy_plugopts = array(
 	'reloption' => 'nofollow', // 'nofollow', or ''
 	'targetopt' => 'blank', // 'blank' or 'self'
 	'bgimg-yes' => '', // 'yes' or blank
+	'mobile-hide' => '', // 'yes' or blank
 	'bgimg' => '', // 'sexy', 'caring', 'wealth'
 	'shorty' => 'e7t', // default is http://e7t.us
 	'pageorpost' => '',
@@ -92,13 +178,6 @@ function sexy_settings_page() {
 
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
 
-	// Rotate through both authors' donation links so that donations will be fully unbiased as the user won't know which link belongs to who...
-	$donations = array(
-		"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A",
-		"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856"
-	);
-	$donate_link = $donations[rand(0, count($donations) - 1)];
-
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
@@ -138,6 +217,7 @@ function sexy_settings_page() {
 			$sexy_plugopts['twittcat'] = $_POST['twittcat'];
 			$sexy_plugopts['defaulttags'] = $_POST['defaulttags'];
 			$sexy_plugopts['bgimg-yes'] = $_POST['bgimg-yes'];
+			$sexy_plugopts['mobile-hide'] = $_POST['mobile-hide'];
 			$sexy_plugopts['bgimg'] = $_POST['bgimg'];
 			$sexy_plugopts['feed'] = $_POST['feed'];
 			$sexy_plugopts['expand'] = $_POST['expand'];
@@ -341,7 +421,7 @@ else {
 								This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here.<br /><span title="Click here to close this message" class="dtags-close">[close]</span>
 							</p>
 							<label for="defaulttags">Default Tags: </label>
-							<input type="text" name="defaulttags" id="defaulttags" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="dtags-info" title="Click here for help with this option" alt="Click here for help with this option" />
+							<input type="text" name="defaulttags" id="defaulttags" onblur="if ( this.value == '' ) { this.value = 'enter,default,tags,here'; }" onfocus="if ( this.value == 'enter,default,tags,here' ) { this.value = ''; }" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="dtags-info" title="Click here for help with this option" alt="Click here for help with this option" />
 							<div class="clearbig"></div>
 						</div>
 						<div id="genopts">
@@ -459,6 +539,15 @@ else {
 							<div class="dialog-right">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information-delete.jpg" class="del-x" alt=""/>
 							</div>
+						</div>
+						<div class="dialog-box-warning" id="mobile-warn">
+							<div class="dialog-left">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+								This feature is still in the experimental phase, so please <a href="http://sexybookmarks.net/documentation/usage-installation">report any bugs</a> you may find.
+							</div>
+							<div class="dialog-right">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning-delete.jpg" class="del-x" alt=""/>
+							</div>
 						</div> 
 						<span class="sexy_option">Menu Location (in relevance to content):</span>
 						<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> Above Content</label>
@@ -477,6 +566,7 @@ else {
 						<span class="sexy_option">Show in RSS feed?</span>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> Yes</label>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> No</label>
+						<label class="sexy_option" style="margin-top:12px;">Hide menu from mobile browsers? <input <?php echo (($sexy_plugopts['mobile-hide'] == "yes")? 'checked' : ""); ?> name="mobile-hide" id="mobile-hide" type="checkbox" value="yes" /><br /><br />
 					</div>
 				</div>
 			</li>
@@ -580,14 +670,13 @@ else {
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
-				<p>So we've got big plans for SexyBookmarks, but we can't implement any of them without the proper funding!</p>
-				<p>I'm sure you're aware that the development of and continued support for this plugin is a <i>non-paying</i> <b>job</b>, and as such, all donations or contributions are greatly appreciated!</p>
+				<p>Surely the fact that we're making the web a sexier place one blog at a time is worth a drink or three, right?</p>
 				<div class="sexy-donate-button">
-					<a href="<?php echo $donate_link; ?>" title="Help support the development of this plugin by donating!" class="sexy-buttons">
-						Make Donation
+					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856" title="Help support the development of this plugin by donating!" class="sexy-dew">
+						<img src="<?php echo SEXY_PLUGPATH; ?>images/buyjoshdew.png" alt="" />
 					</a>
-					<a href="#" title="Close this box and leave me alone!" class="sexy-buttons boxcloser">
-						Close This Box
+					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A" title="Help support the development of this plugin by donating!" class="sexy-beer">
+						<img src="<?php echo SEXY_PLUGPATH; ?>images/buynormbeer.png" alt="" />
 					</a>
 				</div>
 			</div>
@@ -723,11 +812,19 @@ function sexy_get_fetch_url() {
 
 //create an auto-insertion function
 function sexy_position_menu($post_content) {
-	global $sexy_plugopts;
+	global $sexy_plugopts, $isMobile, $isBot;
 	
 	// if user selected manual positioning, get out.
-	if ($sexy_plugopts['position']=='manual') return $post_content;
-	
+	if ($sexy_plugopts['position']=='manual') {
+		return $post_content;
+	}
+
+	// if user selected hide from mobile and is mobile, get out.
+	elseif ($sexy_plugopts['mobile-hide']=='yes' && false!==$isMobile || $sexy_plugopts['mobile-hide']=='yes' && false!==$isBot) {
+		return $post_content;
+	}
+
+
 	// decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($sexy_plugopts['pageorpost'],"post")) ||
 		(is_page() && false!==strpos($sexy_plugopts['pageorpost'],"page")) ||
@@ -774,10 +871,6 @@ function bookmark_list_item($name, $opts=array()) {
 }
 
 
-
-
-
-
 function get_sexy() {
 	global $sexy_plugopts, $wp_query, $post;
 
@@ -789,14 +882,28 @@ function get_sexy() {
 		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 #		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 	}
-	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
-		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
-		$title = get_bloginfo('name') . wp_title('-', false);
-		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
-#		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+	
+	//Check if index page
+	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) { 
+		
+		//Check if outside the loop
+		if(empty($post->post_title)) { 
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+			$title = get_bloginfo('name') . wp_title('-', false);
+			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+#			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+		} 
+
+		//Otherwise, it must be inside the loop
+		else { 
+			$perms = get_permalink($post->ID);
+			$title = $post->post_title;
+			$feedperms = strtolower($perms);
+#			$mail_subject = urlencode($post->post_title);
+		}
 	}
 	else { 
-		$perms = urlencode(get_permalink($post->ID));
+		$perms = get_permalink($post->ID);
 		$title = $post->post_title;
 		$feedperms = strtolower($perms);
 #		$mail_subject = urlencode($post->post_title);
@@ -915,7 +1022,7 @@ function get_sexy() {
 			));
 		} elseif ($name=='sexy-comfeed') {
 			$socials.=bookmark_list_item($name, array(
-				'permalink'=>$feedperms.$feedstructure,
+				'permalink'=>urldecode($feedperms).$feedstructure,
 			));
 		} elseif ($name=='sexy-yahoobuzz') {
 			$socials.=bookmark_list_item($name, array(
@@ -959,7 +1066,9 @@ function selfserv_sexy() {
 add_action('wp_head', 'sexy_public');
 function sexy_public() {
 	global $sexy_plugopts;
-	
+
+
+
 	echo "\n\n".'<!-- Start Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n";
 	wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 	wp_print_styles('sexy-bookmarks');

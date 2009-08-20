@@ -3,22 +3,25 @@ Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 2.5.2.2
+Tested up to: 2.8.4
+Stable tag: 2.5.2.3
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-* Changed icon of Fwisp by request of site owner
-* Fixed status message problem when trying to dismiss more than one
-* Re-added Twitter Friendly Links support after accidental removal
-* Added an automatic check/removal of email link for those who previously had it set
+* Added mobile browser check & ability to hide menu from mobile
+* Fixed issue with titles & URLs on index pointing to site and not individual articles
+* Fixed persistent Twittley error message when saving settings
+* Resolved issue with Google Bookmarks link
+* Fixed Subscribe to comments link
+* Fixed issue with some themes forcing borders and background colors for menu items
+* Minor dashboard adjustments
 
 
 = Latest News =
-v2.5.2 was the latest "big update" to the plugin. However, do not dismiss the bug patches as unimportant as they may very well fix the issues you are having.
+**v2.5.2** was the latest "big update" to the plugin. However, do not dismiss the bug patches as unimportant as they may very well fix the issues you are having.
 
 I have taken time to ensure that the changelog is very thorough and up to date as well as optimized for easy reading/navigating so that you can determine whether or not the latest updates are relevant to you.
 
@@ -28,7 +31,6 @@ I have taken time to ensure that the changelog is very thorough and up to date a
 * Credit goes to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
 * Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
-* Credit goes to [Norman Yung](http://www.robotwithaheart.com/) for `just about` every improvement in v2.1.3
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
@@ -60,6 +62,9 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
+= The menu shows up as a regular list with no styling and no images! =
+Unfortunately, this is becoming a more prevalent problem recently and it's due to your WordPress theme not having the function reference `wp_head()` in the **header.php** file as it should. SexyBookmarks uses this function to hook the associated stylesheet and javascript files into the `<head>` of your document. So if it doesn't exist, then the stylesheet and/or javascript files won't be included on your site.
+
 = I see blank spaces where icons used to be! =
 This means that whatever service was previously in that space has been removed from the plugin either permanently or temporarily as we work out bugs or incorporate upgraded functionality. To remove the blank space, simply follow the detailed instructions found on the actual [FAQ Page](http://sexybookmarks.net/documentation/faq#17).
 
@@ -87,6 +92,15 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.2.3 =
+* Added mobile browser check & ability to hide menu from mobile
+* Fixed issue with titles & URLs on index pointing to site and not individual articles
+* Fixed persistent Twittley error message when saving settings
+* Resolved issue with Google Bookmarks link
+* Fixed Subscribe to comments link
+* Fixed issue with some themes forcing borders and background colors for menu items
+* Minor dashboard adjustments
+
 = 2.5.2.2 =
 * Changed icon of Fwisp by request of site owner
 * Fixed status message problem when trying to dismiss more than one

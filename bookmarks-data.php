@@ -99,7 +99,7 @@ $sexy_bookmarks_data=array(
 	'sexy-google'=>array(
 		'check'=>'Check this box to include Google Bookmarks in your bookmarking menu',
 		'share'=>'Add this to Google Bookmarks',
-		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINKtitle=TITLE',
+		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-misterwong'=>array(
 		'check'=>'Check this box to include Mister Wong in your bookmarking menu',
