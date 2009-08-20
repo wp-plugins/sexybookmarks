@@ -40,6 +40,7 @@ else if (jQuery('#sexy-mail').is(':not(:checked)')) {
 jQuery('#info-manual').css({ display: 'none' });
 jQuery('#clear-warning').css({ display:'none' });
 jQuery('#custom-warning').css({ display:'none' });
+jQuery('#mobile-warn').css({ display:'none' });
 
 if (jQuery('#autocenter-yes').is(':checked')) {
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
@@ -135,6 +136,17 @@ jQuery('#sexy-twitter').click(function() {
 	}
 });
 
+// Fade in/out mobile feature warning
+jQuery('#mobile-hide').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#mobile-warn').fadeIn('fast');
+	}
+	else {
+		jQuery('#mobile-warn').fadeOut();
+	}
+});
+
+
 jQuery('#position-above').click(function() {
 	if (jQuery('#info-manual').is(':visible')) {
 		this.checked=jQuery('#info-manual').fadeOut();
@@ -191,6 +203,10 @@ jQuery('div#clearurl img.del-x').click(function() {
 
 jQuery('#info-manual img.del-x').click(function() {
 	jQuery('#info-manual').fadeOut();
+});
+
+jQuery('#mobile-warn img.del-x').click(function() {
+	jQuery('#mobile-warn').fadeOut();
 });
 
 

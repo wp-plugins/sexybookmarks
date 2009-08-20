@@ -38,6 +38,12 @@ div.sexy-bookmarks ul.socials {
 	float: left;
 }
 
+div.sexy-bookmarks ul.socials {
+	background:transparent none !important;
+	border:0 none !important;
+	outline:0 none !important;
+}
+
 div.sexy-bookmarks ul.socials li {
 	display:inline !important;
 	float:left !important;
@@ -47,6 +53,9 @@ div.sexy-bookmarks ul.socials li {
 	width:60px !important;
 	cursor:pointer !important;
 	padding:0 !important;
+	background-color:transparent !important;
+	border:0 none !important;
+	outline:0 none !important;
 }
 
 div.sexy-bookmarks ul.socials li:before, div.sexy-bookmarks ul.socials li:after, div.sexy-bookmarks ul.socials li a:before, div.sexy-bookmarks ul.socials li a:after {
@@ -61,8 +70,10 @@ div.sexy-bookmarks ul.socials a {
 	background-color:transparent !important;
 }
 
-div.sexy-bookmarks ul.socials a:hover {
+div.sexy-bookmarks ul.socials a:hover, div.sexy-bookmarks ul.socials li:hover {
 	background-color:transparent !important;
+	border:0 none !important;
+	outline:0 none !important;
 }
 
 .sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoobuzz, .sexy-yahoobuzz:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, /*.sexy-mail, .sexy-mail:hover, */.sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-twittley, .sexy-twittley:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover, .sexy-friendfeed, .sexy-friendfeed:hover, .sexy-blogmarks, .sexy-blogmarks:hover, .sexy-fwisp, .sexy-fwisp:hover  {

@@ -372,9 +372,6 @@ div.box-right-body ol li span {
 div.box-right-body ol li:hover span {
 	color:#D54E21;
 }
-li.sortHelper {
-	border:3px dashed #666666;
-}
 div.bnav {
 	float:right;
 	height:27px;
@@ -494,6 +491,13 @@ div.dialog-box-information a {
 div.dialog-box-information a:hover {
 	color:#21759B;
 }
+div.dialog-box-warning a {
+	color:#AF9C00;
+	text-decoration:underline;
+}
+div.dialog-box-warning a:hover {
+	color:#AF9C00;
+}
 div.dialog-right {
 	float:right;
 }
@@ -509,28 +513,13 @@ img.box-icons {
 div.sexy-donate-button {
 	width:100%;
 }
-div.sexy-donate-button a.sexy-buttons {
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	border-radius:10px;
-	background:#F2F2F2 url('../images/white-grad.png') repeat-x scroll 0 0;
-	border:1px solid #21759B;
-	color:#21759B;
-	display:inline-block;
-	font-family:tahoma,arial,sans-serif;
-	font-size:11px;
-	height:20px;
-	line-height:19px;
-	margin:10px 11px 0;
-	padding:0 8px;
-	text-decoration:none;
-	text-shadow:0 1px 0 #FFFFFF;
+div.sexy-donate-button a.sexy-dew {
+	display:block;
+	margin:10px 0;
 }
-div.sexy-donate-button a.sexy-buttons:hover {
-	background:transparent url('../images/button-grad.png') repeat-x scroll 0 0;
-	border:1px solid #13455B;
-	color:#FFFFFF;
-	text-shadow:0 1px 0 #13455B;
+div.sexy-donate-button a.sexy-beer {
+	display:block;
+	margin:10px 0 0 2px;
 }
 ul.sexy-adslots {
 	margin:0;
@@ -627,4 +616,40 @@ div.box-right-body ul.credits li {
 }
 div.box-right-body ul.credits li a {
 	text-decoration:none;
+}
+
+
+div#divFeedityWidget span {
+	display:none !important;
+}
+div#divFeedityWidget ul {
+	counter-reset:cnt !important;
+	list-style-type:none !important;
+	margin:0 !important;
+}
+div#divFeedityWidget ul li {
+	counter-increment:cnt !important;
+	line-height:10px !important;
+	margin:22px 0 !important;
+}
+div#divFeedityWidget ul li:before {
+	color:#D5D5D5 !important;
+	content:counter(cnt, decimal-leading-zero) !important;
+	font-family:"Courier New",monospace !important;
+	font-size:26px !important;
+	font-weight:bold !important;
+	width:20px !important;
+}
+div#divFeedityWidget ul li:hover:before {
+	color:#21759B !important;
+}
+div#divFeedityWidget ul li a {
+	color:#57717F !important;
+	display:block !important;
+	margin:-14px 0 0 33px !important;
+	text-decoration:none !important;
+}
+div#divFeedityWidget ul li:hover a {
+	color:#21759B !important;
+	font-weight:bold !important;
 }
