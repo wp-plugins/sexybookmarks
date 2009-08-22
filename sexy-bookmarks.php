@@ -39,8 +39,8 @@ require_once 'bookmarks-data.php';
 
 // functions related to mobile.
 require_once 'mobile.php';
-$isMobile=sexy_is_mobile();
-$isBot=sexy_is_bot();
+$sexy_is_mobile=sexy_is_mobile();
+$sexy_is_bot=sexy_is_bot();
 
 //add defaults to an array
 $sexy_plugopts = array(
@@ -732,7 +732,7 @@ function sexy_get_fetch_url() {
 
 //create an auto-insertion function
 function sexy_position_menu($post_content) {
-	global $sexy_plugopts, $isMobile, $isBot;
+	global $sexy_plugopts, $sexy_is_mobile, $sexy_is_bot;
 	
 	// if user selected manual positioning, get out.
 	if ($sexy_plugopts['position']=='manual') {
@@ -740,7 +740,7 @@ function sexy_position_menu($post_content) {
 	}
 
 	// if user selected hide from mobile and is mobile, get out.
-	elseif ($sexy_plugopts['mobile-hide']=='yes' && false!==$isMobile || $sexy_plugopts['mobile-hide']=='yes' && false!==$isBot) {
+	elseif ($sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_mobile || $sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_bot) {
 		return $post_content;
 	}
 
