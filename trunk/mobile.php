@@ -1,4 +1,4 @@
-<?
+<?php
 
 //Checking for mobile browsers
 function sexy_is_bot() {

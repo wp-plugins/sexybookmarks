@@ -92,6 +92,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.0 =
+
+
 = 2.5.2.3 =
 * Added mobile browser check & ability to hide menu from mobile
 * Fixed issue with titles & URLs on index pointing to site and not individual articles
