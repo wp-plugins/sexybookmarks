@@ -42,6 +42,9 @@ require_once 'mobile.php';
 $sexy_is_mobile=sexy_is_mobile();
 $sexy_is_bot=sexy_is_bot();
 
+// helper functions for html output.
+require_once 'html-helpers.php';
+
 //add defaults to an array
 $sexy_plugopts = array(
 	'position' => '', // below, above, or manual
@@ -64,8 +67,7 @@ $sexy_plugopts = array(
 	'warn-choice' => '',
 );
 
-
-//add 2 db
+//add to database
 add_option(SEXY_OPTIONS, $sexy_plugopts);
 
 //reload
@@ -75,27 +77,12 @@ $sexy_plugopts = get_option(SEXY_OPTIONS);
 function sexy_menu_link() {
 	if (function_exists('add_options_page')) {
 		add_options_page('SexyBookmarks', 'SexyBookmarks', 9, basename(__FILE__), 'sexy_settings_page');
-	}
-	
-}
-
-
-function sexy_network_input_select($name, $hint) {
-	global $sexy_plugopts;
-	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /></label>',
-		$name,
-		$hint,
-		@in_array($name, $sexy_plugopts['bookmark'])?'checked="checked" ':"",
-		$name,
-		$name
-	);
+	}	
 }
 
 //write settings page
 function sexy_settings_page() {
-
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
-
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
 
 	// processing form submission
@@ -104,44 +91,33 @@ function sexy_settings_page() {
 	if(isset($_POST['save_changes'])) {
 		$status_message = 'Your changes have been saved successfully! | Maybe you would consider <a href="'.$donate_link.'">donating</a>?';
 		
-		//was there an error?
-		if($_POST['position'] == '') {		
-			$error_message = 'Please choose where you would like the menu to be displayed.';
+		$errmsgmap = array(
+			'position'=>'Please choose where you would like the menu to be displayed.',
+			'bookmark'=>'You can\'t display the menu if you don\'t choose a few sites to add to it!',
+			'pageorpost'=>'Please choose where you want the menu displayed.',
+		);
+		// adding to err msg map if twittley is enabled.
+		if (in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
+			$errmsgmap['twittcat']='You need to select the primary category for any articles submitted to Twittley.';
+			$errmsgmap['defaulttags']='You need to set at least 1 default tag for any articles submitted to Twittley.';
 		}
-		elseif($_POST['bookmark'] == '') {
-			$error_message = 'You can\'t display the menu if you don\'t choose a few sites to add to it!';
+		foreach ($errmsgmap as $field=>$msg) {
+			if ($_POST[$field] == '') {
+				$error_message = $msg;
+				break;
+			}
 		}
-		elseif($_POST['pageorpost'] == '') {
-			$error_message = 'Please choose where you want the menu displayed.';
+		// Twitter friendly links: check to see if they have the plugin activated
+		if ($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) {
+			$error_message = 'You must first download and activate <a href="http://wordpress.org/extend/plugins/twitter-friendly-links/">Twitter Friendly Links Plugin</a> before hosting your own short URLs...';
 		}
-		elseif($_POST['twittcat'] == '' && in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
-			$error_message = 'You need to select the primary category for any articles submitted to Twittley.';
-		}
-		elseif($_POST['defaulttags'] == '' && in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
-			$error_message = 'You need to set at least 1 default tag for any articles submitted to Twittley.';
-		}
-		elseif($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) { // check to see if they have the plugin activated
-			$error_message = "You must first download and activate <a href=\"http://wordpress.org/extend/plugins/twitter-friendly-links/\">Twitter Friendly Links Plugin</a> before hosting your own short URLs...";
-		}
-		else {
-			$sexy_plugopts['position'] = $_POST['position'];
-			$sexy_plugopts['xtrastyle'] = $_POST['xtrastyle'];
-			$sexy_plugopts['reloption'] = $_POST['reloption'];
-			$sexy_plugopts['targetopt'] = $_POST['targetopt'];
-			$sexy_plugopts['bookmark'] = $_POST['bookmark'];
-			$sexy_plugopts['shorty'] = $_POST['shorty'];
-			$sexy_plugopts['pageorpost'] = $_POST['pageorpost'];
-			$sexy_plugopts['twittid'] = $_POST['twittid'];
-			$sexy_plugopts['ybuzzcat'] = $_POST['ybuzzcat'];
-			$sexy_plugopts['ybuzzmed'] = $_POST['ybuzzmed'];
-			$sexy_plugopts['twittcat'] = $_POST['twittcat'];
-			$sexy_plugopts['defaulttags'] = $_POST['defaulttags'];
-			$sexy_plugopts['bgimg-yes'] = $_POST['bgimg-yes'];
-			$sexy_plugopts['mobile-hide'] = $_POST['mobile-hide'];
-			$sexy_plugopts['bgimg'] = $_POST['bgimg'];
-			$sexy_plugopts['feed'] = $_POST['feed'];
-			$sexy_plugopts['expand'] = $_POST['expand'];
-			$sexy_plugopts['autocenter'] = $_POST['autocenter'];
+		if (!$error_message) {
+			foreach (array(
+				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark', 
+				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed', 
+				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
+				'feed', 'expand', 'expand', 'autocenter',
+			) as $field) $sexy_plugopts[$field]=$_POST[$field];
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 		
@@ -186,44 +162,40 @@ function sexy_settings_page() {
 			</div>
 		</div>';
 	}
-
-require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
-$plugin = 'SexyBookmarks';
-$plug_api = plugins_api('plugin_information', array('slug' => sanitize_title($plugin) ));
-	if ( is_wp_error($plug_api) ) {
-		wp_die($plug_api);
+	
+	// displaying plugin version info
+	require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
+	$plug_api = plugins_api('plugin_information', array('slug' => sanitize_title('SexyBookmarks') ));
+		if ( is_wp_error($plug_api) ) {
+			wp_die($plug_api);
+		}
+	$latest_version = $plug_api->version;
+	$your_version = SEXY_vNum;
+	if (empty($status_message) && version_compare($latest_version, $your_version, '>')) {
+		echo '
+		<div class="sexy-warning" id="yourversion">
+			<div class="dialog-left">
+				<img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>
+				You are using an outdated version of the plugin ('.SEXY_vNum.'), please update if you wish to enjoy all available features!
+			</div>
+			<div class="dialog-right">
+				<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
+			</div>
+		</div>'; 	
+	} elseif (empty($status_message) && version_compare($latest_version, $your_version, '<')) {
+		echo '
+		<div class="sexy-information" id="yourversion">
+			<div class="dialog-left">
+				<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>
+				You are using the development version of the plugin ('.SEXY_vNum.' beta), please <a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">let us know of any bugs</a> you may encounter!
+			</div>
+			<div class="dialog-right">
+				<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
+			</div>
+		</div>';
+	} else { 
+		## No action taken since they are obviously the same version 
 	}
-$latest_version = $plug_api->version;
-$your_version = SEXY_vNum;
-
-if (empty($status_message) && version_compare($latest_version, $your_version, '>')) {
-
-	echo '
-	<div class="sexy-warning" id="yourversion">
-		<div class="dialog-left">
-			<img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>
-			You are using an outdated version of the plugin ('.SEXY_vNum.'), please update if you wish to enjoy all available features!
-		</div>
-		<div class="dialog-right">
-			<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
-		</div>
-	</div>'; 	
-}
-elseif (empty($status_message) && version_compare($latest_version, $your_version, '<')) {
-	echo '
-	<div class="sexy-information" id="yourversion">
-		<div class="dialog-left">
-			<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>
-			You are using the development version of the plugin ('.SEXY_vNum.' beta), please <a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">let us know of any bugs</a> you may encounter!
-		</div>
-		<div class="dialog-right">
-			<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
-		</div>
-	</div>'; 
-}
-else { 
-	## No action taken since they are obviously the same version 
-}
 ?>
 
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
