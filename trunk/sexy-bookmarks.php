@@ -133,7 +133,6 @@ function sexy_settings_page() {
 			$error_message = __('We\'re currently working on a more sophisticated solution for the email link and will re-enable it when finished.', 'sexybookmarks');
 		}
 
-
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
 			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left"><img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
@@ -257,16 +256,21 @@ function sexy_settings_page() {
 							<div class="clearbig"></div>
 							<label for="shorty"><?php _e('Which URL Shortener?', 'sexybookmarks'); ?></label>
 							<select name="shorty" id="shorty">
-								<option <?php echo (($sexy_plugopts['shorty'] == "tflp")? 'selected="selected"' : ""); ?> value="tflp"><?php _e('Twitter Friendly Links Plugin', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "e7t")? 'selected="selected"' : ""); ?> value="e7t">http://e7t.us</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "trim")? 'selected="selected"' : ""); ?> value="trim">http://tr.im</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "rims")? 'selected="selected"' : ""); ?> value="rims">http://ri.ms</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "tinyarrow")? 'selected="selected"' : ""); ?> value="tinyarrow">http://tinyarro.ws</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "tiny")? 'selected="selected"' : ""); ?> value="tiny">http://tinyurl.com</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "snip")? 'selected="selected"' : ""); ?> value="snip">http://snipr.com</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "supr")? 'selected="selected"' : ""); ?> value="supr">http://su.pr</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "shortto")? 'selected="selected"' : ""); ?> value="shortto">http://short.to</option>
-								<option <?php echo (($sexy_plugopts['shorty'] == "cligs")? 'selected="selected"' : ""); ?> value="cligs">http://cli.gs</option>
+<?php
+	// output shorty select options
+	print sexy_select_option_group('shorty', array(
+		'tflp'=>'Twitter Friendly Links Plugin',
+		'e7t'=>'http://e7t.us',
+		'trim'=>'http://tr.im',
+		'rims'=>'http://ri.ms',
+		'tinyarrow'=>'http://tinyarro.ws',
+		'tiny'=>'http://tinyurl.com',
+		'snip'=>'http://snipr.com',
+		'supr'=>'http://su.pr',
+		'shortto'=>'http://short.to',
+		'cligs'=>'http://cli.gs',
+	));
+?>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/><?php _e('Reset all Short URLs', 'sexybookmarks'); ?></label>
 						<div class="clearbig"></div>
@@ -275,24 +279,34 @@ function sexy_settings_page() {
 							<h3><?php _e('Yahoo! Buzz Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="ybuzzcat"><?php _e('Default Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="ybuzzcat" id="ybuzzcat">
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "entertainment")? 'selected="selected"' : ""); ?> value="entertainment"><?php _e('Entertainment', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "lifestyle")? 'selected="selected"' : ""); ?> value="lifestyle"><?php _e('Lifestyle', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "health")? 'selected="selected"' : ""); ?> value="health"><?php _e('Health', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "usnews")? 'selected="selected"' : ""); ?> value="usnews"><?php _e('U.S. News', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "business")? 'selected="selected"' : ""); ?> value="business"><?php _e('Business', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "politics")? 'selected="selected"' : ""); ?> value="politics"><?php _e('Politics', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "science")? 'selected="selected"' : ""); ?> value="science"><?php _e('Sci/Tech', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "world_news")? 'selected="selected"' : ""); ?> value="world_news"><?php _e('World', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "sports")? 'selected="selected"' : ""); ?> value="sports"><?php _e('Sports', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzcat'] == "travel")? 'selected="selected"' : ""); ?> value="travel"><?php _e('Travel', 'sexybookmarks'); ?></option>
+<?php
+	// output shorty select options
+	print sexy_select_option_group('ybuzzcat', array(
+		'entertainment'=>'Entertainment',
+		'lifestyle'=>'Lifestyle',
+		'health'=>'Health',
+		'usnews'=>'U.S. News',
+		'business'=>'Business',
+		'politics'=>'Politics',
+		'science'=>'Sci/Tech',
+		'world_news'=>'World',
+		'sports'=>'Sports',
+		'travel'=>'Travel',
+	));
+	
+?>
 							</select>
 							<div class="clearbig"></div>
 							<label for="ybuzzmed">Default Media Type: </label>
 							<select name="ybuzzmed" id="ybuzzmed">
-								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "text")? 'selected="selected"' : ""); ?> value="text"><?php _e('Text', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "image")? 'selected="selected"' : ""); ?> value="image"><?php _e('Image', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "audio")? 'selected="selected"' : ""); ?> value="audio"><?php _e('Audio', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['ybuzzmed'] == "video")? 'selected="selected"' : ""); ?> value="video"><?php _e('Video', 'sexybookmarks'); ?></option>
+<?php
+	print sexy_select_option_group('ybuzzmed', array(
+		'text'=>'Text',
+		'image'=>'Image',
+		'audio'=>'Audio',
+		'video'=>'Video',
+	));
+?>
 							</select>
 						<div class="clearbig"></div>
 						</div>
@@ -300,15 +314,19 @@ function sexy_settings_page() {
 							<h3><?php _e('Twittley Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="twittcat"><?php _e('Primary Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="twittcat" id="twittcat">
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Technology")? 'selected="selected"' : ""); ?> value="Technology"><?php _e('Technology', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "World &amp; Business")? 'selected="selected"' : ""); ?> value="World &amp; Business"><?php _e('World &amp; Business', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Science")? 'selected="selected"' : ""); ?> value="Science"><?php _e('Science', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Gaming")? 'selected="selected"' : ""); ?> value="Gaming"><?php _e('Gaming', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Lifestyle")? 'selected="selected"' : ""); ?> value="Lifestyle"><?php _e('Lifestyle', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Entertainment")? 'selected="selected"' : ""); ?> value="Entertainment"><?php _e('Entertainment', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Sports")? 'selected="selected"' : ""); ?> value="Sports"><?php _e('Sports', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Offbeat")? 'selected="selected"' : ""); ?> value="Offbeat"><?php _e('Offbeat', 'sexybookmarks'); ?></option>
-								<option <?php echo (($sexy_plugopts['twittcat'] == "Internet")? 'selected="selected"' : ""); ?> value="Internet"><?php _e('Internet', 'sexybookmarks'); ?></option>
+<?php
+	print sexy_select_option_group('ybuzzmed', array(
+		'Technology'=>'Technology',
+		'World &amp; Business'=>'World &amp; Business',
+		'Science'=>'Science',
+		'Gaming'=>'Gaming',
+		'Lifestyle'=>'Lifestyle',
+		'Entertainment'=>'Entertainment',
+		'Sports'=>'Sports',
+		'Offbeat'=>'Offbeat',
+		'Internet'=>'Internet',
+	));
+?>
 							</select>
 							<div class="clearbig"></div>
 							<p id="tag-info" class="hidden">
@@ -450,13 +468,17 @@ function sexy_settings_page() {
 						<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> <?php _e('Manual Mode', 'sexybookmarks'); ?></label>
 						<span class="sexy_option"><?php _e('Posts, pages, or the whole shebang?', 'sexybookmarks'); ?></span>
 						<select name="pageorpost" id="pageorpost">
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "post")? 'selected="selected"' : ""); ?> value="post"><?php _e('Posts Only', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "page")? 'selected="selected"' : ""); ?> value="page"><?php _e('Pages Only', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "index")? 'selected="selected"' : ""); ?> value="index"><?php _e('Index Only', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "pagepost")? 'selected="selected"' : ""); ?> value="pagepost"><?php _e('Posts &amp; Pages', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "postindex")? 'selected="selected"' : ""); ?> value="postindex"><?php _e('Posts &amp; Index', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "pageindex")? 'selected="selected"' : ""); ?> value="pageindex"><?php _e('Pages &amp; Index', 'sexybookmarks'); ?></option>
-							<option <?php echo (($sexy_plugopts['pageorpost'] == "postpageindex")? 'selected="selected"' : ""); ?> value="postpageindex" title="<?php _e('THE WHOLE SHEBANG!', 'sexybookmarks'); ?>"><?php _e('Posts, Pages, &amp; Index', 'sexybookmarks'); ?></option>
+<?php
+	print sexy_select_option_group('pageorpost', array(
+		'post'=>'Posts Only',
+		'page'=>'Pages Only',
+		'index'=>'Index Only',
+		'pagepost'=>'Posts &amp; Pages',
+		'postindex'=>'Posts &amp; Index',
+		'pageindex'=>'Pages &amp; Index',
+		'postpageindex'=>'Posts, Pages, &amp; Index',
+	));
+?>
 						</select><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="shebang-info" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" alt="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" />
 						<span class="sexy_option"><?php _e('Show in RSS feed?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> <?php _e('Yes', 'sexybookmarks'); ?></label>
@@ -508,21 +530,8 @@ function sexy_settings_page() {
 
 					if ($sexy_plug_rating == "0") {
 						$sexy_plug_rating_class = "sexy-rating";
-					}
-					elseif ($sexy_plug_rating == "1") {
-						$sexy_plug_rating_class = "sexy-rating-1";
-					}
-					elseif ($sexy_plug_rating == "2") {
-						$sexy_plug_rating_class = "sexy-rating-2";
-					}
-					elseif ($sexy_plug_rating == "3") {
-						$sexy_plug_rating_class = "sexy-rating-3";
-					}
-					elseif ($sexy_plug_rating == "4") {
-						$sexy_plug_rating_class = "sexy-rating-4";
-					}
-					elseif ($sexy_plug_rating == "5") {
-						$sexy_plug_rating_class = "sexy-rating-5";
+					} elseif (1<=$sexy_plug_rating && 5>=$sexy_plug_rating)
+						$sexy_plug_rating_class = "sexy-rating-".$sexy_plug_rating;
 					}
 				?>
 				<ul>
