@@ -1,121 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: SexyBookmarks 2.6.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sexybookmarks\n"
 "POT-Creation-Date: 2009-08-23 07:46+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Josh <josh@eight7teen.com>\n"
-"Language-Team: Josh Jones, Norman Yung <info@sexybookmarks.net>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: .\n"
 
-#: bookmarks-data.php:5
-#: bookmarks-data.php:10
-#: bookmarks-data.php:15
-#: bookmarks-data.php:20
-#: bookmarks-data.php:25
-#: bookmarks-data.php:30
-#: bookmarks-data.php:35
-#: bookmarks-data.php:40
-#: bookmarks-data.php:45
-#: bookmarks-data.php:50
-#: bookmarks-data.php:55
-#: bookmarks-data.php:60
-#: bookmarks-data.php:65
-#: bookmarks-data.php:70
-#: bookmarks-data.php:80
-#: bookmarks-data.php:85
-#: bookmarks-data.php:90
-#: bookmarks-data.php:95
-#: bookmarks-data.php:100
-#: bookmarks-data.php:105
-#: bookmarks-data.php:110
-#: bookmarks-data.php:115
-#: bookmarks-data.php:120
-#: bookmarks-data.php:125
-#: bookmarks-data.php:130
-#: bookmarks-data.php:135
-#: bookmarks-data.php:140
-#: bookmarks-data.php:145
-#: bookmarks-data.php:150
-#: bookmarks-data.php:155
-#: bookmarks-data.php:160
-#: bookmarks-data.php:165
-#: bookmarks-data.php:170
+#: bookmarks-data.php:5 bookmarks-data.php:10 bookmarks-data.php:15
+#: bookmarks-data.php:20 bookmarks-data.php:25 bookmarks-data.php:30
+#: bookmarks-data.php:35 bookmarks-data.php:40 bookmarks-data.php:45
+#: bookmarks-data.php:50 bookmarks-data.php:55 bookmarks-data.php:60
+#: bookmarks-data.php:65 bookmarks-data.php:70 bookmarks-data.php:80
+#: bookmarks-data.php:85 bookmarks-data.php:90 bookmarks-data.php:95
+#: bookmarks-data.php:100 bookmarks-data.php:105 bookmarks-data.php:110
+#: bookmarks-data.php:115 bookmarks-data.php:120 bookmarks-data.php:125
+#: bookmarks-data.php:130 bookmarks-data.php:135 bookmarks-data.php:140
+#: bookmarks-data.php:145 bookmarks-data.php:150 bookmarks-data.php:155
+#: bookmarks-data.php:160 bookmarks-data.php:165 bookmarks-data.php:170
 msgid "Check this box to include "
 msgstr ""
 
-#: bookmarks-data.php:5
-#: bookmarks-data.php:6
+#: bookmarks-data.php:5 bookmarks-data.php:6
 msgid "Script &amp; Style"
 msgstr ""
 
-#: bookmarks-data.php:5
-#: bookmarks-data.php:10
-#: bookmarks-data.php:15
-#: bookmarks-data.php:20
-#: bookmarks-data.php:25
-#: bookmarks-data.php:30
-#: bookmarks-data.php:35
-#: bookmarks-data.php:40
-#: bookmarks-data.php:45
-#: bookmarks-data.php:50
-#: bookmarks-data.php:55
-#: bookmarks-data.php:60
-#: bookmarks-data.php:65
-#: bookmarks-data.php:70
-#: bookmarks-data.php:80
-#: bookmarks-data.php:85
-#: bookmarks-data.php:90
-#: bookmarks-data.php:95
-#: bookmarks-data.php:100
-#: bookmarks-data.php:105
-#: bookmarks-data.php:110
-#: bookmarks-data.php:115
-#: bookmarks-data.php:120
-#: bookmarks-data.php:125
-#: bookmarks-data.php:130
-#: bookmarks-data.php:135
-#: bookmarks-data.php:140
-#: bookmarks-data.php:145
-#: bookmarks-data.php:150
-#: bookmarks-data.php:155
-#: bookmarks-data.php:160
-#: bookmarks-data.php:165
-#: bookmarks-data.php:170
+#: bookmarks-data.php:5 bookmarks-data.php:10 bookmarks-data.php:15
+#: bookmarks-data.php:20 bookmarks-data.php:25 bookmarks-data.php:30
+#: bookmarks-data.php:35 bookmarks-data.php:40 bookmarks-data.php:45
+#: bookmarks-data.php:50 bookmarks-data.php:55 bookmarks-data.php:60
+#: bookmarks-data.php:65 bookmarks-data.php:70 bookmarks-data.php:80
+#: bookmarks-data.php:85 bookmarks-data.php:90 bookmarks-data.php:95
+#: bookmarks-data.php:100 bookmarks-data.php:105 bookmarks-data.php:110
+#: bookmarks-data.php:115 bookmarks-data.php:120 bookmarks-data.php:125
+#: bookmarks-data.php:130 bookmarks-data.php:135 bookmarks-data.php:140
+#: bookmarks-data.php:145 bookmarks-data.php:150 bookmarks-data.php:155
+#: bookmarks-data.php:160 bookmarks-data.php:165 bookmarks-data.php:170
 msgid " in your bookmarking menu"
 msgstr ""
 
-#: bookmarks-data.php:6
-#: bookmarks-data.php:61
-#: bookmarks-data.php:136
+#: bookmarks-data.php:6 bookmarks-data.php:61 bookmarks-data.php:136
 msgid "Submit this to "
 msgstr ""
 
-#: bookmarks-data.php:10
-#: bookmarks-data.php:11
+#: bookmarks-data.php:10 bookmarks-data.php:11
 msgid "Blinklist"
 msgstr ""
 
-#: bookmarks-data.php:11
-#: bookmarks-data.php:16
-#: bookmarks-data.php:31
-#: bookmarks-data.php:46
-#: bookmarks-data.php:51
-#: bookmarks-data.php:66
-#: bookmarks-data.php:86
-#: bookmarks-data.php:96
-#: bookmarks-data.php:116
-#: bookmarks-data.php:121
-#: bookmarks-data.php:126
-#: bookmarks-data.php:141
+#: bookmarks-data.php:11 bookmarks-data.php:16 bookmarks-data.php:31
+#: bookmarks-data.php:46 bookmarks-data.php:51 bookmarks-data.php:66
+#: bookmarks-data.php:86 bookmarks-data.php:96 bookmarks-data.php:116
+#: bookmarks-data.php:121 bookmarks-data.php:126 bookmarks-data.php:141
 #: bookmarks-data.php:151
 msgid "Share this on "
 msgstr ""
@@ -136,8 +79,7 @@ msgstr ""
 msgid "Digg this!"
 msgstr ""
 
-#: bookmarks-data.php:25
-#: bookmarks-data.php:26
+#: bookmarks-data.php:25 bookmarks-data.php:26
 msgid "Diigo"
 msgstr ""
 
@@ -145,8 +87,7 @@ msgstr ""
 msgid "Post this on "
 msgstr ""
 
-#: bookmarks-data.php:30
-#: bookmarks-data.php:31
+#: bookmarks-data.php:30 bookmarks-data.php:31
 msgid "Reddit"
 msgstr ""
 
@@ -166,18 +107,15 @@ msgstr ""
 msgid "Stumble upon something good? Share it on StumbleUpon"
 msgstr ""
 
-#: bookmarks-data.php:45
-#: bookmarks-data.php:46
+#: bookmarks-data.php:45 bookmarks-data.php:46
 msgid "Technorati"
 msgstr ""
 
-#: bookmarks-data.php:50
-#: bookmarks-data.php:51
+#: bookmarks-data.php:50 bookmarks-data.php:51
 msgid "Mixx"
 msgstr ""
 
-#: bookmarks-data.php:55
-#: bookmarks-data.php:56
+#: bookmarks-data.php:55 bookmarks-data.php:56
 msgid "MySpace"
 msgstr ""
 
@@ -185,13 +123,11 @@ msgstr ""
 msgid "Post this to "
 msgstr ""
 
-#: bookmarks-data.php:60
-#: bookmarks-data.php:61
+#: bookmarks-data.php:60 bookmarks-data.php:61
 msgid "DesignFloat"
 msgstr ""
 
-#: bookmarks-data.php:65
-#: bookmarks-data.php:66
+#: bookmarks-data.php:65 bookmarks-data.php:66
 msgid "Facebook"
 msgstr ""
 
@@ -211,13 +147,11 @@ msgstr ""
 msgid "Subscribe to the comments for this post?"
 msgstr ""
 
-#: bookmarks-data.php:85
-#: bookmarks-data.php:86
+#: bookmarks-data.php:85 bookmarks-data.php:86
 msgid "Linkedin"
 msgstr ""
 
-#: bookmarks-data.php:90
-#: bookmarks-data.php:91
+#: bookmarks-data.php:90 bookmarks-data.php:91
 msgid "Newsvine"
 msgstr ""
 
@@ -225,28 +159,21 @@ msgstr ""
 msgid "Seed this on "
 msgstr ""
 
-#: bookmarks-data.php:95
-#: bookmarks-data.php:96
+#: bookmarks-data.php:95 bookmarks-data.php:96
 msgid "Devmarks"
 msgstr ""
 
-#: bookmarks-data.php:100
-#: bookmarks-data.php:101
+#: bookmarks-data.php:100 bookmarks-data.php:101
 msgid "Google Bookmarks"
 msgstr ""
 
-#: bookmarks-data.php:101
-#: bookmarks-data.php:106
-#: bookmarks-data.php:111
-#: bookmarks-data.php:156
-#: bookmarks-data.php:161
-#: bookmarks-data.php:166
+#: bookmarks-data.php:101 bookmarks-data.php:106 bookmarks-data.php:111
+#: bookmarks-data.php:156 bookmarks-data.php:161 bookmarks-data.php:166
 #: bookmarks-data.php:171
 msgid "Add this to "
 msgstr ""
 
-#: bookmarks-data.php:105
-#: bookmarks-data.php:106
+#: bookmarks-data.php:105 bookmarks-data.php:106
 msgid "Mister Wong"
 msgstr ""
 
@@ -254,28 +181,23 @@ msgstr ""
 msgid "www.mister-wong.com"
 msgstr ""
 
-#: bookmarks-data.php:110
-#: bookmarks-data.php:111
+#: bookmarks-data.php:110 bookmarks-data.php:111
 msgid "Izeby"
 msgstr ""
 
-#: bookmarks-data.php:115
-#: bookmarks-data.php:116
+#: bookmarks-data.php:115 bookmarks-data.php:116
 msgid "Tipd"
 msgstr ""
 
-#: bookmarks-data.php:120
-#: bookmarks-data.php:121
+#: bookmarks-data.php:120 bookmarks-data.php:121
 msgid "PFBuzz"
 msgstr ""
 
-#: bookmarks-data.php:125
-#: bookmarks-data.php:126
+#: bookmarks-data.php:125 bookmarks-data.php:126
 msgid "FriendFeed"
 msgstr ""
 
-#: bookmarks-data.php:130
-#: bookmarks-data.php:131
+#: bookmarks-data.php:130 bookmarks-data.php:131
 msgid "BlogMarks"
 msgstr ""
 
@@ -283,18 +205,15 @@ msgstr ""
 msgid "Mark this on "
 msgstr ""
 
-#: bookmarks-data.php:135
-#: bookmarks-data.php:136
+#: bookmarks-data.php:135 bookmarks-data.php:136
 msgid "Twittley"
 msgstr ""
 
-#: bookmarks-data.php:140
-#: bookmarks-data.php:141
+#: bookmarks-data.php:140 bookmarks-data.php:141
 msgid "Fwisp"
 msgstr ""
 
-#: bookmarks-data.php:145
-#: bookmarks-data.php:146
+#: bookmarks-data.php:145 bookmarks-data.php:146
 msgid "DesignMoo"
 msgstr ""
 
@@ -302,36 +221,28 @@ msgstr ""
 msgid "Moo this on "
 msgstr ""
 
-#: bookmarks-data.php:150
-#: bookmarks-data.php:151
+#: bookmarks-data.php:150 bookmarks-data.php:151
 msgid "BobrDobr"
 msgstr ""
 
-#: bookmarks-data.php:150
-#: bookmarks-data.php:155
-#: bookmarks-data.php:160
-#: bookmarks-data.php:165
-#: bookmarks-data.php:170
+#: bookmarks-data.php:150 bookmarks-data.php:155 bookmarks-data.php:160
+#: bookmarks-data.php:165 bookmarks-data.php:170
 msgid " (Russian)"
 msgstr ""
 
-#: bookmarks-data.php:155
-#: bookmarks-data.php:156
+#: bookmarks-data.php:155 bookmarks-data.php:156
 msgid "Yandex.Bookmarks"
 msgstr ""
 
-#: bookmarks-data.php:160
-#: bookmarks-data.php:161
+#: bookmarks-data.php:160 bookmarks-data.php:161
 msgid "Memory.ru"
 msgstr ""
 
-#: bookmarks-data.php:165
-#: bookmarks-data.php:166
+#: bookmarks-data.php:165 bookmarks-data.php:166
 msgid "100 bookmarks"
 msgstr ""
 
-#: bookmarks-data.php:170
-#: bookmarks-data.php:171
+#: bookmarks-data.php:170 bookmarks-data.php:171
 msgid "MyPlace"
 msgstr ""
 
@@ -352,7 +263,8 @@ msgid "Please choose where you would like the menu to be displayed."
 msgstr ""
 
 #: sexy-bookmarks.php:99
-msgid "You can't display the menu if you don't choose a few sites to add to it!"
+msgid ""
+"You can't display the menu if you don't choose a few sites to add to it!"
 msgstr ""
 
 #: sexy-bookmarks.php:100
@@ -360,19 +272,22 @@ msgid "Please choose where you want the menu displayed."
 msgstr ""
 
 #: sexy-bookmarks.php:104
-msgid "You need to select the primary category for any articles submitted to Twittley."
+msgid ""
+"You need to select the primary category for any articles submitted to "
+"Twittley."
 msgstr ""
 
 #: sexy-bookmarks.php:105
-msgid "You need to set at least 1 default tag for any articles submitted to Twittley."
+msgid ""
+"You need to set at least 1 default tag for any articles submitted to "
+"Twittley."
 msgstr ""
 
 #: sexy-bookmarks.php:115
 msgid "You must first download and activate the"
 msgstr ""
 
-#: sexy-bookmarks.php:115
-#: sexy-bookmarks.php:260
+#: sexy-bookmarks.php:115 sexy-bookmarks.php:260
 msgid "Twitter Friendly Links Plugin"
 msgstr ""
 
@@ -381,11 +296,15 @@ msgid "before hosting your own short URLs..."
 msgstr ""
 
 #: sexy-bookmarks.php:129
-msgid "Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin."
+msgid ""
+"Due to recent API changes by Tumblr, I can no longer offer them as a "
+"supported network in the plugin."
 msgstr ""
 
 #: sexy-bookmarks.php:133
-msgid "We're currently working on a more sophisticated solution for the email link and will re-enable it when finished."
+msgid ""
+"We're currently working on a more sophisticated solution for the email link "
+"and will re-enable it when finished."
 msgstr ""
 
 #: sexy-bookmarks.php:139
@@ -436,12 +355,8 @@ msgstr ""
 msgid "This will clear <u>ALL</u> short URLs. - Are you sure?"
 msgstr ""
 
-#: sexy-bookmarks.php:250
-#: sexy-bookmarks.php:325
-#: sexy-bookmarks.php:328
-#: sexy-bookmarks.php:357
-#: sexy-bookmarks.php:360
-#: sexy-bookmarks.php:462
+#: sexy-bookmarks.php:250 sexy-bookmarks.php:325 sexy-bookmarks.php:328
+#: sexy-bookmarks.php:357 sexy-bookmarks.php:360 sexy-bookmarks.php:462
 msgid "Yes"
 msgstr ""
 
@@ -473,13 +388,11 @@ msgstr ""
 msgid "Default Content Category:"
 msgstr ""
 
-#: sexy-bookmarks.php:278
-#: sexy-bookmarks.php:308
+#: sexy-bookmarks.php:278 sexy-bookmarks.php:308
 msgid "Entertainment"
 msgstr ""
 
-#: sexy-bookmarks.php:279
-#: sexy-bookmarks.php:307
+#: sexy-bookmarks.php:279 sexy-bookmarks.php:307
 msgid "Lifestyle"
 msgstr ""
 
@@ -507,8 +420,7 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: sexy-bookmarks.php:286
-#: sexy-bookmarks.php:309
+#: sexy-bookmarks.php:286 sexy-bookmarks.php:309
 msgid "Sports"
 msgstr ""
 
@@ -565,11 +477,18 @@ msgid "Internet"
 msgstr ""
 
 #: sexy-bookmarks.php:315
-msgid "Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different \"tag categories\" than other posts."
+msgid ""
+"Enter a comma separated list of general tags which describe your site's "
+"posts as a whole. Try not to be too specific, as one post may fall into "
+"different \"tag categories\" than other posts."
 msgstr ""
 
 #: sexy-bookmarks.php:316
-msgid "This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here."
+msgid ""
+"This list is primarily used as a failsafe in case you forget to enter "
+"WordPress tags for a particular post, in which case this list of tags would "
+"be used so as to bring at least *somewhat* relevant search queries based on "
+"the general tags that you enter here."
 msgstr ""
 
 #: sexy-bookmarks.php:316
@@ -584,8 +503,7 @@ msgstr ""
 msgid "Default Tags:"
 msgstr ""
 
-#: sexy-bookmarks.php:319
-#: sexy-bookmarks.php:460
+#: sexy-bookmarks.php:319 sexy-bookmarks.php:460
 msgid "Click here for help with this option"
 msgstr ""
 
@@ -597,11 +515,8 @@ msgstr ""
 msgid "Add nofollow to the links?"
 msgstr ""
 
-#: sexy-bookmarks.php:326
-#: sexy-bookmarks.php:329
-#: sexy-bookmarks.php:358
-#: sexy-bookmarks.php:361
-#: sexy-bookmarks.php:463
+#: sexy-bookmarks.php:326 sexy-bookmarks.php:329 sexy-bookmarks.php:358
+#: sexy-bookmarks.php:361 sexy-bookmarks.php:463
 msgid "No"
 msgstr ""
 
@@ -634,7 +549,9 @@ msgid "You can style the DIV that holds the menu here:"
 msgstr ""
 
 #: sexy-bookmarks.php:374
-msgid "If you see this message, please delete the contents of this textarea and click \\\"Save Changes\\\"."
+msgid ""
+"If you see this message, please delete the contents of this textarea and "
+"click \\\"Save Changes\\\"."
 msgstr ""
 
 #: sexy-bookmarks.php:383
@@ -811,11 +728,12 @@ msgid "Support by Donating"
 msgstr ""
 
 #: sexy-bookmarks.php:568
-msgid "Surely the fact that we're making the web a sexier place one blog at a time is worth a drink or three, right?"
+msgid ""
+"Surely the fact that we're making the web a sexier place one blog at a time "
+"is worth a drink or three, right?"
 msgstr ""
 
-#: sexy-bookmarks.php:570
-#: sexy-bookmarks.php:573
+#: sexy-bookmarks.php:570 sexy-bookmarks.php:573
 msgid "Help support the development of this plugin by donating!"
 msgstr ""
 
@@ -854,4 +772,3 @@ msgstr ""
 #: sexy-bookmarks.php:880
 msgid "xtrastyle"
 msgstr ""
-
