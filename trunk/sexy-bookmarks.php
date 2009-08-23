@@ -936,7 +936,13 @@ function get_sexy() {
 				'twitt_cat'=>$t_cat,
 				'default_tags'=>$d_tags,
 			));
-		} else {
+		} elseif ($name=='sexy-designmoo') {
+			$socials.=bookmark_list_item($name, array(
+				'post_summary'=>$post_summary,
+				'permalink'=>$perms,
+				'title'=>$title,
+			));
+		  else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
 				'title'=>$title,

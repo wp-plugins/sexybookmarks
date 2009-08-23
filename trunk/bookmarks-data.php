@@ -141,5 +141,35 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Share this on ', 'sexybookmarks').__('Fwisp', 'sexybookmarks'),
 		'baseUrl'=>'http://fwisp.com/submit?url=PERMALINK',
 	),
+	'sexy-designmoo'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('DesignMoo', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Moo this on ', 'sexybookmarks').__('DesignMoo', 'sexybookmarks').'!',
+		'baseUrl'=>'http://designmoo.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
+	),
+	'sexy-bobrdobr'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('BobrDobr', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Russian)', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('BobrDobr', 'sexybookmarks'),
+		'baseUrl'=>'http://bobrdobr.ru/addext.html?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-yandex'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Yandex.Bookmarks', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Russian)', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('Yandex.Bookmarks', 'sexybookmarks'),
+		'baseUrl'=>'http://zakladki.yandex.ru/userarea/links/addfromfav.asp?bAddLink_x=1&amp;lurl=PERMALINK&amp;lname=TITLE',
+	),
+	'sexy-memoryru'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Memory.ru', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Russian)', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('Memory.ru', 'sexybookmarks'),
+		'baseUrl'=>'http://memori.ru/link/?sm=1&amp;u_data[url]=PERMALINK&amp;u_data[name]=TITLE',
+	),
+	'sexy-100zakladok'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('100 bookmarks', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Russian)', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('100 bookmarks', 'sexybookmarks'),
+		'baseUrl'=>'http://www.100zakladok.ru/save/?bmurl=PERMALINK&amp;bmtitle=TITLE',
+	),
+	'sexy-moemesto'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('MyPlace', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Russian)', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('MyPlace', 'sexybookmarks'),
+		'baseUrl'=>'http://moemesto.ru/post.php?url=PERMALINK&amp;title=TITLE',
+	),
 );
 ?>

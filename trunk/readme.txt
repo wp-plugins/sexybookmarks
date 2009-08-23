@@ -11,32 +11,31 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 == Description ==
 
 = Recent Updates =
-* Added mobile browser check & ability to hide menu from mobile
-* Fixed issue with titles & URLs on index pointing to site and not individual articles
-* Fixed persistent Twittley error message when saving settings
-* Resolved issue with Google Bookmarks link
-* Fixed Subscribe to comments link
-* Fixed issue with some themes forcing borders and background colors for menu items
-* Minor dashboard adjustments
+* Added i18n / l10n support
+* Added Russian translation and several popular Russian bookmarking sites
+* Added DesignMoo
 
 
 = Latest News =
-**v2.5.2** was the latest "big update" to the plugin. However, do not dismiss the bug patches as unimportant as they may very well fix the issues you are having.
 
-I have taken time to ensure that the changelog is very thorough and up to date as well as optimized for easy reading/navigating so that you can determine whether or not the latest updates are relevant to you.
 
 
 == Credits ==
-* Credit goes to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
-* Credit goes to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
-* Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
-* Credit goes to [Kieran Smith](http://www.kieransmith.net/) for finding/fixing the ever elusive "elseif" bug...
+* Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
+
+
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
+* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
+* Thanks to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
+* Thanks to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
+
+
+
 
 == Screenshots ==
 
@@ -93,6 +92,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 == Changelog ==
 = 2.6.0 =
+* Added i18n / l10n support
+* Added Russian translation and several popular Russian bookmarking sites
+* Added DesignMoo
 
 
 = 2.5.2.3 =
