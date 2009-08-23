@@ -461,7 +461,10 @@ function sexy_settings_page() {
 						<span class="sexy_option"><?php _e('Show in RSS feed?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> <?php _e('Yes', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> <?php _e('No', 'sexybookmarks'); ?></label>
-						<label class="sexy_option" style="margin-top:12px;"><?php _e('Hide menu from mobile browsers?', 'sexybookmarks'); ?> <input <?php echo (($sexy_plugopts['mobile-hide'] == "yes")? 'checked' : ""); ?> name="mobile-hide" id="mobile-hide" type="checkbox" value="yes" /><br /><br />
+						<label class="sexy_option" style="margin-top:12px;">
+							<?php _e('Hide menu from mobile browsers?', 'sexybookmarks'); ?> <input <?php echo (($sexy_plugopts['mobile-hide'] == "yes")? 'checked' : ""); ?> name="mobile-hide" id="mobile-hide" type="checkbox" value="yes" />
+						</label>
+						<br />
 					</div>
 				</div>
 			</li>
@@ -624,7 +627,7 @@ function sexy_settings_page() {
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons by Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch by Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix by Gautam Gupta', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://wp-ru.ru"><?php _e('i18n support and Russian translation by Grib', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://wp-ru.ru"><?php _e('i18n & Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
