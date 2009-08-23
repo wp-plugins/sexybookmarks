@@ -76,7 +76,7 @@ div.sexy-bookmarks ul.socials a:hover, div.sexy-bookmarks ul.socials li:hover {
 	outline:0 none !important;
 }
 
-.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoobuzz, .sexy-yahoobuzz:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, /*.sexy-mail, .sexy-mail:hover, */.sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-twittley, .sexy-twittley:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover, .sexy-friendfeed, .sexy-friendfeed:hover, .sexy-blogmarks, .sexy-blogmarks:hover, .sexy-fwisp, .sexy-fwisp:hover  {
+.sexy-diigo, .sexy-diigo:hover, .sexy-digg, .sexy-digg:hover, .sexy-reddit, .sexy-reddit:hover, .sexy-stumbleupon, .sexy-stumbleupon:hover, .sexy-delicious, .sexy-delicious:hover, .sexy-yahoobuzz, .sexy-yahoobuzz:hover, .sexy-blinklist, .sexy-blinklist:hover, .sexy-technorati, .sexy-technorati:hover, .sexy-facebook, .sexy-facebook:hover, .sexy-twitter, .sexy-twitter:hover, .sexy-myspace, .sexy-myspace:hover, .sexy-mixx, .sexy-mixx:hover, .sexy-scriptstyle, .sexy-scriptstyle:hover, .sexy-designfloat, .sexy-designfloat:hover, /*.sexy-mail, .sexy-mail:hover, */.sexy-comfeed, .sexy-comfeed:hover, .sexy-newsvine, .sexy-newsvine:hover, .sexy-devmarks, .sexy-devmarks:hover, .sexy-linkedin, .sexy-linkedin:hover, .sexy-google, .sexy-google:hover, .sexy-misterwong, .sexy-misterwong:hover, .sexy-izeby, .sexy-izeby:hover, .sexy-twittley, .sexy-twittley:hover, .sexy-tipd, .sexy-tipd:hover, .sexy-pfbuzz, .sexy-pfbuzz:hover, .sexy-friendfeed, .sexy-friendfeed:hover, .sexy-blogmarks, .sexy-blogmarks:hover, .sexy-fwisp, .sexy-fwisp:hover, .sexy-designmoo, .sexy-designmoo:hover, .sexy-bobrdobr, .sexy-bobrdobr:hover, .sexy-yandex, .sexy-yandex:hover, .sexy-memoryru, .sexy-memoryru:hover, .sexy-100zakladok, .sexy-100zakladok:hover, .sexy-moemesto, .sexy-moemesto:hover  {
 	background:url('../images/sexy-sprite.png') no-repeat !important;
 }
 
@@ -247,4 +247,40 @@ div.sexy-bookmarks ul.socials a:hover, div.sexy-bookmarks ul.socials li:hover {
 }
 .sexy-fwisp:hover {
 	background-position:-1890px top !important;
+}
+.sexy-designmoo {
+	background-position:-1960px bottom !important;
+}
+.sexy-designmoo:hover {
+	background-position:-1960px top !important;
+}
+.sexy-bobrdobr {
+	background-position:-2030px bottom !important;
+}
+.sexy-bobrdobr:hover {
+	background-position:-2030px top !important;
+}
+.sexy-memoryru {
+	background-position:-2100px bottom !important;
+}
+.sexy-memoryru:hover {
+	background-position:-2100px top !important;
+}
+.sexy-100zakladok {
+	background-position:-2170px bottom !important;
+}
+.sexy-100zakladok:hover {
+	background-position:-2170px top !important;
+}
+.sexy-yandex {
+	background-position:-2240px bottom !important;
+}
+.sexy-yandex:hover {
+	background-position:-2240px top !important;
+}
+.sexy-moemesto {
+	background-position:-2310px bottom !important;
+}
+.sexy-moemesto:hover {
+	background-position:-2310px top !important;
 }
