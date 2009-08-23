@@ -112,7 +112,7 @@ function sexy_settings_page() {
 		}
 		// Twitter friendly links: check to see if they have the plugin activated
 		if ($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) {
-			$error_message = __('You must first download and activate the', 'sexybookmarks').' <a href="http://wordpress.org/extend/plugins/twitter-friendly-links/">'__('Twitter Friendly Links Plugin', 'sexybookmarks').'</a> '__('before hosting your own short URLs...', 'sexybookmarks');
+			$error_message = __('You must first download and activate the', 'sexybookmarks').' <a href="http://wordpress.org/extend/plugins/twitter-friendly-links/">'.__('Twitter Friendly Links Plugin', 'sexybookmarks').'</a> '.__('before hosting your own short URLs...', 'sexybookmarks');
 		}
 		if (!$error_message) {
 			foreach (array(
@@ -942,7 +942,7 @@ function get_sexy() {
 				'permalink'=>$perms,
 				'title'=>$title,
 			));
-		  else {
+		} else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
 				'title'=>$title,
