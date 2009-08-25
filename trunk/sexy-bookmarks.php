@@ -530,7 +530,7 @@ function sexy_settings_page() {
 
 					if ($sexy_plug_rating == "0") {
 						$sexy_plug_rating_class = "sexy-rating";
-					} elseif (1<=$sexy_plug_rating && 5>=$sexy_plug_rating)
+					} elseif (1<=$sexy_plug_rating && 5>=$sexy_plug_rating) {
 						$sexy_plug_rating_class = "sexy-rating-".$sexy_plug_rating;
 					}
 				?>
