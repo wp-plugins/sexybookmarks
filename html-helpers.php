@@ -22,7 +22,7 @@ function sexy_form_select_option($opts) {
 		),
 		$opts
 	);
-	return sprintf('<option%s value="%s">%s</option>'
+	return sprintf('<option%s value="%s">%s</option>',
 		($sexy_plugopts[$opts['field']]==$opts['value'])?' selected="selected"':"",
 		$opts['value'],
 		$opts['text']
