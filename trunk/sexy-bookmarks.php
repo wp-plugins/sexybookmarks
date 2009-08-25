@@ -256,21 +256,21 @@ function sexy_settings_page() {
 							<div class="clearbig"></div>
 							<label for="shorty"><?php _e('Which URL Shortener?', 'sexybookmarks'); ?></label>
 							<select name="shorty" id="shorty">
-<?php
-	// output shorty select options
-	print sexy_select_option_group('shorty', array(
-		'tflp'=>'Twitter Friendly Links Plugin',
-		'e7t'=>'http://e7t.us',
-		'trim'=>'http://tr.im',
-		'rims'=>'http://ri.ms',
-		'tinyarrow'=>'http://tinyarro.ws',
-		'tiny'=>'http://tinyurl.com',
-		'snip'=>'http://snipr.com',
-		'supr'=>'http://su.pr',
-		'shortto'=>'http://short.to',
-		'cligs'=>'http://cli.gs',
-	));
-?>
+								<?php
+									// output shorty select options
+									print sexy_select_option_group('shorty', array(
+										'tflp'=>'Twitter Friendly Links Plugin',
+										'e7t'=>'http://e7t.us',
+										'trim'=>'http://tr.im',
+										'rims'=>'http://ri.ms',
+										'tinyarrow'=>'http://tinyarro.ws',
+										'tiny'=>'http://tinyurl.com',
+										'snip'=>'http://snipr.com',
+										'supr'=>'http://su.pr',
+										'shortto'=>'http://short.to',
+										'cligs'=>'http://cli.gs',
+									));
+								?>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/><?php _e('Reset all Short URLs', 'sexybookmarks'); ?></label>
 						<div class="clearbig"></div>
@@ -279,34 +279,34 @@ function sexy_settings_page() {
 							<h3><?php _e('Yahoo! Buzz Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="ybuzzcat"><?php _e('Default Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="ybuzzcat" id="ybuzzcat">
-<?php
-	// output shorty select options
-	print sexy_select_option_group('ybuzzcat', array(
-		'entertainment'=>'Entertainment',
-		'lifestyle'=>'Lifestyle',
-		'health'=>'Health',
-		'usnews'=>'U.S. News',
-		'business'=>'Business',
-		'politics'=>'Politics',
-		'science'=>'Sci/Tech',
-		'world_news'=>'World',
-		'sports'=>'Sports',
-		'travel'=>'Travel',
-	));
-	
-?>
+								<?php
+									// output shorty select options
+									print sexy_select_option_group('ybuzzcat', array(
+										'entertainment'=>'Entertainment',
+										'lifestyle'=>'Lifestyle',
+										'health'=>'Health',
+										'usnews'=>'U.S. News',
+										'business'=>'Business',
+										'politics'=>'Politics',
+										'science'=>'Sci/Tech',
+										'world_news'=>'World',
+										'sports'=>'Sports',
+										'travel'=>'Travel',
+									));
+									
+								?>
 							</select>
 							<div class="clearbig"></div>
 							<label for="ybuzzmed">Default Media Type: </label>
 							<select name="ybuzzmed" id="ybuzzmed">
-<?php
-	print sexy_select_option_group('ybuzzmed', array(
-		'text'=>'Text',
-		'image'=>'Image',
-		'audio'=>'Audio',
-		'video'=>'Video',
-	));
-?>
+								<?php
+									print sexy_select_option_group('ybuzzmed', array(
+										'text'=>'Text',
+										'image'=>'Image',
+										'audio'=>'Audio',
+										'video'=>'Video',
+									));
+								?>
 							</select>
 						<div class="clearbig"></div>
 						</div>
@@ -314,19 +314,19 @@ function sexy_settings_page() {
 							<h3><?php _e('Twittley Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="twittcat"><?php _e('Primary Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="twittcat" id="twittcat">
-<?php
-	print sexy_select_option_group('ybuzzmed', array(
-		'Technology'=>'Technology',
-		'World &amp; Business'=>'World &amp; Business',
-		'Science'=>'Science',
-		'Gaming'=>'Gaming',
-		'Lifestyle'=>'Lifestyle',
-		'Entertainment'=>'Entertainment',
-		'Sports'=>'Sports',
-		'Offbeat'=>'Offbeat',
-		'Internet'=>'Internet',
-	));
-?>
+								<?php
+									print sexy_select_option_group('ybuzzmed', array(
+										'Technology'=>'Technology',
+										'World &amp; Business'=>'World &amp; Business',
+										'Science'=>'Science',
+										'Gaming'=>'Gaming',
+										'Lifestyle'=>'Lifestyle',
+										'Entertainment'=>'Entertainment',
+										'Sports'=>'Sports',
+										'Offbeat'=>'Offbeat',
+										'Internet'=>'Internet',
+									));
+								?>
 							</select>
 							<div class="clearbig"></div>
 							<p id="tag-info" class="hidden">
@@ -456,7 +456,7 @@ function sexy_settings_page() {
 						<div class="dialog-box-warning" id="mobile-warn">
 							<div class="dialog-left">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
-								<?php _e('This feature is still in the experimental phase, so please ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/documentation/usage-installation"><?php _e('report any bugs', 'sexybookmarks'); ?></a> <?php _e('you may find', 'sexybookmarks'); ?>.
+								<?php _e('This feature is still in the experimental phase, so please ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/contact-forms/bug-form"><?php _e('report any bugs', 'sexybookmarks'); ?></a> <?php _e('you may find', 'sexybookmarks'); ?>.
 							</div>
 							<div class="dialog-right">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning-delete.jpg" class="del-x" alt=""/>
@@ -468,17 +468,17 @@ function sexy_settings_page() {
 						<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> <?php _e('Manual Mode', 'sexybookmarks'); ?></label>
 						<span class="sexy_option"><?php _e('Posts, pages, or the whole shebang?', 'sexybookmarks'); ?></span>
 						<select name="pageorpost" id="pageorpost">
-<?php
-	print sexy_select_option_group('pageorpost', array(
-		'post'=>'Posts Only',
-		'page'=>'Pages Only',
-		'index'=>'Index Only',
-		'pagepost'=>'Posts &amp; Pages',
-		'postindex'=>'Posts &amp; Index',
-		'pageindex'=>'Pages &amp; Index',
-		'postpageindex'=>'Posts, Pages, &amp; Index',
-	));
-?>
+							<?php
+								print sexy_select_option_group('pageorpost', array(
+									'post'=>'Posts Only',
+									'page'=>'Pages Only',
+									'index'=>'Index Only',
+									'pagepost'=>'Posts &amp; Pages',
+									'postindex'=>'Posts &amp; Index',
+									'pageindex'=>'Pages &amp; Index',
+									'postpageindex'=>'Posts, Pages, &amp; Index',
+								));
+							?>
 						</select><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="shebang-info" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" alt="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" />
 						<span class="sexy_option"><?php _e('Show in RSS feed?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> <?php _e('Yes', 'sexybookmarks'); ?></label>
@@ -636,7 +636,7 @@ function sexy_settings_page() {
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons by Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch by Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix by Gautam Gupta', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://wp-ru.ru"><?php _e('i18n & Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://wp-ru.ru"><?php _e('Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
