@@ -570,7 +570,7 @@ function sexy_settings_page() {
 			</div>
 		</div>
 	</div>
-	<div class="box-right sexy-donation-box">
+	<div class="box-right sexy-donation-box" id="sexydonationsbox">
 		<div class="box-right-head">
 			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/money-coin.png" alt="" class="box-icons" />
 			<h3><?php _e('Support by Donating', 'sexybookmarks'); ?></h3>
