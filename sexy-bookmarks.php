@@ -602,7 +602,7 @@ function sexy_settings_page() {
 					// All fields are required
 
 					// Your Feedity RSS feed URL
-					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UldQVFNb";
+					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UldbWlRb";
 
 					// Number of items to display in the widget
 					feedity_widget_numberofitems = "5";
