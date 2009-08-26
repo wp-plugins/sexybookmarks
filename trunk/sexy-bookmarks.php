@@ -31,11 +31,20 @@ Author URI: http://eight7teen.com
 // Create Text Domain For Translations
 load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/languages/');
 
+
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','2.6.0');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
-define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
+
+
+// Check for location modifications in wp-config
+if ( !defined('WP_CONTENT_URL') ) {
+	define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+} else {
+	define('SEXY_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+} 
+
 
 // contains all bookmark templates.
 require_once 'bookmarks-data.php';
