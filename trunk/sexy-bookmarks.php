@@ -436,6 +436,9 @@ function sexy_settings_page() {
 							<label class="bgimg share-wealth">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" />
 							</label>
+							<label class="bgimg share-enjoy">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "enjoy")? 'checked="checked"' : ""); ?> id="bgimg-enjoy" name="bgimg" type="radio" value="enjoy" />
+							</label>
 						</div>
 					</div>
 				</div>
@@ -579,7 +582,7 @@ function sexy_settings_page() {
 			</div>
 		</div>
 	</div>
-	<div class="box-right sexy-donation-box" id="sexydonationsbox">
+	<div class="box-right sexy-donation-box">
 		<div class="box-right-head">
 			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/money-coin.png" alt="" class="box-icons" />
 			<h3><?php _e('Support by Donating', 'sexybookmarks'); ?></h3>
@@ -893,8 +896,10 @@ function get_sexy() {
 		$bgchosen = ' sexy-bookmarks-bg-caring-old';
 	} elseif($sexy_plugopts['bgimg'] == 'love') {
 		$bgchosen = ' sexy-bookmarks-bg-love';
-	}  elseif($sexy_plugopts['bgimg'] == 'wealth') {
+	} elseif($sexy_plugopts['bgimg'] == 'wealth') {
 		$bgchosen = ' sexy-bookmarks-bg-wealth';
+	} elseif($sexy_plugopts['bgimg'] == 'enjoy') {
+		$bgchosen = ' sexy-bookmarks-bg-enjoy';
 	}
 	
 	// do not add inline styles to the feed.

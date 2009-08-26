@@ -49,8 +49,11 @@ div.sexy-wrap {
 	background:transparent url('../images/sexy-trans.png') no-repeat scroll 0 -1146px;
 }
 .share-wealth {
-	background:transparent url('../images/sexy-trans.png') no-repeat scroll 0 bottom;
+	background:transparent url('../images/sexy-trans.png') no-repeat scroll 0 -1535px;
 	padding:50px 0 0 25px !important;
+}
+.share-enjoy {
+	background:transparent url('../images/sexy-trans.png') no-repeat scroll 0 -1895px;
 }
 .bgimg {
 	display:block;
