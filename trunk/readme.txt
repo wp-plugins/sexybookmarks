@@ -14,6 +14,7 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 * Added i18n / l10n support
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
+* Added bit.ly support and integration
 
 
 = Latest News =
@@ -95,6 +96,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added i18n / l10n support
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
+* Added bit.ly support and integration
 
 
 = 2.5.2.3 =
