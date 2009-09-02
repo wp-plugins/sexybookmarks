@@ -136,6 +136,18 @@ jQuery('#sexy-twitter').click(function() {
 	}
 });
 
+
+// Apply "smart options" to bit.ly DIV
+jQuery('#shorty').click(function() {
+	if (jQuery("#shorty option[value='bitly']").attr('selected', 'selected')) {
+		jQuery('#shortyapimdiv-bitly').fadeIn('fast');
+	}
+	else {
+		jQuery('#shortyapimdiv-bitly').fadeOut();
+	}
+});
+
+
 // Fade in/out mobile feature warning
 jQuery('#mobile-hide').click(function() {
 	if (this.checked) {
