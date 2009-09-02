@@ -8,7 +8,7 @@ Author: Josh Jones, Norman Yung
 Author URI: http://eight7teen.com
 
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)
-	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Eight7Teen (email : josh@eight7teen.com)
+	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@eight7teen.com)
 	Additional Developer: Norman Yung (www.robotwithaheart.com), now a full-time part of further development.
 	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
 
@@ -109,7 +109,7 @@ function sexy_settings_page() {
 			'pageorpost'=>__('Please choose where you want the menu displayed.', 'sexybookmarks'),
 		);
 		// adding to err msg map if twittley is enabled.
-		if (in_array('sexy-twittley', $sexy_plugopts['bookmark'])) {
+		if (in_array('sexy-twittley', $_POST['bookmark'])) {
 			$errmsgmap['twittcat']=__('You need to select the primary category for any articles submitted to Twittley.', 'sexybookmarks');
 			$errmsgmap['defaulttags']=__('You need to set at least 1 default tag for any articles submitted to Twittley.', 'sexybookmarks');
 		}
@@ -130,6 +130,10 @@ function sexy_settings_page() {
 				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
 				'feed', 'expand', 'expand', 'autocenter',
 			) as $field) $sexy_plugopts[$field]=$_POST[$field];
+			/* Short URLs */
+				$sexy_plugopts['shortyapi']['bitly']['user'] = $_POST['shortyapiuser-bitly'];
+				$sexy_plugopts['shortyapi']['bitly']['key'] = $_POST['shortyapikey-bitly'];
+			/* Short URLs End */
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 		
@@ -270,6 +274,7 @@ function sexy_settings_page() {
 									print sexy_select_option_group('shorty', array(
 										'tflp'=>'Twitter Friendly Links Plugin',
 										'e7t'=>'http://e7t.us',
+										'bitly' => 'http://bit.ly',
 										'trim'=>'http://tr.im',
 										'rims'=>'http://ri.ms',
 										'tinyarrow'=>'http://tinyarro.ws',
@@ -282,6 +287,14 @@ function sexy_settings_page() {
 								?>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/><?php _e('Reset all Short URLs', 'sexybookmarks'); ?></label>
+							<div id="shortyapimdiv-bitly"<?php if($sexy_plugopts['shorty'] != "bitly") { ?> class="hidden"<?php } ?>>
+								<div id="shortyapidiv-bitly">
+								    <label for="shortyapiuser-bitly">User ID:</label>
+								    <input type="text" id="shortyapiuser-bitly" name="shortyapiuser-bitly" value="<?php echo $sexy_plugopts['shortyapi']['bitly']['user']; ?>" />
+								    <label for="shortyapikey-bitly">API Key:</label>
+								    <input type="text" id="shortyapikey-bitly" name="shortyapikey-bitly" value="<?php echo $sexy_plugopts['shortyapi']['bitly']['key']; ?>" />
+								</div>
+							</div>
 						<div class="clearbig"></div>
 						</div>
 						<div id="ybuzz-defaults">
@@ -668,6 +681,8 @@ function sexy_get_fetch_url() {
 	// which short url service should be used?
 	if($sexy_plugopts['shorty'] == "e7t") {
 		$first_url = "http://e7t.us/create.php?url=".$perms;
+	} elseif($sexy_plugopts['shorty'] == "bitly") {
+		$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
 	} elseif($sexy_plugopts['shorty'] == "rims") {
 		$first_url = "http://ri.ms/api-create.php?url=".$perms;
 	} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
@@ -708,6 +723,10 @@ function sexy_get_fetch_url() {
 
 		if ($fetch_url) { // remote call made and was successful
 			$fetch_url=trim($fetch_url);
+			if($sexy_plugopts['shorty'] == "bitly"){
+				$fetch_array = json_decode($fetch_url, true);
+				$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
+			}
 			// add/update values
 			// tries updates first, then add if field does not already exist
 			if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
