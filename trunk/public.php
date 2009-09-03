@@ -233,7 +233,14 @@ function get_sexy() {
 	$style=($sexy_plugopts['autocenter'])?'':' style="'.__($sexy_plugopts['xtrastyle']).'"';
 	if (is_feed()) $style='';
 	$expand=$sexy_plugopts['expand']?' sexy-bookmarks-expand':'';
-	$autocenter=$sexy_plugopts['autocenter']?' sexy-bookmarks-center':'';
+	if ($sexy_plugopts['autocenter']==1) {
+		$autocenter=' sexy-bookmarks-center';
+	} elseif ($sexy_plugopts['autocenter']==2) {
+		$autocenter=' sexy-bookmarks-spaced';
+	} else {
+		$autocenter='';
+	}
+	
 	//write the menu
 	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'><ul class="socials">';
 	foreach ($sexy_plugopts['bookmark'] as $name) {

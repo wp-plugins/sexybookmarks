@@ -22,13 +22,20 @@ jQuery(document).ready(function() {
 		);
 	}
 	// autocentering
-	if (jQuery('.sexy-bookmarks-center')) {
+	if (jQuery('.sexy-bookmarks-center') || jQuery('.sexy-bookmarks-spaced')) {
 		var sexyFullWidth=jQuery('.sexy-bookmarks').width();
 		var sexyBookmarkWidth=jQuery('.sexy-bookmarks:first ul.socials li').width();
 		var sexyBookmarkCount=jQuery('.sexy-bookmarks:first ul.socials li').length;
 		var numPerRow=Math.floor(sexyFullWidth/sexyBookmarkWidth);
 		var sexyRowWidth=Math.min(numPerRow, sexyBookmarkCount)*sexyBookmarkWidth;
-		var sexyLeftMargin=(sexyFullWidth-sexyRowWidth)/2;
-		jQuery('.sexy-bookmarks-center').css('margin-left', sexyLeftMargin+'px');
+		
+		if (jQuery('.sexy-bookmarks-spaced').length>0) {
+			var sexyLeftMargin=Math.floor((sexyFullWidth-sexyRowWidth)/(Math.min(numPerRow, sexyBookmarkCount)+1));
+			jQuery('.sexy-bookmarks ul.socials li').css('margin-left', sexyLeftMargin+'px');
+		} else if (jQuery('.sexy-bookmarks-center'.length>0)) {
+			var sexyLeftMargin=(sexyFullWidth-sexyRowWidth)/2;
+			jQuery('.sexy-bookmarks-center').css('margin-left', sexyLeftMargin+'px');
+		}
+		
 	}
 });
