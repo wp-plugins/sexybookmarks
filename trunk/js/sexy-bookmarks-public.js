@@ -28,7 +28,9 @@ jQuery(document).ready(function() {
 		var sexyBookmarkCount=jQuery('.sexy-bookmarks:first ul.socials li').length;
 		var numPerRow=Math.floor(sexyFullWidth/sexyBookmarkWidth);
 		var sexyRowWidth=Math.min(numPerRow, sexyBookmarkCount)*sexyBookmarkWidth;
+		/*
 		var sexyLeftMargin=(sexyFullWidth-sexyRowWidth)/2;
 		jQuery('.sexy-bookmarks-center').css('margin-left', sexyLeftMargin+'px');
+		*/
 	}
 });
