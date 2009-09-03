@@ -41,4 +41,26 @@ function sexy_select_option_group($field, $options) {
 	}
 	return $h;
 }
+
+
+function bookmark_list_item($name, $opts=array()) {
+	global $sexy_plugopts, $sexy_bookmarks_data;
+
+	$url=$sexy_bookmarks_data[$name]['baseUrl'];
+	foreach ($opts as $key=>$value) {
+		$url=str_replace(strtoupper($key), $value, $url);
+	}
+	
+	return sprintf(
+		'<li class="%s"><a href="%s" rel="%s"%s title="%s">%s</a></li>',
+		$name,
+		$url,
+		$sexy_plugopts['reloption'],
+		$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
+		$sexy_bookmarks_data[$name]['share'],
+		$sexy_bookmarks_data[$name]['share']
+	);
+}
+
+
 ?>
