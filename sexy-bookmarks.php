@@ -392,9 +392,10 @@ function sexy_settings_page() {
 						<span class="sexy_option"><?php _e('Animate-expand multi-lined bookmarks?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" /><?php _e('Yes', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
-						<span class="sexy_option"><?php _e('Auto-center the bookmarks?', 'sexybookmarks'); ?></span>
-						<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /><?php _e('Yes', 'sexybookmarks'); ?></label>
-						<label><input <?php echo (($sexy_plugopts['autocenter'] != "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
+						<span class="sexy_option"><?php _e('Auto-space/center the bookmarks?', 'sexybookmarks'); ?></span>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] == "2")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="2" /><?php _e('Space', 'sexybookmarks'); ?></label>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /><?php _e('Center', 'sexybookmarks'); ?></label>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] == "0")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
 						<br />
 						<br />
 						<label for="xtrastyle"><?php _e('You can style the DIV that holds the menu here:', 'sexybookmarks'); ?></label><br/>
