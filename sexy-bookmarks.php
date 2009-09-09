@@ -694,19 +694,19 @@ function sexy_admin_styles() {
 	}
 
 	if (detect7()) {
-		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
-		wp_register_style('ie-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('ie-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('ie-sexy-bookmarks');
 	}
 	elseif (detect8()) {
-		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
-		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
 	}
 	else {
-		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
 	}
 }
