@@ -672,8 +672,8 @@ function sexy_settings_page() {
 //styles for admin area
 add_action( "admin_print_scripts", 'sexy_admin_scripts' );
 function sexy_admin_scripts() {
-	wp_register_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
-	wp_print_scripts('sexy-bookmarks-js');
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
 }
 
 add_action( "admin_print_styles", 'sexy_admin_styles' );
