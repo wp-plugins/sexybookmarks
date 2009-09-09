@@ -15,6 +15,7 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
 * Added bit.ly support and integration
+* Added auto-spaced centering
 * Fixed plugin conflicts due to jQuery incompatibility
 
 
@@ -98,8 +99,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
 * Added bit.ly support and integration
+* Added auto-spaced centering
 * Fixed plugin conflicts due to jQuery incompatibility
-
 
 = 2.5.2.3 =
 * Added mobile browser check & ability to hide menu from mobile
