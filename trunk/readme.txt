@@ -1,7 +1,7 @@
 === SexyBookmarks ===
 Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3415856
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,furl,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
 Stable tag: 2.5.2.3
@@ -15,11 +15,11 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
 * Added bit.ly support and integration
-* Added auto-spaced centering
 * Fixed plugin conflicts due to jQuery incompatibility
 
 
 = Latest News =
+We were hoping to hold out on releasing another update until we had implemented all features that had been requested this time around, but due to the fact that there was an overwelming number of problems caused by plugin incompatibilites regarding jQuery we've decided to release this update to solve the issue. We will be adding the rest of the features you've asked for shortly, so please be patient.
 
 
 
@@ -94,13 +94,13 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.6.0 =
+= 2.5.3 =
 * Added i18n / l10n support
 * Added Russian translation and several popular Russian bookmarking sites
 * Added DesignMoo
 * Added bit.ly support and integration
-* Added auto-spaced centering
 * Fixed plugin conflicts due to jQuery incompatibility
+
 
 = 2.5.2.3 =
 * Added mobile browser check & ability to hide menu from mobile
