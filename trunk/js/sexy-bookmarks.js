@@ -139,11 +139,11 @@ jQuery('#sexy-twitter').click(function() {
 
 // Apply "smart options" to bit.ly DIV
 jQuery('#shorty').click(function() {
-	if (jQuery("#shorty option[value='bitly']").attr('selected', 'selected')) {
+	if (jQuery("#shorty option[value='bitly']").is(':selected')) {
 		jQuery('#shortyapimdiv-bitly').fadeIn('fast');
 	}
 	else {
-		jQuery('#shortyapimdiv-bitly').fadeOut();
+		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
 	}
 });
 
