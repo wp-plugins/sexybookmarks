@@ -574,10 +574,13 @@ function sexy_settings_page() {
 			<div class="padding">
 				<ul class="sexy-adslots">
 					<li class="sexy-medium-banner">
+						<a href="http://blog2life.net/" title="It's coming... Are you ready?" target="_blank" rel="dofollow">
+							<img src="http://blog2life.net/images/234x60.png" alt="Free themes and resources to bring your blog to life | Blog2Life" height="60" width="234" />
+						</a>
 						<script type="text/javascript">
 							Vertical1240126 = true;
 							ShowAdHereBanner1240126 = true;
-							RepeatAll1240126 = true;
+							RepeatAll1240126 = false;
 							NoFollowAll1240126 = false;
 							BannerStyles1240126 = new Array(
 								"a{display:block;font-size:11px;color:#79939F;font-family:verdana,sans-serif;margin:0 0 10px 1px;text-align:center;text-decoration:none;overflow:hidden;}",
@@ -624,7 +627,7 @@ function sexy_settings_page() {
 					// All fields are required
 
 					// Your Feedity RSS feed URL
-					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UldbWlRb";
+					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UlZXV1RX";
 
 					// Number of items to display in the widget
 					feedity_widget_numberofitems = "5";
