@@ -95,6 +95,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+
+
 = 2.5.3.1 =
 * Fixed issue from **v2.5.3** where CSS was not being applied properly
 * Fixed issue with bit.ly being stubborn when selected
