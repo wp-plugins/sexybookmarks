@@ -95,7 +95,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-
+= 2.5.3.2 =
+* No changes, just fixing SVN hiccup from earlier tonight
 
 = 2.5.3.1 =
 * Fixed issue from **v2.5.3** where CSS was not being applied properly
