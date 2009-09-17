@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.3.2
+Stable tag: 2.5.3.3
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -95,6 +95,10 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.3.3 =
+* snuck in fixing issues introduced w/ some css changes.
+* also just made another release for those who may have gotten the improper release from last night so you won't have to jump thru hoops to get a fixed version.
+
 = 2.5.3.2 =
 * No changes, just fixing SVN hiccup from earlier tonight
 
