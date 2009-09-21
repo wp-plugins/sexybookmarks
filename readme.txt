@@ -4,27 +4,22 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.3.3
+Stable tag: 2.6.0
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-* Fixed issue with CSS not being applied properly
-* Added i18n / l10n support
-* Added Russian translation and several popular Russian bookmarking sites
-* Added DesignMoo
-* Added bit.ly support and integration
-* Fixed plugin conflicts due to jQuery incompatibility
+* Added French translation
 
 
 = Latest News =
-We were hoping to hold out on releasing another update until we had implemented all features that had been requested this time around, but due to the fact that there was an overwelming number of problems caused by plugin incompatibilites regarding jQuery we've decided to release this update to solve the issue. We will be adding the rest of the features you've asked for shortly, so please be patient.
 
 
 
 == Credits ==
+* Credit goes to [Maître Mô](http://maitremo.fr) for translating to French
 * Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
 
 
@@ -95,6 +90,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.0 =
+* Added French translation
+
 = 2.5.3.3 =
 * snuck in fixing issues introduced w/ some css changes.
 * also just made another release for those who may have gotten the improper release from last night so you won't have to jump thru hoops to get a fixed version.
