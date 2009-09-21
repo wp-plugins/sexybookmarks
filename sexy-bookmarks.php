@@ -662,7 +662,7 @@ function sexy_settings_page() {
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch by Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix by Gautam Gupta', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://wp-ru.ru"><?php _e('Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://maitremo.fr"><?php _e('French translation by Maître Mô', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://maitremo.fr"><?php _e('French translation by Maitre Mo', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>

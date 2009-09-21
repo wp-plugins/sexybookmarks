@@ -12,6 +12,7 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 
 = Recent Updates =
 * Added French translation
+* Added ability to disable on post by post basis
 
 
 = Latest News =
@@ -92,6 +93,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 == Changelog ==
 = 2.6.0 =
 * Added French translation
+* Added ability to disable on a post by post basis
 
 = 2.5.3.3 =
 * snuck in fixing issues introduced w/ some css changes.
