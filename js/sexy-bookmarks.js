@@ -40,9 +40,13 @@ else if (jQuery('#sexy-mail').is(':not(:checked)')) {
 jQuery('#info-manual').css({ display: 'none' });
 jQuery('#clear-warning').css({ display:'none' });
 jQuery('#custom-warning').css({ display:'none' });
+jQuery('#custom-warning-a').css({ display:'none' });
 jQuery('#mobile-warn').css({ display:'none' });
 
 if (jQuery('#autocenter-yes').is(':checked')) {
+	this.checked=jQuery('#xtrastyle').attr('disabled', true);
+}
+if (jQuery('#autospace-yes').is(':checked')) {
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
 }
 else {
@@ -53,6 +57,10 @@ jQuery('#autocenter-yes').click(function() {
 	this.checked=jQuery('#custom-warning').fadeIn('fast');
 	this.checked=jQuery(this).is(':not(:checked)');
 });
+jQuery('#autospace-yes').click(function() {
+	this.checked=jQuery('#custom-warning-a').fadeIn('fast');
+	this.checked=jQuery(this).is(':not(:checked)');
+});
 
 jQuery('#custom-warn-yes').click(function() {
 	this.checked=jQuery('#custom-warning').fadeOut();
@@ -60,6 +68,20 @@ jQuery('#custom-warn-yes').click(function() {
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
 	this.checked=jQuery(this).is(':not(:checked)');
 });
+jQuery('#custom-warn-yes-a').click(function() {
+	this.checked=jQuery('#custom-warning-a').fadeOut();
+	this.checked=jQuery('#autospace-yes').attr('checked', 'checked');
+	this.checked=jQuery('#xtrastyle').attr('disabled', true);
+	this.checked=jQuery(this).is(':not(:checked)');
+});
+
+
+
+
+
+
+
+
 
 jQuery('#autocenter-no').click(function() {
 	this.checked=jQuery('#xtrastyle').removeAttr('disabled');

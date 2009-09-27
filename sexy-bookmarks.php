@@ -3,12 +3,12 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.6.0
+Version: 2.5.3.4
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)
-	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@eight7teen.com)
+	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@sexybookmarks.net)
 	Additional Developer: Norman Yung (www.robotwithaheart.com), now a full-time part of further development.
 	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
 
@@ -33,7 +33,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.6.0');
+define('SEXY_vNum','2.5.3.4');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -60,7 +60,7 @@ $sexy_plugopts = array(
 	'bgimg-yes' => '', // 'yes' or blank
 	'mobile-hide' => '', // 'yes' or blank
 	'bgimg' => '', // 'sexy', 'caring', 'wealth'
-	'shorty' => 'e7t', // default is http://e7t.us
+	'shorty' => 'b2l', // default is http://b2l.me
 	'pageorpost' => '',
 	'bookmark' => array_keys($sexy_bookmarks_data),
 	'xtrastyle' => '',
@@ -80,13 +80,6 @@ add_option(SEXY_OPTIONS, $sexy_plugopts);
 //reload
 $sexy_plugopts = get_option(SEXY_OPTIONS);
 
-//add sidebar link to settings page
-add_action('admin_menu', 'sexy_menu_link');
-function sexy_menu_link() {
-	if (function_exists('add_options_page')) {
-		add_options_page('SexyBookmarks', 'SexyBookmarks', 9, basename(__FILE__), 'sexy_settings_page');
-	}	
-}
 
 //write settings page
 function sexy_settings_page() {
@@ -136,6 +129,7 @@ function sexy_settings_page() {
 		// Check for Tumblr and display error, will use jQuery to remove if exists
 		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
 			$error_message = __('Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.', 'sexybookmarks');
+
 		}
 		// Check for Email link and display error, will use jQuery to remove if exists
 		if(in_array('sexy-mail', $sexy_plugopts['bookmark'])) {
@@ -269,7 +263,7 @@ function sexy_settings_page() {
 									// output shorty select options
 									print sexy_select_option_group('shorty', array(
 										'tflp'=>'Twitter Friendly Links Plugin',
-										'e7t'=>'http://e7t.us',
+										'b2l'=>'http://b2l.me',
 										'bitly' => 'http://bit.ly',
 										'trim'=>'http://tr.im',
 										'rims'=>'http://ri.ms',
@@ -333,7 +327,7 @@ function sexy_settings_page() {
 							<label for="twittcat"><?php _e('Primary Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="twittcat" id="twittcat">
 								<?php
-									print sexy_select_option_group('ybuzzmed', array(
+									print sexy_select_option_group('twittcat', array(
 										'Technology'=>'Technology',
 										'World &amp; Business'=>'World &amp; Business',
 										'Science'=>'Science',
@@ -389,11 +383,20 @@ function sexy_settings_page() {
 								<label><input name="warn-choice" id="custom-warn-yes" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label> 
 							</div>
 						</div>
+						<div class="dialog-box-warning" id="custom-warning-a">
+							<div class="dialog-left">
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+								<?php _e('This will void any custom CSS applied below.', 'sexybookmarks'); ?>
+							</div>
+							<div class="dialog-right">
+								<label><input name="warn-choice" id="custom-warn-yes-a" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label> 
+							</div>
+						</div>
 						<span class="sexy_option"><?php _e('Animate-expand multi-lined bookmarks?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" /><?php _e('Yes', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['expand'] != "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
 						<span class="sexy_option"><?php _e('Auto-space/center the bookmarks?', 'sexybookmarks'); ?></span>
-						<label><input <?php echo (($sexy_plugopts['autocenter'] == "2")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="2" /><?php _e('Space', 'sexybookmarks'); ?></label>
+						<label><input <?php echo (($sexy_plugopts['autocenter'] == "2")? 'checked="checked"' : ""); ?> name="autocenter" id="autospace-yes" type="radio" value="2" /><?php _e('Space', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /><?php _e('Center', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['autocenter'] == "0")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
 						<br />
@@ -663,6 +666,7 @@ function sexy_settings_page() {
 					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix by Gautam Gupta', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://wp-ru.ru"><?php _e('Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://maitremo.fr"><?php _e('French translation by Maitre Mo', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix by Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -673,29 +677,36 @@ function sexy_settings_page() {
 
 }//closing brace for function "sexy_settings_page"
 
-//styles for admin area
-add_action( "admin_print_scripts", 'sexy_admin_scripts' );
+
+//add sidebar link to settings page
+add_action('admin_menu', 'sexy_menu_link');
+function sexy_menu_link() {
+	if (function_exists('add_options_page')) {
+		$sexy_admin_page = add_options_page('SexyBookmarks', 'SexyBookmarks', 9, basename(__FILE__), 'sexy_settings_page');
+		add_action( "admin_print_scripts-$sexy_admin_page", 'sexy_admin_scripts' );
+		add_action( "admin_print_styles-$sexy_admin_page", 'sexy_admin_styles' );
+	}	
+}
+
+//styles and scripts for admin area
 function sexy_admin_scripts() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
 }
-
-add_action( "admin_print_styles", 'sexy_admin_styles' );
 function sexy_admin_styles() {
 	function detect7() {
 		if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false))
 			return true;
-		else
-			return false;
+			else
+				return false;
 	}
 	function detect8()
-	{
-		if (isset($_SERVER['HTTP_USER_AGENT']) && 
-		(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false))
-			return true;
-		else
-			return false;
-	}
+		{
+			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false))
+				return true;
+				else
+					return false;
+		}
 
 	if (detect7()) {
 		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
@@ -717,4 +728,5 @@ function sexy_admin_styles() {
 
 
 require_once "public.php";
+
 ?>

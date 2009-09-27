@@ -11,9 +11,11 @@ function sexy_get_fetch_url() {
 	
 	// which short url service should be used?
 	if($sexy_plugopts['shorty'] == "e7t") {
-		$first_url = "http://e7t.us/create.php?url=".$perms;
+		$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
+	} elseif($sexy_plugopts['shorty'] == "b2l") {
+		$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 	} elseif($sexy_plugopts['shorty'] == "bitly") {
-		$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
+		$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".trim($perms)."&history=1&login=".trim($sexy_plugopts['shortyapi']['bitly']['user'])."&apiKey=".trim($sexy_plugopts['shortyapi']['bitly']['key'])."&format=json";
 	} elseif($sexy_plugopts['shorty'] == "rims") {
 		$first_url = "http://ri.ms/api-create.php?url=".$perms;
 	} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
@@ -83,11 +85,6 @@ function sexy_get_fetch_url() {
 //create an auto-insertion function
 function sexy_position_menu($post_content) {
 	global $post, $sexy_plugopts, $sexy_is_mobile, $sexy_is_bot;
-	
-	// if custom field doesn't exist, add it and set to "True"
-	if (!get_post_meta($post->ID, 'Show SexyBookmarks')) {
-		add_post_meta($post->ID, 'Show SexyBookmarks', 'True');
-	}
 
 	// if user selected manual positioning, get out.
 	if ($sexy_plugopts['position']=='manual') {
@@ -105,9 +102,12 @@ function sexy_position_menu($post_content) {
 		(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) ||
 		(is_feed() && !empty($sexy_plugopts['feed']))
 	) { // socials should be generated and added
-		if(false!==strpos(get_post_meta($post->ID, 'Show SexyBookmarks', true), 'True')) {
+		if(get_post_meta($post->ID, strtolower('Hide SexyBookmarks'))) {
+			// Don't display SexyBookmarks
+		}
+		else {
 			$socials=get_sexy();
-		} 
+		}
 	}
 	
 	// place of bookmarks and return w/ post content.
@@ -129,11 +129,23 @@ function get_sexy() {
 
 	$post = $wp_query->post;
 
-	if($sexy_plugopts['position'] == 'manual') { 
-		$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
-		$title = get_bloginfo('name') . wp_title('-', false);
-		$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
-#		$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+	if($sexy_plugopts['position'] == 'manual') {
+
+		//Check if outside the loop
+		if(empty($post->post_title)) { 
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+			$title = get_bloginfo('name') . wp_title('-', false);
+			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+#			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
+		} 
+
+		//Otherwise, it must be inside the loop
+		else {
+			$perms = get_permalink($post->ID);
+			$title = $post->post_title;
+			$feedperms = strtolower($perms);
+#			$mail_subject = urlencode($post->post_title);
+		}
 	}
 	
 	//Check if index page
@@ -171,7 +183,6 @@ function get_sexy() {
 		$short_title = urlencode($title);
 	}
 	$title=urlencode($title);
-
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
 	$sexy_content = str_replace("&#8217;","'",$sexy_content);
@@ -252,8 +263,8 @@ function get_sexy() {
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
-				'post_by'=>(!empty($sexy_plugopts['twittid']))?"RT+@".$sexy_plugopts['twittid'].":+":'',
-				'short_title'=>$short_title,
+				'post_by'=>(!empty($sexy_plugopts['twittid']))?"(via+@".$sexy_plugopts['twittid'].")":'',
+				'short_title'=>urldecode($short_title),
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
 	    }# elseif ($name=='sexy-mail') {
@@ -324,7 +335,10 @@ function get_sexy() {
 function selfserv_sexy() {
 	global $post;
 	
-	if(false!==strpos(get_post_meta($post->ID, 'Show SexyBookmarks', true), 'True')) {
+	if(get_post_meta($post->ID, strtolower('Hide SexyBookmarks'))) {
+		// Don't display SexyBookmarks
+	}
+	else {
 		echo get_sexy();
 	}
 }
@@ -338,7 +352,6 @@ function sexy_public() {
 		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
 		if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
-
 			wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), true);
 			wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), true); 
 		}

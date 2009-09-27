@@ -69,7 +69,7 @@ $sexy_bookmarks_data=array(
 	'sexy-twitter'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Twitter', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Tweet This!', 'sexybookmarks'),
-		'baseUrl'=>'http://twitter.com/home?status=POST_BYSHORT_TITLE+-+FETCH_URL',
+		'baseUrl'=>'http://twitter.com/home?status=SHORT_TITLE+-+FETCH_URL+POST_BY',
 	),
 	/*'sexy-mail'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('\'Email to a Friend\' link', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),

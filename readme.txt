@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.3.3
+Stable tag: 2.5.3.4
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -12,7 +12,15 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 
 = Recent Updates =
 * Added French translation
-* Added ability to disable on post by post basis
+* Added ability to turn SexyBookmarks on/off on a post by post basis
+* Added more stringent dashboard checks to prevent more conflicts
+* Fixed issue with the default URL shortener
+* Added [B2L Shortener](http://b2l.me)
+* Changed Twitter message from RT @username to (via @username)
+* Fixed problem with plugin adding Blog name to beginning of post titles when shared
+* Fixed problem with bit.ly URLs breaking and returning error
+* Fixed bug causing Twittley default category not to hold it's value
+
 
 
 = Latest News =
@@ -20,7 +28,7 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 
 
 == Credits ==
-* Credit goes to [Maître Mô](http://maitremo.fr) for translating to French
+* Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
 * Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
 
 
@@ -33,6 +41,7 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 * Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
 * Thanks to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
 * Thanks to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
+* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for fixing the bit.ly bug
 
 
 
@@ -49,6 +58,10 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 3. Open the plugin settings page Settings -> SexyBookmarks
 4. Adjust settings to your liking
 4. Enjoy!
+
+= Disabling Per Post =
+To disable the plugin on a specific post or page, simply add a new custom field to that post/page with the key **"Hide SexyBookmarks"** and the value **"true"**
+
 
 = Manual Usage =
 **As of v2.5 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
@@ -93,7 +106,14 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 == Changelog ==
 = 2.6.0 =
 * Added French translation
-* Added ability to disable on a post by post basis
+* Added ability to turn SexyBookmarks on/off on a post by post basis
+* Added more stringent dashboard checks to prevent more conflicts
+* Fixed issue with the default URL shortener
+* Added [B2L Shortener](http://b2l.me)
+* Changed Twitter message from RT @username to (via @username)
+* Fixed problem with plugin adding Blog name to beginning of post titles when shared
+* Fixed problem with bit.ly URLs breaking and returning error
+* Fixed bug causing Twittley default category not to hold it's value
 
 = 2.5.3.3 =
 * snuck in fixing issues introduced w/ some css changes.
