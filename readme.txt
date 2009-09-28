@@ -104,7 +104,11 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.6.0 =
+= 2.5.4 =
+* Added update notice
+* Fixed a couple minor css issues in dashboard
+
+= 2.5.3.4 =
 * Added French translation
 * Added ability to turn SexyBookmarks on/off on a post by post basis
 * Added more stringent dashboard checks to prevent more conflicts
