@@ -319,6 +319,12 @@ function get_sexy() {
 				'permalink'=>$perms,
 				'title'=>$title,
 			));
+		} elseif ($name=='sexy-designbump') {
+			$socials.=bookmark_list_item($name, array(
+				'post_summary'=>$post_summary,
+				'permalink'=>$perms,
+				'title'=>$title,
+			));
 		} else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,

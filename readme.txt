@@ -4,22 +4,22 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.3.4
+Stable tag: 2.5.4
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
-* Added French translation
-* Added ability to turn SexyBookmarks on/off on a post by post basis
-* Added more stringent dashboard checks to prevent more conflicts
-* Fixed issue with the default URL shortener
-* Added [B2L Shortener](http://b2l.me)
-* Changed Twitter message from RT @username to (via @username)
-* Fixed problem with plugin adding Blog name to beginning of post titles when shared
-* Fixed problem with bit.ly URLs breaking and returning error
-* Fixed bug causing Twittley default category not to hold it's value
+* Added update notice
+* Fixed a couple minor css issues in dashboard
+* Fixed issue where some themes were causing icons to display vertically rather than horizontally
+* Added Ning to the list
+* Added DesignBump to the list
+* Added Hacker News (news.ycombinator) to the list
+* Added Identica to the list
+* Added PrintFriendly to the list
+* Added Romanian translation
 
 
 
@@ -107,6 +107,13 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 = 2.5.4 =
 * Added update notice
 * Fixed a couple minor css issues in dashboard
+* Fixed issue where some themes were causing icons to display vertically rather than horizontally
+* Added Ning to the list
+* Added DesignBump to the list
+* Added Hacker News (news.ycombinator) to the list
+* Added Identica to the list
+* Added PrintFriendly to the list
+* Added Romanian translation
 
 = 2.5.3.4 =
 * Added French translation

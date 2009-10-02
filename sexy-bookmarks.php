@@ -667,6 +667,7 @@ function sexy_settings_page() {
 					<li><a href="http://wp-ru.ru"><?php _e('Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://maitremo.fr"><?php _e('French translation by Maitre Mo', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix by Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://mirarifilms.com/"><?php _e('Romanian translation by Ghenciu Ciprian', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>

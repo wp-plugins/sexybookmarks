@@ -171,5 +171,30 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Add this to ', 'sexybookmarks').__('MyPlace', 'sexybookmarks'),
 		'baseUrl'=>'http://moemesto.ru/post.php?url=PERMALINK&amp;title=TITLE',
 	),
+	'sexy-hackernews'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Hacker News', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Hacker News', 'sexybookmarks'),
+		'baseUrl'=>'http://news.ycombinator.com/submitlink?u=PERMALINK&t=TITLE',
+	),
+	'sexy-printfriendly'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Print Friendly', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Send this page to ', 'sexybookmarks').__('Print Friendly', 'sexybookmarks'),
+		'baseUrl'=>'http://www.printfriendly.com/print?url=PERMALINK',
+	),
+	'sexy-designbump'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Design Bump', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Bump this on ', 'sexybookmarks').__('DesignBump', 'sexybookmarks'),
+		'baseUrl'=>'http://designbump.com/submit?url=PERMALINK&title=TITLE&body=POST_SUMMARY',
+	),
+	'sexy-ning'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Ning', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('Ning', 'sexybookmarks'),
+		'baseUrl'=>'http://bookmarks.ning.com/addItem.php?url=PERMALINK&T=TITLE',
+	),
+	'sexy-identica'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Identica', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Post this to ', 'sexybookmarks').__('Identica', 'sexybookmarks'),
+		'baseUrl'=>'http://identi.ca//index.php?action=newnotice&status_textarea=Reading:+&quot;TITLE&quot;+-+from+PERMALINK',
+	),
 );
 ?>
