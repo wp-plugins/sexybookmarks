@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.4
+Version: 2.5.4.1
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -33,7 +33,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.5.4');
+define('SEXY_vNum','2.5.4.1');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -691,22 +691,13 @@ function sexy_settings_page() {
 		}
 		$latest_version = $plug_api->version;
 		$your_version = SEXY_vNum;
-
-		echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/icons/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />You\'re using an outdated version of SexyBookmarks! (<strong>v'.SEXY_vNum.'</strong>) Please update to the latest version <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$latest_version.'</strong></a> to help reduce support requests.</p></div>';
-
+		if (version_compare($latest_version, $your_version, '>')) {
+			echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/icons/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />You\'re using an outdated version of SexyBookmarks! (<strong>v'.SEXY_vNum.'</strong>) Please update to the latest version <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$latest_version.'</strong></a> to help reduce support requests.</p></div>';
+		}
 	}
 
 // Display notice if versions don't match
-	require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
-	$plug_api = plugins_api('plugin_information', array('slug' => sanitize_title('SexyBookmarks') ));
-	if ( is_wp_error($plug_api) ) {
-		wp_die($plug_api);
-	}
-	$latest_version = $plug_api->version;
-	$your_version = SEXY_vNum;
-	if (version_compare($latest_version, $your_version, '>')) {
-		add_action( 'admin_notices', 'sexy_upgrade_notice');
-	}
+add_action( 'admin_notices', 'sexy_upgrade_notice');
 
 
 //add sidebar link to settings page

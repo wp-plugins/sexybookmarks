@@ -4,13 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.4
+Stable tag: 2.5.4.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 
 = Recent Updates =
+* Fixed fatal error "cannot redeclare plugins_api()"
 * Added update notice
 * Fixed a couple minor css issues in dashboard
 * Fixed issue where some themes were causing icons to display vertically rather than horizontally
@@ -104,6 +105,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.4.1 =
+* Fixed fatal error "cannot redeclare plugins_api()"
+
 = 2.5.4 =
 * Added update notice
 * Fixed a couple minor css issues in dashboard
