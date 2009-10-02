@@ -580,6 +580,9 @@ function sexy_settings_page() {
 						<a href="http://blog2life.net/" title="It's coming... Are you ready?" target="_blank" rel="dofollow">
 							<img src="http://blog2life.net/images/234x60.png" alt="Free themes and resources to bring your blog to life | Blog2Life" height="60" width="234" />
 						</a>
+						<a href="http://bingseoguide.com/" title="The definitive guide to the world's first decision engine." target="_blank" rel="dofollow">
+							<img src="http://bingseoguide.com/ads/bing-seo-guide-234x60.gif" alt="The definitive guide to the world's first decision engine." height="60" width="234" />
+						</a>
 						<script type="text/javascript">
 							Vertical1240126 = true;
 							ShowAdHereBanner1240126 = true;
