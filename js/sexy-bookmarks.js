@@ -26,31 +26,16 @@ else if (jQuery('#sexy-tumblr').is(':not(:checked)')) {
 }
 
 
-// Check for Email link and alert of changes
-// then remove completely after accepted
-if (jQuery('#sexy-mail').is(':checked')) {
-	jQuery('label.sexy-mail').css('background-color', '#df6f6f');
-	jQuery('#sexy-mail').removeAttr('checked');
-}
-else if (jQuery('#sexy-mail').is(':not(:checked)')) {
-	jQuery('label.sexy-mail').css('display', 'none');
-}
-
-
 jQuery('#info-manual').css({ display: 'none' });
 jQuery('#clear-warning').css({ display:'none' });
 jQuery('#custom-warning').css({ display:'none' });
 jQuery('#custom-warning-a').css({ display:'none' });
 jQuery('#mobile-warn').css({ display:'none' });
 
-if (jQuery('#autocenter-yes').is(':checked')) {
+
+if (jQuery('#autocenter-no').is(':not(:checked)')) {
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
-}
-if (jQuery('#autospace-yes').is(':checked')) {
-	this.checked=jQuery('#xtrastyle').attr('disabled', true);
-}
-else {
-	jQuery('#xtrastyle').removeAttr('disabled');
+	this.checked=jQuery('#xtrastyle').val('Custom CSS has been disabled because you are using either the "Auto Space" or "Auto Center" option above.');
 }
 
 jQuery('#autocenter-yes').click(function() {
@@ -66,25 +51,22 @@ jQuery('#custom-warn-yes').click(function() {
 	this.checked=jQuery('#custom-warning').fadeOut();
 	this.checked=jQuery('#autocenter-yes').attr('checked', 'checked');
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
+	this.checked=jQuery('#xtrastyle').val('Custom CSS has been disabled because you are using either the "Auto Space" or "Auto Center" option above.');
 	this.checked=jQuery(this).is(':not(:checked)');
 });
 jQuery('#custom-warn-yes-a').click(function() {
 	this.checked=jQuery('#custom-warning-a').fadeOut();
 	this.checked=jQuery('#autospace-yes').attr('checked', 'checked');
 	this.checked=jQuery('#xtrastyle').attr('disabled', true);
+	this.checked=jQuery('#xtrastyle').val('Custom CSS has been disabled because you are using either the "Auto Space" or "Auto Center" option above.');
 	this.checked=jQuery(this).is(':not(:checked)');
 });
 
 
 
-
-
-
-
-
-
 jQuery('#autocenter-no').click(function() {
 	this.checked=jQuery('#xtrastyle').removeAttr('disabled');
+	this.checked=jQuery('#xtrastyle').val('margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;');
 });
 
 

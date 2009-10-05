@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.4.1
+Version: 2.5.5
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -33,7 +33,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.5.4.1');
+define('SEXY_vNum','2.5.5');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -72,6 +72,7 @@ $sexy_plugopts = array(
 	'twittcat' => '',
 	'default_tags' => 'blog', // Random word to prevent the Twittley default tag warning
 	'warn-choice' => '',
+	'jqfix' => '',
 );
 
 //add to database
@@ -117,7 +118,7 @@ function sexy_settings_page() {
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark', 
 				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed', 
 				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
-				'feed', 'expand', 'expand', 'autocenter',
+				'feed', 'expand', 'jqfix', 'autocenter',
 			) as $field) $sexy_plugopts[$field]=$_POST[$field];
 			/* Short URLs */
 				$sexy_plugopts['shortyapi']['bitly']['user'] = $_POST['shortyapiuser-bitly'];
@@ -130,10 +131,6 @@ function sexy_settings_page() {
 		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
 			$error_message = __('Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.', 'sexybookmarks');
 
-		}
-		// Check for Email link and display error, will use jQuery to remove if exists
-		if(in_array('sexy-mail', $sexy_plugopts['bookmark'])) {
-			$error_message = __('We\'re currently working on a more sophisticated solution for the email link and will re-enable it when finished.', 'sexybookmarks');
 		}
 
 		if ($_POST['clearShortUrls']) {
@@ -401,8 +398,8 @@ function sexy_settings_page() {
 						<label><input <?php echo (($sexy_plugopts['autocenter'] == "0")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'sexybookmarks'); ?></label>
 						<br />
 						<br />
-						<label for="xtrastyle"><?php _e('You can style the DIV that holds the menu here:', 'sexybookmarks'); ?></label><br/>
-						<textarea id="xtrastyle" name="xtrastyle"><?php 
+						<?php
+							function setXtrastyle() {
 								$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";	
 								if (!empty($sexy_plugopts['xtrastyle'])) {		
 									echo $sexy_plugopts['xtrastyle']; 	
@@ -412,8 +409,15 @@ function sexy_settings_page() {
 								}
 								else { 
 									echo __('If you see this message, please delete the contents of this textarea and click \"Save Changes\".', 'sexybookmarks');	
-								} ?>
-						</textarea>
+								}
+							}
+						?>
+						<label for="xtrastyle"><?php _e('You can style the DIV that holds the menu here:', 'sexybookmarks'); ?></label><br/>
+						<textarea id="xtrastyle" name="xtrastyle"><?php setXtrastyle(); ?></textarea>
+
+						<span class="sexy_option"><?php _e('jQuery Compatibility Fix', 'sexybookmarks'); ?></span>
+						<label for="jqfix"><?php _e("Check this box ONLY if the animate-expand, auto-center, or auto-space features don't work for you!", "sexybookmarks"); ?></label>
+						<input type="checkbox" id="jqfix" name="jqfix" <?php echo (($sexy_plugopts['jqfix'] == "1")? 'checked' : ""); ?> value="1" />
 					</div>
 				</div>
 			</li>
@@ -663,14 +667,15 @@ function sexy_settings_page() {
 		<div class="box-right-body">
 			<div class="padding">
 				<ul class="credits">
-					<li><a href="http://www.pinvoke.com/"><?php _e('GUI Icons by Pinvoke', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons by Function', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://beerpla.net"><?php _e('Bug Patch by Artem Russakovskii', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix by Gautam Gupta', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://wp-ru.ru"><?php _e('Russian translation by Yuri Gribov', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://maitremo.fr"><?php _e('French translation by Maitre Mo', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix by Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://mirarifilms.com/"><?php _e('Romanian translation by Ghenciu Ciprian', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.pinvoke.com/"><?php _e('GUI Icons: Pinvoke', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix: Gautam Gupta', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://wp-ru.ru"><?php _e('Russian translation: Yuri Gribov', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://maitremo.fr"><?php _e('French translation: Maitre Mo', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix: Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.osn.ro"><?php _e('Romanian translation: Ghenciu Ciprian', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://chepelle.altervista.org/wordpress"><?php _e('Italian translation: Carlo Veltri', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -695,7 +700,7 @@ function sexy_settings_page() {
 		$latest_version = $plug_api->version;
 		$your_version = SEXY_vNum;
 		if (version_compare($latest_version, $your_version, '>')) {
-			echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/icons/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />You\'re using an outdated version of SexyBookmarks! (<strong>v'.SEXY_vNum.'</strong>) Please update to the latest version <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$latest_version.'</strong></a> to help reduce support requests.</p></div>';
+			echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/icons/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />'.__("You're using an outdated version of SexyBookmarks!", "sexybookmarks").' (<strong>v'.SEXY_vNum.'</strong>) '.__("Please update to the latest version", "sexybookmarks").' <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$latest_version.'</strong></a> to help reduce support requests.</p></div>';
 		}
 	}
 

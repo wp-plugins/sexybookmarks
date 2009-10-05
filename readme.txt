@@ -4,33 +4,52 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.4.1
+Stable tag: 2.5.5
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
+Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
+
+
 
 = Recent Updates =
-* Fixed fatal error "cannot redeclare plugins_api()"
-* Added update notice
-* Fixed a couple minor css issues in dashboard
-* Fixed issue where some themes were causing icons to display vertically rather than horizontally
-* Added Ning to the list
-* Added DesignBump to the list
-* Added Hacker News (news.ycombinator) to the list
-* Added Identica to the list
-* Added PrintFriendly to the list
-* Added Romanian translation
+* SexyBookmarks now only loads it's CSS/JS if the menu is being displayed on a particular page/post
+* Added a jQuery compatibility fix for those of you who have had trouble with jQuery related issues
+* Short URLs are now only generated once a post is published
+* Fixed validity of links added in last release
+* Fixed a couple small dashboard bugs (mostly jQuery related)
+* Added Italian translation
+* Updated readme with new info
+* Fixed issue with Twitter link breaking if title includes quotes
+* Updated default translation files
+* Added new screenshots
 
+= Recent Additions =
+* Added Sphinn
+* Added Fleck
+* Added Xerpi
+* Added Netvibes
+* Added Netvouz
+* Added NUjij
+* Added GlobalGrind
+* Added Wikio
+* Added Blogosphere News
+* Added Posterous
+* Added Techmeme
+* Added eKudos
+* Added Ping.fm
+* Added ToMuse
+* Reinstated email link with simple mailto
 
-
-= Latest News =
 
 
 
 == Credits ==
 * Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
 * Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
+* Credit goes to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
+* Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
 
 
 
@@ -49,7 +68,9 @@ Adds an attractive social bookmarking menu to your posts, pages, index, or any c
 
 == Screenshots ==
 
-1. A quick preview of the final outcome
+1. A quick preview of the final outcome (excess hidden)
+2. Another preview of the final outcome with excess networks displayed upon hover
+3. A preview of the admin panel associated with the plugin
 
 
 == Installation ==
@@ -105,6 +126,33 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.5 =
+* SexyBookmarks now only loads it's CSS/JS if the menu is being displayed on a particular page/post
+* Added a jQuery compatibility fix for those of you who have had trouble with jQuery related issues
+* Short URLs are now only generated once a post is published
+* Fixed validity of links added in last release
+* Fixed a couple small dashboard bugs (mostly jQuery related)
+* Added Italian translation
+* Added Sphinn
+* Added Fleck
+* Added Xerpi
+* Added Netvibes
+* Added Netvouz
+* Added NUjij
+* Added GlobalGrind
+* Added Wikio
+* Added Blogosphere News
+* Added Posterous
+* Added Techmeme
+* Added eKudos
+* Added Ping.fm
+* Added ToMuse
+* Reinstated email link with simple mailto
+* Updated readme with new info
+* Fixed issue with Twitter link breaking if title includes quotes
+* Updated default translation files
+* Added new screenshots
+
 = 2.5.4.1 =
 * Fixed fatal error "cannot redeclare plugins_api()"
 

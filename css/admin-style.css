@@ -134,7 +134,7 @@ label.sexy-linkedin {background-position:-70px top;}
 label.sexy-devmarks {background-position:-140px top;}
 label.sexy-google {background-position:-210px top;}
 label.sexy-scriptstyle {background-position:-280px top;}
-/*label.sexy-mail {background-position:-350px top;}*/
+label.sexy-mail {background-position:-350px top;}
 label.sexy-comfeed {background-position:-420px top;}
 label.sexy-twitter {background-position:-490px top;}
 label.sexy-technorati {background-position:-560px top;}
@@ -169,6 +169,21 @@ label.sexy-hackernews {background-position:-2520px top;}
 label.sexy-ning {background-position:-2590px top;}
 label.sexy-designbump {background-position:-2660px top;}
 label.sexy-printfriendly {background-position:-2730px top;}
+label.sexy-fleck{ background-position:-2800px top !important; }
+label.sexy-netvibes{ background-position:-2870px top !important; }
+label.sexy-netvouz{ background-position:-2940px top !important; }
+label.sexy-nujij{ background-position:-3010px top !important; }
+label.sexy-globalgrind{ background-position:-3080px top !important; }
+label.sexy-wikio{ background-position:-3150px top !important; }
+label.sexy-xerpi{ background-position:-3220px top !important; }
+label.sexy-sphinn{ background-position:-3290px top !important; }
+label.sexy-blogospherenews{ background-position:-3360px top !important; }
+label.sexy-posterous{ background-position:-3430px top !important; }
+label.sexy-techmeme{ background-position:-3500px top !important; }
+label.sexy-ekudos{ background-position:-3570px top !important; }
+label.sexy-pingfm{ background-position:-3640px top !important; }
+label.sexy-tomuse{ background-position:-3710px top !important; }
+
 
 .clear {
 	clear:both;
