@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.5.5
+Version: 2.5.5.1
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -16,12 +16,12 @@ Author URI: http://blog2life.net
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation; either version 2 of the License, or
 	(at your option) any later version.
-	
+
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 	You should have received a copy of the GNU General Public License
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -43,7 +43,7 @@ if ( !defined('WP_CONTENT_URL') ) {
 	define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 } else {
 	define('SEXY_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-} 
+}
 
 
 // contains all bookmark templates.
@@ -72,7 +72,7 @@ $sexy_plugopts = array(
 	'twittcat' => '',
 	'default_tags' => 'blog', // Random word to prevent the Twittley default tag warning
 	'warn-choice' => '',
-	'jqfix' => '',
+	'doNotIncludeJQuery' => '',
 );
 
 //add to database
@@ -92,7 +92,7 @@ function sexy_settings_page() {
 	$error_message = "";
 	if(isset($_POST['save_changes'])) {
 		$status_message = __('Your changes have been saved successfully!', 'sexybookmarks').' | '.__('Maybe you would consider ', 'sexybookmarks').'<a href="#sexydonationsbox">'.__('donating', 'sexybookmarks').'</a>?';
-		
+
 		$errmsgmap = array(
 			'position'=>__('Please choose where you would like the menu to be displayed.', 'sexybookmarks'),
 			'bookmark'=>__('You can\'t display the menu if you don\'t choose a few sites to add to it!', 'sexybookmarks'),
@@ -115,10 +115,10 @@ function sexy_settings_page() {
 		}
 		if (!$error_message) {
 			foreach (array(
-				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark', 
-				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed', 
+				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
+				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed',
 				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
-				'feed', 'expand', 'jqfix', 'autocenter',
+				'feed', 'expand', 'doNotIncludeJQuery', 'autocenter',
 			) as $field) $sexy_plugopts[$field]=$_POST[$field];
 			/* Short URLs */
 				$sexy_plugopts['shortyapi']['bitly']['user'] = $_POST['shortyapiuser-bitly'];
@@ -126,7 +126,7 @@ function sexy_settings_page() {
 			/* Short URLs End */
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
-		
+
 		// Check for Tumblr and display error, will use jQuery to remove if exists
 		if(in_array('sexy-tumblr', $sexy_plugopts['bookmark'])) {
 			$error_message = __('Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin.', 'sexybookmarks');
@@ -164,7 +164,7 @@ function sexy_settings_page() {
 			</div>
 		</div>';
 	}
-	
+
 	// displaying plugin version info
 	require_once(ABSPATH.'/wp-admin/includes/plugin-install.php');
 	$plug_api = plugins_api('plugin_information', array('slug' => sanitize_title('SexyBookmarks') ));
@@ -183,7 +183,7 @@ function sexy_settings_page() {
 			<div class="dialog-right">
 				<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
 			</div>
-		</div>'; 	
+		</div>';
 	} elseif (empty($status_message) && version_compare($latest_version, $your_version, '<')) {
 		echo '
 		<div class="sexy-information" id="yourversion">
@@ -195,8 +195,8 @@ function sexy_settings_page() {
 				<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
-	} else { 
-		## No action taken since they are obviously the same version 
+	} else {
+		## No action taken since they are obviously the same version
 	}
 ?>
 
@@ -248,7 +248,7 @@ function sexy_settings_page() {
 							<div class="dialog-right">
 								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" /><?php _e('Yes', 'sexybookmarks'); ?></label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" /><?php _e('Cancel', 'sexybookmarks'); ?></label>
 							</div>
-						</div>  
+						</div>
 						<div id="twitter-defaults">
 							<h3><?php _e('Twitter Options:', 'sexybookmarks'); ?></h3>
 							<label for="twittid"><?php _e('Twitter ID:', 'sexybookmarks'); ?></label>
@@ -302,7 +302,7 @@ function sexy_settings_page() {
 										'sports'=>'Sports',
 										'travel'=>'Travel',
 									));
-									
+
 								?>
 							</select>
 							<div class="clearbig"></div>
@@ -377,7 +377,7 @@ function sexy_settings_page() {
 								<?php _e('This will void any custom CSS applied below.', 'sexybookmarks'); ?>
 							</div>
 							<div class="dialog-right">
-								<label><input name="warn-choice" id="custom-warn-yes" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label> 
+								<label><input name="warn-choice" id="custom-warn-yes" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label>
 							</div>
 						</div>
 						<div class="dialog-box-warning" id="custom-warning-a">
@@ -386,7 +386,7 @@ function sexy_settings_page() {
 								<?php _e('This will void any custom CSS applied below.', 'sexybookmarks'); ?>
 							</div>
 							<div class="dialog-right">
-								<label><input name="warn-choice" id="custom-warn-yes-a" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label> 
+								<label><input name="warn-choice" id="custom-warn-yes-a" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label>
 							</div>
 						</div>
 						<span class="sexy_option"><?php _e('Animate-expand multi-lined bookmarks?', 'sexybookmarks'); ?></span>
@@ -400,15 +400,15 @@ function sexy_settings_page() {
 						<br />
 						<?php
 							function setXtrastyle() {
-								$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";	
-								if (!empty($sexy_plugopts['xtrastyle'])) {		
-									echo $sexy_plugopts['xtrastyle']; 	
-								} 	
-								elseif (empty($sexy_plugopts['xtrastyle'])) {
-									echo $default_sexy; 
+								$default_sexy = "margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;";
+								if (!empty($sexy_plugopts['xtrastyle'])) {
+									echo $sexy_plugopts['xtrastyle'];
 								}
-								else { 
-									echo __('If you see this message, please delete the contents of this textarea and click \"Save Changes\".', 'sexybookmarks');	
+								elseif (empty($sexy_plugopts['xtrastyle'])) {
+									echo $default_sexy;
+								}
+								else {
+									echo __('If you see this message, please delete the contents of this textarea and click \"Save Changes\".', 'sexybookmarks');
 								}
 							}
 						?>
@@ -416,8 +416,8 @@ function sexy_settings_page() {
 						<textarea id="xtrastyle" name="xtrastyle"><?php setXtrastyle(); ?></textarea>
 
 						<span class="sexy_option"><?php _e('jQuery Compatibility Fix', 'sexybookmarks'); ?></span>
-						<label for="jqfix"><?php _e("Check this box ONLY if the animate-expand, auto-center, or auto-space features don't work for you!", "sexybookmarks"); ?></label>
-						<input type="checkbox" id="jqfix" name="jqfix" <?php echo (($sexy_plugopts['jqfix'] == "1")? 'checked' : ""); ?> value="1" />
+						<label for="doNotIncludeJQuery"><?php _e("Check this box ONLY if the animate-expand, auto-center, or auto-space features don't work for you!", "sexybookmarks"); ?></label>
+						<input type="checkbox" id="doNotIncludeJQuery" name="doNotIncludeJQuery" <?php echo (($sexy_plugopts['doNotIncludeJQuery'] == "1")? 'checked' : ""); ?> value="1" />
 					</div>
 				</div>
 			</li>
@@ -490,7 +490,7 @@ function sexy_settings_page() {
 							<div class="dialog-right">
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning-delete.jpg" class="del-x" alt=""/>
 							</div>
-						</div> 
+						</div>
 						<span class="sexy_option"><?php _e('Menu Location (in relevance to content):', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> <?php _e('Above Content', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> <?php _e('Below Content', 'sexybookmarks'); ?></label>
@@ -715,7 +715,7 @@ function sexy_menu_link() {
 		$sexy_admin_page = add_options_page('SexyBookmarks', 'SexyBookmarks', 9, basename(__FILE__), 'sexy_settings_page');
 		add_action( "admin_print_scripts-$sexy_admin_page", 'sexy_admin_scripts' );
 		add_action( "admin_print_styles-$sexy_admin_page", 'sexy_admin_styles' );
-	}	
+	}
 }
 
 //styles and scripts for admin area

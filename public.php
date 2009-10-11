@@ -8,7 +8,7 @@ function sexy_get_fetch_url() {
 	global $post, $sexy_plugopts;
 	if($sexy_plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
 	else { $perms = get_permalink(); }
-	
+
 	// which short url service should be used?
 	if($sexy_plugopts['shorty'] == "e7t") {
 		$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
@@ -33,7 +33,7 @@ function sexy_get_fetch_url() {
 	} elseif($sexy_plugopts['shorty'] == "trim") {
 		$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
 	}
-	
+
 	$fetch_url=get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
 	// if neccessary, fetch and store
 	if (empty($fetch_url) || md5($perms)!=get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) {
@@ -47,7 +47,7 @@ function sexy_get_fetch_url() {
 			curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 			$fetch_url = curl_exec($ch);
 			curl_close($ch);
-			
+
 		} elseif (function_exists('file_get_contents') && get_post_status($post->ID) == 'publish') { // use file_get_contents()
 			$fetch_url = file_get_contents($first_url);
 		} else {
@@ -109,7 +109,7 @@ function sexy_position_menu($post_content) {
 			$socials=get_sexy();
 		}
 	}
-	
+
 	// place of bookmarks and return w/ post content.
 	if (empty($socials)) {
 		return $post_content;
@@ -132,12 +132,12 @@ function get_sexy() {
 	if($sexy_plugopts['position'] == 'manual') {
 
 		//Check if outside the loop
-		if(empty($post->post_title)) { 
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+		if(empty($post->post_title)) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
 			$title = get_bloginfo('name') . wp_title('-', false);
 			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
-		} 
+		}
 
 		//Otherwise, it must be inside the loop
 		else {
@@ -147,34 +147,34 @@ function get_sexy() {
 			$mail_subject = urlencode($post->post_title);
 		}
 	}
-	
+
 	//Check if index page
-	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) { 
-		
+	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
+
 		//Check if outside the loop
-		if(empty($post->post_title)) { 
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; 
+		if(empty($post->post_title)) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
 			$title = get_bloginfo('name') . wp_title('-', false);
 			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
 			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
-		} 
+		}
 
 		//Otherwise, it must be inside the loop
-		else { 
+		else {
 			$perms = get_permalink($post->ID);
 			$title = $post->post_title;
 			$feedperms = strtolower($perms);
 			$mail_subject = urlencode($post->post_title);
 		}
 	}
-	else { 
+	else {
 		$perms = get_permalink($post->ID);
 		$title = $post->post_title;
 		$feedperms = strtolower($perms);
 		$mail_subject = urlencode($post->post_title);
 	}
 
-	
+
 	//determine how to handle post titles for Twitter
 	if (strlen($title) >= 80) {
 		$short_title = urlencode(substr($title, 0, 80)."[..]");
@@ -206,7 +206,7 @@ function get_sexy() {
 
 
 
-	
+
 
 	// Check permalink setup for proper feed link
 	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
@@ -214,7 +214,7 @@ function get_sexy() {
 	} else {
 		if ('/' == $feedperms[strlen($feedperms) - 1]) {
 			$feedstructure = 'feed';
-		} 
+		}
 		else {
 			$feedstructure = '/feed';
 		}
@@ -245,7 +245,7 @@ function get_sexy() {
 	} elseif($sexy_plugopts['bgimg'] == 'enjoy') {
 		$bgchosen = ' sexy-bookmarks-bg-enjoy';
 	}
-	
+
 	// do not add inline styles to the feed.
 	$style=($sexy_plugopts['autocenter'])?'':' style="'.__($sexy_plugopts['xtrastyle']).'"';
 	if (is_feed()) $style='';
@@ -257,7 +257,7 @@ function get_sexy() {
 	} else {
 		$autocenter='';
 	}
-	
+
 	//write the menu
 	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'><ul class="socials">';
 	foreach ($sexy_plugopts['bookmark'] as $name) {
@@ -267,7 +267,7 @@ function get_sexy() {
 				'short_title'=>$short_title,
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
-	    } 
+	    }
 		elseif ($name=='sexy-mail') {
 		 		$socials.=bookmark_list_item($name, array(
 		 			'title'=>$mail_subject,
@@ -296,19 +296,19 @@ function get_sexy() {
 				'permalink'=>$perms,
 				'title'=>$title,
 			));
-		} 
+		}
 		elseif ($name=='sexy-devmarks') {
 			$socials.=bookmark_list_item($name, array(
 				'post_summary'=>$post_summary,
 				'permalink'=>$perms,
 				'title'=>$title,
 			));
-		} 
+		}
 		elseif ($name=='sexy-comfeed') {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>urldecode($feedperms).$feedstructure,
 			));
-		} 
+		}
 		elseif ($name=='sexy-yahoobuzz') {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
@@ -317,7 +317,7 @@ function get_sexy() {
 				'yahoocategory'=>$y_cat,
 				'yahoomediatype'=>$y_med,
 			));
-		} 
+		}
 		elseif ($name=='sexy-twittley') {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>urlencode($perms),
@@ -326,14 +326,14 @@ function get_sexy() {
 				'twitt_cat'=>$t_cat,
 				'default_tags'=>$d_tags,
 			));
-		} 
+		}
 		elseif ($name=='sexy-designmoo') {
 			$socials.=bookmark_list_item($name, array(
 				'post_summary'=>$post_summary,
 				'permalink'=>$perms,
 				'title'=>$title,
 			));
-		} 
+		}
 		elseif ($name=='sexy-designbump') {
 			$socials.=bookmark_list_item($name, array(
 				'post_summary'=>$post_summary,
@@ -384,7 +384,7 @@ function get_sexy() {
 // This function is what allows people to insert the menu wherever they please rather than above/below a post...
 function selfserv_sexy() {
 	global $post;
-	
+
 	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 		// Don't display SexyBookmarks
 	}
@@ -402,16 +402,16 @@ function sexy_public() {
 	}
 	else {
 		echo "\n\n".'<!-- Start Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n";
-		wp_register_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 		wp_print_styles('sexy-bookmarks');
 		if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
-			if(!empty($sexy_plugopts['jqfix'])) {
-				wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), true);
-				wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'), true);
+			if (empty($sexy_plugopts['doNotIncludeJQuery'])) {
+				wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'));
+				wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'));
 			}
-			else {
-				wp_register_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', true);
-				wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js',  true);
+			else { // for people that are using broken themes/plugins that improperly include jquery.
+				wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js');
+				wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js');
 			}
 		}
 		echo '<!-- End Of Code Generated By SexyBookmarks '.SEXY_vNum.' -->'."\n\n";

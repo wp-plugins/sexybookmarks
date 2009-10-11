@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 2.5.5
+Stable tag: 2.5.5.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -108,7 +108,7 @@ Please disable both of the jQuery dependent options (auto-center and animate-exp
 = Your plugin broke my site and there's a ton of stuff from another site being displayed!!! =
 This isn't as critical as it may look... Simply choose another URL shortening service and select the "Clear all short URLs" option. Now save the changes and [report which URL shortening service you were using](http://sexybookmarks.net/contact-forms/bug-form/) that broke your site so I can look into it.
 
-= I've uploaded the plugin and activated, but it's not showing up or it's broken… =
+= I've uploaded the plugin and activated, but it's not showing up or it's broken... =
 
 This is normally due to styles in your Wordpress theme overriding the styles of the plugin. Check your theme's stylesheet for rules like `!important;` as these may be overriding the styles defined by the plugin.
 
@@ -126,6 +126,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.5.5.1
+* Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
+
 = 2.5.5 =
 * SexyBookmarks now only loads it's CSS/JS if the menu is being displayed on a particular page/post
 * Added a jQuery compatibility fix for those of you who have had trouble with jQuery related issues
@@ -370,7 +373,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Resolved issue that caused the menu to be placed at top of post even if "below post" was chosen.
 
 = 1.1.3 =
-* Fixed bug that caused pages to disappear, 
+* Fixed bug that caused pages to disappear,
 * Now plugin only displays on single posts
 
 = 1.1.2 =
