@@ -126,7 +126,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.5.5.1
+= 2.5.5.1 =
 * Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
 
 = 2.5.5 =
