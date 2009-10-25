@@ -1,19 +1,24 @@
 jQuery(document).ready(function() {
 	if (jQuery('#iconator')) jQuery('#sexy-networks').sortable({ 
-	delay:        250,
-	cursor:      'move',
-	scroll:       true,
-	revert:       true, 
-	opacity:      0.7
-});
-	if (jQuery('#sexy-bookmarks')) { jQuery('#sexy-sortables').sortable({ 
-	handle:      '.box-mid-head',
-	delay:        250,
-	cursor:      'move',
-	scroll:       true,
-	revert:       true, 
-	opacity:      0.7
-});
+		delay:        250,
+		cursor:      'move',
+		scroll:       true,
+		revert:       true, 
+		opacity:      0.7
+	});
+	if (jQuery('.sexy-bookmarks')) { jQuery('#sexy-sortables').sortable({ 
+		handle:      '.box-mid-head',
+		delay:        250,
+		cursor:      'move',
+		scroll:       true,
+		revert:       true, 
+		opacity:      0.7
+	});
+
+// if checkbox isn't checked, open modal warning... 
+if (!jQuery("#custom-mods").is(':checked')) {
+	jQuery(".custom-mod-check").colorbox({width:"75%", height:"75%", inline:true, href:"#custom-mods-notice"});
+}
 
 // Check for Tumblr and alert of changes
 // then remove completely after accepted
@@ -68,23 +73,6 @@ jQuery('#autocenter-no').click(function() {
 	this.checked=jQuery('#xtrastyle').removeAttr('disabled');
 	this.checked=jQuery('#xtrastyle').val('margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;');
 });
-
-
-
-jQuery('.toggle').click(function(){
-	var id = jQuery(this).attr('id');
-	jQuery('#tog'+ id).slideToggle('slow');
-
-	if (jQuery('#'+ id + ' img.close').is(':hidden')){
-		jQuery('#'+ id +' img.close').show();
-		jQuery('#'+ id +' img.open').fadeOut();
-	} else {
-		jQuery('#'+ id + ' img.open').show();
-		jQuery('#'+ id + ' img.close').fadeOut();
-	}
-});
-
-
 
 // Apply "smart options" to BG image
 jQuery('#bgimg-yes').click(function() {
@@ -141,13 +129,66 @@ jQuery('#sexy-twitter').click(function() {
 });
 
 
-// Apply "smart options" to bit.ly DIV
-jQuery('#shorty').click(function() {
-	if (jQuery("#shorty option[value='bitly']").is(':selected')) {
+jQuery('#shorty').change(function() {
+	this.checked=jQuery('#shortyapimdiv-bitly').fadeOut('fast');
+	this.checked=jQuery('#shortyapimdiv-trim').fadeOut('fast');
+	this.checked=jQuery('#shortyapimdiv-snip').fadeOut('fast');
+	this.checked=jQuery('#shortyapimdiv-tinyarrow').fadeOut('fast');
+	this.checked=jQuery('#shortyapimdiv-cligs').fadeOut('fast');
+	this.checked=jQuery('#shortyapimdiv-supr').fadeOut('fast');
+	if(this.value=='trim'){
+		jQuery('#shortyapimdiv-trim').fadeIn('fast');
+	}
+	else if(this.value=='bitly'){
 		jQuery('#shortyapimdiv-bitly').fadeIn('fast');
 	}
+	else if(this.value=='snip'){
+		jQuery('#shortyapimdiv-snip').fadeIn('fast');
+	}
+	else if(this.value=='tinyarrow'){
+		jQuery('#shortyapimdiv-tinyarrow').fadeIn('fast');
+	}
+	else if(this.value=='cligs'){
+		jQuery('#shortyapimdiv-cligs').fadeIn('fast');
+	}
+	else if(this.value=='supr'){
+		jQuery('#shortyapimdiv-supr').fadeIn('fast');
+	}
+});
+
+jQuery('#shortyapichk-trim').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#shortyapidiv-trim').fadeIn('fast');
+	}
 	else {
-		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
+		jQuery('#shortyapidiv-trim').fadeOut('fast');
+	}
+});
+
+jQuery('#shortyapichk-tinyarrow').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#shortyapidiv-tinyarrow').fadeIn('fast');
+	}
+	else {
+		jQuery('#shortyapidiv-tinyarrow').fadeOut('fast');
+	}
+});
+
+jQuery('#shortyapichk-cligs').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#shortyapidiv-cligs').fadeIn('fast');
+	}
+	else {
+		jQuery('#shortyapidiv-cligs').fadeOut('fast');
+	}
+});
+
+jQuery('#shortyapichk-supr').click(function() {
+	if (this.checked) {
+		this.checked=jQuery('#shortyapidiv-supr').fadeIn('fast');
+	}
+	else {
+		jQuery('#shortyapidiv-supr').fadeOut('fast');
 	}
 });
 

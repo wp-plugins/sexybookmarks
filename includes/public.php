@@ -1,65 +1,98 @@
 <?php
 // functions related to mobile.
 require_once 'mobile.php';
-$sexy_is_mobile=sexy_is_mobile();
-$sexy_is_bot=sexy_is_bot();
+$sexy_is_mobile = sexy_is_mobile();
+$sexy_is_bot = sexy_is_bot();
+
+//curl, file get contents or nothing, used for short url
+function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
+	if (function_exists('curl_init')) {
+		// Use cURL
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		if($use_POST_method){
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $POST_data);
+		}
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		$source = trim(curl_exec($ch));
+		curl_close($ch);
+		
+	} elseif (function_exists('file_get_contents')) { // use file_get_contents()
+		$source = trim(file_get_contents($url));
+	} else {
+		$source = null;
+	}
+	return $source;
+}
 
 function sexy_get_fetch_url() {
 	global $post, $sexy_plugopts;
 	if($sexy_plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
 	else { $perms = get_permalink(); }
 
-	// which short url service should be used?
-	if($sexy_plugopts['shorty'] == "e7t") {
-		$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "b2l") {
-		$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "bitly") {
-		$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".trim($perms)."&history=1&login=".trim($sexy_plugopts['shortyapi']['bitly']['user'])."&apiKey=".trim($sexy_plugopts['shortyapi']['bitly']['key'])."&format=json";
-	} elseif($sexy_plugopts['shorty'] == "rims") {
-		$first_url = "http://ri.ms/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
-		$first_url = "http://tinyarro.ws/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "tiny") {
-		$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "snip") {
-		$first_url = "http://snipr.com/site/snip?&r=simple&link=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "shortto") {
-		$first_url = "http://short.to/s.txt?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "cligs") {
-		$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms);
-	} elseif($sexy_plugopts['shorty'] == "supr") {
-		$first_url = "http://su.pr/api?url=".$perms;
-	} elseif($sexy_plugopts['shorty'] == "trim") {
-		$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
-	}
-
-	$fetch_url=get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
+	$fetch_url = get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
 	// if neccessary, fetch and store
-	if (empty($fetch_url) || md5($perms)!=get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) {
+	if ((empty($fetch_url) || md5($perms) != get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) && get_post_status($post->ID) == 'publish') {
+		$url_more = "";
+		$use_POST_method = false;
+		$POST_data = null;
+		// which short url service should be used?
+		if($sexy_plugopts['shorty'] == "e7t") {
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms; //now no e7t, instead b2l
+		}elseif($sexy_plugopts['shorty'] == "b2l") {
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
+		} elseif($sexy_plugopts['shorty'] == "tiny") {
+			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+		} elseif($sexy_plugopts['shorty'] == "snip") {
+			$first_url = "http://snipr.com/site/getsnip";
+			$use_POST_method = true;
+			$POST_data = "snipformat=simple&sniplink=".rawurlencode($perms)."&snipuser=".$sexy_plugopts['shortyapi']['snip']['user']."&snipapi=".$sexy_plugopts['shortyapi']['snip']['key'];
+		} elseif($sexy_plugopts['shorty'] == "cligs") {
+			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
+			if($sexy_plugopts['shortyapi']['cligs']['chk'] == 1){
+				$first_url .= "&key=".$sexy_plugopts['shortyapi']['cligs']['key'];
+			}
+		} elseif($sexy_plugopts['shorty'] == "supr") {
+			$first_url = "http://su.pr/api/simpleshorten?url=".$perms;
+			if($sexy_plugopts['shortyapi']['supr']['chk'] == 1){
+				$first_url .= "&login=".$sexy_plugopts['shortyapi']['supr']['user']."&apiKey=".$sexy_plugopts['shortyapi']['supr']['key'];
+			}
+		} elseif($sexy_plugopts['shorty'] == "bitly") {
+			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
+		} elseif($sexy_plugopts['shorty'] == "trim"){
+			if($sexy_plugopts['shortyapi']['trim']['chk'] == 1){
+				$first_url = "http://api.tr.im/api/trim_url.json?url=".$perms."&username=".$sexy_plugopts['shortyapi']['trim']['user']."&password=".$sexy_plugopts['shortyapi']['trim']['pass'];
+			}else{
+				$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
+			}
+		} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
+			$first_url = "http://tinyarro.ws/api-create.php?";
+			if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1){
+				$first_url .= "&userid=".$sexy_plugopts['shortyapi']['tinyarrow']['user'];
+			}
+			$first_url .= "&url=".$perms;
+		} elseif($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link')) {
+			$fetch_url = permalink_to_twitter_link($perms);
+		} else { //default is b2l.me
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
+		}
+		
 		// retrieve the shortened URL
-		if (function_exists('curl_init') && get_post_status($post->ID) == 'publish') {
-			// Use cURL
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_URL, $first_url);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-			$fetch_url = curl_exec($ch);
-			curl_close($ch);
-
-		} elseif (function_exists('file_get_contents') && get_post_status($post->ID) == 'publish') { // use file_get_contents()
-			$fetch_url = file_get_contents($first_url);
-		} else {
-			$fetch_url='';
+		$fetch_url = trim(sexy_nav_browse($first_url, $use_POST_method, $POST_data)); //trim again
+		
+		if($sexy_plugopts['shorty'] == "trim" && $sexy_plugopts['shortyapi']['trim']['chk'] == 1){
+			$fetch_array = json_decode($fetch_url, true);
+			$fetch_url = $fetch_array['url'];
+		}
+		if($sexy_plugopts['shorty'] == "bitly"){
+			$fetch_array = json_decode($fetch_url, true);
+			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
 		}
 
-		if ($fetch_url) { // remote call made and was successful
-			$fetch_url=trim($fetch_url);
-			if($sexy_plugopts['shorty'] == "bitly"){
-				$fetch_array = json_decode($fetch_url, true);
-				$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
-			}
+		if (!empty($fetch_url)) { // remote call made and was successful
 			// add/update values
 			// tries updates first, then add if field does not already exist
 			if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
@@ -68,15 +101,11 @@ function sexy_get_fetch_url() {
 			if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
 				add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
 			}
-		} else { # check to see if they want to host their own short URLs
-				 # notice that this is done outside of the cURL command as well as the post_meta section
-				 # since it is a self-hosted solution there is no need to fetch the URL or store it because it's already stored in the database
-				if($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link') && get_post_status($post->ID) == 'publish') {
-					$fetch_url = permalink_to_twitter_link($perms);
-				} else {  // failed. use permalink.
-					$fetch_url=$perms;
-				  }
+		} else {
+			$fetch_url = $perms;
 		}
+	}else{
+		$fetch_url = $perms;
 	}
 	return $fetch_url;
 }

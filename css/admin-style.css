@@ -29,6 +29,7 @@ div.sexy-wrap {
 	text-align:center;
 	width:60px;
 }
+.hide {	display:none; }
 .iconator label input {margin-top:30px;}
 #clearShortUrlsLabel {
 	font-size:11px;
@@ -402,17 +403,6 @@ div.box-right-body ol li span {
 div.box-right-body ol li:hover span {
 	color:#D54E21;
 }
-div.bnav {
-	float:right;
-	height:27px;
-	width:80px;
-}
-div.bnav img {
-	cursor:pointer;
-	float:right;
-	margin-right:5px;
-	margin-top:5px;
-}
 div.inputfield {
 	clear:both;
 	float:left;
@@ -488,10 +478,10 @@ div.dialog-box-warning {
 	float:left;
 	font-size:10px;
 	font-weight:bold;
-	height:24px;
+	height:auto;
 	line-height:20px;
 	margin-bottom:10px;
-	padding:3px 10px 0;
+	padding:3px 10px 2px;
 	width:97.5%;
 }
 div.dialog-box-information {
@@ -634,6 +624,19 @@ ul.sexy-adslots li.sexy-small-banner a {
 	height:47px;
 	background:url('../images/sexy-logo.png') no-repeat 0 0;
 }
+div.box-right-body ul.infolinks {
+	list-style-type:none;
+	list-style-position:outside;
+}
+div.box-right-body ul.infolinks li {
+	background:url(../images/icons/chain-small.png) no-repeat left 2px;
+	padding-left:17px;
+	line-height:19px;
+	font-size:11px;
+}
+div.box-right-body ul.infolinks li a {
+	text-decoration:none;
+}
 div.box-right-body ul.credits {
 	list-style-type:none;
 	list-style-position:outside;
@@ -647,7 +650,19 @@ div.box-right-body ul.credits li {
 div.box-right-body ul.credits li a {
 	text-decoration:none;
 }
-
+div.box-right-body ul.langs {
+	list-style-type:none;
+	list-style-position:outside;
+}
+div.box-right-body ul.langs li {
+	background:url(../images/icons/globe-small-green.png) no-repeat left 2px;
+	padding-left:17px;
+	line-height:19px;
+	font-size:11px;
+}
+div.box-right-body ul.langs li a {
+	text-decoration:none;
+}
 
 div#divFeedityWidget span {
 	display:none !important;
@@ -683,3 +698,92 @@ div#divFeedityWidget ul li:hover a {
 	color:#21759B !important;
 	font-weight:bold !important;
 }
+ul#sexy-importexport li {
+	list-style-type:none;
+	margin:0 20px 20px 0;
+	display:block;
+	float:left;
+	clear:none;
+	width:37%;
+}
+ul#sexy-importexport {
+	list-style-type:none;
+}
+ul#sexy-importexport div.box-mid-body {
+	height:240px;
+}
+
+#custom-mods-notice {
+	padding: 5px 15px;
+}
+
+#custom-mods-section {
+
+}
+#custom-mods-notice h1 {
+	background:url(../images/icons/warning-big.png) no-repeat 0 0;
+	font-size:48px;
+	height:48px;
+	line-height:42px;
+	text-indent:48px;
+	width:100%;
+}
+
+#custom-mods-notice ul {
+	list-style:none;
+	list-style-position:outside;
+	margin:15px 0 0 15px;
+}
+#custom-mods-notice ul li {
+	margin:15px 0 0 15px;
+	padding:0 0 0 20px;
+}
+#custom-mods-notice ul li.custom-mods-folder {
+	background:url(../images/icons/folder-open.png) no-repeat 0 0;
+}
+#custom-mods-notice ul li.custom-mods-code {
+	background:url(../images/icons/document-code.png) no-repeat 0 0;
+}
+#custom-mods-notice ul li.custom-mods-image {
+	background:url(../images/icons/document-image.png) no-repeat 0 0;
+}
+
+
+/* Colorbox Styles */
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative; overflow:visible;}
+#cboxLoadedContent{overflow:auto;}
+#cboxLoadedContent iframe{display:block; width:100%; height:100%; border:0;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+#cboxOverlay{background:#550000;}
+#colorbox{}
+#cboxTopLeft{width:14px; height:14px; background:url(../images/controls.png) 0 0 no-repeat;}
+#cboxTopCenter{height:14px; background:url(../images/border.png) top left repeat-x;}
+#cboxTopRight{width:14px; height:14px; background:url(../images/controls.png) -36px 0 no-repeat;}
+#cboxBottomLeft{width:14px; height:43px; background:url(../images/controls.png) 0 -32px no-repeat;}
+#cboxBottomCenter{height:43px; background:url(../images/border.png) bottom left repeat-x;}
+#cboxBottomRight{width:14px; height:43px; background:url(../images/controls.png) -36px -32px no-repeat;}
+#cboxMiddleLeft{width:14px; background:url(../images/controls.png) -175px 0 repeat-y;}
+#cboxMiddleRight{width:14px; background:url(../images/controls.png) -211px 0 repeat-y;}
+#cboxContent{background:#fff;}
+#cboxLoadedContent{margin-bottom:5px;}
+#cboxLoadingOverlay{background:url(../images/loading_background.png) center center no-repeat;}
+#cboxLoadingGraphic{background:url(../images/loading.gif) center center no-repeat;}
+#cboxTitle{position:absolute; bottom:-25px; left:0; text-align:center; width:100%; font-weight:bold; color:#7C7C7C;}
+#cboxCurrent{position:absolute; bottom:-25px; left:58px; font-weight:bold; color:#7C7C7C;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{position:absolute; bottom:-29px; background:url(../images/controls.png) 0px 0px no-repeat; width:23px; height:23px; text-indent:-9999px;}
+#cboxPrevious{left:0px; background-position: -51px -25px;}
+#cboxPrevious.hover{background-position:-51px 0px;}
+#cboxNext{left:27px; background-position:-75px -25px;}
+#cboxNext.hover{background-position:-75px 0px;}
+#cboxClose{right:0; background-position:-100px -25px;}
+#cboxClose.hover{background-position:-100px 0px;}
+.cboxSlideshow_on #cboxSlideshow{background-position:-125px 0px; right:27px;}
+.cboxSlideshow_on #cboxSlideshow.hover{background-position:-150px 0px;}
+.cboxSlideshow_off #cboxSlideshow{background-position:-150px -25px; right:27px;}
+.cboxSlideshow_off #cboxSlideshow.hover{background-position:-125px 0px;}
+/* Colorbox Styles End */
