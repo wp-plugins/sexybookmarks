@@ -792,7 +792,8 @@ echo $thatstuff;
 					<li><a href="http://maitremo.fr"><?php _e('FR Translation: Maitre Mo', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.osn.ro"><?php _e('RO Translation: Ghenciu Ciprian', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://chepelle.altervista.org/wordpress"><?php _e('IT Translation: Carlo Veltri', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://cpcdisseny.net/"><?php _e('ES Translation: Javier Pimienta', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://cpcdisseny.net"><?php _e('ES Translation: Javier Pimienta', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://joojen.com"><?php _e('CN Translation: Joojen', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
