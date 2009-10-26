@@ -112,6 +112,33 @@ function sexy_settings_page() {
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
 
+
+	// create folders for custom mods
+	// then copy original files into new folders
+	if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
+		if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
+			$sexy_oldloc = SEXY_PLUGDIR;
+			$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
+
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images/icons');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
+
+			copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
+			copy($sexy_oldloc.'css/admin-style.css', $sexy_newloc.'css/admin-style.css');
+			copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
+			copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
+			copy($sexy_oldloc.'images/sexy-trans.png', $sexy_newloc.'images/sexy-trans.png');
+			copy($sexy_oldloc.'images/flo-head.jpg', $sexy_newloc.'images/flo-head.jpg');
+			copy($sexy_oldloc.'images/icons/chain-small.png', $sexy_newloc.'images/icons/chain-small.png');
+			copy($sexy_oldloc.'images/icons/globe-small-green.png', $sexy_newloc.'images/icons/globe-small-green.png');
+			copy($sexy_oldloc.'images/icons/star-small.png', $sexy_newloc.'images/icons/star-small.png');
+		}
+	}
+
+
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
@@ -168,25 +195,6 @@ function sexy_settings_page() {
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
 		}
 
-
-		// create folders for custom mods
-		// then copy original files into new folders
-		if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
-			if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
-				$sexy_oldloc = SEXY_PLUGDIR;
-				$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
-
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
-
-				copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
-				copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
-				copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
-				copy($sexy_oldloc.'images/sexy-trans.png', $sexy_newloc.'images/sexy-trans.png');
-			}
-		}
 
 
 
@@ -799,13 +807,12 @@ echo $thatstuff;
 		</div>
 	</div>
 </div>
-<a href="#" class="custom-mods-notice">Open Notice</a>
 <div class="hide">
 	<div id="custom-mods-notice">
-		<h1>Warning!</h1>
-		<p>This option is intended <strong>STRICTLY</strong> for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.</p>
-		<h3>How it works...</h3>
-		<p>Since you've chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it just created on your server. The file/folder locations should be as follows:</p>
+		<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
+		<p><?php _e('This option is intended ', 'sexybookmarks'); ?><strong><?php _e('STRICTLY', 'sexybookmarks'); ?></strong><?php _e(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.', 'sexybookmarks'); ?></p>
+		<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
+		<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it just created on your server. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
 		<ul>
 			<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods'; ?></a>
 				<ul>
@@ -873,6 +880,8 @@ function sexy_admin_scripts() {
 	wp_enqueue_script('sexy-bookmarks-modal', SEXY_PLUGPATH.'js/jquery.colorbox-min.js', array('jquery'), SEXY_vNum);
 }
 function sexy_admin_styles() {
+	global $sexy_plugopts;
+
 	function detect7() {
 		if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false))
 			return true;
@@ -888,20 +897,38 @@ function sexy_admin_styles() {
 		}
 
 	if (detect7()) {
-		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		wp_print_styles('sexy-bookmarks');
-		wp_enqueue_style('ie-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
-		wp_print_styles('ie-sexy-bookmarks');
+		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
+			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
+		else {
+			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
+		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
+		wp_print_styles('ie-old-sexy-bookmarks');
 	}
 	elseif (detect8()) {
-		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		wp_print_styles('sexy-bookmarks');
-		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
-		wp_print_styles('sexy-bookmarks');
+		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
+			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
+		else {
+			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
+		wp_enqueue_style('ie-new-sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
+		wp_print_styles('ie-new-sexy-bookmarks');
 	}
 	else {
-		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		wp_print_styles('sexy-bookmarks');
+		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
+			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
+		else {
+			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+			wp_print_styles('sexy-bookmarks');
+		}
 	}
 }
 
