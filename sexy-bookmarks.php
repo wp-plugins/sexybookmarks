@@ -135,6 +135,12 @@ function sexy_settings_page() {
 			copy($sexy_oldloc.'images/icons/chain-small.png', $sexy_newloc.'images/icons/chain-small.png');
 			copy($sexy_oldloc.'images/icons/globe-small-green.png', $sexy_newloc.'images/icons/globe-small-green.png');
 			copy($sexy_oldloc.'images/icons/star-small.png', $sexy_newloc.'images/icons/star-small.png');
+			copy($sexy_oldloc.'images/icons/nostar-small.png', $sexy_newloc.'images/icons/nostar-small.png');
+			copy($sexy_oldloc.'images/icons/1star-small.png', $sexy_newloc.'images/icons/1star-small.png');
+			copy($sexy_oldloc.'images/icons/2star-small.png', $sexy_newloc.'images/icons/2star-small.png');
+			copy($sexy_oldloc.'images/icons/3star-small.png', $sexy_newloc.'images/icons/3star-small.png');
+			copy($sexy_oldloc.'images/icons/4star-small.png', $sexy_newloc.'images/icons/4star-small.png');
+			copy($sexy_oldloc.'images/icons/5star-small.png', $sexy_newloc.'images/icons/5star-small.png');
 		}
 	}
 
