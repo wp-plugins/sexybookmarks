@@ -490,10 +490,11 @@ echo $thatstuff;
 								<label><input name="warn-choice" id="custom-warn-yes-a" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label>
 							</div>
 						</div>
-						<div class="custom-mod-check">
-							<label class="sexy_option" style="margin:5px 0 20px 0;background:url(<?php echo SEXY_PLUGPATH.'images/icons/plug-pencil.png'; ?>) no-repeat 0 0;padding-left:22px;">
-								<?php _e('Override Styles With Custom Mods Instead?', 'sexybookmarks'); ?> <input <?php echo (($sexy_plugopts['custom-mods'] == "yes")? 'checked' : ""); ?> name="custom-mods" id="custom-mods" type="checkbox" value="yes" />
+						<div class="custom-mod-check" style="display:block;margin:5px 0 20px 0;background:url(<?php echo SEXY_PLUGPATH.'images/icons/plug-pencil.png'; ?>) no-repeat 0 0;padding-left:22px;">
+							<label for="custom-mods" class="sexy_option" style="display:inline;" />
+								<?php _e('Override Styles With Custom Mods Instead?', 'sexybookmarks'); ?>
 							</label>
+							<input <?php echo (($sexy_plugopts['custom-mods'] == "yes")? 'checked' : ""); ?> name="custom-mods" id="custom-mods" type="checkbox" value="yes" />
 						</div>
 						<span class="sexy_option"><?php _e('Animate-expand multi-lined bookmarks?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" /><?php _e('Yes', 'sexybookmarks'); ?></label>
