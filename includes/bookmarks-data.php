@@ -276,5 +276,10 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Add this to Wykop!', 'sexybookmarks'),
 		'baseUrl'=>'http://www.wykop.pl/dodaj?url=PERMALINK&amp;title=TITLE',
 	),
+	'sexy-blogengage'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('BlogEngage', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Engage with this article!', 'sexybookmarks'),
+		'baseUrl'=>'http://www.blogengage.com/submit.php?url=PERMALINK',
+	),
 );
 ?>

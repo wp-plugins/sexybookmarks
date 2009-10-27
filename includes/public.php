@@ -309,6 +309,11 @@ function get_sexy() {
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
 	    }
+		elseif ($name=='sexy-blogengage') {
+			$socials.=bookmark_list_item($name, array(
+				'permalink'=>$perms,
+			));
+	    }
 		elseif ($name=='sexy-identica') {
 			$socials.=bookmark_list_item($name, array(
 				'short_title'=>$short_title,
