@@ -80,6 +80,8 @@ function sexy_get_fetch_url() {
 			$first_url .= "&url=".$perms;
 		} elseif($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link')) {
 			$fetch_url = permalink_to_twitter_link($perms);
+		} elseif($sexy_plugopts['shorty'] == "slly") {
+			$first_url = "http://sl.ly/?module=ShortURL&file=Add&mode=API&url=".$perms;
 		} else { 
 			//Default is b2l.me
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
