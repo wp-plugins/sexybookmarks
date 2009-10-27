@@ -53,7 +53,7 @@ function bookmark_list_item($name, $opts=array()) {
 	}
 	
 	return sprintf(
-		'<li class="%s"><a href="%s" rel="%s"%s title="%s">%s</a></li>',
+		'<li class="%s">'."\n".'<a href="%s" rel="%s"%s title="%s">%s</a>'."\n".'</li>'."\n",
 		$name,
 		$url,
 		$sexy_plugopts['reloption'],

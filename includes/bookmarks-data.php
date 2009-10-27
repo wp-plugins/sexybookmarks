@@ -199,7 +199,7 @@ $sexy_bookmarks_data=array(
 	'sexy-identica'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Identica', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Post this to ', 'sexybookmarks').__('Identica', 'sexybookmarks'),
-		'baseUrl'=>'http://identi.ca//index.php?action=newnotice&amp;status_textarea=Reading:+&quot;TITLE&quot;+-+from+PERMALINK',
+		'baseUrl'=>'http://identi.ca//index.php?action=newnotice&amp;status_textarea=Reading:+&quot;SHORT_TITLE&quot;+-+from+FETCH_URL',
 	),
 	'sexy-xerpi'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Xerpi', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
@@ -265,6 +265,16 @@ $sexy_bookmarks_data=array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Blogosphere News', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').__('Blogosphere News', 'sexybookmarks'),
 		'baseUrl'=>'http://www.blogospherenews.com/submit.php?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-webblend'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Web Blend', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Blend this!', 'sexybookmarks'),
+		'baseUrl'=>'http://thewebblend.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
+	),
+	'sexy-wykop'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Wykop', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Polish)', 'sexybookmarks'),
+		'share'=>__('Add this to Wykop!', 'sexybookmarks'),
+		'baseUrl'=>'http://www.wykop.pl/dodaj?url=PERMALINK&amp;title=TITLE',
 	),
 );
 ?>

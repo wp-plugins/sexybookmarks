@@ -1,10 +1,11 @@
 <?php
-// functions related to mobile.
+
+// Functions related to mobile.
 require_once 'mobile.php';
 $sexy_is_mobile = sexy_is_mobile();
 $sexy_is_bot = sexy_is_bot();
 
-//curl, file get contents or nothing, used for short url
+//cURL, file get contents or nothing, used for short url
 function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
 	if (function_exists('curl_init')) {
 		// Use cURL
@@ -20,7 +21,8 @@ function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
 		$source = trim(curl_exec($ch));
 		curl_close($ch);
 		
-	} elseif (function_exists('file_get_contents')) { // use file_get_contents()
+	} elseif (function_exists('file_get_contents')) { 
+		// Use file_get_contents()
 		$source = trim(file_get_contents($url));
 	} else {
 		$source = null;
@@ -34,14 +36,16 @@ function sexy_get_fetch_url() {
 	else { $perms = get_permalink(); }
 
 	$fetch_url = get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
-	// if neccessary, fetch and store
+	// If neccessary, fetch and store
 	if ((empty($fetch_url) || md5($perms) != get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) && get_post_status($post->ID) == 'publish') {
 		$url_more = "";
 		$use_POST_method = false;
 		$POST_data = null;
-		// which short url service should be used?
+		// Which short url service should be used?
 		if($sexy_plugopts['shorty'] == "e7t") {
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms; //now no e7t, instead b2l
+			//e7t.us no longer exists, this only here for backwards compatibility
+			//to prevent users from having to update their short URLs if they had e7t.us selected
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 		}elseif($sexy_plugopts['shorty'] == "b2l") {
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 		} elseif($sexy_plugopts['shorty'] == "tiny") {
@@ -76,11 +80,12 @@ function sexy_get_fetch_url() {
 			$first_url .= "&url=".$perms;
 		} elseif($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link')) {
 			$fetch_url = permalink_to_twitter_link($perms);
-		} else { //default is b2l.me
+		} else { 
+			//Default is b2l.me
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 		}
 		
-		// retrieve the shortened URL
+		// Retrieve the shortened URL
 		$fetch_url = trim(sexy_nav_browse($first_url, $use_POST_method, $POST_data)); //trim again
 		
 		if($sexy_plugopts['shorty'] == "trim" && $sexy_plugopts['shortyapi']['trim']['chk'] == 1){
@@ -92,9 +97,10 @@ function sexy_get_fetch_url() {
 			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
 		}
 
-		if (!empty($fetch_url)) { // remote call made and was successful
-			// add/update values
-			// tries updates first, then add if field does not already exist
+		if (!empty($fetch_url)) { 
+			// Remote call made and was successful
+			// Add/update values
+			// Tries to update first, then add if field does not already exist
 			if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
 				add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
 			}
@@ -111,21 +117,21 @@ function sexy_get_fetch_url() {
 }
 
 
-//create an auto-insertion function
+// Create an auto-insertion function
 function sexy_position_menu($post_content) {
 	global $post, $sexy_plugopts, $sexy_is_mobile, $sexy_is_bot;
 
-	// if user selected manual positioning, get out.
+	// If user selected manual positioning, get out.
 	if ($sexy_plugopts['position']=='manual') {
 		return $post_content;
 	}
 
-	// if user selected hide from mobile and is mobile, get out.
+	// If user selected hide from mobile and is mobile, get out.
 	elseif ($sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_mobile || $sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_bot) {
 		return $post_content;
 	}
 
-	// decide whether or not to generate the bookmarks.
+	// Decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($sexy_plugopts['pageorpost'],"post")) ||
 		(is_page() && false!==strpos($sexy_plugopts['pageorpost'],"page")) ||
 		(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) ||
@@ -139,7 +145,7 @@ function sexy_position_menu($post_content) {
 		}
 	}
 
-	// place of bookmarks and return w/ post content.
+	// Place of bookmarks and return w/ post content.
 	if (empty($socials)) {
 		return $post_content;
 	} elseif ($sexy_plugopts['position']=='above') {
@@ -151,7 +157,7 @@ function sexy_position_menu($post_content) {
 		return $post_content;
 	}
 }
-//end sexy_position_menu...
+// End sexy_position_menu...
 
 function get_sexy() {
 	global $sexy_plugopts, $wp_query, $post;
@@ -177,7 +183,7 @@ function get_sexy() {
 		}
 	}
 
-	//Check if index page
+	//Check if index page...
 	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
 
 		//Check if outside the loop
@@ -196,6 +202,7 @@ function get_sexy() {
 			$mail_subject = urlencode($post->post_title);
 		}
 	}
+	//Apparently isn't on index page...
 	else {
 		$perms = get_permalink($post->ID);
 		$title = $post->post_title;
@@ -204,13 +211,14 @@ function get_sexy() {
 	}
 
 
-	//determine how to handle post titles for Twitter
+	//Determine how to handle post titles for Twitter
 	if (strlen($title) >= 80) {
 		$short_title = urlencode(substr($title, 0, 80)."[..]");
 	}
 	else {
 		$short_title = urlencode($title);
 	}
+
 	$title=urlencode($title);
 	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
 	$sexy_content = str_replace('+','%20',$sexy_content);
@@ -223,9 +231,10 @@ function get_sexy() {
 	$y_med = $sexy_plugopts['ybuzzmed'];
 	$t_cat = $sexy_plugopts['twittcat'];
 
-	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
-	$getkeywords = get_the_tags(); if ($getkeywords) { foreach($getkeywords as $tag) { $keywords=$keywords.$tag->name.','; } }
 
+	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
+	// This doesn't seem to be working anymore, but not confirmed yet...
+	$getkeywords = get_the_tags(); if ($getkeywords) { foreach($getkeywords as $tag) { $keywords=$keywords.$tag->name.','; } }
 	if (!empty($getkeywords)) {
 		$d_tags=substr($d_tags, 0, count($d_tags)-2);
 	}
@@ -250,7 +259,7 @@ function get_sexy() {
 	}
 
 
-	// Temporary fix for bug that breaks layout when using NextGen Gallery plugin
+	// Compatibility fix for NextGen Gallery Plugin...
 	if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
 		$post_summary = "";
 	}
@@ -258,7 +267,7 @@ function get_sexy() {
 		$sexy_content = "";
 	}
 
-	// select the background
+	// Select the background image
 	if(!isset($sexy_plugopts['bgimg-yes'])) {
 		$bgchosen = '';
 	} elseif($sexy_plugopts['bgimg'] == 'sexy') {
@@ -275,7 +284,7 @@ function get_sexy() {
 		$bgchosen = ' sexy-bookmarks-bg-enjoy';
 	}
 
-	// do not add inline styles to the feed.
+	// Do not add inline styles to the feed.
 	$style=($sexy_plugopts['autocenter'])?'':' style="'.__($sexy_plugopts['xtrastyle']).'"';
 	if (is_feed()) $style='';
 	$expand=$sexy_plugopts['expand']?' sexy-bookmarks-expand':'';
@@ -287,12 +296,19 @@ function get_sexy() {
 		$autocenter='';
 	}
 
-	//write the menu
-	$socials = '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'><ul class="socials">';
+	//Write the sexybookmarks menu
+	$socials = "\n\n".'<!-- Begin SexyBookmarks Menu Code -->'."\n";
+	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n".'<ul class="socials">'."\n";
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
 				'post_by'=>(!empty($sexy_plugopts['twittid']))?"(via+@".$sexy_plugopts['twittid'].")":'',
+				'short_title'=>$short_title,
+				'fetch_url'=>sexy_get_fetch_url(),
+			));
+	    }
+		elseif ($name=='sexy-identica') {
+			$socials.=bookmark_list_item($name, array(
 				'short_title'=>$short_title,
 				'fetch_url'=>sexy_get_fetch_url(),
 			));
@@ -398,6 +414,13 @@ function get_sexy() {
 				'title'=>$title,
 			));
 		}
+		elseif ($name=='sexy-webblend') {
+			$socials.=bookmark_list_item($name, array(
+				'post_summary'=>$post_summary,
+				'permalink'=>$perms,
+				'title'=>$title,
+			));
+		}
 		else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
@@ -405,7 +428,8 @@ function get_sexy() {
 			));
 		}
 	}
-	$socials.='</ul><div style="clear:both;"></div></div>';
+	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
+	$socials.="\n".'<!-- End SexyBookmarks Menu Code -->'."\n\n";
 
 	return $socials;
 }
@@ -422,61 +446,61 @@ function selfserv_sexy() {
 	}
 }
 
-//write the <head> code only on pages that the menu is set to display
+// Write the <head> code only on pages that the menu is set to display
 add_action('wp_head', 'sexy_public');
 function sexy_public() {
 	global $sexy_plugopts, $post;
 
-	//if custom field is set, do not display sexybookmarks
+	// If custom field is set, do not display sexybookmarks
 	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'sexybookmarks').' -->'."\n\n";
 	}
 
-	//else menu should be displayed
+	// Else menu should be displayed
 	else {
 		echo "\n\n".'<!-- '.__('Start Of Code Generated By SexyBookmarks', 'sexybookmarks').' '.SEXY_vNum.' -->'."\n";
 
-		//if custom mods option is checked, pull files from new location
+		// If custom mods option is checked, pull files from new location
 		if ($sexy_plugopts['custom-mods'] == 'yes') {
 			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/style.css', false, SEXY_vNum, 'all');
 			wp_print_styles('sexy-bookmarks');
 		}
 
-		//else use original file locations
+		// Else use original file locations
 		else {
 			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
 			wp_print_styles('sexy-bookmarks');
 		}
 
-		//if any javascript dependent options are selected, load the scripts
+		// If any javascript dependent options are selected, load the scripts
 		if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
 
-			//if custom mods option is selected, pull files from new location
+			// If custom mods option is selected, pull files from new location
 			if ($sexy_plugopts['custom-mods'] == 'yes') {
 
-				//if jQuery compatibility fix is not selected, go ahead and load jQuery
+				// If jQuery compatibility fix is not selected, go ahead and load jQuery
 				if (empty($sexy_plugopts['doNotIncludeJQuery'])) {
 					wp_enqueue_script('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js', array('jquery'));
 					wp_print_scripts('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js', array('jquery'));
 				}
 
-				//else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
+				// Else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
 				else {
 					wp_enqueue_script('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js');
 					wp_print_scripts('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js');
 				}
 			}
 
-			//custom mods not selected, load files from original location
+			// Custom mods not selected, load files from original location
 			else {
 
-				//if jQuery compatibility fix is not selected, go ahead and load jQuery
+				// If jQuery compatibility fix is not selected, go ahead and load jQuery
 				if (empty($sexy_plugopts['doNotIncludeJQuery'])) {
 					wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'));
 					wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'));
 				}
 
-				//else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
+				// Else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
 				else {
 					wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js');
 					wp_print_scripts('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js');
@@ -488,6 +512,6 @@ function sexy_public() {
 }
 
 
-//hook the menu to "the_content"
+// Hook the menu to "the_content"
 add_filter('the_content', 'sexy_position_menu');
 ?>
