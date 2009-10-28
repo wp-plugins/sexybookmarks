@@ -321,5 +321,10 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Submit this to ', 'sexybookmarks').__('FAQpal', 'sexybookmarks'),
 		'baseUrl'=>'http://www.faqpal.com/submit?url=PERMALINK',
 	),
+	'sexy-evernote'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Evernote', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Clip this to ', 'sexybookmarks').__('Evernote', 'sexybookmarks'),
+		'baseUrl'=>'http://www.evernote.com/clip.action?url=PERMALINK&amp;title=TITLE',
+	),
 );
 ?>
