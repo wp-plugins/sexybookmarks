@@ -93,7 +93,7 @@ $sexy_plugopts = array(
 	'ybuzzcat' => 'science',
 	'ybuzzmed' => 'text',
 	'twittcat' => '',
-	'default_tags' => 'blog', // Random word to prevent the Twittley default tag warning
+	'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
 	'warn-choice' => '',
 	'doNotIncludeJQuery' => '',
 	'custom-mods' => '',
@@ -808,7 +808,7 @@ echo $thatstuff;
 					<li><a href="http://www.osn.ro"><?php _e('RO Translation: Ghenciu Ciprian', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://chepelle.altervista.org/wordpress"><?php _e('IT Translation: Carlo Veltri', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://cpcdisseny.net"><?php _e('ES Translation: Javier Pimienta', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://joojen.com"><?php _e('CN Translation: Joojen', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.keege.com"><?php _e('CN Translation: Joojen', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>

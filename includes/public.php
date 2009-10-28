@@ -428,6 +428,13 @@ function get_sexy() {
 				'title'=>$title,
 			));
 		}
+		elseif ($name=='sexy-hyves') {
+			$socials.=bookmark_list_item($name, array(
+				'post_summary'=>$post_summary,
+				'permalink'=>$perms,
+				'title'=>$title,
+			));
+		}
 		else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,

@@ -281,5 +281,45 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Engage with this article!', 'sexybookmarks'),
 		'baseUrl'=>'http://www.blogengage.com/submit.php?url=PERMALINK',
 	),
+	'sexy-hyves'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Hyves', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Hyves', 'sexybookmarks'),
+		'baseUrl'=>'http://www.hyves.nl/profilemanage/add/tips/?name=TITLE&amp;text=POST_SUMMARY+-+PERMALINK&amp;rating=5',
+	),
+	'sexy-pusha'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Pusha', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Swedish)', 'sexybookmarks'),
+		'share'=>__('Push this on ', 'sexybookmarks').__('Pusha', 'sexybookmarks'),
+		'baseUrl'=>'http://www.pusha.se/posta?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-hatena'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Hatena Bookmarks', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Japanese)', 'sexybookmarks'),
+		'share'=>__('Bookmarks this on ', 'sexybookmarks').__('Hatena Bookmarks', 'sexybookmarks'),
+		'baseUrl'=>'http://b.hatena.ne.jp/add?mode=confirm&amp;url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-mylinkvault'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('MyLinkVault', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Store this link on ', 'sexybookmarks').__('MyLinkVault', 'sexybookmarks'),
+		'baseUrl'=>'http://www.mylinkvault.com/link-page.php?u=PERMALINK&amp;n=TITLE',
+	),
+	'sexy-slashdot'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('SlashDot', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('SlashDot', 'sexybookmarks'),
+		'baseUrl'=>'http://slashdot.org/bookmark.pl?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-squidoo'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Squidoo', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Add to a lense on ', 'sexybookmarks').__('Squidoo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.squidoo.com/lensmaster/bookmark?PERMALINK',
+	),
+	'sexy-propeller'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Propeller', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this story to ', 'sexybookmarks').__('Propeller', 'sexybookmarks'),
+		'baseUrl'=>'http://www.propeller.com/submit/?url=PERMALINK',
+	),
+	'sexy-faqpal'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('FAQpal', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('FAQpal', 'sexybookmarks'),
+		'baseUrl'=>'http://www.faqpal.com/submit?url=PERMALINK',
+	),
 );
 ?>
