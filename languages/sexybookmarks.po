@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SexyBookmarks v2.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 12:19-0600\n"
+"POT-Creation-Date: 2009-10-28 16:30-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Josh <josh.jones.mail@gmail.com>\n"
 "Language-Team: Josh Jones, Norman Yung\n"
@@ -558,6 +558,7 @@ msgstr ""
 #: includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315
 #: includes/bookmarks-data.php:320
+#: includes/bookmarks-data.php:325
 msgid "Check this box to include "
 msgstr ""
 
@@ -630,6 +631,7 @@ msgstr ""
 #: includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315
 #: includes/bookmarks-data.php:320
+#: includes/bookmarks-data.php:325
 msgid " in your bookmarking menu"
 msgstr ""
 
@@ -1131,6 +1133,15 @@ msgstr ""
 #: includes/bookmarks-data.php:320
 #: includes/bookmarks-data.php:321
 msgid "FAQpal"
+msgstr ""
+
+#: includes/bookmarks-data.php:325
+#: includes/bookmarks-data.php:326
+msgid "Evernote"
+msgstr ""
+
+#: includes/bookmarks-data.php:326
+msgid "Clip this to "
 msgstr ""
 
 #: includes/public.php:158

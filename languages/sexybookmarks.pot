@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sexybookmarks\n"
-"POT-Creation-Date: 2009-10-28 20:57+0000\n"
+"POT-Creation-Date: 2009-10-28 21:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,7 @@ msgstr ""
 #: includes/bookmarks-data.php:295 includes/bookmarks-data.php:300
 #: includes/bookmarks-data.php:305 includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315 includes/bookmarks-data.php:320
+#: includes/bookmarks-data.php:325
 msgid "Check this box to include "
 msgstr ""
 
@@ -85,6 +86,7 @@ msgstr ""
 #: includes/bookmarks-data.php:295 includes/bookmarks-data.php:300
 #: includes/bookmarks-data.php:305 includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315 includes/bookmarks-data.php:320
+#: includes/bookmarks-data.php:325
 msgid " in your bookmarking menu"
 msgstr ""
 
@@ -512,6 +514,14 @@ msgstr ""
 
 #: includes/bookmarks-data.php:320 includes/bookmarks-data.php:321
 msgid "FAQpal"
+msgstr ""
+
+#: includes/bookmarks-data.php:325 includes/bookmarks-data.php:326
+msgid "Evernote"
+msgstr ""
+
+#: includes/bookmarks-data.php:326
+msgid "Clip this to "
 msgstr ""
 
 #: includes/public.php:158
