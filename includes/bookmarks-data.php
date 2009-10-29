@@ -326,5 +326,25 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Clip this to ', 'sexybookmarks').__('Evernote', 'sexybookmarks'),
 		'baseUrl'=>'http://www.evernote.com/clip.action?url=PERMALINK&amp;title=TITLE',
 	),
+	'sexy-meneame'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Meneame', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Spanish)', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Meneame', 'sexybookmarks'),
+		'baseUrl'=>'http://meneame.net/submit.php?url=PERMALINK',
+	),
+	'sexy-bitacoras'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Bitacoras', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Spanish)', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Bitacoras', 'sexybookmarks'),
+		'baseUrl'=>'http://bitacoras.com/anotaciones/PERMALINK',
+	),
+	'sexy-jumptags'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('JumpTags', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this link to ', 'sexybookmarks').__('JumpTags', 'sexybookmarks'),
+		'baseUrl'=>'http://www.jumptags.com/add/?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-bebo'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Bebo', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Bebo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.bebo.com/c/share?Url=PERMALINK&amp;Title=TITLE',
+	),
 );
 ?>
