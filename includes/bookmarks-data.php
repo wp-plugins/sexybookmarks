@@ -346,5 +346,10 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Share this on ', 'sexybookmarks').__('Bebo', 'sexybookmarks'),
 		'baseUrl'=>'http://www.bebo.com/c/share?Url=PERMALINK&amp;Title=TITLE',
 	),
+	'sexy-n4g'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('N4G', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit tip to ', 'sexybookmarks').__('N4G', 'sexybookmarks'),
+		'baseUrl'=>'http://www.n4g.com/tips.aspx?url=PERMALINK&amp;title=TITLE',
+	),
 );
 ?>
