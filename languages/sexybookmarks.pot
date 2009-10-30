@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sexybookmarks\n"
-"POT-Creation-Date: 2009-10-28 21:28+0000\n"
+"POT-Creation-Date: 2009-10-30 00:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,9 @@ msgstr ""
 #: includes/bookmarks-data.php:295 includes/bookmarks-data.php:300
 #: includes/bookmarks-data.php:305 includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315 includes/bookmarks-data.php:320
-#: includes/bookmarks-data.php:325
+#: includes/bookmarks-data.php:325 includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:335 includes/bookmarks-data.php:340
+#: includes/bookmarks-data.php:345 includes/bookmarks-data.php:350
 msgid "Check this box to include "
 msgstr ""
 
@@ -86,7 +88,9 @@ msgstr ""
 #: includes/bookmarks-data.php:295 includes/bookmarks-data.php:300
 #: includes/bookmarks-data.php:305 includes/bookmarks-data.php:310
 #: includes/bookmarks-data.php:315 includes/bookmarks-data.php:320
-#: includes/bookmarks-data.php:325
+#: includes/bookmarks-data.php:325 includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:335 includes/bookmarks-data.php:340
+#: includes/bookmarks-data.php:345 includes/bookmarks-data.php:350
 msgid " in your bookmarking menu"
 msgstr ""
 
@@ -95,6 +99,7 @@ msgstr ""
 #: includes/bookmarks-data.php:241 includes/bookmarks-data.php:246
 #: includes/bookmarks-data.php:251 includes/bookmarks-data.php:256
 #: includes/bookmarks-data.php:306 includes/bookmarks-data.php:321
+#: includes/bookmarks-data.php:331 includes/bookmarks-data.php:336
 msgid "Submit this to "
 msgstr ""
 
@@ -110,7 +115,7 @@ msgstr ""
 #: includes/bookmarks-data.php:131 includes/bookmarks-data.php:146
 #: includes/bookmarks-data.php:156 includes/bookmarks-data.php:211
 #: includes/bookmarks-data.php:261 includes/bookmarks-data.php:266
-#: includes/bookmarks-data.php:286
+#: includes/bookmarks-data.php:286 includes/bookmarks-data.php:346
 msgid "Share this on "
 msgstr ""
 
@@ -522,6 +527,38 @@ msgstr ""
 
 #: includes/bookmarks-data.php:326
 msgid "Clip this to "
+msgstr ""
+
+#: includes/bookmarks-data.php:330 includes/bookmarks-data.php:331
+msgid "Meneame"
+msgstr ""
+
+#: includes/bookmarks-data.php:330 includes/bookmarks-data.php:335
+msgid " (Spanish)"
+msgstr ""
+
+#: includes/bookmarks-data.php:335 includes/bookmarks-data.php:336
+msgid "Bitacoras"
+msgstr ""
+
+#: includes/bookmarks-data.php:340 includes/bookmarks-data.php:341
+msgid "JumpTags"
+msgstr ""
+
+#: includes/bookmarks-data.php:341
+msgid "Submit this link to "
+msgstr ""
+
+#: includes/bookmarks-data.php:345 includes/bookmarks-data.php:346
+msgid "Bebo"
+msgstr ""
+
+#: includes/bookmarks-data.php:350 includes/bookmarks-data.php:351
+msgid "N4G"
+msgstr ""
+
+#: includes/bookmarks-data.php:351
+msgid "Submit tip to "
 msgstr ""
 
 #: includes/public.php:158

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SexyBookmarks v2.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 16:30-0600\n"
+"POT-Creation-Date: 2009-10-29 19:02-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Josh <josh.jones.mail@gmail.com>\n"
 "Language-Team: Josh Jones, Norman Yung\n"
@@ -559,6 +559,11 @@ msgstr ""
 #: includes/bookmarks-data.php:315
 #: includes/bookmarks-data.php:320
 #: includes/bookmarks-data.php:325
+#: includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:335
+#: includes/bookmarks-data.php:340
+#: includes/bookmarks-data.php:345
+#: includes/bookmarks-data.php:350
 msgid "Check this box to include "
 msgstr ""
 
@@ -632,6 +637,11 @@ msgstr ""
 #: includes/bookmarks-data.php:315
 #: includes/bookmarks-data.php:320
 #: includes/bookmarks-data.php:325
+#: includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:335
+#: includes/bookmarks-data.php:340
+#: includes/bookmarks-data.php:345
+#: includes/bookmarks-data.php:350
 msgid " in your bookmarking menu"
 msgstr ""
 
@@ -645,6 +655,8 @@ msgstr ""
 #: includes/bookmarks-data.php:256
 #: includes/bookmarks-data.php:306
 #: includes/bookmarks-data.php:321
+#: includes/bookmarks-data.php:331
+#: includes/bookmarks-data.php:336
 msgid "Submit this to "
 msgstr ""
 
@@ -670,6 +682,7 @@ msgstr ""
 #: includes/bookmarks-data.php:261
 #: includes/bookmarks-data.php:266
 #: includes/bookmarks-data.php:286
+#: includes/bookmarks-data.php:346
 msgid "Share this on "
 msgstr ""
 
@@ -1142,6 +1155,44 @@ msgstr ""
 
 #: includes/bookmarks-data.php:326
 msgid "Clip this to "
+msgstr ""
+
+#: includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:331
+msgid "Meneame"
+msgstr ""
+
+#: includes/bookmarks-data.php:330
+#: includes/bookmarks-data.php:335
+msgid " (Spanish)"
+msgstr ""
+
+#: includes/bookmarks-data.php:335
+#: includes/bookmarks-data.php:336
+msgid "Bitacoras"
+msgstr ""
+
+#: includes/bookmarks-data.php:340
+#: includes/bookmarks-data.php:341
+msgid "JumpTags"
+msgstr ""
+
+#: includes/bookmarks-data.php:341
+msgid "Submit this link to "
+msgstr ""
+
+#: includes/bookmarks-data.php:345
+#: includes/bookmarks-data.php:346
+msgid "Bebo"
+msgstr ""
+
+#: includes/bookmarks-data.php:350
+#: includes/bookmarks-data.php:351
+msgid "N4G"
+msgstr ""
+
+#: includes/bookmarks-data.php:351
+msgid "Submit tip to "
 msgstr ""
 
 #: includes/public.php:158
