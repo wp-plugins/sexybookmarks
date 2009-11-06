@@ -750,31 +750,10 @@ echo $thatstuff;
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
-				<script language="JavaScript" type="text/javascript">
-				<!--
-					// Customize the widget by editing the fields below
-					// All fields are required
-
-					// Your Feedity RSS feed URL
-					feedity_widget_feed = "http://feedity.com/rss.aspx/sexybookmarks-net/UlZXV1RX";
-
-					// Number of items to display in the widget
-					feedity_widget_numberofitems = "5";
-
-					// Show feed item published date (values: yes or no)
-					feedity_widget_showdate = "no";
-
-					// Widget box width (in px, pt, em, or %)
-					feedity_widget_width = "236px";
-
-					// Widget background color in hex or by name (eg: #ffffff or white)
-					feedity_widget_backcolor = "#f8f8f8";
-
-					// Widget font/link color in hex or by name (eg: #000000 or black)
-					feedity_widget_fontcolor = "#000000";
-				//-->
-				</script>
-				<script language="JavaScript" type="text/javascript" src="http://feedity.com/js/widget.js"></script>
+				<?php
+					$sexyContributors = wp_remote_retrieve_body( wp_remote_get('http://sexybookmarks.net/apps/top-contributors.php') );
+					echo $sexyContributors;
+				?>
 			</div>
 		</div>
 	</div>
