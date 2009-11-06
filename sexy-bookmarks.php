@@ -700,7 +700,7 @@ echo $thatstuff;
 			<div class="padding">
 				<ul class="sexy-adslots">
 					<li class="sexy-medium-banner">
-						<a href="http://http://barrettcreative.net?app=sexybookmarks" title="Minneapolis Web Design and WordPress Experts" target="_blank">
+						<a href="http://http://barrettcreative.net/?app=sexybookmarks" title="Minneapolis Web Design and WordPress Experts" target="_blank">
 							<img src="http://blog2life.net/images/bcbanner.png" alt="Minneapolis Web Design and WordPress Experts" height="60" width="234" />
 						</a>
 						<a href="http://blog2life.net/" title="It's coming... Are you ready?" target="_blank" rel="dofollow">
