@@ -337,43 +337,36 @@ div.box-right-body ul li strong {
 	color:#454545;
 	font-weight:bold;
 }
-span.sexy-rating {
-	background:transparent url('../images/icons/nostar.png') no-repeat scroll 0 0;
-	display:inline-block;
-	height:16px;
-	margin:0 0 -2px;
-	width:80px;
-}
 span.sexy-rating-1 {
-	background:transparent url('../images/icons/1star.png') no-repeat scroll 0 0;
+	background:transparent url('../images/custom-fugue-sprite.png') no-repeat scroll 0 -416px;
 	display:inline-block;
 	height:16px;
 	margin:0 0 -2px;
 	width:80px;
 }
 span.sexy-rating-2 {
-	background:transparent url('../images/icons/2star.png') no-repeat scroll 0 0;
+	background:transparent url('../images/custom-fugue-sprite.png') no-repeat scroll 0 -432px;
 	display:inline-block;
 	height:16px;
 	margin:0 0 -2px;
 	width:80px;
 }
 span.sexy-rating-3 {
-	background:transparent url('../images/icons/3star.png') no-repeat scroll 0 0;
+	background:transparent url('../images/custom-fugue-sprite.png') no-repeat scroll 0 -448px;
 	display:inline-block;
 	height:16px;
 	margin:0 0 -2px;
 	width:80px;
 }
 span.sexy-rating-4 {
-	background:transparent url('../images/icons/4star.png') no-repeat scroll 0 0;
+	background:transparent url('../images/custom-fugue-sprite.png') no-repeat scroll 0 -464px;
 	display:inline-block;
 	height:16px;
 	margin:0 0 -2px;
 	width:80px;
 }
 span.sexy-rating-5 {
-	background:transparent url('../images/icons/5star.png') no-repeat scroll 0 0;
+	background:transparent url('../images/custom-fugue-sprite.png') no-repeat scroll 0 -480px;
 	display:inline-block;
 	height:16px;
 	margin:0 0 -2px;
@@ -513,12 +506,9 @@ div.dialog-box-information {
 	padding:3px 10px 0;
 	width:97.5%;
 }
-img.dialog-ico {
-	float:left;
-	margin:2px 10px 0 0;
-}
 div.dialog-left {
 	float:left;
+	line-height:16px;
 }
 div.dialog-box-information a {
 	color:#004185;
@@ -645,9 +635,10 @@ div.box-right-body ul.infolinks {
 	list-style-position:outside;
 }
 div.box-right-body ul.infolinks li {
-	background:url(../images/icons/chain-small.png) no-repeat left 2px;
-	padding-left:17px;
-	line-height:19px;
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -368px;
+	text-indent:22px;
+	line-height:15px;
+	margin-bottom:12px;
 	font-size:11px;
 }
 div.box-right-body ul.infolinks li a {
@@ -658,9 +649,10 @@ div.box-right-body ul.credits {
 	list-style-position:outside;
 }
 div.box-right-body ul.credits li {
-	background:url(../images/icons/star-small.png) no-repeat left 2px;
-	padding-left:17px;
-	line-height:19px;
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -400px;
+	text-indent:22px;
+	line-height:15px;
+	margin-bottom:12px;
 	font-size:11px;
 }
 div.box-right-body ul.credits li a {
@@ -671,48 +663,55 @@ div.box-right-body ul.langs {
 	list-style-position:outside;
 }
 div.box-right-body ul.langs li {
-	background:url(../images/icons/globe-small-green.png) no-repeat left 2px;
-	padding-left:17px;
-	line-height:19px;
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -384px;
+	text-indent:22px;
+	line-height:15px;
+	margin-bottom:12px;
 	font-size:11px;
 }
 div.box-right-body ul.langs li a {
 	text-decoration:none;
 }
 
-div#divFeedityWidget span {
-	display:none !important;
+ul.sexy-contributors {
+	counter-reset:cnt;
+	list-style-type:none;
+	margin:0;
 }
-div#divFeedityWidget ul {
-	counter-reset:cnt !important;
-	list-style-type:none !important;
-	margin:0 !important;
+ul.sexy-contributors li {
+	display:block;
+	counter-increment:cnt;
+	line-height:10px;
+	margin:10px 0 32px 0;
 }
-div#divFeedityWidget ul li {
-	counter-increment:cnt !important;
-	line-height:10px !important;
-	margin:22px 0 !important;
+ul.sexy-contributors li.last {
+	margin-bottom:10px;
 }
-div#divFeedityWidget ul li:before {
-	color:#D5D5D5 !important;
-	content:counter(cnt, decimal-leading-zero) !important;
-	font-family:"Courier New",monospace !important;
-	font-size:26px !important;
-	font-weight:bold !important;
-	width:20px !important;
+ul.sexy-contributors li p {
+	line-height:10px;
+	margin:0;
+	text-indent:5px;
 }
-div#divFeedityWidget ul li:hover:before {
-	color:#21759B !important;
+ul.sexy-contributors li:before {
+	color:#D5D5D5;
+	content:counter(cnt, decimal-leading-zero);
+	font-family:"Courier New",monospace;
+	font-size:26px;
+	font-weight:bold;
+	width:20px;
 }
-div#divFeedityWidget ul li a {
-	color:#57717F !important;
-	display:block !important;
-	margin:-14px 0 0 33px !important;
-	text-decoration:none !important;
+ul.sexy-contributors li:hover:before {
+	color:#21759B;
 }
-div#divFeedityWidget ul li:hover a {
-	color:#21759B !important;
-	font-weight:bold !important;
+ul.sexy-contributors li a {
+	color:#57717F;
+	display:block;
+	margin:-14px 0 0 33px;
+	text-decoration:none;
+}
+ul.sexy-contributors li:hover a {
+	color:#21759B;
+	font-weight:bold;
 }
 ul#sexy-importexport li {
 	list-style-type:none;
@@ -731,75 +730,111 @@ ul#sexy-importexport div.box-mid-body {
 
 #custom-mods-notice {
 	padding: 5px 15px;
+	background:#FFEFEF;
+	border:5px solid #EF3B3B;
+	margin-bottom:25px;
+	display:none;
 }
 
 #custom-mods-section {
 
 }
 #custom-mods-notice h1 {
-	background:url(../images/icons/warning-big.png) no-repeat 0 0;
+	background:url('../images/warning-big.png') no-repeat 0 0;
 	font-size:48px;
 	height:48px;
 	line-height:42px;
 	text-indent:48px;
 	width:100%;
+	color: #EF3B3B;
+	margin:20px 0;
+	text-shadow: #CF2626 0 1px 0, #fff 0 -1px 0;
 }
-
+#custom-mods-notice h3 {
+	margin:20px 0;
+}
+#custom-mods-notice p {
+	line-height:22px;
+}
 #custom-mods-notice ul {
 	list-style:none;
 	list-style-position:outside;
-	margin:15px 0 0 15px;
+	margin:15px 0 25px 15px;
 }
 #custom-mods-notice ul li {
 	margin:15px 0 0 15px;
 	padding:0 0 0 20px;
 }
-#custom-mods-notice ul li.custom-mods-folder {
-	background:url(../images/icons/folder-open.png) no-repeat 0 0;
+#custom-mods-notice li a {
+	color:#9F1313;
 }
-#custom-mods-notice ul li.custom-mods-code {
-	background:url(../images/icons/document-code.png) no-repeat 0 0;
+#custom-mods-notice ul li.custom-mods-folder {
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -320px;
 }
 #custom-mods-notice ul li.custom-mods-image {
-	background:url(../images/icons/document-image.png) no-repeat 0 0;
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -336px;
+}
+#custom-mods-notice ul li.custom-mods-code {
+	background:url('../images/custom-fugue-sprite.png') no-repeat 0 -352px;
+}
+.custom-mods-notice-close {
+	cursor:pointer;
+	float:right;
+	color:#5c0101;
+	font-weight:bold;
+	display:block;
+	line-height:14px;
+	margin-bottom:5px;
+	padding-left:18px !important;
 }
 
 
-/* Colorbox Styles */
-#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
-#cboxOverlay{position:fixed; width:100%; height:100%;}
-#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
-#cboxContent{position:relative; overflow:visible;}
-#cboxLoadedContent{overflow:auto;}
-#cboxLoadedContent iframe{display:block; width:100%; height:100%; border:0;}
-#cboxTitle{margin:0;}
-#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
-#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
-#cboxOverlay{background:#550000;}
-#colorbox{}
-#cboxTopLeft{width:14px; height:14px; background:url(../images/controls.png) 0 0 no-repeat;}
-#cboxTopCenter{height:14px; background:url(../images/border.png) top left repeat-x;}
-#cboxTopRight{width:14px; height:14px; background:url(../images/controls.png) -36px 0 no-repeat;}
-#cboxBottomLeft{width:14px; height:43px; background:url(../images/controls.png) 0 -32px no-repeat;}
-#cboxBottomCenter{height:43px; background:url(../images/border.png) bottom left repeat-x;}
-#cboxBottomRight{width:14px; height:43px; background:url(../images/controls.png) -36px -32px no-repeat;}
-#cboxMiddleLeft{width:14px; background:url(../images/controls.png) -175px 0 repeat-y;}
-#cboxMiddleRight{width:14px; background:url(../images/controls.png) -211px 0 repeat-y;}
-#cboxContent{background:#fff;}
-#cboxLoadedContent{margin-bottom:5px;}
-#cboxLoadingOverlay{background:url(../images/loading_background.png) center center no-repeat;}
-#cboxLoadingGraphic{background:url(../images/loading.gif) center center no-repeat;}
-#cboxTitle{position:absolute; bottom:-25px; left:0; text-align:center; width:100%; font-weight:bold; color:#7C7C7C;}
-#cboxCurrent{position:absolute; bottom:-25px; left:58px; font-weight:bold; color:#7C7C7C;}
-#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{position:absolute; bottom:-29px; background:url(../images/controls.png) 0px 0px no-repeat; width:23px; height:23px; text-indent:-9999px;}
-#cboxPrevious{left:0px; background-position: -51px -25px;}
-#cboxPrevious.hover{background-position:-51px 0px;}
-#cboxNext{left:27px; background-position:-75px -25px;}
-#cboxNext.hover{background-position:-75px 0px;}
-#cboxClose{right:0; background-position:-100px -25px;}
-#cboxClose.hover{background-position:-100px 0px;}
-.cboxSlideshow_on #cboxSlideshow{background-position:-125px 0px; right:27px;}
-.cboxSlideshow_on #cboxSlideshow.hover{background-position:-150px 0px;}
-.cboxSlideshow_off #cboxSlideshow{background-position:-150px -25px; right:27px;}
-.cboxSlideshow_off #cboxSlideshow.hover{background-position:-125px 0px;}
-/* Colorbox Styles End */
+/* Custom Fugue Sprite Styles */
+.fugue { background: url('../images/custom-fugue-sprite.png') no-repeat; height:16px; padding-left:22px; }
+.fugue.f-info { background-position:0 0; margin:2px 10px 0 0; }
+.fugue.f-warn { background-position:0 -16px; margin:2px 10px 0 0; }
+.fugue.f-success { background-position:0 -32px; margin:2px 10px 0 0; }
+.fugue.f-question { background-position:0 -48px; margin:2px 10px 0 0; width:16px; border:0; padding:0; display:inline-block;}
+.fugue.f-info-frame { background-position:0 -64px; height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-error { background-position:0 -80px; margin:2px 10px 0 0; }
+.fugue.f-delete { background-position:0 -96px; }
+.fugue.f-globe-plus { background-position:0 -112px; height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-gift { background-position:0 -128px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-stats { background-position:0 -144px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-thumb-up { background-position:0 -160px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-wrench { background-position:0 -176px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-money { background-position:0 -192px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px;  }
+.fugue.f-dollar-sign { background-position:0 -208px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px;  }
+.fugue.f-pallette { background-position:0 -224px; height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-plugin { background-position:0 -240px; margin:5px 0 20px 0; padding-left:22px; }
+.fugue.f-megaphone { background-position:0 -256px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-flags { background-position:0 -272px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-image { background-position:0 -288px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-footer { background-position:0 -304px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-folder { background-position:0 -320px; }
+.fugue.f-doc-image { background-position:0 -336px; }
+.fugue.f-doc-code { background-position:0 -352px; }
+.fugue.f-link-small { background-position:0 -368px; }
+.fugue.f-globe-small { background-position:0 -384px; }
+.fugue.f-star-small { background-position:0 -400px; }
+.fugue.f-star1 { background-position:0 -416px; }
+.fugue.f-star2 { background-position:0 -432px; }
+.fugue.f-star3 { background-position:0 -448px; }
+.fugue.f-star4 { background-position:0 -464px; }
+.fugue.f-star5 { background-position:0 -480px; }
+/* End Custom Fugue Sprite Styles */
+
+
+/* Amazon Widget Style Overrides */
+.wdgt_hd { display:none !important; }
+.wdgt_ft { display:none !important; }
+.amzn_wdgt { border:0 none !important; background:#f8f8f8 !important;}
+#amazon_widget_US_8004_0 { border:0 none !important; background:#f8f8f8 !important;}
+.asin_h1 { text-indent:4px !important; }
+.asin_h1 a { color:#21759B !important; }
+.asin_h2 { text-indent:4px !important; }
+.asin_price { color:#D54E21 !important; text-indent:4px !important; }
+.wdgt_brdr b { font-weight:bold !important; }
+.pgn_cnt { margin-bottom:-10px !important; }
+.pgn_cnt strong { background:#d54e21 !important; color:#fff !important; margin:0 5px 0 0 !important;}
+.pgn_cnt a { color:#21759B !important; margin: 0 5px 0 0 !important; }

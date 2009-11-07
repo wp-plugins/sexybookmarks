@@ -15,21 +15,21 @@ jQuery(document).ready(function() {
 		opacity:      0.7
 	});
 
-	// if checkbox isn't already checked, open modal warning... 
-	if (jQuery("#custom-mods").is(':not(:checked)')) {
-		jQuery(".custom-mod-check").click(function() {
-			jQuery.fn.colorbox({width:"75%", height:"75%", inline:true, href:"#custom-mods-notice", open: true});
-		});
-		jQuery().bind('cbox_open', function(){
-			jQuery("#custom-mods").attr('checked', 'checked');
-		});
-	}
-	else if (jQuery("#custom-mods").is(':checked')) {
-		jQuery(".custom-mod-check").click(function() {
-			jQuery("#custom-mods").is(':not(:checked)');
-			jQuery.fn.colorbox({width:"75%", height:"75%", inline:true, href:"#custom-mods-notice", open: false});
-		});
-	}
+	// if checkbox isn't already checked, open warning message...
+	jQuery("#custom-mods").click(function() {
+		if(jQuery(this).is(":not(:checked)")) {
+			jQuery("#custom-mods-notice").css("display", "none");
+		}
+		else {
+			jQuery("#custom-mods-notice").fadeIn("fast");
+			jQuery("#custom-mods-notice").css("display", "table");
+		}
+	});
+
+	// close custom mods warning when they click the X
+	jQuery(".custom-mods-notice-close").click(function() {
+		jQuery("#custom-mods-notice").fadeOut('fast');
+	});
 
 
 
@@ -94,15 +94,15 @@ jQuery(document).ready(function() {
 
 
 	// Apply "smart options" to Yahoo! Buzz
-	if (jQuery('#sexy-yahoobuzz').is(':checked')) {
+	if (jQuery('#sexy-yahoobuzz').attr('checked')) {
 		jQuery('#ybuzz-defaults').is(':visible');
 	}
 	else if (jQuery('#sexy-yahoobuzz').is(':not(:checked)')) {
 		jQuery('#ybuzz-defaults').is(':hidden');
 	}
 	jQuery('#sexy-yahoobuzz').click(function() {
-		if (this.checked) {
-			this.checked=jQuery('#ybuzz-defaults').fadeIn('fast');
+		if (jQuery(this).attr('checked')) {
+			jQuery('#ybuzz-defaults').fadeIn('fast');
 		}
 		else {
 			jQuery('#ybuzz-defaults').fadeOut();
@@ -117,8 +117,8 @@ jQuery(document).ready(function() {
 		jQuery('#twittley-defaults').is(':hidden');
 	}
 	jQuery('#sexy-twittley').click(function() {
-		if (this.checked) {
-			this.checked=jQuery('#twittley-defaults').fadeIn('fast');
+		if (jQuery(this).attr('checked')) {
+			jQuery('#twittley-defaults').fadeIn('fast');
 		}
 		else {
 			jQuery('#twittley-defaults').fadeOut();
@@ -133,8 +133,8 @@ jQuery(document).ready(function() {
 		jQuery('#twitter-defaults').is(':hidden');
 	}
 	jQuery('#sexy-twitter').click(function() {
-		if (this.checked) {
-			this.checked=jQuery('#twitter-defaults').fadeIn('fast');
+		if (jQuery(this).attr('checked')) {
+			jQuery('#twitter-defaults').fadeIn('fast');
 		}
 		else {
 			jQuery('#twitter-defaults').fadeOut();

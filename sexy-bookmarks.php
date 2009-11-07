@@ -115,32 +115,25 @@ function sexy_settings_page() {
 
 	// create folders for custom mods
 	// then copy original files into new folders
-	if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
-		if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
-			$sexy_oldloc = SEXY_PLUGDIR;
-			$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
+	If(function_exists('is_admin') && function_exists('wp_mkdir_p')) {
+		if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
+			if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
+				$sexy_oldloc = SEXY_PLUGDIR;
+				$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
 
-			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
-			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
-			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
-			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images/icons');
-			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
+				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
+				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
+				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
+				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
 
-			copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
-			copy($sexy_oldloc.'css/admin-style.css', $sexy_newloc.'css/admin-style.css');
-			copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
-			copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
-			copy($sexy_oldloc.'images/sexy-trans.png', $sexy_newloc.'images/sexy-trans.png');
-			copy($sexy_oldloc.'images/flo-head.jpg', $sexy_newloc.'images/flo-head.jpg');
-			copy($sexy_oldloc.'images/icons/chain-small.png', $sexy_newloc.'images/icons/chain-small.png');
-			copy($sexy_oldloc.'images/icons/globe-small-green.png', $sexy_newloc.'images/icons/globe-small-green.png');
-			copy($sexy_oldloc.'images/icons/star-small.png', $sexy_newloc.'images/icons/star-small.png');
-			copy($sexy_oldloc.'images/icons/nostar.png', $sexy_newloc.'images/icons/nostar.png');
-			copy($sexy_oldloc.'images/icons/1star.png', $sexy_newloc.'images/icons/1star.png');
-			copy($sexy_oldloc.'images/icons/2star.png', $sexy_newloc.'images/icons/2star.png');
-			copy($sexy_oldloc.'images/icons/3star.png', $sexy_newloc.'images/icons/3star.png');
-			copy($sexy_oldloc.'images/icons/4star.png', $sexy_newloc.'images/icons/4star.png');
-			copy($sexy_oldloc.'images/icons/5star.png', $sexy_newloc.'images/icons/5star.png');
+				copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
+				copy($sexy_oldloc.'css/admin-style.css', $sexy_newloc.'css/admin-style.css');
+				copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
+				copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
+				copy($sexy_oldloc.'images/sexy-trans.png', $sexy_newloc.'images/sexy-trans.png');
+				copy($sexy_oldloc.'images/flo-head.jpg', $sexy_newloc.'images/flo-head.jpg');
+				copy($sexy_oldloc.'images/custom-fugue-sprite.png', $sexy_newloc.'images/custom-fugue-sprite.png');
+			}
 		}
 	}
 
@@ -212,7 +205,7 @@ function sexy_settings_page() {
 
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
-			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left"><img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 		}
 	}
 
@@ -221,8 +214,7 @@ function sexy_settings_page() {
 	if ($error_message != '') {
 		echo '
 		<div id="errmessage" class="sexy-error">
-			<div class="dialog-left">
-				<img src="'.SEXY_PLUGPATH.'images/icons/error.png" class="dialog-ico" alt=""/>
+			<div class="dialog-left fugue f-error">
 				'.$error_message.'
 			</div>
 			<div class="dialog-right">
@@ -232,8 +224,7 @@ function sexy_settings_page() {
 	} elseif ($status_message != '') {
 		echo '
 		<div id="statmessage" class="sexy-success">
-			<div class="dialog-left">
-				<img src="'.SEXY_PLUGPATH.'images/icons/success.png" class="dialog-ico" alt=""/>
+			<div class="dialog-left fugue f-success">
 				'.$status_message.'
 			</div>
 			<div class="dialog-right">
@@ -253,9 +244,8 @@ function sexy_settings_page() {
 	if (empty($status_message) && version_compare($sexy_latest_version, $sexy_your_version, '>')) {
 		echo '
 		<div class="sexy-warning" id="yourversion">
-			<div class="dialog-left">
-				<img src="'.SEXY_PLUGPATH.'images/icons/warning.png" class="dialog-ico" alt=""/>'.
-				__('You are using an outdated version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.'), '.__('please update if you wish to enjoy all available features!', 'sexybookmarks').'
+			<div class="dialog-left fugue f-warn">
+				'.__('You are using an outdated version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.'), '.__('please update if you wish to enjoy all available features!', 'sexybookmarks').'
 			</div>
 			<div class="dialog-right">
 				<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
@@ -264,9 +254,8 @@ function sexy_settings_page() {
 	} elseif (empty($status_message) && version_compare($sexy_latest_version, $sexy_your_version, '<')) {
 		echo '
 		<div class="sexy-information" id="yourversion">
-			<div class="dialog-left">
-				<img src="'.SEXY_PLUGPATH.'images/icons/information.png" class="dialog-ico" alt=""/>'.
-				__('You are using the development version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.__(' beta', 'sexybookmarks').'), '.__('please ', 'sexybookmarks').'<a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">'.__('let us know of any bugs', 'sexybookmarks').'</a> '.__('you may encounter!', 'sexybookmarks').
+			<div class="dialog-left fugue f-info">
+				'.__('You are using the development version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.__(' beta', 'sexybookmarks').'), '.__('please ', 'sexybookmarks').'<a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">'.__('let us know of any bugs', 'sexybookmarks').'</a> '.__('you may encounter!', 'sexybookmarks').
 			'</div>
 			<div class="dialog-right">
 				<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
@@ -283,8 +272,7 @@ echo $thatstuff;
 		<ul id="sexy-sortables">
 			<li>
 				<div class="box-mid-head" id="iconator">
-					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/globe-plus.png" alt="" class="box-icons" />
-					<h2><?php _e('Enabled Networks', 'sexybookmarks'); ?></h2>
+					<h2 class="fugue f-globe-plus"><?php _e('Enabled Networks', 'sexybookmarks'); ?></h2>
 				</div>
 				<div class="box-mid-body iconator" id="toggle1">
 					<div class="padding">
@@ -301,14 +289,12 @@ echo $thatstuff;
 			</li>
 			<li>
 				<div class="box-mid-head">
-					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/wrench-screwdriver.png" alt="" class="box-icons" />
-					<h2><?php _e('Functionality Settings', 'sexybookmarks'); ?></h2>
+					<h2 class="fugue f-wrench"><?php _e('Functionality Settings', 'sexybookmarks'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle2">
 					<div class="padding">
 						<div class="dialog-box-warning" id="clear-warning">
-							<div class="dialog-left">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+							<div class="dialog-left fugue f-warn">
 								<?php _e('This will clear <u>ALL</u> short URLs. - Are you sure?', 'sexybookmarks'); ?>
 							</div>
 							<div class="dialog-right">
@@ -465,7 +451,7 @@ echo $thatstuff;
 								<?php _e('This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here.', 'sexybookmarks'); ?><br /><span title="<?php _e('Click here to close this message', 'sexybookmarks'); ?>" class="dtags-close">[<?php _e('close', 'sexybookmarks'); ?>]</span>
 							</p>
 							<label for="defaulttags"><?php _e('Default Tags:', 'sexybookmarks'); ?> </label>
-							<input type="text" name="defaulttags" id="defaulttags" onblur="if ( this.value == '' ) { this.value = 'enter,default,tags,here'; }" onfocus="if ( this.value == 'enter,default,tags,here' ) { this.value = ''; }" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="dtags-info" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" alt="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" />
+							<input type="text" name="defaulttags" id="defaulttags" onblur="if ( this.value == '' ) { this.value = 'enter,default,tags,here'; }" onfocus="if ( this.value == 'enter,default,tags,here' ) { this.value = ''; }" value="<?php echo $sexy_plugopts['defaulttags']; ?>" /><span class="dtags-info fugue f-question" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>"> </span>
 							<div class="clearbig"></div>
 						</div>
 						<div id="genopts">
@@ -482,14 +468,12 @@ echo $thatstuff;
 			</li>
 			<li>
 				<div class="box-mid-head">
-					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/palette.png" alt="" class="box-icons" />
-					<h2><?php _e('General Look &amp; Feel', 'sexybookmarks'); ?></h2>
+					<h2 class="fugue f-pallette"><?php _e('General Look &amp; Feel', 'sexybookmarks'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle3">
 					<div class="padding">
 						<div class="dialog-box-warning" id="custom-warning">
-							<div class="dialog-left">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+							<div class="dialog-left fugue f-warn">
 								<?php _e('This will void any custom CSS applied below.', 'sexybookmarks'); ?>
 							</div>
 							<div class="dialog-right">
@@ -497,15 +481,31 @@ echo $thatstuff;
 							</div>
 						</div>
 						<div class="dialog-box-warning" id="custom-warning-a">
-							<div class="dialog-left">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+							<div class="dialog-left fugue f-warn">
 								<?php _e('This will void any custom CSS applied below.', 'sexybookmarks'); ?>
 							</div>
 							<div class="dialog-right">
 								<label><input name="warn-choice" id="custom-warn-yes-a" type="checkbox" value="ok" /><?php _e('Ok', 'sexybookmarks'); ?></label>
 							</div>
 						</div>
-						<div class="custom-mod-check" style="display:block;margin:5px 0 20px 0;background:url(<?php echo SEXY_PLUGPATH.'images/icons/plug-pencil.png'; ?>) no-repeat 0 0;padding-left:22px;">
+						<div id="custom-mods-notice">
+							<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
+							<p><?php _e('This option is intended ', 'sexybookmarks'); ?><strong><?php _e('STRICTLY', 'sexybookmarks'); ?></strong><?php _e(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.', 'sexybookmarks'); ?></p>
+							<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
+							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it just created on your server. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
+							<ul>
+								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods'; ?></a></li>
+								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?></a></li>
+								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/js'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/js'; ?></a></li>
+								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images'; ?></a></li>
+								<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?></a></li>
+								<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?></a></li>
+							</ul>
+							<span class="fugue f-delete custom-mods-notice-close">Close Message</span>
+						</div>
+						<div class="custom-mod-check fugue f-plugin">
 							<label for="custom-mods" class="sexy_option" style="display:inline;" />
 								<?php _e('Override Styles With Custom Mods Instead?', 'sexybookmarks'); ?>
 							</label>
@@ -545,8 +545,7 @@ echo $thatstuff;
 			</li>
 			<li>
 				<div class="box-mid-head">
-					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/image.png" alt="" class="box-icons" />
-					<h2><?php _e('Background Image', 'sexybookmarks'); ?></h2>
+					<h2 class="fugue f-image"><?php _e('Background Image', 'sexybookmarks'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle4">
 					<div class="padding">
@@ -578,14 +577,12 @@ echo $thatstuff;
 			</li>
 			<li>
 				<div class="box-mid-head">
-					<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/layout-select-footer.png" alt="" class="box-icons" />
-					<h2><?php _e('Menu Placement', 'sexybookmarks'); ?></h2>
+					<h2 class="fugue f-footer"><?php _e('Menu Placement', 'sexybookmarks'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle5">
 					<div class="padding">
 						<div class="dialog-box-information" id="info-manual">
-							<div class="dialog-left">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information.png" class="dialog-ico" alt=""/>
+							<div class="dialog-left fugue f-info">
 								<?php _e('Need help with this? Find it in the ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/documentation/usage-installation"> <?php _e('official install guide', 'sexybookmarks'); ?></a>.
 							</div>
 							<div class="dialog-right">
@@ -593,8 +590,7 @@ echo $thatstuff;
 							</div>
 						</div>
 						<div class="dialog-box-warning" id="mobile-warn">
-							<div class="dialog-left">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning.png" class="dialog-ico" alt=""/>
+							<div class="dialog-left fugue f-warn">
 								<?php _e('This feature is still in the experimental phase, so please ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/contact-forms/bug-form"><?php _e('report any bugs', 'sexybookmarks'); ?></a> <?php _e('you may find', 'sexybookmarks'); ?>.
 							</div>
 							<div class="dialog-right">
@@ -618,7 +614,7 @@ echo $thatstuff;
 									'postpageindex'=>'Posts, Pages, &amp; Index',
 								));
 							?>
-						</select><img src="<?php echo SEXY_PLUGPATH; ?>images/icons/question-frame.png" class="shebang-info" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" alt="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>" />
+						</select><span class="shebang-info fugue f-question" title="<?php _e('Click here for help with this option', 'sexybookmarks'); ?>"> </span>
 						<span class="sexy_option"><?php _e('Show in RSS feed?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> <?php _e('Yes', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['feed'] == "0" || empty($sexy_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> <?php _e('No', 'sexybookmarks'); ?></label>
@@ -637,8 +633,18 @@ echo $thatstuff;
 <div id="sexy-col-right">
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information-frame.png" alt="" class="box-icons" />
-			<h3><?php _e('Helpful Plugin Links', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-gift"><?php _e('Josh\'s Christmas Wishlist', 'sexybookmarks'); ?></h3>
+		</div>
+		<div class="box-right-body">
+			<script charset="utf-8" type="text/javascript" src="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822/US/widgetsamazon-20/8004/a708e1fe-d9eb-4446-8c98-2ba2fa5b1eba"> </script> 
+			<noscript>
+				<a href="http://ws.amazon.com/widgets/q?ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fwidgetsamazon-20%2F8004%2Fa708e1fe-d9eb-4446-8c98-2ba2fa5b1eba&Operation=NoScript"><?php _e('Josh\'s Christmas Wishlist', 'sexybookmarks'); ?></a>
+			</noscript>
+		</div>
+	</div>
+	<div class="box-right">
+		<div class="box-right-head">
+			<h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -654,8 +660,7 @@ echo $thatstuff;
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/chart.png" alt="" class="box-icons" />
-			<h3><?php _e('Plugin Stats', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-stats"><?php _e('Plugin Stats', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -693,8 +698,7 @@ echo $thatstuff;
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/thumb-up.png" alt="" class="box-icons" />
-			<h3><?php _e('Plugin Sponsors', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-thumb-up"><?php _e('Plugin Sponsors', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -726,8 +730,7 @@ echo $thatstuff;
 	</div>
 	<div class="box-right sexy-donation-box" id="sexydonationsbox">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/money-coin.png" alt="" class="box-icons" />
-			<h3><?php _e('Support by Donating', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-money"><?php _e('Support by Donating', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -745,8 +748,7 @@ echo $thatstuff;
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/currency.png" alt="" class="box-icons" />
-			<h3><?php _e('Top Supporters', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-dollar-sign"><?php _e('Top Supporters', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -759,13 +761,13 @@ echo $thatstuff;
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/megaphone.png" alt="" class="box-icons" />
-			<h3><?php _e('Shout-Outs', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-megaphone"><?php _e('Shout-Outs', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
 				<ul class="credits">
-					<li><a href="http://www.pinvoke.com/"><?php _e('GUI Icons: Pinvoke', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.pinvoke.com/"><?php _e('Fugue Icons: Pinvoke', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://alisothegeek.com/2009/10/fugue-sprite-css/"><?php _e('Fugue Icon Sprite: Alison Barrett', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix: Gautam Gupta', 'sexybookmarks'); ?></a></li>
@@ -776,8 +778,7 @@ echo $thatstuff;
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/locale.png" alt="" class="box-icons" />
-			<h3><?php _e('Translations', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-flags"><?php _e('Translations', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -791,36 +792,6 @@ echo $thatstuff;
 				</ul>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="hide">
-	<div id="custom-mods-notice">
-		<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
-		<p><?php _e('This option is intended ', 'sexybookmarks'); ?><strong><?php _e('STRICTLY', 'sexybookmarks'); ?></strong><?php _e(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.', 'sexybookmarks'); ?></p>
-		<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
-		<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it just created on your server. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
-		<ul>
-			<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods'; ?></a>
-				<ul>
-					<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?></a>
-						<ul>
-							<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?></a></li>
-						</ul>
-					</li>
-					<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/js'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/js'; ?></a>
-						<ul>
-							<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?></a></li>
-						</ul>
-					</li>
-					<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images'; ?></a>
-						<ul>
-							<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?></a></li>
-							<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?></a></li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
 	</div>
 </div>
 <?php
@@ -863,7 +834,6 @@ function sexy_menu_link() {
 function sexy_admin_scripts() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery-ui-sortable'), SEXY_vNum);
-	wp_enqueue_script('sexy-bookmarks-modal', SEXY_PLUGPATH.'js/jquery.colorbox-min.js', array('jquery'), SEXY_vNum);
 }
 function sexy_admin_styles() {
 	global $sexy_plugopts;
