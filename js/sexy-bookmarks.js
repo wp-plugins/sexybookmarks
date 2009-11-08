@@ -15,6 +15,13 @@ jQuery(document).ready(function() {
 		opacity:      0.7
 	});
 
+
+	// Create a universal click function to close status messages...
+	jQuery('.del-x').click(function() {
+		jQuery(this).parent('div').parent('div').fadeOut();
+	});
+
+
 	// if checkbox isn't already checked, open warning message...
 	jQuery("#custom-mods").click(function() {
 		if(jQuery(this).is(":not(:checked)")) {
@@ -44,11 +51,6 @@ jQuery(document).ready(function() {
 	}
 
 
-	jQuery('#info-manual').css({ display: 'none' });
-	jQuery('#clear-warning').css({ display:'none' });
-	jQuery('#custom-warning').css({ display:'none' });
-	jQuery('#custom-warning-a').css({ display:'none' });
-	jQuery('#mobile-warn').css({ display:'none' });
 
 
 	if (jQuery('#autocenter-no').is(':not(:checked)')) {
@@ -79,27 +81,25 @@ jQuery(document).ready(function() {
 		this.checked=jQuery('#xtrastyle').val('Custom CSS has been disabled because you are using either the "Auto Space" or "Auto Center" option above.');
 		this.checked=jQuery(this).is(':not(:checked)');
 	});
-
-
-
 	jQuery('#autocenter-no').click(function() {
 		this.checked=jQuery('#xtrastyle').removeAttr('disabled');
 		this.checked=jQuery('#xtrastyle').val('margin:20px 0 0 0 !important;\npadding:25px 0 0 10px !important;\nheight:29px;/*the height of the icons (29px)*/\ndisplay:block !important;\nclear:both !important;');
 	});
 
+
+
 	// Apply "smart options" to BG image
 	jQuery('#bgimg-yes').click(function() {
-		jQuery('#bgimgs').toggleClass('hidden').toggleClass('');
+		if(jQuery(this).is(':checked')) {
+			jQuery('#bgimgs').fadeIn('slow');
+		}
+		else {
+			jQuery('#bgimgs').css('display', 'none');
+		}
 	});
 
 
 	// Apply "smart options" to Yahoo! Buzz
-	if (jQuery('#sexy-yahoobuzz').attr('checked')) {
-		jQuery('#ybuzz-defaults').is(':visible');
-	}
-	else if (jQuery('#sexy-yahoobuzz').is(':not(:checked)')) {
-		jQuery('#ybuzz-defaults').is(':hidden');
-	}
 	jQuery('#sexy-yahoobuzz').click(function() {
 		if (jQuery(this).attr('checked')) {
 			jQuery('#ybuzz-defaults').fadeIn('fast');
@@ -110,12 +110,6 @@ jQuery(document).ready(function() {
 	});
 
 	// Apply "smart options" to Twittley
-	if (jQuery('#sexy-twittley').is(':checked')) {
-		jQuery('#twittley-defaults').is(':visible');
-	}
-	else if (jQuery('#sexy-twittley').is(':not(:checked)')) {
-		jQuery('#twittley-defaults').is(':hidden');
-	}
 	jQuery('#sexy-twittley').click(function() {
 		if (jQuery(this).attr('checked')) {
 			jQuery('#twittley-defaults').fadeIn('fast');
@@ -126,12 +120,6 @@ jQuery(document).ready(function() {
 	});
 
 	// Apply "smart options" to Twitter
-	if (jQuery('#sexy-twitter').is(':checked')) {
-		jQuery('#twitter-defaults').is(':visible');
-	}
-	else if (jQuery('#sexy-twitter').is(':not(:checked)')) {
-		jQuery('#twitter-defaults').is(':hidden');
-	}
 	jQuery('#sexy-twitter').click(function() {
 		if (jQuery(this).attr('checked')) {
 			jQuery('#twitter-defaults').fadeIn('fast');
@@ -143,12 +131,12 @@ jQuery(document).ready(function() {
 
 
 	jQuery('#shorty').change(function() {
-		this.checked=jQuery('#shortyapimdiv-bitly').fadeOut('fast');
-		this.checked=jQuery('#shortyapimdiv-trim').fadeOut('fast');
-		this.checked=jQuery('#shortyapimdiv-snip').fadeOut('fast');
-		this.checked=jQuery('#shortyapimdiv-tinyarrow').fadeOut('fast');
-		this.checked=jQuery('#shortyapimdiv-cligs').fadeOut('fast');
-		this.checked=jQuery('#shortyapimdiv-supr').fadeOut('fast');
+		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
+		jQuery('#shortyapimdiv-trim').fadeOut('fast');
+		jQuery('#shortyapimdiv-snip').fadeOut('fast');
+		jQuery('#shortyapimdiv-tinyarrow').fadeOut('fast');
+		jQuery('#shortyapimdiv-cligs').fadeOut('fast');
+		jQuery('#shortyapimdiv-supr').fadeOut('fast');
 		if(this.value=='trim'){
 			jQuery('#shortyapimdiv-trim').fadeIn('fast');
 		}
@@ -171,7 +159,7 @@ jQuery(document).ready(function() {
 
 	jQuery('#shortyapichk-trim').click(function() {
 		if (this.checked) {
-			this.checked=jQuery('#shortyapidiv-trim').fadeIn('fast');
+			jQuery('#shortyapidiv-trim').fadeIn('fast');
 		}
 		else {
 			jQuery('#shortyapidiv-trim').fadeOut('fast');
@@ -180,7 +168,7 @@ jQuery(document).ready(function() {
 
 	jQuery('#shortyapichk-tinyarrow').click(function() {
 		if (this.checked) {
-			this.checked=jQuery('#shortyapidiv-tinyarrow').fadeIn('fast');
+			jQuery('#shortyapidiv-tinyarrow').fadeIn('fast');
 		}
 		else {
 			jQuery('#shortyapidiv-tinyarrow').fadeOut('fast');
@@ -189,7 +177,7 @@ jQuery(document).ready(function() {
 
 	jQuery('#shortyapichk-cligs').click(function() {
 		if (this.checked) {
-			this.checked=jQuery('#shortyapidiv-cligs').fadeIn('fast');
+			jQuery('#shortyapidiv-cligs').fadeIn('fast');
 		}
 		else {
 			jQuery('#shortyapidiv-cligs').fadeOut('fast');
@@ -198,7 +186,7 @@ jQuery(document).ready(function() {
 
 	jQuery('#shortyapichk-supr').click(function() {
 		if (this.checked) {
-			this.checked=jQuery('#shortyapidiv-supr').fadeIn('fast');
+			jQuery('#shortyapidiv-supr').fadeIn('fast');
 		}
 		else {
 			jQuery('#shortyapidiv-supr').fadeOut('fast');
@@ -209,7 +197,7 @@ jQuery(document).ready(function() {
 	// Fade in/out mobile feature warning
 	jQuery('#mobile-hide').click(function() {
 		if (this.checked) {
-			this.checked=jQuery('#mobile-warn').fadeIn('fast');
+			jQuery('#mobile-warn').fadeIn('fast');
 		}
 		else {
 			jQuery('#mobile-warn').fadeOut();
@@ -219,19 +207,19 @@ jQuery(document).ready(function() {
 
 	jQuery('#position-above').click(function() {
 		if (jQuery('#info-manual').is(':visible')) {
-			this.checked=jQuery('#info-manual').fadeOut();
+			jQuery('#info-manual').fadeOut();
 		}
 	});
 
 	jQuery('#position-below').click(function() {
 		if (jQuery('#info-manual').is(':visible')) {
-			this.checked=jQuery('#info-manual').fadeOut();
+			jQuery('#info-manual').fadeOut();
 		}
 	});
 
 	jQuery('#position-manual').click(function() {
 		if (jQuery('#info-manual').is(':not(:visible)')) {
-			this.checked=jQuery('#info-manual').fadeIn('slow');
+			jQuery('#info-manual').fadeIn('slow');
 		}
 	});
 
@@ -250,35 +238,6 @@ jQuery(document).ready(function() {
 	jQuery('.boxcloser').click(function() {
 		jQuery('.sexy-donation-box').slideUp('slow');
 	});
-
-	jQuery('#yourversion .del-x').click(function() {
-		jQuery('#yourversion').fadeOut();
-	});
-
-	jQuery('div#errmessage img.del-x').click(function() {
-		jQuery('div#errmessage').fadeOut();
-	});
-
-	jQuery('div#warnmessage img.del-x').click(function() {
-		jQuery('div#warnmessage').fadeOut();
-	});
-
-	jQuery('div#statmessage img.del-x').click(function() {
-		jQuery('div#statmessage').fadeOut();
-	});
-
-	jQuery('div#clearurl img.del-x').click(function() {
-		jQuery('div#clearurl').fadeOut();
-	});
-
-	jQuery('#info-manual img.del-x').click(function() {
-		jQuery('#info-manual').fadeOut();
-	});
-
-	jQuery('#mobile-warn img.del-x').click(function() {
-		jQuery('#mobile-warn').fadeOut();
-	});
-
 
 
 

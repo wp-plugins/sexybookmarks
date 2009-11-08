@@ -205,7 +205,7 @@ function sexy_settings_page() {
 
 		if ($_POST['clearShortUrls']) {
 			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
-			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 		}
 	}
 
@@ -218,7 +218,7 @@ function sexy_settings_page() {
 				'.$error_message.'
 			</div>
 			<div class="dialog-right">
-				<img src="'.SEXY_PLUGPATH.'images/icons/error-delete.jpg" class="del-x" alt=""/>
+				<img src="'.SEXY_PLUGPATH.'images/error-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
 	} elseif ($status_message != '') {
@@ -228,7 +228,7 @@ function sexy_settings_page() {
 				'.$status_message.'
 			</div>
 			<div class="dialog-right">
-				<img src="'.SEXY_PLUGPATH.'images/icons/success-delete.jpg" class="del-x" alt=""/>
+				<img src="'.SEXY_PLUGPATH.'images/success-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
 	}
@@ -248,7 +248,7 @@ function sexy_settings_page() {
 				'.__('You are using an outdated version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.'), '.__('please update if you wish to enjoy all available features!', 'sexybookmarks').'
 			</div>
 			<div class="dialog-right">
-				<img src="'.SEXY_PLUGPATH.'images/icons/warning-delete.jpg" class="del-x" alt=""/>
+				<img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
 	} elseif (empty($status_message) && version_compare($sexy_latest_version, $sexy_your_version, '<')) {
@@ -258,13 +258,12 @@ function sexy_settings_page() {
 				'.__('You are using the development version of the plugin', 'sexybookmarks').' ('.SEXY_vNum.__(' beta', 'sexybookmarks').'), '.__('please ', 'sexybookmarks').'<a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank">'.__('let us know of any bugs', 'sexybookmarks').'</a> '.__('you may encounter!', 'sexybookmarks').
 			'</div>
 			<div class="dialog-right">
-				<img src="'.SEXY_PLUGPATH.'images/icons/information-delete.jpg" class="del-x" alt=""/>
+				<img src="'.SEXY_PLUGPATH.'images/information-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
 	} else {
 		// No action taken since they are obviously the same version
 	}
-echo $thatstuff;
 ?>
 
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
@@ -301,7 +300,7 @@ echo $thatstuff;
 								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" /><?php _e('Yes', 'sexybookmarks'); ?></label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" /><?php _e('Cancel', 'sexybookmarks'); ?></label>
 							</div>
 						</div>
-						<div id="twitter-defaults">
+						<div id="twitter-defaults"<?php if(!in_array('sexy-twitter', $sexy_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
 							<h3><?php _e('Twitter Options:', 'sexybookmarks'); ?></h3>
 							<label for="twittid"><?php _e('Twitter ID:', 'sexybookmarks'); ?></label>
 							<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
@@ -392,7 +391,7 @@ echo $thatstuff;
 							</div>
 						<div class="clearbig"></div>
 						</div>
-						<div id="ybuzz-defaults">
+						<div id="ybuzz-defaults"<?php if(!in_array('sexy-yahoobuzz', $sexy_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
 							<h3><?php _e('Yahoo! Buzz Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="ybuzzcat"><?php _e('Default Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="ybuzzcat" id="ybuzzcat">
@@ -427,7 +426,7 @@ echo $thatstuff;
 							</select>
 						<div class="clearbig"></div>
 						</div>
-						<div id="twittley-defaults">
+						<div id="twittley-defaults"<?php if(!in_array('sexy-twittley', $sexy_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
 							<h3><?php _e('Twittley Defaults:', 'sexybookmarks'); ?></h3>
 							<label for="twittcat"><?php _e('Primary Content Category:', 'sexybookmarks'); ?> </label>
 							<select name="twittcat" id="twittcat">
@@ -492,7 +491,7 @@ echo $thatstuff;
 							<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
 							<p><?php _e('This option is intended ', 'sexybookmarks'); ?><strong><?php _e('STRICTLY', 'sexybookmarks'); ?></strong><?php _e(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.', 'sexybookmarks'); ?></p>
 							<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
-							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it just created on your server. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
+							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
 							<ul>
 								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods'; ?></a></li>
 								<li class="custom-mods-folder"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css'; ?></a></li>
@@ -586,7 +585,7 @@ echo $thatstuff;
 								<?php _e('Need help with this? Find it in the ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/documentation/usage-installation"> <?php _e('official install guide', 'sexybookmarks'); ?></a>.
 							</div>
 							<div class="dialog-right">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/information-delete.jpg" class="del-x" alt=""/>
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/information-delete.jpg" class="del-x" alt=""/>
 							</div>
 						</div>
 						<div class="dialog-box-warning" id="mobile-warn">
@@ -594,7 +593,7 @@ echo $thatstuff;
 								<?php _e('This feature is still in the experimental phase, so please ', 'sexybookmarks'); ?><a href="http://sexybookmarks.net/contact-forms/bug-form"><?php _e('report any bugs', 'sexybookmarks'); ?></a> <?php _e('you may find', 'sexybookmarks'); ?>.
 							</div>
 							<div class="dialog-right">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/icons/warning-delete.jpg" class="del-x" alt=""/>
+								<img src="<?php echo SEXY_PLUGPATH; ?>images/warning-delete.jpg" class="del-x" alt=""/>
 							</div>
 						</div>
 						<span class="sexy_option"><?php _e('Menu Location (in relevance to content):', 'sexybookmarks'); ?></span>
@@ -812,7 +811,7 @@ function sexy_upgrade_notice(){
 	$sexy_latest_version = $sexy_plug_api->version;
 	$sexy_your_version = SEXY_vNum;
 	if (version_compare($sexy_latest_version, $sexy_your_version, '>')) {
-		echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/icons/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />'.__("You're using an outdated version of SexyBookmarks!", "sexybookmarks").' (<strong>v'.SEXY_vNum.'</strong>) '.__("Please update to the latest version", "sexybookmarks").' <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$sexy_latest_version.'</strong></a>'.__(" to help reduce support requests.", "sexybookmarks").'</p></div>';
+		echo '<div class="error fade below-h2 update-message" style="background:#FFEBE8 !important;margin-top:30px !important;"><p><img src="'.SEXY_PLUGPATH.'images/error.png" style="border:0;padding:0;margin:0 5px -3px 0 !important;" />'.__("You're using an outdated version of SexyBookmarks!", "sexybookmarks").' (<strong>v'.SEXY_vNum.'</strong>) '.__("Please update to the latest version", "sexybookmarks").' <a href="http://wordpress.org/extend/plugins/sexybookmarks/download/"><strong>v'.$sexy_latest_version.'</strong></a>'.__(" to help reduce support requests.", "sexybookmarks").'</p></div>';
 	}
 }
 

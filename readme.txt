@@ -1,67 +1,74 @@
 === SexyBookmarks ===
 Contributors: eight7teen, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9007080
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
-Tested up to: 2.8.4
+Tested up to: 2.8.5
 Stable tag: 2.5.5.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
-Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
+Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
 
+Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
+= Recent Updates / Fixes =
+* Optimized/Reduced file sizes
+* Plugin now uses sprite for all icons in dashboard
+* Custom mods feature added to prevent mods from being lost during upgrade
+* Got rid of feedity and replaced top contributors list with custom function
+* Optimized dashboard jQuery functions to be less redundant
+* Added wishlist to sidebar
 
-= Recent Updates =
-* SexyBookmarks now only loads it's CSS/JS if the menu is being displayed on a particular page/post
-* Added a jQuery compatibility fix for those of you who have had trouble with jQuery related issues
-* Short URLs are now only generated once a post is published
-* Fixed validity of links added in last release
-* Fixed a couple small dashboard bugs (mostly jQuery related)
-* Added Italian translation
-* Updated readme with new info
-* Fixed issue with Twitter link breaking if title includes quotes
-* Updated default translation files
-* Added new screenshots
-
-= Recent Additions =
-* Added Sphinn
-* Added Fleck
-* Added Xerpi
-* Added Netvibes
-* Added Netvouz
-* Added NUjij
-* Added GlobalGrind
-* Added Wikio
-* Added Blogosphere News
-* Added Posterous
-* Added Techmeme
-* Added eKudos
-* Added Ping.fm
-* Added ToMuse
-* Reinstated email link with simple mailto
+= Recently Added Sites =
+* TheWebBlend
+* Wykop
+* BlogEngage
+* Hyves
+* Pusha
+* Hatena Bookmarks
+* MyLinkVault
+* SlashDot
+* Squidoo
+* Propeller
+* FAQpal
+* Evernote
+* Meneame
+* Bitacoras
+* JumpTags
+* Bebo
+* N4G
 
 
 
 
-== Credits ==
+== Special Thanks & Credits ==
+The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
+
+Listed below are credits and thanks to some of you who have helped us out a great deal:
+
+= Translations =
 * Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
 * Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
 * Credit goes to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
 * Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
+* Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
+* Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
+
 
 
 
 = Thanks =
-* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core [WP-Social-Bookmark-Menu](http://wordpress.org/extend/plugins/wp-social-bookmark-menu)
+* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
-* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work sitewide with a single instance of the menu
-* Thanks to [Artem Russakovskii](http://beerpla.net) for figuring out the solution to restrict the loading of scripts and styles to the plugin's admin page only
+* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
+* Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
 * Thanks to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
-* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for fixing the bit.ly bug
+* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
+* Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 
 
 
@@ -126,6 +133,31 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.0 =
+* Optimized/Reduced file sizes
+* Plugin now uses sprite for all icons in dashboard
+* Custom mods feature added to prevent mods from being lost during upgrade
+* Got rid of feedity and replaced top contributors list with custom function
+* Optimized dashboard jQuery functions to be less redundant
+* Added wishlist to sidebar
+* Added TheWebBlend
+* Added Wykop
+* Added BlogEngage
+* Added Hyves
+* Added Pusha
+* Added Hatena Bookmarks
+* Added MyLinkVault
+* Added SlashDot
+* Added Squidoo
+* Added Propeller
+* Added FAQpal
+* Added Evernote
+* Added Meneame
+* Added Bitacoras
+* Added JumpTags
+* Added Bebo
+* Added N4G
+
 = 2.5.5.1 =
 * Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
 
