@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.6.0
+Version: 2.6.0.2
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -31,24 +31,39 @@ Author URI: http://blog2life.net
 // Create Text Domain For Translations
 load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/languages/');
 
-define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.6.0.2');
-define('SEXY_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-define('SEXY_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 
-// defining json_en/decode functions for PHP 4 users. Boooooooooo!
-if (!function_exists('json_decode') && !function_exists('json_encode')) {
-	require_once 'includes/JSON.php';
-	function json_decode($content, $assoc=false) {
-		if ($assoc) {
+define('SEXY_OPTIONS','SexyBookmarks');
+define('SEXY_vNum','2.6.0');
+define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
+define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
+
+
+// Check for location modifications in wp-config
+// Then define accordingly
+if ( !defined('WP_CONTENT_URL') ) {
+	define('SEXY_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+	define('SEXY_PLUGDIR', ABSPATH.'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+} else {
+	define('SEXY_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+	define('SEXY_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+}
+
+
+if ( !function_exists('json_decode') ){
+	function json_decode($content, $assoc=false){
+		require_once 'includes/JSON.php';
+		if ( $assoc ){
 			$json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
 		} else {
 			$json = new Services_JSON;
 		}
         return $json->decode($content);
 	}
+}
 
+if ( !function_exists('json_encode') ){
     function json_encode($content){
+		require_once 'includes/JSON.php';
 		$json = new Services_JSON;
         return $json->encode($content);
     }
@@ -56,6 +71,7 @@ if (!function_exists('json_decode') && !function_exists('json_encode')) {
 
 // contains all bookmark templates.
 require_once 'includes/bookmarks-data.php';
+
 // helper functions for html output.
 require_once 'includes/html-helpers.php';
 
@@ -87,13 +103,15 @@ $sexy_plugopts = array(
 //add to database
 add_option(SEXY_OPTIONS, $sexy_plugopts);
 
-//reload from DB
+//reload
 $sexy_plugopts = get_option(SEXY_OPTIONS);
+
 
 //write settings page
 function sexy_settings_page() {
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
+
 
 	// create folders for custom mods
 	// then copy original files into new folders
