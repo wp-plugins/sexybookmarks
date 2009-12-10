@@ -7,10 +7,7 @@ $sexy_is_bot = sexy_is_bot();
 
 //cURL, file get contents or nothing, used for short url
 function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null) {
-	if(function_exists('wp_remote_get')) {
-		wp_remote_retrieve_body(wp_remote_get($url));
-	} 
-	elseif (function_exists('curl_init')) {
+	if (function_exists('curl_init')) {
 		// Use cURL
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
