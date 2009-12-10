@@ -199,7 +199,7 @@ $sexy_bookmarks_data=array(
 	'sexy-identica'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Identica', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Post this to ', 'sexybookmarks').__('Identica', 'sexybookmarks'),
-		'baseUrl'=>'http://identi.ca//index.php?action=newnotice&amp;status_textarea=Reading:+&quot;TITLE&quot;+-+from+PERMALINK',
+		'baseUrl'=>'http://identi.ca//index.php?action=newnotice&amp;status_textarea=Reading:+&quot;SHORT_TITLE&quot;+-+from+FETCH_URL',
 	),
 	'sexy-xerpi'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Xerpi', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
@@ -265,6 +265,91 @@ $sexy_bookmarks_data=array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Blogosphere News', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').__('Blogosphere News', 'sexybookmarks'),
 		'baseUrl'=>'http://www.blogospherenews.com/submit.php?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-webblend'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Web Blend', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Blend this!', 'sexybookmarks'),
+		'baseUrl'=>'http://thewebblend.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
+	),
+	'sexy-wykop'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Wykop', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Polish)', 'sexybookmarks'),
+		'share'=>__('Add this to Wykop!', 'sexybookmarks'),
+		'baseUrl'=>'http://www.wykop.pl/dodaj?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-blogengage'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('BlogEngage', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Engage with this article!', 'sexybookmarks'),
+		'baseUrl'=>'http://www.blogengage.com/submit.php?url=PERMALINK',
+	),
+	'sexy-hyves'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Hyves', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Hyves', 'sexybookmarks'),
+		'baseUrl'=>'http://www.hyves.nl/profilemanage/add/tips/?name=TITLE&amp;text=POST_SUMMARY+-+PERMALINK&amp;rating=5',
+	),
+	'sexy-pusha'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Pusha', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Swedish)', 'sexybookmarks'),
+		'share'=>__('Push this on ', 'sexybookmarks').__('Pusha', 'sexybookmarks'),
+		'baseUrl'=>'http://www.pusha.se/posta?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-hatena'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Hatena Bookmarks', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Japanese)', 'sexybookmarks'),
+		'share'=>__('Bookmarks this on ', 'sexybookmarks').__('Hatena Bookmarks', 'sexybookmarks'),
+		'baseUrl'=>'http://b.hatena.ne.jp/add?mode=confirm&amp;url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-mylinkvault'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('MyLinkVault', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Store this link on ', 'sexybookmarks').__('MyLinkVault', 'sexybookmarks'),
+		'baseUrl'=>'http://www.mylinkvault.com/link-page.php?u=PERMALINK&amp;n=TITLE',
+	),
+	'sexy-slashdot'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('SlashDot', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('SlashDot', 'sexybookmarks'),
+		'baseUrl'=>'http://slashdot.org/bookmark.pl?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-squidoo'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Squidoo', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Add to a lense on ', 'sexybookmarks').__('Squidoo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.squidoo.com/lensmaster/bookmark?PERMALINK',
+	),
+	'sexy-propeller'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Propeller', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this story to ', 'sexybookmarks').__('Propeller', 'sexybookmarks'),
+		'baseUrl'=>'http://www.propeller.com/submit/?url=PERMALINK',
+	),
+	'sexy-faqpal'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('FAQpal', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('FAQpal', 'sexybookmarks'),
+		'baseUrl'=>'http://www.faqpal.com/submit?url=PERMALINK',
+	),
+	'sexy-evernote'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Evernote', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Clip this to ', 'sexybookmarks').__('Evernote', 'sexybookmarks'),
+		'baseUrl'=>'http://www.evernote.com/clip.action?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-meneame'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Meneame', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Spanish)', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Meneame', 'sexybookmarks'),
+		'baseUrl'=>'http://meneame.net/submit.php?url=PERMALINK',
+	),
+	'sexy-bitacoras'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Bitacoras', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks').__(' (Spanish)', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Bitacoras', 'sexybookmarks'),
+		'baseUrl'=>'http://bitacoras.com/anotaciones/PERMALINK',
+	),
+	'sexy-jumptags'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('JumpTags', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit this link to ', 'sexybookmarks').__('JumpTags', 'sexybookmarks'),
+		'baseUrl'=>'http://www.jumptags.com/add/?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-bebo'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Bebo', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Bebo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.bebo.com/c/share?Url=PERMALINK&amp;Title=TITLE',
+	),
+	'sexy-n4g'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('N4G', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit tip to ', 'sexybookmarks').__('N4G', 'sexybookmarks'),
+		'baseUrl'=>'http://www.n4g.com/tips.aspx?url=PERMALINK&amp;title=TITLE',
 	),
 );
 ?>

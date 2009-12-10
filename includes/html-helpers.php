@@ -1,4 +1,5 @@
 <?php
+//list all bookmarks in the plugin options page
 function sexy_network_input_select($name, $hint) {
 	global $sexy_plugopts;
 	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /></label>',
@@ -42,7 +43,7 @@ function sexy_select_option_group($field, $options) {
 	return $h;
 }
 
-
+// function to list bookmarks that have been chosen by admin
 function bookmark_list_item($name, $opts=array()) {
 	global $sexy_plugopts, $sexy_bookmarks_data;
 
@@ -52,7 +53,7 @@ function bookmark_list_item($name, $opts=array()) {
 	}
 	
 	return sprintf(
-		'<li class="%s"><a href="%s" rel="%s"%s title="%s">%s</a></li>',
+		"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s">%s</a>'."\n\t\t".'</li>'."\n",
 		$name,
 		$url,
 		$sexy_plugopts['reloption'],
@@ -61,6 +62,5 @@ function bookmark_list_item($name, $opts=array()) {
 		$sexy_bookmarks_data[$name]['share']
 	);
 }
-
 
 ?>
