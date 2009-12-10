@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.9
-Stable tag: 2.6.0.1
+Stable tag: 2.6.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -14,6 +14,7 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* Removed all API requests
 * Optimized/Reduced file sizes
 * Plugin now uses sprite for all icons in dashboard
 * Custom mods feature added to prevent mods from being lost during upgrade
@@ -138,6 +139,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
 * Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occured during the API request" error.
 * Removed some old warnings/errors that are no longer needed.
+* Solved the riddle of the disappearing footers/sidebars (I think)
 * Better optimized the dashboard and image sprites
 * I believe this version fixes the problem with bitly creating massive amounts of short URLs for each post, but only time and trial by fire will tell...
 * Also added Orkut
