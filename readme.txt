@@ -19,7 +19,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Custom mods feature added to prevent mods from being lost during upgrade
 * Got rid of feedity and replaced top contributors list with custom function
 * Optimized dashboard jQuery functions to be less redundant
-* Added wishlist to sidebar
+
 
 = Recently Added Sites =
 * TheWebBlend
@@ -133,6 +133,13 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.1 =
+* This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
+* Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occured during the API request" error.
+* Removed some old warnings/errors that are no longer needed.
+* Better optimized the dashboard and image sprites
+* I believe this version fixes the problem with bitly creating massive amounts of short URLs for each post, but only time and trial by fire will tell...
+
 = 2.6.0.1 =
 * This is actually a rollback release back to 2.5.5.1 due to the very unstable nature of 2.6.0. I'll look into that soon. Sorry for having you all update more than once within such a short span of time. we're having growing pains. --norman
 
