@@ -22,6 +22,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recently Added Sites =
+* Orkut
 * TheWebBlend
 * Wykop
 * BlogEngage
@@ -139,6 +140,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Removed some old warnings/errors that are no longer needed.
 * Better optimized the dashboard and image sprites
 * I believe this version fixes the problem with bitly creating massive amounts of short URLs for each post, but only time and trial by fire will tell...
+* Also added Orkut
 
 = 2.6.0.1 =
 * This is actually a rollback release back to 2.5.5.1 due to the very unstable nature of 2.6.0. I'll look into that soon. Sorry for having you all update more than once within such a short span of time. we're having growing pains. --norman

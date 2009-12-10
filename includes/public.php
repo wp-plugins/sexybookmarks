@@ -6,7 +6,7 @@ $sexy_is_mobile = sexy_is_mobile();
 $sexy_is_bot = sexy_is_bot();
 
 //cURL, file get contents or nothing, used for short url
-function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null) {
+function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
 	if (function_exists('curl_init')) {
 		// Use cURL
 		$ch = curl_init();
@@ -21,34 +21,44 @@ function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null) {
 		$source = trim(curl_exec($ch));
 		curl_close($ch);
 		
-	} 
-	elseif (function_exists('file_get_contents')) { 
+	} elseif (function_exists('file_get_contents')) { 
 		// Use file_get_contents()
 		$source = trim(file_get_contents($url));
-	} 
-	else {
+	} else {
 		$source = null;
 	}
 	return $source;
 }
 
 function sexy_get_fetch_url() {
-	global $post, $sexy_plugopts;
+	global $post, $sexy_plugopts; //globals
+	
+	//get link
 	if($sexy_plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
 	else { $perms = get_permalink(); }
-
-	$fetch_url = get_post_meta($post->ID, '_sexybookmarks_shortUrl', true);
-	// If neccessary, fetch and store
-	if ((empty($fetch_url) || md5($perms) != get_post_meta($post->ID, '_sexybookmarks_permaHash', true)) && get_post_status($post->ID) == 'publish') {
+	$perms = trim($perms);
+	
+	//if is post, and post is not published then return permalink and go back
+	if($post && get_post_status($post->ID) != 'publish'){
+		return $perms;
+	}
+	
+	//check if the link is already genereted or not, if yes, then return the link
+	$fetch_url = trim(get_post_meta($post->ID, '_sexybookmarks_shortUrl', true));
+	if(!is_null($fetch_url) && md5($perms) == trim(get_post_meta($post->ID, '_sexybookmarks_permaHash', true))){
+		return $fetch_url;
+	}else{
+		//some vars to be used later, so better set null values before
 		$url_more = "";
 		$use_POST_method = false;
 		$POST_data = null;
+		
 		// Which short url service should be used?
 		if($sexy_plugopts['shorty'] == "e7t") {
 			//e7t.us no longer exists, this only here for backwards compatibility
 			//to prevent users from having to update their short URLs if they had e7t.us selected
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-		}elseif($sexy_plugopts['shorty'] == "b2l") {
+		} elseif($sexy_plugopts['shorty'] == "b2l") {
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 		} elseif($sexy_plugopts['shorty'] == "tiny") {
 			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
@@ -58,25 +68,25 @@ function sexy_get_fetch_url() {
 			$POST_data = "snipformat=simple&sniplink=".rawurlencode($perms)."&snipuser=".$sexy_plugopts['shortyapi']['snip']['user']."&snipapi=".$sexy_plugopts['shortyapi']['snip']['key'];
 		} elseif($sexy_plugopts['shorty'] == "cligs") {
 			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
-			if($sexy_plugopts['shortyapi']['cligs']['chk'] == 1){
+			if($sexy_plugopts['shortyapi']['cligs']['chk'] == 1){ //if user custom options are set
 				$first_url .= "&key=".$sexy_plugopts['shortyapi']['cligs']['key'];
 			}
 		} elseif($sexy_plugopts['shorty'] == "supr") {
 			$first_url = "http://su.pr/api/simpleshorten?url=".$perms;
-			if($sexy_plugopts['shortyapi']['supr']['chk'] == 1){
+			if($sexy_plugopts['shortyapi']['supr']['chk'] == 1){ //if user custom options are set
 				$first_url .= "&login=".$sexy_plugopts['shortyapi']['supr']['user']."&apiKey=".$sexy_plugopts['shortyapi']['supr']['key'];
 			}
 		} elseif($sexy_plugopts['shorty'] == "bitly") {
 			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
 		} elseif($sexy_plugopts['shorty'] == "trim"){
-			if($sexy_plugopts['shortyapi']['trim']['chk'] == 1){
+			if($sexy_plugopts['shortyapi']['trim']['chk'] == 1){ //if user custom options are set
 				$first_url = "http://api.tr.im/api/trim_url.json?url=".$perms."&username=".$sexy_plugopts['shortyapi']['trim']['user']."&password=".$sexy_plugopts['shortyapi']['trim']['pass'];
 			}else{
 				$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
 			}
 		} elseif($sexy_plugopts['shorty'] == "tinyarrow") {
 			$first_url = "http://tinyarro.ws/api-create.php?";
-			if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1){
+			if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1){ //if user custom options are set
 				$first_url .= "&userid=".$sexy_plugopts['shortyapi']['tinyarrow']['user'];
 			}
 			$first_url .= "&url=".$perms;
@@ -92,6 +102,7 @@ function sexy_get_fetch_url() {
 		// Retrieve the shortened URL
 		$fetch_url = trim(sexy_nav_browse($first_url, $use_POST_method, $POST_data)); //trim again
 		
+		//if trim or bitly, then decode the json string
 		if($sexy_plugopts['shorty'] == "trim" && $sexy_plugopts['shortyapi']['trim']['chk'] == 1){
 			$fetch_array = json_decode($fetch_url, true);
 			$fetch_url = $fetch_array['url'];
@@ -101,7 +112,7 @@ function sexy_get_fetch_url() {
 			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
 		}
 
-		if (!empty($fetch_url)) { 
+		if (!empty($fetch_url)) {
 			// Remote call made and was successful
 			// Add/update values
 			// Tries to update first, then add if field does not already exist
@@ -114,8 +125,6 @@ function sexy_get_fetch_url() {
 		} else {
 			$fetch_url = $perms;
 		}
-	}else{
-		$fetch_url = $perms;
 	}
 	return $fetch_url;
 }
@@ -234,6 +243,7 @@ function get_sexy() {
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
 	$t_cat = $sexy_plugopts['twittcat'];
+	$fetch_url = sexy_get_fetch_url();
 
 
 	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
@@ -302,13 +312,13 @@ function get_sexy() {
 
 	//Write the sexybookmarks menu
 	$socials = "\n\n".'<!-- Begin SexyBookmarks Menu Code -->'."\n";
-	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n\t".'<ul class="socials">'."\n";
+	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n".'<ul class="socials">'."\n";
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		if ($name=='sexy-twitter') {
 			$socials.=bookmark_list_item($name, array(
 				'post_by'=>(!empty($sexy_plugopts['twittid']))?"(via+@".$sexy_plugopts['twittid'].")":'',
 				'short_title'=>$short_title,
-				'fetch_url'=>sexy_get_fetch_url(),
+				'fetch_url'=>$fetch_url,
 			));
 	    }
 		elseif ($name=='sexy-blogengage') {
@@ -319,7 +329,7 @@ function get_sexy() {
 		elseif ($name=='sexy-identica') {
 			$socials.=bookmark_list_item($name, array(
 				'short_title'=>$short_title,
-				'fetch_url'=>sexy_get_fetch_url(),
+				'fetch_url'=>$fetch_url,
 			));
 	    }
 		elseif ($name=='sexy-mail') {
@@ -437,6 +447,13 @@ function get_sexy() {
 				'title'=>$title,
 			));
 		}
+		elseif ($name=='sexy-orkut') {
+			$socials.=bookmark_list_item($name, array(
+				'post_summary'=>$post_summary,
+				'permalink'=>$perms,
+				'title'=>$title,
+			));
+		}
 		else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,
@@ -444,7 +461,7 @@ function get_sexy() {
 			));
 		}
 	}
-	$socials.="\t".'</ul>'."\n\t".'<div style="clear:both;"></div>'."\n".'</div>';
+	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
 	$socials.="\n".'<!-- End SexyBookmarks Menu Code -->'."\n\n";
 
 	return $socials;
