@@ -243,7 +243,14 @@ function get_sexy() {
 	$y_cat = $sexy_plugopts['ybuzzcat'];
 	$y_med = $sexy_plugopts['ybuzzmed'];
 	$t_cat = $sexy_plugopts['twittcat'];
-	$fetch_url = sexy_get_fetch_url();
+	
+	// Fix for faulty insertion of TFLP function above
+	if($sexy_plugopts['shorty'] == "tflp" && function_exists('permalink_to_twitter_link')) {
+		$fetch_url = permalink_to_twitter_link($perms);
+	}
+	else {
+		$fetch_url = sexy_get_fetch_url();
+	}
 
 
 	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
