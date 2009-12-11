@@ -351,6 +351,11 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Submit tip to ', 'sexybookmarks').__('N4G', 'sexybookmarks'),
 		'baseUrl'=>'http://www.n4g.com/tips.aspx?url=PERMALINK&amp;title=TITLE',
 	),
+	'sexy-strands'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Strands', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Submit tip to ', 'sexybookmarks').__('N4G', 'sexybookmarks'),
+		'baseUrl'=>'http://www.strands.com/tools/share/webpage?title=TITLE&url=PERMALINK',
+	),
 	'sexy-orkut'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Orkut', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Promote this on ', 'sexybookmarks').__('Orkut', 'sexybookmarks'),
