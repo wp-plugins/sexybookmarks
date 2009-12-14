@@ -14,6 +14,8 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* Added updated IT translation
+* Added Turkish Translation
 * Removed all API requests
 * Optimized/Reduced file sizes
 * Plugin now uses sprite for all icons in dashboard
@@ -23,24 +25,11 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recently Added Sites =
-* Orkut
-* TheWebBlend
-* Wykop
-* BlogEngage
-* Hyves
-* Pusha
-* Hatena Bookmarks
-* MyLinkVault
-* SlashDot
-* Squidoo
-* Propeller
-* FAQpal
-* Evernote
-* Meneame
-* Bitacoras
-* JumpTags
-* Bebo
-* N4G
+* Strands
+* Tumblr
+* Stumpedia
+* Current
+* Blogger
 
 
 
@@ -57,6 +46,8 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
 * Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
 * Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
+* Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
+* Credit goes to [Ömer Taylan Tu?ut](http://www.tuguts.com) for translation to Turkish
 
 
 
@@ -68,7 +59,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
 * Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
 * Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Thanks to [Gautam Gupta](http://gaut.am/) for figuring out the extremely annoying Twitter encoding bug!
+* Thanks to [Gautam Gupta](http://gaut.am/) for countless bug patches as well as porting SB to bbPress!
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 
@@ -135,6 +126,15 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.6.1 =
+* Added Turkish translation
+* Added and upated Italian translation
+* Added Tumblr
+* Added Strands
+* Added Stumpedia
+* Added Current
+* Added Blogger
+
 = 2.6.1 =
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
 * Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occured during the API request" error.

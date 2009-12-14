@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.6.1
+Version: 2.6.1.1
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -33,7 +33,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.6.1');
+define('SEXY_vNum','2.6.1.1');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -659,7 +659,7 @@ function sexy_settings_page() {
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<h3 class="fugue f-flags"><?php _e('Translations', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-flags"><?php _e('Translation Contributors', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
@@ -670,6 +670,8 @@ function sexy_settings_page() {
 					<li><a href="http://chepelle.altervista.org/wordpress"><?php _e('IT Translation: Carlo Veltri', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://cpcdisseny.net"><?php _e('ES Translation: Javier Pimienta', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.keege.com"><?php _e('CN Translation: Joojen', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.giovannizuccaro.it"><?php _e('IT Translation: Giovanni Zuccaro', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.tuguts.com"><?php _e('TR Translation: &#214;mer Taylan Tu&#287;ut', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
