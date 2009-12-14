@@ -353,13 +353,33 @@ $sexy_bookmarks_data=array(
 	),
 	'sexy-strands'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Strands', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
-		'share'=>__('Submit tip to ', 'sexybookmarks').__('N4G', 'sexybookmarks'),
+		'share'=>__('Submit this to ', 'sexybookmarks').__('Strands', 'sexybookmarks'),
 		'baseUrl'=>'http://www.strands.com/tools/share/webpage?title=TITLE&url=PERMALINK',
 	),
 	'sexy-orkut'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Orkut', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Promote this on ', 'sexybookmarks').__('Orkut', 'sexybookmarks'),
 		'baseUrl'=>'http://promote.orkut.com/preview?nt=orkut.com&amp;tt=TITLE&amp;du=PERMALINK&amp;cn=POST_SUMMARY',
+	),
+	'sexy-tumblr'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Tumblr', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Tumblr', 'sexybookmarks'),
+		'baseUrl'=>'http://www.tumblr.com/share?v=3&amp;u=PERMALINK&amp;t=TITLE',
+	),
+	'sexy-stumpedia'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Stumpedia', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Add this to ', 'sexybookmarks').__('Stumpedia', 'sexybookmarks'),
+		'baseUrl'=>'http://www.stumpedia.com/submit?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-current'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Current', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Post this to ', 'sexybookmarks').__('Current', 'sexybookmarks'),
+		'baseUrl'=>'http://current.com/clipper.htm?url=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-blogger'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Blogger', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Blog this on ', 'sexybookmarks').__('Blogger', 'sexybookmarks'),
+		'baseUrl'=>'http://www.blogger.com/blog_this.pyra?t&amp;u=PERMALINK&amp;n=TITLE&amp;pli=1',
 	),
 );
 ?>
