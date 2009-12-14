@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SexyBookmarks v2.6.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-14 10:40-0600\n"
+"POT-Creation-Date: 2009-12-14 11:01-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Josh <josh.jones.mail@gmail.com>\n"
 "Language-Team: Josh Jones, Norman Yung\n"
@@ -414,7 +414,7 @@ msgid "bit.ly bug fix: Konstantin Kovshenin"
 msgstr ""
 
 #: sexy-bookmarks.php:662
-msgid "Translations"
+msgid "Translation Contributors"
 msgstr ""
 
 #: sexy-bookmarks.php:667
@@ -439,6 +439,14 @@ msgstr ""
 
 #: sexy-bookmarks.php:672
 msgid "CN Translation: Joojen"
+msgstr ""
+
+#: sexy-bookmarks.php:673
+msgid "IT Translation: Giovanni Zuccaro"
+msgstr ""
+
+#: sexy-bookmarks.php:674
+msgid "TR Translation: &#214;mer Taylan Tu&#287;ut"
 msgstr ""
 
 #: includes/bookmarks-data.php:5
