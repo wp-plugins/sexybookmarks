@@ -461,6 +461,12 @@ function get_sexy() {
 				'title'=>$title,
 			));
 		}
+		elseif ($name=='sexy-tumblr') {
+			$socials.=bookmark_list_item($name, array(
+				'permalink'=>urlencode($perms),
+				'title'=>$title,
+			));
+		}
 		else {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>$perms,

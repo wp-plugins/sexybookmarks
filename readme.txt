@@ -14,6 +14,8 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* Fixed compatibility problem with other plugins using JSON class for PHP4
+* Added double URL encoding for Tumblr link
 * Added updated IT translation
 * Added Turkish Translation
 * Removed all API requests
@@ -126,7 +128,11 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.6.6.1 =
+= 2.6.1.2 =
+* Added double URL encoding for Tumblr link
+* Fixed compatibility problem with other plugins using JSON class for PHP4
+
+= 2.6.1.1 =
 * Added Turkish translation
 * Added and upated Italian translation
 * Added Tumblr
