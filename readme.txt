@@ -14,6 +14,7 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* Added Danish translation
 * Fixed dashboard styling in IE
 * Removed sidebar ads
 * Added new plugin sponsorship network
@@ -23,6 +24,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recently Added Sites =
+* Plurk
 * Strands
 * Tumblr
 * Stumpedia
@@ -47,6 +49,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
 * Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
 * Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
+* Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
 
 
 
@@ -125,6 +128,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 == Changelog ==
 = 2.6.1.2 =
+* Added Plurk
+* Added Danish translation
 * Fixed dashboard styling in IE
 * Removed sidebar ads
 * Added new plugin sponsorship network

@@ -631,16 +631,16 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 					<input type="hidden" name="cmd" value="_donations" />
 					<input type="hidden" name="business" value="B7A62V9HWUA7N" />
-					<input type="hidden" name="item_name" value="SexyBookmarks Development Support" />
+					<input type="hidden" name="item_name" value="<?php _e('SexyBookmarks Development Support' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="no_shipping" value="0">
 					<input type="hidden" name="no_note" value="0">
-					<input type="hidden" name="cn" value="Please enter the URL you'd like me to link to if you are a top contributor." />
+					<input type="hidden" name="cn" value="<?php _e("Please enter the URL you'd like me to link to if you are a top contributor.", "sexyboomarks"); ?>" />
 					<input type="hidden" name="return" value="<?php get_sexy_current_location(); ?>" />
-					<input type="hidden" name="cbt" value="Return to Your Dashboard" />
+					<input type="hidden" name="cbt" value="<?php _e('Return to Your Dashboard' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="currency_code" value="USD">
 					<input type="hidden" name="lc" value="US">
 					<input type="hidden" name="bn" value="PP-BuyNowBF">
-					<label>Select Preset Amount? 
+					<label><?php _e('Select Preset Amount? ', 'sexybookmarks'); ?>
 					<span>$</span> <select name="amount" id="preset-amounts">
 						<option value="10">10</option>
 						<option value="20" selected>20</option>
@@ -653,7 +653,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 						<option value="400">400</option>
 						<option value="500">500</option>
 					</select> <span>USD</span></label><br /><br />
-					<label>Enter Custom Amount? <span>$</span> <input type="text" name="amount" size="4" id="custom-amounts"> <span>USD</span></label>
+					<label><?php _e('Enter Custom Amount?', 'sexybookmarks'); ?> <span>$</span> <input type="text" name="amount" size="4" id="custom-amounts"> <span>USD</span></label>
 					<br /><br />
 					<input type="submit" value="Pay with PayPal!" class="payment">
 				</form>
@@ -711,6 +711,8 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://www.keege.com"><?php _e('CN Translation: Joojen', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.giovannizuccaro.it"><?php _e('IT Translation: Giovanni Zuccaro', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.tuguts.com"><?php _e('TR Translation: &#214;mer Taylan Tu&#287;ut', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://gwegner.de"><?php _e('DE Translation: Gunther Wegner', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://hardwareblog.dk"><?php _e('da-DK Translation: Mads Floe', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>

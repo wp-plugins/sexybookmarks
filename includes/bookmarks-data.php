@@ -109,7 +109,7 @@ $sexy_bookmarks_data=array(
 	'sexy-misterwong'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Mister Wong', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').__('Mister Wong', 'sexybookmarks'),
-		'baseUrl'=>'http://'.__('www.mister-wong.com', 'sexybookmarks').'/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=sexybookmarks',
+		'baseUrl'=>'http://www.mister-wong.com/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=sexybookmarks',
 	),
 	'sexy-izeby'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Izeby', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
@@ -380,6 +380,11 @@ $sexy_bookmarks_data=array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Blogger', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Blog this on ', 'sexybookmarks').__('Blogger', 'sexybookmarks'),
 		'baseUrl'=>'http://www.blogger.com/blog_this.pyra?t&amp;u=PERMALINK&amp;n=TITLE&amp;pli=1',
+	),
+	'sexy-plurk'=>array(
+		'check'=>__('Check this box to include ', 'sexybookmarks').__('Plurk', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Plurk', 'sexybookmarks'),
+		'baseUrl'=>'http://www.plurk.com/m?content=TITLE+-+PERMALINK&qualifier=shares',
 	),
 );
 ?>

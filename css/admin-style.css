@@ -1,5 +1,5 @@
 /* General Styles */
-.sexylogo { text-indent:-999em; width:264px; height:47px; background:url('../images/sexy-logo.png') no-repeat 0 0; }
+.sexylogo { text-indent:-999em; width:391px; height:90px; background:url('../images/sexy-logo.png') no-repeat 0 0; }
 #xtrastyle {	height:120px; width:100%; }
 #clearShortUrlsLabel { font-size:11px; height:14px; line-height:14px; }
 #clearShortUrls {margin-right:4px;}
@@ -188,6 +188,7 @@ label.sexy-tumblr { background-position:-5110px top !important; }
 label.sexy-stumpedia { background-position:-5180px top !important; }
 label.sexy-current { background-position:-5250px top !important; }
 label.sexy-blogger { background-position:-5320px top !important; }
+label.sexy-plurk { background-position:-5390px top !important; }
 
 ul.multi-selection {
 	list-style:none;
