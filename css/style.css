@@ -1,12 +1,13 @@
 div.sexy-bookmarks { margin:20px 0 0 0; clear: both !important; }
 div.sexy-bookmarks-expand { height: 29px; overflow: hidden; }
-.sexy-bookmarks-bg-sexy, .sexy-bookmarks-bg-caring, .sexy-bookmarks-bg-caring-old, .sexy-bookmarks-bg-love, .sexy-bookmarks-bg-wealth, .sexy-bookmarks-bg-enjoy { background:url('../images/sexy-trans.png') no-repeat !important; }
+.sexy-bookmarks-bg-sexy, .sexy-bookmarks-bg-caring, .sexy-bookmarks-bg-caring-old, .sexy-bookmarks-bg-love, .sexy-bookmarks-bg-wealth, .sexy-bookmarks-bg-enjoy, .sexy-bookmarks-bg-german { background:url('../images/sexy-trans.png') no-repeat !important; }
 div.sexy-bookmarks-bg-sexy { padding: 28px 0 0 10px !important; background-position: left -348px !important; }
 div.sexy-bookmarks-bg-caring { padding: 26px 0 0 10px !important; background-position: left 0 !important; }
 div.sexy-bookmarks-bg-caring-old { padding: 26px 0 0 10px !important; background-position: left -748px !important; }
 div.sexy-bookmarks-bg-love { padding: 26px 0 0 10px !important; background-position: left -1148px !important; }	
 div.sexy-bookmarks-bg-wealth { margin-left: 15px !important; padding: 35px 0 0 20px !important; background-position: left -1535px !important; }
 div.sexy-bookmarks-bg-enjoy { padding: 26px 0 0 10px !important; background-position: left -1895px !important; }
+div.sexy-bookmarks-bg-german { padding:35px 0 0 20px !important; background-position:left -2248px !important; }
 div.sexy-bookmarks ul.socials { width:100% !important; margin:0 !important; padding:0 !important; float: left !important; }
 div.sexy-bookmarks ul.socials { background:transparent none !important; border:0 none !important; outline:0 none !important; }
 div.sexy-bookmarks ul.socials li {

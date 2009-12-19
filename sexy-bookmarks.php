@@ -69,6 +69,25 @@ if ( !function_exists('json_encode') ){
     }
 }
 
+// gets current URL to return to after donating
+function get_sexy_current_location() {
+	$sexy_current_location = "http";
+	$sexy_current_location .= ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? "s" : "")."://";
+	$sexy_current_location .= $_SERVER['SERVER_NAME'];
+	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') {
+		if($_SERVER['SERVER_PORT']!='443') {
+			$sexy_current_location .= ":".$_SERVER['SERVER_PORT'];
+		}
+	}
+	else {
+		if($_SERVER['SERVER_PORT']!='80') {
+			$sexy_current_location .= ":".$_SERVER['SERVER_PORT'];
+		}
+	}
+	$sexy_current_location .= $_SERVER['REQUEST_URI'];
+	echo $sexy_current_location;
+}
+
 // contains all bookmark templates.
 require_once 'includes/bookmarks-data.php';
 
@@ -99,18 +118,27 @@ $sexy_plugopts = array(
 	'custom-mods' => '',
 );
 
+$sponsor_messages = $_POST['hide-sponsors'];
 
 //add to database
 add_option(SEXY_OPTIONS, $sexy_plugopts);
+add_option('SEXY_SPONSORS', $sponsor_messages);
 
 //reload
 $sexy_plugopts = get_option(SEXY_OPTIONS);
+$sponsor_messages = get_option('SEXY_SPONSORS');
 
+//update
+$sponsor_messages = $_POST['hide-sponsors'];
+update_option('SEXY_SPONSORS', $sponsor_messages);
+
+//reload
+$sponsor_messages = get_option('SEXY_SPONSORS');
 
 //write settings page
 function sexy_settings_page() {
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
-	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
+	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb, $sponsor_messages;
 
 
 	// create folders for custom mods
@@ -221,8 +249,14 @@ function sexy_settings_page() {
 			</div>
 		</div>';
 	}
-?>
 
+if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
+?>
+<script type="text/javascript">
+	var psHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+	document.write(unescape("%3Cscript src='" + psHost + "pluginsponsors.com/direct/spsn/display.php?client=sexy&spot=' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<?php } ?>
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
 	<div id="sexy-col-left">
 		<ul id="sexy-sortables">
@@ -500,6 +534,9 @@ function sexy_settings_page() {
 							<label class="bgimg share-enjoy">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "enjoy")? 'checked="checked"' : ""); ?> id="bgimg-enjoy" name="bgimg" type="radio" value="enjoy" />
 							</label>
+							<label class="bgimg share-german">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "german")? 'checked="checked"' : ""); ?> id="bgimg-german" name="bgimg" type="radio" value="german" />
+							</label>
 						</div>
 					</div>
 				</div>
@@ -577,59 +614,54 @@ function sexy_settings_page() {
 			</div>
 		</div>
 	</div>
-	<div class="box-right">
-		<div class="box-right-head">
-			<h3 class="fugue f-thumb-up"><?php _e('Plugin Sponsors', 'sexybookmarks'); ?></h3>
-		</div>
-		<div class="box-right-body">
-			<div class="padding">
-				<ul class="sexy-adslots">
-					<li class="sexy-medium-banner">
-						<a href="http://barrettcreative.net/?app=sexybookmarks" title="Minneapolis Web Design and WordPress Experts" target="_blank">
-							<img src="http://blog2life.net/images/bcbanner.png" alt="Minneapolis Web Design and WordPress Experts" height="60" width="234" />
-						</a>
-						<a href="http://blog2life.net/" title="It's coming... Are you ready?" target="_blank" rel="dofollow">
-							<img src="http://blog2life.net/images/234x60.png" alt="Free themes and resources to bring your blog to life | Blog2Life" height="60" width="234" />
-						</a>
-						<script type="text/javascript">
-							Vertical1240126 = true;
-							ShowAdHereBanner1240126 = false;
-							RepeatAll1240126 = false;
-							NoFollowAll1240126 = false;
-							BannerStyles1240126 = new Array(
-								"a{display:block;font-size:11px;color:#79939F;font-family:verdana,sans-serif;margin:0 0 10px 1px;text-align:center;text-decoration:none;overflow:hidden;}",
-								"img{border:0;clear:right;}",
-								"a.adhere{color:#79939F;font-weight:bold;font-size:12px;outline:1px solid #79939F;background:#F2F2F2;text-align:center;height:60px !important;width:234px !important;}",
-								"a.adhere:hover{outline:1px solid #68828e;background:#f0f0f0;color:#68828e;}"
-							);
-							document.write(unescape("%3Cscript src='"+document.location.protocol+"//s3.buysellads.com/1240126/1240126.js?v="+Date.parse(new Date())+"' type='text/javascript'%3E%3C/script%3E"));
-						</script>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 	<div class="box-right sexy-donation-box" id="sexydonationsbox">
 		<div class="box-right-head">
 			<h3 class="fugue f-money"><?php _e('Support by Donating', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">
-				<p><?php _e('Surely the fact that we\'re making the web a sexier place one blog at a time is worth a drink or three, right?', 'sexybookmarks'); ?></p>
-				<div class="sexy-donate-button">
-					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3415856" title="<?php _e('Help support the development of this plugin by donating!', 'sexybookmarks'); ?>" class="sexy-dew">
-						<img src="<?php echo SEXY_PLUGPATH; ?>images/buyjoshdew.png" alt="" />
-					</a>
-					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=8HGMUBNDCZ88A" title="<?php _e('Help support the development of this plugin by donating!', 'sexybookmarks'); ?>" class="sexy-beer">
-						<img src="<?php echo SEXY_PLUGPATH; ?>images/buynormbeer.png" alt="" />
-					</a>
-				</div>
+				<p><?php _e("If you like SexyBookmarks and wish to contribute towards it's continued development, you can use the form below to do so.", "sexybookmarks"); ?></p>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<input type="hidden" name="cmd" value="_donations" />
+					<input type="hidden" name="business" value="B7A62V9HWUA7N" />
+					<input type="hidden" name="item_name" value="SexyBookmarks Development Support" />
+					<input type="hidden" name="no_shipping" value="0">
+					<input type="hidden" name="no_note" value="0">
+					<input type="hidden" name="cn" value="Please enter the URL you'd like me to link to if you are a top contributor." />
+					<input type="hidden" name="return" value="<?php get_sexy_current_location(); ?>" />
+					<input type="hidden" name="cbt" value="Return to Your Dashboard" />
+					<input type="hidden" name="currency_code" value="USD">
+					<input type="hidden" name="lc" value="US">
+					<input type="hidden" name="bn" value="PP-BuyNowBF">
+					<label>Select Preset Amount? 
+					<span>$</span> <select name="amount" id="preset-amounts">
+						<option value="10">10</option>
+						<option value="20" selected>20</option>
+						<option value="30">30</option>
+						<option value="40">40</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+						<option value="200">200</option>
+						<option value="300">300</option>
+						<option value="400">400</option>
+						<option value="500">500</option>
+					</select> <span>USD</span></label><br /><br />
+					<label>Enter Custom Amount? <span>$</span> <input type="text" name="amount" size="4" id="custom-amounts"> <span>USD</span></label>
+					<br /><br />
+					<input type="submit" value="Pay with PayPal!" class="payment">
+				</form>
+				<form name="sexy-bookmarks" id="no-sponsors" action="" method="post">
+					<label id="no-sponsors-label">
+						<?php _e('Disable sponsor messages?', 'sexybookmarks'); ?>
+						<input <?php if($sponsor_messages == "yes") { echo 'checked="checked"'; } ?> name="hide-sponsors" id="hide-sponsors" type="checkbox" value="yes" />
+					</label>
+				</form>
 			</div>
 		</div>
 	</div>
 	<div class="box-right">
 		<div class="box-right-head">
-			<h3 class="fugue f-dollar-sign"><?php _e('Top Supporters', 'sexybookmarks'); ?></h3>
+			<h3 class="fugue f-medal"><?php _e('Top Supporters', 'sexybookmarks'); ?></h3>
 		</div>
 		<div class="box-right-body">
 			<div class="padding">

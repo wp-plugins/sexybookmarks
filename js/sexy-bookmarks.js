@@ -15,6 +15,23 @@ jQuery(document).ready(function() {
 		opacity:      0.7
 	});
 
+	//Swap enabled/disabled between donation options onclick
+	jQuery('#preset-amounts').parent('label').click(function() {
+		jQuery('#custom-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
+		jQuery('#preset-amounts').removeAttr('disabled');
+	});
+
+	//Swap enabled/disabled between donation options onclick
+	jQuery('#custom-amounts').parent('label').click(function() {
+		jQuery('#preset-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
+		jQuery('#custom-amounts').removeAttr('disabled');
+	});
+
+	// Handle tiny form submission upon selecting option to hide sponsor messages
+	jQuery('#hide-sponsors').click(function() {
+		jQuery('#no-sponsors').submit();
+	});
+
 	// Create a universal click function to close status messages...
 	jQuery('.del-x').click(function() {
 		jQuery(this).parent('div').parent('div').fadeOut();

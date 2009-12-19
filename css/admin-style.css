@@ -46,6 +46,7 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 .share-love { background-position: 0 -1146px; }
 .share-wealth { background-position: 0 -1535px; padding:50px 0 0 25px !important; }
 .share-enjoy { background-position: 0 -1895px; }
+.share-german {	background-position:0 -2240px; padding-left:25px; }
 /* End Background Images Section */
 /*------------------------------------------------------------------------------------------*/
 /* Top Status Messages */
@@ -259,41 +260,82 @@ div.box-right-body ul li strong { color:#454545; font-weight:bold; }
 /* End Main Structure Styles */
 /*------------------------------------------------------------------------------------------*/
 /* Donations Section Styles */
-.sexy-donations {
-	background:#FFDDDD;
-	border:1px dotted #666666;
-	margin:20px 0;
-	padding:18px;
-	text-align:center;
-	width:240px;
+.sexy-donation-box p {
+	padding:0;
+	margin:-4px 0 15px 0;
+	line-height:22px;
 }
-.sexy-donations p { text-align:left; }
-.sexy-donations h2 { margin-top:0; }
-div.sexy-donate-button { width:100%; }
-div.sexy-donate-button a.sexy-dew { display:block; margin:10px 0; }
-div.sexy-donate-button a.sexy-beer { display:block; margin:10px 0 0 2px; }
+.sexy-donation-box label {
+	font-weight:bold;
+	color:#333;
+	font-size:10px;
+}
+.sexy-donation-box span {
+	font-weight:normal;
+}
+.sexy-donation-box .payment {
+	border-color:#bbb;
+	color:#464646;
+	width:160px;
+	display:block;
+	height:28px;
+	margin:45px auto 0;
+	padding-bottom:2px;
+}
+.sexy-donation-box .payment:hover {
+	border-color:#666;
+	color:#000;
+}
+#no-sponsors {
+	position:relative;
+	top:-70px;
+}
 /* End Donations Section Styles */
 /*------------------------------------------------------------------------------------------*/
-/* Advertising Slots */
-ul.sexy-adslots { margin:0; padding:0; }
-ul.sexy-adslots li.sexy-medium-banner { margin:0 0 -10px; padding:0; }
-ul.sexy-adslots li.sexy-medium-banner a {
-	background:#F2F2F2;
-	color:#79939F;
-	display:block;
-	font-family:verdana,sans-serif;
-	font-weight:bold;
-	height:60px;
-	line-height:60px;
-	margin:0 0 10px 1px;
-	outline-color:#79939F;
-	outline-style:solid;
-	outline-width:1px;
-	text-align:center;
-	text-decoration:none;
-	width:234px;
+/* Plugin Sponsor Area */
+.spsn-container {
+	border: 1px solid #dadada !important;
+	padding: 0 !important;
+	margin:15px 15px -10px 0 !important;
+	line-height: 1.1em !important;
+	background:#f8f8f8 !important;
 }
-/* End Advertising Slots */
+
+.spsn-sponsor-heading {
+	border-bottom: 1px solid #dadada !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent url('../images/flo-head.jpg') repeat-x 0 0 !important;
+	line-height: 24px !important;
+	height: 27px !important;
+	width: 100% !important;
+	color: #21759b !important; 
+	font-family: Georgia,'Times New Roman','Bitstream Charter',Times,serif !important;
+	font-size: 14px !important;
+}
+
+.spsn-sponsor-heading em {
+	background: transparent url('../images/custom-fugue-sprite.png') no-repeat 0 -870px !important;
+	padding-left: 22px !important; 
+	margin-left: 8px !important;
+}
+
+.spsn-sponsor-text {
+	border-top: 1px solid #fff !important;
+	margin: 0 !important;
+	padding: 0.7em 0.7em 0.4em !important;
+	font-size: 0.8em !important;
+	color: #333 !important;
+}
+
+.spsn-credit {
+	margin: 0 !important;
+	padding: 0.2em 0.4em 0.4em 0.2em !important;
+	text-align: right !important;
+	font-size: 0.7em !important;
+	color:#777 !important;
+}
+/* End Plugin Sponsor Area */
 /*------------------------------------------------------------------------------------------*/
 /* Useful Links Section */
 div.box-right-body ul.infolinks { list-style-type:none; list-style-position:outside; }
@@ -409,10 +451,10 @@ ul.sexy-contributors li:hover a { color:#21759B; font-weight:bold; }
 .fugue.f-error { background-position:0 -525px; margin:2px 10px 0 0; }
 .fugue.f-delete { background-position:0 -640px; }
 .fugue.f-globe-plus { background-position:0 -755px; height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
-.fugue.f-thumb-up { background-position:0 -871px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
+.fugue.f-leaf-pencil { background-position:0 -871px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
 .fugue.f-wrench { background-position:0 -987px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
 .fugue.f-money { background-position:0 -1102px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px;  }
-.fugue.f-dollar-sign { background-position:0 -1217px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px;  }
+.fugue.f-medal { background-position:0 -1217px;  height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px;  }
 .fugue.f-pallette { background-position:0 -1332px; height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }
 .fugue.f-plugin { background-position:0 -1447px; margin:5px 0 20px 0; padding-left:22px; display:block; clear:both; }
 .fugue.f-megaphone { background-position:0 -1564px;   height:16px; line-height:16px; padding:0; position:relative; top:6px; left:10px; text-indent:25px; }

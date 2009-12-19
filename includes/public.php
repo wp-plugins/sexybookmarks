@@ -303,6 +303,8 @@ function get_sexy() {
 		$bgchosen = ' sexy-bookmarks-bg-wealth';
 	} elseif($sexy_plugopts['bgimg'] == 'enjoy') {
 		$bgchosen = ' sexy-bookmarks-bg-enjoy';
+	} elseif($sexy_plugopts['bgimg'] == 'german') {
+		$bgchosen = ' sexy-bookmarks-bg-german';
 	}
 
 	// Do not add inline styles to the feed.
