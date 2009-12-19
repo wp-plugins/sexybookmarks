@@ -267,6 +267,13 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 				<div class="box-mid-body iconator" id="toggle1">
 					<div class="padding">
 						<p><?php _e('Select the Networks to display. Drag to reorder.', 'sexybookmarks'); ?></p>
+						<ul class="multi-selection">
+							<li class="label-faker"><strong>Select:</strong></li>
+							<li><?php _e('All', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-all" /></li>
+							<li><?php _e('None', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-none" /></li>
+							<li><?php _e('Most Popular', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-pop" /></li>
+							<!-- <li><?php _e('Recommended', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-reco" /></li> -->
+						</ul>
 						<div id="sexy-networks">
 							<?php
 								foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);

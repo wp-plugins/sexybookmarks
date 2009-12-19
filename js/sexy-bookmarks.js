@@ -15,6 +15,56 @@ jQuery(document).ready(function() {
 		opacity:      0.7
 	});
 
+	//Select all icons upon clicking
+	jQuery('#sel-all').click(function() {
+		jQuery('#sexy-networks').each(function() {
+			jQuery('#sexy-networks input').attr('checked', 'checked');
+		});
+	});
+
+	//Deselect all icons upon clicking
+	jQuery('#sel-none').click(function() {
+		jQuery('#sexy-networks').each(function() {
+			jQuery('#sexy-networks input').removeAttr('checked');
+		});
+	});
+
+	//Select most popular icons upon clicking
+	jQuery('#sel-pop').click(function() {
+		jQuery('#sexy-networks').each(function() {
+			jQuery('#sexy-digg').attr('checked', 'checked');
+			jQuery('#sexy-reddit').attr('checked', 'checked');
+			jQuery('#sexy-delicious').attr('checked', 'checked');
+			jQuery('#sexy-stumbleupon').attr('checked', 'checked');
+			jQuery('#sexy-mixx').attr('checked', 'checked');
+			jQuery('#sexy-comfeed').attr('checked', 'checked');
+			jQuery('#sexy-twitter').attr('checked', 'checked');
+			jQuery('#sexy-technorati').attr('checked', 'checked');
+			jQuery('#sexy-misterwong').attr('checked', 'checked');
+			jQuery('#sexy-diigo').attr('checked', 'checked');
+		});
+	});
+
+	/* Select recommended icons upon clicking
+	jQuery('#sel-pop').click(function() {
+		jQuery('#sexy-networks').each(function() {
+			jQuery('#sexy-digg').attr('checked', 'checked');
+			jQuery('#sexy-reddit').attr('checked', 'checked');
+			jQuery('#sexy-delicious').attr('checked', 'checked');
+			jQuery('#sexy-stumbleupon').attr('checked', 'checked');
+			jQuery('#sexy-mixx').attr('checked', 'checked');
+			jQuery('#sexy-comfeed').attr('checked', 'checked');
+			jQuery('#sexy-twitter').attr('checked', 'checked');
+			jQuery('#sexy-technorati').attr('checked', 'checked');
+			jQuery('#sexy-misterwong').attr('checked', 'checked');
+			jQuery('#sexy-???').attr('checked', 'checked');
+			jQuery('#sexy-???').attr('checked', 'checked');
+			jQuery('#sexy-???').attr('checked', 'checked');
+			jQuery('#sexy-???').attr('checked', 'checked');
+			jQuery('#sexy-???').attr('checked', 'checked');			
+		});
+	}); */
+
 	//Swap enabled/disabled between donation options onclick
 	jQuery('#preset-amounts').parent('label').click(function() {
 		jQuery('#custom-amounts').attr('disabled', 'disabled').css({'cursor':'none'});

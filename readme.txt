@@ -14,14 +14,12 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
-* Added updated IT translation
-* Added Turkish Translation
-* Removed all API requests
-* Optimized/Reduced file sizes
-* Plugin now uses sprite for all icons in dashboard
-* Custom mods feature added to prevent mods from being lost during upgrade
-* Got rid of feedity and replaced top contributors list with custom function
-* Optimized dashboard jQuery functions to be less redundant
+* Fixed dashboard styling in IE
+* Removed sidebar ads
+* Added new plugin sponsorship network
+* Added ability to select all, none, and popular networks
+* Added German translation and a german BG image
+* Added custom donation form in sidebar
 
 
 = Recently Added Sites =
@@ -47,8 +45,8 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
 * Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
 * Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
-* Credit goes to [Ömer Taylan Tu?ut](http://www.tuguts.com) for translation to Turkish
-
+* Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
+* Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
 
 
 
@@ -126,7 +124,15 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.6.6.1 =
+= 2.6.1.2 =
+* Fixed dashboard styling in IE
+* Removed sidebar ads
+* Added new plugin sponsorship network
+* Added ability to select all, none, and popular networks
+* Added German translation and a german BG image
+* Added custom donation form in sidebar
+
+= 2.6.1.1 =
 * Added Turkish translation
 * Added and upated Italian translation
 * Added Tumblr

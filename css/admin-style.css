@@ -189,6 +189,25 @@ label.sexy-stumpedia { background-position:-5180px top !important; }
 label.sexy-current { background-position:-5250px top !important; }
 label.sexy-blogger { background-position:-5320px top !important; }
 
+ul.multi-selection {
+	list-style:none;
+	overflow:hidden;
+	position:absolute;
+	top:6px;
+	right:0;
+}
+ul.multi-selection li {
+	display:block;
+	float:left;
+	clear:none;
+	margin:0 20px 10px 0 !important;
+}
+ul.multi-selection li.label-faker {
+	margin-right:10px !important;
+}
+ul.multi-selection li input {
+
+}
 
 /* End Bookmarking Services Icons */
 /*------------------------------------------------------------------------------------------*/
@@ -210,7 +229,7 @@ span.sexy-rating-5 { background-position: 0 -480px; }
 /* Main Structure Styles */
 div#sexy-col-left { float:left; margin:40px 10px 0 0; }
 #sexy-col-left label { margin:0 12px 0 0; }
-ul#sexy-sortables li { list-style-type:none; margin:0 300px 20px 0; }
+ul#sexy-sortables li { list-style-type:none; margin:0 300px 20px 0; position:relative; }
 ul#sexy-sortables { list-style-type:none; }
 div.box-mid-head {
 	background:transparent url('../images/flo-head.jpg') repeat-x scroll 0 0;
