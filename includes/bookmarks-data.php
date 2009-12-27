@@ -64,7 +64,7 @@ $sexy_bookmarks_data=array(
 	'sexy-facebook'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Facebook', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').__('Facebook', 'sexybookmarks'),
-		'baseUrl'=>'http://www.facebook.com/share.php?u=PERMALINK&amp;t=TITLE',
+		'baseUrl'=>'http://www.facebook.com/share.php?v=4&amp;src=bm&amp;u=PERMALINK&amp;t=TITLE',
 	),
 	'sexy-twitter'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Twitter', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
@@ -354,7 +354,7 @@ $sexy_bookmarks_data=array(
 	'sexy-strands'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Strands', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Submit this to ', 'sexybookmarks').__('Strands', 'sexybookmarks'),
-		'baseUrl'=>'http://www.strands.com/tools/share/webpage?title=TITLE&url=PERMALINK',
+		'baseUrl'=>'http://www.strands.com/tools/share/webpage?title=TITLE&amp;url=PERMALINK',
 	),
 	'sexy-orkut'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Orkut', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
@@ -384,7 +384,7 @@ $sexy_bookmarks_data=array(
 	'sexy-plurk'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('Plurk', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').__('Plurk', 'sexybookmarks'),
-		'baseUrl'=>'http://www.plurk.com/m?content=TITLE+-+PERMALINK&qualifier=shares',
+		'baseUrl'=>'http://www.plurk.com/m?content=TITLE+-+PERMALINK&amp;qualifier=shares',
 	),
 );
 ?>

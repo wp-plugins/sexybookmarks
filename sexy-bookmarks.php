@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 2.6.1.2
+Version: 2.6.1.3
 Author: Josh Jones, Norman Yung
 Author URI: http://blog2life.net
 
@@ -33,7 +33,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','2.6.1.2');
+define('SEXY_vNum','2.6.1.3');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -48,25 +48,26 @@ if ( !defined('WP_CONTENT_URL') ) {
 	define('SEXY_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 }
 
-
-if ( !function_exists('json_decode') ){
-	function json_decode($content, $assoc=false){
-		require_once 'includes/JSON.php';
-		if ( $assoc ){
-			$json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
-		} else {
-			$json = new Services_JSON;
+if ( !class_exists('SERVICES_JSON') ) {
+	if ( !function_exists('json_decode') ){
+		function json_decode($content, $assoc=false){
+			require_once 'includes/JSON.php';
+			if ( $assoc ){
+				$json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
+			} else {
+				$json = new Services_JSON;
+			}
+			return $json->decode($content);
 		}
-        return $json->decode($content);
 	}
-}
 
-if ( !function_exists('json_encode') ){
-    function json_encode($content){
-		require_once 'includes/JSON.php';
-		$json = new Services_JSON;
-        return $json->encode($content);
-    }
+	if ( !function_exists('json_encode') ){
+		function json_encode($content){
+			require_once 'includes/JSON.php';
+			$json = new Services_JSON;
+			return $json->encode($content);
+		}
+	}
 }
 
 // gets current URL to return to after donating
@@ -713,6 +714,8 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://www.tuguts.com"><?php _e('TR Translation: &#214;mer Taylan Tu&#287;ut', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gwegner.de"><?php _e('DE Translation: Gunther Wegner', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://hardwareblog.dk"><?php _e('da-DK Translation: Mads Floe', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.mediaprod.no"><?php _e('NO Translation: Svend Olaf Olsen', 'sexybookmarks'); ?></a></li>
+					<li><a href="	www.gouwefoto.nl"><?php _e('NL Translation: Martin van der Grond', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>

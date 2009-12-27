@@ -14,13 +14,15 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
-* Added Danish translation
-* Fixed dashboard styling in IE
-* Removed sidebar ads
-* Added new plugin sponsorship network
-* Added ability to select all, none, and popular networks
-* Added German translation and a german BG image
-* Added custom donation form in sidebar
+* Updated Danish translation
+* Updated French translation
+* Added Norwegian translation
+* Added Dutch translation
+* Fixed validity issue with Strands & Plurk sharing links
+* Updated methods of calling styles and scripts
+* Fixed issue with sponsor messages not staying hidden
+* Fixed JSON compatibility issue due to multiple instances of the JSON class
+
 
 
 = Recently Added Sites =
@@ -50,6 +52,8 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
 * Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
 * Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
+* Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
+* Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
 
 
 
@@ -127,6 +131,16 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.1.3 =
+* Updated Danish translation
+* Updated French translation
+* Added Norwegian translation
+* Added Dutch translation
+* Fixed validity issue with Strands & Plurk sharing links
+* Updated methods of calling styles and scripts
+* Fixed issue with sponsor messages not staying hidden
+* Fixed JSON compatibility issue due to multiple instances of the JSON class
+
 = 2.6.1.2 =
 * Added Plurk
 * Added Danish translation
