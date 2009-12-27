@@ -4,7 +4,7 @@ Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
 Version: 2.6.1.3
-Author: Josh Jones, Norman Yung
+Author: Josh Jones, Jamie Carter, Gautum Gupta, Norman Yung
 Author URI: http://blog2life.net
 
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)

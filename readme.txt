@@ -1,10 +1,10 @@
 === SexyBookmarks ===
-Contributors: eight7teen, normanyung
+Contributors: eight7teen, jamiecarter7, gautam2011, normanyung
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9007080
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.9
-Stable tag: 2.6.1.2
+Stable tag: 2.6.1.3
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
