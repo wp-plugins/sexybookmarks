@@ -4,12 +4,14 @@ Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
 Version: 2.6.1.3
-Author: Josh Jones, Jamie Carter, Gautum Gupta, Norman Yung
+Author: Josh Jones, Jamie Carter, Gautam Gupta, Norman Yung
 Author URI: http://blog2life.net
 
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@sexybookmarks.net)
-	Additional Developer: Norman Yung (www.robotwithaheart.com), now a full-time part of further development.
+	Additional Developer: Norman Yung (www.robotwithaheart.com)
+	Additional Developer: Gautam Gupta (www.gaut.am)
+	Additional Developer: Jamie Carter (www.blog2life.net)
 	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
 
 	This program is free software; you can redistribute it and/or modify
@@ -740,27 +742,11 @@ function sexy_menu_link() {
 function sexy_admin_scripts() {
 	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery','jquery-ui-sortable'), SEXY_vNum, true);
 }
+
 function sexy_admin_styles() {
 	global $sexy_plugopts;
 
-	function detect7() {
-		if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	function detect8() {
-		if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	if (detect7()) {
+	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
 		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
 			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
 		}
@@ -769,7 +755,7 @@ function sexy_admin_styles() {
 		}
 		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
 	}
-	elseif (detect8()) {
+	/*elseif (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false)) {
 		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
 			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
 		}
@@ -777,7 +763,7 @@ function sexy_admin_styles() {
 			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 		}
 		wp_enqueue_style('ie-new-sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
-	}
+	}*/
 	else {
 		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 	}
