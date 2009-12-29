@@ -747,26 +747,12 @@ function sexy_admin_styles() {
 	global $sexy_plugopts;
 
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
-		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
-			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
-		}
-		else {
-			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		}
 		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
 	}
 	/*elseif (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false)) {
-		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
-			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
-		}
-		else {
-			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		}
 		wp_enqueue_style('ie-new-sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
 	}*/
-	else {
-		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-	}
+	wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 }
 
 require_once "includes/public.php";
