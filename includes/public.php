@@ -269,7 +269,7 @@ function get_sexy() {
 
 	// Check permalink setup for proper feed link
 	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
-		$feedstructure = '&feed=comments-rss2';
+		$feedstructure = '&amp;feed=comments-rss2';
 	} else {
 		if ('/' == $feedperms[strlen($feedperms) - 1]) {
 			$feedstructure = 'feed';
