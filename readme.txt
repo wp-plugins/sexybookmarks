@@ -1,5 +1,5 @@
 === SexyBookmarks ===
-Contributors: Josh Jones, jamiecarter7, gautam2011
+Contributors: Josh Jones, jamiecarter7, Gautam Gupta
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9007080
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
