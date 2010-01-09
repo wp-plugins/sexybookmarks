@@ -224,9 +224,12 @@ function get_sexy() {
 	}
 
 	$title=urlencode($title);
-	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes(get_the_content())),0,300));
-	$sexy_content = str_replace('+','%20',$sexy_content);
-	$sexy_content = str_replace("&#8217;","'",$sexy_content);
+
+	$sexy_content	= urlencode(strip_tags(strip_shortcodes($post->post_excerpt)));
+
+	if ($sexy_content == "") {	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300)); }
+
+	$sexy_content	= str_replace('+','%20',$sexy_content);
 	$post_summary = stripslashes($sexy_content);
 	$site_name = get_bloginfo('name');
 	$mail_subject = str_replace('+','%20',$mail_subject);
@@ -238,7 +241,6 @@ function get_sexy() {
 
 
 	// Grab post tags for Twittley tags. If there aren't any, use default tags set in plugin options page
-	// This doesn't seem to be working anymore, but not confirmed yet...
 	$getkeywords = get_the_tags(); if ($getkeywords) { foreach($getkeywords as $tag) { $keywords=$keywords.$tag->name.','; } }
 	if (!empty($getkeywords)) {
 		$d_tags=substr($d_tags, 0, count($d_tags)-2);
