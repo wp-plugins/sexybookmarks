@@ -120,6 +120,7 @@ $sexy_plugopts = array(
 	'doNotIncludeJQuery' => '',
 	'custom-mods' => '',
 	'hide-sponsors' => '',
+	'scriptInFooter' => '1',
 );
 
 add_option(SEXY_OPTIONS, $sexy_plugopts); //add to database
@@ -191,7 +192,7 @@ function sexy_settings_page() {
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
 				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed',
 				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
-				'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
+				'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods', 'scriptInFooter'
 			) as $field) $sexy_plugopts[$field]=$_POST[$field];
 			
 			/* Short URLs */
@@ -223,7 +224,7 @@ function sexy_settings_page() {
 		}
 	}
 
-	//if there was an error, construct error messages
+	//if there was an error, construct error messages 
 	if ($error_message != '') {
 		echo '
 		<div id="errmessage" class="sexy-error">
@@ -246,7 +247,7 @@ function sexy_settings_page() {
 		</div>';
 	}
 
-// If sponsor messages aren't set to be hidden, insert the script
+// If sponsor messages aren't set to be hidden, insert the script 
 if($sexy_plugopts['hide-sponsors'] != "yes") {
 ?>
 <script type="text/javascript">
@@ -264,13 +265,12 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 				<div class="box-mid-body iconator" id="toggle1">
 					<div class="padding">
 						<p><?php _e('Select the Networks to display. Drag to reorder.', 'sexybookmarks'); ?></p>
-						<ul class="multi-selection">
-							<li class="label-faker"><strong>Select:</strong></li>
-							<li><?php _e('All', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-all" /></li>
-							<li><?php _e('None', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-none" /></li>
-							<li><?php _e('Most Popular', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-pop" /></li>
-							<!-- <li><?php _e('Recommended', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-reco" /></li> -->
-						</ul>
+						<ul class="multi-selection"> 
+ 		                                        <li><?php _e('Select', 'sexybookmarks'); ?>:&nbsp;</li> 
+ 		                                        <li><a id="sel-all" href="javascript:void(0);"><?php _e('All', 'sexybookmarks'); ?></a>&nbsp;|&nbsp;</li> 
+ 		                                        <li><a id="sel-none" href="javascript:void(0);"><?php _e('None', 'sexybookmarks'); ?></a>&nbsp;|&nbsp;</li> 
+ 		                                        <li><a id="sel-pop" href="javascript:void(0);"><?php _e('Most Popular', 'sexybookmarks'); ?></a>&nbsp;</li> 
+		                                </ul>
 						<div id="sexy-networks">
 							<?php
 								foreach ($sexy_plugopts['bookmark'] as $name) print sexy_network_input_select($name, $sexy_bookmarks_data[$name]['check']);
@@ -503,7 +503,8 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 							</label>
 							<input <?php echo (($sexy_plugopts['custom-mods'] == "yes")? 'checked' : ""); ?> name="custom-mods" id="custom-mods" type="checkbox" value="yes" />
 						</div>
-
+						<span class="sexy_option"><?php _e('Load scripts in Footer', 'sexybookmarks'); ?> <input type="checkbox" id="scriptInFooter" name="scriptInFooter" <?php echo (($sexy_plugopts['scriptInFooter'] == "1")? 'checked' : ""); ?> value="1" /></span>
+						<label for="scriptInFooter"><?php _e("Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer.", "sexybookmarks"); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom">?</a>)</label>
 						<h2><?php _e('jQuery Related Options', 'sexybookmarks'); ?></h2>
 						<span class="sexy_option"><?php _e('Animate-expand multi-lined bookmarks?', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['expand'] == "1")? 'checked="checked"' : ""); ?> name="expand" id="expand-yes" type="radio" value="1" /><?php _e('Yes', 'sexybookmarks'); ?></label>

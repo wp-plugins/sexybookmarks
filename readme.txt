@@ -127,6 +127,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 == Changelog ==
 = 2.6.1.4 =
+* Added option to load javascript in blog's footer
 * Added compatibility with YOURLS plugin
 * Added Settings link in plugin's information section
 * Many improvements in the coding

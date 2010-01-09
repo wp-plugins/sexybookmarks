@@ -144,10 +144,7 @@ function sexy_position_menu($post_content) {
 		(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) ||
 		(is_feed() && !empty($sexy_plugopts['feed']))
 	) { // socials should be generated and added
-		if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
-			// Don't display SexyBookmarks
-		}
-		else {
+		if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 			$socials=get_sexy();
 		}
 	}
@@ -249,9 +246,6 @@ function get_sexy() {
 	else {
 		$d_tags = $sexy_plugopts['defaulttags'];
 	}
-
-
-
 
 
 	// Check permalink setup for proper feed link
@@ -422,7 +416,8 @@ function sexy_publicScripts() {
 	if (($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
 		$surl = ($sexy_plugopts['custom-mods'] == 'yes') ? WP_CONTENT_URL.'/sexy-mods/' : SEXY_PLUGPATH; // If custom mods option is selected, pull files from new location
 		$jquery = ($sexy_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
-		wp_enqueue_script('sexy-bookmarks-public-js', $surl.'js/sexy-bookmarks-public.js', $jquery, SEXY_vNum);
+		$infooter = ($sexy_plugopts['scriptInFooter'] == '1') ? true : false;
+		wp_enqueue_script('sexy-bookmarks-public-js', $surl.'js/sexy-bookmarks-public.js', $jquery, SEXY_vNum, $infooter);
 	}
 }
 
