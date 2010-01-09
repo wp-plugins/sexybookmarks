@@ -24,8 +24,6 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Fixed issue with sponsor messages not staying hidden
 * Fixed JSON compatibility issue due to multiple instances of the JSON class
 
-
-
 = Recently Added Sites =
 * Plurk
 * Strands
@@ -33,9 +31,6 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Stumpedia
 * Current
 * Blogger
-
-
-
 
 == Special Thanks & Credits ==
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
@@ -133,7 +128,8 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 == Changelog ==
 = 2.6.1.4 =
 * Added compatibility with YOURLS plugin
-* Improved the way the plugin gets Short URLs
+* Added Settings link in plugin's information section
+* Many improvements in the coding
 
 = 2.6.1.3 =
 * Updated Danish translation
@@ -158,11 +154,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 = 2.6.1.1 =
 * Added Turkish translation
 * Added and upated Italian translation
-* Added Tumblr
-* Added Strands
-* Added Stumpedia
-* Added Current
-* Added Blogger
+* Added Tumblr, Strands, Stumpedia, Current, Blogger
 
 = 2.6.1 =
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
@@ -183,23 +175,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Got rid of feedity and replaced top contributors list with custom function
 * Optimized dashboard jQuery functions to be less redundant
 * Added wishlist to sidebar
-* Added TheWebBlend
-* Added Wykop
-* Added BlogEngage
-* Added Hyves
-* Added Pusha
-* Added Hatena Bookmarks
-* Added MyLinkVault
-* Added SlashDot
-* Added Squidoo
-* Added Propeller
-* Added FAQpal
-* Added Evernote
-* Added Meneame
-* Added Bitacoras
-* Added JumpTags
-* Added Bebo
-* Added N4G
+* Added TheWebBlend, Wykop, BlogEngage, Hyves, Pusha, Hatena Bookmarks, MyLinkVault, SlashDot, Squidoo, Propeller, FAQpal, Evernote, Meneame, Bitacoras, JumpTags, Bebo, N4G
 
 = 2.5.5.1 =
 * Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
@@ -211,20 +187,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Fixed validity of links added in last release
 * Fixed a couple small dashboard bugs (mostly jQuery related)
 * Added Italian translation
-* Added Sphinn
-* Added Fleck
-* Added Xerpi
-* Added Netvibes
-* Added Netvouz
-* Added NUjij
-* Added GlobalGrind
-* Added Wikio
-* Added Blogosphere News
-* Added Posterous
-* Added Techmeme
-* Added eKudos
-* Added Ping.fm
-* Added ToMuse
+* Added Sphinn, Fleck, Xerpi, Netvibes, Netvouz, NUjij, GlobalGrind, Wikio, Blogosphere News, Posterous, Techmeme, eKudos, Ping.fm, ToMuse
 * Reinstated email link with simple mailto
 * Updated readme with new info
 * Fixed issue with Twitter link breaking if title includes quotes
@@ -238,11 +201,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added update notice
 * Fixed a couple minor css issues in dashboard
 * Fixed issue where some themes were causing icons to display vertically rather than horizontally
-* Added Ning to the list
-* Added DesignBump to the list
-* Added Hacker News (news.ycombinator) to the list
-* Added Identica to the list
-* Added PrintFriendly to the list
+* Added Ning, DesignBump, Hacker News (news.ycombinator), Identica, PrintFriendly to the list
 * Added Romanian translation
 
 = 2.5.3.4 =
