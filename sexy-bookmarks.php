@@ -127,13 +127,14 @@ $sexy_plugopts = get_option(SEXY_OPTIONS); //reload
 
 //write settings page
 function sexy_settings_page() {
-	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
-
+	
 	if($_POST['sponsor-form-save'] == "1"){ //hide sponsor check
 		$sexy_plugopts['hide-sponsors'] = $_POST['sexy-hide-sponsors'];
 		update_option(SEXY_OPTIONS, $sexy_plugopts);
 	}
+	
+	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
 
 	// create folders for custom mods
 	// then copy original files into new folders
@@ -155,7 +156,6 @@ function sexy_settings_page() {
 			}
 		}
 	}
-
 
 	// processing form submission
 	$status_message = "";
