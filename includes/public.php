@@ -28,102 +28,97 @@ function sexy_get_fetch_url() {
 	if($post && get_post_status($post->ID) != 'publish')
 		return $perms;
 	
+	if ($sexy_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
+		$fetch_url = permalink_to_twitter_link($perms);
+	} elseif ($sexy_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
+		$fetch_url = wp_ozh_yourls_raw_url();
+	}
+
+	if( !empty( $fetch_url ) ) //if it is tflp or yourls and short url has been successfully recieved, then do not save it in db or try getting a stored short url
+		return $fetch_url;
+
 	//check if the link is already genereted or not, if yes, then return the link
 	$fetch_url = trim(get_post_meta($post->ID, '_sexybookmarks_shortUrl', true));
-	if(!is_null($fetch_url) && md5($perms) == trim(get_post_meta($post->ID, '_sexybookmarks_permaHash', true))){
+	if(!is_null($fetch_url) && md5($perms) == trim(get_post_meta($post->ID, '_sexybookmarks_permaHash', true)))
 		return $fetch_url;
-	}else{
-		//some vars to be used later, so better set null values before
-		$url_more = "";
-		$method = 'GET';
-		$POST_data = array();
-		 
-		// Which short url service should be used?
-		switch ( $sexy_plugopts['shorty'] ) {
-			case 'tiny':
-				$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-				break;
-			case 'snip':
-				$first_url = "http://snipr.com/site/getsnip";
-				$method = 'POST';
-				$POST_data = array( "snipformat" => "simple", "sniplink" => rawurlencode($perms), "snipuser" => $sexy_plugopts['shortyapi']['snip']['user'], "snipapi" => $sexy_plugopts['shortyapi']['snip']['key'] );
-				break;
-			case 'cligs':
-				$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
-				if ($sexy_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
-					$first_url .= "&key=".$sexy_plugopts['shortyapi']['cligs']['key'];
-				break;
-			case 'supr':
-				$first_url = "http://su.pr/api/simpleshorten?url=".$perms;
-				if($sexy_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
-					$first_url .= "&login=".$sexy_plugopts['shortyapi']['supr']['user']."&apiKey=".$sexy_plugopts['shortyapi']['supr']['key'];
-				break;
-			case 'bitly':
-				$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
-				break;
-			case 'trim':
-				if($sexy_plugopts['shortyapi']['trim']['chk'] == 1){ //if user custom options are set
-					$first_url = "http://api.tr.im/api/trim_url.json?url=".$perms."&username=".$sexy_plugopts['shortyapi']['trim']['user']."&password=".$sexy_plugopts['shortyapi']['trim']['pass'];
-				}else{
-					$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
-				}
-				break;
-			case 'tinyarrow':
-				$first_url = "http://tinyarro.ws/api-create.php?";
-				if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
-					$first_url .= "&userid=".$sexy_plugopts['shortyapi']['tinyarrow']['user'];
-				$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
-				break;
-			case 'slly':
-				$first_url = "http://sl.ly/?module=ShortURL&file=Add&mode=API&url=".$perms;
-				break;
-			case 'e7t':
-				//e7t.us no longer exists, this only here for backwards compatibility
-				//to prevent users from having to update their short URLs if they had e7t.us selected
-				$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-				$sexy_plugopts['shorty'] = 'b2l';
-				update_option(SEXY_OPTIONS, $sexy_plugopts);
-				break;
-			case 'tflp':
-				if(function_exists('permalink_to_twitter_link')) {
-					$fetch_url = permalink_to_twitter_link($perms);
-					break;
-				} //else goto default
-			case 'yourls':
-				if(function_exists('wp_ozh_yourls_raw_url')) {
-					$fetch_url = wp_ozh_yourls_raw_url();
-					break;
-				} //else goto default
-			case 'b2l': //goto default
-			default:
-				$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-				break;
-		}
-		
-		if( empty( $fetch_url ) ) //if it is not tflp or yourls
-			$fetch_url = trim(sexy_nav_browse($first_url, $method, $POST_data)); //trim again
 
-		if ( !empty( $fetch_url ) ) {
-			//if trim or bitly, then decode the json string
-			if($sexy_plugopts['shorty'] == "trim" && $sexy_plugopts['shortyapi']['trim']['chk'] == 1){
-				$fetch_array = json_decode($fetch_url, true);
-				$fetch_url = $fetch_array['url'];
-			}elseif($sexy_plugopts['shorty'] == "bitly"){
-				$fetch_array = json_decode($fetch_url, true);
-				$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
+	//some vars to be used later, so better set null values before
+	$url_more = "";
+	$method = 'GET';
+	$POST_data = array();
+	 
+	// Which short url service should be used?
+	switch ( $sexy_plugopts['shorty'] ) {
+		case 'tiny':
+			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
+			break;
+		case 'snip':
+			$first_url = "http://snipr.com/site/getsnip";
+			$method = 'POST';
+			$POST_data = array( "snipformat" => "simple", "sniplink" => rawurlencode($perms), "snipuser" => $sexy_plugopts['shortyapi']['snip']['user'], "snipapi" => $sexy_plugopts['shortyapi']['snip']['key'] );
+			break;
+		case 'cligs':
+			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
+			if ($sexy_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
+				$first_url .= "&key=".$sexy_plugopts['shortyapi']['cligs']['key'];
+			break;
+		case 'supr':
+			$first_url = "http://su.pr/api/simpleshorten?url=".$perms;
+			if($sexy_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
+				$first_url .= "&login=".$sexy_plugopts['shortyapi']['supr']['user']."&apiKey=".$sexy_plugopts['shortyapi']['supr']['key'];
+			break;
+		case 'bitly':
+			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
+			break;
+		case 'trim':
+			if($sexy_plugopts['shortyapi']['trim']['chk'] == 1){ //if user custom options are set
+				$first_url = "http://api.tr.im/api/trim_url.json?url=".$perms."&username=".$sexy_plugopts['shortyapi']['trim']['user']."&password=".$sexy_plugopts['shortyapi']['trim']['pass'];
+			}else{
+				$first_url = "http://api.tr.im/api/trim_simple?url=".$perms;
 			}
-			// Remote call made and was successful
-			// Add/update values
-			// Tries to update first, then add if field does not already exist
-			if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
-				add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
-			}
-			if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
-				add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
-			}
-		} else {
-			$fetch_url = $perms;
+			break;
+		case 'tinyarrow':
+			$first_url = "http://tinyarro.ws/api-create.php?";
+			if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
+				$first_url .= "&userid=".$sexy_plugopts['shortyapi']['tinyarrow']['user'];
+			$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
+			break;
+		case 'slly':
+			$first_url = "http://sl.ly/?module=ShortURL&file=Add&mode=API&url=".$perms;
+			break;
+		case 'e7t': //e7t.us no longer exists, this only here for backwards compatibility
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
+			$sexy_plugopts['shorty'] = 'b2l';
+			update_option(SEXY_OPTIONS, $sexy_plugopts);
+			break;
+		case 'b2l': //goto default
+		default:
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
+			break;
+	}
+	
+	$fetch_url = trim(sexy_nav_browse($first_url, $method, $POST_data));
+
+	if ( !empty( $fetch_url ) ) {
+		//if trim or bitly, then decode the json string
+		if($sexy_plugopts['shorty'] == "trim" && $sexy_plugopts['shortyapi']['trim']['chk'] == 1){
+			$fetch_array = json_decode($fetch_url, true);
+			$fetch_url = $fetch_array['url'];
+		}elseif($sexy_plugopts['shorty'] == "bitly"){
+			$fetch_array = json_decode($fetch_url, true);
+			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
 		}
+		// Remote call made and was successful
+		// Add/update values
+		// Tries to update first, then add if field does not already exist
+		if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
+			add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
+		}
+		if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
+			add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
+		}
+	} else {
+		$fetch_url = $perms;
 	}
 	return $fetch_url;
 }
@@ -493,55 +488,22 @@ function sexy_publicStyles() {
 	// If custom field is set, do not display sexybookmarks
 	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'sexybookmarks').' -->'."\n\n";
-	}
-
-	// Else menu should be displayed
-	else {
-		echo "\n\n";
-		// If custom mods option is checked, pull files from new location
-		if ($sexy_plugopts['custom-mods'] == 'yes') {
-			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/style.css', false, SEXY_vNum, 'all');
-		}
-
-		// Else use original file locations
-		else {
-			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/style.css', false, SEXY_vNum, 'all');
-		}
+	} else {
+		$surl = ($sexy_plugopts['custom-mods'] == 'yes') ? WP_CONTENT_URL.'/sexy-mods/' : SEXY_PLUGPATH; // If custom mods option is selected, pull files from new location
+		wp_enqueue_style('sexy-bookmarks', $surl.'css/style.css', false, SEXY_vNum, 'all');
 	}
 }
 function sexy_publicScripts() {
 	global $sexy_plugopts, $post;
-	// If any javascript dependent options are selected, load the scripts
-	if ($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') {
-		// If custom mods option is selected, pull files from new location
-		if ($sexy_plugopts['custom-mods'] == 'yes') {
-			// If jQuery compatibility fix is not selected, go ahead and load jQuery
-			if (empty($sexy_plugopts['doNotIncludeJQuery'])) {
-				wp_enqueue_script('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js', array('jquery'));
-			}
-			// Else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
-			else {
-				wp_enqueue_script('sexy-bookmarks-public-js', WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js');
-			}
-		}
-		// Custom mods not selected, load files from original location
-		else {
-			// If jQuery compatibility fix is not selected, go ahead and load jQuery
-			if (empty($sexy_plugopts['doNotIncludeJQuery'])) {
-				wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js', array('jquery'));
-			}
-			// Else do not load jQuery, probably due to the user's theme or additional plugins not loading it properly to begin with
-			else {
-				wp_enqueue_script('sexy-bookmarks-public-js', SEXY_PLUGPATH.'js/sexy-bookmarks-public.js');
-			}
-		}
+	
+	if (($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
+		$surl = ($sexy_plugopts['custom-mods'] == 'yes') ? WP_CONTENT_URL.'/sexy-mods/' : SEXY_PLUGPATH; // If custom mods option is selected, pull files from new location
+		$jquery = ($sexy_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
+		wp_enqueue_script('sexy-bookmarks-public-js', $surl.'js/sexy-bookmarks-public.js', $jquery, SEXY_vNum);
 	}
 }
+
 add_action('wp_print_styles', 'sexy_publicStyles');
 add_action('wp_print_scripts', 'sexy_publicScripts');
-
-
-
-// Hook the menu to "the_content"
 add_filter('the_content', 'sexy_position_menu');
 ?>
