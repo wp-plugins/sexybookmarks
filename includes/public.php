@@ -310,157 +310,85 @@ function get_sexy() {
 	$socials = "\n\n".'<!-- Begin SexyBookmarks Menu Code -->'."\n";
 	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n".'<ul class="socials">'."\n";
 	foreach ($sexy_plugopts['bookmark'] as $name) {
-		if ($name=='sexy-twitter') {
-			$socials.=bookmark_list_item($name, array(
-				'post_by'=>(!empty($sexy_plugopts['twittid']))?"(via+@".$sexy_plugopts['twittid'].")":'',
-				'short_title'=>$short_title,
-				'fetch_url'=>$fetch_url,
-			));
-	    }
-		elseif ($name=='sexy-blogengage') {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>$perms,
-			));
-	    }
-		elseif ($name=='sexy-identica') {
-			$socials.=bookmark_list_item($name, array(
-				'short_title'=>$short_title,
-				'fetch_url'=>$fetch_url,
-			));
-	    }
-		elseif ($name=='sexy-mail') {
-		 		$socials.=bookmark_list_item($name, array(
-		 			'title'=>$mail_subject,
-		 			'post_summary'=>$post_summary,
-		 			'permalink'=>$perms,
-		 		));
-		}
-		elseif ($name=='sexy-tomuse') {
-		 		$socials.=bookmark_list_item($name, array(
-		 			'title'=>$mail_subject,
-		 			'post_summary'=>$post_summary,
-		 			'permalink'=>$perms,
-		 		));
-		}
-		elseif ($name=='sexy-diigo') {
-			$socials.=bookmark_list_item($name, array(
-				'sexy_teaser'=>$sexy_content,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-linkedin') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'site_name'=>$site_name,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-devmarks') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-comfeed') {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>urldecode($feedperms).$feedstructure,
-			));
-		}
-		elseif ($name=='sexy-yahoobuzz') {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>$perms,
-				'title'=>$title,
-				'yahooteaser'=>$sexy_content,
-				'yahoocategory'=>$y_cat,
-				'yahoomediatype'=>$y_med,
-			));
-		}
-		elseif ($name=='sexy-twittley') {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>urlencode($perms),
-				'title'=>$title,
-				'post_summary'=>$post_summary,
-				'twitt_cat'=>$t_cat,
-				'default_tags'=>$d_tags,
-			));
-		}
-		elseif ($name=='sexy-designmoo') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-designbump') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-posterous') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-pingfm') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-nujij') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-ekudos') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-webblend') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-hyves') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-orkut') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
-		elseif ($name=='sexy-tumblr') {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>urlencode($perms),
-				'title'=>$title,
-			));
-		}
-		else {
-			$socials.=bookmark_list_item($name, array(
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
+		switch ($name) {
+			case 'sexy-twitter':
+				$socials.=bookmark_list_item($name, array(
+					'post_by'=>(!empty($sexy_plugopts['twittid']))?"(via+@".$sexy_plugopts['twittid'].")":'',
+					'short_title'=>$short_title,
+					'fetch_url'=>$fetch_url,
+				));
+				break;
+			case 'sexy-identica':
+				$socials.=bookmark_list_item($name, array(
+					'short_title'=>$short_title,
+					'fetch_url'=>$fetch_url,
+				));
+				break;
+			case 'sexy-mail':
+				$socials.=bookmark_list_item($name, array(
+					'title'=>$mail_subject,
+					'post_summary'=>$post_summary,
+					'permalink'=>$perms,
+				));
+				break;
+			case 'sexy-tomuse':
+				$socials.=bookmark_list_item($name, array(
+					'title'=>$mail_subject,
+					'post_summary'=>$post_summary,
+					'permalink'=>$perms,
+				));
+				break;
+			case 'sexy-diigo':
+				$socials.=bookmark_list_item($name, array(
+					'sexy_teaser'=>$sexy_content,
+					'permalink'=>$perms,
+					'title'=>$title,
+				));
+				break;
+			case 'sexy-linkedin':
+				$socials.=bookmark_list_item($name, array(
+					'post_summary'=>$post_summary,
+					'site_name'=>$site_name,
+					'permalink'=>$perms,
+					'title'=>$title,
+				));
+				break;
+			case 'sexy-comfeed':
+				$socials.=bookmark_list_item($name, array(
+					'permalink'=>urldecode($feedperms).$feedstructure,
+				));
+				break;
+			case 'sexy-yahoobuzz':
+				$socials.=bookmark_list_item($name, array(
+					'permalink'=>$perms,
+					'title'=>$title,
+					'yahooteaser'=>$sexy_content,
+					'yahoocategory'=>$y_cat,
+					'yahoomediatype'=>$y_med,
+				));
+				break;
+			case 'sexy-twittley':
+				$socials.=bookmark_list_item($name, array(
+					'permalink'=>urlencode($perms),
+					'title'=>$title,
+					'post_summary'=>$post_summary,
+					'twitt_cat'=>$t_cat,
+					'default_tags'=>$d_tags,
+				));
+				break;
+			case 'sexy-tumblr':
+				$socials.=bookmark_list_item($name, array(
+					'permalink'=>urlencode($perms),
+					'title'=>$title,
+				));
+				break;
+			default:
+				$socials.=bookmark_list_item($name, array(
+					'post_summary'=>$post_summary,
+					'permalink'=>$perms,
+					'title'=>$title,
+				));
+				break;
 		}
 	}
 	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
@@ -472,13 +400,8 @@ function get_sexy() {
 // This function is what allows people to insert the menu wherever they please rather than above/below a post...
 function selfserv_sexy() {
 	global $post;
-
-	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
-		// Don't display SexyBookmarks
-	}
-	else {
+	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
 		echo get_sexy();
-	}
 }
 
 // Write the <head> code only on pages that the menu is set to display
