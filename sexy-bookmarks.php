@@ -119,30 +119,21 @@ $sexy_plugopts = array(
 	'warn-choice' => '',
 	'doNotIncludeJQuery' => '',
 	'custom-mods' => '',
+	'hide-sponsors' => '',
 );
 
-$sponsor_messages = $_POST['hide-sponsors'];
-
-//add to database
-add_option(SEXY_OPTIONS, $sexy_plugopts);
-add_option('SEXY_SPONSORS', $sponsor_messages);
-
-//reload
-$sexy_plugopts = get_option(SEXY_OPTIONS);
-$sponsor_messages = get_option('SEXY_SPONSORS');
-
-//update
-$sponsor_messages = $_POST['hide-sponsors'];
-update_option('SEXY_SPONSORS', $sponsor_messages);
-
-//reload
-$sponsor_messages = get_option('SEXY_SPONSORS');
+add_option(SEXY_OPTIONS, $sexy_plugopts); //add to database
+$sexy_plugopts = get_option(SEXY_OPTIONS); //reload
 
 //write settings page
 function sexy_settings_page() {
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
-	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb, $sponsor_messages;
+	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
 
+	if($_POST['sponsor-form-save'] == "1"){ //hide sponsor check
+		$sexy_plugopts['hide-sponsors'] = $_POST['sexy-hide-sponsors'];
+		update_option(SEXY_OPTIONS, $sexy_plugopts);
+	}
 
 	// create folders for custom mods
 	// then copy original files into new folders
@@ -256,7 +247,7 @@ function sexy_settings_page() {
 		</div>';
 	}
 
-if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
+if($sexy_plugopts['hide-sponsors'] != "yes") {
 ?>
 <script type="text/javascript">
 	var psHost = (("https:" == document.location.protocol) ? "https://" : "http://");
@@ -667,7 +658,8 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 				<form name="sexy-bookmarks" id="no-sponsors" action="" method="post">
 					<label id="no-sponsors-label">
 						<?php _e('Disable sponsor messages?', 'sexybookmarks'); ?>
-						<input <?php if($sponsor_messages == "yes") { echo 'checked="checked"'; } ?> name="hide-sponsors" id="hide-sponsors" type="checkbox" value="yes" />
+						<input <?php if($sexy_plugopts['hide-sponsors'] == "yes") { echo 'checked="checked"'; } ?> name="sexy-hide-sponsors" id="hide-sponsors" type="checkbox" value="yes" />
+						<input type="hidden" name="sponsor-form-save" value="1" />
 					</label>
 				</form>
 			</div>
@@ -754,6 +746,13 @@ function sexy_admin_styles() {
 	}
 	wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 }
+
+// Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh
+function sexy_admin_plugin_actions($links) {
+	$links[] = '<a href="options-general.php?page=sexy-bookmarks.php"><b>'.__('Settings', 'sexybookmarks').'</b></a>';
+	return $links;
+}
+add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'sexy_admin_plugin_actions', -10);
 
 require_once "includes/public.php";
 
