@@ -223,8 +223,7 @@ function sexy_settings_page() {
 		}
 	}
 
-	//if there was an error,
-	//display it in my new fancy schmancy divs
+	//if there was an error, construct error messages
 	if ($error_message != '') {
 		echo '
 		<div id="errmessage" class="sexy-error">
@@ -247,6 +246,7 @@ function sexy_settings_page() {
 		</div>';
 	}
 
+// If sponsor messages aren't set to be hidden, insert the script
 if($sexy_plugopts['hide-sponsors'] != "yes") {
 ?>
 <script type="text/javascript">
@@ -495,7 +495,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 								<li><?php _e('Deselect the "Use custom mods" option.', 'sexybookmarks'); ?></li>
 								<li><?php _e('Save your changes.', 'sexybookmarks'); ?></li>
 							</ol>
-							<span class="fugue f-delete custom-mods-notice-close">Close Message</span>
+							<span class="fugue f-delete custom-mods-notice-close"><?php _e('Close Message', 'sexybookmarks'); ?></span>
 						</div>
 						<div class="custom-mod-check fugue f-plugin">
 							<label for="custom-mods" class="sexy_option" style="display:inline;">
@@ -568,7 +568,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/warning-delete.jpg" class="del-x" alt=""/>
 							</div>
 						</div>
-						<span class="sexy_option"><?php _e('Menu Location (in relevance to content):', 'sexybookmarks'); ?></span>
+						<span class="sexy_option"><?php _e('Menu Location (in relation to content):', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> <?php _e('Above Content', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> <?php _e('Below Content', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> <?php _e('Manual Mode', 'sexybookmarks'); ?></label>
