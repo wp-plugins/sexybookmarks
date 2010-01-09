@@ -14,6 +14,7 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* Added compatibility with YOURLS plugin
 * Updated Danish translation
 * Updated French translation
 * Added Norwegian translation
@@ -130,6 +131,10 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 2.6.1.4 =
+* Added compatibility with YOURLS plugin
+* Improved the way the plugin gets Short URLs
+
 = 2.6.1.3 =
 * Updated Danish translation
 * Updated French translation

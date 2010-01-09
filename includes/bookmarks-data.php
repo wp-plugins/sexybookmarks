@@ -74,12 +74,12 @@ $sexy_bookmarks_data=array(
 	'sexy-mail'=>array(
 		'check'=>__('Check this box to include the ', 'sexybookmarks').__('"Email to a Friend" link', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Email this to a friend?', 'sexybookmarks'),
-		'baseUrl'=>'mailto:?subject=%22TITLE%22&amp;body=I%20thought%20this%20article%20might%20interest%20you.%0A%0A%22POST_SUMMARY%22%0A%0AYou%20can%20read%20the%20full%20article%20here%3A%20PERMALINK',
+                'baseUrl'=>'mailto:?subject=%22TITLE%22&amp;body='.urlencode( __('I thought this article might interest you.', 'sexybookmarks') ).'%0A%0A%22POST_SUMMARY%22%0A%0A'.urlencode( __('You can read the full article here', 'sexybookmarks') ).'%3A%20PERMALINK',
 	),
 	'sexy-tomuse'=>array(
 		'check'=>__('Check this box to include the ', 'sexybookmarks').__('ToMuse', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),
 		'share'=>__('Suggest this article to ', 'sexybookmarks').__('ToMuse', 'sexybookmarks'),
-		'baseUrl'=>'mailto:tips@tomuse.com?subject=New%20tip%20submitted%20via%20the%20SexyBookmarks%20Plugin!&amp;body=I%20would%20like%20to%20submit%20this%20article%3A%20%22TITLE%22%20for%20possible%20inclusion%20on%20ToMuse.%0A%0A%22POST_SUMMARY%22%0A%0AYou%20can%20read%20the%20full%20article%20here%3A%20PERMALINK',
+                'baseUrl'=>'mailto:tips@tomuse.com?subject='.urlencode( __('New tip submitted via the SexyBookmarks Plugin!', 'sexybookmarks') ).'&amp;body='.urlencode( __('I would like to submit this article', 'socialit') ).'%3A%20%22TITLE%22%20'.urlencode( __('for possible inclusion on ToMuse.', 'sexybookmarks') ).'%0A%0A%22POST_SUMMARY%22%0A%0A'.urlencode( __('You can read the full article here', 'sexybookmarks') ).'%3A%20PERMALINK',
 	),
 	'sexy-comfeed'=>array(
 		'check'=>__('Check this box to include ', 'sexybookmarks').__('a \'Subscribe to Comments\' link', 'sexybookmarks').__(' in your bookmarking menu', 'sexybookmarks'),

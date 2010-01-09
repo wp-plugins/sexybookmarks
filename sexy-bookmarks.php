@@ -191,7 +191,10 @@ function sexy_settings_page() {
 		// Twitter friendly links: check to see if they have the plugin activated
 		if ($_POST['shorty'] == 'tflp' && !function_exists('permalink_to_twitter_link')) {
 			$error_message = __('You must first download and activate the', 'sexybookmarks').' <a href="http://wordpress.org/extend/plugins/twitter-friendly-links/">'.__('Twitter Friendly Links Plugin', 'sexybookmarks').'</a> '.__('before hosting your own short URLs...', 'sexybookmarks');
+		} elseif ($_POST['shorty'] == 'yourls' && !function_exists('wp_ozh_yourls_raw_url')) {
+			$error_message = __('You must first download and activate the', 'sexybookmarks').' <a href="http://wordpress.org/extend/plugins/yourls-wordpress-to-twitter/">'.__('YOURLS Plugin', 'sexybookmarks').'</a> '.__(' before hosting your own short URLs...', 'sexybookmarks');
 		}
+		
 		if (!$error_message) {
 			foreach (array(
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
@@ -224,8 +227,8 @@ function sexy_settings_page() {
 
 
 		if ($_POST['clearShortUrls']) {
-			$dump=$wpdb->query(" DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash' ");
-			echo  '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.$dump.__(' Short URLs have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+			$dump = $wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key='_sexybookmarks_shortUrl' OR meta_key='_sexybookmarks_permaHash'");
+			echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.($dump/2).__(' Short URL(s) have been reset.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 		}
 	}
 
@@ -312,6 +315,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 									// output shorty select options
 									print sexy_select_option_group('shorty', array(
 										'tflp'=>'Twitter Friendly Links Plugin',
+										'yourls'=>'YOURLS Plugin',
 										'b2l'=>'b2l.me',
 										'bitly' => 'bit.ly',
 										'trim'=>'tr.im',
@@ -320,7 +324,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 										'snip'=>'snipr.com',
 										'supr'=>'su.pr',
 										'cligs'=>'cli.gs',
-										'slly'=>'SexyURL',
+										'slly'=>'SexyURL (sl.ly)',
 									));
 									/*
 									 'rims'=>'http://ri.ms',
@@ -693,7 +697,6 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://alisothegeek.com/2009/10/fugue-sprite-css/"><?php _e('Fugue Icon Sprite: Alison Barrett', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://gaut.am/"><?php _e('Twitter encoding fix: Gautam Gupta', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix: Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
@@ -717,7 +720,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://gwegner.de"><?php _e('DE Translation: Gunther Wegner', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://hardwareblog.dk"><?php _e('da-DK Translation: Mads Floe', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.mediaprod.no"><?php _e('NO Translation: Svend Olaf Olsen', 'sexybookmarks'); ?></a></li>
-					<li><a href="	www.gouwefoto.nl"><?php _e('NL Translation: Martin van der Grond', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.gouwefoto.nl"><?php _e('NL Translation: Martin van der Grond', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -749,9 +752,6 @@ function sexy_admin_styles() {
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
 		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
 	}
-	/*elseif (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false)) {
-		wp_enqueue_style('ie-new-sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
-	}*/
 	wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 }
 
