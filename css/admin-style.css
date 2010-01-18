@@ -39,14 +39,14 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 /* End Custom Classes */
 /*------------------------------------------------------------------------------------------*/
 /* Background Images Section */
-.bgimg { background:url('../images/sexy-trans.png') no-repeat; display:block; float:left; margin:10px 0 0; padding:50px 0 0 11px; width:195px; }
-.share-care { background-position: 0 0; }
-.share-sexy { background-position: 0 -346px; }
-.share-care-old { background-position: 0 -746px; }
-.share-love { background-position: 0 -1146px; }
-.share-wealth { background-position: 0 -1535px; padding:50px 0 0 25px !important; }
-.share-enjoy { background-position: 0 -1895px; }
-.share-german {	background-position:0 -2240px; padding-left:25px; }
+.share-care, .share-sexy, .share-care-old, .share-love, .share-wealth, .share-enjoy, .share-german { display:block; float:left; margin:10px 0 0; padding:50px 0 0 11px; width:195px; }
+.share-care { background:url('../images/sharing-caring-hearts.png') no-repeat; }
+.share-sexy { background:url('../images/sharing-sexy.png') no-repeat; }
+.share-care-old { background:url('../images/sharing-caring.png') no-repeat; }
+.share-love { background:url('../images/share-love-hearts.png') no-repeat; }
+.share-wealth { background:url('../images/share-wealth.png') no-repeat; padding:50px 0 0 25px !important; }
+.share-enjoy { background:url('../images/share-enjoy.png') no-repeat; }
+.share-german { background:url('../images/share-german.png') no-repeat; padding-left:25px; }
 /* End Background Images Section */
 /*------------------------------------------------------------------------------------------*/
 /* Top Status Messages */
@@ -61,15 +61,15 @@ div.sexy-success, div.sexy-error, div.sexy-warning, div.sexy-information {
 	padding:3px 10px 0;
 	width:97%;
 }
-div.sexy-success { background:#B4EFAB; border-color: #8BE57E; color:#337129; }
-div.sexy-error {	 background:#FEB1B1; border-color: #FE9090; color:#820101; }
-div.sexy-information { background:#A3D0FF; border-color: #6AB3FF; color:#004185; }
-div.sexy-warning { background:#F0FEB1; border-color: #D5D458; color:#7F7200; }
+div.sexy-success { background:#b4efab; border-color: #8be57e; color:#337129; }
+div.sexy-error {	 background:#feb1b1; border-color: #fe9090; color:#820101; }
+div.sexy-information { background:#a3d0ff; border-color: #6ab3ff; color:#004185; }
+div.sexy-warning { background:#f0feb1; border-color: #d5d458; color:#7f7200; }
 .sexy-warning a, .sexy-information a, .sexy-error a, .sexy-success a { text-decoration:underline; }
-.sexy-warning a { color:#6F6300; }
-.sexy-error a { color:#CB0000; }
-.sexy-information a { color:#1B466F; }
-.sexy-success a { color:#1D5F12; }
+.sexy-warning a { color:#6f6300; }
+.sexy-error a { color:#cb0000; }
+.sexy-information a { color:#1b466f; }
+.sexy-success a { color:#1d5f12; }
 /* End Top Status Messages */
 /*------------------------------------------------------------------------------------------*/
 /* Individual Section Status Messages */
@@ -85,16 +85,16 @@ div.dialog-box-success, div.dialog-box-error, div.dialog-box-warning, div.dialog
 	padding:3px 10px 0;
 	width:97.5%;
 }
-div.dialog-box-succes { background:#B4EFAB; border-color:#8BE57E; color:#337129; }
-div.dialog-box-error { background:#FEB1B1; border-color: #FE9090; color:#820101; }
-div.dialog-box-warning { background:#F0FEB1; border-color: #D5D458; color:#7F7200; }
-div.dialog-box-information { background:#A3D0FF;	border-color: #6AB3FF;	color:#004185; }
+div.dialog-box-succes { background:#b4efab; border-color:#8be57e; color:#337129; }
+div.dialog-box-error { background:#feb1b1; border-color: #fe9090; color:#820101; }
+div.dialog-box-warning { background:#f0feb1; border-color: #d5d458; color:#7f7200; }
+div.dialog-box-information { background:#a3d0ff;	border-color: #6ab3ff;	color:#004185; }
 div.dialog-left { float:left; line-height:16px; }
 div.dialog-left a { text-decoration:underline; }
 div.dialog-box-information a { color:#004185; }
-div.dialog-box-information a:hover { color:#21759B; }
-div.dialog-box-warning a { color:#AF9C00; }
-div.dialog-box-warning a:hover { color:#AF9C00; }
+div.dialog-box-information a:hover { color:#21759b; }
+div.dialog-box-warning a { color:#af9c00; }
+div.dialog-box-warning a:hover { color:#af9c00; }
 div.dialog-right { float:right; }
 img.del-x { cursor:pointer; margin-top:7px; }
 /* End Individual Section Status Messages */

@@ -4,12 +4,11 @@ Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
 Version: 2.6.1.3
-Author: Josh Jones, Jamie Carter, Gautam Gupta, Norman Yung
+Author: Josh Jones, Jamie Carter, Gautam Gupta
 Author URI: http://blog2life.net
 
 	Original WP-Social-Bookmark-Plugin Copyright 2009 Saidmade srl (email : g.fazioli@saidmade.com)
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@sexybookmarks.net)
-	Additional Developer: Norman Yung (www.robotwithaheart.com)
 	Additional Developer: Gautam Gupta (www.gaut.am)
 	Additional Developer: Jamie Carter (www.blog2life.net)
 	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
@@ -33,11 +32,9 @@ Author URI: http://blog2life.net
 // Create Text Domain For Translations
 load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/languages/');
 
-
+// Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','2.6.1.3');
-define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
-define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
 
 // Check for location modifications in wp-config
@@ -522,25 +519,25 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 							<?php _e('Use a background image?', 'sexybookmarks'); ?> <input <?php echo (($sexy_plugopts['bgimg-yes'] == "yes")? 'checked' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
 						</span>
 						<div id="bgimgs" class="<?php if(!isset($sexy_plugopts['bgimg-yes'])) { ?>hidden<?php } else { echo ''; }?>">
-							<label class="bgimg share-sexy">
+							<label class="share-sexy">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "sexy")? 'checked="checked"' : ""); ?> id="bgimg-sexy" name="bgimg" type="radio" value="sexy" />
 							</label>
-							<label class="bgimg share-care">
+							<label class="share-care">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "caring")? 'checked="checked"' : ""); ?> id="bgimg-caring" name="bgimg" type="radio" value="caring" />
 							</label>
-							<label class="bgimg share-care-old">
+							<label class="share-care-old">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "care-old")? 'checked="checked"' : ""); ?> id="bgimg-care-old" name="bgimg" type="radio" value="care-old" />
 							</label>
-							<label class="bgimg share-love">
+							<label class="share-love">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "love")? 'checked="checked"' : ""); ?> id="bgimg-love" name="bgimg" type="radio" value="love" />
 							</label>
-							<label class="bgimg share-wealth">
+							<label class="share-wealth">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "wealth")? 'checked="checked"' : ""); ?> id="bgimg-wealth" name="bgimg" type="radio" value="wealth" />
 							</label>
-							<label class="bgimg share-enjoy">
+							<label class="share-enjoy">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "enjoy")? 'checked="checked"' : ""); ?> id="bgimg-enjoy" name="bgimg" type="radio" value="enjoy" />
 							</label>
-							<label class="bgimg share-german">
+							<label class="share-german">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "german")? 'checked="checked"' : ""); ?> id="bgimg-german" name="bgimg" type="radio" value="german" />
 							</label>
 						</div>
