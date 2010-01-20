@@ -334,20 +334,6 @@ function get_sexy() {
 					'permalink'=>$perms,
 				));
 				break;
-			case 'sexy-dzone':
-				$socials.=bookmark_list_item($name, array(
-					'title'=>$mail_subject,
-					'post_summary'=>$post_summary,
-					'permalink'=>$perms,
-				));
-				break;
-			case 'sexy-boxnet':
-				$socials.=bookmark_list_item($name, array(
-					'title'=>$mail_subject,
-					'post_summary'=>$post_summary,
-					'permalink'=>$perms,
-				));
-				break;
 			case 'sexy-diigo':
 				$socials.=bookmark_list_item($name, array(
 					'sexy_teaser'=>$sexy_content,
