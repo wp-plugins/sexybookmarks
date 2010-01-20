@@ -386,5 +386,25 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Share this on ', 'sexybookmarks').__('Plurk', 'sexybookmarks'),
 		'baseUrl'=>'http://www.plurk.com/m?content=TITLE+-+PERMALINK&amp;qualifier=shares',
 	),
+	'sexy-dzone'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('DZone', 'sexybookmarks')),
+		'share'=>__('Add this to ', 'sexybookmarks').__('DZone', 'sexybookmarks'),
+		'baseUrl'=>'http://www.dzone.com/links/add.html?url=PERMALINK&title=TITLE&description=POST_SUMMARY',
+	),	
+	'sexy-kaevur'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Kaevur', 'sexybookmarks')).__(' (Estonian)', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Kaevur', 'sexybookmarks'),
+		'baseUrl'=>'http://kaevur.com/submit.php?url=PERMALINK',
+	),
+	'sexy-virb'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Virb', 'sexybookmarks')),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Virb', 'sexybookmarks'),
+		'baseUrl'=>'http://virb.com/share?external&v=2&url=PERMALINK&title=TITLE',
+	),	
+	'sexy-boxnet'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Box.net', 'sexybookmarks')),
+		'share'=>__('Add this link to ', 'sexybookmarks').__('Box.net', 'sexybookmarks'),
+		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&name=TITLE&description=POST_SUMMARY&import_as=link',
+	),	
 );
 ?>
