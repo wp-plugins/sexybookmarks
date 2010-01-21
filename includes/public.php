@@ -17,11 +17,36 @@ function sexy_nav_browse($url, $method = 'GET', $data = array()){
 }
 
 function sexy_get_fetch_url() {
-	global $post, $sexy_plugopts; //globals
+	global $post, $sexy_plugopts, $wp_query; //globals
 	
-	//get link
-	if($sexy_plugopts['position'] == 'manual') { $perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']; }
-	else { $perms = get_permalink(); }
+	//get link but first check if inside or outside loop and what page it's on
+	$post = $wp_query->post;
+
+	if($sexy_plugopts['position'] == 'manual') {
+		//Check if outside the loop
+		if(empty($post->post_title)) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+		}
+		//Otherwise, it must be inside the loop
+		else {
+			$perms = get_permalink($post->ID);
+		}
+	}
+	//Check if index page...
+	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
+		//Check if outside the loop
+		if(empty($post->post_title)) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+		}
+		//Otherwise, it must be inside the loop
+		else {
+			$perms = get_permalink($post->ID);
+		}
+	}
+	//Apparently isn't on index page...
+	else {
+		$perms = get_permalink($post->ID);
+	}
 	$perms = trim($perms);
 	
 	//if is post, and post is not published then return permalink and go back
