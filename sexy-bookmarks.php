@@ -724,6 +724,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 					<li><a href="http://hardwareblog.dk">da-DK <?php _e('Translation', 'sexybookmarks'); ?>: Mads Floe</a></li>
 					<li><a href="http://www.mediaprod.no">NO <?php _e('Translation', 'sexybookmarks'); ?>: Svend Olaf Olsen</a></li>
 					<li><a href="http://www.gouwefoto.nl">NL <?php _e('Translation', 'sexybookmarks'); ?>: Martin van der Grond</a></li>
+					<li><a href="http://www.freegroup.org">zh-TW <?php _e('Translation', 'sexybookmarks'); ?>: Pseric Lin</a></li>
 				</ul>
 			</div>
 		</div>
