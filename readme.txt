@@ -124,15 +124,15 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.7 =
-* New Sprite Image is generated when you save options (If you have PHP 5 or above with PHPGD, and don't have custom mods feature on)
+= 3.0 =
+* New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
 * Also reduced the size of the images with Smush It
 * Separated Background Images
 * Fixed Translation Strings
 * Added option to load javascript in blog's footer
 * Added compatibility with YOURLS plugin
 * Added Settings link in plugin's information section
-* Many improvements in the coding
+* Many improvements in the coding efficiency
 * Minified public JS
 * Added DZone
 * Added Kaevur (Estonian)
