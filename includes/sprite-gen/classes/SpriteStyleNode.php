@@ -72,7 +72,9 @@ class SpriteStyleNode{
       $top = ($this->background_position['top'] + $augmentY).'px';
     }
     if($this->background_position){
-      return 'background-position: '.$left.' '.$top.' ; ';
+      //return 'background-position: '.$left.' '.$top.' ; ';
+      /* Here edited by Gautam */
+      return 'background-position: '.$left.' bottom !important;';
     }
     return '';
   }
@@ -82,23 +84,27 @@ class SpriteStyleNode{
     }
     else{
       $background = (isset($params['background']))?($params['background']):('no-repeat');
-      return 'background: url(\''.$this->background_image.'\') '.$background.' ; ';
+      return 'background: url(\''.$this->background_image.'\') '.$background.';';
     }
   }
   public function renderWidth(){
     if($this->width){
-      return 'width: '.$this->width.'px ; ';
+      return 'width: '.$this->width.'px;';
     }
     return '';
   }
   public function renderHeight(){
     if($this->height){
-      return 'height: '.$this->height.'px ; ';
+      //return 'height: '.$this->height.'px ; ';
+      /* Here edited by Gautam */
+      return 'height: 29px;';
     }
     return '';
   }
   public function renderSize(){
-    return $this->renderWidth().' '.$this->renderHeight();
+    //return $this->renderWidth().' '.$this->renderHeight();
+    /* Here edited by Gautam */
+    return '';
   }
   public function renderImageClass(){
     return $this->class.' ';
@@ -141,7 +147,12 @@ class SpriteStyleNode{
     }
   }
   public function renderCss(array $params=array()){
-    return '.'.$this->class.' {'.$this->renderStyle($params).'} ';
+    /* Here edited by Gautam */
+    if($this->backgroundNode){
+      return $this->class.' {'.$this->renderStyle($params).'} '.$this->class.':hover {background-position: '.$this->background_position['left'].'px top !important;}'."\n";
+    }else{
+      return $this->class.' {'.$this->renderStyle($params).'}';
+    }
   }
   /*public function renderCssWithBackground(array $params=array()){
     return '.'.$this->class.' {'.$this->renderStyleWithBackground($params).'} ';

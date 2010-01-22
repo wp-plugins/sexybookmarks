@@ -9,7 +9,9 @@ class SpriteStyleGroup extends ArrayObject implements SpriteHashable{
     $this->sprite = $sprite;
     parent::__construct($this->spriteStyleNodes, ArrayObject::ARRAY_AS_PROPS);
     
-    $this->backgroundStyleNode = new SpriteStyleNode(null, 'sprite'.md5($this->sprite->getRelativePath()), null, $this->sprite->getRelativePath());
+    //$this->backgroundStyleNode = new SpriteStyleNode(null, 'sprite'.md5($this->sprite->getRelativePath()), null, $this->sprite->getRelativePath());
+    /* Here edit by Gautam */
+    $this->backgroundStyleNode = new SpriteStyleNode(null, '@import "style.css";'."\n".'div.sexy-bookmarks ul.socials li', null, $this->sprite->getRelativePath());
     foreach($this->sprite as $spriteImage){
       $this->addStylesToGroup($spriteImage);
     }
@@ -36,7 +38,7 @@ class SpriteStyleGroup extends ArrayObject implements SpriteHashable{
   }
   
   public function getCss(){
-    $css = $this->getBackgroundStyleNode()->renderCss()."\n\n";
+    $css = $this->getBackgroundStyleNode()->renderCss()."\n";
     foreach($this as $styleNode){
       $css .= $styleNode->renderCss();
     }

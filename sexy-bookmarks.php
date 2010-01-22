@@ -35,7 +35,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','2.7-dev');
-define('SEXY_RELDIR', dirname(getenv("SCRIPT_NAME"))); //needed for sprite-gen
+define('SEXY_RELDIR', '/wp-content/plugins/'.plugin_basename(dirname(__FILE__))); //needed for sprite-gen
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -187,17 +187,18 @@ function sexy_settings_page() {
 		
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-			/*require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
-			SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'images'); //relative to web root, this is where the generated sprite images will go
-			SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'css'); //relative to web root, this is where template files and generated CSS will go
-			SpriteConfig::set('cacheTime', 0); //Set the cacheTime to 0 to prevent any caching
-			SpriteConfig::set('transparentImagePath', SEXY_RELDIR.'1_1_trans.gif');
-			foreach($POST_['bookmark'] as $bookmark){
-				Sprite::ppRegister(SEXY_RELDIR.'images/icons/'.$bookmark.'.png');
+			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$_POST['custom-mods']) {
+				require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
+				SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
+				SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
+				SpriteConfig::set('cacheTime', 0); //Set the cacheTime to 0 to prevent any caching
+				SpriteConfig::set('transparentImagePath', SEXY_RELDIR.'/images/1_1_trans.gif');
+				foreach($_POST['bookmark'] as $bookmark){
+					Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
+				}
+				Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
+				$sexy_plugopts['custom-css'] = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
 			}
-			Sprite::process(); //Now we run the processSprites() funciton. This MUST be run before you can access any of the Sprites in your template or elsewhere.
-			//cssfilename = Sprite::getFileName();
-			$sexy_plugopts['custom-css'] = trim(Sprite::getFileName());*/
 			foreach (array(
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
 				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed',

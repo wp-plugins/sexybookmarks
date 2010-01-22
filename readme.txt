@@ -14,17 +14,19 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
+* New Sprite Image is generated when you save options (If you have PHP 5 or above with PHPGD, and don't have Custom Mods Feature ON)
+* Also reduced the size of the images with Smush It
+* Separated Background Images
 * Added compatibility with YOURLS plugin
-* Updated Danish translation
-* Updated French translation
-* Added Norwegian translation
-* Added Dutch translation
-* Fixed validity issue with Strands & Plurk sharing links
-* Updated methods of calling styles and scripts
+* Fixed Translation Strings
+* Added Traditional Chinese Translation
 * Fixed issue with sponsor messages not staying hidden
-* Fixed JSON compatibility issue due to multiple instances of the JSON class
 
 = Recently Added Sites =
+* DZone
+* Kaevur (Estonian)
+* Virb
+* Box.net
 * Plurk
 * Strands
 * Tumblr
@@ -32,7 +34,9 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Current
 * Blogger
 
-== Special Thanks & Credits ==
+== Other Notes ==
+
+= Special Thanks & Credits =
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
 Listed below are credits and thanks to some of you who have helped us out a great deal:
@@ -50,8 +54,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
 * Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
 * Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
-
-
+* Credit goes to [Pseric Lin](http://www.freegroup.org) for translating into Traditional Chinese
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
@@ -63,27 +66,19 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 
-
-
-
 == Screenshots ==
 
 1. A quick preview of the final outcome (excess hidden)
 2. Another preview of the final outcome with excess networks displayed upon hover
 3. A preview of the admin panel associated with the plugin
 
-
 == Installation ==
 
-1. Upload the extracted archive to 'wp-content/plugins/'
+1. Upload the extracted archive to `wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu
 3. Open the plugin settings page Settings -> SexyBookmarks
 4. Adjust settings to your liking
 4. Enjoy!
-
-= Disabling Per Post =
-To disable the plugin on a specific post or page, simply add a new custom field to that post/page with the key **"Hide SexyBookmarks"** and the value **"true"**
-
 
 = Manual Usage =
 **As of v2.5 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
@@ -96,6 +91,9 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
+= How do I disable the plugin on a particular post/page? =
+To disable the plugin on a specific post or page, simply add a new custom field to that post/page with the key **"Hide SexyBookmarks"** and the value **"true"**
+
 = The menu shows up as a regular list with no styling and no images! =
 Unfortunately, this is becoming a more prevalent problem recently and it's due to your WordPress theme not having the function reference `wp_head()` in the **header.php** file as it should. SexyBookmarks uses this function to hook the associated stylesheet and javascript files into the `<head>` of your document. So if it doesn't exist, then the stylesheet and/or javascript files won't be included on your site.
 
@@ -126,11 +124,21 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
-= 2.6.1.4 =
+= 2.7 =
+* New Sprite Image is generated when you save options (If you have PHP 5 or above with PHPGD, and don't have custom mods feature on)
+* Also reduced the size of the images with Smush It
+* Separated Background Images
+* Fixed Translation Strings
 * Added option to load javascript in blog's footer
 * Added compatibility with YOURLS plugin
 * Added Settings link in plugin's information section
 * Many improvements in the coding
+* Minified public JS
+* Added DZone
+* Added Kaevur (Estonian)
+* Added Virb
+* Added Box.net
+* Removed Devmarks as it no longer exists
 
 = 2.6.1.3 =
 * Updated Danish translation
@@ -424,3 +432,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 = 1.0 =
 * Initial release!
+
+== Upgrade Notice ==
+= 2.7 =
+When you upgrade, and have PHP 5 or above with PHPGD and don't have the custom mods options on, then go to the settings page and click the 'Save Changes' button to generate a new sprite image which will be smaller in size.

@@ -10,7 +10,7 @@ div.sexy-bookmarks-bg-german { padding:35px 0 0 20px !important; background:tran
 div.sexy-bookmarks ul.socials { width:100% !important; margin:0 !important; padding:0 !important; float: left !important; }
 div.sexy-bookmarks ul.socials { background:transparent none !important; border:0 none !important; outline:0 none !important; }
 div.sexy-bookmarks ul.socials li {
-	background:url('../images/sexy-sprite.png') no-repeat !important;
+	background:url('../images/sexy-sprite.png') no-repeat;
 	display:inline !important;
 	float:left !important;
 	list-style-type:none !important;
@@ -31,6 +31,7 @@ div.sexy-bookmarks ul.socials a {
 	height:29px !important;
 	text-indent: -9999px !important;
 	background-color:transparent !important;
+	text-decoration:none !important;
 }
 div.sexy-bookmarks ul.socials a:hover, div.sexy-bookmarks ul.socials li:hover { background-color:transparent !important; border:0 none !important; outline:0 none !important; }
 li.sexy-newsvine { background-position:left bottom !important; }

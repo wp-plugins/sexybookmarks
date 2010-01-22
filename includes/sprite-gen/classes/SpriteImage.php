@@ -154,7 +154,7 @@ class SpriteImage implements SpriteIterable, SpriteHashable {
     /* Here edited by Gautam */
     $filename = explode('images/icons/sexy-', $this->imgPath); //twitter.png
     $filename = explode('.', $filename[1]); //twitter
-    $filename = 'sexy-'.$filename[0]; //sexy-twitter
+    $filename = 'li.sexy-'.$filename[0]; //sexy-twitter
     return $filename;
   }
   

@@ -416,4 +416,5 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&name=TITLE&description=POST_SUMMARY&import_as=link',
 	),	
 );
+ksort($sexy_bookmarks_data, SORT_STRING); //sort array by keys
 ?>
