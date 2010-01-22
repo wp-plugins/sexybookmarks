@@ -1,4 +1,18 @@
 <?php
+// dynamic mister wong link generator
+$wong_tld = '.com';
+if(WPLANG == 'de_DE') {
+	$wong_tld = '.de';
+} elseif(WPLANG == 'zh_CN' || WPLANG == 'zh_HK' || WPLANG == 'zh_TW') {
+	$wong_tld = '.cn';
+} elseif(WPLANG == 'es_CL'  || WPLANG == 'es_ES' || WPLANG == 'es_PE' || WPLANG == 'es_VE') {
+	$wong_tld = '.es';
+} elseif(WPLANG == 'fr_FR' || WPLANG == 'fr_BE') {
+	$wong_tld = '.fr';
+} elseif(WPLANG =='ru_RU' || WPLANG == 'ru_MA') {
+	$wong_tld = '.ru';
+}
+
 // array of bookmarks
 $sexy_bookmarks_data=array(
 	'sexy-scriptstyle'=>array(
@@ -96,11 +110,6 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Seed this on ', 'sexybookmarks').__('Newsvine', 'sexybookmarks'),
 		'baseUrl'=>'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 	),
-	'sexy-devmarks'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Devmarks', 'sexybookmarks')),
-		'share'=>__('Share this on ', 'sexybookmarks').__('Devmarks', 'sexybookmarks'),
-		'baseUrl'=>'http://devmarks.com/index.php?posttext=POST_SUMMARY&amp;posturl=PERMALINK&amp;posttitle=TITLE',
-	),
 	'sexy-google'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Google Bookmarks', 'sexybookmarks')),
 		'share'=>__('Add this to ', 'sexybookmarks').__('Google Bookmarks', 'sexybookmarks'),
@@ -109,7 +118,7 @@ $sexy_bookmarks_data=array(
 	'sexy-misterwong'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Mister Wong', 'sexybookmarks')),
 		'share'=>__('Add this to ', 'sexybookmarks').__('Mister Wong', 'sexybookmarks'),
-		'baseUrl'=>'http://www.mister-wong.com/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=sexybookmarks',
+		'baseUrl'=>'http://www.mister-wong'.$wong_tld.'/addurl/?bm_url=PERMALINK&amp;bm_description=TITLE&amp;plugin=sexybookmarks',
 	),
 	'sexy-izeby'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Izeby', 'sexybookmarks')),

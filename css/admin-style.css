@@ -113,7 +113,9 @@ img.del-x { cursor:pointer; margin-top:7px; }
 .iconator label input {margin-top:30px;}
 label.sexy-newsvine {background-position:left top;}
 label.sexy-linkedin {background-position:-70px top;}
+/* Commenting this out until I replace with a new service because this one no longer exists
 label.sexy-devmarks {background-position:-140px top;}
+*/
 label.sexy-google {background-position:-210px top;}
 label.sexy-scriptstyle {background-position:-280px top;}
 label.sexy-mail {background-position:-350px top;}

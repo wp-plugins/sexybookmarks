@@ -37,8 +37,10 @@ li.sexy-newsvine { background-position:left bottom !important; }
 li.sexy-newsvine:hover { background-position:left top !important; }
 li.sexy-linkedin { background-position:-70px bottom !important; }
 li.sexy-linkedin:hover { background-position:-70px top !important; }
+/* Commenting this out until I replace with a new service because this one no longer exists
 li.sexy-devmarks { background-position:-140px bottom !important; }
 li.sexy-devmarks:hover { background-position:-140px top !important; }
+*/
 li.sexy-google { background-position:-210px bottom !important; }
 li.sexy-google:hover { background-position:-210px top !important; }
 li.sexy-scriptstyle { background-position:-280px bottom !important; }
