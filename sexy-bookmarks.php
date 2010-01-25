@@ -137,22 +137,27 @@ function sexy_settings_page() {
 
 	// create folders for custom mods
 	// then copy original files into new folders
-	If(function_exists('is_admin') && function_exists('wp_mkdir_p')) {
-		if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
-			if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
-				$sexy_oldloc = SEXY_PLUGDIR;
-				$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
+	if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
+		if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
+			$sexy_oldloc = SEXY_PLUGDIR;
+			$sexy_newloc = WP_CONTENT_DIR.'/sexy-mods/';
 
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
-				wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/css');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
+			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
 
-				copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
-				copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
-				copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
-				copy($sexy_oldloc.'images/sexy-trans.png', $sexy_newloc.'images/sexy-trans.png');
-			}
+			copy($sexy_oldloc.'css/style.css', $sexy_newloc.'css/style.css');
+			copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
+			copy($sexy_oldloc.'images/sexy-sprite.png', $sexy_newloc.'images/sexy-sprite.png');
+			
+			copy($sexy_oldloc.'images/share-enjoy.png', $sexy_newloc.'images/share-enjoy.png');
+			copy($sexy_oldloc.'images/share-german.png', $sexy_newloc.'images/share-german.png');
+			copy($sexy_oldloc.'images/share-love-hearts.png', $sexy_newloc.'images/share-love-hearts.png');
+			copy($sexy_oldloc.'images/share-wealth.png', $sexy_newloc.'images/share-wealth.png');
+			copy($sexy_oldloc.'images/sharing-caring-hearts.png', $sexy_newloc.'images/sharing-caring-hearts.png');
+			copy($sexy_oldloc.'images/sharing-caring.png', $sexy_newloc.'images/sharing-caring.png');
+			copy($sexy_oldloc.'images/sharing-sexy.png', $sexy_newloc.'images/sharing-sexy.png');
 		}
 	}
 
@@ -490,7 +495,13 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 								<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js'; ?></a></li>
 								<li class="custom-mods-code"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/css/style.css'; ?></a></li>
 								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-sprite.png'; ?></a></li>
-								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sexy-trans.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/share-enjoy.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/share-enjoy.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/share-german.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/share-german.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/share-love-hearts.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/share-love-hearts.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/share-wealth.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/share-wealth.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring-hearts.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring-hearts.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring.png'; ?></a></li>
+								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-sexy.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-sexy.png'; ?></a></li>
 							</ul>
 							<p><?php _e('Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done.', 'sexybookmarks'); ?></p>
 							<p><?php _e('Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory.', 'sexybookmarks'); ?></p>
