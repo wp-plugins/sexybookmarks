@@ -7,13 +7,7 @@ $sexy_is_bot = sexy_is_bot();
 
 //cURL, file get contents or nothing, used for short url
 function sexy_nav_browse($url, $method = 'GET', $data = array()){
-	$request = new WP_Http;
-	$result = $request->request( $url , array( 'method' => $method, 'body' => $data, 'user-agent' => 'SexyBookmarks WP Plugin - http://www.sexybookmarks.net/' ) );
-	if ( !is_wp_error($result) && isset($result['body']) ) {
-		return $result['body'];
-	} else {
-		return false;
-	}
+	return wp_remote_retrieve_body( wp_remote_request( $url, array( 'method' => $method, 'body' => $data, 'user-agent' => 'SexyBookmarks WP Plugin - http://www.sexybookmarks.net/' ) ) );
 }
 
 function sexy_get_fetch_url() {
