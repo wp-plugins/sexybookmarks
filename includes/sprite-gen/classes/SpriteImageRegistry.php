@@ -75,7 +75,7 @@ class SpriteImageRegistry{
   }
   
   public static function buildFileList($path){
-    $root = SpriteConfig::get('rootDir');
+    $root = ABSPATH;
     $path = $root.$path;
     $files = array();
     $fileObjs = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
