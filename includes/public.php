@@ -44,8 +44,13 @@ function sexy_get_fetch_url() {
 	$perms = trim($perms);
 	
 	//if is post, and post is not published then return permalink and go back
-	if($post && get_post_status($post->ID) != 'publish')
+	if($post && get_post_status($post->ID) != 'publish') {
 		return $perms;
+	}
+	//if user chose not to use shortener, return permalink and go back
+	if($sexy_plugopts['useShortener'] != '1') {
+		return $perms;
+	}
 	
 	if ($sexy_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
 		$fetch_url = permalink_to_twitter_link($perms);
