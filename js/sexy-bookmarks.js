@@ -216,16 +216,6 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	// Fade in/out mobile feature warning
-	jQuery('#mobile-hide').click(function() {
-		if (this.checked) {
-			jQuery('#mobile-warn').fadeIn('fast');
-		}
-		else {
-			jQuery('#mobile-warn').fadeOut();
-		}
-	});
-
 	jQuery('#position-above').click(function() {
 		if (jQuery('#info-manual').is(':visible')) {
 			jQuery('#info-manual').fadeOut();

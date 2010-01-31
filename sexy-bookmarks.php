@@ -582,14 +582,6 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 								<img src="<?php echo SEXY_PLUGPATH; ?>images/information-delete.jpg" class="del-x" alt=""/>
 							</div>
 						</div>
-						<div class="dialog-box-warning" id="mobile-warn">
-							<div class="dialog-left fugue f-warn">
-								<?php printf(__('This feature is still in the experimental phase, so please <a href="%s">report any bugs</a> you may find.', 'sexybookmarks'), 'http://sexybookmarks.net/contact-forms/bug-form'); ?>
-							</div>
-							<div class="dialog-right">
-								<img src="<?php echo SEXY_PLUGPATH; ?>images/warning-delete.jpg" class="del-x" alt=""/>
-							</div>
-						</div>
 						<span class="sexy_option"><?php _e('Menu Location (in relation to content):', 'sexybookmarks'); ?></span>
 						<label><input <?php echo (($sexy_plugopts['position'] == "above")? 'checked="checked"' : ""); ?> name="position" id="position-above" type="radio" value="above" /> <?php _e('Above Content', 'sexybookmarks'); ?></label>
 						<label><input <?php echo (($sexy_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> <?php _e('Below Content', 'sexybookmarks'); ?></label>
