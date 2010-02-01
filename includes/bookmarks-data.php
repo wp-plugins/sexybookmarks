@@ -86,7 +86,7 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://twitter.com/home?status=SHORT_TITLE+-+FETCH_URL+POST_BY',
 	),
 	'sexy-mail'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('"Email to a Friend" link', 'sexybookmarks')),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __("'Email to a Friend' link", 'sexybookmarks')),
 		'share'=>__('Email this to a friend?', 'sexybookmarks'),
                 'baseUrl'=>'mailto:?subject=%22TITLE%22&amp;body='.urlencode( __('I thought this article might interest you.', 'sexybookmarks') ).'%0A%0A%22POST_SUMMARY%22%0A%0A'.urlencode( __('You can read the full article here', 'sexybookmarks') ).'%3A%20PERMALINK',
 	),
@@ -96,7 +96,7 @@ $sexy_bookmarks_data=array(
                 'baseUrl'=>'mailto:tips@tomuse.com?subject='.urlencode( __('New tip submitted via the SexyBookmarks Plugin!', 'sexybookmarks') ).'&amp;body='.urlencode( __('I would like to submit this article', 'socialit') ).'%3A%20%22TITLE%22%20'.urlencode( __('for possible inclusion on ToMuse.', 'sexybookmarks') ).'%0A%0A%22POST_SUMMARY%22%0A%0A'.urlencode( __('You can read the full article here', 'sexybookmarks') ).'%3A%20PERMALINK',
 	),
 	'sexy-comfeed'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('a \'Subscribe to Comments\' link', 'sexybookmarks')),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __("a 'Subscribe to Comments' link", 'sexybookmarks')),
 		'share'=>__('Subscribe to the comments for this post?', 'sexybookmarks'),
 		'baseUrl'=>'PERMALINK',
 	),
