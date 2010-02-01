@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.0
+Version: 3.0.1
 Author: Josh Jones, Jamie Carter, Gautam Gupta
 Author URI: http://blog2life.net
 
@@ -34,8 +34,8 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.0');
-define('SEXY_RELDIR', '/wp-content/plugins/'.plugin_basename(dirname(__FILE__))); //needed for sprite-gen
+define('SEXY_vNum','3.0.1');
+define('SEXY_RELDIR', str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__))); //needed for sprite-gen
 
 // Check for location modifications in wp-config
 // Then define accordingly

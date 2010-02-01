@@ -137,6 +137,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 = 3.0.0.1=
 * Fix for fatal error if you downloaded v3.0 before 8:30am CST on Feb 1st, 2010
 * Fix for Google Bookmarks image not displaying correctly
+* Fix for spritegen not working if wordpress installed in subdirectory
 
 = 3.0 =
 * New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
