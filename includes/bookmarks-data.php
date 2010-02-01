@@ -110,10 +110,15 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Seed this on ', 'sexybookmarks').__('Newsvine', 'sexybookmarks'),
 		'baseUrl'=>'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 	),
-	'sexy-google'=>array(
+	'sexy-googlebookmarks'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Google Bookmarks', 'sexybookmarks')),
 		'share'=>__('Add this to ', 'sexybookmarks').__('Google Bookmarks', 'sexybookmarks'),
 		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINK&amp;title=TITLE',
+	),
+	'sexy-googlereader'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Google Reader', 'sexybookmarks')),
+		'share'=>__('Add this to ', 'sexybookmarks').__('Google Reader', 'sexybookmarks'),
+		'baseUrl'=>'http://www.google.com/reader/link?url=PERMALINK&title=TITLE&srcUrl=PERMALINK&srcTitle=TITLE&snippet=POST_SUMMARY',
 	),
 	'sexy-misterwong'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Mister Wong', 'sexybookmarks')),
@@ -414,7 +419,37 @@ $sexy_bookmarks_data=array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Box.net', 'sexybookmarks')),
 		'share'=>__('Add this link to ', 'sexybookmarks').__('Box.net', 'sexybookmarks'),
 		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&name=TITLE&description=POST_SUMMARY&import_as=link',
-	),	
+	),
+	'sexy-oknotizie'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('OkNotizie', 'sexybookmarks')).__('(Italian)', 'sexybookmarks'),
+		'share'=>__('Share this on ', 'sexybookmarks').__('OkNotizie', 'sexybookmarks'),
+		'baseUrl'=>'http://oknotizie.virgilio.it/post?url=PERMALINK&title=TITLE',
+	),
+	'sexy-bonzobox'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('BonzoBox', 'sexybookmarks')),
+		'share'=>__('Add this to ', 'sexybookmarks').__('BonzoBox', 'sexybookmarks'),
+		'baseUrl'=>'http://bonzobox.com/toolbar/add?pop=1&u=PERMALINK&t=TITLE&d=POST_SUMMARY',
+	),
+	'sexy-plaxo'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Plaxo', 'sexybookmarks')),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Plaxo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.plaxo.com/?share_link=PERMALINK',
+	),
+	'sexy-springpad'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('SpringPad', 'sexybookmarks')),
+		'share'=>__('Spring this on ', 'sexybookmarks').__('SpringPad', 'sexybookmarks'),
+		'baseUrl'=>'http://springpadit.com/clip.action?body=POST_SUMMARY&url=PERMALINK&format=microclip&title=TITLE&isSelected=true',
+	),
+	'sexy-zabox'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Zabox', 'sexybookmarks')),
+		'share'=>__('Box this on ', 'sexybookmarks').__('Zabox', 'sexybookmarks'),
+		'baseUrl'=>'http://www.zabox.net/submit.php?url=PERMALINK',
+	),
+	'sexy-viadeo'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Viadeo', 'sexybookmarks')),
+		'share'=>__('Share this on ', 'sexybookmarks').__('Viadeo', 'sexybookmarks'),
+		'baseUrl'=>'http://www.viadeo.com/shareit/share/?url=PERMALINK&title=TITLE&urlaffiliate=31138',
+	),
 );
 ksort($sexy_bookmarks_data, SORT_STRING); //sort array by keys
 ?>

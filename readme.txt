@@ -14,25 +14,31 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates / Fixes =
-* New Sprite Image is generated when you save options (If you have PHP 5 or above with PHPGD, and don't have Custom Mods Feature ON)
+* New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
 * Also reduced the size of the images with Smush It
 * Separated Background Images
-* Added compatibility with YOURLS plugin
 * Fixed Translation Strings
-* Added Traditional Chinese Translation
-* Fixed issue with sponsor messages not staying hidden
+* Added option to load javascript in blog's footer
+* Added compatibility with YOURLS plugin
+* Added Settings link in plugin's information section
+* Many improvements in the coding efficiency
+* Minified public JS
+* Removed Devmarks as it no longer exists
+* Updated the old Google Bookmarks icon
+* Added option to allow you to NOT use a URL shortener if you so choose
+* Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
 
 = Recently Added Sites =
 * DZone
 * Kaevur (Estonian)
 * Virb
 * Box.net
-* Plurk
-* Strands
-* Tumblr
-* Stumpedia
-* Current
-* Blogger
+* Google Reader
+* Bonzobox
+* Zabox
+* OkNotizie (Italian)
+* Springpad
+* Plaxo
 
 == Other Notes ==
 
@@ -65,6 +71,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
+* Thanks to [Adrian Mummey](http://www.mummey.org/csprites/) for allowing us to use cSprites in the plugin
 
 == Screenshots ==
 
@@ -139,6 +146,15 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added Virb
 * Added Box.net
 * Removed Devmarks as it no longer exists
+* Added Google Reader
+* Updated the old Google Bookmarks icon
+* Added Bonzobox
+* Added Zabox
+* Added OkNotizie (Italian)
+* Added Springpad
+* Added Plaxo
+* Added option to allow you to NOT use a URL shortener if you so choose
+* Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
 
 = 2.6.1.3 =
 * Updated Danish translation

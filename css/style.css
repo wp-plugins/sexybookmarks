@@ -38,12 +38,10 @@ li.sexy-newsvine { background-position:left bottom !important; }
 li.sexy-newsvine:hover { background-position:left top !important; }
 li.sexy-linkedin { background-position:-70px bottom !important; }
 li.sexy-linkedin:hover { background-position:-70px top !important; }
-/* Commenting this out until I replace with a new service because this one no longer exists
-li.sexy-devmarks { background-position:-140px bottom !important; }
-li.sexy-devmarks:hover { background-position:-140px top !important; }
-*/
-li.sexy-google { background-position:-210px bottom !important; }
-li.sexy-google:hover { background-position:-210px top !important; }
+li.sexy-googlebookmarks { background-position:-140px bottom !important; }
+li.sexy-googlebookmarks:hover { background-position:-140px top !important; }
+li.sexy-googlereader { background-position:-210px bottom !important; }
+li.sexy-googlereader:hover { background-position:-210px top !important; }
 li.sexy-scriptstyle { background-position:-280px bottom !important; }
 li.sexy-scriptstyle:hover { background-position:-280px top !important; }
 li.sexy-mail { background-position:-350px bottom !important; }
@@ -200,3 +198,15 @@ li.sexy-kaevur { background-position:-5600px bottom !important; }
 li.sexy-kaevur:hover { background-position:-5600px top !important; }
 li.sexy-boxnet { background-position:-5670px bottom !important; }
 li.sexy-boxnet:hover { background-position:-5670px top !important; }
+li.sexy-oknotizie { background-position:-5740px bottom !important; }
+li.sexy-oknotizie:hover { background-position:-5740px top !important; }
+li.sexy-bonzobox { background-position:-5810px bottom !important; }
+li.sexy-bonzobox:hover { background-position:-5810px top !important; }
+li.sexy-plaxo { background-position:-5880px bottom !important; }
+li.sexy-plaxo:hover { background-position:-5880px top !important; }
+li.sexy-springpad { background-position:-5950px bottom !important; }
+li.sexy-springpad:hover { background-position:-5950px top !important; }
+li.sexy-zabox { background-position:-6020px bottom !important; }
+li.sexy-zabox:hover { background-position:-6020px top !important; }
+li.sexy-viadeo { background-position:-6090px bottom !important; }
+li.sexy-viadeo:hover { background-position:-6090px top !important; }

@@ -113,10 +113,8 @@ img.del-x { cursor:pointer; margin-top:7px; }
 .iconator label input {margin-top:30px;}
 label.sexy-newsvine {background-position:left top;}
 label.sexy-linkedin {background-position:-70px top;}
-/* Commenting this out until I replace with a new service because this one no longer exists
-label.sexy-devmarks {background-position:-140px top;}
-*/
-label.sexy-google {background-position:-210px top;}
+label.sexy-googlebookmarks {background-position:-140px top;}
+label.sexy-googlereader {background-position:-210px top;}
 label.sexy-scriptstyle {background-position:-280px top;}
 label.sexy-mail {background-position:-350px top;}
 label.sexy-comfeed {background-position:-420px top;}
@@ -195,6 +193,12 @@ label.sexy-virb { background-position:-5460px top !important; }
 label.sexy-dzone { background-position:-5530px top !important; }
 label.sexy-kaevur { background-position:-5600px top !important; }
 label.sexy-boxnet { background-position:-5670px top !important; }
+label.sexy-oknotizie { background-position:-5740px top !important; }
+label.sexy-bonzobox { background-position:-5810px top !important; }
+label.sexy-plaxo { background-position:-5880px top !important; }
+label.sexy-springpad { background-position:-5950px top !important; }
+label.sexy-zabox { background-position:-6020px top !important; }
+label.sexy-viadeo { background-position:-6090px top !important; }
 
 ul.multi-selection {
 	list-style:none;
