@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.9.1
-Stable tag: 3.0
+Stable tag: 2.6.1.3
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
@@ -134,6 +134,10 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 3.0.0.1=
+* Fix for fatal error if you downloaded v3.0 before 8:30am CST on Feb 1st, 2010
+* Fix for Google Bookmarks image not displaying correctly
+
 = 3.0 =
 * New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
 * Also reduced the size of the images with Smush It
