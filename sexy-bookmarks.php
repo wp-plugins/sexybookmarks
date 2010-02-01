@@ -208,7 +208,7 @@ function sexy_settings_page() {
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
 				'shorty', 'pageorpost', 'twittid', 'ybuzzcat', 'ybuzzmed',
 				'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
-				'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods', 'scriptInFooter'
+				'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods', 'scriptInFooter', 'useShortener'
 			) as $field) $sexy_plugopts[$field]=$_POST[$field];
 			
 			/* Short URLs */
