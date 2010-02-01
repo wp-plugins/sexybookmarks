@@ -27,7 +27,8 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Updated the old Google Bookmarks icon
 * Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
-* Added Portugese translation (Brazil [pt-BR])
+* Added Portugese translation (Brazil [pt-BR]
+* Minified stylesheet to save a couple KB
 
 = Recently Added Sites =
 * DZone
@@ -159,6 +160,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added Viadeo
 * Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
+* Minified stylesheet to save a couple KB
 
 = 2.6.1.3 =
 * Updated Danish translation
