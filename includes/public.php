@@ -48,7 +48,7 @@ function sexy_get_fetch_url() {
 		return $perms;
 	}
 	//if user chose not to use shortener, return permalink and go back
-	if($sexy_plugopts['useShortener'] != '1') {
+	if($sexy_plugopts['shorty'] == 'none') {
 		return $perms;
 	}
 	

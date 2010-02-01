@@ -143,16 +143,6 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	// Apply "smart options" to the short URL service DIV
-	jQuery('#useShortener').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#urlshortenerselection').fadeIn('fast');
-		}
-		else {
-			jQuery('#urlshortenerselection').fadeOut();
-		}
-	});
-
 	jQuery('#shorty').change(function() {
 		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
 		jQuery('#shortyapimdiv-trim').fadeOut('fast');
