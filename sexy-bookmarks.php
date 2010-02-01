@@ -34,7 +34,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.0-dev');
+define('SEXY_vNum','3.0');
 define('SEXY_RELDIR', '/wp-content/plugins/'.plugin_basename(dirname(__FILE__))); //needed for sprite-gen
 
 // Check for location modifications in wp-config
