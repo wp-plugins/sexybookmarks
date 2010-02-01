@@ -191,7 +191,7 @@ function sexy_settings_page() {
 		
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$_POST['custom-mods']) {
+			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$_POST['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
 				require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
 				SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
 				SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
@@ -202,6 +202,8 @@ function sexy_settings_page() {
 				}
 				Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
 				$sexy_plugopts['custom-css'] = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
+			}else{
+				$sexy_plugopts['custom-css'] = null;
 			}
 			foreach (array(
 				'position', 'xtrastyle', 'reloption', 'targetopt', 'bookmark',
