@@ -5,7 +5,6 @@ Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharin
 Requires at least: 2.7
 Tested up to: 2.9.1
 Stable tag: 3.0
-
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
