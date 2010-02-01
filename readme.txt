@@ -27,6 +27,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Updated the old Google Bookmarks icon
 * Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
+* Added Portugese translation (Brazil [pt-BR])
 
 = Recently Added Sites =
 * DZone
@@ -62,6 +63,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
 * Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
 * Credit goes to [Pseric Lin](http://www.freegroup.org) for translating into Traditional Chinese
+* Credit goes to [Cadu Silva](http://www.winnext.com.br) fortranslating into Portugese
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
