@@ -456,5 +456,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Initial release!
 
 == Upgrade Notice ==
-= 2.7 =
-When you upgrade, and have PHP 5 or above with PHPGD and don't have the custom mods options on, then go to the settings page and click the 'Save Changes' button to generate a new sprite image which will be smaller in size.
+= 3.0 =
+This version is a major upgrade, and as such, some namespaces have been changed. Additionally, if your server *DOES* have PHP5+ _and_ the PHPGD library installed, you will need to login to your dashboard to generate a new sprite based on your selection of displayed networks. If you do not go to `Settings -> SexyBookmarks` and click "Save Changes" after upgrading, the plugin will most likely not work for you!
+
+This is due to the fact that we are now creating the image sprite dynamically to drastically reduce file sizes and reduce page load times. It is also important to note that if your server is not using PHP5+ or does not have the PHPGD library installed, the plugin will simply continue using the old method of displaying the static sprite which is still included in the plugin.
