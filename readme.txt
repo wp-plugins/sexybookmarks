@@ -39,6 +39,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * OkNotizie (Italian)
 * Springpad
 * Plaxo
+* Viadeo
 
 == Other Notes ==
 
@@ -153,6 +154,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Added OkNotizie (Italian)
 * Added Springpad
 * Added Plaxo
+* Added Viadeo
 * Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
 
