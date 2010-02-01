@@ -110,7 +110,7 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Seed this on ', 'sexybookmarks').__('Newsvine', 'sexybookmarks'),
 		'baseUrl'=>'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 	),
-	'sexy-googlebookmarks'=>array(
+	'sexy-google'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'), __('Google Bookmarks', 'sexybookmarks')),
 		'share'=>__('Add this to ', 'sexybookmarks').__('Google Bookmarks', 'sexybookmarks'),
 		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINK&amp;title=TITLE',
