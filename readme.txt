@@ -464,5 +464,6 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 == Upgrade Notice ==
 = 3.0.1 =
 Major bug fixes for v3.0 - Upgrade immediately if you've installed v3.0 as this will fix problems you probably haven't even noticed yet. Will need to go to Settings->SexyBookmarks and save settings again after upgrading.
+
 = 3.0 =
 Users whose servers have PHP5+ AND the PHPGD library installed will need to login to their dashboard (Settings -> SexyBookmarks) and click the "Save Changes" button upon upgrading to generate a dynamic image sprite based on your selection of networks.

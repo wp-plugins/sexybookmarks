@@ -124,6 +124,33 @@ $sexy_plugopts = array(
 add_option(SEXY_OPTIONS, $sexy_plugopts); //add to database
 $sexy_plugopts = get_option(SEXY_OPTIONS); //reload
 
+
+
+
+function sexy_activate() {
+	global $sexy_plugopts;
+	//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
+	if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$sexy_plugopts['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
+		require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
+		SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
+		SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
+		SpriteConfig::set('cacheTime', 0); //Set the cacheTime to 0 to prevent any caching
+		SpriteConfig::set('transparentImagePath', SEXY_RELDIR.'/images/1_1_trans.gif');
+		foreach($sexy_plugopts['bookmark'] as $bookmark){
+			Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
+		}
+		Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
+		$sexy_plugopts['custom-css'] = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
+		update_option(SEXY_OPTIONS, $sexy_plugopts);
+	}else{
+		$sexy_plugopts['custom-css'] = null;
+	}
+}
+register_activation_hook( __FILE__, 'sexy_activate' );
+
+
+
+
 //write settings page
 function sexy_settings_page() {
 	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
