@@ -38,7 +38,7 @@ require_once('parsers/SpriteDefaultCssParser.php');
 require_once('sorters/SpriteAreaSorter.php');
 require_once('sorters/SpriteLongestDimensionSorter.php');
 
-SpriteConfig::set('rootDir', spriteGetWebRoot());
+SpriteConfig::set('rootDir', spriteGetWebRoot().'/');
 
 function spriteGetWebRoot(){
   $local= getenv("SCRIPT_NAME");

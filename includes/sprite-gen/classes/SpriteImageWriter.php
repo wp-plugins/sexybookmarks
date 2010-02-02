@@ -42,7 +42,7 @@ class SpriteImageWriter{
   }
   
   protected static function writeImageFile($image, $path){
-    $path = ABSPATH.$path;        
+    $path = SpriteConfig::get('rootDir').$path;        
     $fh = fopen($path, "w+" );
     fwrite( $fh, $image );
     fclose( $fh );

@@ -9,13 +9,13 @@ class SpriteStyleRegistry{
   public static function processCss(){
     $allCss = '';
     foreach(self::$registry as &$styleGroup){
-      $filepath = ABSPATH.$styleGroup->getRelativePath();
+      $filepath = SpriteConfig::get('rootDir').$styleGroup->getRelativePath();
       $tempCss = $styleGroup->getCss();
               
       file_put_contents($filepath, $tempCss);
       $allCss .= $tempCss;
     }
-    file_put_contents(ABSPATH.self::getRelativePath(), $allCss);
+    file_put_contents(SpriteConfig::get('rootDir').self::getRelativePath(), $allCss);
   } 
   
   public static function getStyleNodes(){

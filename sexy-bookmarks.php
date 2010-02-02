@@ -36,7 +36,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','3.0.1');
-define('SEXY_RELDIR', PLUGINDIR.'/sexybookmarks');
+define('SEXY_RELDIR', str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__)));
 
 // Check for location modifications in wp-config
 // Then define accordingly

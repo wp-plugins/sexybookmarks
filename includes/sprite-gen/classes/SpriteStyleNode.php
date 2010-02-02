@@ -84,7 +84,7 @@ class SpriteStyleNode{
     }
     else{
       $background = (isset($params['background']))?($params['background']):('no-repeat');
-      return 'background:url(\''.site_url().'/'.$this->background_image.'\') '.$background.';';
+      return 'background:url(\'/'.$this->background_image.'\') '.$background.';';
     }
   }
   public function renderWidth(){

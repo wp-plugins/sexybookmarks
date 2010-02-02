@@ -15,7 +15,7 @@ class SpriteImage implements SpriteIterable, SpriteHashable {
   protected $params;
   
   public function SpriteImage($path, array $params = array()){
-    $this->imgPath = ABSPATH.$path;
+    $this->imgPath = SpriteConfig::get('rootDir').$path;
     $this->relativePath = $path;
     
     if(!($this->fileSize = filesize($this->imgPath))){
