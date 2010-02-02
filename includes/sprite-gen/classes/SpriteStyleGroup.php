@@ -38,7 +38,7 @@ class SpriteStyleGroup extends ArrayObject implements SpriteHashable{
   }
   
   public function getCss(){
-    $css = $this->getBackgroundStyleNode()->renderCss()."\n";
+    $css = $this->getBackgroundStyleNode()->renderCss();
     foreach($this as $styleNode){
       $css .= $styleNode->renderCss();
     }

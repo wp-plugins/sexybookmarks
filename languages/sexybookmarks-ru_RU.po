@@ -1,0 +1,880 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SexyBookmarks 2.6.0.1\n"
+"Report-Msgid-Bugs-To: Yuri Gribov | http://www.wp-ru.ru <grib69@gmail.com>\n"
+"POT-Creation-Date: 2009-11-12 07:46+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yuri Gribov <grib69@gmail.com>\n"
+"Language-Team: Yuri Gribov | http://www.wp-ru.ru <grib69@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: bookmarks-data.php:240 bookmarks-data.php:245
+msgid   " (Dutch)"
+msgstr  " (Немецкий)"
+
+#: bookmarks-data.php:155 bookmarks-data.php:160 bookmarks-data.php:165
+#: bookmarks-data.php:170 bookmarks-data.php:175
+msgid   " (Russian)"
+msgstr  " (Русский)"
+
+#: sexy-bookmarks.php:138
+msgid   " Short URLs have been reset."
+msgstr  " Короткие URL были очищены."
+
+#: sexy-bookmarks.php:192
+msgid   " beta"
+msgstr  ""
+
+#: bookmarks-data.php:5 bookmarks-data.php:10 bookmarks-data.php:15
+#: bookmarks-data.php:20 bookmarks-data.php:25 bookmarks-data.php:30
+#: bookmarks-data.php:35 bookmarks-data.php:40 bookmarks-data.php:45
+#: bookmarks-data.php:50 bookmarks-data.php:55 bookmarks-data.php:60
+#: bookmarks-data.php:65 bookmarks-data.php:70 bookmarks-data.php:75
+#: bookmarks-data.php:80 bookmarks-data.php:85 bookmarks-data.php:90
+#: bookmarks-data.php:95 bookmarks-data.php:100 bookmarks-data.php:105
+#: bookmarks-data.php:110 bookmarks-data.php:115 bookmarks-data.php:120
+#: bookmarks-data.php:125 bookmarks-data.php:130 bookmarks-data.php:135
+#: bookmarks-data.php:140 bookmarks-data.php:145 bookmarks-data.php:150
+#: bookmarks-data.php:155 bookmarks-data.php:160 bookmarks-data.php:165
+#: bookmarks-data.php:170 bookmarks-data.php:175 bookmarks-data.php:180
+#: bookmarks-data.php:185 bookmarks-data.php:190 bookmarks-data.php:195
+#: bookmarks-data.php:200 bookmarks-data.php:205 bookmarks-data.php:210
+#: bookmarks-data.php:215 bookmarks-data.php:220 bookmarks-data.php:225
+#: bookmarks-data.php:230 bookmarks-data.php:235 bookmarks-data.php:240
+#: bookmarks-data.php:245 bookmarks-data.php:250 bookmarks-data.php:255
+#: bookmarks-data.php:260 bookmarks-data.php:265
+msgid   " in your bookmarking menu"
+msgstr  " в список отображаемых закладок"
+
+#: bookmarks-data.php:75
+msgid   "\"Email to a Friend\" link"
+msgstr  ""
+
+#: sexy-bookmarks.php:555
+#, php-format
+msgid   "%s ago"
+msgstr  ""
+
+#: bookmarks-data.php:170 bookmarks-data.php:171
+msgid   "100 bookmarks"
+msgstr  "100 закладок"
+
+#: sexy-bookmarks.php:495
+msgid   "Above Content"
+msgstr  "Выше контента"
+
+#: sexy-bookmarks.php:351
+msgid   "Add nofollow to the links?"
+msgstr  "Добавить nofollow к ссылкам закладок?"
+
+#: bookmarks-data.php:106 bookmarks-data.php:111 bookmarks-data.php:116
+#: bookmarks-data.php:161 bookmarks-data.php:166 bookmarks-data.php:171
+#: bookmarks-data.php:176 bookmarks-data.php:196
+msgid   "Add this to "
+msgstr  "Добавить в "
+
+#: sexy-bookmarks.php:392
+msgid   "Animate-expand multi-lined bookmarks?"
+msgstr  "Включить анимацию, если закладки расположены в несколько рядов?"
+
+#: sexy-bookmarks.php:395
+msgid   "Auto-space/center the bookmarks?"
+msgstr  ""
+
+#: sexy-bookmarks.php:427
+msgid   "Background Image"
+msgstr  "Фоновое изображение"
+
+#: sexy-bookmarks.php:496
+msgid   "Below Content"
+msgstr  "Ниже контента"
+
+#: bookmarks-data.php:10 bookmarks-data.php:11
+msgid   "Blinklist"
+msgstr  ""
+
+#: bookmarks-data.php:135 bookmarks-data.php:136
+msgid   "BlogMarks"
+msgstr  ""
+
+#: bookmarks-data.php:265 bookmarks-data.php:266
+msgid   "Blogosphere News"
+msgstr  ""
+
+#: bookmarks-data.php:155 bookmarks-data.php:156
+msgid   "BobrDobr"
+msgstr  "БобрДобр"
+
+#: sexy-bookmarks.php:672
+msgid   "Bug Patch: Artem Russakovskii"
+msgstr  ""
+
+#: sexy-bookmarks.php:540
+msgid   "Bug Submission Form"
+msgstr  "Сообщить об ошибках"
+
+#: bookmarks-data.php:191
+msgid   "Bump this on "
+msgstr  ""
+
+#: bookmarks-data.php:36
+msgid   "Buzz up!"
+msgstr  ""
+
+#: sexy-bookmarks.php:249
+msgid   "Cancel"
+msgstr  "Отменить"
+
+#: sexy-bookmarks.php:397
+msgid   "Center"
+msgstr  ""
+
+#: sexy-bookmarks.php:419
+msgid   "Check this box ONLY if the animate-expand, auto-center, or auto-space features don't work for you!"
+msgstr  ""
+
+#: bookmarks-data.php:5 bookmarks-data.php:10 bookmarks-data.php:15
+#: bookmarks-data.php:20 bookmarks-data.php:25 bookmarks-data.php:30
+#: bookmarks-data.php:35 bookmarks-data.php:40 bookmarks-data.php:45
+#: bookmarks-data.php:50 bookmarks-data.php:55 bookmarks-data.php:60
+#: bookmarks-data.php:65 bookmarks-data.php:70 bookmarks-data.php:85
+#: bookmarks-data.php:90 bookmarks-data.php:95 bookmarks-data.php:100
+#: bookmarks-data.php:105 bookmarks-data.php:110 bookmarks-data.php:115
+#: bookmarks-data.php:120 bookmarks-data.php:125 bookmarks-data.php:130
+#: bookmarks-data.php:135 bookmarks-data.php:140 bookmarks-data.php:145
+#: bookmarks-data.php:150 bookmarks-data.php:155 bookmarks-data.php:160
+#: bookmarks-data.php:165 bookmarks-data.php:170 bookmarks-data.php:175
+#: bookmarks-data.php:180 bookmarks-data.php:185 bookmarks-data.php:190
+#: bookmarks-data.php:195 bookmarks-data.php:200 bookmarks-data.php:205
+#: bookmarks-data.php:210 bookmarks-data.php:215 bookmarks-data.php:220
+#: bookmarks-data.php:225 bookmarks-data.php:230 bookmarks-data.php:235
+#: bookmarks-data.php:240 bookmarks-data.php:245 bookmarks-data.php:250
+#: bookmarks-data.php:255 bookmarks-data.php:260 bookmarks-data.php:265
+msgid   "Check this box to include "
+msgstr  "Отметьте, что бы включить "
+
+#: bookmarks-data.php:75 bookmarks-data.php:80
+msgid   "Check this box to include the "
+msgstr  "Отметьте, что бы включить "
+
+#: sexy-bookmarks.php:346 sexy-bookmarks.php:511
+msgid   "Click here for help with this option"
+msgstr  "Нажмите, что бы получить помощь по данной настройке"
+
+#: sexy-bookmarks.php:343
+msgid   "Click here to close this message"
+msgstr  "Закрыть сообщение"
+
+#: sexy-bookmarks.php:546
+msgid   "Current Plugin Stats:"
+msgstr  "Текущий статус плагина:"
+
+#: sexy-bookmarks.php:289
+msgid   "Default Content Category:"
+msgstr  "Рубрика по умолчанию:"
+
+#: sexy-bookmarks.php:309
+msgid   "Default Media Type:"
+msgstr  "Формат по умолчанию:"
+
+#: sexy-bookmarks.php:345
+msgid   "Default Tags:"
+msgstr  "Метки по умолчанию:"
+
+#: bookmarks-data.php:15
+msgid   "Delicious"
+msgstr  ""
+
+#: bookmarks-data.php:190
+msgid   "Design Bump"
+msgstr  ""
+
+#: bookmarks-data.php:191
+msgid   "DesignBump"
+msgstr  ""
+
+#: bookmarks-data.php:60 bookmarks-data.php:61
+msgid   "DesignFloat"
+msgstr  ""
+
+#: bookmarks-data.php:150 bookmarks-data.php:151
+msgid   "DesignMoo"
+msgstr  ""
+
+#: bookmarks-data.php:100 bookmarks-data.php:101
+msgid   "Devmarks"
+msgstr  ""
+
+#: bookmarks-data.php:20
+msgid   "Digg"
+msgstr  ""
+
+#: bookmarks-data.php:21
+msgid   "Digg this!"
+msgstr  ""
+
+#: bookmarks-data.php:25 bookmarks-data.php:26
+msgid   "Diigo"
+msgstr  ""
+
+#: sexy-bookmarks.php:569
+msgid   "Downloaded:"
+msgstr  "Загрузки:"
+
+#: sexy-bookmarks.php:132
+msgid   "Due to recent API changes by Tumblr, I can no longer offer them as a supported network in the plugin."
+msgstr  "Из-за изменений API Tumblr, плагин больше не поддерживает данную сеть."
+
+#: bookmarks-data.php:76
+msgid   "Email this to a friend?"
+msgstr  "Отправить Email другу?"
+
+#: bookmarks-data.php:75
+msgid   "Email to a Friend link"
+msgstr  "Email другу"
+
+#: sexy-bookmarks.php:209
+msgid   "Enabled Networks"
+msgstr  "Включенные закладки"
+
+#: sexy-bookmarks.php:342
+msgid   "Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different \"tag categories\" than other posts."
+msgstr  "Введите через запятую список меток, описывающих Ваш сайт. Старайтесь быть не слишком конкретными, т.к. одна запись может быть привязана к несколькими метками."
+
+#: bookmarks-data.php:65 bookmarks-data.php:66
+msgid   "Facebook"
+msgstr  ""
+
+#: sexy-bookmarks.php:541
+msgid   "Feature Request Form"
+msgstr  "Пожелания"
+
+#: bookmarks-data.php:260 bookmarks-data.php:261
+msgid   "Fleck"
+msgstr  ""
+
+#: sexy-bookmarks.php:675
+msgid   "French translation: Maitre Mo"
+msgstr  ""
+
+#: sexy-bookmarks.php:539
+msgid   "Frequently Asked Questions"
+msgstr  "ЧаВО (FAQ)"
+
+#: bookmarks-data.php:130 bookmarks-data.php:131
+msgid   "FriendFeed"
+msgstr  ""
+
+#: sexy-bookmarks.php:233
+msgid   "Functionality Settings"
+msgstr  "Настройки основных функций"
+
+#: bookmarks-data.php:145 bookmarks-data.php:146
+msgid   "Fwisp"
+msgstr  ""
+
+#: sexy-bookmarks.php:670
+msgid   "GUI Icons: Pinvoke"
+msgstr  ""
+
+#: sexy-bookmarks.php:350
+msgid   "General Functionality Options:"
+msgstr  "Основные настройки:"
+
+#: sexy-bookmarks.php:364
+msgid   "General Look &amp; Feel"
+msgstr  "Общий вид"
+
+#: bookmarks-data.php:230 bookmarks-data.php:231
+msgid   "Global Grind"
+msgstr  ""
+
+#: bookmarks-data.php:105 bookmarks-data.php:106
+msgid   "Google Bookmarks"
+msgstr  "Закладки Google"
+
+#: bookmarks-data.php:231
+msgid   "Grind this! on "
+msgstr  ""
+
+#: bookmarks-data.php:180 bookmarks-data.php:181
+msgid   "Hacker News"
+msgstr  ""
+
+#: sexy-bookmarks.php:617 sexy-bookmarks.php:620
+msgid   "Help support the development of this plugin by donating!"
+msgstr  "Поддержать разработчиков материально!"
+
+#: sexy-bookmarks.php:536
+msgid   "Helpful Plugin Links:"
+msgstr  "Ссылки помощи:"
+
+#: sexy-bookmarks.php:516
+msgid   "Hide menu from mobile browsers?"
+msgstr  "Скрыть закладки для мобильных устройств?"
+
+#: bookmarks-data.php:77
+msgid   "I%20thought%20this%20article%20might%20interest%20you."
+msgstr  "Я%20думаю,%20что%20эта%20статья%20может%20заинтересовать."
+
+#: bookmarks-data.php:200 bookmarks-data.php:201
+msgid   "Identica"
+msgstr  ""
+
+#: sexy-bookmarks.php:411
+msgid   "If you see this message, please delete the contents of this textarea and click \\\"Save Changes\\\"."
+msgstr  "Если Вы видите данное сообщение, пожалуйста, удалите содержимое поля и \"Сохраните изменения\"."
+
+#: sexy-bookmarks.php:538
+msgid   "Installation &amp; Usage Guide"
+msgstr  "Установка и использование"
+
+#: sexy-bookmarks.php:678
+msgid   "Italian translation: Carlo Veltri"
+msgstr  ""
+
+#: bookmarks-data.php:115 bookmarks-data.php:116
+msgid   "Izeby"
+msgstr  ""
+
+#: sexy-bookmarks.php:568
+msgid   "Last Updated:"
+msgstr  "Последнее обновление:"
+
+#: bookmarks-data.php:90 bookmarks-data.php:91
+msgid   "Linkedin"
+msgstr  ""
+
+#: sexy-bookmarks.php:497
+msgid   "Manual Mode"
+msgstr  "Ручной выбор"
+
+#: bookmarks-data.php:136
+msgid   "Mark this on "
+msgstr  "Отметить на "
+
+#: sexy-bookmarks.php:94
+msgid   "Maybe you would consider "
+msgstr  "Может Вы желаете рассмотреть вопрос о "
+
+#: bookmarks-data.php:165 bookmarks-data.php:166
+msgid   "Memory.ru"
+msgstr  ""
+
+#: sexy-bookmarks.php:494
+msgid   "Menu Location (in relevance to content):"
+msgstr  "Расположение меню (относительно контента):"
+
+#: sexy-bookmarks.php:466
+msgid   "Menu Placement"
+msgstr  "Размещение меню"
+
+#: bookmarks-data.php:110 bookmarks-data.php:111
+msgid   "Mister Wong"
+msgstr  ""
+
+#: bookmarks-data.php:50 bookmarks-data.php:51
+msgid   "Mixx"
+msgstr  ""
+
+#: bookmarks-data.php:151
+msgid   "Moo this on "
+msgstr  ""
+
+#: bookmarks-data.php:175 bookmarks-data.php:176
+msgid   "MyPlace"
+msgstr  "МоёМесто"
+
+#: bookmarks-data.php:55 bookmarks-data.php:56
+msgid   "MySpace"
+msgstr  ""
+
+#: bookmarks-data.php:240 bookmarks-data.php:241
+msgid   "NUjij"
+msgstr  ""
+
+#: sexy-bookmarks.php:479
+msgid   "Need help with this? Find it in the "
+msgstr  "Нужна помощь? Поищите на "
+
+#: bookmarks-data.php:255 bookmarks-data.php:256
+msgid   "Netvibes"
+msgstr  ""
+
+#: bookmarks-data.php:250 bookmarks-data.php:251
+msgid   "Netvouz"
+msgstr  ""
+
+#: bookmarks-data.php:95 bookmarks-data.php:96
+msgid   "Newsvine"
+msgstr  ""
+
+#: bookmarks-data.php:195 bookmarks-data.php:196
+msgid   "Ning"
+msgstr  ""
+
+#: sexy-bookmarks.php:353 sexy-bookmarks.php:356 sexy-bookmarks.php:394
+#: sexy-bookmarks.php:398 sexy-bookmarks.php:514
+msgid   "No"
+msgstr  "Нет"
+
+#: sexy-bookmarks.php:380 sexy-bookmarks.php:389
+msgid   "Ok"
+msgstr  ""
+
+#: sexy-bookmarks.php:354
+msgid   "Open links in new window?"
+msgstr  "Открывать ссылки в новом окне?"
+
+#: sexy-bookmarks.php:671
+msgid   "Original Skin Icons: Function"
+msgstr  ""
+
+#: sexy-bookmarks.php:542
+msgid   "Other SexyBookmarks Platforms"
+msgstr  "SexyBookmarks на других платформах"
+
+#: bookmarks-data.php:125 bookmarks-data.php:126
+msgid   "PFBuzz"
+msgstr  ""
+
+#: bookmarks-data.php:236
+msgid   "Ping this on "
+msgstr  ""
+
+#: bookmarks-data.php:235 bookmarks-data.php:236
+msgid   "Ping.fm"
+msgstr  ""
+
+#: sexy-bookmarks.php:99
+msgid   "Please choose where you want the menu displayed."
+msgstr  "Выберите, где бы Вы хотели видеть меню."
+
+#: sexy-bookmarks.php:97
+msgid   "Please choose where you would like the menu to be displayed."
+msgstr  "Выберите место расположения меню."
+
+#: sexy-bookmarks.php:703
+msgid   "Please update to the latest version"
+msgstr  ""
+
+#: sexy-bookmarks.php:532
+msgid   "Plugin Info"
+msgstr  "Информация о плагине"
+
+#: sexy-bookmarks.php:578
+msgid   "Plugin Sponsors"
+msgstr  "Спонсоры плагина"
+
+#: bookmarks-data.php:26
+msgid   "Post this on "
+msgstr  "Разместить на "
+
+#: bookmarks-data.php:56 bookmarks-data.php:201 bookmarks-data.php:226
+msgid   "Post this to "
+msgstr  "Разместить на "
+
+#: bookmarks-data.php:225 bookmarks-data.php:226
+msgid   "Posterous"
+msgstr  ""
+
+#: sexy-bookmarks.php:498
+msgid   "Posts, pages, or the whole shebang?"
+msgstr  "Записи, страницы или где еще?"
+
+#: sexy-bookmarks.php:324
+msgid   "Primary Content Category:"
+msgstr  "Основная рубрика:"
+
+#: bookmarks-data.php:185 bookmarks-data.php:186
+msgid   "Print Friendly"
+msgstr  ""
+
+#: bookmarks-data.php:30 bookmarks-data.php:31
+msgid   "Reddit"
+msgstr  ""
+
+#: sexy-bookmarks.php:276
+msgid   "Reset all Short URLs"
+msgstr  "Очистить все короткие URL"
+
+#: sexy-bookmarks.php:677
+msgid   "Romanian translation: Ghenciu Ciprian"
+msgstr  ""
+
+#: sexy-bookmarks.php:674
+msgid   "Russian translation: Yuri Gribov"
+msgstr  "Поддержка i18n и русский перевод: Юрий Грибов (Grib)"
+
+#: sexy-bookmarks.php:524
+msgid   "Save Changes"
+msgstr  "Сохранить изменения"
+
+#: bookmarks-data.php:206
+msgid   "Save this to "
+msgstr  ""
+
+#: bookmarks-data.php:5 bookmarks-data.php:6
+msgid   "Script &amp; Style"
+msgstr  ""
+
+#: bookmarks-data.php:96
+msgid   "Seed this on "
+msgstr  "Разместить на "
+
+#: sexy-bookmarks.php:219
+msgid   "Select the Networks to display. Drag to reorder."
+msgstr  "Выберите закладки, которые необходимо показывать. Перетаскивайте для сортировки."
+
+#: bookmarks-data.php:186
+msgid   "Send this page to "
+msgstr  ""
+
+#: sexy-bookmarks.php:543
+msgid   "SexyFox Firefox Toolbar"
+msgstr  "Панель для Firefox"
+
+#: bookmarks-data.php:11 bookmarks-data.php:16 bookmarks-data.php:31
+#: bookmarks-data.php:46 bookmarks-data.php:51 bookmarks-data.php:66
+#: bookmarks-data.php:91 bookmarks-data.php:101 bookmarks-data.php:121
+#: bookmarks-data.php:126 bookmarks-data.php:131 bookmarks-data.php:146
+#: bookmarks-data.php:156 bookmarks-data.php:211 bookmarks-data.php:261
+#: bookmarks-data.php:266
+msgid   "Share this on "
+msgstr  "Разместить на "
+
+#: sexy-bookmarks.php:665
+msgid   "Shout-Outs"
+msgstr  "Кратко"
+
+#: sexy-bookmarks.php:512
+msgid   "Show in RSS feed?"
+msgstr  ""
+
+#: sexy-bookmarks.php:396
+msgid   "Space"
+msgstr  ""
+
+#: bookmarks-data.php:220 bookmarks-data.php:221
+msgid   "Sphinn"
+msgstr  ""
+
+#: bookmarks-data.php:221
+msgid   "Sphinn this on "
+msgstr  ""
+
+#: sexy-bookmarks.php:567
+msgid   "Stable Version:"
+msgstr  "Стабильная версия:"
+
+#: bookmarks-data.php:41
+msgid   "Stumble upon something good? Share it on StumbleUpon"
+msgstr  "Нашли что-то интересное? Поделитесь на StumbleUpon"
+
+#: bookmarks-data.php:40
+msgid   "Stumbleupon"
+msgstr  ""
+
+#: bookmarks-data.php:6 bookmarks-data.php:61 bookmarks-data.php:141
+#: bookmarks-data.php:181 bookmarks-data.php:241 bookmarks-data.php:246
+#: bookmarks-data.php:251 bookmarks-data.php:256
+msgid   "Submit this to "
+msgstr  "Разместить на "
+
+#: bookmarks-data.php:86
+msgid   "Subscribe to the comments for this post?"
+msgstr  "Подписаться на комментарии к этой записи?"
+
+#: bookmarks-data.php:81
+msgid   "Suggest this article to "
+msgstr  ""
+
+#: sexy-bookmarks.php:611
+msgid   "Support by Donating"
+msgstr  "Поддержка и вознаграждения"
+
+#: sexy-bookmarks.php:615
+msgid   "Surely the fact that we're making the web a sexier place one blog at a time is worth a drink or three, right?"
+msgstr  "Мы сделали Ваш блог в интернете еще более привлекательным, может быть Вы захотите нас угостить стаканчиком-другим?"
+
+#: bookmarks-data.php:215 bookmarks-data.php:216
+msgid   "TechMeme"
+msgstr  ""
+
+#: bookmarks-data.php:45 bookmarks-data.php:46
+msgid   "Technorati"
+msgstr  ""
+
+#: sexy-bookmarks.php:488
+msgid   "This feature is still in the experimental phase, so please "
+msgstr  "Данная функция находится на стадии тестирования, "
+
+#: sexy-bookmarks.php:343
+msgid   "This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here."
+msgstr  "Этот список используется в том случае, если Вы забыли определить метки для конкретной записи."
+
+#: sexy-bookmarks.php:246
+msgid   "This will clear <u>ALL</u> short URLs. - Are you sure?"
+msgstr  "Вы действительно желаете очистить <u>ВСЕ</u> короткие URL?"
+
+#: sexy-bookmarks.php:377 sexy-bookmarks.php:386
+msgid   "This will void any custom CSS applied below."
+msgstr  ""
+
+#: bookmarks-data.php:216
+msgid   "Tip this to "
+msgstr  ""
+
+#: bookmarks-data.php:120 bookmarks-data.php:121
+msgid   "Tipd"
+msgstr  ""
+
+#: bookmarks-data.php:80 bookmarks-data.php:81
+msgid   "ToMuse"
+msgstr  ""
+
+#: sexy-bookmarks.php:630
+msgid   "Top Supporters"
+msgstr  "Лучшие спонсоры"
+
+#: bookmarks-data.php:71
+msgid   "Tweet This!"
+msgstr  ""
+
+#: bookmarks-data.php:70
+msgid   "Twitter"
+msgstr  ""
+
+#: sexy-bookmarks.php:114
+msgid   "Twitter Friendly Links Plugin"
+msgstr  "Плагин 'Twitter Friendly Links'"
+
+#: sexy-bookmarks.php:254
+msgid   "Twitter ID:"
+msgstr  ""
+
+#: sexy-bookmarks.php:253
+msgid   "Twitter Options:"
+msgstr  "Настройки Twitter:"
+
+#: sexy-bookmarks.php:673
+msgid   "Twitter encoding fix: Gautam Gupta"
+msgstr  ""
+
+#: bookmarks-data.php:140 bookmarks-data.php:141
+msgid   "Twittley"
+msgstr  ""
+
+#: sexy-bookmarks.php:323
+msgid   "Twittley Defaults:"
+msgstr  "Настройки по умолчанию для Twittley:"
+
+#: sexy-bookmarks.php:438
+msgid   "Use a background image?"
+msgstr  "Использовать фоновое изображение?"
+
+#: sexy-bookmarks.php:570
+msgid   "User Rating:"
+msgstr  "Пользовательский рейтинг:"
+
+#: sexy-bookmarks.php:257
+msgid   "Which URL Shortener?"
+msgstr  "Служба коротких URL?"
+
+#: bookmarks-data.php:210 bookmarks-data.php:211
+msgid   "Wikio"
+msgstr  ""
+
+#: bookmarks-data.php:205 bookmarks-data.php:206
+msgid   "Xerpi"
+msgstr  ""
+
+#: bookmarks-data.php:35
+msgid   "Yahoo! Buzz"
+msgstr  ""
+
+#: sexy-bookmarks.php:288
+msgid   "Yahoo! Buzz Defaults:"
+msgstr  "Настройки по умолчанию для Yahoo! Buzz:"
+
+#: bookmarks-data.php:160 bookmarks-data.php:161
+msgid   "Yandex.Bookmarks"
+msgstr  "Яндекс.Закладки"
+
+#: sexy-bookmarks.php:249 sexy-bookmarks.php:352 sexy-bookmarks.php:355
+#: sexy-bookmarks.php:393 sexy-bookmarks.php:513
+msgid   "Yes"
+msgstr  "Да"
+
+#: sexy-bookmarks.php:181
+msgid   "You are using an outdated version of the plugin"
+msgstr  "Вы используете устаревшую версию плагина"
+
+#: sexy-bookmarks.php:192
+msgid   "You are using the development version of the plugin"
+msgstr  "Вы используете версию плагина для разработчиков"
+
+#: sexy-bookmarks.php:415
+msgid   "You can style the DIV that holds the menu here:"
+msgstr  ""
+
+#: sexy-bookmarks.php:98
+msgid   "You can't display the menu if you don't choose a few sites to add to it!"
+msgstr  "Вы не сможете использовать меню, не выбрав ни одного сервиса!"
+
+#: sexy-bookmarks.php:114
+msgid   "You must first download and activate the"
+msgstr  "Вы должны сначала скачать и активировать"
+
+#: sexy-bookmarks.php:103
+msgid   "You need to select the primary category for any articles submitted to Twittley."
+msgstr  "Вы должны выбрать основной раздел статей для Twittley."
+
+#: sexy-bookmarks.php:104
+msgid   "You need to set at least 1 default tag for any articles submitted to Twittley."
+msgstr  "Вы должны указать хотя бы 1 метку по умолчанию для Twittley."
+
+#: bookmarks-data.php:77
+msgid   "You%20can%20read%20the%20full%20article%20here"
+msgstr  "Что%20бы%20прочитать%20статью%20полностью,%20перейдите%20по%20ссылке"
+
+#: sexy-bookmarks.php:703
+msgid   "You're using an outdated version of SexyBookmarks!"
+msgstr  ""
+
+#: sexy-bookmarks.php:94
+msgid   "Your changes have been saved successfully!"
+msgstr  "Все изменения успешно сохранены!"
+
+#: bookmarks-data.php:85
+msgid   "a 'Subscribe to Comments' link"
+msgstr  "ссылку 'Подписка на комментарии'"
+
+#: public.php:121
+msgid   "an error occurred in SexyBookmarks"
+msgstr  ""
+
+#: sexy-bookmarks.php:114
+msgid   "before hosting your own short URLs..."
+msgstr  ", прежде чем использовать этот вариант."
+
+#: sexy-bookmarks.php:676
+msgid   "bit.ly bug fix: Konstantin Kovshenin"
+msgstr  ""
+
+#: sexy-bookmarks.php:343
+msgid   "close"
+msgstr  "закрыть"
+
+#: bookmarks-data.php:16
+msgid   "del.icio.us"
+msgstr  ""
+
+#: sexy-bookmarks.php:94
+msgid   "donating"
+msgstr  "вознаграждении"
+
+#: bookmarks-data.php:245 bookmarks-data.php:246
+msgid   "eKudos"
+msgstr  ""
+
+#: sexy-bookmarks.php:418
+msgid   "jQuery Compatibility Fix"
+msgstr  ""
+
+#: sexy-bookmarks.php:192
+msgid   "let us know of any bugs"
+msgstr  "сообщите нам о любых ошибках"
+
+#: sexy-bookmarks.php:479
+msgid   "official install guide"
+msgstr  "официальном сайте"
+
+#: sexy-bookmarks.php:192
+msgid   "please "
+msgstr  "пожалуйста, "
+
+#: sexy-bookmarks.php:181
+msgid   "please update if you wish to enjoy all available features!"
+msgstr  ", пожалуйста обновитесь, если хотите использовать все новые возможности!"
+
+#: sexy-bookmarks.php:488
+msgid   "report any bugs"
+msgstr  "пожалуйста сообщите нам"
+
+#: sexy-bookmarks.php:570
+msgid   "stars - Based on"
+msgstr  " - определено "
+
+#: sexy-bookmarks.php:569
+msgid   "times"
+msgstr  "раз"
+
+#: sexy-bookmarks.php:570
+msgid   "votes"
+msgstr  "голосами"
+
+#: bookmarks-data.php:112
+msgid   "www.mister-wong.com"
+msgstr  "www.mister-wong.ru"
+
+#: sexy-bookmarks.php:192
+msgid   "you may encounter!"
+msgstr  "с которыми Вы можете столкнуться!"
+
+#: sexy-bookmarks.php:488
+msgid   "you may find"
+msgstr  "о всех найденых ошибках."
+
+#: sexy-bookmarks.php:316
+msgid   "Video"
+msgstr  "Видео"
+
+#: sexy-bookmarks.php:314
+msgid   "Image"
+msgstr  "Картинки"
+
+#: sexy-bookmarks.php:313
+msgid   "Text"
+msgstr  "Текст"
+
+#: sexy-bookmarks.php:315
+msgid   "Audio"
+msgstr  "Музыка"
+
+#: sexy-bookmarks.php:506
+msgid   "Posts &amp; Index"
+msgstr  "Записи и главная"
+
+#: sexy-bookmarks.php:505
+msgid   "Posts &amp; Pages"
+msgstr  "Записи и страницы"
+
+#: sexy-bookmarks.php:502
+msgid   "Posts Only"
+msgstr  "Только в записях"
+
+#: sexy-bookmarks.php:508
+msgid   "Posts, Pages, &amp; Index"
+msgstr  "Записи, страницы и главная"
+
+#: sexy-bookmarks.php:507
+msgid   "Pages &amp; Index"
+msgstr  "Страницы и главная"
+
+#: sexy-bookmarks.php:503
+msgid   "Pages Only"
+msgstr  "Только на страницах"
+
+#: sexy-bookmarks.php:504
+msgid   "Index Only"
+msgstr  "Только на главной"

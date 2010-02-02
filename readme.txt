@@ -70,6 +70,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
+* Thanks to [Yuri Gribov](http://wp-ru.ru) for help setting the plugin up for i18n support.
 * Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
 * Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
@@ -138,6 +139,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Fix for fatal error if you downloaded v3.0 before 8:30am CST on Feb 1st, 2010
 * Fix for Google Bookmarks image not displaying correctly
 * Fix for spritegen not working if wordpress installed in subdirectory
+* Spritegen now outputs minified CSS as well
 
 = 3.0 =
 * New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
@@ -460,5 +462,7 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Initial release!
 
 == Upgrade Notice ==
+= 3.0.1 =
+Major bug fixes for v3.0 - Upgrade immediately if you've installed v3.0 as this will fix problems you probably haven't even noticed yet. Will need to go to Settings->SexyBookmarks and save settings again after upgrading.
 = 3.0 =
 Users whose servers have PHP5+ AND the PHPGD library installed will need to login to their dashboard (Settings -> SexyBookmarks) and click the "Save Changes" button upon upgrading to generate a dynamic image sprite based on your selection of networks.

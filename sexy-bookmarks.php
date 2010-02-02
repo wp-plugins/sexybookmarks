@@ -11,7 +11,8 @@ Author URI: http://blog2life.net
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@sexybookmarks.net)
 	Additional Developer: Gautam Gupta (www.gaut.am)
 	Additional Developer: Jamie Carter (www.blog2life.net)
-	Additional Special Thanks Goes To Kieran Smith (email : undisclosed)
+	Additional Special Thanks Goes To Yuri Gribov (www.wp-ru.ru)
+	Additional Special Thanks Goes To Kieran Smith (www.shuttlebox.net)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','3.0.1');
-define('SEXY_RELDIR', str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__))); //needed for sprite-gen
+define('SEXY_RELDIR', PLUGINDIR.'/sexybookmarks');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -704,6 +705,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 			<div class="padding">
 				<ul class="credits">
 					<li><a href="http://www.pinvoke.com/"><?php _e('Fugue Icons: Pinvoke', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://wp-ru.ru/"><?php _e('Original i18n Support: Yuri Gribov', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://alisothegeek.com/2009/10/fugue-sprite-css/"><?php _e('Fugue Icon Sprite: Alison Barrett', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
