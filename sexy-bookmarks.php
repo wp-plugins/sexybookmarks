@@ -38,6 +38,8 @@ define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','3.0.1');
 define('SEXY_RELDIR', str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__)));
 
+
+
 // Check for location modifications in wp-config
 // Then define accordingly
 if ( !defined('WP_CONTENT_URL') ) {
@@ -122,7 +124,10 @@ $sexy_plugopts = array(
 );
 
 add_option(SEXY_OPTIONS, $sexy_plugopts); //add to database
+add_option('SexyCustomSprite', ''); //add to database
+
 $sexy_plugopts = get_option(SEXY_OPTIONS); //reload
+$sexy_custom_sprite = get_option('SexyCustomSprite'); //reload
 
 
 
@@ -140,20 +145,19 @@ function sexy_activate() {
 			Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
 		}
 		Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
-		$sexy_plugopts['custom-css'] = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
-		update_option(SEXY_OPTIONS, $sexy_plugopts);
+		$sexy_custom_sprite = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
+		update_option('SexyCustomSprite', $sexy_custom_sprite);
 	}else{
-		$sexy_plugopts['custom-css'] = null;
+		$sexy_custom_sprite = null;
 	}
 }
 register_activation_hook( __FILE__, 'sexy_activate' );
 
 
 
-
 //write settings page
 function sexy_settings_page() {
-	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb;
+	global $sexy_plugopts, $sexy_bookmarks_data, $wpdb, $sexy_custom_sprite;
 	
 	if($_POST['sponsor-form-save'] == "1"){ //hide sponsor check
 		$sexy_plugopts['hide-sponsors'] = $_POST['sexy-hide-sponsors'];
@@ -216,7 +220,7 @@ function sexy_settings_page() {
 		} elseif ($_POST['shorty'] == 'yourls' && !function_exists('wp_ozh_yourls_raw_url')) {
 			$error_message = sprintf(__('You must first download and activate the <a href="%s">YOURLS Plugin</a> before hosting your own short URLs...', 'sexybookmarks'), 'http://wordpress.org/extend/plugins/yourls-wordpress-to-twitter/');
 		}
-		
+
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
 			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$_POST['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
@@ -265,6 +269,7 @@ function sexy_settings_page() {
 			/* Short URLs End */
 			
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
+			update_option('SexyCustomSprite', $sexy_custom_sprite);
 		}
 
 
