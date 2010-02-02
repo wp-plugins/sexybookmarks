@@ -321,7 +321,6 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 							<h3><?php _e('Twitter Options:', 'sexybookmarks'); ?></h3>
 							<label for="twittid"><?php _e('Twitter ID:', 'sexybookmarks'); ?></label>
 							<input type="text" id="twittid" name="twittid" value="<?php echo $sexy_plugopts['twittid']; ?>" />
-							<label for="useShortener" id="useShortenerLabel"><input name="useShortener" id="useShortener" type="checkbox" <?php echo (($sexy_plugopts['useShortener'] == "1")? 'checked' : ""); ?> value="1"/><?php _e('Use a URL shortening service?', 'sexybookmarks'); ?></label>
 							<div class="clearbig"></div>
 							<label for="shorty"><?php _e('Which URL Shortener?', 'sexybookmarks'); ?></label>
 							<select name="shorty" id="shorty">
