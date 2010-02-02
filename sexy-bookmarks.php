@@ -233,9 +233,9 @@ function sexy_settings_page() {
 					Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
 				}
 				Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
-				$sexy_plugopts['custom-css'] = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
+				$sexy_custom_sprite = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
 			}else{
-				$sexy_plugopts['custom-css'] = null;
+				$sexy_custom_sprite = null;
 				if(phpversion() >= '5' && extension_loaded('gd')) {
 					if (!is_writable(SEXY_PLUGDIR.'css') || !is_writeable(SEXY_PLUGDIR.'images')) {
 						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your css and/or images folders are not writeable! <a href="%s">Need Help?</a>', 'sexybookmarks'), 'http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
