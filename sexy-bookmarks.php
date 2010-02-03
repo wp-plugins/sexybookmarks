@@ -97,8 +97,10 @@ require_once 'includes/bookmarks-data.php';
 // helper functions for html output.
 require_once 'includes/html-helpers.php';
 
-//add defaults to an array
-global $sexy_plugopts; //explicitly define $sexy_plugopts as global so it's accessible in the activation hook
+//explicitly define globals so they're available in the activation hook
+global $sexy_plugopts, $sexy_bookmarks_data, $sexy_custom_sprite;
+
+
 $sexy_plugopts = array(
 	'position' => 'below', // below, above, or manual
 	'reloption' => 'nofollow', // 'nofollow', or ''
@@ -125,7 +127,6 @@ $sexy_plugopts = array(
 
 add_option(SEXY_OPTIONS, $sexy_plugopts); //add to database
 $sexy_plugopts = get_option(SEXY_OPTIONS); //reload
-
 
 // give the custom sprite it's own option to prevent complications with previously saved data
 if(!get_option('SexyCustomSprite')) {
@@ -527,7 +528,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 					<div class="padding">
 						<div id="custom-mods-notice">
 							<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
-							<p><?php _e('This option is intended ', 'sexybookmarks'); ?><strong><?php _e('STRICTLY', 'sexybookmarks'); ?></strong><?php _e(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own.', 'sexybookmarks'); ?></p>
+							<p><?php echo __('This option in intended', 'sexybookmarks ').'<strong>'.__('STRICTLY', 'sexybookmarks').'</strong>'.__(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes.', 'sexybookmarks'); ?></p>
 							<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
 							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
 							<ul>
@@ -548,14 +549,14 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 							</ul>
 							<p><?php _e('Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done.', 'sexybookmarks'); ?></p>
 							<p><?php _e('Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory.', 'sexybookmarks'); ?></p>
-							<h3>In Case of Emergency</h3>
-							<p><?php _e('If you happen to completely screw up the code, you can follow these directions to reset the plugin back to normal and try again if you wish:', 'sexybookmarks'); ?></p>
+							<h3><?php _e('In Case of Emergency', 'sexybookmarks'); ?></h3>
+							<p><?php _e('If you happen to mess things up, you can follow these directions to reset the plugin back to normal and try again if you wish:', 'sexybookmarks'); ?></p>
 							<ol>
 								<li><?php _e('Login to your server via FTP or SSH. (whichever you are more comfortable with)', 'sexybookmarks'); ?></li>
 								<li><?php _e('Navigate to your wp-content directory.', 'sexybookmarks'); ?></li>
 								<li><?php _e('Delete the directory named "sexy-mods".', 'sexybookmarks'); ?></li>
 								<li><?php _e('Login to your WordPress dashboard.', 'sexybookmarks'); ?></li>
-								<li><?php _e('Go to the SexyBookmarks plugin options page. (settings->sexybookmarks)', 'sexybookmarks'); ?></li>
+								<li><?php _e('Go to the SexyBookmarks plugin options page. (Settings->SexyBookmarks)', 'sexybookmarks'); ?></li>
 								<li><?php _e('Deselect the "Use custom mods" option.', 'sexybookmarks'); ?></li>
 								<li><?php _e('Save your changes.', 'sexybookmarks'); ?></li>
 							</ol>
@@ -580,7 +581,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 						<label for="doNotIncludeJQuery"><?php _e("Check this box ONLY if you notice jQuery being loaded twice in your source code!", "sexybookmarks"); ?></label>
 						<input type="checkbox" id="doNotIncludeJQuery" name="doNotIncludeJQuery" <?php echo (($sexy_plugopts['doNotIncludeJQuery'] == "1")? 'checked' : ""); ?> value="1" />
 						<span class="sexy_option"><?php _e('Load scripts in Footer', 'sexybookmarks'); ?> <input type="checkbox" id="scriptInFooter" name="scriptInFooter" <?php echo (($sexy_plugopts['scriptInFooter'] == "1")? 'checked' : ""); ?> value="1" /></span>
-						<label for="scriptInFooter"><?php _e('Check this box if you want the SexyBookmarks javascript to be loaded in your blog\'s footer.', 'sexybookmarks'); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom" target="_blank">?</a>)</label>
+						<label for="scriptInFooter"><?php _e("Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer.", 'sexybookmarks'); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom" target="_blank">?</a>)</label>
 
 						<h2><?php _e('Background Image Options', 'sexybookmarks'); ?></h2>
 						<span class="sexy_option">
@@ -760,20 +761,20 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 		<div class="box-right-body">
 			<div class="padding">
 				<ul class="langs">
-					<li><a href="http://wp-ru.ru">RU <?php _e('Translation', 'sexybookmarks'); ?>: Yuri Gribov</a></li>
-					<li><a href="http://maitremo.fr">FR <?php _e('Translation', 'sexybookmarks'); ?>: Maitre Mo</a></li>
-					<li><a href="http://www.osn.ro">RO <?php _e('Translation', 'sexybookmarks'); ?>: Ghenciu Ciprian</a></li>
-					<li><a href="http://chepelle.altervista.org/wordpress">IT <?php _e('Translation', 'sexybookmarks'); ?>: Carlo Veltri</a></li>
-					<li><a href="http://cpcdisseny.net">ES <?php _e('Translation', 'sexybookmarks'); ?>: Javier Pimienta</a></li>
 					<li><a href="http://www.keege.com">CN <?php _e('Translation', 'sexybookmarks'); ?>: Joojen</a></li>
-					<li><a href="http://www.giovannizuccaro.it">IT <?php _e('Translation', 'sexybookmarks'); ?>: Giovanni Zuccaro</a></li>
-					<li><a href="http://www.tuguts.com">TR <?php _e('Translation', 'sexybookmarks'); ?>: &#214;mer Taylan Tu&#287;ut</a></li>
-					<li><a href="http://gwegner.de">DE <?php _e('Translation', 'sexybookmarks'); ?>: Gunther Wegner</a></li>
 					<li><a href="http://hardwareblog.dk">da-DK <?php _e('Translation', 'sexybookmarks'); ?>: Mads Floe</a></li>
-					<li><a href="http://www.mediaprod.no">NO <?php _e('Translation', 'sexybookmarks'); ?>: Svend Olaf Olsen</a></li>
+					<li><a href="http://gwegner.de">DE <?php _e('Translation', 'sexybookmarks'); ?>: Gunther Wegner</a></li>
+					<li><a href="http://cpcdisseny.net">ES <?php _e('Translation', 'sexybookmarks'); ?>: Javier Pimienta</a></li>
+					<li><a href="http://maitremo.fr">FR <?php _e('Translation', 'sexybookmarks'); ?>: Maitre Mo</a></li>
+					<li><a href="http://chepelle.altervista.org/wordpress">IT <?php _e('Translation', 'sexybookmarks'); ?>: Carlo Veltri</a></li>
+					<li><a href="http://www.giovannizuccaro.it">IT <?php _e('Translation', 'sexybookmarks'); ?>: Giovanni Zuccaro</a></li>
 					<li><a href="http://www.gouwefoto.nl">NL <?php _e('Translation', 'sexybookmarks'); ?>: Martin van der Grond</a></li>
-					<li><a href="http://www.freegroup.org">zh-TW <?php _e('Translation', 'sexybookmarks'); ?>: Pseric Lin</a></li>
+					<li><a href="http://www.mediaprod.no">NO <?php _e('Translation', 'sexybookmarks'); ?>: Svend Olaf Olsen</a></li>
 					<li><a href="http://www.winnext.com.br">pt-BR <?php _e('Translation', 'sexybookmarks'); ?>: Cadu Silva</a></li>
+					<li><a href="http://www.osn.ro">RO <?php _e('Translation', 'sexybookmarks'); ?>: Ghenciu Ciprian</a></li>
+					<li><a href="http://wp-ru.ru">RU <?php _e('Translation', 'sexybookmarks'); ?>: Yuri Gribov</a></li>
+					<li><a href="http://www.tuguts.com">TR <?php _e('Translation', 'sexybookmarks'); ?>: &#214;mer Taylan Tu&#287;ut</a></li>
+					<li><a href="http://www.freegroup.org">zh-TW <?php _e('Translation', 'sexybookmarks'); ?>: Pseric Lin</a></li>
 				</ul>
 			</div>
 		</div>
