@@ -246,7 +246,7 @@ function sexy_settings_page() {
 				$sexy_custom_sprite = null;
 				if(phpversion() >= '5' && extension_loaded('gd')) {
 					if (!is_writable(SEXY_PLUGDIR.'css') || !is_writeable(SEXY_PLUGDIR.'images')) {
-						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your css and/or images folders are not writeable! <a href="%s">Need Help?</a>', 'sexybookmarks'), 'http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your css and/or images folders are not writeable! <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), 'http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					}
 				}
 			}
@@ -528,7 +528,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 					<div class="padding">
 						<div id="custom-mods-notice">
 							<h1><?php _e('Warning!', 'sexybookmarks'); ?></h1>
-							<p><?php echo __('This option in intended', 'sexybookmarks ').'<strong>'.__('STRICTLY', 'sexybookmarks').'</strong>'.__(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes.', 'sexybookmarks'); ?></p>
+							<p><?php echo __('This option in intended ', 'sexybookmarks ').'<strong>'.__('STRICTLY', 'sexybookmarks').'</strong>'.__(' for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes.', 'sexybookmarks'); ?></p>
 							<h3><?php _e('How it works...', 'sexybookmarks'); ?></h3>
 							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:', 'sexybookmarks'); ?></p>
 							<ul>
