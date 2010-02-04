@@ -141,7 +141,7 @@ else {
 function sexy_activation_hook() {
 	global $sexy_plugopts, $sexy_bookmarks_data, $sexy_custom_sprite;
 	//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-	if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$sexy_plugopts['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
+	if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && ini_get('allow_url_fopen') == true && !$sexy_plugopts['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
 		require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
 		SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
 		SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
@@ -231,7 +231,7 @@ function sexy_settings_page() {
 
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$_POST['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
+			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && ini_get('allow_url_fopen') == true && !$_POST['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
 				require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
 				SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
 				SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
@@ -244,10 +244,13 @@ function sexy_settings_page() {
 				$sexy_custom_sprite = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
 			}else{
 				$sexy_custom_sprite = null;
-				if(phpversion() >= '5' && extension_loaded('gd')) {
+				if(phpversion() >= '5' && extension_loaded('gd') && ini_get('allow_url_fopen') == true) {
 					if (!is_writable(SEXY_PLUGDIR.'css') || !is_writeable(SEXY_PLUGDIR.'images')) {
 						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your css and/or images folders are not writeable! <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), 'http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					}
+				}
+				if(phpversion() < '5' || !extension_loaded('gd') || ini_get('allow_url_fopen') != true) {
+					echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.__('NOTICE: Your server is not setup properly for the automatic sprite generator. Plugin has defaulted back to static sprite image.').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 				}
 			}
 			foreach (array(

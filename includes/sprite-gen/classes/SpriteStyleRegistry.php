@@ -54,7 +54,7 @@ class SpriteStyleRegistry{
   }
   
   public static function getHash(){
-    return md5(serialize(self::$registry));
+    return 'sexy-custom-sprite.min';
   }
 }
 ?>
