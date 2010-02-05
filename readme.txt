@@ -1,6 +1,6 @@
 === SexyBookmarks ===
 Contributors: shareaholic
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9007080
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GY5YBZ46DA2EQ
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
 Tested up to: 2.9.1

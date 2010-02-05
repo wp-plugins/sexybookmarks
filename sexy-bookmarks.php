@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: SexyBookmarks
-Plugin URI: http://sexybookmarks.net
+Plugin URI: http://shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
 Version: 3.1
 Author: Shareaholic
@@ -714,12 +714,12 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 			<div class="padding">
 				<p><?php _e("If you like SexyBookmarks and wish to contribute towards it's continued development, you can use the form below to do so.", "sexybookmarks"); ?></p>
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-					<input type="hidden" name="cmd" value="_donations" />
-					<input type="hidden" name="business" value="B7A62V9HWUA7N" />
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="business" value="GY5YBZ46DA2EQ" />
 					<input type="hidden" name="item_name" value="<?php _e('SexyBookmarks Development Support' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="no_shipping" value="0">
 					<input type="hidden" name="no_note" value="0">
-					<input type="hidden" name="cn" value="<?php _e("Please enter the URL you'd like me to link to if you are a top contributor.", "sexyboomarks"); ?>" />
+					<input type="hidden" name="cn" value="<?php _e("Please enter the URL you'd like us to link to if you are a top contributor.", "sexyboomarks"); ?>" />
 					<input type="hidden" name="return" value="<?php get_sexy_current_location(); ?>" />
 					<input type="hidden" name="cbt" value="<?php _e('Return to Your Dashboard' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="currency_code" value="USD">
