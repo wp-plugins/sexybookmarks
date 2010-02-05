@@ -50,7 +50,7 @@ class SexySprite
       elseif ( $bgimg == 'german' )
         $this->style .= "div.sexy-bookmarks-bg-german{padding:35px 0 0 20px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-german.png') no-repeat !important}";
       elseif ( $bgimg == 'knowledge' )
-        $this->style .= "div.sexy-bookmarks-bg-knowledge{padding:35px 0 0 20px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-knowledge.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-knowledge{padding:35px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-knowledge.png') no-repeat !important}";
     }
 
     $this->style .= $this->style_foot;

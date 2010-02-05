@@ -329,7 +329,7 @@ function get_sexy() {
 	}
 
 	//Write the sexybookmarks menu
-	$socials = "\n\n"
+	$socials = "\n\n";
 	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n".'<ul class="socials">'."\n";
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		switch ($name) {

@@ -172,27 +172,27 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://designmoo.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
 	),
 	'sexy-bobrdobr'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'BobrDobr', 'sexybookmarks')).__(' (Russian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'BobrDobr').__(' (Russian)', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').'BobrDobr',
 		'baseUrl'=>'http://bobrdobr.ru/addext.html?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-yandex'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Yandex.Bookmarks', 'sexybookmarks')).__(' (Russian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Yandex.Bookmarks').__(' (Russian)', 'sexybookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').'Yandex.Bookmarks',
 		'baseUrl'=>'http://zakladki.yandex.ru/userarea/links/addfromfav.asp?bAddLink_x=1&amp;lurl=PERMALINK&amp;lname=TITLE',
 	),
 	'sexy-memoryru'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Memory.ru', 'sexybookmarks')).__(' (Russian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Memory.ru').__(' (Russian)', 'sexybookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').'Memory.ru',
 		'baseUrl'=>'http://memori.ru/link/?sm=1&amp;u_data[url]=PERMALINK&amp;u_data[name]=TITLE',
 	),
 	'sexy-100zakladok'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'100 bookmarks', 'sexybookmarks')).__(' (Russian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'100 bookmarks').__(' (Russian)', 'sexybookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').'100 bookmarks',
 		'baseUrl'=>'http://www.100zakladok.ru/save/?bmurl=PERMALINK&amp;bmtitle=TITLE',
 	),
 	'sexy-moemesto'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'MyPlace', 'sexybookmarks')).__(' (Russian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'MyPlace').__(' (Russian)', 'sexybookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').'MyPlace',
 		'baseUrl'=>'http://moemesto.ru/post.php?url=PERMALINK&amp;title=TITLE',
 	),
@@ -257,12 +257,12 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://ping.fm/ref/?link=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
 	),
 	'sexy-nujij'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'NUjij', 'sexybookmarks')).__(' (Dutch)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'NUjij').__(' (Dutch)', 'sexybookmarks'),
 		'share'=>__('Submit this to ', 'sexybookmarks').'NUjij',
 		'baseUrl'=>'http://nujij.nl/jij.lynkx?t=TITLE&amp;u=PERMALINK&amp;b=POST_SUMMARY',
 	),
 	'sexy-ekudos'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'eKudos', 'sexybookmarks')).__(' (Dutch)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'eKudos').__(' (Dutch)', 'sexybookmarks'),
 		'share'=>__('Submit this to ', 'sexybookmarks').'eKudos',
 		'baseUrl'=>'http://www.ekudos.nl/artikel/nieuw?url=PERMALINK&amp;title=TITLE&amp;desc=POST_SUMMARY',
 	),
@@ -292,7 +292,7 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://thewebblend.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
 	),
 	'sexy-wykop'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Wykop', 'sexybookmarks')).__(' (Polish)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Wykop').__(' (Polish)', 'sexybookmarks'),
 		'share'=>__('Add this to Wykop!', 'sexybookmarks'),
 		'baseUrl'=>'http://www.wykop.pl/dodaj?url=PERMALINK&amp;title=TITLE',
 	),
@@ -307,12 +307,12 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://www.hyves.nl/profilemanage/add/tips/?name=TITLE&amp;text=POST_SUMMARY+-+PERMALINK&amp;rating=5',
 	),
 	'sexy-pusha'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Pusha', 'sexybookmarks')).__(' (Swedish)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Pusha').__(' (Swedish)', 'sexybookmarks'),
 		'share'=>__('Push this on ', 'sexybookmarks').'Pusha',
 		'baseUrl'=>'http://www.pusha.se/posta?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-hatena'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Hatena Bookmarks', 'sexybookmarks')).__(' (Japanese)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Hatena Bookmarks').__(' (Japanese)', 'sexybookmarks'),
 		'share'=>__('Bookmarks this on ', 'sexybookmarks').'Hatena Bookmarks',
 		'baseUrl'=>'http://b.hatena.ne.jp/add?mode=confirm&amp;url=PERMALINK&amp;title=TITLE',
 	),
@@ -347,12 +347,12 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://www.evernote.com/clip.action?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-meneame'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Meneame', 'sexybookmarks')).__(' (Spanish)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Meneame').__(' (Spanish)', 'sexybookmarks'),
 		'share'=>__('Submit this to ', 'sexybookmarks').'Meneame',
 		'baseUrl'=>'http://meneame.net/submit.php?url=PERMALINK',
 	),
 	'sexy-bitacoras'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Bitacoras', 'sexybookmarks')).__(' (Spanish)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Bitacoras').__(' (Spanish)', 'sexybookmarks'),
 		'share'=>__('Submit this to ', 'sexybookmarks').'Bitacoras',
 		'baseUrl'=>'http://bitacoras.com/anotaciones/PERMALINK',
 	),
@@ -412,7 +412,7 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://www.dzone.com/links/add.html?url=PERMALINK&title=TITLE&description=POST_SUMMARY',
 	),	
 	'sexy-kaevur'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Kaevur', 'sexybookmarks')).__(' (Estonian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Kaevur').__(' (Estonian)', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').'Kaevur',
 		'baseUrl'=>'http://kaevur.com/submit.php?url=PERMALINK',
 	),
@@ -427,7 +427,7 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&name=TITLE&description=POST_SUMMARY&import_as=link',
 	),
 	'sexy-oknotizie'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'OkNotizie', 'sexybookmarks')).__('(Italian)', 'sexybookmarks'),
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'OkNotizie').__('(Italian)', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').'OkNotizie',
 		'baseUrl'=>'http://oknotizie.virgilio.it/post?url=PERMALINK&title=TITLE',
 	),
