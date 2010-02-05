@@ -181,7 +181,7 @@ function sexy_position_menu($post_content) {
 	} elseif ($sexy_plugopts['position']=='below') {
 		return $post_content.$socials;
 	} else { // some other unexpected error, don't do anything. return.
-		error_log(__('an error occurred in SexyBookmarks', 'sexybookmarks'));
+		error_log(__('An unknown error occurred in SexyBookmarks', 'sexybookmarks'));
 		return $post_content;
 	}
 }
@@ -312,6 +312,8 @@ function get_sexy() {
 		$bgchosen = ' sexy-bookmarks-bg-enjoy';
 	} elseif($sexy_plugopts['bgimg'] == 'german') {
 		$bgchosen = ' sexy-bookmarks-bg-german';
+	} elseif($sexy_plugopts['bgimg'] == 'knowledge') {
+		$bgchosen = ' sexy-bookmarks-bg-knowledge';
 	}
 
 	// Do not add inline styles to the feed.
@@ -327,7 +329,7 @@ function get_sexy() {
 	}
 
 	//Write the sexybookmarks menu
-	$socials = "\n\n".'<!-- Begin SexyBookmarks Menu Code -->'."\n";
+	$socials = "\n\n"
 	$socials .= '<div class="sexy-bookmarks'.$expand.$autocenter.$bgchosen.'"'.$style.'>'."\n".'<ul class="socials">'."\n";
 	foreach ($sexy_plugopts['bookmark'] as $name) {
 		switch ($name) {
@@ -412,7 +414,7 @@ function get_sexy() {
 		}
 	}
 	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
-	$socials.="\n".'<!-- End SexyBookmarks Menu Code -->'."\n\n";
+	$socials.="\n\n";
 
 	return $socials;
 }

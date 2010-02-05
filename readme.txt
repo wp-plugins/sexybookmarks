@@ -1,5 +1,5 @@
 === SexyBookmarks ===
-Contributors: Josh Jones, jamiecarter7, Gautam Gupta
+Contributors: shareaholic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9007080
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
 Requires at least: 2.7
@@ -7,15 +7,19 @@ Tested up to: 2.9.1
 Stable tag: 2.6.1.3
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
+
 == Description ==
 Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
 
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
-= v3.0.1 Bug Fixes =
-* Fix for fatal error if you downloaded v3.0 before `8:30am CST on Feb 1st, 2010`
-* Fix for Google Bookmarks image not displaying correctly
-* Fix for spritegen not working if wordpress installed in subdirectory
+
+= v3.1 Bug Fixes =
+* Completely rewritten dynamic sprite generator thanks to [Kerem Erkan](http://keremerkan.net)
+* Fixed problem causing `Invalid argument supplied foreach()` errors in the options page
+* Fixed error causing `filesize() [function.filesize]: stat failed for` errors in the options page
+* Fixed problem causing `call_user_func [function.call-user-func]: Unable to call function` errors in the options page
+
 
 = Recent Updates =
 * New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
@@ -36,6 +40,8 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Added activation hook to generate sprite automatically upon activating the plugin
 * Spritegen now outputs minified CSS as well
 * Re-added the Russian translation that disappeared somehow
+* Added new background: "Share the knowledge"
+
 
 = Recently Added Sites =
 * DZone
@@ -50,40 +56,49 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Plaxo
 * Viadeo
 
+
 == Other Notes ==
 
 = Special Thanks & Credits =
+
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
 Listed below are credits and thanks to some of you who have helped us out a great deal:
 
-= Translations =
-* Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
-* Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
-* Credit goes to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
-* Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
-* Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
-* Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
-* Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
-* Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
-* Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
-* Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
-* Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
-* Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
-* Credit goes to [Pseric Lin](http://www.freegroup.org) for translating into Traditional Chinese
-* Credit goes to [Cadu Silva](http://www.winnext.com.br) fortranslating into Portugese
 
-= Thanks =
-* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
-* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
-* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Crey Design](http://creydesign.com) for the new background image.
-* Thanks to [Yuri Gribov](http://wp-ru.ru) for help setting the plugin up for i18n support.
-* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
-* Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
-* Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
-* Thanks to [Adrian Mummey](http://www.mummey.org/csprites/) for allowing us to use cSprites in the plugin
+= Translations =
+
+* Thanks to [Maitre Mo](http://maitremo.fr) for translating to French
+* Thanks to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
+* Thanks to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
+* Thanks to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
+* Thanks to [Joojen](http://www.keege.com) for translating to Chinese
+* Thanks to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
+* Thanks to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
+* Thanks to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
+* Thanks to [Gunther Wegner](http://gwegner.de) for translating to German
+* Thanks to [Mads Floe](http://hardwareblog.dk) for translating to Danish
+* Thanks to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
+* Thanks to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
+* Thanks to [Pseric Lin](http://www.freegroup.org) for translating into Traditional Chinese
+* Thanks to [Cadu Silva](http://www.winnext.com.br) for translating into Portugese
+
+
+= Credits =
+
+* Credit goes to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
+* Credit goes to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
+* Credit goes to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
+* Credit goes to [Crey Design](http://creydesign.com) for the new background image.
+* Credit goes to [Yuri Gribov](http://wp-ru.ru) for help setting the plugin up for i18n support.
+* Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
+* Credit goes to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
+* Credit goes to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
+* Credit goes to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
+* Credit goes to [Kerem Erkan](http://keremerkan.net) for writing us a custom sprite generator feature from scratch
+* Credit goes to [Gautam Gupta](http://gaut.am) for previous development help
+* Credit goes to [Josh Jones](http://blog2life.net) for continued development help
+
 
 == Screenshots ==
 
@@ -102,7 +117,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 = Manual Usage =
 **As of v2.5 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
 
-If you would like to insert the menu manually, simply choose "Manually insert" from the options page, then place the following code into your theme files where you want the menu to appear:
+If you would like to insert the menu manually, simply choose "Manual Mode" from the options page, then place the following code into your theme files where you want the menu to appear:
 
 `<?php if(function_exists('selfserv_sexy')) { selfserv_sexy(); } ?>`
 
@@ -110,39 +125,21 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
-= How do I disable the plugin on a particular post/page? =
-To disable the plugin on a specific post or page, simply add a new custom field to that post/page with the key **"Hide SexyBookmarks"** and the value **"true"**
+= Where can I find a detailed FAQ? =
+Please see here: [Frequently Asked Questions](http://sexybookmarks.net/documentation/faq)
 
-= The menu shows up as a regular list with no styling and no images! =
-Unfortunately, this is becoming a more prevalent problem recently and it's due to your WordPress theme not having the function reference `wp_head()` in the **header.php** file as it should. SexyBookmarks uses this function to hook the associated stylesheet and javascript files into the `<head>` of your document. So if it doesn't exist, then the stylesheet and/or javascript files won't be included on your site.
-
-= I see blank spaces where icons used to be! =
-This means that whatever service was previously in that space has been removed from the plugin either permanently or temporarily as we work out bugs or incorporate upgraded functionality. To remove the blank space, simply follow the detailed instructions found on the actual [FAQ Page](http://sexybookmarks.net/documentation/faq#17).
-
-= My jQuery slider/fader doesn't work anymore! =
-Please disable both of the jQuery dependent options (auto-center and animate-expand) in the plugin options area. We are working on a solution to make the plugin FULLY compatible with ALL themes, but have not reached that point yet... Sorry.
-
-= Your plugin broke my site and there's a ton of stuff from another site being displayed!!! =
-This isn't as critical as it may look... Simply choose another URL shortening service and select the "Clear all short URLs" option. Now save the changes and [report which URL shortening service you were using](http://sexybookmarks.net/contact-forms/bug-form/) that broke your site so I can look into it.
-
-= I've uploaded the plugin and activated, but it's not showing up or it's broken... =
-
-This is normally due to styles in your Wordpress theme overriding the styles of the plugin. Check your theme's stylesheet for rules like `!important;` as these may be overriding the styles defined by the plugin.
-
-= My favorite bookmarking site isn't listed! =
-
-You can contact me with the name of the site and the URL, and I will work on releasing it with a future update.
-
-= I'm a Wordpress theme developer, and I'd like to bundle your plugin with my themes. Is this okay? =
-
-Absolutely! Please just [let me know](http://sexybookmarks.net/contact-forms/contact-us/) where the themes will be released so that I can post about it on my site as well!
-
-= I've found a bug not covered here, where do I report it? =
-
-Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contact-forms/bug-form/) for quickest response and notation time.
+= Where can I get detailed Usage & Installation instructions? =
+Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/documentation/usage-installation)
 
 
 == Changelog ==
+= 3.1 =
+* Completely rewritten dynamic sprite generator thanks to [Kerem Erkan](http://keremerkan.net)
+* Fixed problem causing `Invalid argument supplied foreach()` errors in the options page
+* Fixed error causing `filesize() [function.filesize]: stat failed for` errors in the options page
+* Fixed problem causing `call_user_func [function.call-user-func]: Unable to call function` errors in the options page
+* Added new background: "Share the knowledge"
+
 = 3.0.1 =
 * Fix for fatal error if you downloaded v3.0 before `8:30am CST on Feb 1st, 2010`
 * Fix for Google Bookmarks image not displaying correctly
@@ -471,6 +468,9 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 * Initial release!
 
 == Upgrade Notice ==
+= 3.1 =
+The dynamic sprite generator has been completely rewritten from scratch, so this *should* be the final attempt at getting all of the inconsitencies and errors fixed in the v3 series that has caused so many problems so far.
+
 = 3.0.1 =
 Major bug fixes for v3.0 - Upgrade immediately if you've installed v3.0 as this will fix problems you probably haven't even noticed yet. Will need to go to Settings->SexyBookmarks and save settings again after upgrading.
 

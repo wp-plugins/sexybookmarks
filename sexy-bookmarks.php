@@ -3,14 +3,15 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://sexybookmarks.net
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.0.1
-Author: Josh Jones, Jamie Carter, Gautam Gupta
-Author URI: http://blog2life.net
+Version: 3.1
+Author: Shareaholic
+Author URI: http://shareaholic.com
 
 	Original WP-Social-Bookmark-Plugin Copyright 2010 Saidmade srl (email : g.fazioli@saidmade.com)
-	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh@sexybookmarks.net)
-	Additional Developer: Gautam Gupta (www.gaut.am)
-	Additional Developer: Jamie Carter (www.blog2life.net)
+	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh.jones.mail@gmail.com)
+	Continue Development Help: Josh Jones (www.blog2life.net)
+	Previous Development Help: Gautam Gupta (www.gaut.am)
+	Additional Special Thanks Goes To Kerem Erkan (www.keremerkan.net) 
 	Additional Special Thanks Goes To Yuri Gribov (www.wp-ru.ru)
 	Additional Special Thanks Goes To Kieran Smith (www.shuttlebox.net)
 
@@ -35,8 +36,8 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.0.1');
-define('SEXY_RELDIR', str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__)));
+define('SEXY_vNum','3.1');
+define('SEXY_RELPATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__)));
 
 
 
@@ -50,6 +51,12 @@ if ( !defined('WP_CONTENT_URL') ) {
 	define('SEXY_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 }
 
+
+/*
+ * Newer versions of WordPress include this class already
+ * However, we've kept this here for people who are using older versions
+ * This will mimick JSON support for PHP4 and below
+*/
 if ( !class_exists('SERVICES_JSON') ) {
 	if ( !function_exists('json_decode') ){
 		function json_decode($content, $assoc=false){
@@ -62,7 +69,6 @@ if ( !class_exists('SERVICES_JSON') ) {
 			return $json->decode($content);
 		}
 	}
-
 	if ( !function_exists('json_encode') ){
 		function json_encode($content){
 			require_once 'includes/JSON.php';
@@ -97,10 +103,7 @@ require_once 'includes/bookmarks-data.php';
 // helper functions for html output.
 require_once 'includes/html-helpers.php';
 
-//explicitly define globals so they're available in the activation hook
-global $sexy_plugopts, $sexy_bookmarks_data, $sexy_custom_sprite;
-
-
+//populate the array with default values
 $sexy_plugopts = array(
 	'position' => 'below', // below, above, or manual
 	'reloption' => 'nofollow', // 'nofollow', or ''
@@ -137,21 +140,39 @@ else {
 	$sexy_custom_sprite = get_option('SexyCustomSprite');
 }
 
+
+//explicitly define globals so they're available in the activation hook
+global $sexy_plugopts, $sexy_custom_sprite;
+
+//reload them one more time for good measure
+$sexy_plugopts = get_option(SEXY_OPTIONS);
+$sexy_custom_sprite = get_option('SexyCustomSprite');
+
+
+function sexy_preFlight_Checks() {
+	global $sexy_plugopts;
+	if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && !$sexy_plugopts['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images') && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($sexy_plugopts['bookmark']) && is_array($sexy_plugopts['bookmark']) && sizeof($sexy_plugopts['bookmark']) > 0 ))) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 // add activation function to generate new sprite
 function sexy_activation_hook() {
-	global $sexy_plugopts, $sexy_bookmarks_data, $sexy_custom_sprite;
+	global $sexy_plugopts, $sexy_custom_sprite;
 	//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-	if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && ini_get('allow_url_fopen') == true && !$sexy_plugopts['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
-		require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
-		SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
-		SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
-		SpriteConfig::set('cacheTime', 0); //Set the cacheTime to 0 to prevent any caching
-		SpriteConfig::set('transparentImagePath', SEXY_RELDIR.'/images/1_1_trans.gif');
+	if(sexy_preFlight_Checks()) {
+		require_once('includes/sexy-sprite.php');
+
+		$sexy_sprite = new SexySprite(sizeof($sexy_plugopts['bookmark']), $sexy_plugopts['bgimg'], $sexy_plugopts['expand']);
+
 		foreach($sexy_plugopts['bookmark'] as $bookmark){
-			Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
+			$sexy_sprite->append_image($bookmark);
 		}
-		Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
-		$sexy_custom_sprite = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName());
+		$sexy_sprite->save_image();
+		$sexy_custom_sprite = SEXY_PLUGPATH.'css/sexy-custom-sprite.css';
 	}	
 	else{
 		$sexy_custom_sprite = null;
@@ -231,26 +252,25 @@ function sexy_settings_page() {
 
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image, only for PHP 5 with GD
-			if(phpversion() >= '5' && extension_loaded('gd') && function_exists('gd_info') && ini_get('allow_url_fopen') == true && !$_POST['custom-mods'] && is_writable(SEXY_PLUGDIR.'css') && is_writable(SEXY_PLUGDIR.'images')) {
-				require_once('includes/sprite-gen/Sprite.php'); //main file, which includes other classes
-				SpriteConfig::set('relImageOutputDirectory', SEXY_RELDIR.'/images'); //relative to web root, this is where the generated sprite images will go
-				SpriteConfig::set('relTmplOutputDirectory', SEXY_RELDIR.'/css'); //relative to web root, this is where template files and generated CSS will go
-				SpriteConfig::set('cacheTime', 0); //Set the cacheTime to 0 to prevent any caching
-				SpriteConfig::set('transparentImagePath', SEXY_RELDIR.'/images/1_1_trans.gif');
-				foreach($_POST['bookmark'] as $bookmark){
-					Sprite::ppRegister(SEXY_RELDIR.'/images/icons/'.$bookmark.'.png');
+			if(sexy_preFlight_Checks()) {
+				require_once('includes/sexy-sprite.php'); //main file, which includes other classes
+				if ( isset($_POST['bookmark']) && is_array($_POST['bookmark']) and sizeof($_POST['bookmark']) > 0 )
+				{
+					$sexy_sprite = new SexySprite(sizeof($_POST['bookmark']), $_POST['bgimg'], $_POST['expand']);
+
+					foreach ( $_POST['bookmark'] as $bookmark )
+					{
+						$sexy_sprite->append_image($bookmark);
+					}
+					$sexy_sprite->save_image();
 				}
-				Sprite::process(); //Now we run the processSprites() function. This MUST be run before you can access any of the Sprites in your template or elsewhere.
-				$sexy_custom_sprite = SEXY_PLUGPATH.'css/'.trim(SpriteStyleRegistry::getFileName()); //cssfilename
+				$sexy_custom_sprite = SEXY_PLUGPATH.'css/sexy-custom-sprite.css'; //cssfilename
 			}else{
 				$sexy_custom_sprite = null;
-				if(phpversion() >= '5' && extension_loaded('gd') && ini_get('allow_url_fopen') == true) {
+				if(phpversion() >= '5' && extension_loaded('gd')) {
 					if (!is_writable(SEXY_PLUGDIR.'css') || !is_writeable(SEXY_PLUGDIR.'images')) {
 						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your css and/or images folders are not writeable! <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), 'http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					}
-				}
-				if(phpversion() < '5' || !extension_loaded('gd') || ini_get('allow_url_fopen') != true) {
-					echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.__('NOTICE: Your server is not setup properly for the automatic sprite generator. Plugin has defaulted back to static sprite image.').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 				}
 			}
 			foreach (array(
@@ -321,6 +341,8 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 	document.write(unescape("%3Cscript src='" + psHost + "pluginsponsors.com/direct/spsn/display.php?client=sexy&spot=' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <?php } ?>
+
+
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
 	<div id="sexy-col-left">
 		<ul id="sexy-sortables">
@@ -612,6 +634,9 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 							<label class="share-german">
 								<input <?php echo (($sexy_plugopts['bgimg'] == "german")? 'checked="checked"' : ""); ?> id="bgimg-german" name="bgimg" type="radio" value="german" />
 							</label>
+							<label class="share-knowledge">
+								<input <?php echo (($sexy_plugopts['bgimg'] == "knowledge")? 'checked="checked"' : ""); ?> id="bgimg-knowledge" name="bgimg" type="radio" value="knowledge" />
+							</label>
 						</div>
 					</div>
 				</div>
@@ -753,6 +778,8 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix: Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://keremerkan.net/"><?php _e('Custom Sprite Generator: Kerem Erkan', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://gaut.am/"><?php _e('Previous Developer: Gautam Gupta', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
