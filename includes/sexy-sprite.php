@@ -30,27 +30,27 @@ class SexySprite
     if ( !empty($exp) )
       $this->style .= $this->expand;
 
-    $this->style .= "div.sexy-bookmarks ul.socials li{background:url('" . SEXY_RELPATH . "/images/sexy-custom-sprite.png') no-repeat}";
+    $this->style .= "div.sexy-bookmarks ul.socials li{background:url('../images/sexy-custom-sprite.png') no-repeat}";
     $this->icon_folder = SEXY_PLUGDIR . "images/icons/";
 
     if ( !empty($bgimg) )
     {
       if ( $bgimg == 'sexy' )
-        $this->style .= "div.sexy-bookmarks-bg-sexy{padding:28px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/sharing-sexy.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-sexy{padding:28px 0 0 10px !important;background:transparent url('../images/sharing-sexy.png') no-repeat !important}";
       elseif ( $bgimg == 'caring' )
-        $this->style .= "div.sexy-bookmarks-bg-caring{padding:26px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/sharing-caring-hearts.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-caring{padding:26px 0 0 10px !important;background:transparent url('../images/sharing-caring-hearts.png') no-repeat !important}";
       elseif ( $bgimg == 'care-old' )
-        $this->style .= "div.sexy-bookmarks-bg-caring-old{padding:26px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/sharing-caring.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-caring-old{padding:26px 0 0 10px !important;background:transparent url('../images/sharing-caring.png') no-repeat !important}";
       elseif ( $bgimg == 'love' )
-        $this->style .= "div.sexy-bookmarks-bg-love{padding:26px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-love-hearts.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-love{padding:26px 0 0 10px !important;background:transparent url('../images/share-love-hearts.png') no-repeat !important}";
       elseif ( $bgimg == 'wealth' )
-        $this->style .= "div.sexy-bookmarks-bg-wealth{margin-left:15px !important;padding:35px 0 0 20px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-wealth.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-wealth{margin-left:15px !important;padding:35px 0 0 20px !important;background:transparent url('../images/share-wealth.png') no-repeat !important}";
       elseif ( $bgimg == 'enjoy' )
-        $this->style .= "div.sexy-bookmarks-bg-enjoy{padding:26px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-enjoy.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-enjoy{padding:26px 0 0 10px !important;background:transparent url('../images/share-enjoy.png') no-repeat !important}";
       elseif ( $bgimg == 'german' )
-        $this->style .= "div.sexy-bookmarks-bg-german{padding:35px 0 0 20px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-german.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-german{padding:35px 0 0 20px !important;background:transparent url('../images/share-german.png') no-repeat !important}";
       elseif ( $bgimg == 'knowledge' )
-        $this->style .= "div.sexy-bookmarks-bg-knowledge{padding:35px 0 0 10px !important;background:transparent url('" . SEXY_RELPATH . "/images/share-knowledge.png') no-repeat !important}";
+        $this->style .= "div.sexy-bookmarks-bg-knowledge{padding:35px 0 0 10px !important;background:transparent url('../images/share-knowledge.png') no-repeat !important}";
     }
 
     $this->style .= $this->style_foot;
