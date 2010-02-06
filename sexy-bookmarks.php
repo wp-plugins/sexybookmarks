@@ -9,11 +9,11 @@ Author URI: http://shareaholic.com
 
 	Original WP-Social-Bookmark-Plugin Copyright 2010 Saidmade srl (email : g.fazioli@saidmade.com)
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh.jones.mail@gmail.com)
-	Continue Development Help: Josh Jones (www.blog2life.net)
-	Previous Development Help: Gautam Gupta (www.gaut.am)
-	Additional Special Thanks Goes To Kerem Erkan (www.keremerkan.net) 
-	Additional Special Thanks Goes To Yuri Gribov (www.wp-ru.ru)
-	Additional Special Thanks Goes To Kieran Smith (www.shuttlebox.net)
+	Continue Development Help: Josh Jones (http://blog2life.net)
+	Previous Development Help: Gautam Gupta (http://gaut.am)
+	Additional Special Thanks Goes To Kerem Erkan (http://keremerkan.net) 
+	Additional Special Thanks Goes To Yuri Gribov (http://wp-ru.ru)
+	Additional Special Thanks Goes To Kieran Smith (http://shuttlebox.net)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
