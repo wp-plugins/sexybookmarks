@@ -9,7 +9,7 @@ Author URI: http://shareaholic.com
 
 	Original WP-Social-Bookmark-Plugin Copyright 2010 Saidmade srl (email : g.fazioli@saidmade.com)
 	Original Social Bookmarking Menu & SexyBookmarks Plugin Copyright 2009 Josh Jones (email : josh.jones.mail@gmail.com)
-	Continue Development Help: Josh Jones (http://blog2life.net)
+	Continued Development Help: Josh Jones (http://blog2life.net)
 	Previous Development Help: Gautam Gupta (http://gaut.am)
 	Additional Special Thanks Goes To Kerem Erkan (http://keremerkan.net) 
 	Additional Special Thanks Goes To Yuri Gribov (http://wp-ru.ru)
@@ -37,7 +37,6 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
 define('SEXY_vNum','3.1');
-define('SEXY_RELPATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', WP_PLUGIN_DIR).'/'.plugin_basename(dirname(__FILE__)));
 
 
 
