@@ -219,7 +219,6 @@ ul.multi-selection li.label-faker {
 ul.multi-selection li input {
 
 }
-
 /* End Bookmarking Services Icons */
 /*------------------------------------------------------------------------------------------*/
 /* Main Structure Styles */
@@ -271,7 +270,38 @@ div.box-right-head h3 {
 div.box-right-body { background:#F8F8F8 url('../images/white-pix.jpg') repeat-x center top; border:1px solid #dbdbdb; border-top:0 none; float:left; width:256px; }
 div.box-right-body h4 { display:block; font-size:16px; font-weight:bold; margin:8px 0; }
 div.box-right-body ul { list-style-image:none; list-style-position:inside; list-style-type:none; margin:0; }
-div.box-right-body ul li strong { color:#454545; font-weight:bold; }
+div.box-right-body ul li strong { color:#454545; font-weight:bold}
+div.sexysubmit, div.sexyreset {float:left;margin:0 0 20px}
+div.sexyreset {margin-left:50px}
+div.sexysubmit input, div.sexyreset input {
+	font-size:12px !important;
+	padding:4px 8px !important;
+	border-radius:4px !important;
+	-moz-border-radius:4px !important;
+	-webkit-border-radius:4px !important;
+	outline:0 none !important;
+}
+div.sexysubmit input {
+	background:#3dcb36 url('../images/green-grad.png') repeat-x 0 0 !important;
+	border:1px solid #0f8f08 !important;
+	color:#066a00 !important;
+	text-shadow:0 1px 0 #5acd53 !important;
+}
+div.sexyreset input {
+	background:#f76363 url('../images/red-grad.png') repeat-x scroll 0 0 !important;
+	border:1px solid #9f3b3b !important;
+	color:#7f2f2f !important;
+	text-shadow:0 1px 0 #ff8f8f !important;
+}
+div.sexysubmit input:hover, div.sexyreset input:hover {cursor:pointer !important}
+div.sexysubmit input:active, div.sexysubmit input:focus {
+	background-position:left bottom !important;
+	outline:0 none !important;
+}
+div.sexyreset input:active, div.sexyreset input:focus {
+	background-position:left bottom !important;
+	outline:0 none !important;
+}
 /* End Main Structure Styles */
 /*------------------------------------------------------------------------------------------*/
 /* Donations Section Styles */

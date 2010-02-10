@@ -41,6 +41,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Spritegen now outputs minified CSS as well
 * Added new background: "Share the knowledge"
 * Updated the Russian translation
+* Added reset button to reset all options to defaults
 
 = Recently Added Sites =
 * DZone
@@ -139,6 +140,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Fixed problem causing `call_user_func [function.call-user-func]: Unable to call function` errors in the options page
 * Added new background: "Share the knowledge"
 * Updated the Russian translation
+* Added reset button to reset all options to defaults
 
 = 3.0.1 =
 * Fix for fatal error if you downloaded v3.0 before `8:30am CST on Feb 1st, 2010`

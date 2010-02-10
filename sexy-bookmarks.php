@@ -191,8 +191,48 @@ function sexy_settings_page() {
 		$sexy_plugopts['hide-sponsors'] = $_POST['sexy-hide-sponsors'];
 		update_option(SEXY_OPTIONS, $sexy_plugopts);
 	}
-	
+
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
+
+
+	//Reset all options to default settings if user clicks the reset button
+	if($_POST['reset_all_options'] == "1") { //check for reset button click
+		delete_option(SEXY_OPTIONS);
+		$sexy_plugopts = array(
+			'position' => 'below', // below, above, or manual
+			'reloption' => 'nofollow', // 'nofollow', or ''
+			'targetopt' => 'blank', // 'blank' or 'self'
+			'bgimg-yes' => 'yes', // 'yes' or blank
+			'mobile-hide' => '', // 'yes' or blank
+			'bgimg' => 'sexy', // 'sexy', 'caring', 'wealth'
+			'shorty' => 'b2l', // default is http://b2l.me
+			'pageorpost' => '',
+			'bookmark' => array_keys($sexy_bookmarks_data),
+			'feed' => '1', // 1 or 0
+			'expand' => '1',
+			'autocenter' => '0',
+			'ybuzzcat' => 'science',
+			'ybuzzmed' => 'text',
+			'twittcat' => '',
+			'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
+			'warn-choice' => '',
+			'doNotIncludeJQuery' => '',
+			'custom-mods' => '',
+			'hide-sponsors' => '',
+			'scriptInFooter' => '1',
+		);
+		update_option(SEXY_OPTIONS, $sexy_plugopts);
+		delete_option('SexyCustomSprite');
+		echo '
+		<div id="statmessage" class="sexy-success">
+			<div class="dialog-left fugue f-success">
+				'.__('All settings have been reset to their default values.', 'sexybookmarks').'
+			</div>
+			<div class="dialog-right">
+				<img src="'.SEXY_PLUGPATH.'images/success-delete.jpg" class="del-x" alt=""/>
+			</div>
+		</div>';
+	}
 
 	// create folders for custom mods
 	// then copy original files into new folders
@@ -309,6 +349,9 @@ function sexy_settings_page() {
 		}
 	}
 
+
+
+
 	//if there was an error, construct error messages 
 	if ($error_message != '') {
 		echo '
@@ -331,6 +374,7 @@ function sexy_settings_page() {
 			</div>
 		</div>';
 	}
+
 
 // If sponsor messages aren't set to be hidden, insert the script 
 if($sexy_plugopts['hide-sponsors'] != "yes") {
@@ -684,7 +728,11 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 			</li>
 		</ul>
 		<input type="hidden" name="save_changes" value="1" />
-		<div class="submit"><input type="submit" value="<?php _e('Save Changes', 'sexybookmarks'); ?>" /></div>
+		<div class="sexysubmit"><input type="submit" value="<?php _e('Save Changes', 'sexybookmarks'); ?>" /></div>
+	</form>
+	<form action="" method="post">
+		<input type="hidden" name="reset_all_options" id="reset_all_options" value="1" />
+		<div class="sexyreset"><input type="submit" value="<?php _e('Reset Settings', 'sexybookmarks'); ?>" /></div>
 	</form>
 </div>
 <div id="sexy-col-right">
