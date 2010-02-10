@@ -825,7 +825,7 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 					<li><a href="http://wefunction.com/2008/07/function-free-icon-set/"><?php _e('Original Skin Icons: Function', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://beerpla.net"><?php _e('Bug Patch: Artem Russakovskii', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://kovshenin.com/"><?php _e('bit.ly bug fix: Konstantin Kovshenin', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://keremerkan.net/"><?php _e('Custom Sprite Generator: Kerem Erkan', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://keremerkan.net/"><?php _e('New Sprite Generator: Kerem Erkan', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://gaut.am/"><?php _e('Previous Developer: Gautam Gupta', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
