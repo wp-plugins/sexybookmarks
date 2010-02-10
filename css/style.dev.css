@@ -15,7 +15,7 @@ div.sexy-bookmarks ul.socials li {
 	display:inline !important;
 	float:left !important;
 	list-style-type:none !important;
-	margin:0;
+	margin:0 0 3px !important;
 	height:29px !important;
 	width:60px !important;
 	cursor:pointer !important;

@@ -42,6 +42,8 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Added new background: "Share the knowledge"
 * Updated the Russian translation
 * Added reset button to reset all options to defaults
+* Added a few pixels of bottom margin to the menu items
+
 
 = Recently Added Sites =
 * DZone
