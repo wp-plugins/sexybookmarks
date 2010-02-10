@@ -194,9 +194,22 @@ function sexy_settings_page() {
 
 	echo '<h2 class="sexylogo">SexyBookmarks</h2>';
 
+	if($_POST['reset_all_options'] == '0') {
+		echo '
+		<div id="sexyresetallwarn" class="dialog-box-warning" style="float:none;width:97%;">
+			<div class="dialog-left fugue f-warn">
+				'.__("WARNING: You are about to reset all settings to their default state! Do you wish to continue?", "sexybookmarks").'
+			</div>
+			<div class="dialog-right">
+				<form action="" method="post" id="resetalloptionsaccept">
+					<label><input name="sexyresetallwarn-choice" id="sexyresetallwarn-yes" type="radio" value="yes" />'.__('Yes', 'sexybookmarks').'</label> &nbsp; <label><input name="sexyresetallwarn-choice" id="sexyresetallwarn-cancel" type="radio" value="cancel" />'.__('Cancel', 'sexybookmarks').'</label>
+				</form>
+			</div>
+		</div>';
+	}
 
 	//Reset all options to default settings if user clicks the reset button
-	if($_POST['reset_all_options'] == "1") { //check for reset button click
+	if($_POST['sexyresetallwarn-choice'] == "yes") { //check for reset button click
 		delete_option(SEXY_OPTIONS);
 		$sexy_plugopts = array(
 			'position' => 'below', // below, above, or manual
@@ -727,11 +740,12 @@ if($sexy_plugopts['hide-sponsors'] != "yes") {
 				</div>
 			</li>
 		</ul>
+		<div style="clear:both;"></div>
 		<input type="hidden" name="save_changes" value="1" />
 		<div class="sexysubmit"><input type="submit" value="<?php _e('Save Changes', 'sexybookmarks'); ?>" /></div>
 	</form>
 	<form action="" method="post">
-		<input type="hidden" name="reset_all_options" id="reset_all_options" value="1" />
+		<input type="hidden" name="reset_all_options" id="reset_all_options" value="0" />
 		<div class="sexyreset"><input type="submit" value="<?php _e('Reset Settings', 'sexybookmarks'); ?>" /></div>
 	</form>
 </div>

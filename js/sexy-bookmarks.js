@@ -259,4 +259,16 @@ jQuery(document).ready(function() {
 		this.checked=jQuery('#clearShortUrls').attr('checked', 'checked');
 		this.checked=!this.checked;
 	});
+
+
+
+	jQuery('#sexyresetallwarn-cancel').click(function() {
+		jQuery('#sexyresetallwarn').fadeOut();
+	});
+
+	jQuery('#sexyresetallwarn-yes').click(function() {
+		this.checked=jQuery('#sexyresetallwarn').fadeOut();
+		this.checked=jQuery('#resetalloptionsaccept').submit();
+		this.checked=!this.checked;
+	});
 }});
