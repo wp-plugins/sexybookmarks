@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SexyBookmarks v3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-05 10:33-0600\n"
+"POT-Creation-Date: 2010-02-11 02:43-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Josh <josh.jones.mail@gmail.com>\n"
 "Language-Team: Shareaholic\n"
@@ -15,568 +15,582 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: sexy-bookmarks.php:228
+#: sexy-bookmarks.php:201
+msgid "WARNING: You are about to reset all settings to their default state! Do you wish to continue?"
+msgstr ""
+
+#: sexy-bookmarks.php:205
+#: sexy-bookmarks.php:439
+#: sexy-bookmarks.php:595
+#: sexy-bookmarks.php:598
+#: sexy-bookmarks.php:655
+#: sexy-bookmarks.php:733
+msgid "Yes"
+msgstr ""
+
+#: sexy-bookmarks.php:205
+#: sexy-bookmarks.php:439
+msgid "Cancel"
+msgstr ""
+
+#: sexy-bookmarks.php:242
+msgid "All settings have been reset to their default values."
+msgstr ""
+
+#: sexy-bookmarks.php:280
 msgid "Your changes have been saved successfully!"
 msgstr ""
 
-#: sexy-bookmarks.php:228
+#: sexy-bookmarks.php:280
 #, php-format
 msgid "Maybe you would consider <a href=\"%s\">donating</a>?"
 msgstr ""
 
-#: sexy-bookmarks.php:231
+#: sexy-bookmarks.php:283
 msgid "Please choose where you would like the menu to be displayed."
 msgstr ""
 
-#: sexy-bookmarks.php:232
+#: sexy-bookmarks.php:284
 msgid "You can't display the menu if you don't choose a few sites to add to it!"
 msgstr ""
 
-#: sexy-bookmarks.php:233
+#: sexy-bookmarks.php:285
 msgid "Please choose where you want the menu displayed."
 msgstr ""
 
-#: sexy-bookmarks.php:237
+#: sexy-bookmarks.php:289
 msgid "You need to select the primary category for any articles submitted to Twittley."
 msgstr ""
 
-#: sexy-bookmarks.php:238
+#: sexy-bookmarks.php:290
 msgid "You need to set at least 1 default tag for any articles submitted to Twittley."
 msgstr ""
 
-#: sexy-bookmarks.php:248
+#: sexy-bookmarks.php:300
 #, php-format
 msgid "You must first download and activate the <a href=\"%s\">Twitter Friendly Links Plugin</a> before hosting your own short URLs..."
 msgstr ""
 
-#: sexy-bookmarks.php:250
+#: sexy-bookmarks.php:302
 #, php-format
 msgid "You must first download and activate the <a href=\"%s\">YOURLS Plugin</a> before hosting your own short URLs..."
 msgstr ""
 
-#: sexy-bookmarks.php:272
+#: sexy-bookmarks.php:324
 #, php-format
 msgid "WARNING: Your css and/or images folders are not writeable! <a href=\"%s\" target=\"_blank\">Need Help?</a>"
 msgstr ""
 
-#: sexy-bookmarks.php:309
+#: sexy-bookmarks.php:361
 msgid "Short URL(s) have been reset."
 msgstr ""
 
-#: sexy-bookmarks.php:351
+#: sexy-bookmarks.php:407
 msgid "Enabled Networks"
 msgstr ""
 
-#: sexy-bookmarks.php:355
+#: sexy-bookmarks.php:411
 msgid "Select the Networks to display. Drag to reorder."
 msgstr ""
 
-#: sexy-bookmarks.php:357
+#: sexy-bookmarks.php:413
 msgid "Select"
 msgstr ""
 
-#: sexy-bookmarks.php:358
+#: sexy-bookmarks.php:414
 msgid "All"
 msgstr ""
 
-#: sexy-bookmarks.php:359
+#: sexy-bookmarks.php:415
 msgid "None"
 msgstr ""
 
-#: sexy-bookmarks.php:360
+#: sexy-bookmarks.php:416
 msgid "Most Popular"
 msgstr ""
 
-#: sexy-bookmarks.php:374
+#: sexy-bookmarks.php:430
 msgid "Functionality Settings"
 msgstr ""
 
-#: sexy-bookmarks.php:380
+#: sexy-bookmarks.php:436
 msgid "This will clear <u>ALL</u> short URLs. - Are you sure?"
 msgstr ""
 
-#: sexy-bookmarks.php:383
-#: sexy-bookmarks.php:539
-#: sexy-bookmarks.php:542
-#: sexy-bookmarks.php:599
-#: sexy-bookmarks.php:677
-msgid "Yes"
-msgstr ""
-
-#: sexy-bookmarks.php:383
-msgid "Cancel"
-msgstr ""
-
-#: sexy-bookmarks.php:387
+#: sexy-bookmarks.php:443
 msgid "Twitter Options:"
 msgstr ""
 
-#: sexy-bookmarks.php:388
+#: sexy-bookmarks.php:444
 msgid "Twitter ID:"
 msgstr ""
 
-#: sexy-bookmarks.php:391
+#: sexy-bookmarks.php:447
 msgid "Which URL Shortener?"
 msgstr ""
 
-#: sexy-bookmarks.php:396
+#: sexy-bookmarks.php:452
 msgid "Don't use a shortener"
 msgstr ""
 
-#: sexy-bookmarks.php:411
+#: sexy-bookmarks.php:467
 msgid "Reset all Short URLs"
 msgstr ""
 
-#: sexy-bookmarks.php:414
-#: sexy-bookmarks.php:426
-#: sexy-bookmarks.php:435
-#: sexy-bookmarks.php:447
-#: sexy-bookmarks.php:467
+#: sexy-bookmarks.php:470
+#: sexy-bookmarks.php:482
+#: sexy-bookmarks.php:491
+#: sexy-bookmarks.php:503
+#: sexy-bookmarks.php:523
 msgid "User ID:"
 msgstr ""
 
-#: sexy-bookmarks.php:416
-#: sexy-bookmarks.php:437
-#: sexy-bookmarks.php:457
-#: sexy-bookmarks.php:469
+#: sexy-bookmarks.php:472
+#: sexy-bookmarks.php:493
+#: sexy-bookmarks.php:513
+#: sexy-bookmarks.php:525
 msgid "API Key:"
 msgstr ""
 
-#: sexy-bookmarks.php:422
-#: sexy-bookmarks.php:443
-#: sexy-bookmarks.php:453
-#: sexy-bookmarks.php:463
+#: sexy-bookmarks.php:478
+#: sexy-bookmarks.php:499
+#: sexy-bookmarks.php:509
+#: sexy-bookmarks.php:519
 msgid "Track Generated Links?"
 msgstr ""
 
-#: sexy-bookmarks.php:428
+#: sexy-bookmarks.php:484
 msgid "Password:"
 msgstr ""
 
-#: sexy-bookmarks.php:476
+#: sexy-bookmarks.php:532
 msgid "Yahoo! Buzz Defaults:"
 msgstr ""
 
-#: sexy-bookmarks.php:477
+#: sexy-bookmarks.php:533
 msgid "Default Content Category:"
 msgstr ""
 
-#: sexy-bookmarks.php:496
+#: sexy-bookmarks.php:552
 msgid "Default Media Type:"
 msgstr ""
 
-#: sexy-bookmarks.php:510
+#: sexy-bookmarks.php:566
 msgid "Twittley Defaults:"
 msgstr ""
 
-#: sexy-bookmarks.php:511
+#: sexy-bookmarks.php:567
 msgid "Primary Content Category:"
 msgstr ""
 
-#: sexy-bookmarks.php:515
+#: sexy-bookmarks.php:571
 msgid "Technology"
 msgstr ""
 
-#: sexy-bookmarks.php:516
+#: sexy-bookmarks.php:572
 msgid "World &amp; Business"
 msgstr ""
 
-#: sexy-bookmarks.php:517
+#: sexy-bookmarks.php:573
 msgid "Science"
 msgstr ""
 
-#: sexy-bookmarks.php:518
+#: sexy-bookmarks.php:574
 msgid "Gaming"
 msgstr ""
 
-#: sexy-bookmarks.php:519
+#: sexy-bookmarks.php:575
 msgid "Lifestyle"
 msgstr ""
 
-#: sexy-bookmarks.php:520
+#: sexy-bookmarks.php:576
 msgid "Entertainment"
 msgstr ""
 
-#: sexy-bookmarks.php:521
+#: sexy-bookmarks.php:577
 msgid "Sports"
 msgstr ""
 
-#: sexy-bookmarks.php:522
+#: sexy-bookmarks.php:578
 msgid "Offbeat"
 msgstr ""
 
-#: sexy-bookmarks.php:523
+#: sexy-bookmarks.php:579
 msgid "Internet"
 msgstr ""
 
-#: sexy-bookmarks.php:529
+#: sexy-bookmarks.php:585
 msgid "Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different *tag categories* than other posts."
 msgstr ""
 
-#: sexy-bookmarks.php:530
+#: sexy-bookmarks.php:586
 msgid "This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here."
 msgstr ""
 
-#: sexy-bookmarks.php:530
+#: sexy-bookmarks.php:586
 msgid "Click here to close this message"
 msgstr ""
 
-#: sexy-bookmarks.php:530
+#: sexy-bookmarks.php:586
 msgid "close"
 msgstr ""
 
-#: sexy-bookmarks.php:532
+#: sexy-bookmarks.php:588
 msgid "Default Tags:"
 msgstr ""
 
-#: sexy-bookmarks.php:533
-#: sexy-bookmarks.php:675
+#: sexy-bookmarks.php:589
+#: sexy-bookmarks.php:731
 msgid "Click here for help with this option"
 msgstr ""
 
-#: sexy-bookmarks.php:537
+#: sexy-bookmarks.php:593
 msgid "General Functionality Options:"
 msgstr ""
 
-#: sexy-bookmarks.php:538
+#: sexy-bookmarks.php:594
 msgid "Add nofollow to the links?"
 msgstr ""
 
-#: sexy-bookmarks.php:540
-#: sexy-bookmarks.php:543
-#: sexy-bookmarks.php:600
-#: sexy-bookmarks.php:604
-#: sexy-bookmarks.php:678
+#: sexy-bookmarks.php:596
+#: sexy-bookmarks.php:599
+#: sexy-bookmarks.php:656
+#: sexy-bookmarks.php:660
+#: sexy-bookmarks.php:734
 msgid "No"
 msgstr ""
 
-#: sexy-bookmarks.php:541
+#: sexy-bookmarks.php:597
 msgid "Open links in new window?"
 msgstr ""
 
-#: sexy-bookmarks.php:550
+#: sexy-bookmarks.php:606
 msgid "Plugin Aesthetics"
 msgstr ""
 
-#: sexy-bookmarks.php:555
+#: sexy-bookmarks.php:611
 msgid "Warning!"
 msgstr ""
 
-#: sexy-bookmarks.php:556
+#: sexy-bookmarks.php:612
 msgid "This option in intended "
 msgstr ""
 
-#: sexy-bookmarks.php:556
+#: sexy-bookmarks.php:612
 msgid "STRICTLY"
 msgstr ""
 
-#: sexy-bookmarks.php:556
+#: sexy-bookmarks.php:612
 msgid " for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes."
 msgstr ""
 
-#: sexy-bookmarks.php:557
+#: sexy-bookmarks.php:613
 msgid "How it works..."
 msgstr ""
 
-#: sexy-bookmarks.php:558
+#: sexy-bookmarks.php:614
 msgid "Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:"
 msgstr ""
 
-#: sexy-bookmarks.php:575
+#: sexy-bookmarks.php:631
 msgid "Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done."
 msgstr ""
 
-#: sexy-bookmarks.php:576
+#: sexy-bookmarks.php:632
 msgid "Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory."
 msgstr ""
 
-#: sexy-bookmarks.php:577
+#: sexy-bookmarks.php:633
 msgid "In Case of Emergency"
 msgstr ""
 
-#: sexy-bookmarks.php:578
+#: sexy-bookmarks.php:634
 msgid "If you happen to mess things up, you can follow these directions to reset the plugin back to normal and try again if you wish:"
 msgstr ""
 
-#: sexy-bookmarks.php:580
+#: sexy-bookmarks.php:636
 msgid "Login to your server via FTP or SSH. (whichever you are more comfortable with)"
 msgstr ""
 
-#: sexy-bookmarks.php:581
+#: sexy-bookmarks.php:637
 msgid "Navigate to your wp-content directory."
 msgstr ""
 
-#: sexy-bookmarks.php:582
+#: sexy-bookmarks.php:638
 msgid "Delete the directory named \"sexy-mods\"."
 msgstr ""
 
-#: sexy-bookmarks.php:583
+#: sexy-bookmarks.php:639
 msgid "Login to your WordPress dashboard."
 msgstr ""
 
-#: sexy-bookmarks.php:584
+#: sexy-bookmarks.php:640
 msgid "Go to the SexyBookmarks plugin options page. (Settings->SexyBookmarks)"
 msgstr ""
 
-#: sexy-bookmarks.php:585
+#: sexy-bookmarks.php:641
 msgid "Deselect the \"Use custom mods\" option."
 msgstr ""
 
-#: sexy-bookmarks.php:586
+#: sexy-bookmarks.php:642
 msgid "Save your changes."
 msgstr ""
 
-#: sexy-bookmarks.php:588
+#: sexy-bookmarks.php:644
 msgid "Close Message"
 msgstr ""
 
-#: sexy-bookmarks.php:592
+#: sexy-bookmarks.php:648
 msgid "Override Styles With Custom Mods Instead?"
 msgstr ""
 
-#: sexy-bookmarks.php:597
+#: sexy-bookmarks.php:653
 msgid "jQuery Related Options"
 msgstr ""
 
-#: sexy-bookmarks.php:598
+#: sexy-bookmarks.php:654
 msgid "Animate-expand multi-lined bookmarks?"
 msgstr ""
 
-#: sexy-bookmarks.php:601
+#: sexy-bookmarks.php:657
 msgid "Auto-space/center the bookmarks?"
 msgstr ""
 
-#: sexy-bookmarks.php:602
+#: sexy-bookmarks.php:658
 msgid "Space"
 msgstr ""
 
-#: sexy-bookmarks.php:603
+#: sexy-bookmarks.php:659
 msgid "Center"
 msgstr ""
 
-#: sexy-bookmarks.php:605
+#: sexy-bookmarks.php:661
 msgid "jQuery Compatibility Fix"
 msgstr ""
 
-#: sexy-bookmarks.php:606
+#: sexy-bookmarks.php:662
 msgid "Check this box ONLY if you notice jQuery being loaded twice in your source code!"
 msgstr ""
 
-#: sexy-bookmarks.php:608
+#: sexy-bookmarks.php:664
 msgid "Load scripts in Footer"
 msgstr ""
 
-#: sexy-bookmarks.php:609
+#: sexy-bookmarks.php:665
 msgid "Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer."
 msgstr ""
 
-#: sexy-bookmarks.php:611
+#: sexy-bookmarks.php:667
 msgid "Background Image Options"
 msgstr ""
 
-#: sexy-bookmarks.php:613
+#: sexy-bookmarks.php:669
 msgid "Use a background image?"
 msgstr ""
 
-#: sexy-bookmarks.php:646
+#: sexy-bookmarks.php:702
 msgid "Menu Placement"
 msgstr ""
 
-#: sexy-bookmarks.php:652
+#: sexy-bookmarks.php:708
 #, php-format
 msgid "Need help with this? Find it in the <a href=\"%s\">official install guide."
 msgstr ""
 
-#: sexy-bookmarks.php:658
+#: sexy-bookmarks.php:714
 msgid "Menu Location (in relation to content):"
 msgstr ""
 
-#: sexy-bookmarks.php:659
+#: sexy-bookmarks.php:715
 msgid "Above Content"
 msgstr ""
 
-#: sexy-bookmarks.php:660
+#: sexy-bookmarks.php:716
 msgid "Below Content"
 msgstr ""
 
-#: sexy-bookmarks.php:661
+#: sexy-bookmarks.php:717
 msgid "Manual Mode"
 msgstr ""
 
-#: sexy-bookmarks.php:662
+#: sexy-bookmarks.php:718
 msgid "Posts, pages, or the whole shebang?"
 msgstr ""
 
-#: sexy-bookmarks.php:666
+#: sexy-bookmarks.php:722
 msgid "Posts Only"
 msgstr ""
 
-#: sexy-bookmarks.php:667
+#: sexy-bookmarks.php:723
 msgid "Pages Only"
 msgstr ""
 
-#: sexy-bookmarks.php:668
+#: sexy-bookmarks.php:724
 msgid "Index Only"
 msgstr ""
 
-#: sexy-bookmarks.php:669
+#: sexy-bookmarks.php:725
 msgid "Posts &amp; Pages"
 msgstr ""
 
-#: sexy-bookmarks.php:670
+#: sexy-bookmarks.php:726
 msgid "Posts &amp; Index"
 msgstr ""
 
-#: sexy-bookmarks.php:671
+#: sexy-bookmarks.php:727
 msgid "Pages &amp; Index"
 msgstr ""
 
-#: sexy-bookmarks.php:672
+#: sexy-bookmarks.php:728
 msgid "Posts, Pages, &amp; Index"
 msgstr ""
 
-#: sexy-bookmarks.php:676
+#: sexy-bookmarks.php:732
 msgid "Show in RSS feed?"
 msgstr ""
 
-#: sexy-bookmarks.php:680
+#: sexy-bookmarks.php:736
 msgid "Hide menu from mobile browsers?"
 msgstr ""
 
-#: sexy-bookmarks.php:688
+#: sexy-bookmarks.php:745
 msgid "Save Changes"
 msgstr ""
 
-#: sexy-bookmarks.php:694
+#: sexy-bookmarks.php:749
+msgid "Reset Settings"
+msgstr ""
+
+#: sexy-bookmarks.php:755
 msgid "Helpful Plugin Links"
 msgstr ""
 
-#: sexy-bookmarks.php:699
+#: sexy-bookmarks.php:760
 msgid "Installation &amp; Usage Guide"
 msgstr ""
 
-#: sexy-bookmarks.php:700
+#: sexy-bookmarks.php:761
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: sexy-bookmarks.php:701
+#: sexy-bookmarks.php:762
 msgid "Bug Submission Form"
 msgstr ""
 
-#: sexy-bookmarks.php:702
+#: sexy-bookmarks.php:763
 msgid "Feature Request Form"
 msgstr ""
 
-#: sexy-bookmarks.php:703
+#: sexy-bookmarks.php:764
 msgid "Submit a Translation"
 msgstr ""
 
-#: sexy-bookmarks.php:704
+#: sexy-bookmarks.php:765
 msgid "Other SexyBookmarks Platforms"
 msgstr ""
 
-#: sexy-bookmarks.php:711
+#: sexy-bookmarks.php:772
 msgid "Support by Donating"
 msgstr ""
 
-#: sexy-bookmarks.php:715
+#: sexy-bookmarks.php:776
 msgid "If you like SexyBookmarks and wish to contribute towards it's continued development, you can use the form below to do so."
 msgstr ""
 
-#: sexy-bookmarks.php:719
+#: sexy-bookmarks.php:780
 msgid "SexyBookmarks Development Support"
 msgstr ""
 
-#: sexy-bookmarks.php:722
-msgid "Please enter the URL you'd like me to link to if you are a top contributor."
+#: sexy-bookmarks.php:783
+msgid "Please enter the URL you'd like us to link to if you are a top contributor."
 msgstr ""
 
-#: sexy-bookmarks.php:724
+#: sexy-bookmarks.php:785
 msgid "Return to Your Dashboard"
 msgstr ""
 
-#: sexy-bookmarks.php:728
+#: sexy-bookmarks.php:789
 msgid "Select Preset Amount? "
 msgstr ""
 
-#: sexy-bookmarks.php:741
+#: sexy-bookmarks.php:802
 msgid "Enter Custom Amount?"
 msgstr ""
 
-#: sexy-bookmarks.php:743
+#: sexy-bookmarks.php:804
 msgid "Pay with PayPal!"
 msgstr ""
 
-#: sexy-bookmarks.php:747
+#: sexy-bookmarks.php:808
 msgid "Disable sponsor messages?"
 msgstr ""
 
-#: sexy-bookmarks.php:757
+#: sexy-bookmarks.php:818
 msgid "Top Supporters"
 msgstr ""
 
-#: sexy-bookmarks.php:770
+#: sexy-bookmarks.php:831
 msgid "Shout-Outs"
 msgstr ""
 
-#: sexy-bookmarks.php:775
+#: sexy-bookmarks.php:836
 msgid "Fugue Icons: Pinvoke"
 msgstr ""
 
-#: sexy-bookmarks.php:776
+#: sexy-bookmarks.php:837
 msgid "Original i18n Support: Yuri Gribov"
 msgstr ""
 
-#: sexy-bookmarks.php:777
+#: sexy-bookmarks.php:838
 msgid "Fugue Icon Sprite: Alison Barrett"
 msgstr ""
 
-#: sexy-bookmarks.php:778
+#: sexy-bookmarks.php:839
 msgid "Original Skin Icons: Function"
 msgstr ""
 
-#: sexy-bookmarks.php:779
+#: sexy-bookmarks.php:840
 msgid "Bug Patch: Artem Russakovskii"
 msgstr ""
 
-#: sexy-bookmarks.php:780
+#: sexy-bookmarks.php:841
 msgid "bit.ly bug fix: Konstantin Kovshenin"
 msgstr ""
 
-#: sexy-bookmarks.php:781
-msgid "Custom Sprite Generator: Kerem Erkan"
+#: sexy-bookmarks.php:842
+msgid "New Sprite Generator: Kerem Erkan"
 msgstr ""
 
-#: sexy-bookmarks.php:782
+#: sexy-bookmarks.php:843
 msgid "Previous Developer: Gautam Gupta"
 msgstr ""
 
-#: sexy-bookmarks.php:789
+#: sexy-bookmarks.php:850
 msgid "Translation Contributors"
 msgstr ""
 
-#: sexy-bookmarks.php:794
-#: sexy-bookmarks.php:795
-#: sexy-bookmarks.php:796
-#: sexy-bookmarks.php:797
-#: sexy-bookmarks.php:798
-#: sexy-bookmarks.php:799
-#: sexy-bookmarks.php:800
-#: sexy-bookmarks.php:801
-#: sexy-bookmarks.php:802
-#: sexy-bookmarks.php:803
-#: sexy-bookmarks.php:804
-#: sexy-bookmarks.php:805
-#: sexy-bookmarks.php:806
-#: sexy-bookmarks.php:807
+#: sexy-bookmarks.php:855
+#: sexy-bookmarks.php:856
+#: sexy-bookmarks.php:857
+#: sexy-bookmarks.php:858
+#: sexy-bookmarks.php:859
+#: sexy-bookmarks.php:860
+#: sexy-bookmarks.php:861
+#: sexy-bookmarks.php:862
+#: sexy-bookmarks.php:863
+#: sexy-bookmarks.php:864
+#: sexy-bookmarks.php:865
+#: sexy-bookmarks.php:866
+#: sexy-bookmarks.php:867
+#: sexy-bookmarks.php:868
 msgid "Translation"
 msgstr ""
 
-#: sexy-bookmarks.php:822
+#: sexy-bookmarks.php:883
 msgid "SexyBookmarks"
 msgstr ""
 
-#: sexy-bookmarks.php:844
+#: sexy-bookmarks.php:905
 msgid "Settings"
 msgstr ""
 
