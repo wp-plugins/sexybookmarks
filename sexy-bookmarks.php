@@ -133,7 +133,7 @@ $sexy_plugopts = get_option(SEXY_OPTIONS); //reload
 // give the custom sprite it's own option to prevent complications with previously saved data
 if(!get_option('SexyCustomSprite')) {
 	add_option('SexyCustomSprite', '');
-	$sexy_custom_sprite = '';
+	$sexy_custom_sprite = null;
 }
 else {
 	$sexy_custom_sprite = get_option('SexyCustomSprite');
