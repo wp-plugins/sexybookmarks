@@ -35,7 +35,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Updated the old Google Bookmarks icon
 * Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
-* Added Portugese translation (Brazil [pt-BR]
+* Added Portugese translation (Brazil [pt-BR])
 * Minified stylesheet to save a couple KB
 * Added activation hook to generate sprite automatically upon activating the plugin
 * Spritegen now outputs minified CSS as well
