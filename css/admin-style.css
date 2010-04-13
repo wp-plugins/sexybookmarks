@@ -1,5 +1,6 @@
 /* General Styles */
-.sexylogo { text-indent:-999em; width:391px; height:90px; background:url('../images/sexy-logo.png') no-repeat 0 0; }
+.sexylogo { text-indent:-999em; height:90px; background:url('../images/sexy-logo.png') no-repeat 0 0; position:relative;}
+.sh-logo { display:block;height:21px;width:220px;background:url('../images/shareaholic-220.png') no-repeat 0 0; position:absolute;right:40px;top:0;
 #clearShortUrlsLabel { font-size:11px; height:14px; line-height:14px; }
 #clearShortUrls {margin-right:4px;}
 .shebang-info { cursor:pointer; left:5px; position:relative; top:3px; }
@@ -199,6 +200,7 @@ label.sexy-plaxo { background-position:-5880px top !important; }
 label.sexy-springpad { background-position:-5950px top !important; }
 label.sexy-zabox { background-position:-6020px top !important; }
 label.sexy-viadeo { background-position:-6090px top !important; }
+label.sexy-googlebuzz { background-position:-6160px top !important; }
 
 ul.multi-selection {
 	list-style:none;
@@ -284,14 +286,12 @@ div.sexysubmit input, div.sexyreset input {
 div.sexysubmit input {
 	background:#3dcb36 url('../images/green-grad.png') repeat-x 0 0 !important;
 	border:1px solid #0f8f08 !important;
-	color:#066a00 !important;
-	text-shadow:0 1px 0 #5acd53 !important;
+	color:white !important;
 }
 div.sexyreset input {
 	background:#f76363 url('../images/red-grad.png') repeat-x scroll 0 0 !important;
 	border:1px solid #9f3b3b !important;
-	color:#7f2f2f !important;
-	text-shadow:0 1px 0 #ff8f8f !important;
+	color:white !important;
 }
 div.sexysubmit input:hover, div.sexyreset input:hover {cursor:pointer !important}
 div.sexysubmit input:active, div.sexysubmit input:focus {

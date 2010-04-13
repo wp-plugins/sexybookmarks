@@ -206,6 +206,16 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	// Fade in/out mobile feature warning
+	jQuery('#mobile-hide').click(function() {
+		if (this.checked) {
+			jQuery('#mobile-warn').fadeIn('fast');
+		}
+		else {
+			jQuery('#mobile-warn').fadeOut();
+		}
+	});
+
 	jQuery('#position-above').click(function() {
 		if (jQuery('#info-manual').is(':visible')) {
 			jQuery('#info-manual').fadeOut();
@@ -257,18 +267,6 @@ jQuery(document).ready(function() {
 	jQuery('#warn-yes').click(function() {
 		this.checked=jQuery('#clear-warning').fadeOut();
 		this.checked=jQuery('#clearShortUrls').attr('checked', 'checked');
-		this.checked=!this.checked;
-	});
-
-
-
-	jQuery('#sexyresetallwarn-cancel').click(function() {
-		jQuery('#sexyresetallwarn').fadeOut();
-	});
-
-	jQuery('#sexyresetallwarn-yes').click(function() {
-		this.checked=jQuery('#sexyresetallwarn').fadeOut();
-		this.checked=jQuery('#resetalloptionsaccept').submit();
 		this.checked=!this.checked;
 	});
 }});

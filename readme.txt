@@ -1,10 +1,10 @@
 === SexyBookmarks ===
 Contributors: shareaholic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GY5YBZ46DA2EQ
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,bookmarks menu,sharing is sexy,digg,delicious,diigo,myspace,twitter,facebook,technorati,reddit,yahoo,twittley
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 2.9.1
-Stable tag: 2.6.1.3
+Stable tag: 2.7
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -14,35 +14,15 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 
-= v3.1 Bug Fixes =
-* Completely rewritten dynamic sprite generator thanks to [Kerem Erkan](http://keremerkan.net)
-* Fixed problem causing `Invalid argument supplied foreach()` errors in the options page
-* Fixed error causing `filesize() [function.filesize]: stat failed for` errors in the options page
-* Fixed problem causing `call_user_func [function.call-user-func]: Unable to call function` errors in the options page
+=*** Now with Official Google Buzz Integration ***=
 
 
 = Recent Updates =
-* New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
-* Also reduced the size of the images with Smush It
-* Separated Background Images
-* Fixed Translation Strings
-* Added option to load javascript in blog's footer
-* Added compatibility with YOURLS plugin
-* Added Settings link in plugin's information section
 * Many improvements in the coding efficiency
-* Minified public JS
 * Removed Devmarks as it no longer exists
 * Updated the old Google Bookmarks icon
-* Added option to allow you to NOT use a URL shortener if you so choose
 * Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
-* Added Portugese translation (Brazil [pt-BR])
-* Minified stylesheet to save a couple KB
-* Added activation hook to generate sprite automatically upon activating the plugin
-* Spritegen now outputs minified CSS as well
-* Added new background: "Share the knowledge"
-* Updated the Russian translation
-* Added reset button to reset all options to defaults
-* Added a few pixels of bottom margin to the menu items
+* Removed DesignMoo and Blogosphere News
 
 
 = Recently Added Sites =
@@ -57,6 +37,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Springpad
 * Plaxo
 * Viadeo
+* Google Buzz
 
 
 == Other Notes ==
@@ -99,7 +80,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for writing us a custom sprite generator feature from scratch
 * Credit goes to [Gautam Gupta](http://gaut.am) for previous development help
-* Credit goes to [Josh Jones](http://blog2life.net) for continued development help
+* Credit goes to [Josh Jones](http://joshjones.me) for continued development help
 
 
 == Screenshots ==
@@ -135,14 +116,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
-= 3.1 =
-* Completely rewritten dynamic sprite generator thanks to [Kerem Erkan](http://keremerkan.net)
-* Fixed problem causing `Invalid argument supplied foreach()` errors in the options page
-* Fixed error causing `filesize() [function.filesize]: stat failed for` errors in the options page
-* Fixed problem causing `call_user_func [function.call-user-func]: Unable to call function` errors in the options page
-* Added new background: "Share the knowledge"
-* Updated the Russian translation
-* Added reset button to reset all options to defaults
+= 2.7 =
+* Added Google Buzz
+* Removed DesignMoo & Blogosphere News
 
 = 3.0.1 =
 * Fix for fatal error if you downloaded v3.0 before `8:30am CST on Feb 1st, 2010`
@@ -472,8 +448,8 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Initial release!
 
 == Upgrade Notice ==
-= 3.1 =
-The dynamic sprite generator has been completely rewritten from scratch, so this *should* be the final attempt at getting all of the inconsitencies and errors fixed in the v3 series that has caused so many problems so far.
+= 2.7 =
+Downgraded to 2 series due to bugs with 3 series... Still added all new sites though
 
 = 3.0.1 =
 Major bug fixes for v3.0 - Upgrade immediately if you've installed v3.0 as this will fix problems you probably haven't even noticed yet. Will need to go to Settings->SexyBookmarks and save settings again after upgrading.

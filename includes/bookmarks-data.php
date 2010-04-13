@@ -1,5 +1,4 @@
 <?php
-
 // dynamic mister wong link generator
 $wong_tld = '.com';
 
@@ -34,7 +33,7 @@ $sexy_bookmarks_data=array(
 	'sexy-delicious'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Delicious'),
 		'share'=>__('Share this on ', 'sexybookmarks').'del.icio.us',
-		'baseUrl'=>'http://del.icio.us/post?url=PERMALINK&amp;title=TITLE',
+		'baseUrl'=>'http://delicious.com/post?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-digg'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Digg'),
@@ -126,6 +125,11 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Add this to ', 'sexybookmarks').'Google Reader',
 		'baseUrl'=>'http://www.google.com/reader/link?url=PERMALINK&title=TITLE&srcUrl=PERMALINK&srcTitle=TITLE&snippet=POST_SUMMARY',
 	),
+	'sexy-googlebuzz'=>array(
+		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Google Buzz'),
+		'share'=>__('Post on Google Buzz', 'sexybookmarks'),
+		'baseUrl'=>'http://www.google.com/buzz/post?url=PERMALINK&imageurl=',
+	),
 	'sexy-misterwong'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Mister Wong'),
 		'share'=>__('Add this to ', 'sexybookmarks').'Mister Wong',
@@ -165,11 +169,6 @@ $sexy_bookmarks_data=array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Fwisp'),
 		'share'=>__('Share this on ', 'sexybookmarks').'Fwisp',
 		'baseUrl'=>'http://fwisp.com/submit?url=PERMALINK',
-	),
-	'sexy-designmoo'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'DesignMoo'),
-		'share'=>__('Moo this on ', 'sexybookmarks').'DesignMoo!',
-		'baseUrl'=>'http://designmoo.com/submit?url=PERMALINK&amp;title=TITLE&amp;body=POST_SUMMARY',
 	),
 	'sexy-bobrdobr'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'BobrDobr').__(' (Russian)', 'sexybookmarks'),
@@ -280,11 +279,6 @@ $sexy_bookmarks_data=array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Fleck'),
 		'share'=>__('Share this on ', 'sexybookmarks').'Fleck',
 		'baseUrl'=>'http://beta3.fleck.com/bookmarklet.php?url=PERMALINK&amp;title=TITLE',
-	),
-	'sexy-blogospherenews'=>array(
-		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Blogosphere News'),
-		'share'=>__('Share this on ', 'sexybookmarks').'Blogosphere News',
-		'baseUrl'=>'http://www.blogospherenews.com/submit.php?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-webblend'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Web Blend'),
@@ -457,5 +451,4 @@ $sexy_bookmarks_data=array(
 		'baseUrl'=>'http://www.viadeo.com/shareit/share/?url=PERMALINK&title=TITLE&urlaffiliate=31138',
 	),
 );
-ksort($sexy_bookmarks_data, SORT_STRING); //sort array by keys
 ?>
