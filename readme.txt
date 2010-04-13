@@ -3,8 +3,8 @@ Contributors: shareaholic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GY5YBZ46DA2EQ
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
-Tested up to: 2.9.1
-Stable tag: 2.6.1.3
+Tested up to: 2.9.2
+Stable tag: 3.1.1
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -18,6 +18,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Fixed bug from v3.1
 * Many improvements in the coding efficiency
 * Removed Devmarks as it no longer exists
 * Updated the old Google Bookmarks icon
@@ -40,47 +41,41 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Google Buzz
 
 
-== Other Notes ==
 
-= Special Thanks & Credits =
 
+== Special Thanks & Credits ==
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
 Listed below are credits and thanks to some of you who have helped us out a great deal:
 
-
 = Translations =
-
-* Thanks to [Maitre Mo](http://maitremo.fr) for translating to French
-* Thanks to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
-* Thanks to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
-* Thanks to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
-* Thanks to [Joojen](http://www.keege.com) for translating to Chinese
-* Thanks to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
-* Thanks to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
-* Thanks to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
-* Thanks to [Gunther Wegner](http://gwegner.de) for translating to German
-* Thanks to [Mads Floe](http://hardwareblog.dk) for translating to Danish
-* Thanks to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
-* Thanks to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
-* Thanks to [Pseric Lin](http://www.freegroup.org) for translating into Traditional Chinese
-* Thanks to [Cadu Silva](http://www.winnext.com.br) for translating into Portugese
+* Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
+* Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
+* Credit goes to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
+* Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
+* Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
+* Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
+* Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
+* Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
+* Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
+* Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
+* Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
+* Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
 
 
-= Credits =
 
-* Credit goes to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
-* Credit goes to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
-* Credit goes to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Credit goes to [Crey Design](http://creydesign.com) for the new background image.
-* Credit goes to [Yuri Gribov](http://wp-ru.ru) for help setting the plugin up for i18n support.
-* Credit goes to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
-* Credit goes to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Credit goes to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
-* Credit goes to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
-* Credit goes to [Kerem Erkan](http://keremerkan.net) for writing us a custom sprite generator feature from scratch
-* Credit goes to [Gautam Gupta](http://gaut.am) for previous development help
-* Credit goes to [Josh Jones](http://joshjones.me) for continued development help
+= Thanks =
+* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
+* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
+* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
+* Thanks to [Crey Design](http://creydesign.com) for the new background image.
+* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
+* Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
+* Thanks to [Gautam Gupta](http://gaut.am/) for countless bug patches as well as porting SB to bbPress!
+* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
+* Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
+
+
 
 
 == Screenshots ==
@@ -89,18 +84,23 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 2. Another preview of the final outcome with excess networks displayed upon hover
 3. A preview of the admin panel associated with the plugin
 
+
 == Installation ==
 
-1. Upload the extracted archive to `wp-content/plugins/`
+1. Upload the extracted archive to 'wp-content/plugins/'
 2. Activate the plugin through the 'Plugins' menu
 3. Open the plugin settings page Settings -> SexyBookmarks
 4. Adjust settings to your liking
 4. Enjoy!
 
+= Disabling Per Post =
+To disable the plugin on a specific post or page, simply add a new custom field to that post/page with the key **"Hide SexyBookmarks"** and the value **"true"**
+
+
 = Manual Usage =
 **As of v2.5 the menu can be inserted once anywhere within your site (even outside the loop) and it will still pull the appropriate data for the dynamic links**
 
-If you would like to insert the menu manually, simply choose "Manual Mode" from the options page, then place the following code into your theme files where you want the menu to appear:
+If you would like to insert the menu manually, simply choose "Manually insert" from the options page, then place the following code into your theme files where you want the menu to appear:
 
 `<?php if(function_exists('selfserv_sexy')) { selfserv_sexy(); } ?>`
 
@@ -108,51 +108,57 @@ You can still configure the other options available when inserting manually and 
 
 
 == Frequently Asked Questions ==
-= Where can I find a detailed FAQ? =
-Please see here: [Frequently Asked Questions](http://sexybookmarks.net/documentation/faq)
+= The menu shows up as a regular list with no styling and no images! =
+Unfortunately, this is becoming a more prevalent problem recently and it's due to your WordPress theme not having the function reference `wp_head()` in the **header.php** file as it should. SexyBookmarks uses this function to hook the associated stylesheet and javascript files into the `<head>` of your document. So if it doesn't exist, then the stylesheet and/or javascript files won't be included on your site.
 
-= Where can I get detailed Usage & Installation instructions? =
-Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/documentation/usage-installation)
+= I see blank spaces where icons used to be! =
+This means that whatever service was previously in that space has been removed from the plugin either permanently or temporarily as we work out bugs or incorporate upgraded functionality. To remove the blank space, simply follow the detailed instructions found on the actual [FAQ Page](http://sexybookmarks.net/documentation/faq#17).
+
+= My jQuery slider/fader doesn't work anymore! =
+Please disable both of the jQuery dependent options (auto-center and animate-expand) in the plugin options area. We are working on a solution to make the plugin FULLY compatible with ALL themes, but have not reached that point yet... Sorry.
+
+= Your plugin broke my site and there's a ton of stuff from another site being displayed!!! =
+This isn't as critical as it may look... Simply choose another URL shortening service and select the "Clear all short URLs" option. Now save the changes and [report which URL shortening service you were using](http://sexybookmarks.net/contact-forms/bug-form/) that broke your site so I can look into it.
+
+= I've uploaded the plugin and activated, but it's not showing up or it's broken... =
+
+This is normally due to styles in your Wordpress theme overriding the styles of the plugin. Check your theme's stylesheet for rules like `!important;` as these may be overriding the styles defined by the plugin.
+
+= My favorite bookmarking site isn't listed! =
+
+You can contact me with the name of the site and the URL, and I will work on releasing it with a future update.
+
+= I'm a Wordpress theme developer, and I'd like to bundle your plugin with my themes. Is this okay? =
+
+Absolutely! Please just [let me know](http://sexybookmarks.net/contact-forms/contact-us/) where the themes will be released so that I can post about it on my site as well!
+
+= I've found a bug not covered here, where do I report it? =
+
+Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contact-forms/bug-form/) for quickest response and notation time.
 
 
 == Changelog ==
-= 2.7 =
-* Added Google Buzz
-* Removed DesignMoo & Blogosphere News
+= 3.1.1 =
+* Quick bug fix for the bug that apeared immediately after releasing 3.1
 
-= 3.0.1 =
-* Fix for fatal error if you downloaded v3.0 before `8:30am CST on Feb 1st, 2010`
-* Fix for Google Bookmarks image not displaying correctly
-* Fix for spritegen not working if wordpress installed in subdirectory
-* Spritegen now outputs minified CSS as well
-* Added activation hook to generate sprite automatically upon activating the plugin
-
-= 3.0 =
-* New Sprite Image is generated when you save options (If you have PHP5 or above with PHPGD, & don't have custom mods feature on)
-* Also reduced the size of the images with Smush It
-* Separated Background Images
-* Fixed Translation Strings
-* Added option to load javascript in blog's footer
-* Added compatibility with YOURLS plugin
-* Added Settings link in plugin's information section
+= 3.1 =
 * Many improvements in the coding efficiency
-* Minified public JS
+* Removed Devmarks as it no longer exists
+* Updated the old Google Bookmarks icon
+* Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
+* Removed DesignMoo and Blogosphere News
 * Added DZone
 * Added Kaevur (Estonian)
 * Added Virb
 * Added Box.net
-* Removed Devmarks as it no longer exists
 * Added Google Reader
-* Updated the old Google Bookmarks icon
 * Added Bonzobox
 * Added Zabox
 * Added OkNotizie (Italian)
 * Added Springpad
 * Added Plaxo
 * Added Viadeo
-* Added option to allow you to NOT use a URL shortener if you so choose
-* Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
-* Minified stylesheet to save a couple KB
+* Added Google Buzz
 
 = 2.6.1.3 =
 * Updated Danish translation
@@ -177,7 +183,11 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 = 2.6.1.1 =
 * Added Turkish translation
 * Added and upated Italian translation
-* Added Tumblr, Strands, Stumpedia, Current, Blogger
+* Added Tumblr
+* Added Strands
+* Added Stumpedia
+* Added Current
+* Added Blogger
 
 = 2.6.1 =
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
@@ -198,7 +208,23 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Got rid of feedity and replaced top contributors list with custom function
 * Optimized dashboard jQuery functions to be less redundant
 * Added wishlist to sidebar
-* Added TheWebBlend, Wykop, BlogEngage, Hyves, Pusha, Hatena Bookmarks, MyLinkVault, SlashDot, Squidoo, Propeller, FAQpal, Evernote, Meneame, Bitacoras, JumpTags, Bebo, N4G
+* Added TheWebBlend
+* Added Wykop
+* Added BlogEngage
+* Added Hyves
+* Added Pusha
+* Added Hatena Bookmarks
+* Added MyLinkVault
+* Added SlashDot
+* Added Squidoo
+* Added Propeller
+* Added FAQpal
+* Added Evernote
+* Added Meneame
+* Added Bitacoras
+* Added JumpTags
+* Added Bebo
+* Added N4G
 
 = 2.5.5.1 =
 * Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
@@ -210,7 +236,20 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Fixed validity of links added in last release
 * Fixed a couple small dashboard bugs (mostly jQuery related)
 * Added Italian translation
-* Added Sphinn, Fleck, Xerpi, Netvibes, Netvouz, NUjij, GlobalGrind, Wikio, Blogosphere News, Posterous, Techmeme, eKudos, Ping.fm, ToMuse
+* Added Sphinn
+* Added Fleck
+* Added Xerpi
+* Added Netvibes
+* Added Netvouz
+* Added NUjij
+* Added GlobalGrind
+* Added Wikio
+* Added Blogosphere News
+* Added Posterous
+* Added Techmeme
+* Added eKudos
+* Added Ping.fm
+* Added ToMuse
 * Reinstated email link with simple mailto
 * Updated readme with new info
 * Fixed issue with Twitter link breaking if title includes quotes
@@ -224,7 +263,11 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Added update notice
 * Fixed a couple minor css issues in dashboard
 * Fixed issue where some themes were causing icons to display vertically rather than horizontally
-* Added Ning, DesignBump, Hacker News (news.ycombinator), Identica, PrintFriendly to the list
+* Added Ning to the list
+* Added DesignBump to the list
+* Added Hacker News (news.ycombinator) to the list
+* Added Identica to the list
+* Added PrintFriendly to the list
 * Added Romanian translation
 
 = 2.5.3.4 =
@@ -446,13 +489,3 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 = 1.0 =
 * Initial release!
-
-== Upgrade Notice ==
-= 2.7 =
-Downgraded to 2 series due to bugs with 3 series... Still added all new sites though
-
-= 3.0.1 =
-Major bug fixes for v3.0 - Upgrade immediately if you've installed v3.0 as this will fix problems you probably haven't even noticed yet. Will need to go to Settings->SexyBookmarks and save settings again after upgrading.
-
-= 3.0 =
-Users whose servers have PHP5+ AND the PHPGD library installed will need to login to their dashboard (Settings -> SexyBookmarks) and click the "Save Changes" button upon upgrading to generate a dynamic image sprite based on your selection of networks.

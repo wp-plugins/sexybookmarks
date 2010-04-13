@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.1
+Version: 3.1.1
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -36,7 +36,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.1');
+define('SEXY_vNum','3.1.1');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -51,6 +51,11 @@ if ( !defined('WP_CONTENT_URL') ) {
 	define('SEXY_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 }
 
+/*
+ * Newer versions of WordPress include this class already
+ * However, we've kept this here for people who are using older versions
+ * This will mimick JSON support for PHP4 and below
+*/
 if ( !class_exists('SERVICES_JSON') ) {
 	if ( !function_exists('json_decode') ){
 		function json_decode($content, $assoc=false){
@@ -63,7 +68,6 @@ if ( !class_exists('SERVICES_JSON') ) {
 			return $json->decode($content);
 		}
 	}
-
 	if ( !function_exists('json_encode') ){
 		function json_encode($content){
 			require_once 'includes/JSON.php';
@@ -147,7 +151,7 @@ function sexy_settings_page() {
 
 	// create folders for custom mods
 	// then copy original files into new folders
-	If(function_exists('is_admin') && function_exists('wp_mkdir_p')) {
+	if(function_exists('is_admin') && function_exists('wp_mkdir_p')) {
 		if($_POST['custom-mods'] == 'yes' || $sexy_plugopts['custom-mods'] == 'yes') {
 			if(is_admin() === true && !is_dir(WP_CONTENT_DIR.'/sexy-mods')) {
 				$sexy_oldloc = SEXY_PLUGDIR;
@@ -257,9 +261,9 @@ function sexy_settings_page() {
 if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 ?>
 <div class="spsn-container">
-	<p class="spsn-sponsor-heading"><em>You May Also Like:</em></p>
-	<p class="spsn-sponsor-text">Get Shareaholic / SexyBookmarks for your web browser (Firefox, Google Chrome, etc).  <a href="http://www.shareaholic.com/tools/browser">Learn more | Download</a></p>
-	<p class="spsn-credit"><a href="http://www.shareaholic.com">SexyBookmarks, a Shareaholic Production</a></p>
+	<p class="spsn-sponsor-heading"><em><?php _e('You May Also Like:', 'sexybookmarks'); ?></em></p>
+	<p class="spsn-sponsor-text"><?php _e('Get Shareaholic / SexyBookmarks for your web browser (Firefox, Google Chrome, etc).', 'sexybookmarks'); ?>  <a href="http://www.shareaholic.com/tools/browser"><?php _e('Learn more | Download', 'sexybookmarks'); ?></a></p>
+	<p class="spsn-credit"><a href="http://www.shareaholic.com"><?php _e('SexyBookmarks, a Shareaholic Production', 'sexybookmarks'); ?></a></p>
 </div>
 <?php } ?>
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
@@ -273,7 +277,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<div class="padding">
 						<p><?php _e('Select the Networks to display. Drag to reorder.', 'sexybookmarks'); ?></p>
 						<ul class="multi-selection">
-							<li class="label-faker"><strong>Select:</strong></li>
+							<li class="label-faker"><strong><?php _e('Select:', 'sexybookmarks'); ?></strong></li>
 							<li><?php _e('All', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-all" /></li>
 							<li><?php _e('None', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-none" /></li>
 							<li><?php _e('Most Popular', 'sexybookmarks'); ?> <input type="radio" name="multi-selection" id="sel-pop" /></li>
@@ -324,10 +328,6 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 										'cligs'=>'cli.gs',
 										'slly'=>'SexyURL',
 									));
-									/*
-									 'rims'=>'http://ri.ms',
-									 'shortto'=>'http://short.to',
-									*/
 								?>
 							</select>
 							<label for="clearShortUrls" id="clearShortUrlsLabel"><input name="clearShortUrls" id="clearShortUrls" type="checkbox"/><?php _e('Reset all Short URLs', 'sexybookmarks'); ?></label>
@@ -341,7 +341,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 							</div>
 							<div id="shortyapimdiv-trim" <?php if($sexy_plugopts['shorty'] != 'trim') { ?>class="hidden"<?php } ?>>
 								<span class="sexy_option" id="shortyapidivchk-trim">
-									<input <?php echo (($sexy_plugopts['shortyapi']['trim']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-trim" id="shortyapichk-trim" type="checkbox" value="1" /> Track Generated Links?
+									<input <?php echo (($sexy_plugopts['shortyapi']['trim']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-trim" id="shortyapichk-trim" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'sexybookmarks'); ?>
 								</span>
 								<div class="clearbig"></div>
 								<div id="shortyapidiv-trim" <?php if(!isset($sexy_plugopts['shortyapi']['trim']['chk'])) { ?>class="hidden"<?php } ?>>
@@ -362,7 +362,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 							</div>
 							<div id="shortyapimdiv-tinyarrow" <?php if($sexy_plugopts['shorty'] != 'tinyarrow') { ?>class="hidden"<?php } ?>>
 								<span class="sexy_option" id="shortyapidivchk-tinyarrow">
-									<input <?php echo (($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-tinyarrow" id="shortyapichk-tinyarrow" type="checkbox" value="1" /> Track Generated Links?
+									<input <?php echo (($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-tinyarrow" id="shortyapichk-tinyarrow" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'sexybookmarks'); ?>
 								</span>
 								<div class="clearbig"></div>
 								<div id="shortyapidiv-tinyarrow" <?php if(!isset($sexy_plugopts['shortyapi']['tinyarrow']['chk'])) { ?>class="hidden"<?php } ?>>
@@ -372,7 +372,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 							</div>
 							<div id="shortyapimdiv-cligs" <?php if($sexy_plugopts['shorty'] != 'cligs') { ?>class="hidden"<?php } ?>>
 								<span class="sexy_option" id="shortyapidivchk-cligs">
-									<input <?php echo (($sexy_plugopts['shortyapi']['cligs']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-cligs" id="shortyapichk-cligs" type="checkbox" value="1" /> Track Generated Links?
+									<input <?php echo (($sexy_plugopts['shortyapi']['cligs']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-cligs" id="shortyapichk-cligs" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'sexybookmarks'); ?>
 								</span>
 								<div class="clearbig"></div>
 								<div id="shortyapidiv-cligs" <?php if(!isset($sexy_plugopts['shortyapi']['cligs']['chk'])) { ?>class="hidden"<?php } ?>>
@@ -382,7 +382,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 							</div>
 							<div id="shortyapimdiv-supr" <?php if($sexy_plugopts['shorty'] != 'supr') { ?>class="hidden"<?php } ?>>
 								<span class="sexy_option" id="shortyapidivchk-supr">
-									<input <?php echo (($sexy_plugopts['shortyapi']['supr']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-supr" id="shortyapichk-supr" type="checkbox" value="1" /> Track Generated Links?
+									<input <?php echo (($sexy_plugopts['shortyapi']['supr']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-supr" id="shortyapichk-supr" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'sexybookmarks'); ?>
 								</span>
 								<div class="clearbig"></div>
 								<div id="shortyapidiv-supr" <?php if(!isset($sexy_plugopts['shortyapi']['supr']['chk'])) { ?>class="hidden"<?php } ?>>
@@ -491,7 +491,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 							</ul>
 							<p><?php _e('Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done.', 'sexybookmarks'); ?></p>
 							<p><?php _e('Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory.', 'sexybookmarks'); ?></p>
-							<h3>In Case of Emergency</h3>
+							<h3><?php _e('In Case of Emergency', 'sexybookmarks'); ?></h3>
 							<p><?php _e('If you happen to completely screw up the code, you can follow these directions to reset the plugin back to normal and try again if you wish:', 'sexybookmarks'); ?></p>
 							<ol>
 								<li><?php _e('Login to your server via FTP or SSH. (whichever you are more comfortable with)', 'sexybookmarks'); ?></li>
@@ -502,7 +502,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 								<li><?php _e('Deselect the "Use custom mods" option.', 'sexybookmarks'); ?></li>
 								<li><?php _e('Save your changes.', 'sexybookmarks'); ?></li>
 							</ol>
-							<span class="fugue f-delete custom-mods-notice-close">Close Message</span>
+							<span class="fugue f-delete custom-mods-notice-close"><?php _e('Close Message', 'sexybookmarks'); ?></span>
 						</div>
 						<div class="custom-mod-check fugue f-plugin">
 							<label for="custom-mods" class="sexy_option" style="display:inline;">
@@ -634,12 +634,12 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 			<div class="padding">
 				<p><?php _e("If you like SexyBookmarks and wish to contribute towards it's continued development, you can use the form below to do so.", "sexybookmarks"); ?></p>
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-					<input type="hidden" name="cmd" value="_donations" />
-					<input type="hidden" name="business" value="B7A62V9HWUA7N" />
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="business" value="GY5YBZ46DA2EQ" />
 					<input type="hidden" name="item_name" value="<?php _e('SexyBookmarks Development Support' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="no_shipping" value="0">
 					<input type="hidden" name="no_note" value="0">
-					<input type="hidden" name="cn" value="<?php _e("Please enter the URL you'd like me to link to if you are a top contributor.", "sexyboomarks"); ?>" />
+					<input type="hidden" name="cn" value="<?php _e("Please enter the URL you'd like us to link to if you are a top contributor.", "sexyboomarks"); ?>" />
 					<input type="hidden" name="return" value="<?php get_sexy_current_location(); ?>" />
 					<input type="hidden" name="cbt" value="<?php _e('Return to Your Dashboard' , 'sexybookmarks'); ?>" />
 					<input type="hidden" name="currency_code" value="USD">
@@ -719,7 +719,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://gwegner.de"><?php _e('DE Translation: Gunther Wegner', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://hardwareblog.dk"><?php _e('da-DK Translation: Mads Floe', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://www.mediaprod.no"><?php _e('NO Translation: Svend Olaf Olsen', 'sexybookmarks'); ?></a></li>
-					<li><a href="	www.gouwefoto.nl"><?php _e('NL Translation: Martin van der Grond', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.gouwefoto.nl"><?php _e('NL Translation: Martin van der Grond', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -755,14 +755,6 @@ function sexy_admin_styles() {
 			return false;
 		}
 	}
-	function detect8() {
-		if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8') !== false)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 	if (detect7()) {
 		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
@@ -772,15 +764,6 @@ function sexy_admin_styles() {
 			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 		}
 		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
-	}
-	elseif (detect8()) {
-		if ($sexy_plugopts['custom-mods'] == 'yes' || $_POST['custom-mods'] == 'yes') {
-			wp_enqueue_style('sexy-bookmarks', WP_CONTENT_URL.'/sexy-mods/css/admin-style.css', false, SEXY_vNum, 'all');
-		}
-		else {
-			wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
-		}
-		wp_enqueue_style('ie-new-sexy-bookmarks', SEXY_PLUGPATH.'css/ie8-admin-style.css', false, SEXY_vNum, 'all');
 	}
 	else {
 		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');

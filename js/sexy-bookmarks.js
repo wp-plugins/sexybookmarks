@@ -42,6 +42,7 @@ jQuery(document).ready(function() {
 			jQuery('#sexy-technorati').attr('checked', 'checked');
 			jQuery('#sexy-misterwong').attr('checked', 'checked');
 			jQuery('#sexy-diigo').attr('checked', 'checked');
+			jQuery('#sexy-googlebuzz').attr('checked', 'checked');
 		});
 	});
 
