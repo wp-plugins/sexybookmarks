@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -18,6 +18,9 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Fixed accessibility issue with RTL languages
+* Fixed validity issue with links (unescaped ampersands)
+* Fixed issue with icons not appearing correctly for Google Reader and Google Bookmarks
 * Fixed bug from v3.1
 * Many improvements in the coding efficiency
 * Removed Devmarks as it no longer exists
@@ -138,6 +141,11 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 3.1.2 =
+* Fixed accessibility issue with RTL languages
+* Fixed validity issue with links (unescaped ampersands)
+* Fixed issue with icons not appearing correctly for Google Reader and Google Bookmarks
+
 = 3.1.1 =
 * Quick bug fix for the bug that apeared immediately after releasing 3.1
 

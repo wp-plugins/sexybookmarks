@@ -115,7 +115,7 @@ $sexy_bookmarks_data=array(
 		'share'=>__('Seed this on ', 'sexybookmarks').'Newsvine',
 		'baseUrl'=>'http://www.newsvine.com/_tools/seed&amp;save?u=PERMALINK&amp;h=TITLE',
 	),
-	'sexy-google'=>array(
+	'sexy-googlebookmarks'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Google Bookmarks'),
 		'share'=>__('Add this to ', 'sexybookmarks').'Google Bookmarks',
 		'baseUrl'=>'http://www.google.com/bookmarks/mark?op=add&amp;bkmk=PERMALINK&amp;title=TITLE',
@@ -123,12 +123,12 @@ $sexy_bookmarks_data=array(
 	'sexy-googlereader'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Google Reader'),
 		'share'=>__('Add this to ', 'sexybookmarks').'Google Reader',
-		'baseUrl'=>'http://www.google.com/reader/link?url=PERMALINK&title=TITLE&srcUrl=PERMALINK&srcTitle=TITLE&snippet=POST_SUMMARY',
+		'baseUrl'=>'http://www.google.com/reader/link?url=PERMALINK&amp;title=TITLE&amp;srcUrl=PERMALINK&amp;srcTitle=TITLE&amp;snippet=POST_SUMMARY',
 	),
 	'sexy-googlebuzz'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Google Buzz'),
 		'share'=>__('Post on Google Buzz', 'sexybookmarks'),
-		'baseUrl'=>'http://www.google.com/buzz/post?url=PERMALINK&imageurl=',
+		'baseUrl'=>'http://www.google.com/buzz/post?url=PERMALINK&amp;imageurl=',
 	),
 	'sexy-misterwong'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Mister Wong'),
@@ -403,7 +403,7 @@ $sexy_bookmarks_data=array(
 	'sexy-dzone'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'DZone'),
 		'share'=>__('Add this to ', 'sexybookmarks').'DZone',
-		'baseUrl'=>'http://www.dzone.com/links/add.html?url=PERMALINK&title=TITLE&description=POST_SUMMARY',
+		'baseUrl'=>'http://www.dzone.com/links/add.html?url=PERMALINK&amp;title=TITLE&amp;description=POST_SUMMARY',
 	),	
 	'sexy-kaevur'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Kaevur').__(' (Estonian)', 'sexybookmarks'),
@@ -413,22 +413,22 @@ $sexy_bookmarks_data=array(
 	'sexy-virb'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Virb'),
 		'share'=>__('Share this on ', 'sexybookmarks').'Virb',
-		'baseUrl'=>'http://virb.com/share?external&v=2&url=PERMALINK&title=TITLE',
+		'baseUrl'=>'http://virb.com/share?external&amp;v=2&amp;url=PERMALINK&amp;title=TITLE',
 	),	
 	'sexy-boxnet'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Box.net'),
 		'share'=>__('Add this link to ', 'sexybookmarks').'Box.net',
-		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&name=TITLE&description=POST_SUMMARY&import_as=link',
+		'baseUrl'=>'https://www.box.net/api/1.0/import?url=PERMALINK&amp;name=TITLE&amp;description=POST_SUMMARY&amp;import_as=link',
 	),
 	'sexy-oknotizie'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'OkNotizie').__('(Italian)', 'sexybookmarks'),
 		'share'=>__('Share this on ', 'sexybookmarks').'OkNotizie',
-		'baseUrl'=>'http://oknotizie.virgilio.it/post?url=PERMALINK&title=TITLE',
+		'baseUrl'=>'http://oknotizie.virgilio.it/post?url=PERMALINK&amp;title=TITLE',
 	),
 	'sexy-bonzobox'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'BonzoBox'),
 		'share'=>__('Add this to ', 'sexybookmarks').'BonzoBox',
-		'baseUrl'=>'http://bonzobox.com/toolbar/add?pop=1&u=PERMALINK&t=TITLE&d=POST_SUMMARY',
+		'baseUrl'=>'http://bonzobox.com/toolbar/add?pop=1&amp;u=PERMALINK&amp;t=TITLE&amp;d=POST_SUMMARY',
 	),
 	'sexy-plaxo'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Plaxo'),
@@ -438,7 +438,7 @@ $sexy_bookmarks_data=array(
 	'sexy-springpad'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'SpringPad'),
 		'share'=>__('Spring this on ', 'sexybookmarks').'SpringPad',
-		'baseUrl'=>'http://springpadit.com/clip.action?body=POST_SUMMARY&url=PERMALINK&format=microclip&title=TITLE&isSelected=true',
+		'baseUrl'=>'http://springpadit.com/clip.action?body=POST_SUMMARY&amp;url=PERMALINK&amp;format=microclip&amp;title=TITLE&amp;isSelected=true',
 	),
 	'sexy-zabox'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Zabox'),
@@ -448,7 +448,7 @@ $sexy_bookmarks_data=array(
 	'sexy-viadeo'=>array(
 		'check'=>sprintf(__('Check this box to include %s in your bookmarking menu', 'sexybookmarks'),'Viadeo'),
 		'share'=>__('Share this on ', 'sexybookmarks').'Viadeo',
-		'baseUrl'=>'http://www.viadeo.com/shareit/share/?url=PERMALINK&title=TITLE&urlaffiliate=31138',
+		'baseUrl'=>'http://www.viadeo.com/shareit/share/?url=PERMALINK&amp;title=TITLE&amp;urlaffiliate=31138',
 	),
 );
 ?>
