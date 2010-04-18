@@ -59,7 +59,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
 * Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
 * Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
-* Credit goes to [Ömer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
+* Credit goes to [Omer Taylan Tugut](http://www.tuguts.com) for translating to Turkish
 * Credit goes to [Gunther Wegner](http://gwegner.de) for translating to German
 * Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
 * Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
@@ -75,7 +75,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
 * Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
 * Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Thanks to [Gautam Gupta](http://gaut.am/) for countless bug patches as well as porting SB to bbPress!
+* Thanks to [Gautam Gupta](http://gaut.am/) for previous development help
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 * Thanks to [Norman Yung](http://www.robotwithaheart.com/) for previous development help
