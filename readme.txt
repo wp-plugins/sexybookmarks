@@ -14,7 +14,7 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 
-*** Now with Official Google Buzz Integration ***
+*** Now with Official Google Buzz Integration *** 
 
 
 = Recent Updates =
