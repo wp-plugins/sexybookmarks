@@ -71,12 +71,14 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
 * Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
+* Thanks to [Yuri Gribov](http://wp-ru.ru) for origianl i18n help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
 * Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
 * Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
 * Thanks to [Gautam Gupta](http://gaut.am/) for countless bug patches as well as porting SB to bbPress!
 * Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
+* Thanks to [Norman Yung](http://www.robotwithaheart.com/) for previous development help
 
 
 
