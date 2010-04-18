@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.1.2
+Version: 3.1.3
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -36,7 +36,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.1.2');
+define('SEXY_vNum','3.1.3');
 define('SEXY_WPINC',get_option('siteurl').'/wp-includes');
 define('SEXY_WPADMIN',get_option('siteurl').'/wp-admin');
 
@@ -621,7 +621,7 @@ if($_POST['hide-sponsors'] != "yes" || $sponsor_messages != "yes" ) {
 					<li><a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://sexybookmarks.net/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'sexybookmarks'); ?></a></li>
 					<li><a href="http://sexybookmarks.net/contact-forms/translation-submission-form" target="_blank"><?php _e('Submit a Translation', 'sexybookmarks'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/platforms" target="_blank"><?php _e('Other SexyBookmarks Platforms', 'sexybookmarks'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browser Addons', 'sexybookmarks'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -769,6 +769,15 @@ function sexy_admin_styles() {
 		wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
 	}
 }
+
+
+// Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh
+function sexy_admin_plugin_actions($links) {
+	$links[] = '<a href="options-general.php?page=sexy-bookmarks.php">'.__('Settings', 'sexybookmarks').'</a>';
+	return $links;
+}
+add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'sexy_admin_plugin_actions', -10);
+
 
 require_once "includes/public.php";
 

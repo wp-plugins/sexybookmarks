@@ -51,15 +51,28 @@ function bookmark_list_item($name, $opts=array()) {
 	foreach ($opts as $key=>$value) {
 		$url=str_replace(strtoupper($key), $value, $url);
 	}
-	
-	return sprintf(
-		"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s"> </a>'."\n\t\t".'</li>'."\n",
-		$name,
-		$url,
-		$sexy_plugopts['reloption'],
-		$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
-		$sexy_bookmarks_data[$name]['share']
-	);
+	if(is_feed()) {
+		return sprintf(
+			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s">%s</a>'."\n\t\t".'</li>'."\n",
+			$name,
+			$url,
+			$sexy_plugopts['reloption'],
+			$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
+			$sexy_bookmarks_data[$name]['share'],
+			$sexy_bookmarks_data[$name]['share']
+		);
+
+	}
+	else {
+		return sprintf(
+			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s">&nbsp;</a>'."\n\t\t".'</li>'."\n",
+			$name,
+			$url,
+			$sexy_plugopts['reloption'],
+			$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
+			$sexy_bookmarks_data[$name]['share']
+		);
+	}
 }
 
 ?>

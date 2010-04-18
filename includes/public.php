@@ -370,13 +370,6 @@ function get_sexy() {
 				'title'=>$title,
 			));
 		}
-		elseif ($name=='sexy-devmarks') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
-			));
-		}
 		elseif ($name=='sexy-comfeed') {
 			$socials.=bookmark_list_item($name, array(
 				'permalink'=>urldecode($feedperms).$feedstructure,
@@ -398,13 +391,6 @@ function get_sexy() {
 				'post_summary'=>$post_summary,
 				'twitt_cat'=>$t_cat,
 				'default_tags'=>$d_tags,
-			));
-		}
-		elseif ($name=='sexy-designmoo') {
-			$socials.=bookmark_list_item($name, array(
-				'post_summary'=>$post_summary,
-				'permalink'=>$perms,
-				'title'=>$title,
 			));
 		}
 		elseif ($name=='sexy-designbump') {

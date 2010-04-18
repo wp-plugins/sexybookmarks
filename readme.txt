@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -14,19 +14,19 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 
-=*** Now with Official Google Buzz Integration ***=
+*** Now with Official Google Buzz Integration ***
 
 
 = Recent Updates =
+* Added Settings link to plugin display panel
+* Fixed issue with feed not displaying links properly
+* Small admin changes
+* Final fix for annoying bullets in menu
 * Fixed accessibility issue with RTL languages
 * Fixed validity issue with links (unescaped ampersands)
 * Fixed issue with icons not appearing correctly for Google Reader and Google Bookmarks
 * Fixed bug from v3.1
 * Many improvements in the coding efficiency
-* Removed Devmarks as it no longer exists
-* Updated the old Google Bookmarks icon
-* Added new feature to Mister-Wong so that now the *.com* extension is replaced dynamically based on your locale
-* Removed DesignMoo and Blogosphere News
 
 
 = Recently Added Sites =
@@ -141,6 +141,12 @@ Please report all bugs via the [Bug Report Form](http://sexybookmarks.net/contac
 
 
 == Changelog ==
+= 3.1.3 =
+* Added Settings link to plugin display panel
+* Fixed issue with feed not displaying links properly
+* Small admin changes
+* Final fix for annoying bullets in menu
+
 = 3.1.2 =
 * Fixed accessibility issue with RTL languages
 * Fixed validity issue with links (unescaped ampersands)
