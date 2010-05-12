@@ -65,7 +65,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Mads Floe](http://hardwareblog.dk) for translating to Danish
 * Credit goes to [Svend Olaf Olsen](http://www.mediaprod.no) for translating to Norwegian
 * Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
-* Credit goes to [Modar Soos}(http://www.sada-sy.com) for translation to Arabic
+* Credit goes to [Modar Soos](http://www.sada-sy.com) for translation to Arabic
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 
 
