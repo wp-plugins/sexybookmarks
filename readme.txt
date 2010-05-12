@@ -67,6 +67,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Martin van der Grond](www.gouwefoto.nl) for translating to Dutch
 * Credit goes to [Modar Soos](http://www.sada-sy.com) for translation to Arabic
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
+* Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 
 
 = Thanks =
@@ -81,6 +82,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
 * Thanks to [Norman Yung](http://www.robotwithaheart.com/) for previous development help
 * Thanks to [Gautam Gupta](http://gaut.am/) for previous development help
+* Thanks to [Kerem Erkan](http://keremerkan.net) for the Dynamic Sprite Generator
 
 
 == Screenshots ==
