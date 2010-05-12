@@ -1,12 +1,12 @@
-jQuery(document).ready(function() {
-	if (jQuery('#iconator')) jQuery('#sexy-networks').sortable({ 
+jQuery(document).ready(function($) {
+	if ($('#iconator')) $('#sexy-networks').sortable({ 
 		delay:        250,
 		cursor:      'move',
 		scroll:       true,
 		revert:       true, 
 		opacity:      0.7
 	});
-	if (jQuery('.sexy-bookmarks')) { jQuery('#sexy-sortables').sortable({ 
+	if ($('.sexy-bookmarks')) { $('#sexy-sortables').sortable({ 
 		handle:      '.box-mid-head',
 		delay:        250,
 		cursor:      'move',
@@ -16,258 +16,332 @@ jQuery(document).ready(function() {
 	});
 
 	//Select all icons upon clicking
-	jQuery('#sel-all').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-networks input').attr('checked', 'checked');
+	$('#sel-all').click(function() {
+		$('#sexy-networks').each(function() {
+			$('#sexy-networks input').attr('checked', 'checked');
 		});
 	});
 
 	//Deselect all icons upon clicking
-	jQuery('#sel-none').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-networks input').removeAttr('checked');
+	$('#sel-none').click(function() {
+		$('#sexy-networks').each(function() {
+			$('#sexy-networks input').removeAttr('checked');
 		});
 	});
 
 	//Select most popular icons upon clicking
-	jQuery('#sel-pop').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-digg').attr('checked', 'checked');
-			jQuery('#sexy-reddit').attr('checked', 'checked');
-			jQuery('#sexy-delicious').attr('checked', 'checked');
-			jQuery('#sexy-stumbleupon').attr('checked', 'checked');
-			jQuery('#sexy-mixx').attr('checked', 'checked');
-			jQuery('#sexy-comfeed').attr('checked', 'checked');
-			jQuery('#sexy-twitter').attr('checked', 'checked');
-			jQuery('#sexy-technorati').attr('checked', 'checked');
-			jQuery('#sexy-misterwong').attr('checked', 'checked');
-			jQuery('#sexy-diigo').attr('checked', 'checked');
-			jQuery('#sexy-googlebuzz').attr('checked', 'checked');
+	$('#sel-pop').click(function() {
+		$('#sexy-networks').each(function() {
+			$('#sexy-networks input').removeAttr('checked');
+		});
+		$('#sexy-networks').each(function() {
+			$('#shr-digg').attr('checked', 'checked');
+			$('#shr-reddit').attr('checked', 'checked');
+			$('#shr-delicious').attr('checked', 'checked');
+			$('#shr-stumbleupon').attr('checked', 'checked');
+			$('#shr-mixx').attr('checked', 'checked');
+			$('#shr-comfeed').attr('checked', 'checked');
+			$('#shr-twitter').attr('checked', 'checked');
+			$('#shr-technorati').attr('checked', 'checked');
+			$('#shr-misterwong').attr('checked', 'checked');
+			$('#shr-diigo').attr('checked', 'checked');
+			$('#shr-googlebuzz').attr('checked', 'checked');
 		});
 	});
 
 	/* Select recommended icons upon clicking
-	jQuery('#sel-pop').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-digg').attr('checked', 'checked');
-			jQuery('#sexy-reddit').attr('checked', 'checked');
-			jQuery('#sexy-delicious').attr('checked', 'checked');
-			jQuery('#sexy-stumbleupon').attr('checked', 'checked');
-			jQuery('#sexy-mixx').attr('checked', 'checked');
-			jQuery('#sexy-comfeed').attr('checked', 'checked');
-			jQuery('#sexy-twitter').attr('checked', 'checked');
-			jQuery('#sexy-technorati').attr('checked', 'checked');
-			jQuery('#sexy-misterwong').attr('checked', 'checked');
-			jQuery('#sexy-???').attr('checked', 'checked');
-			jQuery('#sexy-???').attr('checked', 'checked');
-			jQuery('#sexy-???').attr('checked', 'checked');
-			jQuery('#sexy-???').attr('checked', 'checked');
-			jQuery('#sexy-???').attr('checked', 'checked');			
+	$('#sel-pop').click(function() {
+		$('#sexy-networks').each(function() {
+			$('#shr-digg').attr('checked', 'checked');
+			$('#shr-reddit').attr('checked', 'checked');
+			$('#shr-delicious').attr('checked', 'checked');
+			$('#shr-stumbleupon').attr('checked', 'checked');
+			$('#shr-mixx').attr('checked', 'checked');
+			$('#shr-comfeed').attr('checked', 'checked');
+			$('#shr-twitter').attr('checked', 'checked');
+			$('#shr-technorati').attr('checked', 'checked');
+			$('#shr-misterwong').attr('checked', 'checked');
+			$('#shr-???').attr('checked', 'checked');
+			$('#shr-???').attr('checked', 'checked');
+			$('#shr-???').attr('checked', 'checked');
+			$('#shr-???').attr('checked', 'checked');
+			$('#shr-???').attr('checked', 'checked');			
 		});
 	}); */
 
 	//Swap enabled/disabled between donation options onclick
-	jQuery('#preset-amounts').parent('label').click(function() {
-		jQuery('#custom-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
-		jQuery('#preset-amounts').removeAttr('disabled');
+	$('#preset-amounts').parent('label').click(function() {
+		$('#custom-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
+		$('#preset-amounts').removeAttr('disabled');
 	});
 
 	//Swap enabled/disabled between donation options onclick
-	jQuery('#custom-amounts').parent('label').click(function() {
-		jQuery('#preset-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
-		jQuery('#custom-amounts').removeAttr('disabled');
+	$('#custom-amounts').parent('label').click(function() {
+		$('#preset-amounts').attr('disabled', 'disabled').css({'cursor':'none'});
+		$('#custom-amounts').removeAttr('disabled');
 	});
 
 	// Handle tiny form submission upon selecting option to hide sponsor messages
-	jQuery('#hide-sponsors').click(function() {
-		jQuery('#no-sponsors').submit();
+	$('#hide-sponsors').click(function() {
+		$('#no-sponsors').submit();
 	});
 
 	// Create a universal click function to close status messages...
-	jQuery('.del-x').click(function() {
-		jQuery(this).parent('div').parent('div').fadeOut();
+	$('.del-x').click(function() {
+		$(this).parent('div').parent('div').fadeOut();
 	});
 
 	// if checkbox isn't already checked, open warning message...
-	jQuery("#custom-mods").click(function() {
-		if(jQuery(this).is(":not(:checked)")) {
-			jQuery("#custom-mods-notice").css("display", "none");
+	$("#custom-mods").click(function() {
+		if($(this).is(":not(:checked)")) {
+			$("#custom-mods-notice").css("display", "none");
 		}
 		else {
-			jQuery("#custom-mods-notice").fadeIn("fast");
-			jQuery("#custom-mods-notice").css("display", "table");
+			$("#custom-mods-notice").fadeIn("fast");
+			$("#custom-mods-notice").css("display", "table");
 		}
 	});
 
 	// close custom mods warning when they click the X
-	jQuery(".custom-mods-notice-close").click(function() {
-		jQuery("#custom-mods-notice").fadeOut('fast');
+	$(".custom-mods-notice-close").click(function() {
+		$("#custom-mods-notice").fadeOut('fast');
 	});
 
 	// Apply "smart options" to BG image
-	jQuery('#bgimg-yes').click(function() {
-		if(jQuery(this).is(':checked')) {
-			jQuery('#bgimgs').fadeIn('slow');
+	$('#bgimg-yes').click(function() {
+		if($(this).is(':checked')) {
+			$('#bgimgs').fadeIn('slow');
 		}
 		else {
-			jQuery('#bgimgs').css('display', 'none');
+			$('#bgimgs').css('display', 'none');
 		}
 	});
 
 	// Apply "smart options" to Yahoo! Buzz
-	jQuery('#sexy-yahoobuzz').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#ybuzz-defaults').fadeIn('fast');
+	$('#shr-yahoobuzz').click(function() {
+		if ($(this).attr('checked')) {
+			$('#ybuzz-defaults').fadeIn('fast');
 		}
 		else {
-			jQuery('#ybuzz-defaults').fadeOut();
+			$('#ybuzz-defaults').fadeOut();
 		}
 	});
 
 	// Apply "smart options" to Twittley
-	jQuery('#sexy-twittley').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#twittley-defaults').fadeIn('fast');
+	$('#shr-twittley').click(function() {
+		if ($(this).attr('checked')) {
+			$('#twittley-defaults').fadeIn('fast');
 		}
 		else {
-			jQuery('#twittley-defaults').fadeOut();
+			$('#twittley-defaults').fadeOut();
 		}
 	});
 
 	// Apply "smart options" to Twitter
-	jQuery('#sexy-twitter').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#twitter-defaults').fadeIn('fast');
+	$('#shr-twitter').click(function() {
+		if ($(this).attr('checked')) {
+			$('#twitter-defaults').fadeIn('fast');
 		}
 		else {
-			jQuery('#twitter-defaults').fadeOut();
+			$('#twitter-defaults').fadeOut();
 		}
 	});
 
-	jQuery('#shorty').change(function() {
-		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
-		jQuery('#shortyapimdiv-trim').fadeOut('fast');
-		jQuery('#shortyapimdiv-snip').fadeOut('fast');
-		jQuery('#shortyapimdiv-tinyarrow').fadeOut('fast');
-		jQuery('#shortyapimdiv-cligs').fadeOut('fast');
-		jQuery('#shortyapimdiv-supr').fadeOut('fast');
+	$('#shorty').change(function() {
+		$('#shortyapimdiv-bitly').fadeOut('fast');
+		$('#shortyapimdiv-trim').fadeOut('fast');
+		$('#shortyapimdiv-snip').fadeOut('fast');
+		$('#shortyapimdiv-tinyarrow').fadeOut('fast');
+		$('#shortyapimdiv-cligs').fadeOut('fast');
+		$('#shortyapimdiv-supr').fadeOut('fast');
 		if(this.value=='trim'){
-			jQuery('#shortyapimdiv-trim').fadeIn('fast');
+			$('#shortyapimdiv-trim').fadeIn('fast');
 		}
 		else if(this.value=='bitly'){
-			jQuery('#shortyapimdiv-bitly').fadeIn('fast');
+			$('#shortyapimdiv-bitly').fadeIn('fast');
 		}
 		else if(this.value=='snip'){
-			jQuery('#shortyapimdiv-snip').fadeIn('fast');
+			$('#shortyapimdiv-snip').fadeIn('fast');
 		}
 		else if(this.value=='tinyarrow'){
-			jQuery('#shortyapimdiv-tinyarrow').fadeIn('fast');
+			$('#shortyapimdiv-tinyarrow').fadeIn('fast');
 		}
 		else if(this.value=='cligs'){
-			jQuery('#shortyapimdiv-cligs').fadeIn('fast');
+			$('#shortyapimdiv-cligs').fadeIn('fast');
 		}
 		else if(this.value=='supr'){
-			jQuery('#shortyapimdiv-supr').fadeIn('fast');
+			$('#shortyapimdiv-supr').fadeIn('fast');
 		}
 	});
 
-	jQuery('#shortyapichk-trim').click(function() {
+	$('#shortyapichk-trim').click(function() {
 		if (this.checked) {
-			jQuery('#shortyapidiv-trim').fadeIn('fast');
+			$('#shortyapidiv-trim').fadeIn('fast');
 		}
 		else {
-			jQuery('#shortyapidiv-trim').fadeOut('fast');
+			$('#shortyapidiv-trim').fadeOut('fast');
 		}
 	});
 
-	jQuery('#shortyapichk-tinyarrow').click(function() {
+	$('#shortyapichk-tinyarrow').click(function() {
 		if (this.checked) {
-			jQuery('#shortyapidiv-tinyarrow').fadeIn('fast');
+			$('#shortyapidiv-tinyarrow').fadeIn('fast');
 		}
 		else {
-			jQuery('#shortyapidiv-tinyarrow').fadeOut('fast');
+			$('#shortyapidiv-tinyarrow').fadeOut('fast');
 		}
 	});
 
-	jQuery('#shortyapichk-cligs').click(function() {
+	$('#shortyapichk-cligs').click(function() {
 		if (this.checked) {
-			jQuery('#shortyapidiv-cligs').fadeIn('fast');
+			$('#shortyapidiv-cligs').fadeIn('fast');
 		}
 		else {
-			jQuery('#shortyapidiv-cligs').fadeOut('fast');
+			$('#shortyapidiv-cligs').fadeOut('fast');
 		}
 	});
 
-	jQuery('#shortyapichk-supr').click(function() {
+	$('#shortyapichk-supr').click(function() {
 		if (this.checked) {
-			jQuery('#shortyapidiv-supr').fadeIn('fast');
+			$('#shortyapidiv-supr').fadeIn('fast');
 		}
 		else {
-			jQuery('#shortyapidiv-supr').fadeOut('fast');
+			$('#shortyapidiv-supr').fadeOut('fast');
 		}
 	});
 
-	// Fade in/out mobile feature warning
-	jQuery('#mobile-hide').click(function() {
-		if (this.checked) {
-			jQuery('#mobile-warn').fadeIn('fast');
-		}
-		else {
-			jQuery('#mobile-warn').fadeOut();
+	$('#position-above').click(function() {
+		if ($('#info-manual').is(':visible')) {
+			$('#info-manual').fadeOut();
 		}
 	});
 
-	jQuery('#position-above').click(function() {
-		if (jQuery('#info-manual').is(':visible')) {
-			jQuery('#info-manual').fadeOut();
+	$('#position-below').click(function() {
+		if ($('#info-manual').is(':visible')) {
+			$('#info-manual').fadeOut();
 		}
 	});
 
-	jQuery('#position-below').click(function() {
-		if (jQuery('#info-manual').is(':visible')) {
-			jQuery('#info-manual').fadeOut();
+	$('#position-manual').click(function() {
+		if ($('#info-manual').is(':not(:visible)')) {
+			$('#info-manual').fadeIn('slow');
 		}
 	});
 
-	jQuery('#position-manual').click(function() {
-		if (jQuery('#info-manual').is(':not(:visible)')) {
-			jQuery('#info-manual').fadeIn('slow');
-		}
+	$('.dtags-info').click(function() {
+		$('#tag-info').fadeIn('fast');
 	});
 
-	jQuery('.dtags-info').click(function() {
-		jQuery('#tag-info').fadeIn('fast');
+	$('.dtags-close').click(function() {
+		$('#tag-info').fadeOut();
 	});
 
-	jQuery('.dtags-close').click(function() {
-		jQuery('#tag-info').fadeOut();
+	$('.shebang-info').click(function() {
+		$('#info-manual').fadeIn('fast');
 	});
 
-	jQuery('.shebang-info').click(function() {
-		jQuery('#info-manual').fadeIn('fast');
+	$('.boxcloser').click(function() {
+		$('.sexy-donation-box').slideUp('slow');
 	});
 
-	jQuery('.boxcloser').click(function() {
-		jQuery('.sexy-donation-box').slideUp('slow');
-	});
-
-	jQuery('#clearShortUrls').click(function() {
-		if (jQuery('#clearShortUrls').is(':checked')) {
-			this.checked=jQuery('#clear-warning').fadeIn('fast');
+	$('#clearShortUrls').click(function() {
+		if ($('#clearShortUrls').is(':checked')) {
+			this.checked=$('#clear-warning').fadeIn('fast');
 		}else{
-			this.checked=jQuery(this).is(':not(:checked)');
+			this.checked=$(this).is(':not(:checked)');
 		}
-		this.checked=jQuery(this).is(':not(:checked)');
+		this.checked=$(this).is(':not(:checked)');
 	});
 
-	jQuery('#warn-cancel').click(function() {
-		this.checked=jQuery('#clear-warning').fadeOut();
-		this.checked=jQuery(this).is(':not(:checked)');
+	$('#warn-cancel').click(function() {
+		this.checked=$('#clear-warning').fadeOut();
+		this.checked=$(this).is(':not(:checked)');
 	});
 
-	jQuery('#warn-yes').click(function() {
-		this.checked=jQuery('#clear-warning').fadeOut();
-		this.checked=jQuery('#clearShortUrls').attr('checked', 'checked');
+	$('#warn-yes').click(function() {
+		this.checked=$('#clear-warning').fadeOut();
+		this.checked=$('#clearShortUrls').attr('checked', 'checked');
 		this.checked=!this.checked;
 	});
+
+
+
+	$('#sexyresetallwarn-cancel').click(function() {
+		$('#sexyresetallwarn').fadeOut();
+	});
+
+	$('#sexyresetallwarn-yes').click(function() {
+		this.checked=$('#sexyresetallwarn').fadeOut();
+		this.checked=$('#resetalloptionsaccept').submit();
+		this.checked=!this.checked;
+	});
+
+
+	
+
+
+// Load character count and tweet output demo onload
+	var dfaultload = 0;
+	var dfaulttitle = 8;
+	var dfaulturl = 13;
+	if($("#tweetconfig").val().indexOf('${title}')!=-1) {
+		dfaultload = Math.floor(dfaultload + dfaulttitle);
+	}
+	if($("#tweetconfig").val().indexOf('${short_link}')!=-1) {
+		dfaultload = Math.floor(dfaultload + dfaulturl);
+	}
+	var mathdoneload = Math.floor($('#tweetconfig').val().length - dfaultload);
+	if(mathdoneload >= 50) {
+		$('#tweetcounter span').addClass('error');
+	}
+	else {
+		$('#tweetcounter span').removeClass();
+	}
+	$('#tweetcounter span').html(mathdoneload);
+	var endvalueload = $('#tweetconfig').val();
+	endvalueload = endvalueload.replace('${title}', 'Some fancy post title');
+	endvalueload = endvalueload.replace('${short_link}', 'http://b2l.me/a4Dc1');
+	var endtweetload = endvalueload;
+	$('#tweetoutput span').html(endtweetload);
+
+
+
+	$('#tweetconfig').keyup(function() {
+		var dfaults = 0;
+		var title = 8;
+		var url = 13;
+
+		if($("#tweetconfig").val().indexOf('${title}')!=-1) {
+			dfaults = Math.floor(dfaults + title);
+		}
+		if($("#tweetconfig").val().indexOf('${short_link}')!=-1) {
+			dfaults = Math.floor(dfaults + url);
+		}
+
+		var mathdone = Math.floor($(this).val().length - dfaults);
+
+		if(mathdone >= 50) {
+			$('#tweetcounter span').addClass('error');
+			alert("You need to leave room for the short URL and/or post title...");
+			return false;
+		}
+		else {
+			$('#tweetcounter span').removeClass();
+		}
+		$('#tweetcounter span').html(mathdone);
+		
+		var endvalue = $(this).val();
+
+		endvalue = endvalue.replace('${title}', 'Some fancy post title');
+		endvalue = endvalue.replace('${short_link}', 'http://b2l.me/a4Dc1');
+
+		var endtweet = endvalue;
+
+		$('#tweetoutput span').html(endtweet);
+
+	});
+
+
+
+
 }});

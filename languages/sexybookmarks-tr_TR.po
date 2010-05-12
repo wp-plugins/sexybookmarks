@@ -1,1160 +1,828 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sexybookmarks 2.6.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/sexybookmarks\n"
-"POT-Creation-Date: 2009-12-10 14:56+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Ömer Taylan Tuğut <taylantugut@gmail.com>\n"
-"Language-Team: tuguts <admin@tuguts.com>\n"
+"Project-Id-Version: SexyBookmarks v3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-06 07:59-0600\n"
+"PO-Revision-Date: 2010-05-06 17:44+0200\n"
+"Last-Translator: Kerem Erkan <kerem@keremerkan.net>\n"
+"Language-Team: Shareaholic <support@shareaholic.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-Country: TURKEY\n"
-"X-Poedit-SourceCharset: utf-8\n"
-
-#: includes/bookmarks-data.php:5
-#: includes/bookmarks-data.php:10
-#: includes/bookmarks-data.php:15
-#: includes/bookmarks-data.php:20
-#: includes/bookmarks-data.php:25
-#: includes/bookmarks-data.php:30
-#: includes/bookmarks-data.php:35
-#: includes/bookmarks-data.php:40
-#: includes/bookmarks-data.php:45
-#: includes/bookmarks-data.php:50
-#: includes/bookmarks-data.php:55
-#: includes/bookmarks-data.php:60
-#: includes/bookmarks-data.php:65
-#: includes/bookmarks-data.php:70
-#: includes/bookmarks-data.php:85
-#: includes/bookmarks-data.php:90
-#: includes/bookmarks-data.php:95
-#: includes/bookmarks-data.php:100
-#: includes/bookmarks-data.php:105
-#: includes/bookmarks-data.php:110
-#: includes/bookmarks-data.php:115
-#: includes/bookmarks-data.php:120
-#: includes/bookmarks-data.php:125
-#: includes/bookmarks-data.php:130
-#: includes/bookmarks-data.php:135
-#: includes/bookmarks-data.php:140
-#: includes/bookmarks-data.php:145
-#: includes/bookmarks-data.php:150
-#: includes/bookmarks-data.php:155
-#: includes/bookmarks-data.php:160
-#: includes/bookmarks-data.php:165
-#: includes/bookmarks-data.php:170
-#: includes/bookmarks-data.php:175
-#: includes/bookmarks-data.php:180
-#: includes/bookmarks-data.php:185
-#: includes/bookmarks-data.php:190
-#: includes/bookmarks-data.php:195
-#: includes/bookmarks-data.php:200
-#: includes/bookmarks-data.php:205
-#: includes/bookmarks-data.php:210
-#: includes/bookmarks-data.php:215
-#: includes/bookmarks-data.php:220
-#: includes/bookmarks-data.php:225
-#: includes/bookmarks-data.php:230
-#: includes/bookmarks-data.php:235
-#: includes/bookmarks-data.php:240
-#: includes/bookmarks-data.php:245
-#: includes/bookmarks-data.php:250
-#: includes/bookmarks-data.php:255
-#: includes/bookmarks-data.php:260
-#: includes/bookmarks-data.php:265
-#: includes/bookmarks-data.php:270
-#: includes/bookmarks-data.php:275
-#: includes/bookmarks-data.php:280
-#: includes/bookmarks-data.php:285
-#: includes/bookmarks-data.php:290
-#: includes/bookmarks-data.php:295
-#: includes/bookmarks-data.php:300
-#: includes/bookmarks-data.php:305
-#: includes/bookmarks-data.php:310
-#: includes/bookmarks-data.php:315
-#: includes/bookmarks-data.php:320
-#: includes/bookmarks-data.php:325
-#: includes/bookmarks-data.php:330
-#: includes/bookmarks-data.php:335
-#: includes/bookmarks-data.php:340
-#: includes/bookmarks-data.php:345
-#: includes/bookmarks-data.php:350
-msgid "Check this box to include "
-msgstr "Sosyal Ağlar menüsüne "
-
-#: includes/bookmarks-data.php:5
-#: includes/bookmarks-data.php:6
-msgid "Script &amp; Style"
-msgstr "Script &amp; Style'da paylaşın"
-
-#: includes/bookmarks-data.php:5
-#: includes/bookmarks-data.php:10
-#: includes/bookmarks-data.php:15
-#: includes/bookmarks-data.php:20
-#: includes/bookmarks-data.php:25
-#: includes/bookmarks-data.php:30
-#: includes/bookmarks-data.php:35
-#: includes/bookmarks-data.php:40
-#: includes/bookmarks-data.php:45
-#: includes/bookmarks-data.php:50
-#: includes/bookmarks-data.php:55
-#: includes/bookmarks-data.php:60
-#: includes/bookmarks-data.php:65
-#: includes/bookmarks-data.php:70
-#: includes/bookmarks-data.php:75
-#: includes/bookmarks-data.php:80
-#: includes/bookmarks-data.php:85
-#: includes/bookmarks-data.php:90
-#: includes/bookmarks-data.php:95
-#: includes/bookmarks-data.php:100
-#: includes/bookmarks-data.php:105
-#: includes/bookmarks-data.php:110
-#: includes/bookmarks-data.php:115
-#: includes/bookmarks-data.php:120
-#: includes/bookmarks-data.php:125
-#: includes/bookmarks-data.php:130
-#: includes/bookmarks-data.php:135
-#: includes/bookmarks-data.php:140
-#: includes/bookmarks-data.php:145
-#: includes/bookmarks-data.php:150
-#: includes/bookmarks-data.php:155
-#: includes/bookmarks-data.php:160
-#: includes/bookmarks-data.php:165
-#: includes/bookmarks-data.php:170
-#: includes/bookmarks-data.php:175
-#: includes/bookmarks-data.php:180
-#: includes/bookmarks-data.php:185
-#: includes/bookmarks-data.php:190
-#: includes/bookmarks-data.php:195
-#: includes/bookmarks-data.php:200
-#: includes/bookmarks-data.php:205
-#: includes/bookmarks-data.php:210
-#: includes/bookmarks-data.php:215
-#: includes/bookmarks-data.php:220
-#: includes/bookmarks-data.php:225
-#: includes/bookmarks-data.php:230
-#: includes/bookmarks-data.php:235
-#: includes/bookmarks-data.php:240
-#: includes/bookmarks-data.php:245
-#: includes/bookmarks-data.php:250
-#: includes/bookmarks-data.php:255
-#: includes/bookmarks-data.php:260
-#: includes/bookmarks-data.php:265
-#: includes/bookmarks-data.php:270
-#: includes/bookmarks-data.php:275
-#: includes/bookmarks-data.php:280
-#: includes/bookmarks-data.php:285
-#: includes/bookmarks-data.php:290
-#: includes/bookmarks-data.php:295
-#: includes/bookmarks-data.php:300
-#: includes/bookmarks-data.php:305
-#: includes/bookmarks-data.php:310
-#: includes/bookmarks-data.php:315
-#: includes/bookmarks-data.php:320
-#: includes/bookmarks-data.php:325
-#: includes/bookmarks-data.php:330
-#: includes/bookmarks-data.php:335
-#: includes/bookmarks-data.php:340
-#: includes/bookmarks-data.php:345
-#: includes/bookmarks-data.php:350
-msgid " in your bookmarking menu"
-msgstr " eklemek istiyorsanız kutuyu işaretleyin"
-
-#: includes/bookmarks-data.php:6
-#: includes/bookmarks-data.php:61
-#: includes/bookmarks-data.php:141
-#: includes/bookmarks-data.php:181
-#: includes/bookmarks-data.php:241
-#: includes/bookmarks-data.php:246
-#: includes/bookmarks-data.php:251
-#: includes/bookmarks-data.php:256
-#: includes/bookmarks-data.php:306
-#: includes/bookmarks-data.php:321
-#: includes/bookmarks-data.php:331
-#: includes/bookmarks-data.php:336
-msgid "Submit this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:10
-#: includes/bookmarks-data.php:11
-msgid "Blinklist"
-msgstr "Blinklist'de paylaşın "
-
-#: includes/bookmarks-data.php:11
-#: includes/bookmarks-data.php:16
-#: includes/bookmarks-data.php:31
-#: includes/bookmarks-data.php:46
-#: includes/bookmarks-data.php:51
-#: includes/bookmarks-data.php:66
-#: includes/bookmarks-data.php:91
-#: includes/bookmarks-data.php:101
-#: includes/bookmarks-data.php:121
-#: includes/bookmarks-data.php:126
-#: includes/bookmarks-data.php:131
-#: includes/bookmarks-data.php:146
-#: includes/bookmarks-data.php:156
-#: includes/bookmarks-data.php:211
-#: includes/bookmarks-data.php:261
-#: includes/bookmarks-data.php:266
-#: includes/bookmarks-data.php:286
-#: includes/bookmarks-data.php:346
-msgid "Share this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:15
-msgid "Delicious"
-msgstr "Delicious'u"
-
-#: includes/bookmarks-data.php:16
-msgid "del.icio.us"
-msgstr "del.icio.us 'da paylaşın"
-
-#: includes/bookmarks-data.php:20
-msgid "Digg"
-msgstr "Digg'de paylaşın"
-
-#: includes/bookmarks-data.php:21
-msgid "Digg this!"
-msgstr "Bunu Digg'leyin!"
-
-#: includes/bookmarks-data.php:25
-#: includes/bookmarks-data.php:26
-msgid "Diigo"
-msgstr "Diigo'da paylaşın "
-
-#: includes/bookmarks-data.php:26
-msgid "Post this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:30
-#: includes/bookmarks-data.php:31
-msgid "Reddit"
-msgstr "Reddit'de paylaşın "
-
-#: includes/bookmarks-data.php:35
-msgid "Yahoo! Buzz"
-msgstr "Yahoo! Buzz'da paylaşın "
-
-#: includes/bookmarks-data.php:36
-msgid "Buzz up!"
-msgstr "Buzz'layın"
-
-#: includes/bookmarks-data.php:40
-msgid "Stumbleupon"
-msgstr "Stumbleupon'da paylaşın "
-
-#: includes/bookmarks-data.php:41
-msgid "Stumble upon something good? Share it on StumbleUpon"
-msgstr "Beğendiniz mi?  StumbleUpon'da paylaşın "
-
-#: includes/bookmarks-data.php:45
-#: includes/bookmarks-data.php:46
-msgid "Technorati"
-msgstr "Technorati'de paylaşın"
-
-#: includes/bookmarks-data.php:50
-#: includes/bookmarks-data.php:51
-msgid "Mixx"
-msgstr "Mixx'de paylaşın "
-
-#: includes/bookmarks-data.php:55
-#: includes/bookmarks-data.php:56
-msgid "MySpace"
-msgstr "MySpace'de paylaşın"
-
-#: includes/bookmarks-data.php:56
-#: includes/bookmarks-data.php:201
-#: includes/bookmarks-data.php:226
-msgid "Post this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:60
-#: includes/bookmarks-data.php:61
-msgid "DesignFloat"
-msgstr "DesignFloat'da paylaşın "
-
-#: includes/bookmarks-data.php:65
-#: includes/bookmarks-data.php:66
-msgid "Facebook"
-msgstr "Facebook'da paylaşın"
-
-#: includes/bookmarks-data.php:70
-msgid "Twitter"
-msgstr "Twitter'da paylaşın"
-
-#: includes/bookmarks-data.php:71
-msgid "Tweet This!"
-msgstr "Bunu Tweet'leyin!"
-
-#: includes/bookmarks-data.php:75
-#: includes/bookmarks-data.php:80
-msgid "Check this box to include the "
-msgstr "\"Email to a Friend\" linkini "
-
-#: includes/bookmarks-data.php:75
-msgid "\"Email to a Friend\" link"
-msgstr "eklemek için bu kutuyu işaretleyin"
-
-#: includes/bookmarks-data.php:76
-msgid "Email this to a friend?"
-msgstr "Bunu yazıyı e-mail olarak gönderin "
-
-#: includes/bookmarks-data.php:80
-#: includes/bookmarks-data.php:81
-msgid "ToMuse"
-msgstr "ToMuse'da paylaşın"
-
-#: includes/bookmarks-data.php:81
-msgid "Suggest this article to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:85
-msgid "a 'Subscribe to Comments' link"
-msgstr "'Yorumlara abone ol' linki"
-
-#: includes/bookmarks-data.php:86
-msgid "Subscribe to the comments for this post?"
-msgstr "Bu yazının yorumlarına abone olun!"
-
-#: includes/bookmarks-data.php:90
-#: includes/bookmarks-data.php:91
-msgid "Linkedin"
-msgstr "Linkedin'de paylaşın "
-
-#: includes/bookmarks-data.php:95
-#: includes/bookmarks-data.php:96
-msgid "Newsvine"
-msgstr "Newsvine'de paylaşın "
-
-#: includes/bookmarks-data.php:96
-msgid "Seed this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:100
-#: includes/bookmarks-data.php:101
-msgid "Devmarks"
-msgstr "Devmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:105
-#: includes/bookmarks-data.php:106
-msgid "Google Bookmarks"
-msgstr "Google Bookmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:106
-#: includes/bookmarks-data.php:111
-#: includes/bookmarks-data.php:116
-#: includes/bookmarks-data.php:161
-#: includes/bookmarks-data.php:166
-#: includes/bookmarks-data.php:171
-#: includes/bookmarks-data.php:176
-#: includes/bookmarks-data.php:196
-msgid "Add this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:110
-#: includes/bookmarks-data.php:111
-msgid "Mister Wong"
-msgstr "Mister Wong'da paylaşın "
-
-#: includes/bookmarks-data.php:112
-msgid "www.mister-wong.com"
-msgstr "www.mister-wong.com"
-
-#: includes/bookmarks-data.php:115
-#: includes/bookmarks-data.php:116
-msgid "Izeby"
-msgstr "Izeby'de paylaşın "
-
-#: includes/bookmarks-data.php:120
-#: includes/bookmarks-data.php:121
-msgid "Tipd"
-msgstr "Tipd'e paylaşın "
-
-#: includes/bookmarks-data.php:125
-#: includes/bookmarks-data.php:126
-msgid "PFBuzz"
-msgstr "PFBuzz'da paylaşın "
-
-#: includes/bookmarks-data.php:130
-#: includes/bookmarks-data.php:131
-msgid "FriendFeed"
-msgstr "Friendfeed'de paylaşın"
-
-#: includes/bookmarks-data.php:135
-#: includes/bookmarks-data.php:136
-msgid "BlogMarks"
-msgstr "Blogmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:136
-msgid "Mark this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:140
-#: includes/bookmarks-data.php:141
-msgid "Twittley"
-msgstr "Twittlet'de paylaşın "
-
-#: includes/bookmarks-data.php:145
-#: includes/bookmarks-data.php:146
-msgid "Fwisp"
-msgstr "Fwisp'de paylaşın "
-
-#: includes/bookmarks-data.php:150
-#: includes/bookmarks-data.php:151
-msgid "DesignMoo"
-msgstr "DesignMoo'da paylaşın "
-
-#: includes/bookmarks-data.php:151
-msgid "Moo this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:155
-#: includes/bookmarks-data.php:156
-msgid "BobrDobr"
-msgstr "BobrDobr'da paylaşın "
-
-#: includes/bookmarks-data.php:155
-#: includes/bookmarks-data.php:160
-#: includes/bookmarks-data.php:165
-#: includes/bookmarks-data.php:170
-#: includes/bookmarks-data.php:175
-msgid " (Russian)"
-msgstr " (Rusça) "
-
-#: includes/bookmarks-data.php:160
-#: includes/bookmarks-data.php:161
-msgid "Yandex.Bookmarks"
-msgstr "Yandex.Bookmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:165
-#: includes/bookmarks-data.php:166
-msgid "Memory.ru"
-msgstr "Memory.ru'da paylaşın "
-
-#: includes/bookmarks-data.php:170
-#: includes/bookmarks-data.php:171
-msgid "100 bookmarks"
-msgstr "100 bookmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:175
-#: includes/bookmarks-data.php:176
-msgid "MyPlace"
-msgstr "MyPlace'de paylaşın "
-
-#: includes/bookmarks-data.php:180
-#: includes/bookmarks-data.php:181
-msgid "Hacker News"
-msgstr "Hacker News'de paylaşın "
-
-#: includes/bookmarks-data.php:185
-#: includes/bookmarks-data.php:186
-msgid "Print Friendly"
-msgstr "Yazdırma uyumlu "
-
-#: includes/bookmarks-data.php:186
-msgid "Send this page to "
-msgstr "Bu sayfayı "
-
-#: includes/bookmarks-data.php:190
-msgid "Design Bump"
-msgstr "Design Bump'da paylaşın "
-
-#: includes/bookmarks-data.php:191
-msgid "Bump this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:191
-msgid "DesignBump"
-msgstr "DesignBump'da paylaşın "
-
-#: includes/bookmarks-data.php:195
-#: includes/bookmarks-data.php:196
-msgid "Ning"
-msgstr "Ning'de paylaşın "
-
-#: includes/bookmarks-data.php:200
-#: includes/bookmarks-data.php:201
-msgid "Identica"
-msgstr "Identica'da paylaşın "
-
-#: includes/bookmarks-data.php:205
-#: includes/bookmarks-data.php:206
-msgid "Xerpi"
-msgstr "Xerpi'de paylaşın "
-
-#: includes/bookmarks-data.php:206
-msgid "Save this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:210
-#: includes/bookmarks-data.php:211
-msgid "Wikio"
-msgstr "Wikio'da kaydedin "
-
-#: includes/bookmarks-data.php:215
-#: includes/bookmarks-data.php:216
-msgid "TechMeme"
-msgstr "Techmeme'de kaydedin "
-
-#: includes/bookmarks-data.php:216
-msgid "Tip this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:220
-#: includes/bookmarks-data.php:221
-msgid "Sphinn"
-msgstr "Sphinn'de işaretleyin "
-
-#: includes/bookmarks-data.php:221
-msgid "Sphinn this on "
-msgstr "Bu yazıyı spinn'le "
-
-#: includes/bookmarks-data.php:225
-#: includes/bookmarks-data.php:226
-msgid "Posterous"
-msgstr "Posterous'da paylaşın "
-
-#: includes/bookmarks-data.php:230
-#: includes/bookmarks-data.php:231
-msgid "Global Grind"
-msgstr "Global Grind'de paylaşın "
-
-#: includes/bookmarks-data.php:231
-msgid "Grind this! on "
-msgstr "Bu yazıyı Grind'le "
-
-#: includes/bookmarks-data.php:235
-#: includes/bookmarks-data.php:236
-msgid "Ping.fm"
-msgstr "Ping.fm'de paylaşın "
-
-#: includes/bookmarks-data.php:236
-msgid "Ping this on "
-msgstr "Bu yazıyı ping'leyin "
-
-#: includes/bookmarks-data.php:240
-#: includes/bookmarks-data.php:241
-msgid "NUjij"
-msgstr "NUjij'de paylaşın "
-
-#: includes/bookmarks-data.php:240
-#: includes/bookmarks-data.php:245
-msgid " (Dutch)"
-msgstr " (Flemenkçe) "
-
-#: includes/bookmarks-data.php:245
-#: includes/bookmarks-data.php:246
-msgid "eKudos"
-msgstr "EKudos'da paylaşın "
-
-#: includes/bookmarks-data.php:250
-#: includes/bookmarks-data.php:251
-msgid "Netvouz"
-msgstr "Netvouz'da paylaşın "
-
-#: includes/bookmarks-data.php:255
-#: includes/bookmarks-data.php:256
-msgid "Netvibes"
-msgstr "Netvibes'de paylaşın "
-
-#: includes/bookmarks-data.php:260
-#: includes/bookmarks-data.php:261
-msgid "Fleck"
-msgstr "Fleck'de paylaşın "
-
-#: includes/bookmarks-data.php:265
-#: includes/bookmarks-data.php:266
-msgid "Blogosphere News"
-msgstr "Blogosphere News'de paylaşın "
-
-#: includes/bookmarks-data.php:270
-msgid "Web Blend"
-msgstr "Web Blend'de paylaşın "
-
-#: includes/bookmarks-data.php:271
-msgid "Blend this!"
-msgstr "Blend'e gönder!"
-
-#: includes/bookmarks-data.php:275
-msgid "Wykop"
-msgstr "Wykop'da paylaşın "
-
-#: includes/bookmarks-data.php:275
-msgid " (Polish)"
-msgstr " (Polonyaca)"
-
-#: includes/bookmarks-data.php:276
-msgid "Add this to Wykop!"
-msgstr "Bunu Wykop'a ekle!"
-
-#: includes/bookmarks-data.php:280
-msgid "BlogEngage"
-msgstr "BlogEngage'de paylaşın"
-
-#: includes/bookmarks-data.php:281
-msgid "Engage with this article!"
-msgstr "Bu yazıyı Engage'e gönderin!"
-
-#: includes/bookmarks-data.php:285
-#: includes/bookmarks-data.php:286
-msgid "Hyves"
-msgstr "Hyves'da paylaşın "
-
-#: includes/bookmarks-data.php:290
-#: includes/bookmarks-data.php:291
-msgid "Pusha"
-msgstr "Pusha'da paylaşın "
-
-#: includes/bookmarks-data.php:290
-msgid " (Swedish)"
-msgstr " (İsveçce) "
-
-#: includes/bookmarks-data.php:291
-msgid "Push this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:295
-#: includes/bookmarks-data.php:296
-msgid "Hatena Bookmarks"
-msgstr "Hatena Bookmarks'da paylaşın "
-
-#: includes/bookmarks-data.php:295
-msgid " (Japanese)"
-msgstr " (Japonca) "
-
-#: includes/bookmarks-data.php:296
-msgid "Bookmarks this on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:300
-#: includes/bookmarks-data.php:301
-msgid "MyLinkVault"
-msgstr "MyLinkVault'da işaretleyin"
-
-#: includes/bookmarks-data.php:301
-msgid "Store this link on "
-msgstr "Bu linki "
-
-#: includes/bookmarks-data.php:305
-#: includes/bookmarks-data.php:306
-msgid "SlashDot"
-msgstr "Slashdot'da saklayın "
-
-#: includes/bookmarks-data.php:310
-#: includes/bookmarks-data.php:311
-msgid "Squidoo"
-msgstr "Squidoo'da saklayın "
-
-#: includes/bookmarks-data.php:311
-msgid "Add to a lense on "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:315
-#: includes/bookmarks-data.php:316
-msgid "Propeller"
-msgstr "Propeller'de paylaşın "
-
-#: includes/bookmarks-data.php:316
-msgid "Submit this story to "
-msgstr "Bu yazıyı "
-
-#: includes/bookmarks-data.php:320
-#: includes/bookmarks-data.php:321
-msgid "FAQpal"
-msgstr "FAQpal'da paylaşın "
-
-#: includes/bookmarks-data.php:325
-#: includes/bookmarks-data.php:326
-msgid "Evernote"
-msgstr "Evernote'da paylaşın "
-
-#: includes/bookmarks-data.php:326
-msgid "Clip this to "
-msgstr "Bunu "
-
-#: includes/bookmarks-data.php:330
-#: includes/bookmarks-data.php:331
-msgid "Meneame"
-msgstr "Meneame'de paylaşın "
-
-#: includes/bookmarks-data.php:330
-#: includes/bookmarks-data.php:335
-msgid " (Spanish)"
-msgstr " (İspanyolca)"
-
-#: includes/bookmarks-data.php:335
-#: includes/bookmarks-data.php:336
-msgid "Bitacoras"
-msgstr "Bitacoras'da paylaşın "
-
-#: includes/bookmarks-data.php:340
-#: includes/bookmarks-data.php:341
-msgid "JumpTags"
-msgstr "JumpTags'da paylaşın "
-
-#: includes/bookmarks-data.php:341
-msgid "Submit this link to "
-msgstr "Bu linki "
-
-#: includes/bookmarks-data.php:345
-#: includes/bookmarks-data.php:346
-msgid "Bebo"
-msgstr "Bebo'da paylaşın "
-
-#: includes/bookmarks-data.php:350
-#: includes/bookmarks-data.php:351
-msgid "N4G"
-msgstr "N4G'de paylaşın "
-
-#: includes/bookmarks-data.php:351
-msgid "Submit tip to "
-msgstr "Bu notu "
-
-#: includes/public.php:163
-msgid "an error occurred in SexyBookmarks"
-msgstr "Sexybookmarks'da bir hata oluştu."
-
-#: includes/public.php:295
-msgid "xtrastyle"
-msgstr "xtrastyle'da paylaşın "
-
-#: includes/public.php:475
-msgid "SexyBookmarks has been disabled on this page"
-msgstr "Bu sayfada SexyBookmarks kullanılmamaktadır."
-
-#: includes/public.php:480
-msgid "Start Of Code Generated By SexyBookmarks"
-msgstr "SexyBookmarks tarafından üretilen kodların başlangıcı"
-
-#: includes/public.php:529
-msgid "End Of Code Generated By SexyBookmarks"
-msgstr "SexyBookmarks tarafından üretilen kodların sonu"
-
-#: sexy-bookmarks.php:142
-msgid "Your changes have been saved successfully!"
-msgstr "Ayarlarınız başarı ile kaydedilmiştir."
-
-#: sexy-bookmarks.php:142
-msgid "Maybe you would consider "
-msgstr "Bağış yaparak bize katkıda"
-
-#: sexy-bookmarks.php:142
-msgid "donating"
-msgstr " bulunmayı düşünmez misiniz"
-
-#: sexy-bookmarks.php:145
-msgid "Please choose where you would like the menu to be displayed."
-msgstr "Lütfen menünün gösterilmesini istediğiniz yeri seçin."
-
-#: sexy-bookmarks.php:146
-msgid "You can't display the menu if you don't choose a few sites to add to it!"
-msgstr "Menüye bir kaç site eklemezseniz menüyü gösteremezsiniz!"
-
-#: sexy-bookmarks.php:147
-msgid "Please choose where you want the menu displayed."
-msgstr "Lütfen menünün gösterilmesini istediğiniz yeri seçin."
-
-#: sexy-bookmarks.php:151
-msgid "You need to select the primary category for any articles submitted to Twittley."
-msgstr "Twittley'e yazı gönderebilmek için ana bir kategori belirtmeniz gerekiyor."
-
-#: sexy-bookmarks.php:152
-msgid "You need to set at least 1 default tag for any articles submitted to Twittley."
-msgstr "Twittley'e yazı gönderebilmek için en azından 1 ön tanımlı etiket gerekiyor."
-
-#: sexy-bookmarks.php:162
-msgid "You must first download and activate the"
-msgstr "Kendi kısa URL'lerinizi yayınlamadan önce "
-
-#: sexy-bookmarks.php:162
-msgid "Twitter Friendly Links Plugin"
-msgstr "Twitter Friendly Links eklentisini"
-
-#: sexy-bookmarks.php:162
-msgid "before hosting your own short URLs..."
-msgstr "karşıdan yüklemeli ve aktif hale getirmelisiniz."
-
-#: sexy-bookmarks.php:197
-msgid " Short URLs have been reset."
-msgstr "Kısa Linkler sıfırlandı..."
-
-#: sexy-bookmarks.php:231
-msgid "Enabled Networks"
-msgstr "Seçilen Sosyal Ağlar"
-
-#: sexy-bookmarks.php:235
-msgid "Select the Networks to display. Drag to reorder."
-msgstr "Göstermek istediğiniz sosyal ağları seçin, Yeniden sıralamak için sürükleyin."
-
-#: sexy-bookmarks.php:248
-msgid "Functionality Settings"
-msgstr "İşlevsellik Ayarları"
-
-#: sexy-bookmarks.php:254
-msgid "This will clear <u>ALL</u> short URLs. - Are you sure?"
-msgstr "Bu işlem <u>BÜTÜN</u> kısa yolları sıfırlayacaktır. - Emin misiniz? "
-
-#: sexy-bookmarks.php:257
-#: sexy-bookmarks.php:416
-#: sexy-bookmarks.php:419
-#: sexy-bookmarks.php:470
-#: sexy-bookmarks.php:548
+"X-Poedit-SearchPath-0: .\n"
+
+#: sexy-bookmarks.php:170
+msgid "WARNING: You are about to reset all settings to their default state! Do you wish to continue?"
+msgstr "UYARI: Tüm ayarları varsayılan değerlerine döndürmek üzeresiniz! Devam etmek istiyor musunuz?"
+
+#: sexy-bookmarks.php:174
+#: sexy-bookmarks.php:453
+#: sexy-bookmarks.php:617
+#: sexy-bookmarks.php:620
+#: sexy-bookmarks.php:677
+#: sexy-bookmarks.php:756
 msgid "Yes"
 msgstr "Evet"
 
-#: sexy-bookmarks.php:257
+#: sexy-bookmarks.php:174
+#: sexy-bookmarks.php:453
 msgid "Cancel"
-msgstr "İptal et"
+msgstr "Vazgeç"
 
-#: sexy-bookmarks.php:261
+#: sexy-bookmarks.php:211
+msgid "All settings have been reset to their default values."
+msgstr "Tüm ayarlar varsayılan değerlerine döndürüldü."
+
+#: sexy-bookmarks.php:272
+msgid "Your changes have been saved successfully!"
+msgstr "Değişiklikleriniz başarıyla kaydedildi!"
+
+#: sexy-bookmarks.php:275
+msgid "Please choose where you would like the menu to be displayed."
+msgstr "Lütfen menünün görüntüleneceği yeri seçin."
+
+#: sexy-bookmarks.php:276
+msgid "You can't display the menu if you don't choose a few sites to add to it!"
+msgstr "Birkaç site eklemediğiniz sürece menüyü görüntüleyemezsiniz!"
+
+#: sexy-bookmarks.php:277
+msgid "Please choose where you want the menu displayed."
+msgstr "Lütfen menünün görüntüleneceği yeri seçin."
+
+#: sexy-bookmarks.php:292
+#, php-format
+msgid "You must first download and activate the <a href=\"%s\">Twitter Friendly Links Plugin</a> before hosting your own short URLs..."
+msgstr "Kendi kısa URL'lerinizi sunmak için <a href=\"%s\">Twitter Friendly Links Eklentisi</a>'ni indirerek aktifleştirmelisiniz."
+
+#: sexy-bookmarks.php:294
+#, php-format
+msgid "You must first download and activate the <a href=\"%s\">YOURLS Plugin</a> before hosting your own short URLs..."
+msgstr "Kendi kısa URL'lerinizi sunmak için <a href=\"%s\">YOURLS Eklentisi</a>'ni indirerek aktifleştirmelisiniz."
+
+#: sexy-bookmarks.php:311
+msgid "WARNING: The request for a custom sprite has timed out. Reverting to default sprite files."
+msgstr "UYARI: Özelleştirilmiş sprite için yapılan istek zaman aşımına uğradı. Varsayılan sprite dosyaları kullanılacak."
+
+#: sexy-bookmarks.php:313
+msgid "Changes saved successfully. However, you should try to generate a custom sprite again later."
+msgstr "Değişiklikler kaydedildi. Fakat ileride, tekrar bir özelleştirilmiş sprite oluşturmayı denemeniz tavsiye edilir."
+
+#: sexy-bookmarks.php:317
+#: sexy-bookmarks.php:339
+#, php-format
+msgid "WARNING: Your <a href=\"%s\" target=\"_blank\">spritegen folder</a> is not writeable by the server! <a href=\"%s\" target=\"_blank\">Need Help?</a>"
+msgstr "UYARI: <a href=\"%s\" target=\"_blank\">spritegen klasörü</a> sunucu tarafından yazılabilir durumda değil! <a href=\"%s\" target=\"_blank\">Yardım İster misiniz?</a>"
+
+#: sexy-bookmarks.php:319
+#: sexy-bookmarks.php:324
+#: sexy-bookmarks.php:329
+#: sexy-bookmarks.php:340
+#: sexy-bookmarks.php:344
+#: sexy-bookmarks.php:348
+msgid "Changes saved successfully. However, settings are not optimal until you resolve the issue listed above."
+msgstr "Değişiklikler kaydedildi. Fakat ayarlar yukarıdaki sorunu çözmediğiniz sürece optimal halde olmayacak."
+
+#: sexy-bookmarks.php:322
+#: sexy-bookmarks.php:343
+#, php-format
+msgid "WARNING: You need to delete the current custom sprite (<a href=\"%s\" target=\"_blank\">"
+msgstr "UYARI: Şu andaki özelleştirilmiş sprite dosyasını silmelisiniz (<a href=\"%s\" target=\"_blank\">"
+
+#: sexy-bookmarks.php:327
+#: sexy-bookmarks.php:347
+#, php-format
+msgid "WARNING: You need to delete the current custom stylesheet (<a href=\"%s\" target=\"_blank\">"
+msgstr "UYARI: Şu andaki özelleştirilmiş stylesheet dosyasını silmelisiniz (<a href=\"%s\" target=\"_blank\">"
+
+#: sexy-bookmarks.php:384
+msgid "Short URL(s) have been reset."
+msgstr "Kısa URL'ler sıfırlandı."
+
+#: sexy-bookmarks.php:421
+msgid "Enabled Networks"
+msgstr "Etkinleştirilmiş Ağlar"
+
+#: sexy-bookmarks.php:425
+msgid "Select the Networks to display. Drag to reorder."
+msgstr "Görüntülenecek ağları seçin. Sürükleyerek sıralarını düzenleyebilirsiniz."
+
+#: sexy-bookmarks.php:427
+msgid "Select"
+msgstr "Seç"
+
+#: sexy-bookmarks.php:428
+msgid "All"
+msgstr "Tümü"
+
+#: sexy-bookmarks.php:429
+msgid "None"
+msgstr "Hiçbiri"
+
+#: sexy-bookmarks.php:430
+msgid "Most Popular"
+msgstr "En Popülerler"
+
+#: sexy-bookmarks.php:444
+msgid "Functionality Settings"
+msgstr "İşlevsellik Ayarları"
+
+#: sexy-bookmarks.php:450
+msgid "This will clear <u>ALL</u> short URLs. - Are you sure?"
+msgstr "Bu <u>TÜM</u> kısa URL'leri sıfırlayacak. - Emin misiniz?"
+
+#: sexy-bookmarks.php:457
 msgid "Twitter Options:"
-msgstr "Twitter ayarları:"
+msgstr "Twitter Seçenekleri:"
 
-#: sexy-bookmarks.php:262
-msgid "Twitter ID:"
-msgstr "Twitter kimliğiniz:"
+#: sexy-bookmarks.php:459
+msgid "Configuration Instructions:"
+msgstr "Yapılandırma Açıklamaları:"
 
-#: sexy-bookmarks.php:265
+#: sexy-bookmarks.php:460
+msgid "Using the strings <strong>${title}</strong> and <strong>${short_link}</strong> you can fully customize your tweet output."
+msgstr "Tweet çıktınızı, <strong>${title}</strong> ve <strong>${short_link}</strong> dizilerini kullanarak özelleştirebilirsiniz."
+
+#: sexy-bookmarks.php:461
+msgid "Example Configurations:"
+msgstr "Örnek Yapılandırmalar:"
+
+#: sexy-bookmarks.php:463
+msgid "or"
+msgstr "veya"
+
+#: sexy-bookmarks.php:466
+msgid "Configure Tweet:"
+msgstr "Tweet'i Yapılandır:"
+
+#: sexy-bookmarks.php:466
+msgid "Characters:"
+msgstr "Karakterler:"
+
+#: sexy-bookmarks.php:468
+msgid "Example Tweet Output:"
+msgstr "Örnek Tweet Çıktısı:"
+
+#: sexy-bookmarks.php:470
 msgid "Which URL Shortener?"
-msgstr "Hangi URL kısaltma servisi? "
+msgstr "URL Kısaltıcı?"
 
-#: sexy-bookmarks.php:287
-msgid "Reset all Short URLs"
-msgstr "Bütün kısaltılmış URL'leri sıfırla"
-
-#: sexy-bookmarks.php:352
-msgid "Yahoo! Buzz Defaults:"
-msgstr "Ön tanımlı Yahoo! Buzz ayarları:"
-
-#: sexy-bookmarks.php:353
-msgid "Default Content Category:"
-msgstr "Ön tanımlı içerik kategorisi:"
-
-#: sexy-bookmarks.php:373
-msgid "Default Media Type:"
-msgstr "Ön tanımlı medya tipi:"
-
-#: sexy-bookmarks.php:387
-msgid "Twittley Defaults:"
-msgstr "Ön tanımlı Twittley Ayarları:"
-
-#: sexy-bookmarks.php:388
-msgid "Primary Content Category:"
-msgstr "Ana içerik Kategorisi:"
-
-#: sexy-bookmarks.php:406
-msgid "Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different \"tag categories\" than other posts."
-msgstr "Sitenizi bir bütün olarak tanımlayan etiketleri virgülle ayrılmış bir liste şeklinde yazın. Bir yazı diğer yazılardan farklı \"tag categories\" olabileceğinden fazla özel bir tanımlama yapmayın."
-
-#: sexy-bookmarks.php:407
-msgid "This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here."
-msgstr "Buraya bir yazıyı etiketlendirmeyi unutmanız gibi olası hata durumlarında kullanılabilecek etiket listenizi girin. Bu sayede listedeki etiketler kullanılarak alakalı konu sorguları yapılabilecek."
-
-#: sexy-bookmarks.php:407
-msgid "Click here to close this message"
-msgstr "Mesajı kapatmak için buraya tıklayın."
-
-#: sexy-bookmarks.php:407
-msgid "close"
-msgstr "Kapat"
-
-#: sexy-bookmarks.php:409
-msgid "Default Tags:"
-msgstr "Ön tanımlı etiketler:"
-
-#: sexy-bookmarks.php:410
-#: sexy-bookmarks.php:546
-msgid "Click here for help with this option"
-msgstr "Bu seçenek hakkında yardım almak için buraya tıklayın."
-
-#: sexy-bookmarks.php:414
-msgid "General Functionality Options:"
-msgstr "Genel İşlevsellik Ayarları"
-
-#: sexy-bookmarks.php:415
-msgid "Add nofollow to the links?"
-msgstr "Linklere nofollow ibaresi ekle."
-
-#: sexy-bookmarks.php:417
-#: sexy-bookmarks.php:420
-#: sexy-bookmarks.php:471
 #: sexy-bookmarks.php:475
-#: sexy-bookmarks.php:549
+msgid "Don't use a shortener"
+msgstr "Kısaltıcı kullanma"
+
+#: sexy-bookmarks.php:489
+msgid "Reset all Short URLs"
+msgstr "Tüm Kısa URL'leri sıfırla"
+
+#: sexy-bookmarks.php:492
+#: sexy-bookmarks.php:504
+#: sexy-bookmarks.php:513
+#: sexy-bookmarks.php:525
+#: sexy-bookmarks.php:545
+msgid "User ID:"
+msgstr "Kullanıcı ID:"
+
+#: sexy-bookmarks.php:494
+#: sexy-bookmarks.php:515
+#: sexy-bookmarks.php:535
+#: sexy-bookmarks.php:547
+msgid "API Key:"
+msgstr "API Anahtarı:"
+
+#: sexy-bookmarks.php:500
+#: sexy-bookmarks.php:521
+#: sexy-bookmarks.php:531
+#: sexy-bookmarks.php:541
+msgid "Track Generated Links?"
+msgstr "Oluşturulan Bağlantıları Takip Et"
+
+#: sexy-bookmarks.php:506
+msgid "Password:"
+msgstr "Şifre:"
+
+#: sexy-bookmarks.php:554
+msgid "Yahoo! Buzz Defaults:"
+msgstr "Yahoo Buzz Varsayılanları:"
+
+#: sexy-bookmarks.php:555
+msgid "Default Content Category:"
+msgstr "Varsayılan İçerik Kategorisi:"
+
+#: sexy-bookmarks.php:574
+msgid "Default Media Type:"
+msgstr "Varsayılan Medya Tipi:"
+
+#: sexy-bookmarks.php:588
+msgid "Twittley Defaults:"
+msgstr "Twittley Varsayılanları:"
+
+#: sexy-bookmarks.php:589
+msgid "Primary Content Category:"
+msgstr "Birincil İçerik Kategorisi:"
+
+#: sexy-bookmarks.php:593
+msgid "Technology"
+msgstr "Teknoloji"
+
+#: sexy-bookmarks.php:594
+msgid "World &amp; Business"
+msgstr "Dünya ve İş"
+
+#: sexy-bookmarks.php:595
+msgid "Science"
+msgstr "Bilim"
+
+#: sexy-bookmarks.php:596
+msgid "Gaming"
+msgstr "Oyun"
+
+#: sexy-bookmarks.php:597
+msgid "Lifestyle"
+msgstr "Yaşam"
+
+#: sexy-bookmarks.php:598
+msgid "Entertainment"
+msgstr "Eğlence"
+
+#: sexy-bookmarks.php:599
+msgid "Sports"
+msgstr "Spor"
+
+#: sexy-bookmarks.php:600
+msgid "Offbeat"
+msgstr "Sıradışı"
+
+#: sexy-bookmarks.php:601
+msgid "Internet"
+msgstr "Internet"
+
+#: sexy-bookmarks.php:607
+msgid "Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different *tag categories* than other posts."
+msgstr "Sitenizdeki makalelerin genel etiketlerinin bir listesini virgül ile ayırarak girin. Çok spesifik olmaya çalışmayın, sonuçta bir makale diğerlerinden farklı etiket kategorilerine girebilir."
+
+#: sexy-bookmarks.php:608
+msgid "This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here."
+msgstr "Bu liste, bir makale için Wordpress etiketlerini girmeyi unutmanız durumunda, buraya girdiğiniz genel etiketler kullanılarak en azından biraz ilgili arama sorguları getirecek bir yedek olarak kullanılır."
+
+#: sexy-bookmarks.php:608
+msgid "Click here to close this message"
+msgstr "Bu mesajı kapatmak için buraya tıklayın"
+
+#: sexy-bookmarks.php:608
+msgid "close"
+msgstr "kapat"
+
+#: sexy-bookmarks.php:610
+msgid "Default Tags:"
+msgstr "Varsayılan Etiketler:"
+
+#: sexy-bookmarks.php:611
+#: sexy-bookmarks.php:754
+msgid "Click here for help with this option"
+msgstr "Bu seçenekle ilgili yardım için tıklayın"
+
+#: sexy-bookmarks.php:615
+msgid "General Functionality Options:"
+msgstr "Genel İşlevsellik Seçenekleri:"
+
+#: sexy-bookmarks.php:616
+msgid "Add nofollow to the links?"
+msgstr "Bağlantılara nofollow ekle."
+
+#: sexy-bookmarks.php:618
+#: sexy-bookmarks.php:621
+#: sexy-bookmarks.php:678
+#: sexy-bookmarks.php:682
+#: sexy-bookmarks.php:757
 msgid "No"
 msgstr "Hayır"
 
-#: sexy-bookmarks.php:418
+#: sexy-bookmarks.php:619
 msgid "Open links in new window?"
-msgstr "Linkler yeni pencerede mi açılsın? "
+msgstr "Bağlantıları yeni pencerede aç."
 
-#: sexy-bookmarks.php:427
+#: sexy-bookmarks.php:628
 msgid "Plugin Aesthetics"
-msgstr "Eklentinin Görsel Ayarları"
+msgstr "Eklenti Estetikleri"
 
-#: sexy-bookmarks.php:432
+#: sexy-bookmarks.php:633
 msgid "Warning!"
-msgstr "Dikkat!"
+msgstr "Uyarı!"
 
-#: sexy-bookmarks.php:433
-msgid "This option is intended "
-msgstr "Bu ayar"
+#: sexy-bookmarks.php:634
+msgid "This option in intended "
+msgstr "Bu seçenek"
 
-#: sexy-bookmarks.php:433
+#: sexy-bookmarks.php:634
 msgid "STRICTLY"
-msgstr " KESİNLİKLE "
+msgstr "KESİNLİKLE"
 
-#: sexy-bookmarks.php:433
-msgid " for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. No support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes. Furthermore, this feature was implemented as a favor to the thousands of you who asked for such a feature, and as such, I would appreciate it if you could refrain from sending nasty emails when you break the plugin due to coding errors of your own."
-msgstr "CSS/JS düzenlemeyi bilen ve ilgili görselleri kendilerince değiştirmek/düzenlemekle ilgilenenler içindir. Kodlama/görsel düzenleme hatalarınızdan sorumlu olmadığım gibi bu özellik için herhangi bir destek de verilmeyecektir. Ayrıca bu özellik gelen binlerce mesajdaki istekleri gerçekleştirebilmek için eklenmiştir. Kodlama hatalarınızdan doğan hatalar için saçma mesajlar göndermemenizi rica ederim. "
+#: sexy-bookmarks.php:634
+msgid " for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding/image-editing mistakes."
+msgstr "CSS ve JS dosyalarını düzenlemeyi bilen ve ilgili resim dosyalarını düzenlemek niyetinde olan kişiler için geçerlidir. Bu özellik için destek verilememektedir, çünkü kodlama/resim düzenleme hatalarınız konusunda yardımcı olmam mümkün değildir."
 
-#: sexy-bookmarks.php:434
+#: sexy-bookmarks.php:635
 msgid "How it works..."
-msgstr "Nasıl çalışıyor..."
+msgstr "Nasıl çalışır?"
 
-#: sexy-bookmarks.php:435
+#: sexy-bookmarks.php:636
 msgid "Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:"
-msgstr "Eklentinin stil ayarlarını kendi kişisel tasarımınızla değiştirmeyi seçtiğiniz için ayarları kaydettiğiniz zaman ilgili dosyalar sunucunuzda ayrı bir klasöre kopyalanacaktır. Dosya/klasör yeri şu şekilde olabilir:"
+msgstr "Eklentinin stil ayarlarını kendi özel değişiklikleriniz ile değiştirmek istediğiniz için, eklenti, dosyaları değişiklikleri kaydettiğiniz an sunucunuzda oluşturacağı yeni klasörlerden alacaktır. Dosya/klasör yerleri şu şekilde olacaktır:"
 
-#: sexy-bookmarks.php:446
+#: sexy-bookmarks.php:653
 msgid "Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done."
-msgstr "Ayarlarınızı kaydettiğinizde SexyBookmarks ikonlarını oluşturan görsel sprite'larını ve eşlik eden CSS'leri düzenleyebileceksiniz. Dikkat etmeniz gereken nokta, görselleri değiştirdikten sonra CSS'leri de düzenlemeniz gerektiğidir. Aksi taktirde görselin en, boy ve arkaplan yerleşimi gibi özellikleri önceki gibi kalacaktır."
+msgstr "Değişiklikleri kaydettiğinizde, SexyBookmarks'ın tüm ikonlarını barındıran resim sprite dosyasını ve yanındaki CSS dosyasını düzenleyebileceksiniz. Resimleri düzenledikten sonra CSS dsyasını da düzenlediğinizden emin olun, çünkü muhtemelen resim yükseklik, genişlik ve arkaplan pozisyonları düzenlemeniz bittikten sonra değişmiş olacak."
 
-#: sexy-bookmarks.php:447
+#: sexy-bookmarks.php:654
 msgid "Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory."
-msgstr "Küçük bir not daha... Stilleri ve görselleri düzenledikten ve kendi arkaplanlarınızı, ikonlarınızı ve CSS stillerinizi ekledikten sonra bu değişikliklerin ayarlar sayfasında görünmeyeceğine dikkat edin. Başka bir deyişle: Eğer göstermek üzere bir sosyal ağ seçtiyseniz ya da bir arkaplan seçtiyseniz orjinal eklenti klasöründeki görselleri gösterecektir."
+msgstr "Kısa not: Stilleri ve resimleri kendi özel arkaplanlarınızı, ikonlarınızı ve CSS stillerinizi içerecek şekilde düzenledikten sonra, bu değişikliklerin eklenti seçenek sayfasında görüntülenmeyeceğini unutmayın. Diğer bir deyişle, görüntülenecek ağlar veya kullanılacak arkaplanı seçtiğinizde, bu sayfa orijinal resimleri gösterecektir."
 
-#: sexy-bookmarks.php:449
-msgid "If you happen to completely screw up the code, you can follow these directions to reset the plugin back to normal and try again if you wish:"
-msgstr "Kodu tamamen alt üst eder ve içinden çıkamazsanız normale dönmek için bu ayarları izleyin ve bitirdikten sonra yeniden deneyin."
+#: sexy-bookmarks.php:655
+msgid "In Case of Emergency"
+msgstr "Acil Bir Durumda"
 
-#: sexy-bookmarks.php:451
+#: sexy-bookmarks.php:656
+msgid "If you happen to mess things up, you can follow these directions to reset the plugin back to normal and try again if you wish:"
+msgstr "Herhangi bir şeyin bozulması durumunda, bu yönergeleri takip ederek eklentiyi sıfırlayabilir ve isterseniz tekrar deneyebilirsiniz:"
+
+#: sexy-bookmarks.php:658
 msgid "Login to your server via FTP or SSH. (whichever you are more comfortable with)"
-msgstr "Sunucunuza FTP veya SSH yoluyla giriş yapın (Hangisini tercih ederseniz)"
+msgstr "Sunucunuza FTP veya SSH ile bağlanın. (hangisini tercih ediyorsanız)"
 
-#: sexy-bookmarks.php:452
+#: sexy-bookmarks.php:659
 msgid "Navigate to your wp-content directory."
-msgstr "wp-content klasörünüze göz atın."
+msgstr "wp-content klasörünüze gidin."
 
-#: sexy-bookmarks.php:453
+#: sexy-bookmarks.php:660
 msgid "Delete the directory named \"sexy-mods\"."
-msgstr "\"sexy-mods\" klasörünü silin."
+msgstr "\"sexy-mods\" adlı klasörü silin."
 
-#: sexy-bookmarks.php:454
+#: sexy-bookmarks.php:661
 msgid "Login to your WordPress dashboard."
-msgstr "Wordpress ana sayfanıza giriş yapın."
+msgstr "Wordpress dashboard'unuza girin."
 
-#: sexy-bookmarks.php:455
-msgid "Go to the SexyBookmarks plugin options page. (settings->sexybookmarks)"
-msgstr "SexyBookmarks eklentisinin ayarlar sayfasına gidin. (ayarlar -> sexybookmarks)"
+#: sexy-bookmarks.php:662
+msgid "Go to the SexyBookmarks plugin options page. (Settings->SexyBookmarks)"
+msgstr "SexyBookmarks eklenti seçene sayfasına gidin. (Ayarlar->SexyBookmarks)"
 
-#: sexy-bookmarks.php:456
+#: sexy-bookmarks.php:663
 msgid "Deselect the \"Use custom mods\" option."
-msgstr "\"Use custom mods\" ayarını iptal edin."
+msgstr "\"Özel değişiklikleri kullan\" seçeneğinin seçimini kaldırın."
 
-#: sexy-bookmarks.php:457
+#: sexy-bookmarks.php:664
 msgid "Save your changes."
-msgstr "Ayarlarınızı kaydedin."
+msgstr "Değişikliklerinizi kaydedin."
 
-#: sexy-bookmarks.php:463
+#: sexy-bookmarks.php:666
+msgid "Close Message"
+msgstr "Mesajı Kapat"
+
+#: sexy-bookmarks.php:670
 msgid "Override Styles With Custom Mods Instead?"
-msgstr "Stilleri kişisel ayarlarınızla değiştirmek istiyor musunuz? "
+msgstr "Stilleri Özel Değişiklikler ile Değiştir."
 
-#: sexy-bookmarks.php:468
+#: sexy-bookmarks.php:675
 msgid "jQuery Related Options"
-msgstr "jQuery ile ilgili ayarlar."
+msgstr "jQuery ile İlgili Seçenekler"
 
-#: sexy-bookmarks.php:469
+#: sexy-bookmarks.php:676
 msgid "Animate-expand multi-lined bookmarks?"
-msgstr "Çok satırlı sosyal yer imleri otomatik olarak genişletilsin mi?  "
+msgstr "Birden çok satırlı yer imlerini animasyonla genişlet."
 
-#: sexy-bookmarks.php:472
+#: sexy-bookmarks.php:679
 msgid "Auto-space/center the bookmarks?"
-msgstr "Sosyal yer imleri otomatik olarak ortalansın mı? "
+msgstr "Yer imlerini otomatik ortala/boşluklandır"
 
-#: sexy-bookmarks.php:473
+#: sexy-bookmarks.php:680
 msgid "Space"
-msgstr "Boşluk"
+msgstr "Boşluklandır"
 
-#: sexy-bookmarks.php:474
+#: sexy-bookmarks.php:681
 msgid "Center"
 msgstr "Ortala"
 
-#: sexy-bookmarks.php:476
+#: sexy-bookmarks.php:683
 msgid "jQuery Compatibility Fix"
-msgstr "jQuery uyumluluk düzeltmesi"
+msgstr "jQuery Uyumluluk Düzeltmesi"
 
-#: sexy-bookmarks.php:477
+#: sexy-bookmarks.php:684
 msgid "Check this box ONLY if you notice jQuery being loaded twice in your source code!"
-msgstr "Lütfen SADECE  jQuery'nin kodunuzda iki kere yüklendiğini farkettiyseniz bu kutuyu işaretleyin."
+msgstr "Bu kutuyu SADECE kaynak kodunuzda jQuery'nin iki defa yüklendiğini görürseniz seçin!"
 
-#: sexy-bookmarks.php:480
+#: sexy-bookmarks.php:686
+msgid "Load scripts in Footer"
+msgstr "Script'leri sayfa altlığında yükle"
+
+#: sexy-bookmarks.php:687
+msgid "Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer."
+msgstr "SexyBookmarks javascript kodunun sitenizin sayfa altlığında yüklenmesini istiyorsanız bu kutuyu işaretleyin."
+
+#: sexy-bookmarks.php:689
 msgid "Background Image Options"
-msgstr "Arkaplan görsel ayarları"
+msgstr "Arkaplan Resim Seçenekleri"
 
-#: sexy-bookmarks.php:482
+#: sexy-bookmarks.php:691
 msgid "Use a background image?"
-msgstr "Arkaplan görseli kullanılsın mı? "
+msgstr "Arkaplan resmi kullan."
 
-#: sexy-bookmarks.php:509
+#: sexy-bookmarks.php:724
 msgid "Menu Placement"
-msgstr "Menü yerleşimi"
+msgstr "Menü Yerleşimi"
 
-#: sexy-bookmarks.php:515
-msgid "Need help with this? Find it in the "
-msgstr "Bunun için yardıma mı ihtiyacınız var? "
+#: sexy-bookmarks.php:730
+#, php-format
+msgid "Need help with this? Find it in the <a href=\"%s\">official install guide."
+msgstr "Yardıma mı ihtiyacınız var? <a href=\"%s\">Resmi yükleme kılavuzunda bulabilirsiniz."
 
-#: sexy-bookmarks.php:515
-msgid "official install guide"
-msgstr "Tüm detayları yükleme kılavuzunda bulabilirsiniz."
+#: sexy-bookmarks.php:736
+msgid "Menu Location (in relation to content):"
+msgstr "Menü Yeri (içeriğe göre):"
 
-#: sexy-bookmarks.php:523
-msgid "This feature is still in the experimental phase, so please "
-msgstr "Bu özellik hala deneme sürecinde olduğundan lütfen,"
-
-#: sexy-bookmarks.php:523
-msgid "report any bugs"
-msgstr "hataları bildirin."
-
-#: sexy-bookmarks.php:523
-msgid "you may find"
-msgstr "bulabilirsiniz."
-
-#: sexy-bookmarks.php:529
-msgid "Menu Location (in relevance to content):"
-msgstr "Menü yerleşimi (içerikle alakalı):"
-
-#: sexy-bookmarks.php:530
+#: sexy-bookmarks.php:737
 msgid "Above Content"
-msgstr "İçeriğin Üstünde"
+msgstr "İçeriğin Üzerinde"
 
-#: sexy-bookmarks.php:531
+#: sexy-bookmarks.php:738
 msgid "Below Content"
 msgstr "İçeriğin Altında"
 
-#: sexy-bookmarks.php:532
+#: sexy-bookmarks.php:739
+msgid "Above & Below Content"
+msgstr "İçeriğin Üzerinde ve Altında"
+
+#: sexy-bookmarks.php:740
 msgid "Manual Mode"
-msgstr "Elle ayarlama"
+msgstr "Elle Seçim"
 
-#: sexy-bookmarks.php:533
+#: sexy-bookmarks.php:741
 msgid "Posts, pages, or the whole shebang?"
-msgstr "Yazılar, sayfalar veya heryerde?"
+msgstr "Makaleler, Sayfalar ve Diğer Herşey"
 
-#: sexy-bookmarks.php:547
+#: sexy-bookmarks.php:745
+msgid "Posts Only"
+msgstr "Sadece Makaleler"
+
+#: sexy-bookmarks.php:746
+msgid "Pages Only"
+msgstr "Sadece Sayfalar"
+
+#: sexy-bookmarks.php:747
+msgid "Index Only"
+msgstr "Sadece Anasayfa"
+
+#: sexy-bookmarks.php:748
+msgid "Posts &amp; Pages"
+msgstr "Makaleler ve Sayfalar"
+
+#: sexy-bookmarks.php:749
+msgid "Posts &amp; Index"
+msgstr "Makaleler ve Anasayfa"
+
+#: sexy-bookmarks.php:750
+msgid "Pages &amp; Index"
+msgstr "Sayfalar ve Anasayfa"
+
+#: sexy-bookmarks.php:751
+msgid "Posts, Pages, &amp; Index"
+msgstr "Makaleler, Sayfalar ve Anasayfa"
+
+#: sexy-bookmarks.php:755
 msgid "Show in RSS feed?"
-msgstr "RSS beslemelerinde gösterilsin mi? "
+msgstr "RSS beslemesinde göster."
 
-#: sexy-bookmarks.php:551
+#: sexy-bookmarks.php:759
 msgid "Hide menu from mobile browsers?"
-msgstr "Menü mobil aygıtlardan gizlensin mi? "
+msgstr "Mobil tarayıcılarda menüyü gizle."
 
-#: sexy-bookmarks.php:559
+#: sexy-bookmarks.php:768
 msgid "Save Changes"
-msgstr "Ayarları kaydet"
+msgstr "Değişiklikleri Kaydet"
 
-#: sexy-bookmarks.php:565
+#: sexy-bookmarks.php:772
+msgid "Reset Settings"
+msgstr "Değişiklikleri Sıfırla"
+
+#: sexy-bookmarks.php:778
 msgid "Helpful Plugin Links"
-msgstr "Faydalı eklenti bağlantıları"
+msgstr "Faydalı Eklenti Bağlantıları"
 
-#: sexy-bookmarks.php:570
+#: sexy-bookmarks.php:783
 msgid "Installation &amp; Usage Guide"
-msgstr "Yükleme &amp; Kullanım Kılavuzu"
+msgstr "Yükleme ve Kullanım Kılavuzu"
 
-#: sexy-bookmarks.php:571
+#: sexy-bookmarks.php:784
 msgid "Frequently Asked Questions"
 msgstr "Sıkça Sorulan Sorular"
 
-#: sexy-bookmarks.php:572
+#: sexy-bookmarks.php:785
 msgid "Bug Submission Form"
 msgstr "Hata Bildirim Formu"
 
-#: sexy-bookmarks.php:573
+#: sexy-bookmarks.php:786
 msgid "Feature Request Form"
 msgstr "Özellik İstek Formu"
 
-#: sexy-bookmarks.php:574
+#: sexy-bookmarks.php:787
 msgid "Submit a Translation"
-msgstr "Tercüme gönderin"
+msgstr "Bir Çeviri Gönder"
 
-#: sexy-bookmarks.php:575
-msgid "Other SexyBookmarks Platforms"
-msgstr "Diğer SexyBookmarks Platformları"
+#: sexy-bookmarks.php:788
+msgid "Shareaholic Browsers Add-ons"
+msgstr "Shareaholic Tarayıcı Eklentileri"
 
-#: sexy-bookmarks.php:582
-msgid "Plugin Sponsors"
-msgstr "Eklenti Sponsorları"
+#: sexy-bookmarks.php:789
+msgid "Thanks &amp; Credits"
+msgstr "Teşekkür ve Diğerleri"
 
-#: sexy-bookmarks.php:614
-msgid "Support by Donating"
-msgstr "Bağış yaparak katkıda bulunun"
+#: sexy-bookmarks.php:804
+msgid "SexyBookmarks"
+msgstr "SexyBookmarks"
 
-#: sexy-bookmarks.php:618
-msgid "Surely the fact that we're making the web a sexier place one blog at a time is worth a drink or three, right?"
-msgstr "Kesinlikle her blogda web'i daha seksi bir hale getiriyoruz... Sizce bir içkiyi haketmiyor muyuz? "
+#: sexy-bookmarks.php:838
+msgid "Settings"
+msgstr "Ayarlar"
 
-#: sexy-bookmarks.php:620
-#: sexy-bookmarks.php:623
-msgid "Help support the development of this plugin by donating!"
-msgstr "Bu eklentinin gelişimini bağış yaparak destekleyebilirsiniz!"
+#: includes/bookmarks-data.php:21
+#, php-format
+msgid "Check this box to include %s in your bookmarking menu"
+msgstr "Yer imi menünüzde %s ağını içermek için bu kutuya tıklayın"
 
-#: sexy-bookmarks.php:632
-msgid "Top Supporters"
-msgstr "En çok destekleyenler"
+#: includes/bookmarks-data.php:27
+#: includes/bookmarks-data.php:82
+#: includes/bookmarks-data.php:167
+#: includes/bookmarks-data.php:202
+#: includes/bookmarks-data.php:262
+#: includes/bookmarks-data.php:267
+#: includes/bookmarks-data.php:272
+#: includes/bookmarks-data.php:277
+#: includes/bookmarks-data.php:322
+#: includes/bookmarks-data.php:337
+#: includes/bookmarks-data.php:347
+#: includes/bookmarks-data.php:352
+#: includes/bookmarks-data.php:372
+msgid "Submit this to "
+msgstr "Bunu gönder:"
 
-#: sexy-bookmarks.php:645
-msgid "Shout-Outs"
-msgstr "Notlar"
+#: includes/bookmarks-data.php:32
+#: includes/bookmarks-data.php:37
+#: includes/bookmarks-data.php:52
+#: includes/bookmarks-data.php:67
+#: includes/bookmarks-data.php:72
+#: includes/bookmarks-data.php:87
+#: includes/bookmarks-data.php:112
+#: includes/bookmarks-data.php:147
+#: includes/bookmarks-data.php:152
+#: includes/bookmarks-data.php:157
+#: includes/bookmarks-data.php:172
+#: includes/bookmarks-data.php:177
+#: includes/bookmarks-data.php:232
+#: includes/bookmarks-data.php:282
+#: includes/bookmarks-data.php:302
+#: includes/bookmarks-data.php:362
+#: includes/bookmarks-data.php:382
+#: includes/bookmarks-data.php:402
+#: includes/bookmarks-data.php:412
+#: includes/bookmarks-data.php:417
+#: includes/bookmarks-data.php:427
+#: includes/bookmarks-data.php:437
+#: includes/bookmarks-data.php:452
+msgid "Share this on "
+msgstr "Bunu paylaş:"
 
-#: sexy-bookmarks.php:650
-msgid "Fugue Icons: Pinvoke"
-msgstr "Fugue İkonları: Pinvoke"
+#: includes/bookmarks-data.php:42
+msgid "Digg this!"
+msgstr "Bunu Digg'le!"
 
-#: sexy-bookmarks.php:651
-msgid "Fugue Icon Sprite: Alison Barrett"
-msgstr "Fugue İkon Sprite'ları: Alison Barrett"
+#: includes/bookmarks-data.php:47
+msgid "Post this on "
+msgstr "Bunu postala:"
 
-#: sexy-bookmarks.php:652
-msgid "Original Skin Icons: Function"
-msgstr "Orjinal stil İkonları: Function"
+#: includes/bookmarks-data.php:57
+msgid "Buzz up!"
+msgstr "Buzz!"
 
-#: sexy-bookmarks.php:653
-msgid "Bug Patch: Artem Russakovskii"
-msgstr "Hata Yaması: Artem Russakovskii"
+#: includes/bookmarks-data.php:62
+msgid "Stumble upon something good? Share it on StumbleUpon"
+msgstr "İyi bir şeye mi denk geldin? StumbleUpon üzerinde paylaş"
 
-#: sexy-bookmarks.php:654
-msgid "Twitter encoding fix: Gautam Gupta"
-msgstr "Twitter kodlama düzeltmesi: Gautam Gupta"
+#: includes/bookmarks-data.php:77
+#: includes/bookmarks-data.php:222
+#: includes/bookmarks-data.php:247
+#: includes/bookmarks-data.php:392
+msgid "Post this to "
+msgstr "Bunu postala:"
 
-#: sexy-bookmarks.php:655
-msgid "bit.ly bug fix: Konstantin Kovshenin"
-msgstr "bit.ly hata düzeltmesi: Konstantin Kovshenin"
+#: includes/bookmarks-data.php:92
+msgid "Tweet This!"
+msgstr "Bunu Tweet'le!"
 
-#: sexy-bookmarks.php:662
-msgid "Translations"
-msgstr "Tercümeler"
+#: includes/bookmarks-data.php:96
+msgid "an 'Email to a Friend' link"
+msgstr "bir 'Arkadaşa E-Postala' bağlantısı"
 
-#: sexy-bookmarks.php:667
-msgid "RU Translation: Yuri Gribov"
-msgstr "Rusça tercüme: Yuri Gribov"
+#: includes/bookmarks-data.php:97
+msgid "Email this to a friend?"
+msgstr "Bunu bir arkadaşa e-postala"
 
-#: sexy-bookmarks.php:668
-msgid "FR Translation: Maitre Mo"
-msgstr "Fransızca Tercüme: Maitre Mo"
+#: includes/bookmarks-data.php:98
+#: includes/bookmarks-data.php:458
+#: includes/bookmarks-data.php:463
+#: includes/bookmarks-data.php:468
+msgid "(sent via shareaholic)"
+msgstr "(shareaholic aracılığıyla)"
 
-#: sexy-bookmarks.php:669
-msgid "RO Translation: Ghenciu Ciprian"
-msgstr "Romence Tercüme: Ghenciu Ciprian"
+#: includes/bookmarks-data.php:102
+msgid "Suggest this article to "
+msgstr "Bu makaleyi öner:"
 
-#: sexy-bookmarks.php:670
-msgid "IT Translation: Carlo Veltri"
-msgstr "İtalyanca Tercüme: Carlo Veltri"
+#: includes/bookmarks-data.php:103
+msgid "New tip submitted via the SexyBookmarks Plugin!"
+msgstr "Yeni ipucu SexyBookmarks Eklentisi ile gönderildi!"
 
-#: sexy-bookmarks.php:671
-msgid "ES Translation: Javier Pimienta"
-msgstr "İspanyolca Tercüme: Javier Pimienta"
+#: includes/bookmarks-data.php:106
+msgid "a 'Subscribe to Comments' link"
+msgstr "bir 'Yorumlara Üye Ol' bağlantısı"
 
-#: sexy-bookmarks.php:672
-msgid "CN Translation: Joojen"
-msgstr "Çince Tercüme: Joojen"
+#: includes/bookmarks-data.php:107
+msgid "Subscribe to the comments for this post?"
+msgstr "Bu makale için yorumlara üye ol."
+
+#: includes/bookmarks-data.php:117
+msgid "Seed this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:122
+#: includes/bookmarks-data.php:127
+#: includes/bookmarks-data.php:137
+#: includes/bookmarks-data.php:142
+#: includes/bookmarks-data.php:182
+#: includes/bookmarks-data.php:187
+#: includes/bookmarks-data.php:192
+#: includes/bookmarks-data.php:197
+#: includes/bookmarks-data.php:217
+#: includes/bookmarks-data.php:387
+#: includes/bookmarks-data.php:407
+#: includes/bookmarks-data.php:432
+msgid "Add this to "
+msgstr "Bunu ekle:"
+
+#: includes/bookmarks-data.php:132
+msgid "Post on Google Buzz"
+msgstr "Google Buzz'da paylaş:"
+
+#: includes/bookmarks-data.php:162
+msgid "Mark this on "
+msgstr "Bunu işaretle:"
+
+#: includes/bookmarks-data.php:176
+#: includes/bookmarks-data.php:181
+#: includes/bookmarks-data.php:186
+#: includes/bookmarks-data.php:191
+#: includes/bookmarks-data.php:196
+msgid " (Russian)"
+msgstr "(Rusça)"
+
+#: includes/bookmarks-data.php:207
+msgid "Send this page to "
+msgstr "Bu sayfayı gönder:"
+
+#: includes/bookmarks-data.php:212
+msgid "Bump this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:227
+msgid "Save this to "
+msgstr "Bunu kaydet:"
+
+#: includes/bookmarks-data.php:237
+msgid "Tip this to "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:242
+msgid "Sphinn this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:252
+msgid "Grind this! on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:257
+msgid "Ping this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:261
+#: includes/bookmarks-data.php:266
+msgid " (Dutch)"
+msgstr "(Hollandaca)"
+
+#: includes/bookmarks-data.php:287
+msgid "Blend this!"
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:291
+msgid " (Polish)"
+msgstr "(Polonyaca)"
+
+#: includes/bookmarks-data.php:292
+msgid "Add this to Wykop!"
+msgstr "Bunu Wykop'a ekle!"
+
+#: includes/bookmarks-data.php:297
+msgid "Engage with this article!"
+msgstr "Bu makaleyi paylaş!"
+
+#: includes/bookmarks-data.php:306
+msgid " (Swedish)"
+msgstr "(İsveççe)"
+
+#: includes/bookmarks-data.php:307
+msgid "Push this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:311
+msgid " (Japanese)"
+msgstr "(Japonca)"
+
+#: includes/bookmarks-data.php:312
+msgid "Bookmarks this on "
+msgstr "Bunu yer imi yap:"
+
+#: includes/bookmarks-data.php:317
+msgid "Store this link on "
+msgstr "Bunu kaydet:"
+
+#: includes/bookmarks-data.php:327
+msgid "Add to a lense on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:332
+msgid "Submit this story to "
+msgstr "Bu makaleyi paylaş:"
+
+#: includes/bookmarks-data.php:342
+msgid "Clip this to "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:346
+#: includes/bookmarks-data.php:351
+msgid " (Spanish)"
+msgstr "(İspanyolca)"
+
+#: includes/bookmarks-data.php:357
+msgid "Submit this link to "
+msgstr "Bu bağlantıyı paylaş:"
+
+#: includes/bookmarks-data.php:367
+msgid "Submit tip to "
+msgstr "Bu ipucunu paylaş:"
+
+#: includes/bookmarks-data.php:377
+msgid "Promote this on "
+msgstr "Bunu destekle:"
+
+#: includes/bookmarks-data.php:397
+msgid "Blog this on "
+msgstr "Bunu blogla:"
+
+#: includes/bookmarks-data.php:411
+msgid " (Estonian)"
+msgstr "(Estonyaca)"
+
+#: includes/bookmarks-data.php:422
+msgid "Add this link to "
+msgstr "Bu bağlantıyı ekle:"
+
+#: includes/bookmarks-data.php:426
+msgid "(Italian)"
+msgstr "(İtalyanca)"
+
+#: includes/bookmarks-data.php:442
+msgid "Spring this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:447
+msgid "Box this on "
+msgstr "Bunu paylaş:"
+
+#: includes/bookmarks-data.php:457
+#: includes/bookmarks-data.php:462
+#: includes/bookmarks-data.php:467
+msgid "Email this via "
+msgstr "Bunu e-postala:"
+
+#: includes/bookmarks-data.php:472
+msgid "Share this via "
+msgstr "Bunu paylaş:"
+
+#: includes/public.php:226
+msgid "An unknown error occurred in SexyBookmarks"
+msgstr "SexyBookmarks'ta bilinmeyen bir hata oluştu"
+
+#: includes/public.php:478
+msgid "SexyBookmarks has been disabled on this page"
+msgstr "SexyBookmarks bu syfada devre dışı bırakıldı"
 

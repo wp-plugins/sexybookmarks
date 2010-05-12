@@ -47,7 +47,41 @@ function sexy_select_option_group($field, $options) {
 function bookmark_list_item($name, $opts=array()) {
 	global $sexy_plugopts, $sexy_bookmarks_data;
 
-	$url=$sexy_bookmarks_data[$name]['baseUrl'];
+  // If Twitter, check for custom tweet configuration and modify tweet accordingly
+  if($name == 'shr-twitter') {
+    $tsrc='&amp;source=shareaholic';
+    if(!empty($sexy_plugopts['tweetconfig'])) {
+      $needle = array('${title}', '${short_link}');
+      $new_needle = array('SHORT_TITLE', 'FETCH_URL');
+      $tconfig = str_replace($needle, $new_needle, $sexy_plugopts['tweetconfig']);
+      $url=$sexy_bookmarks_data[$name]['baseUrl'].urlencode($tconfig).$tsrc;
+    }
+    // Otherwise, use default tweet format
+    else {
+      $url=$sexy_bookmarks_data[$name]['baseUrl'].'SHORT_TITLE+-+FETCH_URL'.$tsrc;
+    }
+  }
+  // Otherwise, use default baseUrl format
+  else {
+	  $url=$sexy_bookmarks_data[$name]['baseUrl'];
+  }
+
+
+	$onclick = "";
+	if($name == 'shr-facebook') {
+		$onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
+	}
+  if($name == 'shr-buzzster') {
+    $topt = '';
+  }
+  else {
+    if($sexy_plugopts['targetopt'] == '_blank') {
+      $topt = ' class="external"';
+    }
+    else {
+      $topt = '';
+    }
+  }
 	foreach ($opts as $key=>$value) {
 		$url=str_replace(strtoupper($key), $value, $url);
 	}
@@ -57,20 +91,20 @@ function bookmark_list_item($name, $opts=array()) {
 			$name,
 			$url,
 			$sexy_plugopts['reloption'],
-			$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
+			$topt,
 			$sexy_bookmarks_data[$name]['share'],
 			$sexy_bookmarks_data[$name]['share']
 		);
-
 	}
 	else {
 		return sprintf(
-			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s">&nbsp;</a>'."\n\t\t".'</li>'."\n",
+			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s"%s>&nbsp;</a>'."\n\t\t".'</li>'."\n",
 			$name,
 			$url,
 			$sexy_plugopts['reloption'],
-			$sexy_plugopts['targetopt']=="_blank"?' class="external"':'',
-			$sexy_bookmarks_data[$name]['share']
+			$topt,
+			$sexy_bookmarks_data[$name]['share'],
+			$onclick
 		);
 	}
 }

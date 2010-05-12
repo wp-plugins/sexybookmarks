@@ -31,7 +31,7 @@ function sexy_is_bot() {
 	return $isBot;
 }
 function sexy_is_mobile() {
-	$op = strtolower($_SERVER['	HTTP_X_OPERAMINI_PHONE']);
+	$op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	$ac = strtolower($_SERVER['HTTP_ACCEPT']);
 	$isMobile = strpos($ac, 'application/vnd.wap.xhtml+xml') !== false
