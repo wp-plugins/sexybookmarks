@@ -20,7 +20,6 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Resolved security issue
 * Fixed GoogleBuzz link (didn't validate)
 * Fixed mailto link
-* Changed jQuery to $ in all scripts (with noconflict)
 * Changed all CSS classes from sexy- to shr- in public css
 * Renamed images from sexy- to shr-
 * Added new Google Reader and Twitter icons
