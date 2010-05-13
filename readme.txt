@@ -4,7 +4,7 @@ Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu
 Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 3.2.1.1
-Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
+Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three. 
 
 
 == Description ==
