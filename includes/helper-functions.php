@@ -13,13 +13,18 @@ function shr_preFlight_Checks() {
 function get_sprite_file($opts, $type)
 {
 	$spritegen = 'http://www.shareaholic.com/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
-  $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite-'.SEXY_vNum.'.'.$type;
+
   $content = FALSE;
 
-  if ( $type == 'png' )
-    $fp_opt = 'rb';
-  else
+  if($type == 'css') {
+    $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite-'.SEXY_vNum.'.'.$type;
     $fp_opt = 'r';
+  }
+  if($type == 'png') {
+    $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite.'.$type;
+    $fp_opt = 'rb';
+  }
+
 
   if ( function_exists('fopen') )
   {
@@ -33,7 +38,7 @@ function get_sprite_file($opts, $type)
       $http_opts = array(
               'http'=>array(
                 'method'=>"GET",
-                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SEXY_vNum . "\r\n"
+                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SEXY_vNum . "\r\n"."Referer: ".bloginfo('url')."\r\n"
               )
       );
 
@@ -68,6 +73,7 @@ function get_sprite_file($opts, $type)
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
     curl_setopt($ch, CURLOPT_TIMEOUT, 6);
     curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SEXY_vNum);
+    curl_setopt($ch, CURLOPT_REFERER, bloginfo('url'));
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER, TRUE);

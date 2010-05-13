@@ -25,6 +25,7 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 	text-decoration:none;
 	cursor:pointer;
 }
+#tweetconfig {width:auto !important;height:auto !important;}
 #twitter-defaults, #ybuzz-defaults, #twittley-defaults, #genopts {margin:20px 0;}
 #tweetinstructions {font-size:11px;}
 #tweetcounter {margin-left:192px;font-size:9px;}

@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.1
+Version: 3.2.1.2
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -16,7 +16,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.2.1');
+define('SEXY_vNum','3.2.1.2');
 
 
 
@@ -140,7 +140,13 @@ function shr_activation_hook() {
 	if(shr_preFlight_Checks()) {
 		$spritegen_opts = '&service=';
 		foreach ( $sexy_plugopts['bookmark'] as $bm ) {
-			$spritegen_opts .= substr($bm, 4) . ',';
+      if(strpos($bm, 'sexy-') {
+        $scrubbed = str_replace('sexy-', '', $bm);
+      }
+      elseif(strpos($bm, 'shr-') {
+        $scrubbed = str_replace('shr-', '', $bm);
+      }
+			$spritegen_opts .= $scrubbed . ',';
 		}
 		$spritegen_opts = substr($spritegen_opts,0,-1);
 		$spritegen_opts .= '&bgimg=' . $sexy_plugopts['bgimg'] . '&expand=' . $sexy_plugopts['expand'];
@@ -317,6 +323,7 @@ function shr_settings_page() {
 					$spritegen_opts .= '&bgimg=' . $_POST['bgimg'] . '&expand=' . $_POST['expand'];
 					$save_return[0] = get_sprite_file($spritegen_opts, 'png');
 					$save_return[1] = get_sprite_file($spritegen_opts, 'css');
+          echo $spritegenopts;
 				}
 				if($save_return[0] == 2 || $save_return[1] == 2) {
 					echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.__('WARNING: The request for a custom sprite has timed out. Reverting to default sprite files.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';

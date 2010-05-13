@@ -4,7 +4,7 @@ Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu
 Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 3.1.3
-Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three. 
+Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
 == Description ==
@@ -17,6 +17,10 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Fixed persistent bug from 3.2
+* Fixed error in stylesheet name
+* Added referrer to API request
+* Fixed JS counter
 * Added Greek translation
 * Fixed charset problem with htmlspecialchars()
 * Names are now automatically replaced from sexy- to shr- upon upgrade/activation
@@ -109,7 +113,13 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
-= 3.2.1 =
+= 3.2.1.2 =
+* Fixed persistent bug from 3.2
+* Fixed error in stylesheet name
+* Added referrer to API request
+* Fixed JS counter
+
+= 3.2.1.1 =
 * Fixed charset problem with htmlspecialchars()
 * Names are now automatically replaced from sexy- to shr- upon upgrade/activation
 * Fixed issue causing one icon to display multiple times
@@ -496,6 +506,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Initial release!
 
 == Upgrade Notice ==
+= 3.2.1.2 =
+Bug fixes for persistent bugs that weren't fixed in v3.2.1.1
+
 = 3.2.1.1 =
 Bug fix release for all bugs that arose with v3.2
 
