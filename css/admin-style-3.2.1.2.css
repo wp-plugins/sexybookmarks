@@ -25,10 +25,10 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 	text-decoration:none;
 	cursor:pointer;
 }
-#tweetconfig {width:auto !important;height:auto !important;}
+#tweetconfig {width:100% !important;height:40px !important;}
 #twitter-defaults, #ybuzz-defaults, #twittley-defaults, #genopts {margin:20px 0;}
 #tweetinstructions {font-size:11px;}
-#tweetcounter {margin-left:192px;font-size:9px;}
+#tweetcounter {margin-left:192px;font-size:9px;position:absolute;margin:0 !important;right:10px;}
 #tweetcounter span {}
 #tweetoutput {margin-top:15px !important;}
 /* End General Styles */

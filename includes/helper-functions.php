@@ -38,7 +38,7 @@ function get_sprite_file($opts, $type)
       $http_opts = array(
               'http'=>array(
                 'method'=>"GET",
-                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SEXY_vNum . "\r\n"."Referer: ".bloginfo('url')."\r\n"
+                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SEXY_vNum . "\r\n"."Referer: ".get_bloginfo('url')."\r\n"
               )
       );
 
@@ -73,7 +73,7 @@ function get_sprite_file($opts, $type)
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
     curl_setopt($ch, CURLOPT_TIMEOUT, 6);
     curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SEXY_vNum);
-    curl_setopt($ch, CURLOPT_REFERER, bloginfo('url'));
+    curl_setopt($ch, CURLOPT_REFERER, get_bloginfo('url'));
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_BINARYTRANSFER, TRUE);

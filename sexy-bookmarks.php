@@ -140,10 +140,10 @@ function shr_activation_hook() {
 	if(shr_preFlight_Checks()) {
 		$spritegen_opts = '&service=';
 		foreach ( $sexy_plugopts['bookmark'] as $bm ) {
-      if(strpos($bm, 'sexy-') {
+      if(strpos($bm, 'sexy-')) {
         $scrubbed = str_replace('sexy-', '', $bm);
       }
-      elseif(strpos($bm, 'shr-') {
+      elseif(strpos($bm, 'shr-')) {
         $scrubbed = str_replace('shr-', '', $bm);
       }
 			$spritegen_opts .= $scrubbed . ',';
@@ -323,7 +323,6 @@ function shr_settings_page() {
 					$spritegen_opts .= '&bgimg=' . $_POST['bgimg'] . '&expand=' . $_POST['expand'];
 					$save_return[0] = get_sprite_file($spritegen_opts, 'png');
 					$save_return[1] = get_sprite_file($spritegen_opts, 'css');
-          echo $spritegenopts;
 				}
 				if($save_return[0] == 2 || $save_return[1] == 2) {
 					echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.__('WARNING: The request for a custom sprite has timed out. Reverting to default sprite files.', 'sexybookmarks').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
@@ -377,32 +376,33 @@ function shr_settings_page() {
         'shorty', 'pageorpost', 'tweetconfig', 'ybuzzcat', 'ybuzzmed',
         'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
         'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods', 'scriptInFooter'
-			)as $field) { 
+			)as $field) {
         $sexy_plugopts[$field] = $_POST[$field];
       }
 			
       // Get rid of nasty script injections
-      $sexy_plugopts['defaulttags'] = htmlspecialchars($sexy_plugopts['defaulttags'], ENT_QUOTES, 'UTF-8', false);
-      $sexy_plugopts['tweetconfig'] = htmlspecialchars($sexy_plugopts['tweetconfig'], ENT_QUOTES, 'UTF-8', false);
+      $sexy_plugopts['defaulttags'] = htmlspecialchars($sexy_plugopts['defaulttags'], ENT_QUOTES);
+      $sexy_plugopts['defaulttags'] = htmlspecialchars($sexy_plugopts['tweetconfig'], ENT_QUOTES);
+
 
 
 			/* Short URLs */
 			//trim also at the same time as at times while copying, some whitespace also gets copied
 			//check fields dont need trim function
-			$sexy_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES, 'UTF-8', false);
-			$sexy_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES, 'UTF-8', false);
-			$sexy_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES, 'UTF-8', false);
-			$sexy_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES, 'UTF-8', false));
-			$sexy_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES, 'UTF-8', false);
-			$sexy_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
+			$sexy_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES);
+			$sexy_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES);
+			$sexy_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES));
+			$sexy_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES);
+			$sexy_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES));
 			/* Short URLs End */
 			
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
@@ -490,8 +490,10 @@ function shr_settings_page() {
                 <?php _e('or', 'sexybookmarks'); ?><br />
                 <em>RT @shareaholic: ${title} - ${short_link}</em>
               </p>
-							<label for="tweetconfig"><?php _e('Configure Tweet:', 'sexybookmarks'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'sexybookmarks'); ?> <span></span></small><br />
-              <textarea id="tweetconfig" name="tweetconfig" rows="4" cols="15"><?php echo $sexy_plugopts['tweetconfig']; ?></textarea>
+              <div style="position:relative;width:40%;">
+                <label for="tweetconfig"><?php _e('Configure Tweet:', 'sexybookmarks'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'sexybookmarks'); ?> <span></span></small><br />
+                <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($sexy_plugopts['tweetconfig'])) { echo $sexy_plugopts['tweetconfig']; } else { echo '${title} - ${short_link}'; } ?></textarea>
+              </div>
               <p id="tweetoutput"><strong><?php _e('Example Tweet Output:', 'sexybookmarks'); ?></strong><br /><span></span></p>
 							<div class="clearbig"></div>
 							<label for="shorty"><?php _e('Which URL Shortener?', 'sexybookmarks'); ?></label><br />
