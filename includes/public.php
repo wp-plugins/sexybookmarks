@@ -487,7 +487,7 @@ function sexy_publicScripts() {
 	global $sexy_plugopts, $post;
 	
 	if (($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
-		$surl = ($sexy_plugopts['custom-mods'] == 'yes') ? WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js' : SEXY_PLUGPATH.'js/sexy-bookmarks-public-'.SEXY_vNUM.'.js'; // If custom mods is selected, pull files from new location
+		$surl = ($sexy_plugopts['custom-mods'] == 'yes') ? WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js' : SEXY_PLUGPATH.'js/sexy-bookmarks-public-'.SEXY_vNum.'.js'; // If custom mods is selected, pull files from new location
 		$jquery = ($sexy_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
 		$infooter = ($sexy_plugopts['scriptInFooter'] == '1') ? true : false;
 		wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery, SEXY_vNum, $infooter);

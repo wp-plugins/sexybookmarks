@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 3.1.3
+Stable tag: 3.2.1.1
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -17,6 +17,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Added Greek translation
 * Fixed charset problem with htmlspecialchars()
 * Names are now automatically replaced from sexy- to shr- upon upgrade/activation
 * Fixed issue causing one icon to display multiple times
@@ -57,6 +58,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Modar Soos](http://www.sada-sy.com) for translation to Arabic
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
+* Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
 
 
 = Thanks =

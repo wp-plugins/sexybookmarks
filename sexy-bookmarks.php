@@ -341,7 +341,7 @@ function shr_settings_page() {
 					}
 				}
 				else {
-					$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNUM.'.css';
+					$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css';
 				}
 			}
 			else{
