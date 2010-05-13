@@ -496,7 +496,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Initial release!
 
 == Upgrade Notice ==
-= 3.2.1 =
+= 3.2.1.1 =
 Bug fix release for all bugs that arose with v3.2
 
 = 3.2 =
