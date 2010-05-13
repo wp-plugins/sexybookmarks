@@ -15,11 +15,11 @@ div.shr-bookmarks ul.socials li {
 	display:inline !important;
 	float:left !important;
 	list-style-type:none !important;
-	margin:0 0 3px !important;
-	height:29px !important;
+	padding:3px 0 0 !important;
+	height:26px !important;
 	width:60px !important;
 	cursor:pointer !important;
-	padding:0 !important;
+	margin:0 !important;
 	background-color:transparent !important;
 	border:0 none !important;
 	outline:0 none !important;

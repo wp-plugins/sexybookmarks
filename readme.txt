@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 3.2
+Stable tag: 3.2.1
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -17,22 +17,11 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
-* Resolved security issue
-* Fixed GoogleBuzz link (didn't validate)
-* Fixed mailto link
-* Changed all CSS classes from sexy- to shr- in public css
-* Renamed images from sexy- to shr-
-* Added new Google Reader and Twitter icons
-* Integrated new "configure tweet" method
-* Removed twitter ID field
-* Updated custom mods function with new image names
-* Custom mods function now copies style-dev.css rather than the minified (style.css)
-* Dynamic Sprite Generator API now live for everyone to use!
-* Tested with WP3.0 (passed with flying colors!)
-* Added feature to automagically reset all short URLs when you select a new service
-* Added option to display menu above AND below content
-* Updated translations
-
+* Fixed charset problem with htmlspecialchars()
+* Names are now automatically replaced from sexy- to shr- upon upgrade/activation
+* Fixed issue causing one icon to display multiple times
+* Fixed expanding blank space issue
+* Fixed caching issue by adding version number to file names rather than as parameters
 
 
 = Recently Added Sites =
@@ -118,6 +107,13 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
+= 3.2.1 =
+* Fixed charset problem with htmlspecialchars()
+* Names are now automatically replaced from sexy- to shr- upon upgrade/activation
+* Fixed issue causing one icon to display multiple times
+* Fixed expanding blank space issue
+* Fixed caching issue by adding version number to file names rather than as parameters
+
 = 3.2 =
 * Resolved security issue
 * Added Buzzster!, Yahoo! Mail, Gmail, & Hotmail
@@ -498,6 +494,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Initial release!
 
 == Upgrade Notice ==
+= 3.2.1 =
+Bug fix release for all bugs that arose with v3.2
+
 = 3.2 =
 Finally integrated the sprite generator (long overdue) plus several critical performance bug fixes
 

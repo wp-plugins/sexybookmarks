@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2
+Version: 3.2.1
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -16,7 +16,7 @@ load_plugin_textdomain('sexybookmarks', '/wp-content/plugins/sexybookmarks/langu
 
 // Define a couple of constants
 define('SEXY_OPTIONS','SexyBookmarks');
-define('SEXY_vNum','3.2');
+define('SEXY_vNum','3.2.1');
 
 
 
@@ -120,6 +120,17 @@ $sexy_custom_sprite = get_option('SexyCustomSprite');
 function shr_activation_hook() {
 	global $sexy_plugopts, $sexy_custom_sprite;
 
+  // Replacing sexy with shr
+  $shr_old_keys = array_keys($sexy_plugopts['bookmark']);
+  $shr_old_values = array_values($sexy_plugopts['bookmark']);
+  foreach($shr_old_values as $i => $shr_new_val) {
+      $shr_old_values[$i] = str_replace('sexy-', 'shr-', $shr_new_val);
+  }
+  $sexy_plugopts['bookmark'] = array_combine($shr_old_keys, $shr_old_values);
+  update_option(SEXY_OPTIONS, $sexy_plugopts);
+
+
+  // Change name of bg image
   if($sexy_plugopts['bgimg'] == 'sexy') {
     $sexy_plugopts['bgimg'] = 'shr';
     update_option(SEXY_OPTIONS, $sexy_plugopts);
@@ -136,7 +147,7 @@ function shr_activation_hook() {
 		$save_return[0] = get_sprite_file($spritegen_opts, 'png');
 		$save_return[1] = get_sprite_file($spritegen_opts, 'css');
 		if ( $save_return[0] == 0 && $save_return[1] == 0 ) {
-			$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite.css';
+			$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css';
 		}
 		else {
 			$sexy_custom_sprite = '';
@@ -228,8 +239,8 @@ function shr_settings_page() {
 			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
 			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
 
-			copy($sexy_oldloc.'css/style-dev.css', $sexy_newloc.'css/style.css');
-			copy($sexy_oldloc.'js/sexy-bookmarks-public.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
+			copy($sexy_oldloc.'css/style-dev-'.SEXY_vNum.'.css', $sexy_newloc.'css/style.css');
+			copy($sexy_oldloc.'js/sexy-bookmarks-public-'.SEXY_vNum.'.js', $sexy_newloc.'js/sexy-bookmarks-public.js');
 			copy($sexy_oldloc.'images/shr-sprite.png', $sexy_newloc.'images/shr-sprite.png');
 			
 			copy($sexy_oldloc.'images/share-enjoy.png', $sexy_newloc.'images/share-enjoy.png');
@@ -318,19 +329,19 @@ function shr_settings_page() {
 						$sexy_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
 					}
-					elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png')) {
-						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite.png','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+					elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png')) {
+						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 						$sexy_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
 					}
-					elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
-						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite.css','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+					elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css')) {
+						echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 						$sexy_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
 					}
 				}
 				else {
-					$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite.css';
+					$sexy_custom_sprite = SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNUM.'.css';
 				}
 			}
 			else{
@@ -339,12 +350,12 @@ function shr_settings_page() {
           echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your <a href="%s" target="_blank">spritegen folder</a> is not writeable by the server! <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen','http://sexybookmarks.net/documentation/usage-installation#chmodinfo').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
           $status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
         }
-        elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png')) {
-          echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite.png</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite.png','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+        elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png')) {
+          echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.png','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
           $status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
         }
-        elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
-          echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite.css</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite.css','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+        elseif(file_exists(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css') && is_writable(SEXY_PLUGDIR.'spritegen') && !is_writable(SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css')) {
+          echo '<div id="warnmessage" class="sexy-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet (<a href="%s" target="_blank">'.SEXY_PLUGDIR.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css</a>) before the plugin can write to the folder. <a href="%s" target="_blank">Need Help?</a>', 'sexybookmarks'), SEXY_PLUGPATH.'spritegen/shr-custom-sprite-'.SEXY_vNum.'.css','http://sexybookmarks.net/documentation/usage-installation#chmod-cont').'</div><div class="dialog-right"><img src="'.SEXY_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
           $status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'sexybookmarks');
         }
 			}
@@ -364,27 +375,27 @@ function shr_settings_page() {
       }
 			
       // Get rid of nasty script injections
-      $sexy_plugopts['defaulttags'] = htmlspecialchars($sexy_plugopts['defaulttags'], ENT_QUOTES, false);
-      $sexy_plugopts['tweetconfig'] = htmlspecialchars($sexy_plugopts['tweetconfig'], ENT_QUOTES, false);
+      $sexy_plugopts['defaulttags'] = htmlspecialchars($sexy_plugopts['defaulttags'], ENT_QUOTES, 'UTF-8', false);
+      $sexy_plugopts['tweetconfig'] = htmlspecialchars($sexy_plugopts['tweetconfig'], ENT_QUOTES, 'UTF-8', false);
 
 
 			/* Short URLs */
 			//trim also at the same time as at times while copying, some whitespace also gets copied
 			//check fields dont need trim function
-			$sexy_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES, false);
-			$sexy_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES, false);
-			$sexy_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES, false);
-			$sexy_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES, false));
-			$sexy_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES, false);
-			$sexy_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES, false));
+			$sexy_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES, 'UTF-8', false);
+			$sexy_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES, 'UTF-8', false);
+			$sexy_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES, 'UTF-8', false);
+			$sexy_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES, 'UTF-8', false));
+			$sexy_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES, 'UTF-8', false);
+			$sexy_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES, 'UTF-8', false));
 			/* Short URLs End */
 			
 			update_option(SEXY_OPTIONS, $sexy_plugopts);
@@ -818,7 +829,7 @@ function sexy_menu_link() {
 
 //styles and scripts for admin area
 function sexy_admin_scripts() {
-	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks.js', array('jquery','jquery-ui-sortable'), SEXY_vNum, true);
+	wp_enqueue_script('sexy-bookmarks-js', SEXY_PLUGPATH.'js/sexy-bookmarks-'.SEXY_vNum.'.js', array('jquery','jquery-ui-sortable'), true);
 	echo '<!-- Yahoo! Web Analytics -->
 			<script type="text/javascript" src="http://d.yimg.com/mi/eu/ywa.js"></script>
 			<script type="text/javascript">
@@ -837,9 +848,9 @@ function sexy_admin_styles() {
 	global $sexy_plugopts;
 
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
-		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style.css', false, SEXY_vNum, 'all');
+		wp_enqueue_style('ie-old-sexy-bookmarks', SEXY_PLUGPATH.'css/ie7-admin-style-'.SEXY_vNum.'.css', false, 'all');
 	}
-	wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style.css', false, SEXY_vNum, 'all');
+	wp_enqueue_style('sexy-bookmarks', SEXY_PLUGPATH.'css/admin-style-'.SEXY_vNum.'.css', false, 'all');
 }
 
 // Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh

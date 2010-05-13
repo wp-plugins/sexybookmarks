@@ -13,7 +13,7 @@ function shr_preFlight_Checks() {
 function get_sprite_file($opts, $type)
 {
 	$spritegen = 'http://www.shareaholic.com/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
-  $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite.'.$type;
+  $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite-'.SEXY_vNum.'.'.$type;
   $content = FALSE;
 
   if ( $type == 'png' )
