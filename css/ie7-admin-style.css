@@ -1,8 +1,8 @@
 #clearShortUrlsLabel { margin:-14px 0 0 0; }
-div#sexy-col-left { overflow:hidden; }
+div#shrsb-col-left { overflow:hidden; }
 div.box-mid-body { overflow:hidden; margin:-2px 0 0 0; }
-div#sexy-networks { display:block; margin:0 0 10px 0; overflow:hidden; }
-div#sexy-col-right { margin:40px -10px 0; right:2%; width:256px; }
+div#shrsb-networks { display:block; margin:0 0 10px 0; overflow:hidden; }
+div#shrsb-col-right { margin:40px -10px 0; right:2%; width:256px; }
 div.box-right-head { width:256px; }
 div.box-right-body { width:256px; overflow:hidden; }
 div.box-right-body ul { list-style:none; padding:0; }
@@ -18,7 +18,4 @@ div.dialog-box-information { width:97.6%; }
 img.del-x { margin-top:3px; }
 .shebang-info { top:0; }
 #bgimgs { display:block; overflow:hidden; padding:10px 10px 0; }
-ul#sexy-sortables li div.box-mid-head { width:100% !important; display:block !important; overflow:hidden !important; }
-.sexy-donation-box #no-sponsors { top: -50px !important; }
-.sexy-donation-box input.payment { position:relative; top:20px; }
-ul.sexy-contributors li { display:block !important; clear:both !important; margin:40px 0  40px -20px !important; }
+ul#shrsb-sortables li div.box-mid-head { width:100% !important; display:block !important; overflow:hidden !important; }

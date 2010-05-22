@@ -1,5 +1,5 @@
 /* General Styles */
-.sexylogo { text-indent:-999em; height:90px; background:url('../images/sexy-logo.png') no-repeat 0 0; position:relative;}
+.shrsblogo { text-indent:-999em; height:90px; background:url('../images/shrsb-logo.png') no-repeat 0 0; position:relative;}
 .sh-logo { display:block;height:41px;width:220px;background:url('../images/shareaholic-220.png') no-repeat 0 0; position:absolute;right:40px;top:40px;}
 #clearShortUrlsLabel { font-size:11px; height:14px; line-height:14px; }
 #clearShortUrls {margin-right:4px;}
@@ -7,8 +7,8 @@
 .dtags-info { cursor:pointer; left:5px; position:relative; top:3px; }
 #info-manual, #clear-warning, #custom-warning, #custom-warning-a, #mobile-warn { display:none; }
 #defaulttags { width:40%; }
-ul#sexy-sortables li div.padding { color:#555; }
-ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sortables div.padding h3, ul#sexy-sortables div.padding h4, ul#sexy-sortables div.padding h5 { color:#222;font-family:Corbel, Verdana, sans-serif; }
+ul#shrsb-sortables li div.padding { color:#555; }
+ul#shrsb-sortables div.padding h1, ul#shrsb-sortables div.padding h2, ul#shrsb-sortables div.padding h3, ul#shrsb-sortables div.padding h4, ul#shrsb-sortables div.padding h5 { color:#222;font-family:Corbel, Verdana, sans-serif; }
 #tag-info {
 	background:#b3d3ef none;
 	border:1px solid #8ba2df;
@@ -40,7 +40,7 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 .floright { clear:none; float:right; margin:0 0 0 10px; }
 .floleft { clear:none; float:left; margin:0 10px 0 0; }
 .padding { padding:10px;	overflow:hidden; }
-.sexy_option { display:block; font-weight:bold; margin-top:12px; color:#444; }
+.shrsb_option { display:block; font-weight:bold; margin-top:12px; color:#444; }
 .hide { display:none; }
 /* End Custom Classes */
 /*------------------------------------------------------------------------------------------*/
@@ -57,7 +57,7 @@ ul#sexy-sortables div.padding h1, ul#sexy-sortables div.padding h2, ul#sexy-sort
 /* End Background Images Section */
 /*------------------------------------------------------------------------------------------*/
 /* Top Status Messages */
-div.sexy-success, div.sexy-error, div.sexy-warning, div.sexy-information {
+div.shrsb-success, div.shrsb-error, div.shrsb-warning, div.shrsb-information {
 	border-width:1px;
 	border-style:solid;
 	font-size:10px;
@@ -68,19 +68,19 @@ div.sexy-success, div.sexy-error, div.sexy-warning, div.sexy-information {
 	padding:4px 10px 6px;
 	width:97%;
 }
-div.sexy-success { background:#b4efab; border-color: #8be57e; color:#337129; }
-div.sexy-error {	 background:#feb1b1; border-color: #fe9090; color:#820101; }
-div.sexy-information { background:#a3d0ff; border-color: #6ab3ff; color:#004185; }
-div.sexy-warning { background:#f0feb1; border-color: #d5d458; color:#7f7200; }
-.sexy-warning a, .sexy-information a, .sexy-error a, .sexy-success a { text-decoration:underline; }
-.sexy-warning a { color:#6f6300; }
-.sexy-error a { color:#cb0000; }
-.sexy-information a { color:#1b466f; }
-.sexy-success a { color:#1d5f12; }
+div.shrsb-success { background:#b4efab; border-color: #8be57e; color:#337129; }
+div.shrsb-error {	 background:#feb1b1; border-color: #fe9090; color:#820101; }
+div.shrsb-information { background:#a3d0ff; border-color: #6ab3ff; color:#004185; }
+div.shrsb-warning { background:#f0feb1; border-color: #d5d458; color:#7f7200; }
+.shrsb-warning a, .shrsb-information a, .shrsb-error a, .shrsb-success a { text-decoration:underline; }
+.shrsb-warning a { color:#6f6300; }
+.shrsb-error a { color:#cb0000; }
+.shrsb-information a { color:#1b466f; }
+.shrsb-success a { color:#1d5f12; }
 
-#sexy-sortables p {margin:0.3em 0 1.6em;}
-#sexy-sortables .sexy-success, #sexy-sortables .sexy-error, #sexy-sortables .sexy-warning {width:auto;margin:0 0 15px;font-weight:normal;font-size:12px;}
-#sexy-sortables .sexy-success p, #sexy-sortables .sexy-error p, #sexy-sortables .sexy-warning p {margin:0;}
+#shrsb-sortables p {margin:0.3em 0 1.6em;}
+#shrsb-sortables .shrsb-success, #shrsb-sortables .shrsb-error, #shrsb-sortables .shrsb-warning {width:auto;margin:0 0 15px;font-weight:normal;font-size:12px;}
+#shrsb-sortables .shrsb-success p, #shrsb-sortables .shrsb-error p, #shrsb-sortables .shrsb-warning p {margin:0;}
 /* End Top Status Messages */
 /*------------------------------------------------------------------------------------------*/
 /* Individual Section Status Messages */
@@ -236,10 +236,10 @@ ul.multi-selection li input {
 /* End Bookmarking Services Icons */
 /*------------------------------------------------------------------------------------------*/
 /* Main Structure Styles */
-div#sexy-col-left { float:left; margin:40px 10px 0 0; }
-#sexy-col-left label { margin:0 12px 0 0; }
-ul#sexy-sortables li { list-style-type:none; margin:0 300px 20px 0; position:relative; }
-ul#sexy-sortables { list-style-type:none; }
+div#shrsb-col-left { float:left; margin:40px 10px 0 0; }
+#shrsb-col-left label { margin:0 12px 0 0; }
+ul#shrsb-sortables li { list-style-type:none; margin:0 300px 20px 0; position:relative; }
+ul#shrsb-sortables { list-style-type:none; }
 div.box-mid-head {
 	background:transparent url('../images/flo-head.jpg') repeat-x scroll 0 0;
 	border:1px solid #DBDBDB;
@@ -265,7 +265,7 @@ div.box-mid-head a:hover { border:medium none; }
 div.box-mid-head input { border:1px solid #ccc; }
 div.box-mid-body { background:#fff url('../images/white-pix.jpg') repeat-x center top; border:1px solid #dbdbdb; border-top:0 none; display:table; width:100%; }
 div.box-mid-body h3 { display:block; font-size:18px; font-weight:bold; margin:8px 0; }
-div#sexy-col-right { clear:none; float:left; margin:40px 0 0; position:absolute; right:1.3%; width:256px; }
+div#shrsb-col-right { clear:none; float:left; margin:40px 0 0; position:absolute; right:1.3%; width:256px; }
 div.box-right { float:left; margin-bottom:20px; }
 div.box-right-head { background:transparent url('../images/flo-head.jpg') repeat-x 0 0; border:1px solid #dbdbdb; float:left; height:27px; width:256px; }
 div.box-right-head h3 {
@@ -285,9 +285,9 @@ div.box-right-body { background:#fff url('../images/white-pix.jpg') repeat-x cen
 div.box-right-body h4 { display:block; font-size:16px; font-weight:bold; margin:8px 0; }
 div.box-right-body ul { list-style-image:none; list-style-position:inside; list-style-type:none; margin:0; }
 div.box-right-body ul li strong { color:#454545; font-weight:bold}
-div.sexysubmit, div.sexyreset {float:left;margin:0 0 20px}
-div.sexyreset {margin-left:50px}
-div.sexysubmit input, div.sexyreset input {
+div.shrsbsubmit, div.shrsbreset {float:left;margin:0 0 20px}
+div.shrsbreset {margin-left:50px}
+div.shrsbsubmit input, div.shrsbreset input {
 	font-size:12px !important;
 	padding:4px 8px !important;
 	border-radius:4px !important;
@@ -295,22 +295,22 @@ div.sexysubmit input, div.sexyreset input {
 	-webkit-border-radius:4px !important;
 	outline:0 none !important;
 }
-div.sexysubmit input {
+div.shrsbsubmit input {
 	background:#3dcb36 url('../images/green-grad.png') repeat-x 0 0 !important;
 	border:1px solid #0f8f08 !important;
 	color:white !important;
 }
-div.sexyreset input {
+div.shrsbreset input {
 	background:#f76363 url('../images/red-grad.png') repeat-x scroll 0 0 !important;
 	border:1px solid #9f3b3b !important;
 	color:white !important;
 }
-div.sexysubmit input:hover, div.sexyreset input:hover {cursor:pointer !important}
-div.sexysubmit input:active, div.sexysubmit input:focus {
+div.shrsbsubmit input:hover, div.shrsbreset input:hover {cursor:pointer !important}
+div.shrsbsubmit input:active, div.shrsbsubmit input:focus {
 	background-position:left bottom !important;
 	outline:0 none !important;
 }
-div.sexyreset input:active, div.sexyreset input:focus {
+div.shrsbreset input:active, div.shrsbreset input:focus {
 	background-position:left bottom !important;
 	outline:0 none !important;
 }

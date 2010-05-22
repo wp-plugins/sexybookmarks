@@ -17,10 +17,13 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
 * Added referrer to API request
 * Fixed JS counter
+* Complete revamp of naming scheme
+* Better activation hook to check old naming scheme
 * Added Greek translation
 * Fixed charset problem with htmlspecialchars()
 * Names are now automatically replaced from sexy- to shr- upon upgrade/activation
@@ -113,11 +116,18 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
-= 3.2.1.2 =
+= 3.2.2 =
+* Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
 * Added referrer to API request
+
+= 3.2.1.1.2 =
 * Fixed JS counter
+* Complete revamp of naming scheme
+
+= 3.2.1.1.1 =
+* Better activation hook to check old naming scheme
 
 = 3.2.1.1 =
 * Fixed charset problem with htmlspecialchars()

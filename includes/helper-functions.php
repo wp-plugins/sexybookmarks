@@ -1,8 +1,8 @@
 <?php
 
-function shr_preFlight_Checks() {
-	global $sexy_plugopts;
-	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SEXY_PLUGDIR.'spritegen') && is_writable(SEXY_PLUGDIR.'spritegen')) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($sexy_plugopts['bookmark']) && is_array($sexy_plugopts['bookmark']) && sizeof($sexy_plugopts['bookmark']) > 0 )) && !$sexy_plugopts['custom-mods'] ) {
+function shrsb_preFlight_Checks() {
+	global $shrsb_plugopts;
+	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SHRSB_PLUGDIR.'spritegen') && is_writable(SHRSB_PLUGDIR.'spritegen')) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 )) && !$shrsb_plugopts['custom-mods'] ) {
 		return true;
 	}
 	else {
@@ -13,15 +13,14 @@ function shr_preFlight_Checks() {
 function get_sprite_file($opts, $type)
 {
 	$spritegen = 'http://www.shareaholic.com/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
+  $filename = SHRSB_PLUGDIR.'/spritegen/shr-custom-sprite.'.$type;
 
   $content = FALSE;
 
   if($type == 'css') {
-    $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite-'.SEXY_vNum.'.'.$type;
     $fp_opt = 'r';
   }
-  if($type == 'png') {
-    $filename = SEXY_PLUGDIR.'/spritegen/shr-custom-sprite.'.$type;
+  else {
     $fp_opt = 'rb';
   }
 
@@ -38,7 +37,7 @@ function get_sprite_file($opts, $type)
       $http_opts = array(
               'http'=>array(
                 'method'=>"GET",
-                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SEXY_vNum . "\r\n"."Referer: ".get_bloginfo('url')."\r\n"
+                'header'=>"User-Agent: shr-wpspritebot-fopen/v" . SHRSB_vNum . "\r\n"."Referer: ".get_bloginfo('url')."\r\n"
               )
       );
 
@@ -72,7 +71,7 @@ function get_sprite_file($opts, $type)
     curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
     curl_setopt($ch, CURLOPT_TIMEOUT, 6);
-    curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SEXY_vNum);
+    curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SHRSB_vNum);
     curl_setopt($ch, CURLOPT_REFERER, get_bloginfo('url'));
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);

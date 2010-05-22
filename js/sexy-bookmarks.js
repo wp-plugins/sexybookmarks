@@ -1,12 +1,12 @@
 jQuery(document).ready(function() {
-	if (jQuery('#iconator')) jQuery('#sexy-networks').sortable({ 
+	if (jQuery('#iconator')) jQuery('#shrsb-networks').sortable({ 
 		delay:        250,
 		cursor:      'move',
 		scroll:       true,
 		revert:       true, 
 		opacity:      0.7
 	});
-	if (jQuery('.sexy-bookmarks')) { jQuery('#sexy-sortables').sortable({ 
+	if (jQuery('.shrsb-bookmarks')) { jQuery('#shrsb-sortables').sortable({ 
 		handle:      '.box-mid-head',
 		delay:        250,
 		cursor:      'move',
@@ -17,24 +17,24 @@ jQuery(document).ready(function() {
 
 	//Select all icons upon clicking
 	jQuery('#sel-all').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-networks input').attr('checked', 'checked');
+		jQuery('#shrsb-networks').each(function() {
+			jQuery('#shrsb-networks input').attr('checked', 'checked');
 		});
 	});
 
 	//Deselect all icons upon clicking
 	jQuery('#sel-none').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-networks input').removeAttr('checked');
+		jQuery('#shrsb-networks').each(function() {
+			jQuery('#shrsb-networks input').removeAttr('checked');
 		});
 	});
 
 	//Select most popular icons upon clicking
 	jQuery('#sel-pop').click(function() {
-		jQuery('#sexy-networks').each(function() {
-			jQuery('#sexy-networks input').removeAttr('checked');
+		jQuery('#shrsb-networks').each(function() {
+			jQuery('#shrsb-networks input').removeAttr('checked');
 		});
-		jQuery('#sexy-networks').each(function() {
+		jQuery('#shrsb-networks').each(function() {
 			jQuery('#shr-digg').attr('checked', 'checked');
 			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-delicious').attr('checked', 'checked');
@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
 
 	/* Select recommended icons upon clicking
 	jQuery('#sel-pop').click(function() {
-		jQuery('#sexy-networks').each(function() {
+		jQuery('#shrsb-networks').each(function() {
 			jQuery('#shr-digg').attr('checked', 'checked');
 			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-delicious').attr('checked', 'checked');
@@ -240,10 +240,6 @@ jQuery(document).ready(function() {
 		jQuery('#info-manual').fadeIn('fast');
 	});
 
-	jQuery('.boxcloser').click(function() {
-		jQuery('.sexy-donation-box').slideUp('slow');
-	});
-
 	jQuery('#clearShortUrls').click(function() {
 		if (jQuery('#clearShortUrls').is(':checked')) {
 			this.checked=jQuery('#clear-warning').fadeIn('fast');
@@ -266,12 +262,12 @@ jQuery(document).ready(function() {
 
 
 
-	jQuery('#sexyresetallwarn-cancel').click(function() {
-		jQuery('#sexyresetallwarn').fadeOut();
+	jQuery('#shrsbresetallwarn-cancel').click(function() {
+		jQuery('#shrsbresetallwarn').fadeOut();
 	});
 
-	jQuery('#sexyresetallwarn-yes').click(function() {
-		this.checked=jQuery('#sexyresetallwarn').fadeOut();
+	jQuery('#shrsbresetallwarn-yes').click(function() {
+		this.checked=jQuery('#shrsbresetallwarn').fadeOut();
 		this.checked=jQuery('#resetalloptionsaccept').submit();
 		this.checked=!this.checked;
 	});
@@ -340,8 +336,5 @@ jQuery(document).ready(function() {
 		jQuery('#tweetoutput span').html(endtweet);
 
 	});
-
-
-
 
 }});

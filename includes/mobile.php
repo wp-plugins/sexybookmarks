@@ -1,7 +1,7 @@
 <?php
 
 //Checking for mobile browsers
-function sexy_is_bot() {
+function shrsb_is_bot() {
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$isBot = $ip == '66.249.65.39' 
@@ -30,7 +30,7 @@ function sexy_is_bot() {
 	; // $isBot
 	return $isBot;
 }
-function sexy_is_mobile() {
+function shrsb_is_mobile() {
 	$op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	$ac = strtolower($_SERVER['HTTP_ACCEPT']);

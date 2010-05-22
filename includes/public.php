@@ -2,17 +2,17 @@
 
 // Functions related to mobile.
 require_once 'mobile.php';
-$sexy_is_mobile = sexy_is_mobile();
-$sexy_is_bot = sexy_is_bot();
+$shrsb_is_mobile = shrsb_is_mobile();
+$shrsb_is_bot = shrsb_is_bot();
 
 //cURL, file get contents or nothing, used for short url
-function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
+function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null){
 	if (function_exists('curl_init') && function_exists('curl_exec')) {
 		// Use cURL
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $url);
-		if($use_POST_method){
+		if($use_POST_method == 'POST'){
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $POST_data);
 		}
@@ -42,13 +42,13 @@ function sexy_nav_browse($url, $use_POST_method = false, $POST_data = null){
 
 
 
-function sexy_get_fetch_url() {
-	global $post, $sexy_plugopts, $wp_query; //globals
+function shrsb_get_fetch_url() {
+	global $post, $shrsb_plugopts, $wp_query; //globals
 	
 	//get link but first check if inside or outside loop and what page it's on
 	$post = $wp_query->post;
 
-	if($sexy_plugopts['position'] == 'manual') {
+	if($shrsb_plugopts['position'] == 'manual') {
 		//Check if outside the loop
 		if(empty($post->post_title)) {
 			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
@@ -59,7 +59,7 @@ function sexy_get_fetch_url() {
 		}
 	}
 	//Check if index page...
-	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
+	elseif(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) {
 		//Check if outside the loop
 		if(empty($post->post_title)) {
 			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
@@ -80,12 +80,12 @@ function sexy_get_fetch_url() {
 		return $perms;
 	}
 	//if user chose not to use shortener, return permalink and go back
-	if($sexy_plugopts['shorty'] == 'none') {
+	if($shrsb_plugopts['shorty'] == 'none') {
 		return $perms;
 	}
-	if ($sexy_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
+	if ($shrsb_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
 		$fetch_url = permalink_to_twitter_link($perms);
-	} elseif ($sexy_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
+	} elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
 		$fetch_url = wp_ozh_yourls_raw_url();
 	}
 	//if it is tflp or yourls and short url has been successfully recieved, then do not save it in db or try getting a stored short url
@@ -104,32 +104,34 @@ function sexy_get_fetch_url() {
 	$POST_data = array();
 	 
 	// Which short url service should be used?
-	switch ( $sexy_plugopts['shorty'] ) {
+	switch ( $shrsb_plugopts['shorty'] ) {
 		case 'tiny':
 			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
 			break;
 		case 'snip':
 			$first_url = "http://snipr.com/site/getsnip";
 			$method = 'POST';
-			$POST_data = array( "snipformat" => "simple", "sniplink" => rawurlencode($perms), "snipuser" => $sexy_plugopts['shortyapi']['snip']['user'], "snipapi" => $sexy_plugopts['shortyapi']['snip']['key'] );
+			$POST_data = array( "snipformat" => "simple", "sniplink" => rawurlencode($perms), "snipuser" => $shrsb_plugopts['shortyapi']['snip']['user'], "snipapi" => $shrsb_plugopts['shortyapi']['snip']['key'] );
 			break;
 		case 'cligs':
 			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
-			if ($sexy_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
-				$first_url .= "&key=".$sexy_plugopts['shortyapi']['cligs']['key'];
+			if ($shrsb_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
+				$first_url .= "&key=".$shrsb_plugopts['shortyapi']['cligs']['key'];
 			break;
 		case 'supr':
-			$first_url = "http://su.pr/api/simpleshorten?url=".$perms;
-			if($sexy_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
-				$first_url .= "&login=".$sexy_plugopts['shortyapi']['supr']['user']."&apiKey=".$sexy_plugopts['shortyapi']['supr']['key'];
+      $method = 'GET';
+			if($shrsb_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
+				$first_url = "http://su.pr/api/shorten?longUrl=".$perms."&login=".$shrsb_plugopts['shortyapi']['supr']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['supr']['key']."&version=1.0";
+      else 
+        $first_url = "http://su.pr/api/simpleshorten?url=".$perms;
 			break;
 		case 'bitly':
-			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$sexy_plugopts['shortyapi']['bitly']['user']."&apiKey=".$sexy_plugopts['shortyapi']['bitly']['key']."&format=json";
+			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$shrsb_plugopts['shortyapi']['bitly']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['bitly']['key']."&format=json";
 			break;
 		case 'tinyarrow':
 			$first_url = "http://tinyarro.ws/api-create.php?";
-			if($sexy_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
-				$first_url .= "&userid=".$sexy_plugopts['shortyapi']['tinyarrow']['user'];
+			if($shrsb_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
+				$first_url .= "&userid=".$shrsb_plugopts['shortyapi']['tinyarrow']['user'];
 			$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
 			break;
 		case 'slly':
@@ -137,13 +139,13 @@ function sexy_get_fetch_url() {
 			break;
 		case 'trim': //tr.im no longer exists, this only here for backwards compatibility
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$sexy_plugopts['shorty'] = 'b2l';
-			update_option(SEXY_OPTIONS, $sexy_plugopts);
+			$shrsb_plugopts['shorty'] = 'b2l';
+			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
 			break;
 		case 'e7t': //e7t.us no longer exists, this only here for backwards compatibility
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$sexy_plugopts['shorty'] = 'b2l';
-			update_option(SEXY_OPTIONS, $sexy_plugopts);
+			$shrsb_plugopts['shorty'] = 'b2l';
+			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
 			break;
 		case 'b2l': //goto default
 		default:
@@ -151,11 +153,16 @@ function sexy_get_fetch_url() {
 			break;
 	}
 	
-	$fetch_url = trim(sexy_nav_browse($first_url, $method, $POST_data));
+	$fetch_url = trim(shrsb_nav_browse($first_url, $method, $POST_data));
 
 	if ( !empty( $fetch_url ) ) {
 		//if bitly, then decode the json string
-		if($sexy_plugopts['shorty'] == "bitly"){
+		if($shrsb_plugopts['shorty'] == "bitly"){
+			$fetch_array = json_decode($fetch_url, true);
+			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
+		}
+    //if bitly, then decode the json string
+		if($shrsb_plugopts['shorty'] == "supr"){
 			$fetch_array = json_decode($fetch_url, true);
 			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
 		}
@@ -189,24 +196,24 @@ function sexy_get_fetch_url() {
 
 
 // Create an auto-insertion function
-function sexy_position_menu($post_content) {
-	global $post, $sexy_plugopts, $sexy_is_mobile, $sexy_is_bot;
+function shrsb_position_menu($post_content) {
+	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot;
 
 	// If user selected manual positioning, get out.
-	if ($sexy_plugopts['position']=='manual') {
+	if ($shrsb_plugopts['position']=='manual') {
 		return $post_content;
 	}
 
 	// If user selected hide from mobile and is mobile, get out.
-	elseif ($sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_mobile || $sexy_plugopts['mobile-hide']=='yes' && false!==$sexy_is_bot) {
+	elseif ($shrsb_plugopts['mobile-hide']=='yes' && false!==$shrsb_is_mobile || $shrsb_plugopts['mobile-hide']=='yes' && false!==$shrsb_is_bot) {
 		return $post_content;
 	}
 
 	// Decide whether or not to generate the bookmarks.
-	if ((is_single() && false!==strpos($sexy_plugopts['pageorpost'],"post")) ||
-		(is_page() && false!==strpos($sexy_plugopts['pageorpost'],"page")) ||
-		(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) ||
-		(is_feed() && !empty($sexy_plugopts['feed']))
+	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) ||
+		(is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) ||
+		(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) ||
+		(is_feed() && !empty($shrsb_plugopts['feed']))
 	) { // socials should be generated and added
 		if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 			$socials=get_sexy();
@@ -216,25 +223,25 @@ function sexy_position_menu($post_content) {
 	// Place of bookmarks and return w/ post content.
 	if (empty($socials)) {
 		return $post_content;
-	} elseif ($sexy_plugopts['position']=='above') {
+	} elseif ($shrsb_plugopts['position']=='above') {
 		return $socials.$post_content;
-	} elseif ($sexy_plugopts['position']=='below') {
+	} elseif ($shrsb_plugopts['position']=='below') {
 		return $post_content.$socials;
-	} elseif ($sexy_plugopts['position']=='both') {
+	} elseif ($shrsb_plugopts['position']=='both') {
     return $socials.$post_content.$socials;
   } else { // some other unexpected error, don't do anything. return.
-		error_log(__('An unknown error occurred in SexyBookmarks', 'sexybookmarks'));
+		error_log(__('An unknown error occurred in SexyBookmarks', 'shrsb'));
 		return $post_content;
 	}
 }
-// End sexy_position_menu...
+// End shrsb_position_menu...
 
 function get_sexy() {
-	global $sexy_plugopts, $wp_query, $post;
+	global $shrsb_plugopts, $wp_query, $post;
 	$post = $wp_query->post;
 
 
-	if($sexy_plugopts['position'] == 'manual') {
+	if($shrsb_plugopts['position'] == 'manual') {
 
 		//Check if outside the loop
 		if(empty($post->post_title)) {
@@ -254,7 +261,7 @@ function get_sexy() {
 	}
 
 	//Check if index page...
-	elseif(is_home() && false!==strpos($sexy_plugopts['pageorpost'],"index")) {
+	elseif(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) {
 
 		//Check if outside the loop
 		if(empty($post->post_title)) {
@@ -281,7 +288,7 @@ function get_sexy() {
 	}
 
   // Grab the short URL
-  $fetch_url = sexy_get_fetch_url();
+  $fetch_url = shrsb_get_fetch_url();
 
 
 	//Determine how to handle post titles for Twitter
@@ -294,18 +301,18 @@ function get_sexy() {
 
 	$title=urlencode($title);
 
-	$sexy_content	= urlencode(strip_tags(strip_shortcodes($post->post_excerpt)));
+	$shrsb_content	= urlencode(strip_tags(strip_shortcodes($post->post_excerpt)));
 
-	if ($sexy_content == "") {	$sexy_content = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300)); }
+	if ($shrsb_content == "") {	$shrsb_content = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300)); }
 
-	$sexy_content	= str_replace('+','%20',$sexy_content);
-	$post_summary = stripslashes($sexy_content);
+	$shrsb_content	= str_replace('+','%20',$shrsb_content);
+	$post_summary = stripslashes($shrsb_content);
 	$site_name = get_bloginfo('name');
 	$mail_subject = str_replace('+','%20',$mail_subject);
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
-	$y_cat = $sexy_plugopts['ybuzzcat'];
-	$y_med = $sexy_plugopts['ybuzzmed'];
-	$t_cat = $sexy_plugopts['twittcat'];
+	$y_cat = $shrsb_plugopts['ybuzzcat'];
+	$y_med = $shrsb_plugopts['ybuzzmed'];
+	$t_cat = $shrsb_plugopts['twittcat'];
 
 
 
@@ -316,7 +323,7 @@ function get_sexy() {
 		$d_tags=substr($d_tags, 0, count($d_tags)-2);
 	}
 	else {
-		$d_tags = $sexy_plugopts['defaulttags'];
+		$d_tags = $shrsb_plugopts['defaulttags'];
 	}
 
 
@@ -337,36 +344,36 @@ function get_sexy() {
 	if( (strpos($post_summary, '[') || strpos($post_summary, ']')) ) {
 		$post_summary = "";
 	}
-	if( (strpos($sexy_content, '[') || strpos($sexy_content,']')) ) {
-		$sexy_content = "";
+	if( (strpos($shrsb_content, '[') || strpos($shrsb_content,']')) ) {
+		$shrsb_content = "";
 	}
 
 	// Select the background image
-	if(!isset($sexy_plugopts['bgimg-yes'])) {
+	if(!isset($shrsb_plugopts['bgimg-yes'])) {
 		$bgchosen = '';
-	} elseif($sexy_plugopts['bgimg'] == 'shr') {
+	} elseif($shrsb_plugopts['bgimg'] == 'shr') {
 		$bgchosen = ' shr-bookmarks-bg-shr';
-	} elseif($sexy_plugopts['bgimg'] == 'caring') {
+	} elseif($shrsb_plugopts['bgimg'] == 'caring') {
 		$bgchosen = ' shr-bookmarks-bg-caring';
-	} elseif($sexy_plugopts['bgimg'] == 'care-old') {
+	} elseif($shrsb_plugopts['bgimg'] == 'care-old') {
 		$bgchosen = ' shr-bookmarks-bg-caring-old';
-	} elseif($sexy_plugopts['bgimg'] == 'love') {
+	} elseif($shrsb_plugopts['bgimg'] == 'love') {
 		$bgchosen = ' shr-bookmarks-bg-love';
-	} elseif($sexy_plugopts['bgimg'] == 'wealth') {
+	} elseif($shrsb_plugopts['bgimg'] == 'wealth') {
 		$bgchosen = ' shr-bookmarks-bg-wealth';
-	} elseif($sexy_plugopts['bgimg'] == 'enjoy') {
+	} elseif($shrsb_plugopts['bgimg'] == 'enjoy') {
 		$bgchosen = ' shr-bookmarks-bg-enjoy';
-	} elseif($sexy_plugopts['bgimg'] == 'german') {
+	} elseif($shrsb_plugopts['bgimg'] == 'german') {
 		$bgchosen = ' shr-bookmarks-bg-german';
-	} elseif($sexy_plugopts['bgimg'] == 'knowledge') {
+	} elseif($shrsb_plugopts['bgimg'] == 'knowledge') {
 		$bgchosen = ' shr-bookmarks-bg-knowledge';
 	}
 
 
-	$expand=$sexy_plugopts['expand']?' shr-bookmarks-expand':'';
-	if ($sexy_plugopts['autocenter']==1) {
+	$expand=$shrsb_plugopts['expand']?' shr-bookmarks-expand':'';
+	if ($shrsb_plugopts['autocenter']==1) {
 		$autocenter=' shr-bookmarks-center';
-	} elseif ($sexy_plugopts['autocenter']==2) {
+	} elseif ($shrsb_plugopts['autocenter']==2) {
 		$autocenter=' shr-bookmarks-spaced';
 	} else {
 		$autocenter='';
@@ -375,7 +382,7 @@ function get_sexy() {
 	//Write the sexybookmarks menu
 	$socials = "\n\n";
 	$socials .= '<div class="shr-bookmarks'.$expand.$autocenter.$bgchosen.'">'."\n".'<ul class="socials">'."\n";
-	foreach ($sexy_plugopts['bookmark'] as $name) {
+	foreach ($shrsb_plugopts['bookmark'] as $name) {
 		switch ($name) {
 			case 'shr-twitter':
 				$socials.=bookmark_list_item($name, array(
@@ -405,7 +412,7 @@ function get_sexy() {
 				break;
 			case 'shr-diigo':
 				$socials.=bookmark_list_item($name, array(
-					'sexy_teaser'=>$sexy_content,
+					'sexy_teaser'=>$shrsb_content,
 					'permalink'=>$perms,
 					'title'=>$title,
 				));
@@ -427,7 +434,7 @@ function get_sexy() {
 				$socials.=bookmark_list_item($name, array(
 					'permalink'=>$perms,
 					'title'=>$title,
-					'yahooteaser'=>$sexy_content,
+					'yahooteaser'=>$shrsb_content,
 					'yahoocategory'=>$y_cat,
 					'yahoomediatype'=>$y_med,
 				));
@@ -470,48 +477,48 @@ function selfserv_sexy() {
 }
 
 // Write the <head> code only on pages that the menu is set to display
-function shr_publicStyles() {
-	global $sexy_plugopts, $post, $sexy_custom_sprite;
+function shrsb_publicStyles() {
+	global $shrsb_plugopts, $post, $shrsb_custom_sprite;
 
 	// If custom field is set, do not display sexybookmarks
 	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
-		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'sexybookmarks').' -->'."\n\n";
+		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'shrsb').' -->'."\n\n";
 	} 
   else {
 		//custom mods rule over custom css
-    if($sexy_plugopts['custom-mods'] != 'yes') {
-      if($sexy_custom_sprite != '') {
-        $surl = $sexy_custom_sprite;
+    if($shrsb_plugopts['custom-mods'] != 'yes') {
+      if($shrsb_custom_sprite != '') {
+        $surl = $shrsb_custom_sprite;
       }
       else {
-        $surl = SEXY_PLUGPATH.'css/style-'.SEXY_vNum.'.css';
+        $surl = SHRSB_PLUGPATH.'css/style.css';
       }
     }
-    elseif($sexy_plugopts['custom-mods'] == 'yes') {
+    elseif($shrsb_plugopts['custom-mods'] == 'yes') {
       $surl = WP_CONTENT_URL.'/sexy-mods/css/style.css';
     }
-		wp_enqueue_style('sexy-bookmarks', $surl, false, SEXY_vNum, 'all');
+		wp_enqueue_style('sexy-bookmarks', $surl, false, SHRSB_vNum, 'all');
 	}
 }
-function shr_publicScripts() {
-	global $sexy_plugopts, $post;
+function shrsb_publicScripts() {
+	global $shrsb_plugopts, $post;
 	
-	if (($sexy_plugopts['expand'] || $sexy_plugopts['autocenter'] || $sexy_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
+	if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
 
     // If custom mods is selected, pull files from new location
-    if($sexy_plugopts['custom-mods'] == 'yes') {
+    if($shrsb_plugopts['custom-mods'] == 'yes') {
       $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
     }
     else {
-      $surl = SEXY_PLUGPATH.'js/sexy-bookmarks-public-'.SEXY_vNum.'.js';
+      $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.js';
     }
 
-		$jquery = ($sexy_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
-		$infooter = ($sexy_plugopts['scriptInFooter'] == '1') ? true : false;
-		wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery, SEXY_vNum, $infooter);
+		$jquery = ($shrsb_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
+		$infooter = ($shrsb_plugopts['scriptInFooter'] == '1') ? true : false;
+		wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery, SHRSB_vNum, $infooter);
 	}
 }
 
-add_action('wp_print_styles', 'shr_publicStyles');
-add_action('wp_print_scripts', 'shr_publicScripts');
-add_filter('the_content', 'sexy_position_menu');
+add_action('wp_print_styles', 'shrsb_publicStyles');
+add_action('wp_print_scripts', 'shrsb_publicScripts');
+add_filter('the_content', 'shrsb_position_menu');

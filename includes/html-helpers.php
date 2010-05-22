@@ -1,11 +1,11 @@
 <?php
 //list all bookmarks in the plugin options page
-function sexy_network_input_select($name, $hint) {
-	global $sexy_plugopts;
+function shrsb_network_input_select($name, $hint) {
+	global $shrsb_plugopts;
 	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /></label>',
 		$name,
 		$hint,
-		@in_array($name, $sexy_plugopts['bookmark'])?'checked="checked" ':"",
+		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
 		$name,
 		$name
 	);
@@ -13,8 +13,8 @@ function sexy_network_input_select($name, $hint) {
 
 // returns the option tag for a form select element
 // $opts array expecting keys: field, value, text
-function sexy_form_select_option($opts) {
-	global $sexy_plugopts;
+function shrsb_form_select_option($opts) {
+	global $shrsb_plugopts;
 	$opts=array_merge(
 		array(
 			'field'=>'',
@@ -24,17 +24,17 @@ function sexy_form_select_option($opts) {
 		$opts
 	);
 	return sprintf('<option%s value="%s">%s</option>',
-		($sexy_plugopts[$opts['field']]==$opts['value'])?' selected="selected"':"",
+		($shrsb_plugopts[$opts['field']]==$opts['value'])?' selected="selected"':"",
 		$opts['value'],
 		$opts['text']
 	);
 }
 
-// given an array $options of data and $field to feed into sexy_form_select_option
-function sexy_select_option_group($field, $options) {
+// given an array $options of data and $field to feed into shrsb_form_select_option
+function shrsb_select_option_group($field, $options) {
 	$h='';
 	foreach ($options as $value=>$text) {
-		$h.=sexy_form_select_option(array(
+		$h.=shrsb_form_select_option(array(
 			'field'=>$field,
 			'value'=>$value,
 			'text'=>$text,
@@ -45,25 +45,25 @@ function sexy_select_option_group($field, $options) {
 
 // function to list bookmarks that have been chosen by admin
 function bookmark_list_item($name, $opts=array()) {
-	global $sexy_plugopts, $sexy_bookmarks_data;
+	global $shrsb_plugopts, $shrsb_bookmarks_data;
 
   // If Twitter, check for custom tweet configuration and modify tweet accordingly
   if($name == 'shr-twitter') {
     $tsrc='&amp;source=shareaholic';
-    if(!empty($sexy_plugopts['tweetconfig'])) {
+    if(!empty($shrsb_plugopts['tweetconfig'])) {
       $needle = array('${title}', '${short_link}');
       $new_needle = array('SHORT_TITLE', 'FETCH_URL');
-      $tconfig = str_replace($needle, $new_needle, $sexy_plugopts['tweetconfig']);
-      $url=$sexy_bookmarks_data[$name]['baseUrl'].urlencode($tconfig).$tsrc;
+      $tconfig = str_replace($needle, $new_needle, $shrsb_plugopts['tweetconfig']);
+      $url=$shrsb_bookmarks_data[$name]['baseUrl'].urlencode($tconfig).$tsrc;
     }
     // Otherwise, use default tweet format
     else {
-      $url=$sexy_bookmarks_data[$name]['baseUrl'].'SHORT_TITLE+-+FETCH_URL'.$tsrc;
+      $url=$shrsb_bookmarks_data[$name]['baseUrl'].'SHORT_TITLE+-+FETCH_URL'.$tsrc;
     }
   }
   // Otherwise, use default baseUrl format
   else {
-	  $url=$sexy_bookmarks_data[$name]['baseUrl'];
+	  $url=$shrsb_bookmarks_data[$name]['baseUrl'];
   }
 
 
@@ -75,7 +75,7 @@ function bookmark_list_item($name, $opts=array()) {
     $topt = '';
   }
   else {
-    if($sexy_plugopts['targetopt'] == '_blank') {
+    if($shrsb_plugopts['targetopt'] == '_blank') {
       $topt = ' class="external"';
     }
     else {
@@ -90,10 +90,10 @@ function bookmark_list_item($name, $opts=array()) {
 			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s">%s</a>'."\n\t\t".'</li>'."\n",
 			$name,
 			$url,
-			$sexy_plugopts['reloption'],
+			$shrsb_plugopts['reloption'],
 			$topt,
-			$sexy_bookmarks_data[$name]['share'],
-			$sexy_bookmarks_data[$name]['share']
+			$shrsb_bookmarks_data[$name]['share'],
+			$shrsb_bookmarks_data[$name]['share']
 		);
 	}
 	else {
@@ -101,9 +101,9 @@ function bookmark_list_item($name, $opts=array()) {
 			"\t\t".'<li class="%s">'."\n\t\t\t".'<a href="%s" rel="%s"%s title="%s"%s>&nbsp;</a>'."\n\t\t".'</li>'."\n",
 			$name,
 			$url,
-			$sexy_plugopts['reloption'],
+			$shrsb_plugopts['reloption'],
 			$topt,
-			$sexy_bookmarks_data[$name]['share'],
+			$shrsb_bookmarks_data[$name]['share'],
 			$onclick
 		);
 	}
