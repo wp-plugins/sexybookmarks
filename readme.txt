@@ -17,6 +17,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Added another Portugese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
@@ -66,11 +67,12 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 * Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
+* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portugese
 
 
 = Thanks =
-* Thanks to [Saidmade Labs](http://labs.saidmade.com/ "Saidmade labs") for the original plugin core
-* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/ "Function Web Design Studio") for the original "Function Icon Set"
+* Thanks to [Saidmade Labs](http://labs.saidmade.com/) for the original plugin core
+* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/) for the original "Function Icon Set"
 * Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
 * Thanks to [Yuri Gribov](http://wp-ru.ru) for origianl i18n help.
 * Thanks to [Crey Design](http://creydesign.com) for the new background image.
@@ -117,6 +119,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 == Changelog ==
 = 3.2.2 =
+* Added Portugese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
