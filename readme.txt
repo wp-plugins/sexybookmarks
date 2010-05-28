@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 3.2.2
+Stable tag: 3.2.3
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -521,6 +521,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Initial release!
 
 == Upgrade Notice ==
+= 3.2.3 =
+Tested on several servers which still had issues with the past releases, and worked on each. You should feel more confident about upgrading to this version.
+
 = 3.2.1.2 =
 Bug fixes for persistent bugs that weren't fixed in v3.2.1.1
 
