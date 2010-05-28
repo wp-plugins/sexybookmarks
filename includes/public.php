@@ -6,8 +6,27 @@ $shrsb_is_mobile = shrsb_is_mobile();
 $shrsb_is_bot = shrsb_is_bot();
 
 //cURL, file get contents or nothing, used for short url
-function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null){
-	if (function_exists('curl_init') && function_exists('curl_exec')) {
+function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null) {
+
+  if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response') && function_exists('wp_remote_retrieve_body')) {
+    if($use_POST_method == 'POST') {
+      $request_params = array('method' => 'POST', 'body' => $POST_data);
+    }
+    else {
+      $request_params = array('method' => 'GET');
+    }
+
+    $url_request = wp_remote_request($url, $request_params);
+    $url_response = wp_remote_retrieve_response_code($url_request);
+
+    if($url_response == 200 || $url_response == '200') {
+      $source = wp_remote_retrieve_body($url_request);
+    }
+    else {
+      $source = '';
+    }
+  }
+	elseif (function_exists('curl_init') && function_exists('curl_exec')) {
 		// Use cURL
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -20,21 +39,15 @@ function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null){
 		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 		$source = trim(curl_exec($ch));
 
-    if ( curl_errno($ch) != 0 )
-      $source = null;
+    if ( curl_errno($ch) != 0 ) {
+      $source = '';
+    }
 
 		curl_close($ch);
 		
-	} 
-	elseif (function_exists('file_get_contents')) { 
-		// Use file_get_contents()
-		$source = trim(@file_get_contents($url));
-		if(!$source) {
-			$source = null;
-		}
-	} 
+	}
 	else {
-		$source = null;
+		$source = '';
 	}
 	return $source;
 }
@@ -159,12 +172,12 @@ function shrsb_get_fetch_url() {
 		//if bitly, then decode the json string
 		if($shrsb_plugopts['shorty'] == "bitly"){
 			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
+			$fetch_url = $fetch_array['results'][urldecode($perms)]['shortUrl'];
 		}
     //if bitly, then decode the json string
-		if($shrsb_plugopts['shorty'] == "supr"){
+		if($shrsb_plugopts['shorty'] == "supr" && $shrsb_plugopts['shortyapi']['supr']['chk'] == 1){
 			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['results'][$perms]['shortUrl'];
+			$fetch_url = $fetch_array['results'][urldecode($perms)]['shortUrl'];
 		}
 		// Remote call made and was successful
 		// Add/update values
@@ -185,7 +198,8 @@ function shrsb_get_fetch_url() {
       $postmeta_array = get_post_meta($post->ID, '_sexybookmarks_shortUrl');
       $fetch_url = $postmeta_array[0];
     }
-	} else {
+	}
+  else {
 		$fetch_url = $perms;
 	}
 	return $fetch_url;

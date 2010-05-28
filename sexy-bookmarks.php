@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://www.shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.2
+Version: 3.2.3
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -11,13 +11,8 @@ Author URI: http://www.shareaholic.com
 
 */
 
-// Create Text Domain For Translations
-load_plugin_textdomain('shrsb', '/wp-content/plugins/sexybookmarks/languages/');
 
-// Define a couple of constants
-define('SHRSB_OPTIONS','SexyBookmarks');
-define('SHRSB_vNum','3.2.2');
-
+define('SHRSB_vNum','3.2.3');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -28,6 +23,11 @@ if ( !defined('WP_CONTENT_URL') ) {
 	define('SHRSB_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 	define('SHRSB_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 }
+
+
+// Create Text Domain For Translations
+load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
+
 
 
 /*
@@ -64,62 +64,51 @@ if ( !class_exists('SERVICES_JSON') ) {
 // contains all bookmark templates.
 require_once 'includes/bookmarks-data.php';
 
-//Specifically define as globals to make available in activation hook
-global $shrsb_plugopts, $shrsb_custom_sprite, $shrsb_needs_update;
+// helper functions for html output.
+require_once 'includes/html-helpers.php';
 
-//Define the $shrsb_needs_update variable as "false" initially
-$shrsb_needs_update = false;
+// helper functions for backend
+require_once 'includes/helper-functions.php';
 
-// If option doesn't already exist in the database, must be first install
-if(!get_option(SHRSB_OPTIONS) || get_option(SHRSB_OPTIONS) == '') {
+//add defaults to an array
+$shrsb_plugopts = array(
+  'position' => 'below', // below, above, or manual
+  'reloption' => 'nofollow', // 'nofollow', or ''
+  'targetopt' => '_blank', // 'blank' or 'self'
+  'bgimg-yes' => 'yes', // 'yes' or blank
+  'mobile-hide' => '', // 'yes' or blank
+  'bgimg' => 'shr', // default bg image
+  'shorty' => 'b2l', // default is http://b2l.me
+  'pageorpost' => 'post',
+  'bookmark' => array_keys($shrsb_bookmarks_data), // pulled from bookmarks-data.php
+  'feed' => '1', // 1 or 0
+  'expand' => '1',
+  'autocenter' => '1',
+  'ybuzzcat' => 'science',
+  'ybuzzmed' => 'text',
+  'twittcat' => '',
+  'tweetconfig' => '${title} - ${short_link}', // Custom configuration of tweet
+  'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
+  'warn-choice' => '',
+  'doNotIncludeJQuery' => '',
+  'custom-mods' => '',
+  'scriptInFooter' => '1',
+);
 
-  //populate the array with default values upon initial installation
-  $shrsb_plugopts = array(
-    'position' => 'below', // below, above, or manual
-    'reloption' => 'nofollow', // 'nofollow', or ''
-    'targetopt' => '_blank', // 'blank' or 'self'
-    'bgimg-yes' => 'yes', // 'yes' or blank
-    'mobile-hide' => '', // 'yes' or blank
-    'bgimg' => 'shr', // default bg image
-    'shorty' => 'b2l', // default is http://b2l.me
-    'pageorpost' => 'post',
-    'bookmark' => array_keys($shrsb_bookmarks_data), // pulled from bookmarks-data.php
-    'feed' => '1', // 1 or 0
-    'expand' => '1',
-    'autocenter' => '1',
-    'ybuzzcat' => 'science',
-    'ybuzzmed' => 'text',
-    'twittcat' => '',
-    'tweetconfig' => '${title} - ${short_link}', // Custom configuration of tweet
-    'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
-    'warn-choice' => '',
-    'doNotIncludeJQuery' => '',
-    'custom-mods' => '',
-    'scriptInFooter' => '1',
-  );
-  add_option(SHRSB_OPTIONS, $shrsb_plugopts); // Store the option to the database wp_options table in a serialized array
-  $shrsb_plugopts = get_option(SHRSB_OPTIONS);// Now reload the variable with stored options from database
-}
-else { 
-  //Apparently the option already exists, just load directly from database and be done
-  $shrsb_plugopts = get_option(SHRSB_OPTIONS);
-}
+//add to database
+add_option('SexyBookmarks', $shrsb_plugopts);
+add_option('SHRSB_CustomSprite', '');
 
-// give the custom sprite it's own option to prevent complications with previously saved data
-if(!get_option('SHRSB_CustomSprite')) { 
-  add_option('SHRSB_CustomSprite', ''); // Option doesn't exist, let's create it with blank value by default
-  $shrsb_custom_sprite = get_option('SHRSB_CustomSprite'); // Update variable with value from database
-}
-else {
-  // Option already exists, just pull from database
-  $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
-}
+//reload from database
+$shrsb_plugopts = get_option('SexyBookmarks');
+$shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
 
 
 
+//add activation hook to remove all old and non-existent options from database if necessary
 function shrsb_Activate() {
-  if(!get_option('SHRSBvNum') || get_option('SHRSBvNum') == '') {
-    delete_option(SHRSB_OPTIONS);
+  if(false === get_option('SHRSBvNum') || get_option('SHRSBvNum') == '') {
+    delete_option('SexyBookmarks');
     delete_option('SexyCustomSprite');
     delete_option('SEXY_SPONSORS');
     delete_option('SHRSB_CustomSprite');
@@ -127,24 +116,16 @@ function shrsb_Activate() {
 }
 register_activation_hook( __FILE__, 'shrsb_Activate' );
 
+//add deactivation hook to update the version number option so that options won't be deleted again upon upgrading
 function shrsb_deActivate() {
-  if(get_option('SHRSBvNum') || get_option('SHRSBvNum') != '') {
+  if(false !== get_option('SHRSBvNum') || get_option('SHRSBvNum') != '') {
     update_option('SHRSBvNum', SHRSB_vNum);
   }
 }
 register_deactivation_hook( __FILE__, 'shrsb_deActivate' );
 
-// helper functions for backend
-require_once 'includes/helper-functions.php';
 
-// helper functions for html output.
-require_once 'includes/html-helpers.php';
-
-
-
-
-
-
+//add update notice to the main dashboard area so it's visible throughout
 function showUpdateNotice() {
 
   //If the option doesn't exist yet, it means the old naming scheme was found and scrubbed... Let's alert the user to update their settings
@@ -189,7 +170,7 @@ function shrsb_settings_page() {
 
 	//Reset all options to default settings if user clicks the reset button
 	if($_POST['shrsbresetallwarn-choice'] == "yes") { //check for reset button click
-		delete_option(SHRSB_OPTIONS);
+		delete_option('SexyBookmarks');
 		$shrsb_plugopts = array(
 			'position' => 'below', // below, above, or manual
 			'reloption' => 'nofollow', // 'nofollow', or ''
@@ -198,7 +179,7 @@ function shrsb_settings_page() {
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'shr', // default bg image
 			'shorty' => 'b2l', // default is http://b2l.me
-			'pageorpost' => '',
+			'pageorpost' => 'post',
 			'bookmark' => array_keys($shrsb_bookmarks_data),
 			'feed' => '1', // 1 or 0
 			'expand' => '1',
@@ -213,7 +194,7 @@ function shrsb_settings_page() {
 			'custom-mods' => '',
 			'scriptInFooter' => '1',
 		);
-		update_option(SHRSB_OPTIONS, $shrsb_plugopts);
+		update_option('SexyBookmarks', $shrsb_plugopts);
 		delete_option('SHRSB_CustomSprite');
 		echo '
 		<div id="statmessage" class="shrsb-success">
@@ -285,11 +266,6 @@ function shrsb_settings_page() {
 		}
 
 		if (!$error_message) {
-
-      //Set version number as option to prevent further displaying of the update notice
-      update_option('SHRSBvNum', SHRSB_vNum);
-
-
 			//generate a new sprite, to reduce the size of the image
 			if(shrsb_preFlight_Checks()) {
 				if ( isset($_POST['bookmark']) && is_array($_POST['bookmark']) and sizeof($_POST['bookmark']) > 0 ) {
@@ -299,10 +275,10 @@ function shrsb_settings_page() {
 					}
 					$spritegen_opts = substr($spritegen_opts,0,-1);
 					$spritegen_opts .= '&bgimg=' . $_POST['bgimg'] . '&expand=' . $_POST['expand'];
-					$save_return[0] = get_sprite_file($spritegen_opts, 'png');
-					$save_return[1] = get_sprite_file($spritegen_opts, 'css');
+          $save_return[0] = get_sprite_file($spritegen_opts, 'png');
+          $save_return[1] = get_sprite_file($spritegen_opts, 'css');
 				}
-				if($save_return[0] == 2 || $save_return[1] == 2) {
+        if($save_return[0] == 2 || $save_return[1] == 2) {
 					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.__('WARNING: The request for a custom sprite has timed out. Reverting to default sprite files.', 'shrsb').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					$shrsb_custom_sprite = '';
 					$status_message = __('Changes saved successfully. However, you should try to generate a custom sprite again later.', 'shrsb');
@@ -383,8 +359,9 @@ function shrsb_settings_page() {
 			$shrsb_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES));
 			/* Short URLs End */
 			
-			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
+			update_option('SexyBookmarks', $shrsb_plugopts);
 			update_option('SHRSB_CustomSprite', $shrsb_custom_sprite);
+      update_option('SHRSBvNum', SHRSB_vNum);
 
 		}
 
@@ -415,7 +392,6 @@ function shrsb_settings_page() {
 				<img src="'.SHRSB_PLUGPATH.'images/success-delete.jpg" class="del-x" alt=""/>
 			</div>
 		</div>';
-    remove_action('admin_notices', 'showUpdateNotice', 12);
 	}
 ?>
 
@@ -810,7 +786,7 @@ function shrsb_settings_page() {
 add_action('admin_menu', 'shrsb_menu_link');
 function shrsb_menu_link() {
 	if (function_exists('add_options_page')) {
-		$shrsb_admin_page = add_options_page(__('SexyBookmarks', 'shrsb'), 'SexyBookmarks', 'administrator', basename(__FILE__), 'shrsb_settings_page');
+		$shrsb_admin_page = add_options_page('SexyBookmarks', 'SexyBookmarks', 'administrator', basename(__FILE__), 'shrsb_settings_page');
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
 	}
@@ -850,3 +826,5 @@ function shrsb_admin_plugin_actions($links) {
 add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'shrsb_admin_plugin_actions', -10);
 
 require_once "includes/public.php";
+
+?>

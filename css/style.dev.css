@@ -1,5 +1,5 @@
 div.shr-bookmarks { margin:20px 0; clear: both !important; }
-div.shr-bookmarks-expand { height: 29px; overflow: hidden; }
+div.shr-bookmarks-expand { height: 32px; overflow: hidden; }
 div.shr-bookmarks-bg-shr { padding: 28px 0 0 10px !important; background:transparent url('../images/sharing-shr.png') no-repeat !important; }
 div.shr-bookmarks-bg-caring { padding: 26px 0 0 10px !important; background:transparent url('../images/sharing-caring-hearts.png') no-repeat !important; }
 div.shr-bookmarks-bg-caring-old { padding: 26px 0 0 10px !important; background:transparent url('../images/sharing-caring.png') no-repeat !important; }
@@ -15,11 +15,11 @@ div.shr-bookmarks ul.socials li {
 	display:inline !important;
 	float:left !important;
 	list-style-type:none !important;
-	padding:3px 0 0 !important;
-	height:26px !important;
+	padding:0 !important;
+	height:29px !important;
 	width:60px !important;
 	cursor:pointer !important;
-	margin:0 !important;
+	margin:3px 0 0 !important;
 	background-color:transparent !important;
 	border:0 none !important;
 	outline:0 none !important;

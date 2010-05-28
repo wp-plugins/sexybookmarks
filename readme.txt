@@ -17,20 +17,15 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Short URL function now uses wp http api
+* Added urldecode() to bitly and supr JSON requests
+* Removed fopen() from sprite request, now uses the WP http api
+* Updated Italian translation
+* Updated translation folder definition to filesystem path
 * Added another Portugese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
-* Fixed error in stylesheet name
-* Added referrer to API request
-* Fixed JS counter
-* Complete revamp of naming scheme
-* Better activation hook to check old naming scheme
-* Added Greek translation
-* Fixed charset problem with htmlspecialchars()
-* Names are now automatically replaced from sexy- to shr- upon upgrade/activation
-* Fixed issue causing one icon to display multiple times
-* Fixed expanding blank space issue
-* Fixed caching issue by adding version number to file names rather than as parameters
+
 
 
 = Recently Added Sites =
@@ -55,6 +50,7 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Yuri Gribov](http://wp-ru.ru) for translating to Russian
 * Credit goes to [Ghenciu Ciprian](http://www.osn.ro) for translating to Romanian
 * Credit goes to [Carlo Veltri](http://chepelle.altervista.org/wordpress) for translating to Italian
+* Credit goes to [Damjan Gerli](http://www.damjan.net) for updating the Italian translation
 * Credit goes to [Joojen](http://www.keege.com) for translating to Chinese
 * Credit goes to [Javier Pimienta](http://cpcdisseny.net) for translating to Spanish
 * Credit goes to [Giovanni Zuccaro](http://www.giovannizuccaro.it) for updating the Italian translation
@@ -118,6 +114,12 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
+= 3.2.3 =
+* Added urldecode() to bitly and supr JSON requests
+* Removed fopen() from the sprite request, now uses the WP http api
+* Updated translation folder definition to filesystem path
+* Updated the Italian translation
+
 = 3.2.2 =
 * Added Portugese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
