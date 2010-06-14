@@ -8,7 +8,7 @@ $shrsb_is_bot = shrsb_is_bot();
 //cURL, file get contents or nothing, used for short url
 function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null) {
 
-  if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response') && function_exists('wp_remote_retrieve_body')) {
+  if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response_code') && function_exists('wp_remote_retrieve_body')) {
     if($use_POST_method == 'POST') {
       $request_params = array('method' => 'POST', 'body' => $POST_data);
     }

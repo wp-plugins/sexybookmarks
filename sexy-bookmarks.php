@@ -92,7 +92,7 @@ $shrsb_plugopts = array(
   'warn-choice' => '',
   'doNotIncludeJQuery' => '',
   'custom-mods' => '',
-  'scriptInFooter' => '1',
+  'scriptInFooter' => '',
 );
 
 //add to database
@@ -111,6 +111,9 @@ function shrsb_Activate() {
     delete_option('SexyBookmarks');
     delete_option('SexyCustomSprite');
     delete_option('SEXY_SPONSORS');
+    delete_option('SHRSB_CustomSprite');
+  }
+  if(!file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
     delete_option('SHRSB_CustomSprite');
   }
 }
@@ -192,7 +195,7 @@ function shrsb_settings_page() {
 			'warn-choice' => '',
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
-			'scriptInFooter' => '1',
+			'scriptInFooter' => '',
 		);
 		update_option('SexyBookmarks', $shrsb_plugopts);
 		delete_option('SHRSB_CustomSprite');
@@ -238,6 +241,9 @@ function shrsb_settings_page() {
 	$error_message = "";
 	if(isset($_POST['save_changes'])) {
 
+    if(isset($_POST['bookmark']['shr-fleck'])) {
+      unset($_POST['bookmark']['shr-fleck']);
+    }
 
 		// Set success message
 		$status_message = __('Your changes have been saved successfully!', 'shrsb');

@@ -277,11 +277,6 @@ $shrsb_bookmarks_data=array(
 		'share'=>__('Submit this to ', 'shrsb').'Netvibes',
 		'baseUrl'=>'http://www.netvibes.com/share?title=TITLE&amp;url=PERMALINK',
 	),
-	'shr-fleck'=>array(
-		'check'=>sprintf($checkthis_text,'Fleck'),
-		'share'=>__('Share this on ', 'shrsb').'Fleck',
-		'baseUrl'=>'http://beta3.fleck.com/bookmarklet.php?url=PERMALINK&amp;title=TITLE',
-	),
 	'shr-webblend'=>array(
 		'check'=>sprintf($checkthis_text,'Web Blend'),
 		'share'=>__('Blend this!', 'shrsb'),
