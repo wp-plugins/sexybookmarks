@@ -5,6 +5,271 @@ require_once 'mobile.php';
 $shrsb_is_mobile = shrsb_is_mobile();
 $shrsb_is_bot = shrsb_is_bot();
 
+// Written in the footer if shareaholic-javascript is on
+$shrsb_js_params = array();
+
+$shrsb_bgimg_map = array(
+    'shr' => array(
+        'url' => SHRSB_PLUGPATH.'images/sharing-shr.png',
+        'padding' => '28px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-shr',
+    ),
+    'caring' => array(
+        'url' => SHRSB_PLUGPATH.'images/sharing-caring-hearts.png',
+        'padding' => '26px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-caring',
+    ),
+    'care-old' => array(
+        'url' => SHRSB_PLUGPATH.'images/sharing-caring.png',
+        'padding' => '26px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-care-old',
+    ),
+    'love' => array(
+        'url' => SHRSB_PLUGPATH.'images/share-love-hearts.png',
+        'padding' => '26px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-love',
+    ),
+    'wealth' => array(
+        'url' => SHRSB_PLUGPATH.'images/share-wealth.png',
+        'padding' => '35px 0 0 20px',
+        'class' => 'shr-bookmarks-bg-wealth',
+    ),
+    'enjoy' => array(
+        'url' => SHRSB_PLUGPATH.'images/share-enjoy.png',
+        'padding' => '26px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-enjoy',
+    ),
+    'german' => array(
+        'url' => SHRSB_PLUGPATH.'images/share-german.png',
+        'padding' => '35px 0 0 20px',
+        'class' => 'shr-bookmarks-bg-german',
+    ),
+    'knowledge' => array(
+        'url' => SHRSB_PLUGPATH.'images/share-knowledge.png',
+        'padding' => '35px 0 0 10px',
+        'class' => 'shr-bookmarks-bg-knowledge',
+    ),
+);
+
+/**
+ * Helper method that returns array for the current post of
+ * array(
+ *   'link' => ..,
+ *   'title' => ..,
+ *   'feed_permalink' => ..,
+ *   'mail_subject' => ..
+ * )
+ */
+function shrsb_post_info($post) {
+	global $shrsb_plugopts, $shrsb_bgimg_map;
+
+  $r = array();
+
+  // if (position == manual or (home and index)) and no post_title
+  // then we are "Outside the loop".
+  $ismanual = $shrsb_plugopts['position'] == 'manual';
+  $ishome = is_home() &&
+      false!==strpos($shrsb_plugopts['pageorpost'],"index");
+  $isemptytitle = empty($post->post_title);
+  if($ismanual || ($ishome && $isemptytitle))
+  {
+
+    $r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] .
+        $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+    $r['title'] = get_bloginfo('name') . wp_title('-', false);
+    $r['feed_permalink'] = strtolower('http://' .
+        $_SERVER['SERVER_NAME'] .  $_SERVER['REQUEST_URI'] .
+        $_SERVER['QUERY_STRING']);
+    $r['mail_subject'] = urlencode(get_bloginfo('name') .
+        wp_title('-', false));
+	}
+  else // We are "in the loop"
+  {
+		$r['link'] = trim(get_permalink($post->ID));
+		$r['title'] = $post->post_title;
+		$r['feed_permalink'] = strtolower($r['link']);
+		$r['mail_subject'] = urlencode($post->post_title);
+	}
+
+	// Determine how to handle post titles for Twitter
+	if (strlen($r['title']) >= 80) {
+		$r['short_title'] = urlencode(substr($r['title'], 0, 80)."[..]");
+	}
+	else {
+		$r['short_title'] = urlencode($r['title']);
+	}
+
+    return $r;
+}
+
+/**
+ * Returns array of values that should be used in shareaholic-publishers.js
+ */
+function shrsb_get_publisher_config($post_id) {
+    $r = shrsb_get_params($post_id);
+
+    $params = array(
+        'link' => $r['link'],
+        'short_link' => $r['short_link'],
+        'title' => $r['title'],
+        'notes' => $r['notes'],
+        'service' => $r['service'],
+        'apikey' => $r['apikey'] ? $r['apikey'] : '8afa39428933be41f8afdb8ea21a495c',
+        // we need this because wordpress won't pass it at all if it's FALSE
+        // and the default value for expand is true.  We convert it to boolean
+        // in javascript
+        'expand' => $r['expand'] ? true : 'false',
+        'src' => SHRSB_PLUGPATH.'spritegen',
+        'localize' => true,
+        'share_src' => $r['shrbase'],
+        'rel' => $r['reloption'],
+        'target' => $r['targetopt'] == '_blank' ? '_blank' : '_top',
+        'bgimg' => $r['bgimg-url'],
+        'bgimg_padding' => $r['bgimg-padding'],
+        'center' => $r['autocenter'] == 1,
+        'spaced' => $r['autocenter'] == 2,
+        'twitter_template' => $r['tweetconfig'],
+        'mode' => 'inject',
+        'spriteimg' => $r['spriteimg'],
+        'category' => $r['category'],
+    );
+
+    if ($r['include_comfeed']) {
+        // Shareaholic doesn't support comment rss feeds, so we add it as a
+        // custom link.
+        $params['custom_link'] = array(
+            $r['comfeed_position'] => array(
+                'li_class' => 'custom-comfeed',
+                'link' => $r['feed_link'],
+                'tooltip' => __('Subscribe to the comments for this post?', 'shrsb'),
+                'style' => 'background-image:url('.SHRSB_PLUGPATH.'images/comfeed.png);',
+            ),
+        );
+    }
+
+    return array_filter($params);
+}
+
+/**
+ * Returns array of all relevant information about the current post for sexy
+ */
+function shrsb_get_params($post_id) {
+    global $shrsb_plugopts, $shrsb_bgimg_map;
+    $post = get_post($post_id);
+
+    // response parameters
+    $post_info = shrsb_post_info($post);
+    $r = array_merge($shrsb_plugopts, $post_info);
+
+    // Grab the short URL
+    $r['short_link'] = shrsb_get_fetch_url();
+	$r['category'] = $shrsb_plugopts['twittcat'];
+
+    $r['post_summary'] = urlencode(strip_tags(
+        strip_shortcodes($post->post_excerpt)));
+
+    if ($r['post_summary'] == "") {
+        $r['post_summary'] = urlencode(substr(
+            strip_tags(strip_shortcodes($post->post_content)),0,300));
+    }
+
+    $r['shrsb_content'] = urlencode(
+        strip_tags(strip_shortcodes($post->post_excerpt))
+    );
+    if ($r['shrsb_content'] == "") {
+        $r['shrsb_content'] = urlencode(
+            substr(
+                strip_tags(strip_shortcodes($post->post_content)),
+                0,
+                300
+            )
+        );
+    }
+	$r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
+    $r['post_summary'] = stripslashes(
+        str_replace('+','%20',$r['post_summary'])
+    );
+	$r['site_name'] = get_bloginfo('name');
+    $r['mail_subject'] = str_replace("&#8217;","'",
+        str_replace('+','%20',$r['mail_subject']));
+
+    // Grab post tags for Twittley tags. If there aren't any, use default tags
+    // set in plugin options page
+    $getkeywords = get_the_tags();
+    $r['d_tags'] = "";
+    $tags = array();
+	if (!empty($getkeywords)) {
+        foreach($getkeywords as $tag) { $tags[] = $tag->name; }
+        $r['d_tags'] = implode(',', $tags);
+	}
+	else {
+		$r['d_tags'] = $shrsb_plugopts['defaulttags'];
+	}
+
+	// Check permalink setup for proper feed link
+    $hasquery = false !== strpos($r['feed_permalink'],'?');
+    $isphp = false !== strpos($r['feed_permalink'],'.php',
+        strlen($r['feed_permalink']) - 4);
+	if ($hasquery || $isphp) {
+		$r['feed_structure'] = '&amp;feed=comments-rss2';
+	} else {
+        $endsinslash = '/' ==
+            $r['feed_permalink'][strlen($r['feed_permalink']) - 1];
+		if ($endsinslash) {
+			$r['feed_structure'] = 'feed';
+		}
+		else {
+			$r['feed_structure'] = '/feed';
+		}
+	}
+    $r['feed_link'] = $r['feed_permalink'].$r['feed_structure'];
+
+	// Compatibility fix for NextGen Gallery Plugin...
+	if( (strpos($r['post_summary'], '[') || strpos($r['post_summary'], ']')) ) {
+		$r['post_summary'] = "";
+	}
+	if((strpos($r['shrsb_content'], '[') || strpos($r['shrsb_content'],']'))) {
+		$r['shrsb_content'] = "";
+	}
+
+  $r['bgimg-url'] = '';
+	if(isset($shrsb_plugopts['bgimg-yes'])) {
+    $r['bgimg-url'] = $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['url'];
+    $r['bgimg-padding'] = $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding'];
+  }
+
+	// Select the background image
+    $bclasses = array('shr-bookmarks');
+	if (isset($shrsb_plugopts['bgimg-yes'])) {
+        $bclasses[] = $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['class'];
+	}
+    if ($shrsb_plugopts['expand'] == 1) {
+        $r['expand'] = true;
+        $bclasses[] = 'shr-bookmarks-expand';
+    }
+	if ($shrsb_plugopts['autocenter'] == 1) {
+		$bclasses[] = 'shr-bookmarks-center';
+	} elseif ($shrsb_plugopts['autocenter'] == 2) {
+		$bclasses[] = 'shr-bookmarks-spaced';
+	}
+    $r['bookmarks-class'] = implode(' ', $bclasses);
+    $r['notes'] = $r['post_summary'];
+
+    // see if we need comfeed
+    $position = array_search('shr-comfeed', $shrsb_plugopts['bookmark']);
+    if (is_numeric($position)) {
+        $r['include_comfeed'] = TRUE;
+        if ($position == 0) {
+            $r['comfeed_position'] = 'before_0';
+        } else {
+            $r['comfeed_position'] = 'after_'.($position-1);
+        }
+    } else {
+        $r['include_comfeed'] = FALSE;
+    }
+
+	return $r;
+}
 //cURL, file get contents or nothing, used for short url
 function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null) {
 
@@ -211,7 +476,7 @@ function shrsb_get_fetch_url() {
 
 // Create an auto-insertion function
 function shrsb_position_menu($post_content) {
-	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot;
+	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
 
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
@@ -230,23 +495,40 @@ function shrsb_position_menu($post_content) {
 		(is_feed() && !empty($shrsb_plugopts['feed']))
 	) { // socials should be generated and added
 		if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
-			$socials=get_sexy();
+            if ($shrsb_plugopts['shareaholic-javascript'] == '1')
+            {
+                $output='<div class="shr-publisher-'.$post->ID.'"></div>';
+                $config = shrsb_get_publisher_config($post->ID);
+
+                $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+            }
+            else
+            {
+                $output=get_sexy();
+            }
 		}
 	}
 
 	// Place of bookmarks and return w/ post content.
-	if (empty($socials)) {
-		return $post_content;
-	} elseif ($shrsb_plugopts['position']=='above') {
-		return $socials.$post_content;
-	} elseif ($shrsb_plugopts['position']=='below') {
-		return $post_content.$socials;
-	} elseif ($shrsb_plugopts['position']=='both') {
-    return $socials.$post_content.$socials;
-  } else { // some other unexpected error, don't do anything. return.
-		error_log(__('An unknown error occurred in SexyBookmarks', 'shrsb'));
-		return $post_content;
-	}
+    $r = $post_content;
+	if (!empty($output)) {
+        switch($shrsb_plugopts['position']) {
+        case 'above':
+            $r = $output.$post_content;
+            break;
+        case 'both':
+            $r = $output.$post_content.$output;
+            break;
+        case 'below':
+            $r = $post_content.$output;
+            break;
+        default:
+            error_log(__('An unknown error occurred in SexyBookmarks',
+                'shrsb'));
+        }
+    }
+
+    return $r;
 }
 // End shrsb_position_menu...
 
@@ -495,44 +777,86 @@ function shrsb_publicStyles() {
 	global $shrsb_plugopts, $post, $shrsb_custom_sprite;
 
 	// If custom field is set, do not display sexybookmarks
-	if(get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+	if (get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'shrsb').' -->'."\n\n";
-	} 
-  else {
+	} elseif ($shrsb_plugopts['shareaholic-javascript'] != '1') {
 		//custom mods rule over custom css
-    if($shrsb_plugopts['custom-mods'] != 'yes') {
-      if($shrsb_custom_sprite != '') {
-        $surl = $shrsb_custom_sprite;
-      }
-      else {
-        $surl = SHRSB_PLUGPATH.'css/style.css';
-      }
-    }
-    elseif($shrsb_plugopts['custom-mods'] == 'yes') {
-      $surl = WP_CONTENT_URL.'/sexy-mods/css/style.css';
-    }
+        if ($shrsb_plugopts['custom-mods'] != 'yes') {
+            if($shrsb_custom_sprite != '') {
+                $surl = $shrsb_custom_sprite;
+            } else {
+                $surl = SHRSB_PLUGPATH.'css/style.css';
+            }
+        } elseif ($shrsb_plugopts['custom-mods'] == 'yes') {
+          $surl = WP_CONTENT_URL.'/sexy-mods/css/style.css';
+        }
 		wp_enqueue_style('sexy-bookmarks', $surl, false, SHRSB_vNum, 'all');
-	}
+    } else {
+        $position = array_search('shr-comfeed', $shrsb_plugopts['bookmark']);
+        if (is_numeric($position)) {
+            wp_enqueue_style('comfeed', SHRSB_PLUGPATH.'css/comfeed.css', false, SHRSB_vNum, 'all');
+        }
+    }
 }
 function shrsb_publicScripts() {
 	global $shrsb_plugopts, $post;
-	
-	if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) { // If any javascript dependent options are selected, load the scripts
 
-    // If custom mods is selected, pull files from new location
-    if($shrsb_plugopts['custom-mods'] == 'yes') {
-      $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
-    }
-    else {
-      $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.js';
-    }
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1' &&
+        !is_admin() &&
+        !get_post_meta($post->ID, 'Hide SexyBookmarks'))
+    {
+        $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
 
-		$jquery = ($shrsb_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array(); // If jQuery compatibility fix is not selected, go ahead and load jQuery
-		$infooter = ($shrsb_plugopts['scriptInFooter'] == '1') ? true : false;
-		wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery, SHRSB_vNum, $infooter);
-	}
+        wp_enqueue_script(
+          'shareaholic-publishers-js',
+          SHRSB_PLUGPATH.'js/shareaholic-publishers.min.js',
+          null, false, $infooter
+        );
+
+        wp_localize_script(
+          'shareaholic-publishers-js',
+          'SHRSB_Globals',
+          array('src' => SHRSB_PLUGPATH.'spritegen')
+        );
+    }
+    else
+    {
+        // If any javascript dependent options are selected, load the scripts
+        if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] ||
+            $shrsb_plugopts['targetopt']=='_blank') &&
+            !get_post_meta($post->ID, 'Hide SexyBookmarks'))
+        {
+            // If custom mods is selected, pull files from new location
+            if($shrsb_plugopts['custom-mods'] == 'yes')
+            {
+              $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
+            }
+            else
+            {
+              $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.js';
+            }
+            // If jQuery compatibility fix is not selected, go ahead and load
+            // jQuery
+            $jquery = ($shrsb_plugopts['doNotIncludeJQuery'] != '1') ?
+                array('jquery') : array();
+            $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
+            wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery,
+                SHRSB_vNum, $infooter);
+        }
+    }
+}
+
+function shrsb_write_js_params() {
+  global $shrsb_plugopts, $shrsb_js_params;
+
+  if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+    echo '<script>SHRSB_Settings = ';
+    echo json_encode($shrsb_js_params);
+    echo '</script>';
+  }
 }
 
 add_action('wp_print_styles', 'shrsb_publicStyles');
 add_action('wp_print_scripts', 'shrsb_publicScripts');
 add_filter('the_content', 'shrsb_position_menu');
+add_action('wp_footer', 'shrsb_write_js_params');

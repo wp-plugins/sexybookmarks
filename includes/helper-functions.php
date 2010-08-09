@@ -11,8 +11,10 @@ function shrsb_preFlight_Checks() {
 }
 
 function get_sprite_file($opts, $type) {
+  global $shrsb_plugopts;
 
-	$spritegen = 'http://www.shareaholic.com/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
+    $shrbase = $shrsb_plugopts['shrbase']?$shrsb_plugopts['shrbase']:'http://www.sharaholic.com';
+	$spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
   $filename = SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.'.$type;
   $content = FALSE;
 
@@ -94,4 +96,81 @@ function get_sprite_file($opts, $type) {
   }
 }
 
-?>
+/**
+ * Gets the contents of a url on www.shareaholic.com.  We use shrbase as the
+ * URL base path.  The caller is responsible for keeping track of whether the
+ * cache is up-to-date or not.  If the cache is stale (because some argument
+ * has changed), then the caller should pass true as the second argument.
+ *
+ * @url        - the partial url without base.  ex. /publishers
+ * @path       - path to cache result to, under spritegen.
+ *               ex. /publishers.html
+ *               pass null to use the path part of url
+ * @clearcache - force call and overwrite cache.
+ */
+function _shrsb_fetch_content($url, $path, $clearcache=false) {
+  global $shrsb_plugopts;
+
+  $shrbase = $shrsb_plugopts['shrbase']?$shrsb_plugopts['shrbase']:'http://www.sharaholic.com';
+
+  if (!preg_match('|^/|', $url)) {
+    @error_log("url must start with '/' in _shrsb_fetch_content");
+    return FALSE;
+  }
+
+  // default path
+  if (null === $path) {
+    $url_parts = explode('?', $url);
+    $path = rtrim($url_parts[0], '/');
+  }
+
+  $base_path = path_join(SHRSB_PLUGDIR, 'spritegen');
+  $abs_path = $base_path.$path;
+
+  if ($clearcache || !($retval = _shrsb_read_file($abs_path))) {
+    $response = wp_remote_get($shrbase.$url, array('timeout' => 10000));
+    if (is_wp_error($response)) {
+      @error_log("Failed to fetch ".$shrbase.$url);
+      $retval = FALSE;
+    } else {
+      $retval = $response['body'];
+    }
+
+    _shrsb_write_file($abs_path, $retval);
+  }
+
+  return $retval;
+}
+
+function _shrsb_write_file($path, $content) {
+  $dir = dirname($path);
+  if (!(is_dir(dirname($path)) || mkdir(dirname($path), 0777, true))) {
+    @error_log("Failed to create path ".dirname($path));
+  }
+  $fh = fopen($path, 'w+');
+  if (!$fh) {
+    @error_log("Failed to open ".$path);
+  } else {
+    if (!fwrite($fh, $content)) {
+      @error_log("Failed to write to ".$path);
+    }
+    @fclose($fh);
+  }
+}
+
+function _shrsb_read_file($path) {
+  $content = FALSE;
+
+  $fh = @fopen($path, 'r');
+  if (!$fh) {
+    @error_log("Failed to open ".$path);
+  } else {
+    if (!$content = fread($fh, filesize($path))) {
+      @error_log("Failed to read from ".$path);
+    }
+    @fclose($fh);
+  }
+
+  return $content;
+}
+

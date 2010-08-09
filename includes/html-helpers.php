@@ -71,7 +71,7 @@ function bookmark_list_item($name, $opts=array()) {
 	if($name == 'shr-facebook') {
 		$onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
 	}
-  if($name == 'shr-buzzster') {
+  if($name == 'shr-bzzster' || $name == 'shr-buzzster') {
     $topt = '';
   }
   else {

@@ -200,6 +200,8 @@ li.shr-dzone { background-position:-5530px bottom !important; }
 li.shr-dzone:hover { background-position:-5530px top !important; }
 li.shr-kaevur { background-position:-5600px bottom !important; }
 li.shr-kaevur:hover { background-position:-5600px top !important; }
+li.shr-box { background-position:-5670px bottom !important; }
+li.shr-box:hover { background-position:-5670px top !important; }
 li.shr-boxnet { background-position:-5670px bottom !important; }
 li.shr-boxnet:hover { background-position:-5670px top !important; }
 li.shr-oknotizie { background-position:-5740px bottom !important; }
@@ -220,3 +222,5 @@ li.shr-gmail { background-position:-6230px bottom !important; }
 li.shr-gmail:hover { background-position:-6230px top !important; }
 li.shr-buzzster { background-position:-6300px bottom !important; }
 li.shr-buzzster:hover { background-position:-6300px top !important; }
+li.shr-bzzster { background-position:-6300px bottom !important; }
+li.shr-bzzster:hover { background-position:-6300px top !important; }

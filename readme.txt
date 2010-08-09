@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 3.2.3.1
+Stable tag: 3.2.4
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -17,12 +17,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
-* Small bug fix for short URLs when cURL not enabled
-* Removed Fleck as it no longer exists
-* Removed "Load scripts in footer" from default settings
-* Short URL function now uses wp http api
-* Added urldecode() to bitly and supr JSON requests
-* Removed fopen() from sprite request, now uses the WP http api
+* Complete re-write to increase efficiency and speed
 
 
 
@@ -112,6 +107,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
+= 3.2.4 =
+* Complete re-write to increase efficiency and speed
+
 = 3.2.3.1 =
 * Small bug fix for short URLs when cURL not enabled
 * Removed Fleck as it no longer exists

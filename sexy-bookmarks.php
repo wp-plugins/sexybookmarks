@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks
 Plugin URI: http://www.shareaholic.com/sexybookmarks
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.3.1
+Version: 3.2.4
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.3.1');
+define('SHRSB_vNum','3.2.4');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -93,6 +93,11 @@ $shrsb_plugopts = array(
   'doNotIncludeJQuery' => '',
   'custom-mods' => '',
   'scriptInFooter' => '',
+  'shareaholic-javascript' => '',
+  'shrbase' => 'http://www.shareaholic.com',
+  'apikey' => '8afa39428933be41f8afdb8ea21a495c',
+  // comma delimited list of service ids for publisher javascript
+  'service' => '',
 );
 
 //add to database
@@ -138,17 +143,44 @@ function showUpdateNotice() {
         <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
           '.sprintf(__('NOTICE: SexyBookmarks needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
         </div>
-
       </div>';
   }
 }
 add_action('admin_notices', 'showUpdateNotice', 12);
 
+function _make_params($params) {
+  $pairs = array();
+  foreach ($params as $k => $v) {
+    $pairs[] = implode('=', array(urlencode($k), urlencode($v)));
+  }
+  return implode('&', $pairs);
+}
 
+/**
+ * Make a local copy of all shareaholic resources
+ */
+function shrsb_refresh_cache() {
+  global $shrsb_plugopts, $shrsb_bgimg_map;
 
+  _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-api.min.js', null, true);
 
+  // Sort services to make request more cacheable.
+  $services = explode(',', $shrsb_plugopts['service']);
+  sort($services, SORT_NUMERIC);
+  $services = implode(',', $services);
 
-
+  $sprite_opts = array(
+    'v' => 2,
+    'apikey' => $shrsb_plugopts['apikey'],
+    'service' => $services,
+    'bgimg' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['url'],
+    'bgimg_padding' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding']
+  );
+  // save as css so mime types work on normal servers
+  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/api/sprite.css', true);
+  $sprite_opts['apitype'] = 'png';
+  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/api/sprite.png', true);
+}
 
 //write settings page
 function shrsb_settings_page() {
@@ -196,6 +228,10 @@ function shrsb_settings_page() {
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
 			'scriptInFooter' => '',
+      'shareaholic-javascript' => '',
+      'shrbase' => 'http://www.shareaholic.com',
+      'apikey' => '8afa39428933be41f8afdb8ea21a495c',
+      'service' => '',
 		);
 		update_option('SexyBookmarks', $shrsb_plugopts);
 		delete_option('SHRSB_CustomSprite');
@@ -335,11 +371,22 @@ function shrsb_settings_page() {
         'position', 'reloption', 'targetopt', 'bookmark',
         'shorty', 'pageorpost', 'tweetconfig', 'ybuzzcat', 'ybuzzmed',
         'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
-        'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods', 'scriptInFooter'
+        'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
+        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'apikey'
 			)as $field) {
         $shrsb_plugopts[$field] = $_POST[$field];
       }
-			
+      if ( isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 && $shrsb_plugopts['shareaholic-javascript'] == '1') {
+        $service_ids = array();
+        foreach ( $_POST['bookmark'] as $bm ) {
+          if ($this_id = $shrsb_bookmarks_data[$bm]['id']) {
+            $service_ids[] = $this_id;
+          }
+        }
+        $shrsb_plugopts['service'] = implode(',', $service_ids);
+        shrsb_refresh_cache();
+      }
+
       // Get rid of nasty script injections
       $shrsb_plugopts['defaulttags'] = htmlspecialchars($shrsb_plugopts['defaulttags'], ENT_QUOTES);
       $shrsb_plugopts['tweetconfig'] = htmlspecialchars($shrsb_plugopts['tweetconfig'], ENT_QUOTES);
@@ -405,6 +452,25 @@ function shrsb_settings_page() {
 <form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
 	<div id="shrsb-col-left">
 		<ul id="shrsb-sortables">
+            <li>
+                <div class="box-mid-head">
+                    <h2 class="fugue f-status"><?php _e('BETA Testing', 'shrsb'); ?></h2>
+                </div>
+				<div class="box-mid-body">
+                      <div class="padding">
+                            <p>
+<?php _e('We completely re-wrote SexyBookmarks from the ground up to make it faster, leaner, better.') ?>
+							<span class="shrsb_option"><?php _e('Use the new version? (BETA)', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] == "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] != "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
+							<br><em><?php _e('You can switch back at any time.', 'shrsb'); ?></em>
+                            <input type="hidden" name="shrbase" value="<?php echo $shrsb_plugopts['shrbase'] ?>"/>
+                            <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
+                            </p>
+                            <p style="padding:5px;background:#eee;border:1px solid #ddd;"><?php echo sprintf(__('We are anxious to hear what you think! If you would like to leave us some feedback, please follow %sthis link%s and share your thoughts and opinions with us.', 'shrsb'), '<a href="http://getsatisfaction.com/shareaholic/topics/new">', '</a>'); ?></p>
+                      </div>
+                </div>
+            </li>
 			<li>
 				<div class="box-mid-head" id="iconator">
 					<h2 class="fugue f-globe-plus"><?php _e('Enabled Networks', 'shrsb'); ?></h2>
@@ -420,7 +486,7 @@ function shrsb_settings_page() {
 		        </ul>
 						<div id="shrsb-networks">
 							<?php
-								foreach ($shrsb_plugopts['bookmark'] as $name) print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);
+								foreach ($shrsb_plugopts['bookmark'] as $name){if(array_key_exists($name, $shrsb_bookmarks_data)) {print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);}}
 								$unused_networks=array_diff(array_keys($shrsb_bookmarks_data), $shrsb_plugopts['bookmark']);
 								foreach ($unused_networks as $name) print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);
 							?>
