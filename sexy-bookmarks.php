@@ -467,7 +467,7 @@ function shrsb_settings_page() {
                             <input type="hidden" name="shrbase" value="<?php echo $shrsb_plugopts['shrbase'] ?>"/>
                             <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
                             </p>
-                            <p style="padding:5px;background:#eee;border:1px solid #ddd;"><?php echo sprintf(__('We are anxious to hear what you think! If you would like to leave us some feedback, please follow %sthis link%s and share your thoughts and opinions with us.', 'shrsb'), '<a href="http://getsatisfaction.com/shareaholic/topics/new">', '</a>'); ?></p>
+                            <p style="padding:5px;background:#eee;border:1px solid #ddd;"><?php echo sprintf(__('We are anxious to hear what you think! If you would like to leave us some feedback, please follow %sthis link%s and share your thoughts and opinions with us.', 'shrsb'), '<a href="http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks">', '</a>'); ?></p>
                       </div>
                 </div>
             </li>
