@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 3.2.4.1
+Stable tag: 3.2.4.2
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -17,6 +17,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
 * Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
 * Fixed SAFE_MODE issue regarding fopen()
 * Fixed mkdir() issue by changing to wp_mkdir_p()
@@ -114,6 +115,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 
 == Changelog ==
+= 3.2.4.2 =
+* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
+
 = 3.2.4.1 =
 * Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
 * Fixed SAFE_MODE issue regarding fopen()
