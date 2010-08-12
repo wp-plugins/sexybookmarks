@@ -1,6 +1,6 @@
 <?php
 
-//Checking for mobile browsers
+//Checking for bots
 function shrsb_is_bot() {
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	$ip = $_SERVER['REMOTE_ADDR'];
@@ -30,6 +30,8 @@ function shrsb_is_bot() {
 	; // $isBot
 	return $isBot;
 }
+
+//Checking for mobile browsers
 function shrsb_is_mobile() {
 	$op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -81,4 +83,3 @@ function shrsb_is_mobile() {
 	; // $isMobile
 	return $isMobile;
 }
-?>

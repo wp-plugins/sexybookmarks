@@ -109,4 +109,3 @@ function bookmark_list_item($name, $opts=array()) {
 	}
 }
 
-?>
