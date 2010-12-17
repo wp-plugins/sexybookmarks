@@ -1,9 +1,9 @@
 === SexyBookmarks ===
 Contributors: shareaholic
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
-Tested up to: 3.0
-Stable tag: 3.2.4.2
+Tested up to: 3.0.3
+Stable tag: 3.2.5
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -13,25 +13,17 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 
-*** Now with Official Google Buzz Integration ***
-
-
 = Recent Updates =
-* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
-* Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
-* Fixed SAFE_MODE issue regarding fopen()
-* Fixed mkdir() issue by changing to wp_mkdir_p()
-* Fixed $d_tags and $keywords undefined problem
-* Fixed typo in request URL leading to errors being returned
-* Fixed manual mode when using BETA
-* Removed timeout from http request
-* Complete re-write to increase efficiency and speed
-
+* Fixes slow page load issue
+* Compatibility fixes for WP v3.0.3
+* xhtml compliance fix
+* Updated "Most Popular" services list
+* Service list now has titles!  Find services in a snap.
 
 
 = Recently Added Sites =
 * Yahoo! Mail
-* Gmail
+* Google Gmail
 * Hotmail
 * Buzzster!
 
@@ -108,18 +100,24 @@ You can still configure the other options available when inserting manually and 
 
 == Frequently Asked Questions ==
 = Where can I find a detailed FAQ? =
-Please see here: [Frequently Asked Questions](http://sexybookmarks.net/documentation/faq)
+Please see here: [Frequently Asked Questions](http://sexybookmarks.shareaholic.com/documentation/faq)
 
 = Where can I get detailed Usage & Installation instructions? =
-Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/documentation/usage-installation)
+Please see here: [Usage & Installation Instructions](http://sexybookmarks.shareaholic.com/documentation/usage-installation)
 
 
 == Changelog ==
+= 3.2.5 =
+* Fixes slow page load issue
+* Compatibility fixes for WP v3.0.3
+* xhtml compliance fix
+* Updated "Most Popular" services list
+* Service list now has titles!  Find services in a snap.
+
 = 3.2.4.2 =
-* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
+* Removed warning messages about WP_FOOTER and WP_HEAD
 
 = 3.2.4.1 =
-* Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
 * Fixed SAFE_MODE issue regarding fopen()
 * Fixed mkdir() issue by changing to wp_mkdir_p()
 * Fixed $d_tags and $keywords undefined problem
