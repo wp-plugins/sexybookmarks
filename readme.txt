@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
 Tested up to: 3.0.3
-Stable tag: 3.2.5
+Stable tag: 3.2.6
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -14,12 +14,14 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Quick fix for admin area (icons)
 * Fixes slow page load issue
 * Compatibility fixes for WP v3.0.3
 * xhtml compliance fix
 * Updated "Most Popular" services list
-* Service list now has titles!  Find services in a snap.
+* Service list now has titles!  Find services in a snap
 
+IMPORTANT NOTE:  For *much faster* performance, please switch your url shortener to something other than b2l.me (ex. like bit.ly).  After you do this, then please "Reset all Short URLs".  This is a two step process!
 
 = Recently Added Sites =
 * Yahoo! Mail
@@ -107,12 +109,16 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.2.6 =
+* Quick fix for admin area (icons)
+
 = 3.2.5 =
 * Fixes slow page load issue
 * Compatibility fixes for WP v3.0.3
 * xhtml compliance fix
 * Updated "Most Popular" services list
-* Service list now has titles!  Find services in a snap.
+* Service list now has titles!  Find services in a snap
 
 = 3.2.4.2 =
 * Removed warning messages about WP_FOOTER and WP_HEAD

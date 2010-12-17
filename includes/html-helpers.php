@@ -1,6 +1,6 @@
 <?php
 //list all bookmarks in the plugin options page
-function shrsb_network_input_select($name, $hint, $servicename) {
+function shrsb_network_input_select($name, $hint) {
 	global $shrsb_plugopts;
 	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</label>',
 		$name,
