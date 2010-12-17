@@ -322,7 +322,7 @@ msgid "Warning!"
 msgstr ""
 
 #: sexy-bookmarks.php:641
-msgid "This option is intended %STRICTLY%s for users who udnerstand how to edit CSS/JS and intend to change/edit the associated imaegs themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding and/or image editing mistakes."
+msgid "This option is intended %STRICTLY%s for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding and/or image editing mistakes."
 msgstr ""
 
 #: sexy-bookmarks.php:642

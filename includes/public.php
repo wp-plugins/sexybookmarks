@@ -393,6 +393,7 @@ function shrsb_get_fetch_url() {
         $first_url = "http://su.pr/api/simpleshorten?url=".$perms;
 			break;
 		case 'bitly':
+			//$first_url = "http://api.bit.ly/v3/shorten?longUrl=".$perms."&login=".$shrsb_plugopts['shortyapi']['bitly']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['bitly']['key']."&format=json";
 			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$shrsb_plugopts['shortyapi']['bitly']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['bitly']['key']."&format=json";
 			break;
 		case 'tinyarrow':
@@ -831,7 +832,7 @@ function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    echo '<script>SHRSB_Settings = ';
+    echo '<script type="text/javascript">SHRSB_Settings = ';
     echo json_encode($shrsb_js_params);
     echo '</script>';
   }
