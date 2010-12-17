@@ -1,18 +1,18 @@
 <?php
 /*
-Plugin Name: SexyBookmarks
-Plugin URI: http://www.shareaholic.com/sexybookmarks
+Plugin Name: SexyBookmarks (by Shareaholic)
+Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.4.2
+Version: 3.2.6
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
-	Credits & Thanks: http://sexybookmarks.net/credits
+	Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 
 */
 
 
-define('SHRSB_vNum','3.2.4.2');
+define('SHRSB_vNum','3.2.6');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -57,10 +57,6 @@ if ( !class_exists('SERVICES_JSON') ) {
 }
 
 
-
-
-
-
 // contains all bookmark templates.
 require_once 'includes/bookmarks-data.php';
 
@@ -78,16 +74,17 @@ $shrsb_plugopts = array(
   'bgimg-yes' => 'yes', // 'yes' or blank
   'mobile-hide' => '', // 'yes' or blank
   'bgimg' => 'shr', // default bg image
-  'shorty' => 'b2l', // default is http://b2l.me
-  'pageorpost' => 'post',
+  'shorty' => 'bitly', // default is http://bit.ly
+  'pageorpost' => 'postpageindex',
   'bookmark' => array_keys($shrsb_bookmarks_data), // pulled from bookmarks-data.php
-  'feed' => '1', // 1 or 0
+  'feed' => '0', // 1 or 0
   'expand' => '1',
   'autocenter' => '1',
   'ybuzzcat' => 'science',
   'ybuzzmed' => 'text',
   'twittcat' => '',
-  'tweetconfig' => '${title} - ${short_link}', // Custom configuration of tweet
+  'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
+  'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
   'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
   'warn-choice' => '',
   'doNotIncludeJQuery' => '',
@@ -99,6 +96,7 @@ $shrsb_plugopts = array(
   // comma delimited list of service ids for publisher javascript
   'service' => '',
 );
+
 
 //add to database
 add_option('SexyBookmarks', $shrsb_plugopts);
@@ -186,7 +184,7 @@ function shrsb_refresh_cache() {
 function shrsb_settings_page() {
 	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite;
 
-	echo '<h2 class="shrsblogo">SexyBookmarks<span class="sh-logo"></span></h2>';
+	echo '<h2 class="shrsblogo"><span class="sh-logo"></span></h2>';
 
 
 	if($_POST['reset_all_options'] == '0') {
@@ -209,20 +207,21 @@ function shrsb_settings_page() {
 		$shrsb_plugopts = array(
 			'position' => 'below', // below, above, or manual
 			'reloption' => 'nofollow', // 'nofollow', or ''
-			'targetopt' => 'blank', // 'blank' or 'self'
+			'targetopt' => '_blank', // 'blank' or 'self'
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'shr', // default bg image
-			'shorty' => 'b2l', // default is http://b2l.me
-			'pageorpost' => 'post',
+			'shorty' => 'bitly', // default is http://bit.ly
+			'pageorpost' => 'postpageindex',
 			'bookmark' => array_keys($shrsb_bookmarks_data),
-			'feed' => '1', // 1 or 0
+			'feed' => '0', // 1 or 0
 			'expand' => '1',
 			'autocenter' => '0',
 			'ybuzzcat' => 'science',
 			'ybuzzmed' => 'text',
 			'twittcat' => '',
-      'tweetconfig' => '${title} - ${short_link}', // Custom configuration of tweet
+            'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
+  'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
 			'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
 			'warn-choice' => '',
 			'doNotIncludeJQuery' => '',
@@ -327,17 +326,17 @@ function shrsb_settings_page() {
 				}
 				elseif($save_return[0] == 1 || $save_return[1] == 1) {
 					if (!is_writable(SHRSB_PLUGDIR.'spritegen')) {
-						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your %sspritegen folder%s is not writeable by the server! %sNeed Help?%s', 'shrsb'), '<a href="'.SHRSB_PLUGPATH.'spritegen" target="_blank">','</a>','<a href="http://sexybookmarks.net/documentation/usage-installation#chmodinfo" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your %sspritegen folder%s is not writeable by the server! %sNeed Help?%s', 'shrsb'), '<a href="'.SHRSB_PLUGPATH.'spritegen" target="_blank">','</a>','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmodinfo" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 						$shrsb_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 					}
 					elseif(file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') && is_writable(SHRSB_PLUGDIR.'spritegen') && !is_writable(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png')) {
-						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png</a>)','<a href="http://sexybookmarks.net/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png</a>)','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 						$shrsb_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 					}
 					elseif(file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css') && is_writable(SHRSB_PLUGDIR.'spritegen') && !is_writable(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
-						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css</a>)','<a href="http://sexybookmarks.net/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+						echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css</a>)','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 						$shrsb_custom_sprite = '';
 						$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 					}
@@ -349,15 +348,15 @@ function shrsb_settings_page() {
 			else{
         $shrsb_custom_sprite = '';
         if (!is_writable(SHRSB_PLUGDIR.'spritegen')) {
-					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your %sspritegen folder%s is not writeable by the server! %sNeed Help?%s', 'shrsb'), '<a href="'.SHRSB_PLUGPATH.'spritegen" target="_blank">','</a>','<a href="http://sexybookmarks.net/documentation/usage-installation#chmodinfo" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: Your %sspritegen folder%s is not writeable by the server! %sNeed Help?%s', 'shrsb'), '<a href="'.SHRSB_PLUGPATH.'spritegen" target="_blank">','</a>','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmodinfo" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 				}
 				elseif(file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') && is_writable(SHRSB_PLUGDIR.'spritegen') && !is_writable(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png')) {
-					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png</a>)','<a href="http://sexybookmarks.net/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom sprite %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png</a>)','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 				}
 				elseif(file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css') && is_writable(SHRSB_PLUGDIR.'spritegen') && !is_writable(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
-					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css</a>)','<a href="http://sexybookmarks.net/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
+					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.sprintf(__('WARNING: You need to delete the current custom stylesheet %s before the plugin can write to the folder. %sNeed Help?%s', 'shrsb'), '(<a href="'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css" target="_blank">'.SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css</a>)','<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmod-cont" target="_blank">', '</a>').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					$status_message = __('Changes saved successfully. However, settings are not optimal until you resolve the issue listed above.', 'shrsb');
 				}
 			}
@@ -419,9 +418,6 @@ function shrsb_settings_page() {
 		}
 
   }
-
-
-
 
 
 	//if there was an error, construct error messages 
@@ -492,6 +488,7 @@ function shrsb_settings_page() {
 							?>
 						</div>
 					</div>
+					<div style="padding:10px; float:right;color:#999999;"><?php _e('Made with Much Love, these Icons are © Shareaholic', 'shrsb'); ?></div>
 				</div>
 			</li>
 			<li>
@@ -500,31 +497,33 @@ function shrsb_settings_page() {
 				</div>
 				<div class="box-mid-body" id="toggle2">
 					<div class="padding">
-						<div class="dialog-box-warning" id="clear-warning">
-							<div class="dialog-left fugue f-warn">
-								<?php echo sprintf(__('This will clear %sALL%s short URLs. - Are you sure?', 'shrsb'), '<u>', '</u>'); ?>
-							</div>
-							<div class="dialog-right">
-								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" /><?php _e('Yes', 'shrsb'); ?></label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" /><?php _e('Cancel', 'shrsb'); ?></label>
-							</div>
-						</div>
+
 						<div id="twitter-defaults"<?php if(!in_array('shr-twitter', $shrsb_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
 							<h3><?php _e('Twitter Options:', 'shrsb'); ?></h3>
               <p id="tweetinstructions">
                 <strong><?php _e('Configuration Instructions:', 'shrsb'); ?></strong><br />
                 <?php echo sprintf(__('Using the strings %s and %s you can fully customize your tweet output.', 'shrsb'), '<strong>${title}</strong>', '<strong>${short_link}</strong>'); ?><br /><br />
                 <strong><?php _e('Example Configurations:', 'shrsb'); ?></strong><br />
-                <em>${title} - ${short_link} (via @shareaholic)</em><br />
+                <em>${title} - ${short_link} (via @Shareaholic)</em><br />
                 <?php _e('or', 'shrsb'); ?><br />
-                <em>RT @shareaholic: ${title} - ${short_link}</em>
+                <em>RT @Shareaholic: ${title} - ${short_link}</em>
               </p>
-              <div style="position:relative;width:40%;">
-                <label for="tweetconfig"><?php _e('Configure Tweet:', 'shrsb'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'shrsb'); ?> <span></span></small><br />
+              <div style="position:relative;width:80%;">
+                <label for="tweetconfig"><?php _e('Configure Custom Tweet Template:', 'shrsb'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'shrsb'); ?> <span></span></small><br />
                 <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo $shrsb_plugopts['tweetconfig']; } else { echo '${title} - ${short_link}'; } ?></textarea>
               </div>
               <p id="tweetoutput"><strong><?php _e('Example Tweet Output:', 'shrsb'); ?></strong><br /><span></span></p>
 							<div class="clearbig"></div>
-							<label for="shorty"><?php _e('Which URL Shortener?', 'shrsb'); ?></label><br />
+								<div class="dialog-box-warning" id="clear-warning">
+        							<div class="dialog-left fugue f-warn">
+        								<?php echo sprintf(__('This will clear %sALL%s short URLs. - Are you sure?', 'shrsb'), '<u>', '</u>'); ?>
+        							</div>
+        							<div class="dialog-right">
+        								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" /><?php _e('Yes', 'shrsb'); ?></label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" /><?php _e('Cancel', 'shrsb'); ?></label>
+        							</div>
+        						</div>
+        						
+        						<label for="shorty"><?php _e('Which URL Shortener?', 'shrsb'); ?></label><br />
 							<select name="shorty" id="shorty">
 								<?php
 									// output shorty select options
@@ -688,7 +687,7 @@ function shrsb_settings_page() {
 					<div class="padding">
 						<div id="custom-mods-notice">
 							<h1><?php _e('Warning!', 'shrsb'); ?></h1>
-              <p><?php echo sprintf(__('This option is intended %STRICTLY%s for users who udnerstand how to edit CSS/JS and intend to change/edit the associated imaegs themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding and/or image editing mistakes.', 'shrsb'), '<strong>', '</strong>'); ?></p>
+              <p><?php echo sprintf(__('This option is intended %STRICTLY%s for users who understand how to edit CSS/JS and intend to change/edit the associated images themselves. Unfortunately, no support will be offered for this feature, as I cannot be held accountable for your coding and/or image editing mistakes.', 'shrsb'), '<strong>', '</strong>'); ?></p>
 							<h3><?php _e('How it works...', 'shrsb'); ?></h3>
 							<p><?php _e('Since you have chosen for the plugin to override the style settings with your own custom mods, it will now pull the files from the new folders it is going to create on your server as soon as you save your changes. The file/folder locations should be as follows:', 'shrsb'); ?></p>
 							<ul>
@@ -784,7 +783,7 @@ function shrsb_settings_page() {
 					<div class="padding">
 						<div class="dialog-box-information" id="info-manual">
 							<div class="dialog-left fugue f-info">
-								<?php echo sprintf(__('Need help with this? Find it in the %sofficial install guide%s.', 'shrsb'), '<a href="http://sexybookmarks.net/documentation/usage-installation">', '</a>'); ?></a>
+								<?php echo sprintf(__('Need help with this? Find it in the %sofficial install guide%s.', 'shrsb'), '<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation">', '</a>'); ?></a>
 							</div>
 							<div class="dialog-right">
 								<img src="<?php echo SHRSB_PLUGPATH; ?>images/information-delete.jpg" class="del-x" alt=""/>
@@ -798,15 +797,17 @@ function shrsb_settings_page() {
 						<span class="shrsb_option"><?php _e('Posts, pages, or the whole shebang?', 'shrsb'); ?></span>
 						<select name="pageorpost" id="pageorpost">
 							<?php
-								print shrsb_select_option_group('pageorpost', array(
-									'post'=>__('Posts Only', 'shrsb'),
-									'page'=>__('Pages Only', 'shrsb'),
-									'index'=>__('Index Only', 'shrsb'),
-									'pagepost'=>__('Posts &amp; Pages', 'shrsb'),
-									'postindex'=>__('Posts &amp; Index', 'shrsb'),
-									'pageindex'=>__('Pages &amp; Index', 'shrsb'),
-									'postpageindex'=>__('Posts, Pages, &amp; Index', 'shrsb'),
-								));
+								print shrsb_select_option_group(
+								    'pageorpost', array(
+									    'post'=>__('Posts Only', 'shrsb'),
+									    'page'=>__('Pages Only', 'shrsb'),
+									    'index'=>__('Index Only', 'shrsb'),
+									    'pagepost'=>__('Posts &amp; Pages', 'shrsb'),
+									    'postindex'=>__('Posts &amp; Index', 'shrsb'),
+									    'pageindex'=>__('Pages &amp; Index', 'shrsb'),
+									    'postpageindex'=>__('Posts, Pages, &amp; Index', 'shrsb'),
+								    )
+								);
 							?>
 						</select><span class="shebang-info fugue f-question" title="<?php _e('Click here for help with this option', 'shrsb'); ?>"> </span>
 						<span class="shrsb_option"><?php _e('Show in RSS feed?', 'shrsb'); ?></span>
@@ -837,13 +838,13 @@ function shrsb_settings_page() {
 		<div class="box-right-body">
 			<div class="padding">
 				<ul class="infolinks">
-					<li><a href="http://sexybookmarks.net/documentation/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/documentation/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/contact-forms/translation-submission-form" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/documentation/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/translation-submission-form" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
 					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.net/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -858,7 +859,7 @@ function shrsb_settings_page() {
 add_action('admin_menu', 'shrsb_menu_link');
 function shrsb_menu_link() {
 	if (function_exists('add_options_page')) {
-		$shrsb_admin_page = add_options_page('SexyBookmarks', 'SexyBookmarks', 'administrator', basename(__FILE__), 'shrsb_settings_page');
+		$shrsb_admin_page = add_options_page('SexyBookmarks (by Shareaholic)', 'SexyBookmarks (by Shareaholic)', 'administrator', basename(__FILE__), 'shrsb_settings_page');
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
 	}

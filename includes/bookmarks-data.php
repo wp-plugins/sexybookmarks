@@ -529,7 +529,7 @@ $shrsb_bookmarks_data=array(
 		'id'=>52,
 		'check'=>sprintf($checkthis_text,'Gmail'),
 		'share'=>__('Email this via ', 'shrsb').'Gmail',
-		'baseUrl'=>'https://mail.google.com/mail/?ui=2&amp;view=cm&amp;fs=1&amp;tf=1&amp;su=TITLE&amp;body=Link: PERMALINK '.__('(sent via shareaholic)', 'shrsb').'%0D%0A%0D%0A----%0D%0A POST_SUMMARY',
+		'baseUrl'=>'https://mail.google.com/mail/?ui=2&amp;view=cm&amp;fs=1&amp;tf=1&amp;su=TITLE&amp;body=Link: PERMALINK '.__('(sent via http://shareaholic.com)', 'shrsb').'%0D%0A%0D%0A----%0D%0A POST_SUMMARY',
 	),
 	'shr-hotmail'=>array(
 		'id'=>53,
@@ -543,7 +543,7 @@ $shrsb_bookmarks_data=array(
 		'share'=>__('Email this via ', 'shrsb').'Yahoo! Mail',
 		'baseUrl'=>'http://compose.mail.yahoo.com/?Subject=TITLE&amp;body=Link: PERMALINK '.__('(sent via shareaholic)', 'shrsb').'%0D%0A%0D%0A----%0D%0A POST_SUMMARY',
 	),
-	'shr-bzzster'=>array(
+	'shr-buzzster'=>array(
 		'id'=>1,
 		'check'=>sprintf($checkthis_text,'Buzzster!'),
 		'share'=>__('Share this via ', 'shrsb').'Buzzster!',

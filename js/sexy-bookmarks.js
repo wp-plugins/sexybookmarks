@@ -39,35 +39,14 @@ jQuery(document).ready(function() {
 			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-delicious').attr('checked', 'checked');
 			jQuery('#shr-stumbleupon').attr('checked', 'checked');
-			jQuery('#shr-mixx').attr('checked', 'checked');
 			jQuery('#shr-comfeed').attr('checked', 'checked');
 			jQuery('#shr-twitter').attr('checked', 'checked');
-			jQuery('#shr-technorati').attr('checked', 'checked');
-			jQuery('#shr-misterwong').attr('checked', 'checked');
-			jQuery('#shr-diigo').attr('checked', 'checked');
 			jQuery('#shr-googlebuzz').attr('checked', 'checked');
+			jQuery('#shr-facebook').attr('checked', 'checked');
+			jQuery('#shr-gmail').attr('checked', 'checked');
+			jQuery('#shr-mail').attr('checked', 'checked');
 		});
 	});
-
-	/* Select recommended icons upon clicking
-	jQuery('#sel-pop').click(function() {
-		jQuery('#shrsb-networks').each(function() {
-			jQuery('#shr-digg').attr('checked', 'checked');
-			jQuery('#shr-reddit').attr('checked', 'checked');
-			jQuery('#shr-delicious').attr('checked', 'checked');
-			jQuery('#shr-stumbleupon').attr('checked', 'checked');
-			jQuery('#shr-mixx').attr('checked', 'checked');
-			jQuery('#shr-comfeed').attr('checked', 'checked');
-			jQuery('#shr-twitter').attr('checked', 'checked');
-			jQuery('#shr-technorati').attr('checked', 'checked');
-			jQuery('#shr-misterwong').attr('checked', 'checked');
-			jQuery('#shr-???').attr('checked', 'checked');
-			jQuery('#shr-???').attr('checked', 'checked');
-			jQuery('#shr-???').attr('checked', 'checked');
-			jQuery('#shr-???').attr('checked', 'checked');
-			jQuery('#shr-???').attr('checked', 'checked');			
-		});
-	}); */
 
 	//Swap enabled/disabled between donation options onclick
 	jQuery('#preset-amounts').parent('label').click(function() {
