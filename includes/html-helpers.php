@@ -2,13 +2,22 @@
 //list all bookmarks in the plugin options page
 function shrsb_network_input_select($name, $hint) {
 	global $shrsb_plugopts;
-	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /></label>',
+	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</label>',
 		$name,
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
 		$name,
-		$name
+		$name,
+		shrsb_truncate_text(end(explode('-', $name)), 9)
 	);
+}
+
+function shrsb_truncate_text($text, $nbrChar, $append='..') {
+     if(strlen($text) > $nbrChar) {
+          $text = substr($text, 0, $nbrChar);
+          $text .= $append;
+     }
+     return $text;
 }
 
 // returns the option tag for a form select element
@@ -71,7 +80,7 @@ function bookmark_list_item($name, $opts=array()) {
 	if($name == 'shr-facebook') {
 		$onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
 	}
-  if($name == 'shr-bzzster' || $name == 'shr-buzzster') {
+  if($name == 'shr-buzzster') {
     $topt = '';
   }
   else {
