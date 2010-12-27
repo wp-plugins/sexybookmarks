@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.6
+Version: 3.2.7
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.6');
+define('SHRSB_vNum','3.2.7');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -56,7 +56,6 @@ if ( !class_exists('SERVICES_JSON') ) {
 	}
 }
 
-
 // contains all bookmark templates.
 require_once 'includes/bookmarks-data.php';
 
@@ -71,10 +70,11 @@ $shrsb_plugopts = array(
   'position' => 'below', // below, above, or manual
   'reloption' => 'nofollow', // 'nofollow', or ''
   'targetopt' => '_blank', // 'blank' or 'self'
+  'perfoption' => '1', // performance script (GA)
   'bgimg-yes' => 'yes', // 'yes' or blank
   'mobile-hide' => '', // 'yes' or blank
-  'bgimg' => 'shr', // default bg image
-  'shorty' => 'bitly', // default is http://bit.ly
+  'bgimg' => 'caring', // default bg image
+  'shorty' => 'googl', // default shortener
   'pageorpost' => 'postpageindex',
   'bookmark' => array_keys($shrsb_bookmarks_data), // pulled from bookmarks-data.php
   'feed' => '0', // 1 or 0
@@ -102,11 +102,10 @@ $shrsb_plugopts = array(
 add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_CustomSprite', '');
 
+
 //reload from database
 $shrsb_plugopts = get_option('SexyBookmarks');
 $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
-
-
 
 //add activation hook to remove all old and non-existent options from database if necessary
 function shrsb_Activate() {
@@ -139,7 +138,7 @@ function showUpdateNotice() {
     echo '
       <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
         <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-          '.sprintf(__('NOTICE: SexyBookmarks needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+          '.sprintf(__('NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
         </div>
       </div>';
   }
@@ -208,10 +207,11 @@ function shrsb_settings_page() {
 			'position' => 'below', // below, above, or manual
 			'reloption' => 'nofollow', // 'nofollow', or ''
 			'targetopt' => '_blank', // 'blank' or 'self'
+			'perfoption' => '1', // performance script (GA)
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
-			'bgimg' => 'shr', // default bg image
-			'shorty' => 'bitly', // default is http://bit.ly
+			'bgimg' => 'caring', // default bg image
+			'shorty' => 'googl', // default shortener
 			'pageorpost' => 'postpageindex',
 			'bookmark' => array_keys($shrsb_bookmarks_data),
 			'feed' => '0', // 1 or 0
@@ -221,16 +221,16 @@ function shrsb_settings_page() {
 			'ybuzzmed' => 'text',
 			'twittcat' => '',
             'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
-  'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
+            'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
 			'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
 			'warn-choice' => '',
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
 			'scriptInFooter' => '',
-      'shareaholic-javascript' => '',
-      'shrbase' => 'http://www.shareaholic.com',
-      'apikey' => '8afa39428933be41f8afdb8ea21a495c',
-      'service' => '',
+            'shareaholic-javascript' => '',
+            'shrbase' => 'http://www.shareaholic.com',
+            'apikey' => '8afa39428933be41f8afdb8ea21a495c',
+            'service' => '',
 		);
 		update_option('SexyBookmarks', $shrsb_plugopts);
 		delete_option('SHRSB_CustomSprite');
@@ -316,10 +316,10 @@ function shrsb_settings_page() {
 					}
 					$spritegen_opts = substr($spritegen_opts,0,-1);
 					$spritegen_opts .= '&bgimg=' . $_POST['bgimg'] . '&expand=' . $_POST['expand'];
-          $save_return[0] = get_sprite_file($spritegen_opts, 'png');
-          $save_return[1] = get_sprite_file($spritegen_opts, 'css');
+                    $save_return[0] = get_sprite_file($spritegen_opts, 'png');
+                    $save_return[1] = get_sprite_file($spritegen_opts, 'css');
 				}
-        if($save_return[0] == 2 || $save_return[1] == 2) {
+                if($save_return[0] == 2 || $save_return[1] == 2) {
 					echo '<div id="warnmessage" class="shrsb-warning"><div class="dialog-left fugue f-warn">'.__('WARNING: The request for a custom sprite has timed out. Reverting to default sprite files.', 'shrsb').'</div><div class="dialog-right"><img src="'.SHRSB_PLUGPATH.'images/warning-delete.jpg" class="del-x" alt=""/></div></div><div style="clear:both;"></div>';
 					$shrsb_custom_sprite = '';
 					$status_message = __('Changes saved successfully. However, you should try to generate a custom sprite again later.', 'shrsb');
@@ -371,7 +371,7 @@ function shrsb_settings_page() {
         'shorty', 'pageorpost', 'tweetconfig', 'ybuzzcat', 'ybuzzmed',
         'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
         'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
-        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'apikey'
+        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'perfoption', 'apikey'
 			)as $field) {
         $shrsb_plugopts[$field] = $_POST[$field];
       }
@@ -389,36 +389,34 @@ function shrsb_settings_page() {
       // Get rid of nasty script injections
       $shrsb_plugopts['defaulttags'] = htmlspecialchars($shrsb_plugopts['defaulttags'], ENT_QUOTES);
       $shrsb_plugopts['tweetconfig'] = htmlspecialchars($shrsb_plugopts['tweetconfig'], ENT_QUOTES);
-
-
-
-			/* Short URLs */
-			//trim also at the same time as at times while copying, some whitespace also gets copied
-			//check fields dont need trim function
-			$shrsb_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
-			$shrsb_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES);
-			$shrsb_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES);
-			$shrsb_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES));
-			$shrsb_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES);
-			$shrsb_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES));
-			/* Short URLs End */
-			
-			update_option('SexyBookmarks', $shrsb_plugopts);
-			update_option('SHRSB_CustomSprite', $shrsb_custom_sprite);
-      update_option('SHRSBvNum', SHRSB_vNum);
-
-		}
-
+      
+      
+      /* Short URLs */
+      //trim also at the same time as at times while copying, some whitespace also gets copied
+      //check fields dont need trim function
+      
+      $shrsb_plugopts['shortyapi']['snip']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-snip'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['snip']['key'] = trim(htmlspecialchars($_POST['shortyapikey-snip'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
+      $shrsb_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['trim']['chk'] = htmlspecialchars($_POST['shortyapichk-trim'], ENT_QUOTES);
+      $shrsb_plugopts['shortyapi']['trim']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-trim'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['trim']['pass'] = trim(htmlspecialchars($_POST['shortyapipass-trim'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['tinyarrow']['chk'] = htmlspecialchars($_POST['shortyapichk-tinyarrow'], ENT_QUOTES);
+      $shrsb_plugopts['shortyapi']['tinyarrow']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-tinyarrow'], ENT_QUOTES));
+      $shrsb_plugopts['shortyapi']['cligs']['chk'] = htmlspecialchars($_POST['shortyapichk-cligs'], ENT_QUOTES);
+      $shrsb_plugopts['shortyapi']['cligs']['key'] = trim(htmlspecialchars($_POST['shortyapikey-cligs'], ENT_QUOTES));
+	  /* Short URLs End */
+	  
+	  update_option('SexyBookmarks', $shrsb_plugopts);
+	  update_option('SHRSB_CustomSprite', $shrsb_custom_sprite);
+	  update_option('SHRSBvNum', SHRSB_vNum);
+	  
+	  }
   }
-
 
 	//if there was an error, construct error messages 
 	if ($error_message != '') {
@@ -455,7 +453,7 @@ function shrsb_settings_page() {
 				<div class="box-mid-body">
                       <div class="padding">
                             <p>
-<?php _e('We completely re-wrote SexyBookmarks from the ground up to make it faster, leaner, better.') ?>
+<?php _e('We completely re-wrote Shareaholic from the ground up to make it faster, leaner, better.') ?>
 							<span class="shrsb_option"><?php _e('Use the new version? (BETA)', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] == "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] != "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
@@ -516,7 +514,7 @@ function shrsb_settings_page() {
 							<div class="clearbig"></div>
 								<div class="dialog-box-warning" id="clear-warning">
         							<div class="dialog-left fugue f-warn">
-        								<?php echo sprintf(__('This will clear %sALL%s short URLs. - Are you sure?', 'shrsb'), '<u>', '</u>'); ?>
+        								<?php echo sprintf(__('This will clear %sALL%s short URLs. - Are you sure?  Note: you will also need to "Save Changes" to complete the reset.', 'shrsb'), '<u>', '</u>'); ?>
         							</div>
         							<div class="dialog-right">
         								<label><input name="warn-choice" id="warn-yes" type="radio" value="yes" /><?php _e('Yes', 'shrsb'); ?></label> &nbsp;<label><input name="warn-choice" id="warn-cancel" type="radio" value="cancel" /><?php _e('Cancel', 'shrsb'); ?></label>
@@ -533,6 +531,7 @@ function shrsb_settings_page() {
 										'yourls'=>'YOURLS Plugin',
 										'b2l'=>'b2l.me',
 										'bitly' => 'bit.ly',
+										'googl' => 'Google (goo.gl)',
 										'tinyarrow'=>'tinyarro.ws',
 										'tiny'=>'tinyurl.com',
 										'snip'=>'snipr.com',
@@ -669,12 +668,18 @@ function shrsb_settings_page() {
 						</div>
 						<div id="genopts">
 							<h3><?php _e('General Functionality Options:', 'shrsb'); ?></h3>
+							
 							<span class="shrsb_option"><?php _e('Add nofollow to the links?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['reloption'] == "")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-no" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
+							
 							<span class="shrsb_option"><?php _e('Open links in new window?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> <?php _e('No', 'shrsb'); ?></label>
+							
+							<span class="shrsb_option"><?php _e('Track Performance?', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['perfoption'] == "1")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['perfoption'] == "0")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
 						</div>
 					</div>
 				</div>
@@ -706,7 +711,7 @@ function shrsb_settings_page() {
 								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-caring.png'; ?></a></li>
 								<li class="custom-mods-image"><a href="<?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-shr.png'; ?>"><?php echo WP_CONTENT_URL.'/sexy-mods/images/sharing-shr.png'; ?></a></li>
 							</ul>
-							<p><?php _e('Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for SexyBookmarks as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done.', 'shrsb'); ?></p>
+							<p><?php _e('Once you have saved your changes, you will be able to edit the image sprite that holds all of the icons for Shareaholic as well as the CSS which accompanies it. Just be sure that you do in fact edit the CSS if you edit the images, as it is unlikely the heights, widths, and background positions of the images will stay the same after you are done.', 'shrsb'); ?></p>
 							<p><?php _e('Just a quick note... When you edit the styles and images to include your own custom backgrounds, icons, and CSS styles, be aware that those changes will not be reflected on the plugin options page. In other words: when you select your networks to be displayed, or when you select the background image to use, it will still be displaying the images from the original plugin directory.', 'shrsb'); ?></p>
 							<h3><?php _e('In Case of Emergency', 'shrsb'); ?></h3>
 							<p><?php _e('If you happen to mess things up, you can follow these directions to reset the plugin back to normal and try again if you wish:', 'shrsb'); ?></p>
@@ -867,7 +872,7 @@ function shrsb_menu_link() {
 
 //styles and scripts for admin area
 function shrsb_admin_scripts() {
-	wp_enqueue_script('sexy-bookmarks-js', SHRSB_PLUGPATH.'js/sexy-bookmarks.js', array('jquery','jquery-ui-sortable'), true);
+	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
 	echo '<!-- Yahoo! Web Analytics -->
 			<script type="text/javascript" src="http://d.yimg.com/mi/eu/ywa.js"></script>
 			<script type="text/javascript">
@@ -886,9 +891,9 @@ function shrsb_admin_styles() {
 	global $shrsb_plugopts;
 
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
-		wp_enqueue_style('ie-old-sexy-bookmarks', SHRSB_PLUGPATH.'css/ie7-admin-style.css', false, 'all');
+		wp_enqueue_style('ie-old-sexy-bookmarks', SHRSB_PLUGPATH.'css/ie7-admin-style.css', false, SHRSB_vNum);
 	}
-	wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, 'all');
+	wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
 }
 
 // Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh

@@ -17,7 +17,7 @@ msgstr ""
 
 #: sexy-bookmarks.php:153
 #, php-format
-msgid "NOTICE: SexyBookmarks needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences."
+msgid "NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences."
 msgstr ""
 
 #: sexy-bookmarks.php:178
@@ -137,7 +137,7 @@ msgstr ""
 
 #: sexy-bookmarks.php:455
 #, php-format
-msgid "This will clear %sALL%s short URLs. - Are you sure?"
+msgid "This will clear %sALL%s short URLs. - Are you sure? Note: this is a 2-step process. Next click "Save Changes" below to complete the reset."
 msgstr ""
 
 #: sexy-bookmarks.php:462

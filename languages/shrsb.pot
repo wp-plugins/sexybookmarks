@@ -467,7 +467,7 @@ msgstr ""
 
 #: sexy-bookmarks.php:519
 #, php-format
-msgid "This will clear %sALL%s short URLs. - Are you sure?"
+msgid "This will clear %sALL%s short URLs. - Are you sure? Note: you still have to "save changes" below to complete the reset."
 msgstr ""
 
 #: sexy-bookmarks.php:526
