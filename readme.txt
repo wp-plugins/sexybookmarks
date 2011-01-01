@@ -2,8 +2,8 @@
 Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
-Tested up to: 3.0.3
-Stable tag: 3.2.7
+Tested up to: 3.0.4
+Stable tag: 3.2.8
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -14,9 +14,10 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Fix for Arras theme
 * Adds support for Google's URL shortener (goo.gl)
 * Fixes slow page load issue
-* Loads of behind the scenes performance upgrades
+* Loads of behind the scenes performance improvements
 
 
 = Recently Added Sites =
@@ -104,6 +105,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.2.8 =
+* Fix for Arras theme
+* Depreciating `elfserv_sexy()` function.  It has been replaced with `selfserv_shareaholic()`
 
 = 3.2.7 =
 * Adds support for Google's URL shortener (goo.gl)

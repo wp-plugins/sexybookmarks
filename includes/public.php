@@ -272,7 +272,8 @@ function shrsb_nav_browse($url, $method = 'GET', $POST_data = null) {
 
     $url_request = wp_remote_request($url, $request_params);
     $url_response = wp_remote_retrieve_response_code($url_request);
-
+    
+    //goo.gl returns 201
     if($url_response == 200 || $url_response == '200' || $url_response == '201' || $url_response == 201) {
       $source = wp_remote_retrieve_body($url_request);
     }
@@ -307,13 +308,11 @@ function shrsb_nav_browse($url, $method = 'GET', $POST_data = null) {
 }
 
 
-
-
 function shrsb_get_fetch_url() {
 	global $post, $shrsb_plugopts, $wp_query; //globals
 	
 	//get link but first check if inside or outside loop and what page it's on
-	$post = $wp_query->post;
+	$spost = $wp_query->post;
 
 	if($shrsb_plugopts['position'] == 'manual') {
 		//Check if outside the loop
@@ -563,7 +562,7 @@ function shrsb_position_menu($post_content) {
 
 function get_sexy() {
 	global $shrsb_plugopts, $wp_query, $post;
-	$post = $wp_query->post;
+	$spost = $wp_query->post;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
     $output='<div class="shr-publisher-'.$post->ID.'"></div>';
@@ -798,13 +797,13 @@ function get_sexy() {
 				break;
 		}
 	}
-	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
+	$socials.='</ul>';
+	$socials.="\n".'<div style="clear:both;"></div>'."\n".'</div>';
 	$socials.="\n\n";
-
 	return $socials;
 }
 
-// This function is what allows people to insert the menu wherever they please rather than above/below a post...
+// This function is what allows people to insert the menu wherever they please rather than above/below a post... (depreciated)
 function selfserv_sexy() {
 	global $post;
 	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
