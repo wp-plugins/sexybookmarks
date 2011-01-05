@@ -798,7 +798,9 @@ function get_sexy() {
 		}
 	}
 	$socials.='</ul>';
-	$socials.="\n".'<div style="clear:both;"></div>'."\n".'</div>';
+	$socials.= '<div style="clear: both;"></div>';
+	$socials.= '<div class="shr-getshr" style="display:none;font-size:10px !important"><a target="_blank" href="http://www.shareaholic.com/?src=pub">Get Shareaholic</a></div>';
+	$socials.= '<div style="clear: both;"></div></div>';
 	$socials.="\n\n";
 	return $socials;
 }

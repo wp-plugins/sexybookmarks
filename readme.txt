@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
 Tested up to: 3.0.4
-Stable tag: 3.2.8
+Stable tag: 3.2.9
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -15,6 +15,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 = Recent Updates =
 * Fix for Arras theme
+* Fix for a W3C validation error
 * Adds support for Google's URL shortener (goo.gl)
 * Fixes slow page load issue
 * Loads of behind the scenes performance improvements
@@ -54,8 +55,8 @@ Listed here are credits and special thanks to some of you who have helped us out
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 * Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
-* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portugese
-
+* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portuguese
+* Credit goes to [Barukar](http://www.classinoiva.com.br) for translation to Portuguese (Brazil)
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/) for the original plugin core
@@ -106,9 +107,15 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 == Changelog ==
 
+= 3.2.9 =
+* Fix for a W3C validation error
+* Updated Arabic translation (by [Modar Soos](http://www.sada-sy.com))
+* Updated French translation (by [Maitre Mo](http://maitremo.fr))
+* Updated Portuguese (Brazil) translation (by [Barukar](http://www.classinoiva.com.br))
+
 = 3.2.8 =
 * Fix for Arras theme
-* Depreciating `elfserv_sexy()` function.  It has been replaced with `selfserv_shareaholic()`
+* Depreciating `selfserv_sexy()` function.  It has been replaced with `selfserv_shareaholic()`
 
 = 3.2.7 =
 * Adds support for Google's URL shortener (goo.gl)
@@ -151,7 +158,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Updated the Italian translation
 
 = 3.2.2 =
-* Added Portugese translation (pt_PT)
+* Added Portuguese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
@@ -202,7 +209,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Fixed issue with icons not appearing correctly for Google Reader and Google Bookmarks
 
 = 3.1.1 =
-* Quick bug fix for the bug that apeared immediately after releasing 3.1
+* Quick bug fix for the bug that appeared immediately after releasing 3.1
 
 = 3.1 =
 * Many improvements in the coding efficiency
@@ -284,7 +291,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 = 2.6.1 =
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
-* Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occured during the API request" error.
+* Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occurred during the API request" error.
 * Removed some old warnings/errors that are no longer needed.
 * Solved the riddle of the disappearing footers/sidebars (I think)
 * Better optimized the dashboard and image sprites

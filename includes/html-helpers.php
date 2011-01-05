@@ -92,7 +92,7 @@ function bookmark_list_item($name, $opts=array()) {
     }
   }
 	foreach ($opts as $key=>$value) {
-		$url=str_replace(strtoupper($key), $value, $url);
+		$url=str_replace(strtoupper($key), $value, preg_replace('/\s+/', '%20', $url));
 	}
 	if(is_feed()) {
 		return sprintf(
