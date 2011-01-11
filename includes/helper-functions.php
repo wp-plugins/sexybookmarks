@@ -14,7 +14,7 @@ function get_sprite_file($opts, $type) {
   global $shrsb_plugopts;
 
   $shrbase = $shrsb_plugopts['shrbase']?$shrsb_plugopts['shrbase']:'http://www.shareaholic.com';
-	$spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
+  $spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
   $filename = SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.'.$type;
   $content = FALSE;
 
