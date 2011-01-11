@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.9
+Version: 3.2.10
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.9');
+define('SHRSB_vNum','3.2.10');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -71,6 +71,8 @@ $shrsb_plugopts = array(
   'reloption' => 'nofollow', // 'nofollow', or ''
   'targetopt' => '_blank', // 'blank' or 'self'
   'perfoption' => '1', // performance script (GA)
+  'showShareCount' => '1', // fb/twit share count
+  'shrlink' => '1', // show promo link
   'bgimg-yes' => 'yes', // 'yes' or blank
   'mobile-hide' => '', // 'yes' or blank
   'bgimg' => 'caring', // default bg image
@@ -208,6 +210,8 @@ function shrsb_settings_page() {
 			'reloption' => 'nofollow', // 'nofollow', or ''
 			'targetopt' => '_blank', // 'blank' or 'self'
 			'perfoption' => '1', // performance script (GA)
+			'showShareCount' => '1', // fb/twit share count
+			'shrlink' => '1', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'caring', // default bg image
@@ -371,7 +375,7 @@ function shrsb_settings_page() {
         'shorty', 'pageorpost', 'tweetconfig', 'ybuzzcat', 'ybuzzmed',
         'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
         'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
-        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'perfoption', 'apikey'
+        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount', 'shrlink', 'perfoption', 'apikey'
 			)as $field) {
         $shrsb_plugopts[$field] = $_POST[$field];
       }
@@ -677,6 +681,15 @@ function shrsb_settings_page() {
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> <?php _e('No', 'shrsb'); ?></label>
 							
+							<span class="shrsb_option"><?php _e('Show Share Counters for Facebook and Twitter?', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['showShareCount'] == "1")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['showShareCount'] == "0")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+							<span style="display:block;"><?php _e('(beta-mode exclusive feature)', 'shrsb'); ?></span>
+							
+							<span class="shrsb_option"><?php _e('Show Shareaholic Promo?', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['shrlink'] == "1" || $shrsb_plugopts['shrlink'] == '')? 'checked="checked"' : ""); ?> name="shrlink" id="shrlink-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['shrlink'] == "0")? 'checked="checked"' : ""); ?> name="shrlink" id="shrlink-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+														
 							<span class="shrsb_option"><?php _e('Track Performance?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['perfoption'] == "1")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['perfoption'] == "0")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>

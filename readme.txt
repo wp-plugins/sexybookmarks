@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
 Tested up to: 3.0.4
-Stable tag: 3.2.9
+Stable tag: 3.2.10
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -14,9 +14,11 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 
 = Recent Updates =
+* Share Counters for Twitter and Facebook! (beta exclusive)
 * Fix for Arras theme
 * Fix for a W3C validation error
 * Adds support for Google's URL shortener (goo.gl)
+* Admin toggle for Shareaholic promo link
 * Fixes slow page load issue
 * Loads of behind the scenes performance improvements
 
@@ -107,15 +109,21 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 == Changelog ==
 
+= 3.2.10 =
+* Share Counters for Twitter and Facebook! (beta exclusive)
+* Admin toggle for Shareaholic promo link
+
 = 3.2.9 =
 * Fix for a W3C validation error
 * Updated Arabic translation (by [Modar Soos](http://www.sada-sy.com))
 * Updated French translation (by [Maitre Mo](http://maitremo.fr))
 * Updated Portuguese (Brazil) translation (by [Barukar](http://www.classinoiva.com.br))
+* Includes link to Shareaholic Browser Tools
 
 = 3.2.8 =
 * Fix for Arras theme
 * Depreciating `selfserv_sexy()` function.  It has been replaced with `selfserv_shareaholic()`
+* Admin toggle for Perf script
 
 = 3.2.7 =
 * Adds support for Google's URL shortener (goo.gl)

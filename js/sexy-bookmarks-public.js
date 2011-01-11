@@ -1,10 +1,13 @@
 jQuery(document).ready(function () {
     jQuery(".shr-bookmarks a.external").attr("target", "_blank");
-    var c = jQuery(".shr-bookmarks").height(),
-        d = jQuery(".shr-bookmarks ul.socials").height() + jQuery(".shr-bookmarks div.shr-getshr").height();
-    d > c && jQuery(".shr-bookmarks-expand").hover(function () {
+	
+	var c = jQuery(".shr-bookmarks").height(),
+        d = jQuery(".shr-bookmarks ul.socials").height(),
+		h = jQuery(".shr-bookmarks div.shr-getshr").height();
+		
+	d > c && jQuery(".shr-bookmarks-expand").hover(function () {
         jQuery(this).animate({
-            height: d + "px"
+            height: (d + h) + "px"
         }, {
             duration: 400,
             queue: false
@@ -31,13 +34,19 @@ jQuery(document).ready(function () {
             jQuery(".shr-bookmarks-center").attr("style", 'margin-left:' + a + 'px !important')
         }
     }
+	
+	if( h > 0 &&  (jQuery(".shr-bookmarks-expand").length == 0
+					|| !(d>c))) {
+		jQuery(".shr-bookmarks").height(c+h);
+	}
+	
 	var sText = getShareText();
 	if(sText != "") {
 		jQuery(".shr-bookmarks div.shr-getshr a").text(sText);
 		jQuery(".shr-bookmarks").hover(function() {
-			jQuery(".shr-bookmarks div.shr-getshr").show(400);
+			jQuery(".shr-bookmarks div.shr-getshr").css('visibility','visible');
 		}, function () {
-			jQuery(".shr-bookmarks div.shr-getshr").hide(400);
+			jQuery(".shr-bookmarks div.shr-getshr").css('visibility','hidden');
 		});
 	}
 });

@@ -127,6 +127,8 @@ function shrsb_get_publisher_config($post_id) {
     'mode' => 'inject',
     'spriteimg' => $r['spriteimg'],
     'category' => $r['category'],
+	'showShareCount' => $r['showShareCount'],
+	'shrlink'	=> $r['shrlink']
   );
 
   if ($r['include_comfeed']) {
@@ -798,8 +800,10 @@ function get_sexy() {
 		}
 	}
 	$socials.='</ul>';
-	$socials.= '<div style="clear: both;"></div>';
-	$socials.= '<div class="shr-getshr" style="display:none;font-size:10px !important"><a target="_blank" href="http://www.shareaholic.com/?src=pub">Get Shareaholic</a></div>';
+	if ($shrsb_plugopts['shrlink'] == 1) {
+		$socials.= '<div style="clear: both;"></div>';
+		$socials.= '<div class="shr-getshr" style="visibility:hidden;font-size:10px !important"><a target="_blank" href="http://www.shareaholic.com/?src=pub">Get Shareaholic</a></div>';
+	}
 	$socials.= '<div style="clear: both;"></div></div>';
 	$socials.="\n\n";
 	return $socials;

@@ -287,10 +287,10 @@ div.box-right-body { background:#fff url('../images/white-pix.jpg') repeat-x cen
 div.box-right-body h4 { display:block; font-size:16px; font-weight:bold; margin:8px 0; }
 div.box-right-body ul { list-style-image:none; list-style-position:inside; list-style-type:none; margin:0; }
 div.box-right-body ul li strong { color:#454545; font-weight:bold}
-div.shrsbsubmit, div.shrsbreset {float:left;margin:0 0 20px}
+div.shrsbsubmit, div.shrsbreset {float:left;margin:0 0 20px;}
 div.shrsbreset {margin-left:50px}
 div.shrsbsubmit input, div.shrsbreset input {
-	font-size:12px !important;
+	font-size:18px !important;
 	padding:4px 8px !important;
 	border-radius:4px !important;
 	-moz-border-radius:4px !important;
