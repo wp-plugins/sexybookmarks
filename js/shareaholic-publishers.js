@@ -1,14 +1,14 @@
 (function() {
   var load_shareaholic = function() {
-    jQuery.each(SHRSB_Settings, function(k) {
-      // we need this silly hack because if we set it to
-      // false in public.php, wordpress won't send it here
-      // and we need to override the default true value of
-      // expand
-      if (this['expand'] == 'false') {
-        this['expand'] = false;
-      }
-      jQuery('.'+k).shareaholic_publishers(this);
+      SHR4P.jQuery.each(SHRSB_Settings, function(k) {
+		    // we need this silly hack because if we set it to
+		    // false in public.php, wordpress won't send it here
+		    // and we need to override the default true value of
+		    // expand
+		    if (this['expand'] == 'false') {
+		      this['expand'] = false;
+		    }
+		    SHR4P.jQuery('.'+k).shareaholic_publishers(this);
     });
   };
 
