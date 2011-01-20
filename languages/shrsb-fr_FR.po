@@ -1012,7 +1012,7 @@ msgstr "Mettez-le en boite sur"
 #: includes/bookmarks-data.php:537
 #: includes/bookmarks-data.php:543
 msgid "Email this via "
-msgstr "Maillez-le via"
+msgstr "Mailez-le via "
 
 #: includes/bookmarks-data.php:532
 msgid "(sent via http://shareaholic.com)"
@@ -1021,7 +1021,7 @@ msgstr "(envoyé via http://shareaholic.com)"
 # @ shrsb
 #: includes/bookmarks-data.php:549
 msgid "Share this via "
-msgstr "Partagez-le via"
+msgstr "Partagez-le via "
 
 # @ shrsb
 #: includes/public.php:556

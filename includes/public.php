@@ -126,7 +126,6 @@ function shrsb_get_publisher_config($post_id) {
     'twitter_template' => $r['tweetconfig'],
     'mode' => 'inject',
     'spriteimg' => $r['spriteimg'],
-    'category' => $r['category'],
 	'showShareCount' => $r['showShareCount'],
 	'shrlink'	=> $r['shrlink']
   );
@@ -159,7 +158,6 @@ function shrsb_get_params($post_id) {
 
   // Grab the short URL
   $r['short_link'] = shrsb_get_fetch_url();
-	$r['category'] = $shrsb_plugopts['twittcat'];
 
   $r['post_summary'] = urlencode(strip_tags(
   strip_shortcodes($post->post_excerpt)));
@@ -172,9 +170,10 @@ function shrsb_get_params($post_id) {
   if ($r['shrsb_content'] == "") {
     $r['shrsb_content'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
   }
-	$r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
+  
+  $r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
   $r['post_summary'] = stripslashes(str_replace('+','%20',$r['post_summary']));
-	$r['site_name'] = get_bloginfo('name');
+  $r['site_name'] = get_bloginfo('name');
   $r['mail_subject'] = str_replace("&#8217;","'",str_replace('+','%20',$r['mail_subject']));
 
   // Grab post tags for Twittley tags. If there aren't any, use default tags
@@ -187,9 +186,6 @@ function shrsb_get_params($post_id) {
       $tags[] = $tag->name; 
     }
     $r['d_tags'] = implode(',', $tags);
-	}
-	else {
-		$r['d_tags'] = $shrsb_plugopts['defaulttags'];
 	}
 
 	// Check permalink setup for proper feed link
@@ -639,10 +635,6 @@ function get_sexy() {
 	$site_name = get_bloginfo('name');
 	$mail_subject = str_replace('+','%20',$mail_subject);
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
-	$y_cat = $shrsb_plugopts['ybuzzcat'];
-	$y_med = $shrsb_plugopts['ybuzzmed'];
-	$t_cat = $shrsb_plugopts['twittcat'];
-
 
 
 
@@ -656,9 +648,6 @@ function get_sexy() {
 	  if(!empty($getkeywords) && !empty($d_tags)) {
 		  $d_tags=substr($d_tags, 0, count($d_tags)-2);
     }
-	}
-	else {
-		$d_tags = $shrsb_plugopts['defaulttags'];
 	}
 
 
@@ -771,8 +760,6 @@ function get_sexy() {
 					'permalink'=>$perms,
 					'title'=>$title,
 					'yahooteaser'=>$shrsb_content,
-					'yahoocategory'=>$y_cat,
-					'yahoomediatype'=>$y_med,
 				));
 				break;
 			case 'shr-twittley':
@@ -780,7 +767,6 @@ function get_sexy() {
 					'permalink'=>urlencode($perms),
 					'title'=>$title,
 					'post_summary'=>$post_summary,
-					'twitt_cat'=>$t_cat,
 					'default_tags'=>$d_tags,
 				));
 				break;

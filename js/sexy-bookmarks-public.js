@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 	
 	var c = jQuery(".shr-bookmarks").height(),
         d = jQuery(".shr-bookmarks ul.socials").height(),
-		h = jQuery(".shr-bookmarks div.shr-getshr").height();
+		h = jQuery(".shr-bookmarks div.shr-getshr").outerHeight(true);
 		
 	d > c && jQuery(".shr-bookmarks-expand").hover(function () {
         jQuery(this).animate({

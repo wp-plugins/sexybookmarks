@@ -54,8 +54,9 @@ function shrsb_select_option_group($field, $options) {
 
 // function to list bookmarks that have been chosen by admin
 function bookmark_list_item($name, $opts=array()) {
-	global $shrsb_plugopts, $shrsb_bookmarks_data;
+	global $shrsb_plugopts, $shrsb_bookmarks_data, $post;
 
+  $post_info = shrsb_get_params($post->id);
   // If Twitter, check for custom tweet configuration and modify tweet accordingly
   if($name == 'shr-twitter') {
     $tsrc='&amp;source=shareaholic';
@@ -70,9 +71,24 @@ function bookmark_list_item($name, $opts=array()) {
       $url=$shrsb_bookmarks_data[$name]['baseUrl'].'SHORT_TITLE+-+FETCH_URL'.$tsrc;
     }
   }
-  // Otherwise, use default baseUrl format
+  else if($name == 'shr-comfeed') {// Otherwise, use default baseUrl format
+      $url=$shrsb_bookmarks_data[$name]['baseUrl'];
+  }
   else {
-	  $url=$shrsb_bookmarks_data[$name]['baseUrl'];
+	 $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&',array(	
+																			'title=TITLE',
+																			'link=PERMALINK',
+																			'notes='.$post_info['notes'],
+																			'short_link='.$post_info['short_link'],
+																			'v=1',
+																			'apitype=1',
+																			'apikey='.$shrsb_plugopts['apikey'],
+																			'source=Shareaholic',
+																			'template=',
+																			'service='.$shrsb_bookmarks_data[$name]['id'],
+																			'tags='.$post_info['d_tags'],
+																			'ctype='
+																			));
   }
 
 
@@ -80,9 +96,6 @@ function bookmark_list_item($name, $opts=array()) {
 	if($name == 'shr-facebook') {
 		$onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
 	}
-  if($name == 'shr-buzzster') {
-    $topt = '';
-  }
   else {
     if($shrsb_plugopts['targetopt'] == '_blank') {
       $topt = ' class="external"';

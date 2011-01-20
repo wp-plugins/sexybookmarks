@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.10
+Version: 3.2.11
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.10');
+define('SHRSB_vNum','3.2.11');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -82,12 +82,8 @@ $shrsb_plugopts = array(
   'feed' => '0', // 1 or 0
   'expand' => '1',
   'autocenter' => '1',
-  'ybuzzcat' => 'science',
-  'ybuzzmed' => 'text',
-  'twittcat' => '',
   'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
   'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
-  'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
   'warn-choice' => '',
   'doNotIncludeJQuery' => '',
   'custom-mods' => '',
@@ -104,10 +100,36 @@ $shrsb_plugopts = array(
 add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_CustomSprite', '');
 
+// code to remove redundant data fields from the database
+if($shrsb_plugopts['twittcat']) {
+    $shrsb_plugopts['ybuzzcat'] = '';
+    $shrsb_plugopts['ybuzzmed'] = '';
+    $shrsb_plugopts['twittcat'] = '';
+    $shrsb_plugopts['defaulttags'] = '';    
+}
 
 //reload from database
 $shrsb_plugopts = get_option('SexyBookmarks');
 $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
+$shrsb_version = get_option('SHRSBvNum');
+
+// if the version number is set and is not the latest, then call the upgrade function
+if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
+   add_action('admin_notices', 'shrsb_Upgrade', 12);
+}
+
+function shrsb_Upgrade() {
+     // check if sprite files are not present, ask the user to re-save setting.
+     if(!file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
+         echo '
+          <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
+            <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
+              '.sprintf(__('NOTICE: Shareaholic was updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+            </div>
+          </div>';
+     }
+}
+
 
 //add activation hook to remove all old and non-existent options from database if necessary
 function shrsb_Activate() {
@@ -221,12 +243,8 @@ function shrsb_settings_page() {
 			'feed' => '0', // 1 or 0
 			'expand' => '1',
 			'autocenter' => '0',
-			'ybuzzcat' => 'science',
-			'ybuzzmed' => 'text',
-			'twittcat' => '',
-            'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
+			'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
             'shortyapi' => array (bitly => array (key => 'R_83932e4c5d02d1f94aea0f40fbc557ec', user => 'shareaholic')), //bit.ly default info
-			'defaulttags' => 'blog', // Random word to prevent the Twittley default tag warning
 			'warn-choice' => '',
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
@@ -292,11 +310,6 @@ function shrsb_settings_page() {
 			'bookmark'=>__("You can't display the menu if you don't choose a few sites to add to it!", 'shrsb'),
 			'pageorpost'=>__('Please choose where you want the menu displayed.', 'shrsb'),
 		);
-		/* adding to err msg map if twittley is enabled.
-		if (in_array('shr-twittley', $_POST['bookmark'])) {
-			$errmsgmap['twittcat']=__('You need to select the primary category for any articles submitted to Twittley.', 'shrsb');
-			$errmsgmap['defaulttags']=__('You need to set at least 1 default tag for any articles submitted to Twittley.', 'shrsb');
-		} */
 		foreach ($errmsgmap as $field=>$msg) {
 			if ($_POST[$field] == '') {
 				$error_message = $msg;
@@ -372,8 +385,7 @@ function shrsb_settings_page() {
 
 			foreach (array(
         'position', 'reloption', 'targetopt', 'bookmark',
-        'shorty', 'pageorpost', 'tweetconfig', 'ybuzzcat', 'ybuzzmed',
-        'twittcat', 'defaulttags', 'bgimg-yes', 'mobile-hide', 'bgimg',
+        'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
         'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
         'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount', 'shrlink', 'perfoption', 'apikey'
 			)as $field) {
@@ -390,11 +402,6 @@ function shrsb_settings_page() {
         shrsb_refresh_cache();
       }
 
-      // Get rid of nasty script injections
-      $shrsb_plugopts['defaulttags'] = htmlspecialchars($shrsb_plugopts['defaulttags'], ENT_QUOTES);
-      $shrsb_plugopts['tweetconfig'] = htmlspecialchars($shrsb_plugopts['tweetconfig'], ENT_QUOTES);
-      
-      
       /* Short URLs */
       //trim also at the same time as at times while copying, some whitespace also gets copied
       //check fields dont need trim function
@@ -607,67 +614,6 @@ function shrsb_settings_page() {
 									<input type="text" id="shortyapikey-supr" name="shortyapikey-supr" value="<?php echo $shrsb_plugopts['shortyapi']['supr']['key']; ?>" />
 								</div>
 							</div>
-							<div class="clearbig"></div>
-						</div>
-						<div id="ybuzz-defaults"<?php if(!in_array('shr-yahoobuzz', $shrsb_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
-							<h3><?php _e('Yahoo! Buzz Defaults:', 'shrsb'); ?></h3>
-							<label for="ybuzzcat"><?php _e('Default Content Category:', 'shrsb'); ?> </label>
-							<select name="ybuzzcat" id="ybuzzcat">
-								<?php
-									// output shorty select options
-									print shrsb_select_option_group('ybuzzcat', array(
-										'entertainment'=>'Entertainment',
-										'lifestyle'=>'Lifestyle',
-										'health'=>'Health',
-										'usnews'=>'U.S. News',
-										'business'=>'Business',
-										'politics'=>'Politics',
-										'science'=>'Sci/Tech',
-										'world_news'=>'World',
-										'sports'=>'Sports',
-										'travel'=>'Travel',
-									));
-								?>
-							</select>
-							<div class="clearbig"></div>
-							<label for="ybuzzmed"><?php _e('Default Media Type:', 'shrsb'); ?></label>
-							<select name="ybuzzmed" id="ybuzzmed">
-								<?php
-									print shrsb_select_option_group('ybuzzmed', array(
-										'text'=>'Text',
-										'image'=>'Image',
-										'audio'=>'Audio',
-										'video'=>'Video',
-									));
-								?>
-							</select>
-						<div class="clearbig"></div>
-						</div>
-						<div id="twittley-defaults"<?php if(!in_array('shr-twittley', $shrsb_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
-							<h3><?php _e('Twittley Defaults:', 'shrsb'); ?></h3>
-							<label for="twittcat"><?php _e('Primary Content Category:', 'shrsb'); ?> </label>
-							<select name="twittcat" id="twittcat">
-								<?php
-									print shrsb_select_option_group('twittcat', array(
-										'Technology'=>__('Technology', 'shrsb'),
-										'World &amp; Business'=>__('World &amp; Business', 'shrsb'),
-										'Science'=>__('Science', 'shrsb'),
-										'Gaming'=>__('Gaming', 'shrsb'),
-										'Lifestyle'=>__('Lifestyle', 'shrsb'),
-										'Entertainment'=>__('Entertainment', 'shrsb'),
-										'Sports'=>__('Sports', 'shrsb'),
-										'Offbeat'=>__('Offbeat', 'shrsb'),
-										'Internet'=>__('Internet', 'shrsb'),
-									));
-								?>
-							</select>
-							<div class="clearbig"></div>
-							<p id="tag-info" class="hidden">
-								<?php _e("Enter a comma separated list of general tags which describe your site's posts as a whole. Try not to be too specific, as one post may fall into different *tag categories* than other posts.", 'shrsb'); ?><br />
-								<?php _e('This list is primarily used as a failsafe in case you forget to enter WordPress tags for a particular post, in which case this list of tags would be used so as to bring at least *somewhat* relevant search queries based on the general tags that you enter here.', 'shrsb'); ?><br /><span title="<?php _e('Click here to close this message', 'shrsb'); ?>" class="dtags-close">[<?php _e('close', 'shrsb'); ?>]</span>
-							</p>
-							<label for="defaulttags"><?php _e('Default Tags:', 'shrsb'); ?> </label>
-							<input type="text" name="defaulttags" id="defaulttags" onblur="if ( this.value == '' ) { this.value = 'enter,default,tags,here'; }" onfocus="if ( this.value == 'enter,default,tags,here' ) { this.value = ''; }" value="<?php echo $shrsb_plugopts['defaulttags']; ?>" /><span class="dtags-info fugue f-question" title="<?php _e('Click here for help with this option', 'shrsb'); ?>"> </span>
 							<div class="clearbig"></div>
 						</div>
 						<div id="genopts">

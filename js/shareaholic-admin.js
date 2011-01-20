@@ -96,26 +96,6 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	// Apply "smart options" to Yahoo! Buzz
-	jQuery('#shr-yahoobuzz').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#ybuzz-defaults').fadeIn('fast');
-		}
-		else {
-			jQuery('#ybuzz-defaults').fadeOut();
-		}
-	});
-
-	// Apply "smart options" to Twittley
-	jQuery('#shr-twittley').click(function() {
-		if (jQuery(this).attr('checked')) {
-			jQuery('#twittley-defaults').fadeIn('fast');
-		}
-		else {
-			jQuery('#twittley-defaults').fadeOut();
-		}
-	});
-
 	// Apply "smart options" to Twitter
 	jQuery('#shr-twitter').click(function() {
 		if (jQuery(this).attr('checked')) {

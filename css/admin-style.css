@@ -26,7 +26,7 @@ ul#shrsb-sortables div.padding h1, ul#shrsb-sortables div.padding h2, ul#shrsb-s
 	cursor:pointer;
 }
 #tweetconfig {width:100% !important;height:30px !important;}
-#twitter-defaults, #ybuzz-defaults, #twittley-defaults, #genopts {margin:20px 0;}
+#twitter-defaults, #genopts {margin:20px 0;}
 #tweetinstructions {font-size:11px;}
 #tweetcounter {margin-left:192px;font-size:9px;position:absolute;margin:0 !important;right:10px;}
 #tweetcounter span {}
