@@ -95,8 +95,7 @@ $shrsb_bookmarks_data=array(
 	'shr-twitter'=>array(
 		'id'=>7,
 		'check'=>sprintf($checkthis_text,'Twitter'),
-		'share'=>__('Tweet This!', 'shrsb'),
-		'baseUrl'=>'http://twitter.com/home?status='
+		'share'=>__('Tweet This!', 'shrsb')
 	),
 	'shr-mail'=>array(
 		'id'=>201,

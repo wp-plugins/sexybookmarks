@@ -711,8 +711,8 @@ function get_sexy() {
 		switch ($name) {
 			case 'shr-twitter':
 				$socials.=bookmark_list_item($name, array(
-					'short_title'=>$short_title,
-					'fetch_url'=>$fetch_url,
+					'permalink'=>$perms,
+					'title'=>$title,
 				));
 				break;
 			case 'shr-identica':

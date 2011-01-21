@@ -16,7 +16,7 @@
     if (/(loaded|complete)/.test(document.readyState)) {
       load_shareaholic();
     } else {
-      jQuery(document).ready(function(){
+      SHR4P.jQuery(document).ready(function(){
         load_shareaholic();
       });
     }

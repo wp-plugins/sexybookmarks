@@ -59,17 +59,21 @@ function bookmark_list_item($name, $opts=array()) {
   $post_info = shrsb_get_params($post->id);
   // If Twitter, check for custom tweet configuration and modify tweet accordingly
   if($name == 'shr-twitter') {
-    $tsrc='&amp;source=shareaholic';
-    if(!empty($shrsb_plugopts['tweetconfig'])) {
-      $needle = array('${title}', '${short_link}');
-      $new_needle = array('SHORT_TITLE', 'FETCH_URL');
-      $tconfig = str_replace($needle, $new_needle, $shrsb_plugopts['tweetconfig']);
-      $url=$shrsb_bookmarks_data[$name]['baseUrl'].urlencode($tconfig).$tsrc;
-    }
-    // Otherwise, use default tweet format
-    else {
-      $url=$shrsb_bookmarks_data[$name]['baseUrl'].'SHORT_TITLE+-+FETCH_URL'.$tsrc;
-    }
+      
+    $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&',array(	
+    																		'title=TITLE',
+    																		'link=PERMALINK',
+    																		'notes='.$post_info['notes'],
+    																		'short_link='.$post_info['short_link'],
+    																		'v=1',
+    																		'apitype=1',
+    																		'apikey='.$shrsb_plugopts['apikey'],
+    																		'source=Shareaholic',
+    																		'template='.$shrsb_plugopts['tweetconfig'],
+    																		'service='.$shrsb_bookmarks_data[$name]['id'],
+    																		'tags='.$post_info['d_tags'],
+    																		'ctype='
+    																		));
   }
   else if($name == 'shr-comfeed') {// Otherwise, use default baseUrl format
       $url=$shrsb_bookmarks_data[$name]['baseUrl'];

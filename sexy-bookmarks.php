@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.11
+Version: 3.2.12
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.11');
+define('SHRSB_vNum','3.2.12');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -100,18 +100,23 @@ $shrsb_plugopts = array(
 add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_CustomSprite', '');
 
+//reload from database
+$shrsb_plugopts = get_option('SexyBookmarks');
+$shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
+$shrsb_version = get_option('SHRSBvNum');
+
 // code to remove redundant data fields from the database
 if($shrsb_plugopts['twittcat']) {
     $shrsb_plugopts['ybuzzcat'] = '';
     $shrsb_plugopts['ybuzzmed'] = '';
     $shrsb_plugopts['twittcat'] = '';
-    $shrsb_plugopts['defaulttags'] = '';    
+    $shrsb_plugopts['defaulttags'] = '';
 }
 
-//reload from database
-$shrsb_plugopts = get_option('SexyBookmarks');
-$shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
-$shrsb_version = get_option('SHRSBvNum');
+if($shrsb_plugopts['shrbase'] != 'http://www.shareaholic.com')  {
+    $shrsb_plugopts['shrbase'] = 'http://www.shareaholic.com';
+    // Some databases got corrupted. This will set things in place.
+}
 
 // if the version number is set and is not the latest, then call the upgrade function
 if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
@@ -519,7 +524,7 @@ function shrsb_settings_page() {
               </p>
               <div style="position:relative;width:80%;">
                 <label for="tweetconfig"><?php _e('Configure Custom Tweet Template:', 'shrsb'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'shrsb'); ?> <span></span></small><br />
-                <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo $shrsb_plugopts['tweetconfig']; } else { echo '${title} - ${short_link}'; } ?></textarea>
+                <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo $shrsb_plugopts['tweetconfig']; } else { echo '${title} - ${short_link} via @Shareaholic'; } ?></textarea>
               </div>
               <p id="tweetoutput"><strong><?php _e('Example Tweet Output:', 'shrsb'); ?></strong><br /><span></span></p>
 							<div class="clearbig"></div>
