@@ -60,7 +60,7 @@ function bookmark_list_item($name, $opts=array()) {
   // If Twitter, check for custom tweet configuration and modify tweet accordingly
   if($name == 'shr-twitter') {
       
-    $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&',array(	
+    $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&amp;',array(	
     																		'title=TITLE',
     																		'link=PERMALINK',
     																		'notes='.$post_info['notes'],
@@ -69,7 +69,7 @@ function bookmark_list_item($name, $opts=array()) {
     																		'apitype=1',
     																		'apikey='.$shrsb_plugopts['apikey'],
     																		'source=Shareaholic',
-    																		'template='.$shrsb_plugopts['tweetconfig'],
+    																		'template='.urlencode($shrsb_plugopts['tweetconfig']),
     																		'service='.$shrsb_bookmarks_data[$name]['id'],
     																		'tags='.$post_info['d_tags'],
     																		'ctype='
@@ -79,7 +79,7 @@ function bookmark_list_item($name, $opts=array()) {
       $url=$shrsb_bookmarks_data[$name]['baseUrl'];
   }
   else {
-	 $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&',array(	
+	 $url = $shrsb_plugopts['shrbase'].'/api/share/?'.implode('&amp;',array(	
 																			'title=TITLE',
 																			'link=PERMALINK',
 																			'notes='.$post_info['notes'],

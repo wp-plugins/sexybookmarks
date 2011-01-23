@@ -2,8 +2,8 @@
 /*
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
-Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="options-general.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.2.12
+Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
+Version: 3.3.1
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.2.12');
+define('SHRSB_vNum','3.3.1');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -118,6 +118,12 @@ if($shrsb_plugopts['shrbase'] != 'http://www.shareaholic.com')  {
     // Some databases got corrupted. This will set things in place.
 }
 
+if($shrsb_plugopts['shorty'] == 'slly' || $shrsb_plugopts['shorty'] == 'trim' || $shrsb_plugopts['shorty'] == 'e7t')  {
+    $shrsb_plugopts['shorty'] = 'googl';
+    // Reset depreciated url shorteners
+}
+
+
 // if the version number is set and is not the latest, then call the upgrade function
 if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
    add_action('admin_notices', 'shrsb_Upgrade', 12);
@@ -129,7 +135,7 @@ function shrsb_Upgrade() {
          echo '
           <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
             <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-              '.sprintf(__('NOTICE: Shareaholic was updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+              '.sprintf(__('NOTICE: Shareaholic was updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
             </div>
           </div>';
      }
@@ -167,7 +173,7 @@ function showUpdateNotice() {
     echo '
       <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
         <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-          '.sprintf(__('NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="options-general.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+          '.sprintf(__('NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
         </div>
       </div>';
   }
@@ -552,8 +558,7 @@ function shrsb_settings_page() {
 										'tiny'=>'tinyurl.com',
 										'snip'=>'snipr.com',
 										'supr'=>'su.pr',
-										'cligs'=>'cli.gs',
-										'slly'=>'SexyURL (sl.ly)',
+										'cligs'=>'cli.gs'
 									));
 								?>
 							</select>
@@ -831,8 +836,13 @@ function shrsb_settings_page() {
 //add sidebar link to settings page
 add_action('admin_menu', 'shrsb_menu_link');
 function shrsb_menu_link() {
-	if (function_exists('add_options_page')) {
-		$shrsb_admin_page = add_options_page('SexyBookmarks (by Shareaholic)', 'SexyBookmarks (by Shareaholic)', 'administrator', basename(__FILE__), 'shrsb_settings_page');
+	if (function_exists('add_menu_page')) {
+		$shrsb_admin_page = add_menu_page( __( 'SexyBookmarks (by Shareaholic)', 'shrsb' ), __( 'Shareaholic', 'shrsb' ),
+		    'administrator', basename(__FILE__), 'shrsb_settings_page', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
+		            
+		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks (by Shareaholic)' ), __( 'SexyBookmarks', 'shrsb' ),
+    		'administrator', basename(__FILE__), 'shrsb_settings_page_main' );
+    	
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
 	}
@@ -866,7 +876,7 @@ function shrsb_admin_styles() {
 
 // Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh
 function shrsb_admin_plugin_actions($links) {
-	$links[] = '<a href="options-general.php?page=sexy-bookmarks.php">'.__('Settings', 'shrsb').'</a>';
+	$links[] = '<a href="admin.php?page=sexy-bookmarks.php">'.__('Settings', 'shrsb').'</a>';
 	return $links;
 }
 add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'shrsb_admin_plugin_actions', -10);

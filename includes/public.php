@@ -425,20 +425,16 @@ function shrsb_get_fetch_url() {
 			$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
 			break;
 		
-		case 'slly':
-			$first_url = "http://sl.ly/?module=ShortURL&file=Add&mode=API&url=".$perms;
+		case 'slly':  //sl.ly is unreliable, this only here for backwards compatibility
+			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
 			break;
 		
 		case 'trim': //tr.im no longer exists, this only here for backwards compatibility
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$shrsb_plugopts['shorty'] = 'b2l';
-			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
 			break;
 		
 		case 'e7t': //e7t.us no longer exists, this only here for backwards compatibility
 			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$shrsb_plugopts['shorty'] = 'b2l';
-			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
 			break;
 		
 		case 'b2l': //goto default

@@ -35,7 +35,7 @@ jQuery(document).ready(function() {
 			jQuery('#shrsb-networks input').removeAttr('checked');
 		});
 		jQuery('#shrsb-networks').each(function() {
-			jQuery('#shr-digg').attr('checked', 'checked');
+			jQuery('#shr-printfriendly').attr('checked', 'checked');
 			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-delicious').attr('checked', 'checked');
 			jQuery('#shr-stumbleupon').attr('checked', 'checked');
