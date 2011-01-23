@@ -299,8 +299,8 @@ msgstr "SexyBookmarks è stato disattivato in questa pagina"
 
 #: sexy-bookmarks.php:155
 #, php-format
-msgid "NOTICE: SexyBookmarks needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences."
-msgstr "AVVISO: SexyBookmarks deve essere configurato... Si prega di visitare la %sPagina opzioni del plugin%s ed impostare le preferenze."
+msgid "NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences."
+msgstr "AVVISO: Shareaholic deve essere configurato... Si prega di visitare la %sPagina opzioni del plugin%s ed impostare le preferenze."
 
 #: sexy-bookmarks.php:180
 msgid "WARNING: You are about to reset all settings to their default state! Do you wish to continue?"

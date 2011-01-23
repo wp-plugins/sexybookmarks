@@ -1,6 +1,6 @@
 /* General Styles */
-.shrsblogo { text-indent:-999em; height:90px; background:url('../images/shrsb-logo.png') no-repeat 0 0; position:relative;}
-.sh-logo { display:block;height:41px;width:220px;background:url('../images/shareaholic-220.png') no-repeat 0 0; position:absolute;right:40px;top:40px;}
+.shrsblogo {text-indent: -100.0em; height:90px; background:url('../images/shrsb-logo.png') no-repeat 0 0; position:relative;top:25px;}
+.sh-logo { text-indent: -100.0em; display:block;height:41px;width:220px;overflow: hidden; background:url('../images/shareaholic-220.png') no-repeat 0 0; position:absolute;right:40px;top:25px;}
 #clearShortUrlsLabel { font-size:11px; height:14px; line-height:14px; }
 #clearShortUrls {margin-right:4px;}
 .shebang-info { cursor:pointer; left:5px; position:relative; top:3px; }
@@ -25,8 +25,8 @@ ul#shrsb-sortables div.padding h1, ul#shrsb-sortables div.padding h2, ul#shrsb-s
 	text-decoration:none;
 	cursor:pointer;
 }
-#tweetconfig {width:100% !important;height:40px !important;}
-#twitter-defaults, #ybuzz-defaults, #twittley-defaults, #genopts {margin:20px 0;}
+#tweetconfig {width:100% !important;height:30px !important;}
+#twitter-defaults, #genopts {margin:20px 0;}
 #tweetinstructions {font-size:11px;}
 #tweetcounter {margin-left:192px;font-size:9px;position:absolute;margin:0 !important;right:10px;}
 #tweetcounter span {}
@@ -117,6 +117,7 @@ img.del-x { cursor:pointer; margin-top:7px; }
 	cursor:move;
 	float:left;
 	height:45px;
+	font-size: 10px;
 	margin:12px 2px !important;
 	text-align:center;
 	width:60px;
@@ -213,7 +214,6 @@ label.shr-zabox { background-position:-6020px top !important; }
 label.shr-viadeo { background-position:-6090px top !important; }
 label.shr-googlebuzz { background-position:-6160px top !important; }
 label.shr-gmail { background-position:-6230px top !important; }
-label.shr-bzzster { background-position:-6300px top !important; }
 label.shr-buzzster { background-position:-6300px top !important; }
 
 ul.multi-selection {
@@ -287,10 +287,10 @@ div.box-right-body { background:#fff url('../images/white-pix.jpg') repeat-x cen
 div.box-right-body h4 { display:block; font-size:16px; font-weight:bold; margin:8px 0; }
 div.box-right-body ul { list-style-image:none; list-style-position:inside; list-style-type:none; margin:0; }
 div.box-right-body ul li strong { color:#454545; font-weight:bold}
-div.shrsbsubmit, div.shrsbreset {float:left;margin:0 0 20px}
+div.shrsbsubmit, div.shrsbreset {float:left;margin:0 0 20px;}
 div.shrsbreset {margin-left:50px}
 div.shrsbsubmit input, div.shrsbreset input {
-	font-size:12px !important;
+	font-size:18px !important;
 	padding:4px 8px !important;
 	border-radius:4px !important;
 	-moz-border-radius:4px !important;
