@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.1
+Version: 3.3.2
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.1');
+define('SHRSB_vNum','3.3.2');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -841,7 +841,7 @@ function shrsb_menu_link() {
 		    'administrator', basename(__FILE__), 'shrsb_settings_page', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
 		            
 		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks (by Shareaholic)' ), __( 'SexyBookmarks', 'shrsb' ),
-    		'administrator', basename(__FILE__), 'shrsb_settings_page_main' );
+    		'administrator', basename(__FILE__), 'shrsb_settings_page' );
     	
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
