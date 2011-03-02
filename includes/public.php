@@ -107,6 +107,8 @@ function shrsb_get_publisher_config($post_id) {
   $params = array(
     'link' => $r['link'],
     'short_link' => $r['short_link'],
+    'shortener' => $r['shortener'],
+    'shortener_key' => $r['shortener_key'],
     'title' => $r['title'],
     'notes' => $r['notes'],
     'service' => $r['service'],
@@ -158,6 +160,19 @@ function shrsb_get_params($post_id) {
 
   // Grab the short URL
   $r['short_link'] = shrsb_get_fetch_url();
+  $r['shortener'] = $r['shorty'];
+  $r['shortener_key'] = '';
+
+  switch($shortener) {
+    case 'bitly':
+    case 'jmp':
+    case 'supr':
+        $user = $post_info['shortyapi'][$r['shorty']]['user'];
+        $api = $post_info['shortyapi'][$r['shorty']]['key'];
+        $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
+        break;
+    default:
+  }
 
   $r['post_summary'] = urlencode(strip_tags(
   strip_shortcodes($post->post_excerpt)));
@@ -256,54 +271,6 @@ function shrsb_get_params($post_id) {
 
 	return $r;
 }
-//cURL, file get contents or nothing -- used for short url
-function shrsb_nav_browse($url, $method = 'GET', $POST_data = null) {
-
-  if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response_code') && function_exists('wp_remote_retrieve_body')) {
-    
-    if($method == 'POST') {
-      $request_params = array('method' => 'POST', 'body' => $POST_data);
-    }
-    else {
-      $request_params = array('method' => 'GET');
-    }
-
-    $url_request = wp_remote_request($url, $request_params);
-    $url_response = wp_remote_retrieve_response_code($url_request);
-    
-    //goo.gl returns 201
-    if($url_response == 200 || $url_response == '200' || $url_response == '201' || $url_response == 201) {
-      $source = wp_remote_retrieve_body($url_request);
-    }
-    else {
-      $source = '';
-    }
-  }
-	elseif (function_exists('curl_init') && function_exists('curl_exec')) {
-		// Use cURL
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		if($method == 'POST'){
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $POST_data);
-		}
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-		$source = trim(curl_exec($ch));
-
-    if ( curl_errno($ch) != 0 ) {
-      $source = '';
-    }
-
-		curl_close($ch);
-		
-	}
-	else {
-		$source = '';
-	}
-	return $source;
-}
 
 
 function shrsb_get_fetch_url() {
@@ -343,159 +310,18 @@ function shrsb_get_fetch_url() {
 	if($post && get_post_status($post->ID) != 'publish') {
 		return $perms;
 	}
-	//if user chose not to use shortener, return permalink and go back
+	//if user chose not to use shortener, return nothing
 	if($shrsb_plugopts['shorty'] == 'none') {
-		return $perms;
+		// return no short_link
 	}
 	if ($shrsb_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
 		$fetch_url = permalink_to_twitter_link($perms);
 	} 
-  elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
+    elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
 		$fetch_url = wp_ozh_yourls_raw_url();
-	}
-	//if it is tflp or yourls and short url has been successfully recieved, then do not save it in db or try getting a stored short url
-	if( !empty( $fetch_url ) ) { 
-		return $fetch_url;
-	}
-	//check if the link is already genereted or not, if yes, then return the link
-	$fetch_url = trim(get_post_meta($post->ID, '_sexybookmarks_shortUrl', true));
-	if(!is_null($fetch_url) && md5($perms) == trim(get_post_meta($post->ID, '_sexybookmarks_permaHash', true))) {
-		return $fetch_url;
-	}
-
-	//some vars to be used later, so better set null values before
-	$url_more = "";
-	$method = 'GET';
-	$POST_data = array();
-	 
-	// Which short url service should be used?
-	switch ( $shrsb_plugopts['shorty'] ) {
-		
-		case 'tiny':
-			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-			break;
-		
-		case 'snip':
-			$first_url = "http://snipr.com/site/getsnip";
-			$method = 'POST';
-			$POST_data = array(
-			            "snipformat" => "simple", 
-			            "sniplink" => rawurlencode($perms),
-			            "snipuser" => $shrsb_plugopts['shortyapi']['snip']['user'],
-			            "snipapi" => $shrsb_plugopts['shortyapi']['snip']['key']
-			            );
-			break;
-		
-		case 'cligs':
-			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
-			if ($shrsb_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
-				$first_url .= "&key=".$shrsb_plugopts['shortyapi']['cligs']['key'];
-			break;
-		
-		case 'supr':
-            $method = 'GET';
-			if($shrsb_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
-				$first_url = "http://su.pr/api/shorten?longUrl=".$perms."&login=".$shrsb_plugopts['shortyapi']['supr']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['supr']['key']."&version=1.0";
-            else 
-                $first_url = "http://su.pr/api/simpleshorten?url=".$perms;
-			break;
-		
-		case 'bitly':
-			$first_url = "http://api.bit.ly/v3/shorten?longUrl=".$perms."&login=".$shrsb_plugopts['shortyapi']['bitly']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['bitly']['key']."&format=json";
-			break;
-        
-        case 'googl':
-            $method = 'POST';
-            $POST_data = array(
-               'url' => $perms
-             );
-             
-             $POST_data['headers'] = array(
-             		'Content-Type' => 'application/json',
-             		'X-Auth-Google-Url-Shortener' => 'true'
-             );
-             
-    		$first_url = "http://goo.gl/api/shorten";
-    		break;
-		
-		case 'tinyarrow':
-			$first_url = "http://tinyarro.ws/api-create.php?";
-			if($shrsb_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
-				$first_url .= "&userid=".$shrsb_plugopts['shortyapi']['tinyarrow']['user'];
-			$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
-			break;
-		
-		case 'slly':  //sl.ly is unreliable, this only here for backwards compatibility
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			break;
-		
-		case 'trim': //tr.im no longer exists, this only here for backwards compatibility
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			break;
-		
-		case 'e7t': //e7t.us no longer exists, this only here for backwards compatibility
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			break;
-		
-		case 'b2l': //goto default
-		default:
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			break;
-	}
-
-	$fetch_url = trim(shrsb_nav_browse($first_url, $method, $POST_data));
-
-	if ( !empty( $fetch_url ) ) {
-		
-		//if bit.ly, then decode the json string
-		if($shrsb_plugopts['shorty'] == "bitly"){
-			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['data']['url'];
-		}
-		
-		//if goo.gl, then decode the json string
-		if($shrsb_plugopts['shorty'] == "googl"){
-			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['short_url'];
-						
-			 //curl -d "url=http://test.com" http://goo.gl/api/shorten
-            //{"short_url":"http://goo.gl/2EMk","added_to_history":false}
-		}
-		
-        //if su.pr, then decode the json string
-		if($shrsb_plugopts['shorty'] == "supr" && $shrsb_plugopts['shortyapi']['supr']['chk'] == 1){
-			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['results'][urldecode($perms)]['shortUrl'];
-		}
-		
-		// Remote call made and was successful
-		// Add/update values
-		// Tries to update first, then add if field does not already exist
-		if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
-			add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
-		}
-		if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
-			add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
-		}
-        if(md5($perms) == get_post_meta($post->ID, '_sexybookmarks_permaHash')) {
-            $fetched_array = get_post_meta($post->ID, '_sexybookmarks_shortUrl');
-            $fetch_url = $fetched_array[0];
-        }
-        else {
-            update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
-            update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
-            $postmeta_array = get_post_meta($post->ID, '_sexybookmarks_shortUrl');
-            $fetch_url = $postmeta_array[0];
-        }
-	}
-  else {
-		$fetch_url = $perms;
 	}
 	return $fetch_url;
 }
-
-
-
 
 
 // Create an auto-insertion function

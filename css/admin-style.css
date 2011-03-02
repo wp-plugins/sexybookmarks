@@ -1,8 +1,6 @@
 /* General Styles */
 .shrsblogo {text-indent: -100.0em; height:90px; background:url('../images/shrsb-logo.png') no-repeat 0 0; position:relative;top:25px;}
 .sh-logo { text-indent: -100.0em; display:block;height:41px;width:220px;overflow: hidden; background:url('../images/shareaholic-220.png') no-repeat 0 0; position:absolute;right:40px;top:25px;}
-#clearShortUrlsLabel { font-size:11px; height:14px; line-height:14px; }
-#clearShortUrls {margin-right:4px;}
 .shebang-info { cursor:pointer; left:5px; position:relative; top:3px; }
 .dtags-info { cursor:pointer; left:5px; position:relative; top:3px; }
 #info-manual, #clear-warning, #custom-warning, #custom-warning-a, #mobile-warn { display:none; }

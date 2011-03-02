@@ -48,7 +48,7 @@ function get_sprite_file($opts, $type) {
 	  $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $spritegen);
     curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
     curl_setopt($ch, CURLOPT_TIMEOUT, 6);
     curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SHRSB_vNum);
     curl_setopt($ch, CURLOPT_REFERER, get_bloginfo('url'));

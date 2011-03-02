@@ -108,57 +108,18 @@ jQuery(document).ready(function() {
 
 	jQuery('#shorty').change(function() {
 		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
-		jQuery('#shortyapimdiv-trim').fadeOut('fast');
-		jQuery('#shortyapimdiv-snip').fadeOut('fast');
-		jQuery('#shortyapimdiv-tinyarrow').fadeOut('fast');
-		jQuery('#shortyapimdiv-cligs').fadeOut('fast');
 		jQuery('#shortyapimdiv-supr').fadeOut('fast');
-		if(this.value=='trim'){
-			jQuery('#shortyapimdiv-trim').fadeIn('fast');
-		}
-		else if(this.value=='bitly'){
+        jQuery('#shortyapimdiv-jmp').fadeOut('fast');
+		if(this.value=='bitly'){
 			jQuery('#shortyapimdiv-bitly').fadeIn('fast');
-		}
-		else if(this.value=='snip'){
-			jQuery('#shortyapimdiv-snip').fadeIn('fast');
-		}
-		else if(this.value=='tinyarrow'){
-			jQuery('#shortyapimdiv-tinyarrow').fadeIn('fast');
-		}
-		else if(this.value=='cligs'){
-			jQuery('#shortyapimdiv-cligs').fadeIn('fast');
 		}
 		else if(this.value=='supr'){
 			jQuery('#shortyapimdiv-supr').fadeIn('fast');
+		} else if(this.value=='jmp'){
+			jQuery('#shortyapimdiv-jmp').fadeIn('fast');
 		}
 	});
 
-	jQuery('#shortyapichk-trim').click(function() {
-		if (this.checked) {
-			jQuery('#shortyapidiv-trim').fadeIn('fast');
-		}
-		else {
-			jQuery('#shortyapidiv-trim').fadeOut('fast');
-		}
-	});
-
-	jQuery('#shortyapichk-tinyarrow').click(function() {
-		if (this.checked) {
-			jQuery('#shortyapidiv-tinyarrow').fadeIn('fast');
-		}
-		else {
-			jQuery('#shortyapidiv-tinyarrow').fadeOut('fast');
-		}
-	});
-
-	jQuery('#shortyapichk-cligs').click(function() {
-		if (this.checked) {
-			jQuery('#shortyapidiv-cligs').fadeIn('fast');
-		}
-		else {
-			jQuery('#shortyapidiv-cligs').fadeOut('fast');
-		}
-	});
 
 	jQuery('#shortyapichk-supr').click(function() {
 		if (this.checked) {
@@ -199,28 +160,6 @@ jQuery(document).ready(function() {
 		jQuery('#info-manual').fadeIn('fast');
 	});
 
-	jQuery('#clearShortUrls').click(function() {
-		if (jQuery('#clearShortUrls').is(':checked')) {
-			this.checked=jQuery('#clear-warning').fadeIn('fast');
-		}else{
-			this.checked=jQuery(this).is(':not(:checked)');
-		}
-		this.checked=jQuery(this).is(':not(:checked)');
-	});
-
-	jQuery('#warn-cancel').click(function() {
-		this.checked=jQuery('#clear-warning').fadeOut();
-		this.checked=jQuery(this).is(':not(:checked)');
-	});
-
-	jQuery('#warn-yes').click(function() {
-		this.checked=jQuery('#clear-warning').fadeOut();
-		this.checked=jQuery('#clearShortUrls').attr('checked', 'checked');
-		this.checked=!this.checked;
-	});
-
-
-
 	jQuery('#shrsbresetallwarn-cancel').click(function() {
 		jQuery('#shrsbresetallwarn').fadeOut();
 	});
@@ -255,7 +194,7 @@ jQuery(document).ready(function() {
 	jQuery('#tweetcounter span').html(mathdoneload);
 	var endvalueload = jQuery('#tweetconfig').val();
 	endvalueload = endvalueload.replace('${title}', 'Some fancy post title');
-	endvalueload = endvalueload.replace('${short_link}', 'http://b2l.me/a4Dc1');
+	endvalueload = endvalueload.replace('${short_link}', 'http://goo.gl/dbqlx');
 	var endtweetload = endvalueload;
 	jQuery('#tweetoutput span').html(endtweetload);
 
@@ -288,7 +227,7 @@ jQuery(document).ready(function() {
 		var endvalue = jQuery(this).val();
 
 		endvalue = endvalue.replace('${title}', 'Some fancy post title');
-		endvalue = endvalue.replace('${short_link}', 'http://b2l.me/a4Dc1');
+		endvalue = endvalue.replace('${short_link}', 'http://goo.gl/dbqlx');
 
 		var endtweet = endvalue;
 

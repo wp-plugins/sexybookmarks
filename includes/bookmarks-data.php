@@ -52,11 +52,6 @@ $shrsb_bookmarks_data=array(
 		'check'=>sprintf($checkthis_text,'Reddit'),
 		'share'=>__('Share this on ', 'shrsb').'Reddit'
 	),
-	'shr-yahoobuzz'=>array(
-		'id'=>73,
-		'check'=>sprintf($checkthis_text,'Yahoo! Buzz'),
-		'share'=>__('Buzz up!', 'shrsb')
-	),
 	'shr-twittley'=>array(
 		'id'=>277,
 		'check'=>sprintf($checkthis_text,'Twittley'),

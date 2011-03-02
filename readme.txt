@@ -2,8 +2,8 @@
 Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
-Tested up to: 3.0.4
-Stable tag: 3.3.2
+Tested up to: 3.1
+Stable tag: 3.3.3
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -108,6 +108,13 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.3.3 =
+* MAJOR UPDATE: URL shortening now 100% faster, better, smarter -- we moved the shortening function to the Share API for much improved reliability
+* Removed support for unreliable URL shorteners - snip, cligs and tinyarrows
+* Removed support for Yahoo! Buzz (service is shutting down)
+* Updated Arabic translation (by [Modar Soos](http://www.sada-sy.com))
+* Updated all MO translation files
 
 = 3.3.2 =
 * Quick fix for admin menu PHP error
