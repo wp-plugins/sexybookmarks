@@ -1,9 +1,9 @@
 === SexyBookmarks ===
 Contributors: shareaholic
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic
+Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
 Requires at least: 2.7
-Tested up to: 3.0
-Stable tag: 3.2.4.2
+Tested up to: 3.1
+Stable tag: 3.3.4
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 
@@ -13,28 +13,21 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 
-*** Now with Official Google Buzz Integration ***
-
-
 = Recent Updates =
-* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
-* Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
-* Fixed SAFE_MODE issue regarding fopen()
-* Fixed mkdir() issue by changing to wp_mkdir_p()
-* Fixed $d_tags and $keywords undefined problem
-* Fixed typo in request URL leading to errors being returned
-* Fixed manual mode when using BETA
-* Removed timeout from http request
-* Complete re-write to increase efficiency and speed
-
+* Lots of fixes to the beta thanks to your feedback.  We're getting close to switching over completely!
+* Switched over to use the Share API (http://shareapi.com)
+* Share Counters for Twitter and Facebook! (beta exclusive)
+* Fix for Arras theme
+* Adds official support for Google's URL shortener (goo.gl)
+* Fixes slow page load issue
+* Loads of behind the scenes performance improvements
 
 
 = Recently Added Sites =
 * Yahoo! Mail
-* Gmail
+* Google Gmail
 * Hotmail
 * Buzzster!
-
 
 
 == Other Notes ==
@@ -43,7 +36,7 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
-Listed below are credits and thanks to some of you who have helped us out a great deal:
+Listed here are credits and special thanks to some of you who have helped us out a great deal:  [Shareaholic.com](http://www.shareaholic.com/tools/wordpress/credits)
 
 
 = Translations =
@@ -64,8 +57,8 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 * Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
-* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portugese
-
+* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portuguese
+* Credit goes to [Barukar](http://www.classinoiva.com.br) for translation to Portuguese (Brazil)
 
 = Thanks =
 * Thanks to [Saidmade Labs](http://labs.saidmade.com/) for the original plugin core
@@ -101,25 +94,82 @@ Listed below are credits and thanks to some of you who have helped us out a grea
 
 If you would like to insert the menu manually, simply choose "Manual Mode" from the options page, then place the following code into your theme files where you want the menu to appear:
 
-`<?php if(function_exists('selfserv_sexy')) { selfserv_sexy(); } ?>`
+`<?php if(function_exists('selfserv_shareaholic')) { selfserv_shareaholic(); } ?>`
 
 You can still configure the other options available when inserting manually and they will be passed to the function. This is for those of you who have requested to be able to place the menu anywhere you choose... Enjoy!
 
 
 == Frequently Asked Questions ==
 = Where can I find a detailed FAQ? =
-Please see here: [Frequently Asked Questions](http://sexybookmarks.net/documentation/faq)
+Please see here: [Frequently Asked Questions](http://sexybookmarks.shareaholic.com/documentation/faq)
 
 = Where can I get detailed Usage & Installation instructions? =
-Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/documentation/usage-installation)
+Please see here: [Usage & Installation Instructions](http://sexybookmarks.shareaholic.com/documentation/usage-installation)
 
 
 == Changelog ==
+
+= 3.3.4 =
+* MAJOR UPDATE: URL shortening now 100% faster, better, smarter -- we moved the shortening function to the Share API for much improved reliability
+* Removed support for unreliable URL shorteners - snip, cligs and tinyarrows
+* Removed support for Yahoo! Buzz (service is shutting down)
+* Updated Arabic translation (by [Modar Soos](http://www.sada-sy.com))
+* Updated all MO translation files
+
+= 3.3.2 =
+* Quick fix for admin menu PHP error
+
+= 3.3.1 =
+* Fix for W3C validation errors (thanks to [Maitre Mo](http://maitremo.fr))
+* Fix for Twitter breaking for certain custom templates
+* Removed support for sl.ly URL shortener due to poor performance
+* Revamped sidebar menu
+
+= 3.2.12 =
+* Updated Twitter definition
+* Various jQuery related bug fixes
+
+= 3.2.11 =
+* Lots of fixes to the beta thanks to your feedback.  We're getting close to switching over completely!
+* Much improved jQuery conflict detection for beta users
+* New alert that reminds users to re-save their settings on upgrade
+* Switched over to use the Share API (http://shareapi.com)
+
+= 3.2.10 =
+* Share Counters for Twitter and Facebook! (beta exclusive)
+* Admin toggle for Shareaholic promo link
+
+= 3.2.9 =
+* Fix for a W3C validation error
+* Updated Arabic translation (by [Modar Soos](http://www.sada-sy.com))
+* Updated French translation (by [Maitre Mo](http://maitremo.fr))
+* Updated Portuguese (Brazil) translation (by [Barukar](http://www.classinoiva.com.br))
+* Includes link to Shareaholic Browser Tools
+
+= 3.2.8 =
+* Fix for Arras theme
+* Depreciating `selfserv_sexy()` function.  It has been replaced with `selfserv_shareaholic()`
+* Admin toggle for Perf script
+
+= 3.2.7 =
+* Adds support for Google's URL shortener (goo.gl)
+* Updated Bit.ly shortening
+* Updated Greek translation (by [Nick Mouratidis](http://www.kepik.gr))
+
+= 3.2.6 =
+* Quick fix for admin area (icons)
+
+= 3.2.5 =
+* Fixes slow page load issue
+* Compatibility fixes for WP v3.0.3
+* xhtml compliance fix
+* Updated "Most Popular" services list
+* Service list now has titles!  Find services in a snap
+
 = 3.2.4.2 =
-* REMOVED WARNING MESSAGES ABOUT WP_FOOTER AND WP_HEAD
+* Removed warning messages about WP_FOOTER and WP_HEAD
 
 = 3.2.4.1 =
-* Added notices in dashboard for users who do not have wp_footer and/or wp_head in their theme
 * Fixed SAFE_MODE issue regarding fopen()
 * Fixed mkdir() issue by changing to wp_mkdir_p()
 * Fixed $d_tags and $keywords undefined problem
@@ -142,7 +192,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Updated the Italian translation
 
 = 3.2.2 =
-* Added Portugese translation (pt_PT)
+* Added Portuguese translation (pt_PT)
 * Fixed problem with su.pr short URLs not working
 * Fixed persistent bug from 3.2
 * Fixed error in stylesheet name
@@ -193,7 +243,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 * Fixed issue with icons not appearing correctly for Google Reader and Google Bookmarks
 
 = 3.1.1 =
-* Quick bug fix for the bug that apeared immediately after releasing 3.1
+* Quick bug fix for the bug that appeared immediately after releasing 3.1
 
 = 3.1 =
 * Many improvements in the coding efficiency
@@ -270,12 +320,12 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.net/do
 
 = 2.6.1.1 =
 * Added Turkish translation
-* Added and upated Italian translation
+* Added and updated Italian translation
 * Added Tumblr, Strands, Stumpedia, Current, Blogger
 
 = 2.6.1 =
 * This is a "re-release" of *v2.6.0*, but hopefully without the massive amounts of errors this time. 
-* Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occured during the API request" error.
+* Also removed any and all API calls the plugin was making so as to prevent SexyBookmarks from being the _culprit_ when it comes to people receiving the "Unexpected http error occurred during the API request" error.
 * Removed some old warnings/errors that are no longer needed.
 * Solved the riddle of the disappearing footers/sidebars (I think)
 * Better optimized the dashboard and image sprites
