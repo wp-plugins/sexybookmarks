@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.4
+Version: 3.3.5
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.4');
+define('SHRSB_vNum','3.3.5');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -64,13 +64,6 @@ require_once 'includes/html-helpers.php';
 
 // helper functions for backend
 require_once 'includes/helper-functions.php';
-
-// shareaholic professional features authentication class
-require_once 'includes/shr_pub_pro.php';
-
-require_once 'includes/shrsb_authentication_page.php';
-
-require_once 'includes/shrsb_analytics_page.php';
 
 //add defaults to an array
 $shrsb_plugopts = array(
@@ -495,7 +488,19 @@ function shrsb_settings_page() {
                             <input type="hidden" name="shrbase" value="<?php echo $shrsb_plugopts['shrbase'] ?>"/>
                             <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
                             </p>
-                            <p style="padding:5px;background:#D4EECA;border:2px solid #6C6;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" /><?php $parse = parse_url(get_bloginfo('url')); echo sprintf(__('**BONUS** You have been selected to preview our upcoming premium analytics add-on for a limited time for FREE.  <b>%sFollow this link%s to keep on top of how your content is being shared!</b>', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>'); ?> <?php echo sprintf(__('We are anxious to hear what you think. Please follow %sthis link%s to share your feedback with us!', 'shrsb'), '<a href="http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks">', '</a>'); ?>
+                            <p style="padding:5px;background:#FDF6E5;border:2px solid #6C6;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" />
+                            <?php
+                                $parse = parse_url(get_bloginfo('url'));
+                                $share_url = "http://www.shareaholic.com/api/data/".$parse['host']."/sharecount/1";
+                                if(function_exists(wp_remote_get)) {
+                                    $response = wp_remote_get($share_url);
+                                    $count = json_decode($response['body']);
+                                    $count = $count->sharecount;
+                                    if($count > 0) {
+                                        echo sprintf(__("<b style='font-size:15px;line-height:22px;'>Did you know that content from this website has been shared <span style='color:#CC1100;'>%s time(s)</span> in the past 24 hours?</b><br><br>", 'shrsb'),$count);
+                                    }
+                               }
+                               echo sprintf(__('What are you waiting for? <b>%sView lots more social stats about your website for FREE right now!%s</b><br><br>For a limited time you have been selected to preview our upcoming premium analytics add-on for SexyBookmarks for FREE! These analytics are designed to help you grow your traffic and referrals. So hurry!', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>'); ?>
                             </p>
                       </div>
                 </div>
@@ -813,6 +818,24 @@ function shrsb_settings_page() {
 <?php
 
 }//closing brace for function "shrsb_settings_page"
+
+if(strnatcmp(phpversion(),'5.0') < 0) {
+     add_action('admin_notices', 'php_version_uncompatible', 12);
+} else {
+    // shareaholic professional features authentication class
+    require_once 'includes/shr_pub_pro.php';
+}
+
+function php_version_uncompatible() {
+    echo '<div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
+        <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
+          '.sprintf(__('NOTICE: We have noticed that you are using an old version of PHP. It is highly recommended that you upgrade to PHP 5 or higher to avail certain advanced Shareaholic features.  Also, if you do not upgrade to PHP 5 you will not be able to run WordPress 3.2+', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+        </div>
+      </div>';
+}
+
+require_once 'includes/shrsb_authentication_page.php';
+require_once 'includes/shrsb_analytics_page.php';
 
 
 function shrsb_account_page() {
