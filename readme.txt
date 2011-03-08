@@ -1,20 +1,19 @@
-=== SexyBookmarks ===
+=== SexyBookmarks | email, bookmark, and share buttons ===
 Contributors: shareaholic
-Tags: sexybookmarks,sexy bookmarks,sexy,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button,seo,stats, digg,delicious,diigo,myspace,twitter,facebook,gmail,email,e-mail,technorati,reddit,stumbleupon,yahoo,shareaholic,addtoany,sharedaddy,sociable,wpmu
+Tags: sexybookmarks,sexy bookmarks,sexy,shareaholic,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,addtoany,sharedaddy,sociable,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button, digg,delicious,diigo,myspace,twitter,facebook,gmail,LinkedIn,Instapaper,notebook,blogger,print,stats,seo,analytics,social media,share counts,sharecount,tinyurl,hubspot,plaxo,read it later, readitlater,instapaper,buzzfeed,pinboard,translate,yammer,supr,myspace,orkut,techmeme,email,e-mail,technorati,reddit,stumbleupon,yahoo,wpmu
 Requires at least: 2.7
 Tested up to: 3.1
-Stable tag: 3.3.5
-Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
+Stable tag: 3.3.6
 
+Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
 Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
 
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
-
 = Recent Updates =
-* Lots of fixes to the beta thanks to your feedback.  We're getting close to switching over completely!
+* URL shortening now 100% faster, better, smarter -- we moved the shortening function to the Share API for much improved reliability
 * Switched over to use the Share API (http://shareapi.com)
 * Share Counters for Twitter and Facebook! (beta exclusive)
 * Fix for Arras theme
@@ -22,13 +21,11 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Fixes slow page load issue
 * Loads of behind the scenes performance improvements
 
-
 = Recently Added Sites =
 * Yahoo! Mail
 * Google Gmail
 * Hotmail
 * Buzzster!
-
 
 == Other Notes ==
 
@@ -108,6 +105,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.3.6 =
+* New API endpoint to show the Share Count for your website
+* Compatibility fixes for older WP installs
 
 = 3.3.5 =
 * Fix for PHP 4 users

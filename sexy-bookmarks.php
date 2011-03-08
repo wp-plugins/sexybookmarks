@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.5
+Version: 3.3.6
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.5');
+define('SHRSB_vNum','3.3.6');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -489,18 +489,23 @@ function shrsb_settings_page() {
                             <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
                             </p>
                             <p style="padding:5px;background:#FDF6E5;border:2px solid #6C6;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" />
-                            <?php
-                                $parse = parse_url(get_bloginfo('url'));
-                                $share_url = "http://www.shareaholic.com/api/data/".$parse['host']."/sharecount/1";
-                                if(function_exists(wp_remote_get)) {
-                                    $response = wp_remote_get($share_url);
-                                    $count = json_decode($response['body']);
-                                    $count = $count->sharecount;
-                                    if($count > 0) {
-                                        echo sprintf(__("<b style='font-size:15px;line-height:22px;'>Did you know that content from this website has been shared <span style='color:#CC1100;'>%s time(s)</span> in the past 24 hours?</b><br><br>", 'shrsb'),$count);
-                                    }
-                               }
-                               echo sprintf(__('What are you waiting for? <b>%sView lots more social stats about your website for FREE right now!%s</b><br><br>For a limited time you have been selected to preview our upcoming premium analytics add-on for SexyBookmarks for FREE! These analytics are designed to help you grow your traffic and referrals. So hurry!', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>'); ?>
+                                <?php
+                                    $parse = parse_url(get_bloginfo('url'));
+                                    $share_url = "http://www.shareaholic.com/api/data/".$parse['host']."/sharecount/30";
+
+                                    echo sprintf(__('<b style="font-size:14px;line-height:22px;">Did you know that content from this website has been shared <span style="color:#CC1100;"><span id="bonusShareCount"></span> time(s)</span> in the past <span id="bonusShareTimeFrame"></span> day(s)?</b><br><br>What are you waiting for? <b>%sView lots more social stats about your website for FREE right now!%s</b><br><br>For a limited time you have been selected to preview our upcoming premium analytics add-on for SexyBookmarks for FREE! These analytics are designed to help you grow your traffic and referrals. So hurry!', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
+                                ?>
+                                <script type ="text/javascript">
+                                    (function($){
+                                        $(document).ready( function () {
+                                            var url = <?php echo "'".$share_url."'";?>;
+                                            $.getJSON(url+'?callback=?', function (obj) {
+                                                $('#bonusShareCount').text(obj.sharecount);
+                                                $('#bonusShareTimeFrame').text(obj.timeframe);
+                                            });
+                                        });
+                                    })(jQuery);
+                                </script>
                             </p>
                       </div>
                 </div>
