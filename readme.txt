@@ -27,6 +27,9 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Hotmail
 * Buzzster!
 
+
+[Support Forum](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy Promise](http://www.shareaholic.com/privacy/)
+
 == Other Notes ==
 
 = Special Thanks & Credits =
