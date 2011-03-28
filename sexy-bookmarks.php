@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.6
+Version: 3.3.7
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.6');
+define('SHRSB_vNum','3.3.7');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -96,12 +96,18 @@ $shrsb_plugopts = array(
 
 
 //add to database
+
+
+$shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
 add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
 
 //reload from database
 $shrsb_plugopts = get_option('SexyBookmarks');
+
+$shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
+
 $shrsb_plugopts['apikey'] = get_option('SHRSB_apikey');
 $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
 $shrsb_version = get_option('SHRSBvNum');
@@ -211,7 +217,7 @@ function _make_params($params) {
 function shrsb_refresh_cache() {
   global $shrsb_plugopts, $shrsb_bgimg_map;
 
-  _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-api.min.js', null, true);
+  _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
 
   // Sort services to make request more cacheable.
   $services = explode(',', $shrsb_plugopts['service']);
@@ -226,9 +232,9 @@ function shrsb_refresh_cache() {
     'bgimg_padding' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding']
   );
   // save as css so mime types work on normal servers
-  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/api/sprite.css', true);
+  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
   $sprite_opts['apitype'] = 'png';
-  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/api/sprite.png', true);
+  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
 }
 
 //write settings page
@@ -281,7 +287,12 @@ function shrsb_settings_page() {
             'apikey' => get_option('SHRSB_apikey'),
             'service' => '',
 		);
+
+        $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
+
 		update_option('SexyBookmarks', $shrsb_plugopts);
+        $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
+
 		delete_option('SHRSB_CustomSprite');
 		echo '
 		<div id="statmessage" class="shrsb-success">
@@ -437,8 +448,11 @@ function shrsb_settings_page() {
       $shrsb_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
       
 	  /* Short URLs End */
-	  
+
+      $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
 	  update_option('SexyBookmarks', $shrsb_plugopts);
+      $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
+	  
 	  update_option('SHRSB_CustomSprite', $shrsb_custom_sprite);
 	  update_option('SHRSBvNum', SHRSB_vNum);
 	  
@@ -825,18 +839,22 @@ function shrsb_settings_page() {
 }//closing brace for function "shrsb_settings_page"
 
 if(strnatcmp(phpversion(),'5.0') < 0) {
-     add_action('admin_notices', 'php_version_uncompatible', 12);
+    add_action('admin_notices', 'php_version_uncompatible', 12);
 } else {
     // shareaholic professional features authentication class
     require_once 'includes/shr_pub_pro.php';
 }
 
 function php_version_uncompatible() {
+    //Show message to only Admins
+    if (shrsb_get_current_user_role()=="Administrator"){
+        
     echo '<div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
         <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
           '.sprintf(__('NOTICE: We have noticed that you are using an old version of PHP. It is highly recommended that you upgrade to PHP 5 or higher to avail certain advanced Shareaholic features.  Also, if you do not upgrade to PHP 5 you will not be able to run WordPress 3.2+', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
         </div>
       </div>';
+  }
 }
 
 require_once 'includes/shrsb_authentication_page.php';
