@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.7
+Version: 3.3.8
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.7');
+define('SHRSB_vNum','3.3.8');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -87,7 +87,7 @@ $shrsb_plugopts = array(
   'doNotIncludeJQuery' => '',
   'custom-mods' => '',
   'scriptInFooter' => '',
-  'shareaholic-javascript' => '',
+  'shareaholic-javascript' => is_writable(SHRSB_PLUGDIR.'spritegen') ? '1' : '',
   'shrbase' => 'http://www.shareaholic.com',
   'apikey' => '8afa39428933be41f8afdb8ea21a495c',
   // comma delimited list of service ids for publisher javascript
@@ -152,6 +152,21 @@ if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
    add_action('admin_notices', 'shrsb_Upgrade', 12);
 }
 
+
+if(!is_writable(SHRSB_PLUGDIR.'spritegen')) {
+    add_action('admin_notices', 'shrsb_SpritegenNotice', 12);
+}
+
+
+if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum &&  SHRSB_vNum === '3.3.8' ) {
+   if($shrsb_plugopts['shareaholic-javascript']  !== '1') {
+       if(is_writable(SHRSB_PLUGDIR.'spritegen')) {
+           $shrsb_plugopts['shareaholic-javascript']  = '1';
+           update_option('SexyBookmarks', $shrsb_plugopts);
+       }
+   }
+}
+
 function shrsb_Upgrade() {
      // check if sprite files are not present, ask the user to re-save setting.
      if(!file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css')) {
@@ -162,6 +177,17 @@ function shrsb_Upgrade() {
             </div>
           </div>';
      }
+}
+
+function shrsb_SpritegenNotice() {
+    if (shrsb_get_current_user_role()=="Administrator"){
+             echo '
+              <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
+                <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
+                  '.sprintf(__('NOTICE: Your spritegen directory isn\'t writable... Please %sCHMOD%s your spritegen directory to ensure that Shareaholic remains working like a charm...', 'shrsb'), '<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmodinfo" target = "_blank" style="color:#ca0c01">', '</a>').'
+                </div>
+              </div>';
+    }
 }
 
 
@@ -282,7 +308,7 @@ function shrsb_settings_page() {
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
 			'scriptInFooter' => '',
-            'shareaholic-javascript' => '',
+            'shareaholic-javascript' => is_writable(SHRSB_PLUGDIR.'spritegen') ? '1' : '',
             'shrbase' => 'http://www.shareaholic.com',
             'apikey' => get_option('SHRSB_apikey'),
             'service' => '',
