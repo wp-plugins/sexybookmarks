@@ -128,8 +128,8 @@ function shrsb_get_publisher_config($post_id) {
     'twitter_template' => $r['tweetconfig'],
     'mode' => 'inject',
     'spriteimg' => $r['spriteimg'],
-	'showShareCount' => $r['showShareCount'],
-	'shrlink'	=> $r['shrlink']
+	'dontShowShareCount' => $r['showShareCount'] == "0",
+	'shrlink'	=> $r['shrlink'],
   );
 
   if ($r['include_comfeed']) {
@@ -667,9 +667,8 @@ function shrsb_publicScripts() {
     //Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin() && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-        wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.'js/shareaholic-publishers.min.js', null, SHRSB_vNum, $infooter);
+        wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
         wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.'spritegen','perfoption'=> $shrsb_plugopts['perfoption']));
-    
     } else {
     // If any javascript dependent options are selected, load the scripts
     if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {

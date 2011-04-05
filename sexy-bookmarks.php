@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.8
+Version: 3.3.9
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.8');
+define('SHRSB_vNum','3.3.9');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -72,6 +72,7 @@ $shrsb_plugopts = array(
   'targetopt' => '_blank', // 'blank' or 'self'
   'perfoption' => '1', // performance script (GA)
   'showShareCount' => '1', // fb/twit share count
+  'preventminify' => '1',  // prevent wp_minify from minifying the js
   'shrlink' => '1', // show promo link
   'bgimg-yes' => 'yes', // 'yes' or blank
   'mobile-hide' => '', // 'yes' or blank
@@ -158,7 +159,7 @@ if(!is_writable(SHRSB_PLUGDIR.'spritegen')) {
 }
 
 
-if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum &&  SHRSB_vNum === '3.3.8' ) {
+if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum &&  SHRSB_vNum === '3.3.9' ) {
    if($shrsb_plugopts['shareaholic-javascript']  !== '1') {
        if(is_writable(SHRSB_PLUGDIR.'spritegen')) {
            $shrsb_plugopts['shareaholic-javascript']  = '1';
@@ -229,6 +230,25 @@ function showUpdateNotice() {
 }
 add_action('admin_notices', 'showUpdateNotice', 12);
 
+function exclude_from_minify_list() {
+    $minify_opts = get_option("wp_minify");
+
+    if(is_array($minify_opts) && is_array($minify_opts["js_exclude"])) {
+        $bfound = false;
+        foreach($minify_opts["js_exclude"] as $url) {
+            if($url == SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js') {
+                $bfound = true;
+            }
+        }
+        if(!$bfound) {
+            array_push($minify_opts["js_exclude"],SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js');
+        }
+        update_option("wp_minify", $minify_opts);
+
+    }
+
+}
+
 function _make_params($params) {
   $pairs = array();
   foreach ($params as $k => $v) {
@@ -293,6 +313,7 @@ function shrsb_settings_page() {
 			'targetopt' => '_blank', // 'blank' or 'self'
 			'perfoption' => '1', // performance script (GA)
 			'showShareCount' => '1', // fb/twit share count
+            'preventminify' => '1',  // prevent wp_minify from minifying the js
 			'shrlink' => '1', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
@@ -315,7 +336,9 @@ function shrsb_settings_page() {
 		);
 
         $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
-
+        if($shrsb_plugopts['preventminify'] == '1') {
+            exclude_from_minify_list();
+        }
 		update_option('SexyBookmarks', $shrsb_plugopts);
         $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 
@@ -446,7 +469,7 @@ function shrsb_settings_page() {
         'position', 'reloption', 'targetopt', 'bookmark',
         'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
         'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
-        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount', 'shrlink', 'perfoption', 'apikey'
+        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount', 'preventminify', 'shrlink', 'perfoption', 'apikey'
 			)as $field) {
         $shrsb_plugopts[$field] = $_POST[$field];
       }
@@ -476,6 +499,9 @@ function shrsb_settings_page() {
 	  /* Short URLs End */
 
       $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
+      if($shrsb_plugopts['preventminify'] == '1') {
+            exclude_from_minify_list();
+      }
 	  update_option('SexyBookmarks', $shrsb_plugopts);
       $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 	  
@@ -742,12 +768,7 @@ function shrsb_settings_page() {
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "2")? 'checked="checked"' : ""); ?> name="autocenter" id="autospace-yes" type="radio" value="2" /><?php _e('Space', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /><?php _e('Center', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "0")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'shrsb'); ?></label>
-						<span class="shrsb_option"><?php _e('jQuery Compatibility Fix', 'shrsb'); ?></span>
-						<label for="doNotIncludeJQuery"><?php _e("Check this box ONLY if you notice jQuery being loaded twice in your source code!", "shrsb"); ?></label>
-						<input type="checkbox" id="doNotIncludeJQuery" name="doNotIncludeJQuery" <?php echo (($shrsb_plugopts['doNotIncludeJQuery'] == "1")? 'checked' : ""); ?> value="1" />
-						<span class="shrsb_option"><?php _e('Load scripts in Footer', 'shrsb'); ?> <input type="checkbox" id="scriptInFooter" name="scriptInFooter" <?php echo (($shrsb_plugopts['scriptInFooter'] == "1")? 'checked' : ""); ?> value="1" /></span>
-						<label for="scriptInFooter"><?php _e("Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer.", 'shrsb'); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom" target="_blank">?</a>)</label>
-
+						
 						<h2><?php _e('Background Image Options', 'shrsb'); ?></h2>
 						<span class="shrsb_option">
 							<?php _e('Use a background image?', 'shrsb'); ?> <input <?php echo (($shrsb_plugopts['bgimg-yes'] == "yes")? 'checked' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
@@ -826,6 +847,34 @@ function shrsb_settings_page() {
 					</div>
 				</div>
 			</li>
+            <li>
+                <div class="box-mid-head">
+					<h2 class="fugue f-wrench"><?php _e('Compatibility Settings', 'shrsb'); ?></h2>
+				</div>
+				<div class="box-mid-body" id="toggle2">
+					<div class="padding">
+
+                        <?php if (class_exists('WPMinify')) { ?>
+                        <span class="shrsb_option"><?php _e('WP-Minify Compatibility Mode', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['preventminify'] == "1")? 'checked="checked"' : ""); ?> name="preventminify" id="preventminify-yes" type="radio" value="1" /> <?php _e('Enabled (recommended)', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['preventminify'] == "0")? 'checked="checked"' : ""); ?> name="preventminify" id="preventminify-no" type="radio" value="0" /> <?php _e('Disabled', 'shrsb'); ?></label>
+							<span style="display:block;"><?php _e('(SexyBookmarks may not work with this option turned off)', 'shrsb'); ?></span>
+                         <? } ?>
+                            <span class="shrsb_option"><?php _e('jQuery Compatibility Fix', 'shrsb'); ?></span>
+						<label for="doNotIncludeJQuery"><?php _e("Check this box ONLY if you notice jQuery being loaded twice in your source code!", "shrsb"); ?></label>
+						<input type="checkbox" id="doNotIncludeJQuery" name="doNotIncludeJQuery" <?php echo (($shrsb_plugopts['doNotIncludeJQuery'] == "1")? 'checked' : ""); ?> value="1" />
+						<span class="shrsb_option"><?php _e('Load scripts in Footer', 'shrsb'); ?> <input type="checkbox" id="scriptInFooter" name="scriptInFooter" <?php echo (($shrsb_plugopts['scriptInFooter'] == "1")? 'checked' : ""); ?> value="1" /></span>
+						<label for="scriptInFooter"><?php _e("Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer.", 'shrsb'); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom" target="_blank">?</a>)</label>
+
+                    </div>
+                </div>
+
+
+            </li>
+
+
+
+
 		</ul>
 		<div style="clear:both;"></div>
 		<input type="hidden" name="save_changes" value="1" />
