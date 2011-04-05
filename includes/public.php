@@ -107,6 +107,8 @@ function shrsb_get_publisher_config($post_id) {
   $params = array(
     'link' => $r['link'],
     'short_link' => $r['short_link'],
+    'shortener' => $r['shortener'],
+    'shortener_key' => $r['shortener_key'],
     'title' => $r['title'],
     'notes' => $r['notes'],
     'service' => $r['service'],
@@ -126,7 +128,8 @@ function shrsb_get_publisher_config($post_id) {
     'twitter_template' => $r['tweetconfig'],
     'mode' => 'inject',
     'spriteimg' => $r['spriteimg'],
-    'category' => $r['category'],
+	'dontShowShareCount' => $r['showShareCount'] == "0",
+	'shrlink'	=> $r['shrlink'],
   );
 
   if ($r['include_comfeed']) {
@@ -157,7 +160,19 @@ function shrsb_get_params($post_id) {
 
   // Grab the short URL
   $r['short_link'] = shrsb_get_fetch_url();
-	$r['category'] = $shrsb_plugopts['twittcat'];
+  $r['shortener'] = $r['shorty'];
+  $r['shortener_key'] = '';
+
+  switch($shortener) {
+    case 'bitly':
+    case 'jmp':
+    case 'supr':
+        $user = $post_info['shortyapi'][$r['shorty']]['user'];
+        $api = $post_info['shortyapi'][$r['shorty']]['key'];
+        $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
+        break;
+    default:
+  }
 
   $r['post_summary'] = urlencode(strip_tags(
   strip_shortcodes($post->post_excerpt)));
@@ -170,9 +185,10 @@ function shrsb_get_params($post_id) {
   if ($r['shrsb_content'] == "") {
     $r['shrsb_content'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
   }
-	$r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
+  
+  $r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
   $r['post_summary'] = stripslashes(str_replace('+','%20',$r['post_summary']));
-	$r['site_name'] = get_bloginfo('name');
+  $r['site_name'] = get_bloginfo('name');
   $r['mail_subject'] = str_replace("&#8217;","'",str_replace('+','%20',$r['mail_subject']));
 
   // Grab post tags for Twittley tags. If there aren't any, use default tags
@@ -185,9 +201,6 @@ function shrsb_get_params($post_id) {
       $tags[] = $tag->name; 
     }
     $r['d_tags'] = implode(',', $tags);
-	}
-	else {
-		$r['d_tags'] = $shrsb_plugopts['defaulttags'];
 	}
 
 	// Check permalink setup for proper feed link
@@ -258,61 +271,13 @@ function shrsb_get_params($post_id) {
 
 	return $r;
 }
-//cURL, file get contents or nothing, used for short url
-function shrsb_nav_browse($url, $use_POST_method = false, $POST_data = null) {
-
-  if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response_code') && function_exists('wp_remote_retrieve_body')) {
-    if($use_POST_method == 'POST') {
-      $request_params = array('method' => 'POST', 'body' => $POST_data);
-    }
-    else {
-      $request_params = array('method' => 'GET');
-    }
-
-    $url_request = wp_remote_request($url, $request_params);
-    $url_response = wp_remote_retrieve_response_code($url_request);
-
-    if($url_response == 200 || $url_response == '200') {
-      $source = wp_remote_retrieve_body($url_request);
-    }
-    else {
-      $source = '';
-    }
-  }
-	elseif (function_exists('curl_init') && function_exists('curl_exec')) {
-		// Use cURL
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		if($use_POST_method == 'POST'){
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $POST_data);
-		}
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
-		$source = trim(curl_exec($ch));
-
-    if ( curl_errno($ch) != 0 ) {
-      $source = '';
-    }
-
-		curl_close($ch);
-		
-	}
-	else {
-		$source = '';
-	}
-	return $source;
-}
-
-
 
 
 function shrsb_get_fetch_url() {
 	global $post, $shrsb_plugopts, $wp_query; //globals
 	
 	//get link but first check if inside or outside loop and what page it's on
-	$post = $wp_query->post;
+	$spost = $wp_query->post;
 
 	if($shrsb_plugopts['position'] == 'manual') {
 		//Check if outside the loop
@@ -345,122 +310,18 @@ function shrsb_get_fetch_url() {
 	if($post && get_post_status($post->ID) != 'publish') {
 		return $perms;
 	}
-	//if user chose not to use shortener, return permalink and go back
+	//if user chose not to use shortener, return nothing
 	if($shrsb_plugopts['shorty'] == 'none') {
-		return $perms;
+		// return no short_link
 	}
 	if ($shrsb_plugopts['shorty'] == 'tflp' && function_exists('permalink_to_twitter_link')) {
 		$fetch_url = permalink_to_twitter_link($perms);
 	} 
-  elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
+    elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
 		$fetch_url = wp_ozh_yourls_raw_url();
-	}
-	//if it is tflp or yourls and short url has been successfully recieved, then do not save it in db or try getting a stored short url
-	if( !empty( $fetch_url ) ) { 
-		return $fetch_url;
-	}
-	//check if the link is already genereted or not, if yes, then return the link
-	$fetch_url = trim(get_post_meta($post->ID, '_sexybookmarks_shortUrl', true));
-	if(!is_null($fetch_url) && md5($perms) == trim(get_post_meta($post->ID, '_sexybookmarks_permaHash', true))) {
-		return $fetch_url;
-	}
-
-	//some vars to be used later, so better set null values before
-	$url_more = "";
-	$method = 'GET';
-	$POST_data = array();
-	 
-	// Which short url service should be used?
-	switch ( $shrsb_plugopts['shorty'] ) {
-		case 'tiny':
-			$first_url = "http://tinyurl.com/api-create.php?url=".$perms;
-			break;
-		case 'snip':
-			$first_url = "http://snipr.com/site/getsnip";
-			$method = 'POST';
-			$POST_data = array( "snipformat" => "simple", "sniplink" => rawurlencode($perms), "snipuser" => $shrsb_plugopts['shortyapi']['snip']['user'], "snipapi" => $shrsb_plugopts['shortyapi']['snip']['key'] );
-			break;
-		case 'cligs':
-			$first_url = "http://cli.gs/api/v1/cligs/create?url=".urlencode($perms)."&appid=sexy";
-			if ($shrsb_plugopts['shortyapi']['cligs']['chk'] == 1) //if user custom options are set
-				$first_url .= "&key=".$shrsb_plugopts['shortyapi']['cligs']['key'];
-			break;
-		case 'supr':
-      $method = 'GET';
-			if($shrsb_plugopts['shortyapi']['supr']['chk'] == 1) //if user custom options are set
-				$first_url = "http://su.pr/api/shorten?longUrl=".$perms."&login=".$shrsb_plugopts['shortyapi']['supr']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['supr']['key']."&version=1.0";
-      else 
-        $first_url = "http://su.pr/api/simpleshorten?url=".$perms;
-			break;
-		case 'bitly':
-			$first_url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=".$perms."&history=1&login=".$shrsb_plugopts['shortyapi']['bitly']['user']."&apiKey=".$shrsb_plugopts['shortyapi']['bitly']['key']."&format=json";
-			break;
-		case 'tinyarrow':
-			$first_url = "http://tinyarro.ws/api-create.php?";
-			if($shrsb_plugopts['shortyapi']['tinyarrow']['chk'] == 1) //if user custom options are set
-				$first_url .= "&userid=".$shrsb_plugopts['shortyapi']['tinyarrow']['user'];
-			$first_url .= "&url=".$perms; //url has to be last param in tinyarrow
-			break;
-		case 'slly':
-			$first_url = "http://sl.ly/?module=ShortURL&file=Add&mode=API&url=".$perms;
-			break;
-		case 'trim': //tr.im no longer exists, this only here for backwards compatibility
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$shrsb_plugopts['shorty'] = 'b2l';
-			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
-			break;
-		case 'e7t': //e7t.us no longer exists, this only here for backwards compatibility
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			$shrsb_plugopts['shorty'] = 'b2l';
-			update_option(SHRSB_OPTIONS, $shrsb_plugopts);
-			break;
-		case 'b2l': //goto default
-		default:
-			$first_url = "http://b2l.me/api.php?alias=&url=".$perms;
-			break;
-	}
-	
-	$fetch_url = trim(shrsb_nav_browse($first_url, $method, $POST_data));
-
-	if ( !empty( $fetch_url ) ) {
-		//if bitly, then decode the json string
-		if($shrsb_plugopts['shorty'] == "bitly"){
-			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['results'][urldecode($perms)]['shortUrl'];
-		}
-    //if bitly, then decode the json string
-		if($shrsb_plugopts['shorty'] == "supr" && $shrsb_plugopts['shortyapi']['supr']['chk'] == 1){
-			$fetch_array = json_decode($fetch_url, true);
-			$fetch_url = $fetch_array['results'][urldecode($perms)]['shortUrl'];
-		}
-		// Remote call made and was successful
-		// Add/update values
-		// Tries to update first, then add if field does not already exist
-		if (!update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url)) {
-			add_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
-		}
-		if (!update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms))) {
-			add_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
-		}
-    if(md5($perms) == get_post_meta($post->ID, '_sexybookmarks_permaHash')) {
-      $fetched_array = get_post_meta($post->ID, '_sexybookmarks_shortUrl');
-      $fetch_url = $fetched_array[0];
-    }
-    else {
-      update_post_meta($post->ID, '_sexybookmarks_permaHash', md5($perms));
-      update_post_meta($post->ID, '_sexybookmarks_shortUrl', $fetch_url);
-      $postmeta_array = get_post_meta($post->ID, '_sexybookmarks_shortUrl');
-      $fetch_url = $postmeta_array[0];
-    }
-	}
-  else {
-		$fetch_url = $perms;
 	}
 	return $fetch_url;
 }
-
-
-
 
 
 // Create an auto-insertion function
@@ -521,7 +382,7 @@ function shrsb_position_menu($post_content) {
 
 function get_sexy() {
 	global $shrsb_plugopts, $wp_query, $post;
-	$post = $wp_query->post;
+	$spost = $wp_query->post;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
     $output='<div class="shr-publisher-'.$post->ID.'"></div>';
@@ -596,10 +457,6 @@ function get_sexy() {
 	$site_name = get_bloginfo('name');
 	$mail_subject = str_replace('+','%20',$mail_subject);
 	$mail_subject = str_replace("&#8217;","'",$mail_subject);
-	$y_cat = $shrsb_plugopts['ybuzzcat'];
-	$y_med = $shrsb_plugopts['ybuzzmed'];
-	$t_cat = $shrsb_plugopts['twittcat'];
-
 
 
 
@@ -613,9 +470,6 @@ function get_sexy() {
 	  if(!empty($getkeywords) && !empty($d_tags)) {
 		  $d_tags=substr($d_tags, 0, count($d_tags)-2);
     }
-	}
-	else {
-		$d_tags = $shrsb_plugopts['defaulttags'];
 	}
 
 
@@ -679,8 +533,8 @@ function get_sexy() {
 		switch ($name) {
 			case 'shr-twitter':
 				$socials.=bookmark_list_item($name, array(
-					'short_title'=>$short_title,
-					'fetch_url'=>$fetch_url,
+					'permalink'=>$perms,
+					'title'=>$title,
 				));
 				break;
 			case 'shr-identica':
@@ -728,8 +582,6 @@ function get_sexy() {
 					'permalink'=>$perms,
 					'title'=>$title,
 					'yahooteaser'=>$shrsb_content,
-					'yahoocategory'=>$y_cat,
-					'yahoomediatype'=>$y_med,
 				));
 				break;
 			case 'shr-twittley':
@@ -737,7 +589,6 @@ function get_sexy() {
 					'permalink'=>urlencode($perms),
 					'title'=>$title,
 					'post_summary'=>$post_summary,
-					'twitt_cat'=>$t_cat,
 					'default_tags'=>$d_tags,
 				));
 				break;
@@ -756,14 +607,25 @@ function get_sexy() {
 				break;
 		}
 	}
-	$socials.='</ul>'."\n".'<div style="clear:both;"></div>'."\n".'</div>';
+	$socials.='</ul>';
+	if ($shrsb_plugopts['shrlink'] == 1) {
+		$socials.= '<div style="clear: both;"></div>';
+		$socials.= '<div class="shr-getshr" style="visibility:hidden;font-size:10px !important"><a target="_blank" href="http://www.shareaholic.com/?src=pub">Get Shareaholic</a></div>';
+	}
+	$socials.= '<div style="clear: both;"></div></div>';
 	$socials.="\n\n";
-
 	return $socials;
 }
 
-// This function is what allows people to insert the menu wherever they please rather than above/below a post...
+// This function is what allows people to insert the menu wherever they please rather than above/below a post... (depreciated)
 function selfserv_sexy() {
+	global $post;
+	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
+		echo get_sexy();
+}
+
+//Same as above function, just a diff name
+function selfserv_shareaholic() {
 	global $post;
 	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
 		echo get_sexy();
@@ -801,37 +663,41 @@ function shrsb_publicStyles() {
 }
 function shrsb_publicScripts() {
 	global $shrsb_plugopts, $post;
-
-  if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin() && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
-    
-    $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-    wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.'js/shareaholic-publishers.min.js', null, false, $infooter);
-    wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.'spritegen'));
-
-  }
-  else {
+      
+    //Beta script
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin() && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+        $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
+        wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
+        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.'spritegen','perfoption'=> $shrsb_plugopts['perfoption']));
+    } else {
     // If any javascript dependent options are selected, load the scripts
     if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
       // If custom mods is selected, pull files from new location
       if($shrsb_plugopts['custom-mods'] == 'yes') {
         $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
-      }
-      else {
+     } else {
         $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.js';
-      }
+     }
       // If jQuery compatibility fix is not selected, go ahead and load jQuery
       $jquery = ($shrsb_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array();
       $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
       wp_enqueue_script('sexy-bookmarks-public-js', $surl, $jquery, SHRSB_vNum, $infooter);
     }
   }
+  
+  //Perf tracking
+  if (($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '' && !is_admin())
+          && $shrsb_plugopts['shareaholic-javascript'] !== '1'){
+      //include code
+      wp_enqueue_script('shareaholic-perf-js', SHRSB_PLUGPATH.'js/shareaholic-perf.js', null, SHRSB_vNum, false);
+    }
 }
 
 function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    echo '<script>SHRSB_Settings = ';
+    echo '<script type="text/javascript">SHRSB_Settings = ';
     echo json_encode($shrsb_js_params);
     echo '</script>';
   }
