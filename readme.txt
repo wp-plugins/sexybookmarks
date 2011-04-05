@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,shareaholic,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,addtoany,sharedaddy,sociable,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button, digg,delicious,diigo,myspace,twitter,facebook,gmail,LinkedIn,Instapaper,notebook,blogger,print,stats,seo,analytics,social media,share counts,sharecount,tinyurl,hubspot,plaxo,read it later, readitlater,instapaper,buzzfeed,pinboard,translate,yammer,supr,myspace,orkut,techmeme,email,e-mail,technorati,reddit,stumbleupon,yahoo,wpmu
 Requires at least: 2.7
 Tested up to: 3.1
-Stable tag: 3.3.9
+Stable tag: 3.3.10
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -108,6 +108,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.3.10 =
+* Added default sprite & css files for added compatibility
+* Fixed short tags php bug that crept in v3.3.9
 
 = 3.3.9 =
 * WP-Minify plugin compatibility mode fix
