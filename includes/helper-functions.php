@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * Returns the translated role of the current user. If that user has
+ * no role for the current blog, it returns false.
+ *
+ * @return string The name of the current role
+ **/
+function shrsb_get_current_user_role() {
+	global $wp_roles;
+	$current_user = wp_get_current_user();
+	$roles = $current_user->roles;
+	$role = array_shift($roles);
+	return isset($wp_roles->role_names[$role]) ? translate_user_role($wp_roles->role_names[$role] ) : false;
+}
+
+
+
 function shrsb_preFlight_Checks() {
 	global $shrsb_plugopts;
 	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SHRSB_PLUGDIR.'spritegen') && is_writable(SHRSB_PLUGDIR.'spritegen')) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 )) && !$shrsb_plugopts['custom-mods'] ) {
@@ -14,10 +30,15 @@ function get_sprite_file($opts, $type) {
   global $shrsb_plugopts;
 
   $shrbase = $shrsb_plugopts['shrbase']?$shrsb_plugopts['shrbase']:'http://www.shareaholic.com';
-	$spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
+  $spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
   $filename = SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.'.$type;
   $content = FALSE;
 
+  if (!is_writable(SHRSB_PLUGDIR.'spritegen')) {
+        // the spritegen folder isn't writable. Try changing it to writable
+      @chmod(SHRSB_PLUGDIR.'spritegen', 0775);
+      // may or may not work
+  }
   if ( $type == 'png' ) {
     $fp_opt = 'rb';
   }
@@ -48,7 +69,7 @@ function get_sprite_file($opts, $type) {
 	  $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $spritegen);
     curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
     curl_setopt($ch, CURLOPT_TIMEOUT, 6);
     curl_setopt($ch, CURLOPT_USERAGENT, "shr-wpspritebot-cURL/v" . SHRSB_vNum);
     curl_setopt($ch, CURLOPT_REFERER, get_bloginfo('url'));
@@ -136,7 +157,10 @@ function _shrsb_fetch_content($url, $path, $clearcache=false) {
       $retval = $response['body'];
     }
 
-    _shrsb_write_file($abs_path, $retval);
+   $write_succeed = _shrsb_write_file($abs_path, $retval);
+   if(!$write_succeed) {
+       $retval = FALSE;
+   }
   }
 
   return $retval;
@@ -144,6 +168,7 @@ function _shrsb_fetch_content($url, $path, $clearcache=false) {
 
 function _shrsb_write_file($path, $content) {
   $dir = dirname($path);
+  $return = false;
   if(!wp_mkdir_p(dirname($path))) {
     @error_log("Failed to create path ".dirname($path));
   }
@@ -154,9 +179,12 @@ function _shrsb_write_file($path, $content) {
   else {
     if (!fwrite($fh, $content)) {
       @error_log("Failed to write to ".$path);
+    } else {
+        $return = true;
     }
     @fclose($fh);
   }
+  return $return;
 }
 
 function _shrsb_read_file($path) {
