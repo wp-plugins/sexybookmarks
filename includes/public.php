@@ -102,6 +102,9 @@ function shrsb_post_info($post) {
  * Returns array of values that should be used in shareaholic-publishers.js
  */
 function shrsb_get_publisher_config($post_id) {
+    global $default_spritegen;
+    $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
+
   $r = shrsb_get_params($post_id);
 
   $params = array(
@@ -116,7 +119,7 @@ function shrsb_get_publisher_config($post_id) {
     // we need this because wordpress won't pass it at all if it's FALSE
     // and the default value for expand is true.  We convert it to boolean in javascript
     'expand' => $r['expand'] ? true : 'false',
-    'src' => SHRSB_PLUGPATH.'spritegen',
+    'src' => SHRSB_PLUGPATH.$spritegen,
     'localize' => true,
     'share_src' => $r['shrbase'],
     'rel' => $r['reloption'],
@@ -662,13 +665,15 @@ function shrsb_publicStyles() {
   }
 }
 function shrsb_publicScripts() {
-	global $shrsb_plugopts, $post;
-      
+	global $shrsb_plugopts, $post, $default_spritegen;
+
+    $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
+
     //Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin() && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-        wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
-        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.'spritegen','perfoption'=> $shrsb_plugopts['perfoption']));
+        wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.$spritegen.'/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
+        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.$spritegen,'perfoption'=> $shrsb_plugopts['perfoption']));
     } else {
     // If any javascript dependent options are selected, load the scripts
     if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {

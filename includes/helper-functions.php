@@ -157,7 +157,10 @@ function _shrsb_fetch_content($url, $path, $clearcache=false) {
       $retval = $response['body'];
     }
 
-    _shrsb_write_file($abs_path, $retval);
+   $write_succeed = _shrsb_write_file($abs_path, $retval);
+   if(!$write_succeed) {
+       $retval = FALSE;
+   }
   }
 
   return $retval;
@@ -165,6 +168,7 @@ function _shrsb_fetch_content($url, $path, $clearcache=false) {
 
 function _shrsb_write_file($path, $content) {
   $dir = dirname($path);
+  $return = false;
   if(!wp_mkdir_p(dirname($path))) {
     @error_log("Failed to create path ".dirname($path));
   }
@@ -175,9 +179,12 @@ function _shrsb_write_file($path, $content) {
   else {
     if (!fwrite($fh, $content)) {
       @error_log("Failed to write to ".$path);
+    } else {
+        $return = true;
     }
     @fclose($fh);
   }
+  return $return;
 }
 
 function _shrsb_read_file($path) {

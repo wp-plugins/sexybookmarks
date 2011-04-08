@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.10
+Version: 3.3.11
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.10');
+define('SHRSB_vNum','3.3.11');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -88,7 +88,7 @@ $shrsb_plugopts = array(
   'doNotIncludeJQuery' => '',
   'custom-mods' => '',
   'scriptInFooter' => '',
-  'shareaholic-javascript' => is_writable(SHRSB_PLUGDIR.'spritegen') ? '1' : '',
+  'shareaholic-javascript' => '1',
   'shrbase' => 'http://www.shareaholic.com',
   'apikey' => '8afa39428933be41f8afdb8ea21a495c',
   // comma delimited list of service ids for publisher javascript
@@ -103,7 +103,7 @@ $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
 add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
-
+add_option('SHRSB_DefaultSprite',true);
 //reload from database
 $shrsb_plugopts = get_option('SexyBookmarks');
 
@@ -150,21 +150,22 @@ if($shrsb_plugopts['shorty'] == 'tiny') {
 
 // if the version number is set and is not the latest, then call the upgrade function
 if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
+   update_option('SHRSB_DefaultSprite',true);
    add_action('admin_notices', 'shrsb_Upgrade', 12);
 }
 
+$default_spritegen = get_option('SHRSB_DefaultSprite');
 
 if(!is_writable(SHRSB_PLUGDIR.'spritegen')) {
     add_action('admin_notices', 'shrsb_SpritegenNotice', 12);
 }
 
 
-if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum &&  SHRSB_vNum === '3.3.10' ) {
+if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum &&  SHRSB_vNum === '3.3.11' ) {
+    // This is specific till 3.3.11 to over ride existing customers to beta mode
    if($shrsb_plugopts['shareaholic-javascript']  !== '1') {
-       if(is_writable(SHRSB_PLUGDIR.'spritegen')) {
            $shrsb_plugopts['shareaholic-javascript']  = '1';
            update_option('SexyBookmarks', $shrsb_plugopts);
-       }
    }
 }
 
@@ -236,12 +237,12 @@ function exclude_from_minify_list() {
     if(is_array($minify_opts) && is_array($minify_opts["js_exclude"])) {
         $bfound = false;
         foreach($minify_opts["js_exclude"] as $url) {
-            if($url == SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js') {
+            if($url == 'jquery.shareaholic-publishers-sb.min.js') {
                 $bfound = true;
             }
         }
         if(!$bfound) {
-            array_push($minify_opts["js_exclude"],SHRSB_PLUGPATH.'spritegen/jquery.shareaholic-publishers-sb.min.js');
+            array_push($minify_opts["js_exclude"],'jquery.shareaholic-publishers-sb.min.js');
         }
         update_option("wp_minify", $minify_opts);
 
@@ -263,7 +264,7 @@ function _make_params($params) {
 function shrsb_refresh_cache() {
   global $shrsb_plugopts, $shrsb_bgimg_map;
 
-  _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
+  $script = _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
 
   // Sort services to make request more cacheable.
   $services = explode(',', $shrsb_plugopts['service']);
@@ -278,9 +279,18 @@ function shrsb_refresh_cache() {
     'bgimg_padding' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding']
   );
   // save as css so mime types work on normal servers
-  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
+  $css = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
   $sprite_opts['apitype'] = 'png';
-  _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
+  $png = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
+
+  if(!$script || !$css || !$png) {
+    $default_spritegen = true;
+  } else {
+    update_option('SHRSB_DefaultSprite',false);
+    $default_spritegen = false;
+  }
+
+
 }
 
 //write settings page
@@ -329,7 +339,7 @@ function shrsb_settings_page() {
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
 			'scriptInFooter' => '',
-            'shareaholic-javascript' => is_writable(SHRSB_PLUGDIR.'spritegen') ? '1' : '',
+            'shareaholic-javascript' => '1',
             'shrbase' => 'http://www.shareaholic.com',
             'apikey' => get_option('SHRSB_apikey'),
             'service' => '',
