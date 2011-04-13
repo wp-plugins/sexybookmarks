@@ -109,6 +109,11 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 == Changelog ==
 
+= 3.3.12 =
+* Added "Share Count" support for Google Buzz
+* Cleaned up folder structure
+* Tweaks for mobile browsers (iphone, ipod, etc)
+
 = 3.3.11 =
 * Google hosted jQuery now only loads if not already present on page (plugin needs jQuery 1.4.4+)
 * Various bug fixes for "new" mode
