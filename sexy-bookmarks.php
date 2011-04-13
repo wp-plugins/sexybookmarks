@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 3.3.11
+Version: 3.3.12
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','3.3.11');
+define('SHRSB_vNum','3.3.12');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -705,7 +705,7 @@ function shrsb_settings_page() {
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> <?php _e('No', 'shrsb'); ?></label>
 							
-							<span class="shrsb_option"><?php _e('Show Share Counters for Facebook, Twitter and Delicious?', 'shrsb'); ?></span>
+							<span class="shrsb_option"><?php _e('Show Share Counters for Facebook, Twitter, Google Buzz and Delicious?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['showShareCount'] == "1")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['showShareCount'] == "0")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
 							<span style="display:block;"><?php _e('(beta-mode exclusive feature)', 'shrsb'); ?></span>

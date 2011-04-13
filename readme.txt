@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks,sexy bookmarks,sexy,shareaholic,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,addtoany,sharedaddy,sociable,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button, digg,delicious,diigo,myspace,twitter,facebook,gmail,LinkedIn,Instapaper,notebook,blogger,print,stats,seo,analytics,social media,share counts,sharecount,tinyurl,hubspot,plaxo,read it later, readitlater,instapaper,buzzfeed,pinboard,translate,yammer,supr,myspace,orkut,techmeme,email,e-mail,technorati,reddit,stumbleupon,yahoo,wpmu
 Requires at least: 2.7
 Tested up to: 3.1.1
-Stable tag: 3.3.11
+Stable tag: 3.3.12
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -108,6 +108,11 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 3.3.12 =
+* Added "Share Count" support for Google Buzz
+* Cleaned up folder structure
+* Tweaks for mobile browsers (iphone, ipod, etc)
 
 = 3.3.11 =
 * Google hosted jQuery now only loads if not already present on page (plugin needs jQuery 1.4.4+)
