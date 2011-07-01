@@ -4,9 +4,12 @@ jQuery(document).ready(function() {
 		cursor:      'move',
 		scroll:       true,
 		revert:       true, 
-		opacity:      0.7
+		opacity:      0.7,
+        placeholder: 'dropzoneNetworks',
+        forcePlaceholderSize: true,
+        items: 'li'
 	});
-	if (jQuery('.shrsb-bookmarks')) {jQuery('#shrsb-sortables').sortable({ 
+	if (jQuery('.shrsb-bookmarks')) { jQuery('#shrsb-sortables').sortable({
 		handle:      '.box-mid-head',
 		delay:        250,
 		cursor:      'move',
@@ -15,6 +18,17 @@ jQuery(document).ready(function() {
 		opacity:      0.7
 	});
 
+
+    jQuery('#buttonPreviews').sortable({
+		delay:        250,
+		cursor:      'move',
+		scroll:       true,
+		revert:       true,
+		opacity:      0.7,
+        placeholder: 'dropzone',
+        forcePlaceholderSize: true,
+        items: 'li'
+	});
 	//Select all icons upon clicking
 	jQuery('#sel-all').click(function() {
 		jQuery('#shrsb-networks').each(function() {
@@ -129,15 +143,55 @@ jQuery(document).ready(function() {
 			jQuery('#shortyapidiv-supr').fadeOut('fast');
 		}
 	});
-
+    
     jQuery('#fbLikeButton-yes').click(function() {
-		if (this.checked) {
+        if (this.checked) {
+			jQuery('.likebuttonpreview').fadeIn('fast');
+		}
+    });
+
+    jQuery('#fbLikeButton-no').click(function() {
+        if (this.checked) {
+			jQuery('.likebuttonpreview').fadeOut('fast');
+		}
+    });
+
+    jQuery('#fbSendButton-yes').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreview').fadeIn('fast');
+		}
+    });
+
+    jQuery('#fbSendButton-no').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreview').fadeOut('fast');
+		}
+    });
+
+    jQuery('#googlePlusOneButton-yes').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreview').fadeIn('fast');
+		}
+    });
+
+    jQuery('#googlePlusOneButton-no').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreview').fadeOut('fast');
+		}
+    });
+    
+    jQuery('#fbLikeButton-yes,#googlePlusOneButton-yes,#fbSendButton-yes').click(function() {
+        if (this.checked) {
 			jQuery('#fbButtonPos').fadeIn('fast');
+            jQuery('.likeButtonSetOptions').fadeIn('fast');
 		}
 	});
-    jQuery('#fbLikeButton-no').click(function() {
-		if (this.checked) {
-			jQuery('#fbButtonPos').fadeOut('fast');
+
+    jQuery('#fbLikeButton-no,#googlePlusOneButton-no,#fbSendButton-no').click(function() {
+        if(jQuery('#fbLikeButton-no').get(0).checked && jQuery('#googlePlusOneButton-no').get(0).checked
+                && jQuery('#fbSendButton-no').get(0).checked) {
+        	jQuery('#fbButtonPos').fadeOut('fast');
+            jQuery('.likeButtonSetOptions').fadeOut('fast');
 		}
 	});
 
@@ -255,10 +309,29 @@ jQuery(document).ready(function() {
 
 	});
     // Check if like button is included and show the position prefs
-    var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked;
+    var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked || jQuery('#googlePlusOneButton-yes').get(0).checked || jQuery('#fbSendButton-yes').get(0).checked;
+
     if(likeBtnChecked) {
+        jQuery('.likeButtonSetOptions').fadeIn('fast');
         jQuery('#fbButtonPos').fadeIn('fast');
     }
+
+    var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked;
+    if(likeBtnChecked) {
+        jQuery('.likebuttonpreview').fadeIn('fast');
+    }
+
+    var sendBtnChecked = jQuery('#fbSendButton-yes').get(0).checked;
+    if(sendBtnChecked) {
+        jQuery('.sendbuttonpreview').fadeIn('fast');
+    }
+
+    var plusoneButtonChecked = jQuery('#googlePlusOneButton-yes').get(0).checked;
+    if(plusoneButtonChecked) {
+        jQuery('.plusonepreview').fadeIn('fast');
+    }
+
+
 
     // Check if designer tooltips are included and show the color prefs
     var designerToolTipsChecked = jQuery('#designer_toolTips-yes').get(0).checked;

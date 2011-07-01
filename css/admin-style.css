@@ -1,6 +1,6 @@
 /* General Styles */
 .shrsblogo{text-indent:-100.0em;height:90px;background:url('../images/shrsb-logo.png') no-repeat 0 0;position:relative;top:25px;}
-.sh-logo{text-indent:-100.0em;display:block;height:41px;width:220px;overflow:hidden;background:url('../images/shareaholic-220.png') no-repeat 0 0;position:absolute;right:40px;top:25px;}
+.sh-logo{text-indent:-100.0em;height:45px;width:220px;background:url('../images/shareaholic-220.png') no-repeat 0 0;top:25px;}
 .shebang-info{cursor:pointer;left:5px;position:relative;top:3px;}
 .dtags-info{cursor:pointer;left:5px;position:relative;top:3px;}
 #info-manual,#clear-warning,#custom-warning,#custom-warning-a,#mobile-warn{display:none;}
@@ -14,8 +14,8 @@ ul#shrsb-sortables div.padding h1,ul#shrsb-sortables div.padding h2,ul#shrsb-sor
 #tweetinstructions{font-size:11px;}
 #tweetcounter{margin-left:192px;font-size:9px;position:absolute;margin:0 !important;right:10px;}
 #tweetcounter span{}
-#tweetoutput{margin-top:15px !important;}
-.shrsb_health_icon{height:16px !important;width:16px !important;}
+#tweetoutput{margin-top:15px;}
+.shrsb_health_icon{height:16px;width:16px;}
 /* End General Styles */
 /*------------------------------------------------------------------------------------------*/
 /* Custom Classes */
@@ -74,100 +74,100 @@ img.del-x{cursor:pointer;margin-top:7px;}
 /* End Individual Section Status Messages */
 /*------------------------------------------------------------------------------------------*/
 /* Bookmarking Services Icons */
-.iconator label{background-image:url('../images/shr-sprite.png');background-repeat:no-repeat;cursor:move;float:left;height:45px;font-size:10px;margin:12px 2px !important;text-align:center;width:60px;}
-.iconator label input{margin-top:30px;}
-label.shr-newsvine{background-position:left top;}
-label.shr-linkedin{background-position:-70px top;}
-label.shr-googlebookmarks{background-position:-140px top;}
-label.shr-googlereader{background-position:-210px top;}
-label.shr-scriptstyle{background-position:-280px top;}
-label.shr-mail{background-position:-350px top;}
-label.shr-comfeed{background-position:-420px top;}
-label.shr-twitter{background-position:-490px top;}
-label.shr-technorati{background-position:-560px top;}
-label.shr-stumbleupon{background-position:-630px top;}
-label.shr-reddit{background-position:-700px top;}
-label.shr-myspace{background-position:-770px top;}
-label.shr-mixx{background-position:-840px top;}
-label.shr-diigo{background-position:-910px top;}
-label.shr-digg{background-position:-980px top;}
-label.shr-designfloat{background-position:-1050px top;}
-label.shr-yahoobuzz{background-position:-1120px top;}
-label.shr-delicious{background-position:-1190px top;}
-label.shr-blinklist{background-position:-1260px top;}
-label.shr-facebook{background-position:-1330px top;}
-label.shr-misterwong{background-position:-1400px top;}
-label.shr-izeby{background-position:-1470px top;}
-label.shr-twittley{background-position:-1540px top;}
-label.shr-tipd{background-position:-1610px top;}
-label.shr-pfbuzz{background-position:-1680px top;}
-label.shr-friendfeed{background-position:-1750px top;}
-label.shr-blogmarks{background-position:-1820px top;}
-label.shr-fwisp{background-position:-1890px top;}
-label.shr-yahoomail{background-position:-1960px top;}
-label.shr-bobrdobr{background-position:-2030px top;}
-label.shr-memoryru{background-position:-2100px top;}
-label.shr-100zakladok{background-position:-2170px top;}
-label.shr-yandex{background-position:-2240px top;}
-label.shr-moemesto{background-position:-2310px top;}
-label.shr-marrows{background-position:-2380px top;}
-label.shr-identica{background-position:-2450px top;}
-label.shr-hackernews{background-position:-2520px top;}
-label.shr-ning{background-position:-2590px top;}
-label.shr-designbump{background-position:-2660px top;}
-label.shr-printfriendly{background-position:-2730px top;}
-label.shr-fleck{background-position:-2800px top !important;}
-label.shr-netvibes{background-position:-2870px top !important;}
-label.shr-netvouz{background-position:-2940px top !important;}
-label.shr-nujij{background-position:-3010px top !important;}
-label.shr-globalgrind{background-position:-3080px top !important;}
-label.shr-wikio{background-position:-3150px top !important;}
-label.shr-xerpi{background-position:-3220px top !important;}
-label.shr-sphinn{background-position:-3290px top !important;}
-label.shr-hotmail{background-position:-3360px top !important;}
-label.shr-posterous{background-position:-3430px top !important;}
-label.shr-techmeme{background-position:-3500px top !important;}
-label.shr-ekudos{background-position:-3570px top !important;}
-label.shr-pingfm{background-position:-3640px top !important;}
-label.shr-tomuse{background-position:-3710px top !important;}
-label.shr-webblend{background-position:-3780px top !important;}
-label.shr-wykop{background-position:-3850px top !important;}
-label.shr-blogengage{background-position:-3920px top !important;}
-label.shr-hyves{background-position:-3990px top !important;}
-label.shr-pusha{background-position:-4060px top !important;}
-label.shr-hatena{background-position:-4130px top !important;}
-label.shr-mylinkvault{background-position:-4200px top !important;}
-label.shr-slashdot{background-position:-4270px top !important;}
-label.shr-squidoo{background-position:-4340px top !important;}
-label.shr-propeller{background-position:-4410px top !important;}
-label.shr-faqpal{background-position:-4480px top !important;}
-label.shr-evernote{background-position:-4550px top !important;}
-label.shr-meneame{background-position:-4620px top !important;}
-label.shr-bitacoras{background-position:-4690px top !important;}
-label.shr-jumptags{background-position:-4760px top !important;}
-label.shr-bebo{background-position:-4830px top !important;}
-label.shr-n4g{background-position:-4900px top !important;}
-label.shr-strands{background-position:-4970px top !important;}
-label.shr-orkut{background-position:-5040px top !important;}
-label.shr-tumblr{background-position:-5110px top !important;}
-label.shr-stumpedia{background-position:-5180px top !important;}
-label.shr-current{background-position:-5250px top !important;}
-label.shr-blogger{background-position:-5320px top !important;}
-label.shr-plurk{background-position:-5390px top !important;}
-label.shr-virb{background-position:-5460px top !important;}
-label.shr-dzone{background-position:-5530px top !important;}
-label.shr-kaevur{background-position:-5600px top !important;}
-label.shr-box{background-position:-5670px top !important;}
-label.shr-boxnet{background-position:-5670px top !important;}
-label.shr-oknotizie{background-position:-5740px top !important;}
-label.shr-bonzobox{background-position:-5810px top !important;}
-label.shr-plaxo{background-position:-5880px top !important;}
-label.shr-springpad{background-position:-5950px top !important;}
-label.shr-zabox{background-position:-6020px top !important;}
-label.shr-viadeo{background-position:-6090px top !important;}
-label.shr-googlebuzz{background-position:-6160px top !important;}
-label.shr-gmail{background-position:-6230px top !important;}
-label.shr-buzzster{background-position:-6300px top !important;}
+#shrsb-networks li{background-image:url('../images/shr-sprite.png');background-repeat:no-repeat;cursor:move;float:left;height:45px;font-size:10px;margin:12px 2px !important;text-align:center;width:60px;}
+#shrsb-networks li input{margin-top:30px;}
+li.shr-newsvine{background-position:left top;}
+li.shr-linkedin{background-position:-70px top;}
+li.shr-googlebookmarks{background-position:-140px top;}
+li.shr-googlereader{background-position:-210px top;}
+li.shr-scriptstyle{background-position:-280px top;}
+li.shr-mail{background-position:-350px top;}
+li.shr-comfeed{background-position:-420px top;}
+li.shr-twitter{background-position:-490px top;}
+li.shr-technorati{background-position:-560px top;}
+li.shr-stumbleupon{background-position:-630px top;}
+li.shr-reddit{background-position:-700px top;}
+li.shr-myspace{background-position:-770px top;}
+li.shr-mixx{background-position:-840px top;}
+li.shr-diigo{background-position:-910px top;}
+li.shr-digg{background-position:-980px top;}
+li.shr-designfloat{background-position:-1050px top;}
+li.shr-yahoobuzz{background-position:-1120px top;}
+li.shr-delicious{background-position:-1190px top;}
+li.shr-blinklist{background-position:-1260px top;}
+li.shr-facebook{background-position:-1330px top;}
+li.shr-misterwong{background-position:-1400px top;}
+li.shr-izeby{background-position:-1470px top;}
+li.shr-twittley{background-position:-1540px top;}
+li.shr-tipd{background-position:-1610px top;}
+li.shr-pfbuzz{background-position:-1680px top;}
+li.shr-friendfeed{background-position:-1750px top;}
+li.shr-blogmarks{background-position:-1820px top;}
+li.shr-fwisp{background-position:-1890px top;}
+li.shr-yahoomail{background-position:-1960px top;}
+li.shr-bobrdobr{background-position:-2030px top;}
+li.shr-memoryru{background-position:-2100px top;}
+li.shr-100zakladok{background-position:-2170px top;}
+li.shr-yandex{background-position:-2240px top;}
+li.shr-moemesto{background-position:-2310px top;}
+li.shr-marrows{background-position:-2380px top;}
+li.shr-identica{background-position:-2450px top;}
+li.shr-hackernews{background-position:-2520px top;}
+li.shr-ning{background-position:-2590px top;}
+li.shr-designbump{background-position:-2660px top;}
+li.shr-printfriendly{background-position:-2730px top;}
+li.shr-fleck{background-position:-2800px top !important;}
+li.shr-netvibes{background-position:-2870px top !important;}
+li.shr-netvouz{background-position:-2940px top !important;}
+li.shr-nujij{background-position:-3010px top !important;}
+li.shr-globalgrind{background-position:-3080px top !important;}
+li.shr-wikio{background-position:-3150px top !important;}
+li.shr-xerpi{background-position:-3220px top !important;}
+li.shr-sphinn{background-position:-3290px top !important;}
+li.shr-hotmail{background-position:-3360px top !important;}
+li.shr-posterous{background-position:-3430px top !important;}
+li.shr-techmeme{background-position:-3500px top !important;}
+li.shr-ekudos{background-position:-3570px top !important;}
+li.shr-pingfm{background-position:-3640px top !important;}
+li.shr-tomuse{background-position:-3710px top !important;}
+li.shr-webblend{background-position:-3780px top !important;}
+li.shr-wykop{background-position:-3850px top !important;}
+li.shr-blogengage{background-position:-3920px top !important;}
+li.shr-hyves{background-position:-3990px top !important;}
+li.shr-pusha{background-position:-4060px top !important;}
+li.shr-hatena{background-position:-4130px top !important;}
+li.shr-mylinkvault{background-position:-4200px top !important;}
+li.shr-slashdot{background-position:-4270px top !important;}
+li.shr-squidoo{background-position:-4340px top !important;}
+li.shr-propeller{background-position:-4410px top !important;}
+li.shr-faqpal{background-position:-4480px top !important;}
+li.shr-evernote{background-position:-4550px top !important;}
+li.shr-meneame{background-position:-4620px top !important;}
+li.shr-bitacoras{background-position:-4690px top !important;}
+li.shr-jumptags{background-position:-4760px top !important;}
+li.shr-bebo{background-position:-4830px top !important;}
+li.shr-n4g{background-position:-4900px top !important;}
+li.shr-strands{background-position:-4970px top !important;}
+li.shr-orkut{background-position:-5040px top !important;}
+li.shr-tumblr{background-position:-5110px top !important;}
+li.shr-stumpedia{background-position:-5180px top !important;}
+li.shr-current{background-position:-5250px top !important;}
+li.shr-blogger{background-position:-5320px top !important;}
+li.shr-plurk{background-position:-5390px top !important;}
+li.shr-virb{background-position:-5460px top !important;}
+li.shr-dzone{background-position:-5530px top !important;}
+li.shr-kaevur{background-position:-5600px top !important;}
+li.shr-box{background-position:-5670px top !important;}
+li.shr-boxnet{background-position:-5670px top !important;}
+li.shr-oknotizie{background-position:-5740px top !important;}
+li.shr-bonzobox{background-position:-5810px top !important;}
+li.shr-plaxo{background-position:-5880px top !important;}
+li.shr-springpad{background-position:-5950px top !important;}
+li.shr-zabox{background-position:-6020px top !important;}
+li.shr-viadeo{background-position:-6090px top !important;}
+li.shr-googlebuzz{background-position:-6160px top !important;}
+li.shr-gmail{background-position:-6230px top !important;}
+li.shr-buzzster{background-position:-6300px top !important;}
 ul.multi-selection{list-style:none;overflow:hidden;position:absolute;top:6px;right:0;}
 ul.multi-selection li{display:block;float:left;clear:none;margin:0 !important;}
 ul.multi-selection li.label-faker{margin-right:10px !important;}
@@ -175,7 +175,7 @@ ul.multi-selection li input{}
 /* End Bookmarking Services Icons */
 /*------------------------------------------------------------------------------------------*/
 /* Main Structure Styles */
-div#shrsb-col-left{float:left;margin:40px 10px 0 0;}
+div#shrsb-col-left{float:left;margin:15px 10px 0 0;}
 #shrsb-col-left label{margin:0 12px 0 0;}
 ul#shrsb-sortables li{list-style-type:none;margin:0 300px 20px 0;position:relative;}
 ul#shrsb-sortables{list-style-type:none;}
@@ -185,7 +185,7 @@ div.box-mid-head a:hover{border:medium none;}
 div.box-mid-head input{border:1px solid #ccc;}
 div.box-mid-body{background:#fff url('../images/white-pix.jpg') repeat-x center top;border:1px solid #dbdbdb;border-top:0 none;display:table;width:100%;}
 div.box-mid-body h3{display:block;font-size:18px;font-weight:bold;margin:8px 0;}
-div#shrsb-col-right{clear:none;float:left;margin:40px 0 0;position:absolute;right:1.3%;width:256px;}
+div#shrsb-col-right{clear:none;float:left;margin:5px 0 0;position:absolute;right:1.3%;width:256px;}
 div.box-right{float:left;margin-bottom:20px;}
 div.box-right-head{background:transparent url('../images/flo-head.jpg') repeat-x 0 0;border:1px solid #dbdbdb;float:left;height:27px;width:256px;}
 div.box-right-head h3{color:#21759b;float:left;font-family:Georgia,"Times New Roman","Bitstream Charter",Times,serif;font-size:14px;font-style:normal;font-weight:normal;height:24px;line-height:20px;margin:0;padding:3px 0 0 10px;text-align:left;}
@@ -303,4 +303,38 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 #genopts td:first-child {min-width: 380px;}
 .tab{margin-left: 30px !important; }
 /* End of functionality options Styles*/
-/*------------------------------------------------------------------------------------------*/                            
+/*------------------------------------------------------------------------------------------*/
+.shr-fb-like-standard {background-image:url(../images/fbplusone.png);background-position:0 -5px; width: 60px !important; height: 35px !important;}
+.shr-fb-like-button {background-image:url(../images/fbplusone.png);background-position:0 -37px; width: 100px !important; height: 30px !important;}
+.shr-fb-like-box {background-image:url(../images/fbplusone.png);background-position:0 -72px;width: 60px !important; height: 70px !important;}
+
+.shr-plus-one-button {background-image:url(../images/fbplusone.png);background-position:-230px -12px; width:35px !important; height: 30px !important;}
+.shr-plus-one-button-count {background-image:url(../images/fbplusone.png);background-position:-120px -12px; width: 85px !important; height: 30px !important;}
+
+.shr-plus-one-standard {background-image:url(../images/fbplusone.png);background-position:-230px -52px; width: 40px !important; height: 30px !important;}
+.shr-plus-one-standard-count {background-image:url(../images/fbplusone.png);background-position:-120px -52px; width: 95px !important; height: 30px !important;}
+
+.shr-plus-one-box-count{background-image:url(../images/fbplusone.png);background-position:-120px -90px; width: 60px !important; height: 70px !important;}
+.shr-plus-one-box{background-image:url(../images/fbplusone.png);background-position:-120px -90px; width: 60px !important; height: 70px !important;}
+.shr-fb-send {background-image:url(../images/fbplusone.png);background-position:-195px -93px; width: 65px !important; height: 32px !important;}
+
+.dropzone {  border: 1px dashed #999; background: #e3e3e3;
+            -moz-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            background-image: none !important;
+}
+
+.dropzoneNetworks {  border: 1px dashed #999; background: #e3e3e3;
+            -moz-border-radius: 2px;
+            -khtml-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            width: 58px !important;
+            height: 43px !important;
+            margin: 10px 0px !important;
+            border-radius: 2px;
+            background-image: none !important;
+}
+
+#buttonPreviews li {margin:0px 10px !important; padding:0px !important; float:left;}

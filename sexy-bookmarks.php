@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.1
+Version: 4.0.2
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','4.0.1');
+define('SHRSB_vNum','4.0.2');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -78,6 +78,11 @@ $shrsb_most_popular = array (
     'shr-mail'
 ); // To change the most popular list we need to also change the "Most Popular" link click handler in admin page
 
+$defaultLikeButtonOrder = array(
+    'shr-fb-like',
+    'shr-fb-send',
+    'shr-plus-one'
+);
 
 //add defaults to an array
 $shrsb_plugopts = array(
@@ -87,7 +92,12 @@ $shrsb_plugopts = array(
   'perfoption' => '1', // performance script (GA)
   'showShareCount' => '1', // fb/twit share count
   'fbLikeButton' => '0', // Include fb like button
+  'fbSendButton' => '0', // Include fb like button
+  'googlePlusOneButton' => '0', // Include Google Plus One button
+  'likeButtonSetSize' => "1", // Size of like buttons
+  'likeButtonSetCount' => "true", // Show count with +1 button
   'fbButtonPos' => 'bottom-right', // if fb like button is included. Include in bottom right by default
+  'likeButtonOrder' => $defaultLikeButtonOrder,
   'preventminify' => '1',  // prevent wp_minify from minifying the js
   'shrlink' => '1', // show promo link
   'bgimg-yes' => 'yes', // 'yes' or blank
@@ -115,6 +125,8 @@ $shrsb_plugopts = array(
 );
 
 
+
+
 //add to database
 
 
@@ -133,10 +145,31 @@ if(!isset($shrsb_plugopts['designer_toolTips'])) {
     $shrsb_plugopts['tip_bg_color'] = '#000000';  // tooltip background color
     $shrsb_plugopts['tip_text_color'] = '#ffffff'; // tooltip text color
 }
+
 if(!isset($shrsb_plugopts['fbLikeButton'])) {
     $shrsb_plugopts['fbLikeButton'] = '0'; // Include fb like button
     $shrsb_plugopts['fbButtonPos'] = 'bottom-right'; // if fb like button is included. Include in bottom right by default
 }
+
+if(!isset($shrsb_plugopts['fbSendButton'])) {
+    $shrsb_plugopts['fbSendButton'] = '0'; // Include fb like button
+}
+
+if(!isset($shrsb_plugopts['googlePlusOneButton'])) {
+    $shrsb_plugopts['googlePlusOneButton'] = '0'; // Include google plus one button
+}
+
+if(!isset($shrsb_plugopts['likeButtonSetSize'])) {
+    $shrsb_plugopts['likeButtonSetSize'] = "1";
+    $shrsb_plugopts['likeButtonSetCount'] = "true";
+}
+
+if(!isset($shrsb_plugopts['likeButtonOrder'])) {
+    $shrsb_plugopts['likeButtonOrder'] = $defaultLikeButtonOrder;
+}
+
+
+
 
 
 $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
@@ -146,7 +179,7 @@ $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
 $shrsb_version = get_option('SHRSBvNum');
 
 // code to remove redundant data fields from the database
-if($shrsb_plugopts['twittcat']) {
+if(isset($shrsb_plugopts['twittcat'])) {
     $shrsb_plugopts['ybuzzcat'] = '';
     $shrsb_plugopts['ybuzzmed'] = '';
     $shrsb_plugopts['twittcat'] = '';
@@ -265,6 +298,46 @@ function showUpdateNotice() {
   }
 }
 
+function _add_meta_box_to_hide_sexy() {
+	add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'page', 'advanced', 'high' );
+	add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'post', 'advanced', 'high' );
+}
+
+add_action( 'admin_init', '_add_meta_box_to_hide_sexy' );
+
+function _hide_sexy_meta_box_content() {
+    global $post;
+    $hide_sexy = get_post_meta( $post->ID, 'Hide SexyBookmarks',true);
+	if ( isset( $hide_sexy ) && $hide_sexy == 1 )
+		$hide_sexy = ' checked="checked"';
+	else
+		$hide_sexy = '';
+
+	echo '<p><label for="hide_sexy"><input name="hide_sexy" id="hide_sexy" value="1"' . $hide_sexy . ' type="checkbox"> ' . __( 'Disable SexyBookmarks on this page.', 'shrsb' ) . '</label></p>';
+}
+
+function _hide_sexy_meta_box_save( $post_id ) {
+	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+		return $post_id;
+
+	// Record sharing disable
+	if ( 'post' == $_POST['post_type'] || 'page' == $_POST['post_type'] ) {
+		if ( current_user_can( 'edit_post', $post_id ) ) {
+            if ( isset( $_POST['hide_sexy'] ) ) {
+                update_post_meta( $post_id, 'Hide SexyBookmarks', 1 );
+            }
+            else {
+                delete_post_meta( $post_id, 'Hide SexyBookmarks' );
+            }
+		}
+	}
+
+  return $post_id;
+}
+
+
+
+add_action( 'save_post', '_hide_sexy_meta_box_save' );
 add_action('admin_notices', 'showUpdateNotice', 12);
 
 function exclude_from_minify_list() {
@@ -329,13 +402,20 @@ function shrsb_refresh_cache() {
 
 }
 
+
 //write settings page
 function shrsb_settings_page() {
 	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite;
 
-	echo '<h2 class="shrsblogo"><span class="sh-logo"></span></h2>';
-
-
+	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Settings</h2></div>';
+    
+    
+    //Defaults - set if not present
+    if (!isset($_POST['reset_all_options'])){$_POST['reset_all_options'] = '1';}
+    if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
+    if (!isset($_POST['custom-mods'])){$_POST['custom-mods'] = 'no';}        
+        
+    
 	if($_POST['reset_all_options'] == '0') {
 		echo '
 		<div id="shrsbresetallwarn" class="dialog-box-warning" style="float:none;width:97%;">
@@ -360,8 +440,13 @@ function shrsb_settings_page() {
 			'perfoption' => '1', // performance script (GA)
 			'showShareCount' => '1', // fb/twit share count
             'fbLikeButton' => '0', // Include fb like button
+            'fbSendButton' => '0', // Include fb Send button
+            'likeButtonSetSize' => "1", // Size of like buttons
+            'likeButtonSetCount' => "true", // Show count with +1 button
+            'googlePlusOneButton' => '0', // Include Google Plus One button
             'fbButtonPos' => 'bottom-right', // if fb like button is included. Include in bottom right by default
             'preventminify' => '1',  // prevent wp_minify from minifying the js
+            'likeButtonOrder' => $defaultLikeButtonOrder,
 			'shrlink' => '1', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
@@ -516,14 +601,22 @@ function shrsb_settings_page() {
 				}
 			}
 
-			foreach (array(
-        'position', 'reloption', 'targetopt', 'bookmark',
-        'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
-        'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
-        'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount','fbLikeButton', 'fbButtonPos', 'designer_toolTips' , 'tip_bg_color', 'tip_text_color' , 'preventminify', 'shrlink', 'perfoption', 'apikey'
-			)as $field) {
-        $shrsb_plugopts[$field] = $_POST[$field];
+        foreach (array(
+            'position', 'reloption', 'targetopt', 'bookmark',
+            'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
+            'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
+            'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
+            'fbLikeButton','fbSendButton','googlePlusOneButton','likeButtonSetSize','likeButtonSetCount',
+            'fbButtonPos', 'likeButtonOrder','designer_toolTips' , 'tip_bg_color',
+            'tip_text_color' , 'preventminify', 'shrlink', 'perfoption', 'apikey'
+        )as $field) {
+            if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
+                $shrsb_plugopts[$field] = $_POST[$field];
+            }
       }
+      // Stupid wordpress autoescapes (and escaping for wordpress means addslashes) all post data. So this is a workaround for that
+      $shrsb_plugopts['tweetconfig'] = stripslashes($shrsb_plugopts['tweetconfig']);
+          
       if ( isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 && $shrsb_plugopts['shareaholic-javascript'] == '1') {
         $service_ids = array();
         foreach ( $_POST['bookmark'] as $bm ) {
@@ -543,7 +636,7 @@ function shrsb_settings_page() {
       $shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['jmp']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-jmp'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['jmp']['key'] = trim(htmlspecialchars($_POST['shortyapikey-jmp'], ENT_QUOTES));
-      $shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
+      if(isset($_POST['shortyapichk-supr']))$shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
       $shrsb_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
       
@@ -592,7 +685,7 @@ function shrsb_settings_page() {
 		<ul id="shrsb-sortables">
             <li>
                 <div class="box-mid-head">
-					<h2 class="fugue f-status"><?php _e('Shareaholic Plugin Health Status', 'shrsb'); ?></h2>
+					<h2 class="fugue f-status"><?php _e('Plugin Health Status', 'shrsb'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle2">
 					<div class="padding">
@@ -605,7 +698,7 @@ function shrsb_settings_page() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td class="" style="width: 28px"><img class="shrsb_health_icon" src=
+                                    <td style="width: 22px;"><img class="shrsb_health_icon" src=
                                         <?php
                                             $color = $chmod_required ? "red":"green";
                                             echo SHRSB_PLUGPATH."images/circle_$color.png";
@@ -623,7 +716,7 @@ function shrsb_settings_page() {
                                 </tr>
 
                                 <tr>
-                                    <td class="" style="width: 32px"><img class="shrsb_health_icon" src=
+                                    <td class="" style="width: 22px;"><img class="shrsb_health_icon" src=
                                         <?php
                                             $color = $resave_required ? "red":"green";
                                             echo SHRSB_PLUGPATH."images/circle_$color.png";
@@ -637,7 +730,7 @@ function shrsb_settings_page() {
                                 </tr>
 
                                 <tr>
-                                    <td class="" style="width: 32px"><img class="shrsb_health_icon" src=
+                                    <td class="" style="width: 22px;"><img class="shrsb_health_icon" src=
                                         <?php
                                             $color = $phpupdate_required ? "red":"green";
                                             echo SHRSB_PLUGPATH."images/circle_$color.png";
@@ -740,36 +833,200 @@ function shrsb_settings_page() {
 							<li><a id="sel-none" href="javascript:void(0);"><?php _e('None', 'shrsb'); ?></a>&nbsp;|&nbsp;</li> 
 							<li><a id="sel-pop" href="javascript:void(0);"><?php _e('Most Popular', 'shrsb'); ?></a>&nbsp;</li> 
 		        </ul>
-						<div id="shrsb-networks">
+						<div id="shrsb-networks"><ul>
 							<?php
 								foreach ($shrsb_plugopts['bookmark'] as $name){if(array_key_exists($name, $shrsb_bookmarks_data)) {print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);}}
 								$unused_networks=array_diff(array_keys($shrsb_bookmarks_data), $shrsb_plugopts['bookmark']);
 								foreach ($unused_networks as $name) print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);
 							?>
-						</div>
+						</ul></div>
 					</div>
 					<div style="padding:10px; float:right;color:#999999;"><?php _e('Made with Much Love, these Icons are © Shareaholic', 'shrsb'); ?></div>
 				</div>
 			</li>
-			
-			<li>
+
+            <li>
 				<div class="box-mid-head">
-					<h2 class="fugue f-wrench"><?php _e('Functionality Settings', 'shrsb'); ?></h2>
+					<h2 class="fugue f-globe-plus"><?php _e('Additional Buttons', 'shrsb'); ?></h2>
 				</div>
-				<div class="box-mid-body" id="toggle2">
+                <div class="box-mid-body" id="toggle2">
 					<div class="padding">
 						<div id="genopts">
-                            <table><tbody>              
+                            <table><tbody>
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Include Facebook Like Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
-                                        <td><label><input <?php echo (($shrsb_plugopts['fbLikeButton'] == "1")? 'checked="checked"' : ""); ?> name="fbLikeButton" id="fbLikeButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['fbLikeButton'] == "1")? 'checked="checked"' : ""); ?> name="fbLikeButton" id="fbLikeButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
                                         </td><td><label><input <?php echo (($shrsb_plugopts['fbLikeButton'] == "0")? 'checked="checked"' : ""); ?> name="fbLikeButton" id="fbLikeButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td><span class="shrsb_option"><?php _e('Include Facebook Send Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        </td>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['fbSendButton'] == "1")? 'checked="checked"' : ""); ?> name="fbSendButton" id="fbSendButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_plugopts['fbSendButton'] == "0")? 'checked="checked"' : ""); ?> name="fbSendButton" id="fbSendButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span class="shrsb_option"><?php _e('Include Google +1 Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        </td>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['googlePlusOneButton'] == "1")? 'checked="checked"' : ""); ?> name="googlePlusOneButton" id="googlePlusOneButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_plugopts['googlePlusOneButton'] == "0")? 'checked="checked"' : ""); ?> name="googlePlusOneButton" id="googlePlusOneButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                                        </td>
+                                    </tr>
+
+                                    <tr class ="likeButtonSetOptions" style="display:none">
+                                        <td>
+                                            <span class="shrsb_option" style="display:block"><?php _e('Button Style', 'shrsb'); ?></span>
+                                        </td>
+                                        <td style="width:125px">
+                                            <select name="likeButtonSetSize">
+                                                <?php
+                                                    print shrsb_select_option_group(
+                                                        'likeButtonSetSize', array(
+                                                            '0'=>__('Standard', 'shrsb'),
+                                                            '1'=>__('Buttons', 'shrsb'),
+                                                            '2'=>__('Box', 'shrsb'),
+                                                        )
+                                                    );
+                                                ?>
+                                            </select>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class ="likeButtonSetOptions" style="display:none">
+                                        <td>
+                                            <span class="tab" style="display:block"><?php _e('Show counter for +1 Button:', 'shrsb'); ?></span>
+                                        </td>
+                                        <td style="width:125px">
+                                            <select name="likeButtonSetCount">
+                                                <?php
+                                                    print shrsb_select_option_group(
+                                                        'likeButtonSetCount', array(
+                                                            'true'=>__('Yes', 'shrsb'),
+                                                            'false'=>__('No', 'shrsb'),
+                                                        )
+                                                    );
+                                                ?>
+                                            </select>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class ="likeButtonSetOptions" style="display:none">
+                                        <td rowspan="4" colspan="3" >
+                                            <small><?php _e('Drag to reorder.', 'shrsb'); ?></small>
+                                            
+                                            <div style="clear: both; min-height: 1px; height: 5px; width: 100%;"></div>
+                                            <div id="buttonPreviews" style="clear: both; max-height: 100px !important; max-width: 600px !important;"><ul>
+                                                <?php
+                                                    $fbLikeHTML = '<li ><div style="display:none; cursor:move;" class="likebuttonpreview">
+                                                                <input name="likeButtonOrder[]" type="hidden" value="shr-fb-like"/>
+                                                            </div></li>';
+                                                    $plusOneHTML = '<li><div style=" display:none; cursor:move;" class="plusonepreview">
+                                                                    <input name="likeButtonOrder[]" type="hidden" value="shr-plus-one"/>
+                                                            </div></li>';
+
+                                                    $fbSendHTML = '<li><div style = "display:none; cursor:move;" class="sendbuttonpreview shr-fb-send">
+                                                                <input name="likeButtonOrder[]" type="hidden" value="shr-fb-send"/>
+                                                            </div></li>';
+
+                                                    foreach($shrsb_plugopts['likeButtonOrder'] as $likeOption) {
+                                                        switch($likeOption) {
+                                                            case "shr-fb-like":
+                                                                echo $fbLikeHTML;
+                                                                break;
+                                                            case "shr-plus-one":
+                                                                echo $plusOneHTML;
+                                                                break;
+                                                            case "shr-fb-send":
+                                                                echo $fbSendHTML;
+                                                                break;
+                                                        }
+                                                    }
+
+                                                ?>
+                                            </ul></div>
+                                            
+                                        </td>
+                                        
+                                        
+                                    </tr>
+
+
+                                    <tr height="60px">
+                                        <script>
+                                        (function ($) {
+                                            var renderPlusOnes = function () {
+                                                    var size = $('select[name$="likeButtonSetSize"]').val();
+                                                    switch(size) {
+                                                        case '1':
+                                                            size = "button";
+                                                            break;
+                                                        case '2':
+                                                            size = "box";
+                                                            break;
+                                                        default:
+                                                            size = "standard";
+                                                            break;
+                                                    }
+                                                    var count = $('select[name$="likeButtonSetCount"]').val();
+                                                    switch(count) {
+                                                        case 'false':
+                                                            count = '';
+                                                            break;
+                                                        default:
+                                                            count = '-count';
+                                                            break;
+                                                    }
+                                                    var classN = 'shr-plus-one-' + size + count;
+                                                    classN = "plusonepreview "  + classN;
+                                                    $('.plusonepreview').removeClass().addClass(classN);
+                                                
+                                            };
+                                            $('select[name$="likeButtonSetCount"],select[name$="likeButtonSetSize"]').change(function () {
+                                                renderPlusOnes();
+                                            });
+
+                                            renderPlusOnes();
+
+
+                                            var renderLikeButtonPreview = function () {
+                                                var layout = $('select[name$="likeButtonSetSize"]').val();
+                                                switch(layout) {
+                                                    case '1':
+                                                        layout = "button";
+                                                        break;
+                                                    case '2':
+                                                        layout = "box";
+                                                        break;
+                                                    default:
+                                                        layout = "standard";
+                                                        break;
+                                                }
+                                                var classN = 'shr-fb-like-' + layout;
+                                                classN = "likebuttonpreview "  + classN;
+                                                $('.likebuttonpreview').removeClass().addClass(classN);
+                                            };
+
+                                            $('select[name$="likeButtonSetSize"]').change(function () {
+                                                renderLikeButtonPreview();
+                                            });
+                                            renderLikeButtonPreview();
+                                        
+
+                                        })(jQuery);
+                                    </script>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr></tr>
+
                                     <tr id="fbButtonPos" style="display:none">
                                         <td>
-                                            <span class="tab" style="display:block"><?php _e('Facebook Like Button Location:', 'shrsb'); ?></span>
+                                            <span class="shrsb_option" style="display:block"><?php _e('Placement Location:', 'shrsb'); ?></span>
                                         </td>
                                         <td colspan="2">
                                             <select name="fbButtonPos">
@@ -786,7 +1043,27 @@ function shrsb_settings_page() {
                                             </select>
                                         </td>
                                     </tr>
+                                </tbody></table>
+                                
+                                <br />
+                                
+                                <span style="display:block;"><?php echo sprintf(__('Check out %sour blog%s for additional customization options.', 'shrsb'), '<a target="_blank" href="http://blog.shareaholic.com/?p=1917">', '</a>'); ?></span><br />
+    							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode below to enable these exclusive features', 'shrsb'); ?></span></span>
+    							
+                        </div>
+                    </div>
+                </div>
 
+            </li>
+            
+			<li>
+				<div class="box-mid-head">
+					<h2 class="fugue f-wrench"><?php _e('Functionality Settings', 'shrsb'); ?></h2>
+				</div>
+				<div class="box-mid-body" id="toggle2">
+					<div class="padding">
+						<div id="genopts">
+                            <table><tbody>              
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Show Share Counters', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                             <span style="display:block;"><?php _e('For Facebook, Twitter, Google Buzz and Delicious', 'shrsb'); ?></span>
@@ -855,7 +1132,7 @@ function shrsb_settings_page() {
 
                             </tbody></table>
 							<br />
-							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode to enable these exclusive features', 'shrsb'); ?></span></span>
+							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode below to enable these exclusive features', 'shrsb'); ?></span></span>
                             
                         </div>
 					</div>
@@ -869,7 +1146,7 @@ function shrsb_settings_page() {
 				<div class="box-mid-body">
                       <div class="padding">
                             <p>
-<?php _e('Switch on "new mode" to enable exclusive advanced features:') ?>
+            <?php _e('Switch on "new mode" to enable exclusive advanced features:') ?>
 							<span class="shrsb_option"><?php _e('Use new version?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] == "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] != "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
@@ -1135,6 +1412,9 @@ function shrsb_settings_page() {
 	</form>
 </div>
 <div id="shrsb-col-right">
+    
+    <h2 class="sh-logo"></h2>
+
 	<div class="box-right">
 		<div class="box-right-head">
 			<h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'shrsb'); ?></h3>
@@ -1246,8 +1526,8 @@ function shrsb_menu_link() {
         
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
-        add_action( "admin_print_styles-$shrsb_account_page", 'shrsb_admin_styles' );
-        add_action( "admin_print_styles-$shrsb_analytics_page", 'shrsb_admin_styles' );
+        //add_action( "admin_print_styles-$shrsb_account_page", 'shrsb_admin_styles' );
+        //add_action( "admin_print_styles-$shrsb_analytics_page", 'shrsb_admin_styles' );
     }
 }
 
