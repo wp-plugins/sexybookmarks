@@ -369,7 +369,7 @@ function shrsb_position_menu($post_content) {
             $float = "right";
         }
 
-        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
+        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['fbSendButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
 
             $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
             $like_layout = $shrsb_plugopts['likeButtonSetSize'];
@@ -494,7 +494,7 @@ function get_sexy() {
             $float = "right";
         }
 
-        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
+        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['fbSendButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
             $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
             $like_layout = $shrsb_plugopts['likeButtonSetSize'];
             $height = "";
@@ -569,6 +569,8 @@ function get_sexy() {
             } else {
                 $output .= $spacer.'<div class="shr-publisher-'.$post->ID.'"></div>';
             }
+        }else {
+            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
         }
 
         return $output;
