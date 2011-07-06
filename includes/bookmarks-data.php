@@ -103,6 +103,7 @@ $shrsb_bookmarks_data=array(
 		'share'=>__('Suggest this article to ', 'shrsb').'ToMuse'
 	),
 	'shr-comfeed'=>array(
+        'id' => NULL,
 		'check'=>sprintf($checkthis_text, __("a 'Subscribe to Comments' link", 'shrsb')),
 		'share'=>__('Subscribe to the comments for this post?', 'shrsb'),
 		'baseUrl'=>'PERMALINK',

@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.3
+Version: 4.0.4
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -12,7 +12,7 @@ Author URI: http://www.shareaholic.com
 */
 
 
-define('SHRSB_vNum','4.0.3');
+define('SHRSB_vNum','4.0.4');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -93,6 +93,7 @@ $shrsb_plugopts = array(
   'showShareCount' => '1', // fb/twit share count
   'fbLikeButton' => '0', // Include fb like button
   'fbSendButton' => '0', // Include fb like button
+  'fbNameSpace' => '1',  // Add fb name space to the html
   'googlePlusOneButton' => '0', // Include Google Plus One button
   'likeButtonSetSize' => "1", // Size of like buttons
   'likeButtonSetCount' => "true", // Show count with +1 button
@@ -168,7 +169,17 @@ if(!isset($shrsb_plugopts['likeButtonOrder'])) {
     $shrsb_plugopts['likeButtonOrder'] = $defaultLikeButtonOrder;
 }
 
+if(!isset($shrsb_plugopts['fbNameSpace'])) {
+    $shrsb_plugopts['fbNameSpace'] = "1";
+}
 
+if(!isset($shrsb_plugopts['preventminify'])) {
+    $shrsb_plugopts['preventminify'] = "1";
+}
+
+if($shrsb_plugopts['fbNameSpace'] == '1') {
+    add_filter('language_attributes', 'addFBNameSpace');
+}
 
 
 
@@ -207,6 +218,35 @@ if($shrsb_plugopts['shorty'] == 'slly' || $shrsb_plugopts['shorty'] == 'cligs' |
     $shrsb_plugopts['shortyapi']['cligs']['chk'] = '';
     $shrsb_plugopts['shortyapi']['cligs']['key'] = '';
 }
+
+    /* Short URLs corrupt value fixation*/
+    if(strpos($shrsb_plugopts['shortyapi']['bitly']['user'],"sexybookmarks/sexy-bookmarks.php")) {
+        $shrsb_plugopts['shortyapi']['bitly']['user'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['bitly']['key'],"sexybookmarks/sexy-bookmarks.php")) {
+        $shrsb_plugopts['shortyapi']['bitly']['key'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['jmp']['user'],"sexybookmarks/sexy-bookmarks.php")) {
+        $shrsb_plugopts['shortyapi']['jmp']['user'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['jmp']['key'],"sexybookmarks/sexy-bookmarks.php") ) {
+        $shrsb_plugopts['shortyapi']['jmp']['key'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['supr']['chk'],"sexybookmarks/sexy-bookmarks.php") ) {
+        $shrsb_plugopts['shortyapi']['supr']['chk'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['supr']['user'],"sexybookmarks/sexy-bookmarks.php") ) {
+        $shrsb_plugopts['shortyapi']['supr']['user'] = "";
+    }
+    if(strpos($shrsb_plugopts['shortyapi']['supr']['key'],"sexybookmarks/sexy-bookmarks.php") ) {
+        $shrsb_plugopts['shortyapi']['supr']['key'] = "";
+    }
+    
+
+    /* Short URLs End */
+
+
+
 
 if($shrsb_plugopts['shorty'] == 'tiny') {
     $shrsb_plugopts['shorty'] = 'tinyurl';
@@ -359,6 +399,12 @@ function exclude_from_minify_list() {
 
 }
 
+function addFBNameSpace($attr) {
+    $attr .= "\n xmlns:og=\"http://opengraphprotocol.org/schema/\"";
+	$attr .= "\n xmlns:fb=\"http://www.facebook.com/2008/fbml\"";
+    return $attr;
+}
+
 function _make_params($params) {
   $pairs = array();
   foreach ($params as $k => $v) {
@@ -405,7 +451,8 @@ function shrsb_refresh_cache() {
 
 //write settings page
 function shrsb_settings_page() {
-	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite;
+	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite,$shrsb_most_popular,$defaultLikeButtonOrder;
+    // Add all the global varaible declarations for the $shrsb_plugopts default options e.g. $shrsb_most_popular,$defaultLikeButtonOrder
 
 	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Settings</h2></div>';
     
@@ -441,6 +488,7 @@ function shrsb_settings_page() {
 			'showShareCount' => '1', // fb/twit share count
             'fbLikeButton' => '0', // Include fb like button
             'fbSendButton' => '0', // Include fb Send button
+            'fbNameSpace' => '1',  // Add fb name space to the html
             'likeButtonSetSize' => "1", // Size of like buttons
             'likeButtonSetCount' => "true", // Show count with +1 button
             'googlePlusOneButton' => '0', // Include Google Plus One button
@@ -470,11 +518,25 @@ function shrsb_settings_page() {
             'tip_bg_color' => 'black',  // tooltip background color
             'tip_text_color' => 'black', // tooltip text color
         );
+        
 
         $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
         if($shrsb_plugopts['preventminify'] == '1') {
             exclude_from_minify_list();
         }
+
+
+        /* Short URLs */
+
+          $shrsb_plugopts['shortyapi']['bitly']['user'] = "";
+          $shrsb_plugopts['shortyapi']['bitly']['key'] = "";
+          $shrsb_plugopts['shortyapi']['jmp']['user'] = "";
+          $shrsb_plugopts['shortyapi']['jmp']['key'] = "";
+          $shrsb_plugopts['shortyapi']['supr']['chk'] = "0";
+          $shrsb_plugopts['shortyapi']['supr']['user'] = "";
+          $shrsb_plugopts['shortyapi']['supr']['key'] = "";
+
+          /* Short URLs End */
 		update_option('SexyBookmarks', $shrsb_plugopts);
         $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 
@@ -606,14 +668,17 @@ function shrsb_settings_page() {
             'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
             'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
             'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
-            'fbLikeButton','fbSendButton','googlePlusOneButton','likeButtonSetSize','likeButtonSetCount',
+            'fbLikeButton','fbSendButton','fbNameSpace','googlePlusOneButton','likeButtonSetSize','likeButtonSetCount',
             'fbButtonPos', 'likeButtonOrder','designer_toolTips' , 'tip_bg_color',
             'tip_text_color' , 'preventminify', 'shrlink', 'perfoption', 'apikey'
         )as $field) {
             if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
                 $shrsb_plugopts[$field] = $_POST[$field];
+            } else {
+                $shrsb_plugopts[$field] = NULL;
             }
       }
+
       // Stupid wordpress autoescapes (and escaping for wordpress means addslashes) all post data. So this is a workaround for that
       $shrsb_plugopts['tweetconfig'] = stripslashes($shrsb_plugopts['tweetconfig']);
           
@@ -636,7 +701,7 @@ function shrsb_settings_page() {
       $shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['jmp']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-jmp'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['jmp']['key'] = trim(htmlspecialchars($_POST['shortyapikey-jmp'], ENT_QUOTES));
-      if(isset($_POST['shortyapichk-supr']))$shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'], ENT_QUOTES);
+      $shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'][0], ENT_QUOTES);
       $shrsb_plugopts['shortyapi']['supr']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-supr'], ENT_QUOTES));
       $shrsb_plugopts['shortyapi']['supr']['key'] = trim(htmlspecialchars($_POST['shortyapikey-supr'], ENT_QUOTES));
       
@@ -646,6 +711,7 @@ function shrsb_settings_page() {
       if($shrsb_plugopts['preventminify'] == '1') {
             exclude_from_minify_list();
       }
+
 	  update_option('SexyBookmarks', $shrsb_plugopts);
       $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 	  
@@ -1213,21 +1279,10 @@ function shrsb_settings_page() {
 							</div>
 						</div>
 
-						<div id="shortyapimdiv-trim" <?php if($shrsb_plugopts['shorty'] != 'trim') { ?>class="hidden"<?php } ?>>
-							<span class="shrsb_option" id="shortyapidivchk-trim">
-								<input <?php echo (($shrsb_plugopts['shortyapi']['trim']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-trim" id="shortyapichk-trim" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'shrsb'); ?>
-							</span>
-							<div class="clearbig"></div>
-							<div id="shortyapidiv-trim" <?php if(!isset($shrsb_plugopts['shortyapi']['trim']['chk'])) { ?>class="hidden"<?php } ?>>
-								<label for="shortyapiuser-trim"><?php _e('User ID:', 'shrsb'); ?></label>
-								<input type="text" id="shortyapiuser-trim" name="shortyapiuser-trim" value="<?php echo $shrsb_plugopts['shortyapi']['trim']['user']; ?>" />
-								<label for="shortyapikey-trim"><?php _e('Password:', 'shrsb'); ?></label>
-								<input type="text" id="shortyapipass-trim" name="shortyapipass-trim" value="<?php echo $shrsb_plugopts['shortyapi']['trim']['pass']; ?>" />
-							</div>
-						</div>
 						<div id="shortyapimdiv-supr" <?php if($shrsb_plugopts['shorty'] != 'supr') { ?>class="hidden"<?php } ?>>
 							<span class="shrsb_option" id="shortyapidivchk-supr">
-								<input <?php echo (($shrsb_plugopts['shortyapi']['supr']['chk'] == "1")? 'checked=""' : ""); ?> name="shortyapichk-supr" id="shortyapichk-supr" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'shrsb'); ?>
+								<input <?php echo (($shrsb_plugopts['shortyapi']['supr']['chk'] == "1")? 'checked="true"' : ""); ?> name="shortyapichk-supr[]" id="shortyapichk-supr" type="checkbox" value="1" /> <?php _e('Track Generated Links?', 'shrsb'); ?>
+                                <input type="hidden" name="shortyapichk-supr[]" type="checkbox" value="0"/>
 							</span>
 							<div class="clearbig"></div>
 							<div id="shortyapidiv-supr" <?php if(!isset($shrsb_plugopts['shortyapi']['supr']['chk'])) { ?>class="hidden"<?php } ?>>
@@ -1351,6 +1406,10 @@ function shrsb_settings_page() {
 						<input type="checkbox" id="doNotIncludeJQuery" name="doNotIncludeJQuery" <?php echo (($shrsb_plugopts['doNotIncludeJQuery'] == "1")? 'checked' : ""); ?> value="1" />
 						<span class="shrsb_option"><?php _e('Load scripts in Footer', 'shrsb'); ?> <input type="checkbox" id="scriptInFooter" name="scriptInFooter" <?php echo (($shrsb_plugopts['scriptInFooter'] == "1")? 'checked' : ""); ?> value="1" /></span>
 						<label for="scriptInFooter"><?php _e("Check this box if you want the SexyBookmarks javascript to be loaded in your blog's footer.", 'shrsb'); ?> (<a href="http://developer.yahoo.com/performance/rules.html#js_bottom" target="_blank">?</a>)</label>
+
+                        <span class="shrsb_option"><?php _e('Add Facebook required namespaces to your HTML tag? (recommended)', 'shrsb'); ?> <input type="checkbox" id="fbNameSpace" name="fbNameSpace" <?php echo (($shrsb_plugopts['fbNameSpace'] == "1")? 'checked' : ""); ?> value="1" /></span>
+						<label for="fbNameSpace"><?php _e("Check this box if you include Facebook's Like/Send buttons. These buttons may not work with this option turned off.", 'shrsb'); ?></label>
+
 
                     </div>
                 </div>
