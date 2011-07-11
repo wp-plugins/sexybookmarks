@@ -106,7 +106,11 @@ function shrsb_get_publisher_config($post_id) {
     $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
 
   $r = shrsb_get_params($post_id);
-
+  
+  //set default values if not set
+  if (!isset($r['spriteimg'])){$r['spriteimg'] = '';}
+  if (!isset($r['bgimg-padding'])){$r['bgimg-padding'] = '';}
+  
   $params = array(
     'link' => $r['link'],
     'short_link' => $r['short_link'],
@@ -131,6 +135,9 @@ function shrsb_get_publisher_config($post_id) {
     'twitter_template' => $r['tweetconfig'],
     'mode' => 'inject',
     'spriteimg' => $r['spriteimg'],
+    'designer_toolTips' => $r['designer_toolTips'],
+    'tip_bg_color' => $r['tip_bg_color'],  // tooltip background color
+    'tip_text_color' => $r['tip_text_color'], // tooltip text color
 	'dontShowShareCount' => $r['showShareCount'] == "0",
 	'shrlink'	=> $r['shrlink'],
   );
@@ -166,15 +173,17 @@ function shrsb_get_params($post_id) {
   $r['shortener'] = $r['shorty'];
   $r['shortener_key'] = '';
 
-  switch($shortener) {
-    case 'bitly':
-    case 'jmp':
-    case 'supr':
-        $user = $post_info['shortyapi'][$r['shorty']]['user'];
-        $api = $post_info['shortyapi'][$r['shorty']]['key'];
-        $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
-        break;
-    default:
+  if (isset($shortener)){
+      switch($shortener) {
+      case 'bitly':
+        case 'jmp':
+        case 'supr':
+            $user = $post_info['shortyapi'][$r['shorty']]['user'];
+            $api = $post_info['shortyapi'][$r['shorty']]['key'];
+            $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
+            break;
+        default:
+    }
   }
 
   $r['post_summary'] = urlencode(strip_tags(
@@ -209,7 +218,7 @@ function shrsb_get_params($post_id) {
 	// Check permalink setup for proper feed link
   $hasquery = false !== strpos($r['feed_permalink'],'?');
   $isphp = false !== strpos($r['feed_permalink'],'.php',
-  strlen($r['feed_permalink']) - 4);
+  max(0,strlen($r['feed_permalink']) - 4));
 	if ($hasquery || $isphp) {
 		$r['feed_structure'] = '&amp;feed=comments-rss2';
 	} 
@@ -323,20 +332,22 @@ function shrsb_get_fetch_url() {
     elseif ($shrsb_plugopts['shorty'] == 'yourls' && function_exists('wp_ozh_yourls_raw_url')) {
 		$fetch_url = wp_ozh_yourls_raw_url();
 	}
-	return $fetch_url;
+	
+	if (!empty($fetch_url)) {
+	    return $fetch_url;
+    }
 }
 
 
 // Create an auto-insertion function
 function shrsb_position_menu($post_content) {
 	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
-
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
-    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-      $config = shrsb_get_publisher_config($post->ID);
-      $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
-    }
+        if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+              $config = shrsb_get_publisher_config($post->ID);
+              $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+        }
 		return $post_content;
 	}
 
@@ -345,12 +356,19 @@ function shrsb_position_menu($post_content) {
 		return $post_content;
 	}
 
+
+    $output = "";
+    $likeButtonSetTop = "";
+    $likeButtonSetBottom = "";
+
 	// Decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || (is_feed() && !empty($shrsb_plugopts['feed']))) { 
     // socials should be generated and added
     if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
       if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-        $output='<div class="shr-publisher-'.$post->ID.'"></div>';
+        $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
+        $likeButtonSetTop = get_shr_like_buttonset('Top');
+        $likeButtonSetBottom = get_shr_like_buttonset('Bottom');
         $config = shrsb_get_publisher_config($post->ID);
 
         $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
@@ -377,20 +395,113 @@ function shrsb_position_menu($post_content) {
       default:
         error_log(__('An unknown error occurred in SexyBookmarks','shrsb'));
     }
+
+    $r = $likeButtonSetTop.$r.$likeButtonSetBottom;
   }
 
   return $r;
 } // End shrsb_position_menu...
 
 
+function get_shr_like_buttonset($pos = 'Bottom') { // $pos = 'Bottom'/'Top' Case sensitive
+        global $shrsb_plugopts, $post;
+
+        $href = urlencode(get_permalink($post->ID));
+        $output = "";
+        $float = "none";
+
+        if($shrsb_plugopts['likeButtonSetAlignment'.$pos] == '1') {
+            $float = "right";
+        }
+
+        if($shrsb_plugopts['likeButtonSet'.$pos] &&
+                ($shrsb_plugopts['fbLikeButton'.$pos] == '1' || $shrsb_plugopts['fbSendButton'.$pos] == '1' || $shrsb_plugopts['googlePlusOneButton'.$pos] == '1')) {
+
+            $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
+            $like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
+            $height = "";
+            switch($like_layout) {
+                case '2':
+                    $height = "height:60px";
+                    break;
+                default:
+                    $height = "height:30px";
+                    break;
+            }
+            $output .= "<div class='shareaholic-like-buttonset' style='float:$float;$height;'>";
+            $plusOneHTML = "";
+            $fbLikeHTML = "";
+            $fbSendHTML = "";
+
+            if($shrsb_plugopts['googlePlusOneButton'.$pos] == '1') {
+                $plusoneSize = $like_layout;
+                switch($plusoneSize) {
+                    case '1':
+                        $plusoneSize = "medium";
+                        break;
+                    case '2':
+                        $plusoneSize = "tall";
+                        break;
+                    default:
+                        $plusoneSize = "standard";
+                        break;
+                }
+                $plusoneCount = $shrsb_plugopts['likeButtonSetCount'.$pos];
+                $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href'></a>";
+            }
+            if($shrsb_plugopts['fbLikeButton'.$pos] == '1') {
+                //$like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
+                switch($like_layout) {
+                    case '1':
+                        $like_layout = "button_count";
+                        break;
+                    case '2':
+                        $like_layout = "box_count";
+                        break;
+                    default:
+                        $like_layout = "standard";
+                        break;
+                }
+                $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href'></a>";
+            }
+
+            if($shrsb_plugopts['fbSendButton'.$pos] == '1') {
+                $fbSendHTML = "<a class='shareaholic-fbsend' shr_href='$href'></a>";
+            }
+
+            foreach($shrsb_plugopts['likeButtonOrder'.$pos] as $likeOption) {
+                switch($likeOption) {
+                    case "shr-fb-like":
+                        $output .= $fbLikeHTML;
+                        break;
+                    case "shr-plus-one":
+                        $output .= $plusOneHTML;
+                        break;
+                    case "shr-fb-send":
+                        $output .= $fbSendHTML;
+                        break;
+                }
+            }
+
+            $output .= '</div>';
+            $output = $spacer.$output.$spacer;
+        }
+        $output = "<!-- Start LikeButtonSet$pos -->".$output."<!-- End LikeButtonSet$pos -->";
+
+        return $output;
+}
+
+
 function get_sexy() {
 	global $shrsb_plugopts, $wp_query, $post;
 	$spost = $wp_query->post;
 
-  if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    $output='<div class="shr-publisher-'.$post->ID.'"></div>';
-    return $output;
-  }
+
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
+            return $output;
+    }
+
 	if($shrsb_plugopts['position'] == 'manual') {
 
 		//Check if outside the loop
@@ -477,7 +588,7 @@ function get_sexy() {
 
 
 	// Check permalink setup for proper feed link
-	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php',strlen($feedperms) - 4)) {
+	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php', max(0,strlen($feedperms) - 4))) {
 		$feedstructure = '&amp;feed=comments-rss2';
 	} 
   else {
@@ -639,7 +750,7 @@ function shrsb_publicStyles() {
 	global $shrsb_plugopts, $post, $shrsb_custom_sprite;
 
 	// If custom field is set, do not display sexybookmarks
-	if (get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+	if ($post && get_post_meta($post->ID, 'Hide SexyBookmarks')) {
 		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'shrsb').' -->'."\n\n";
 	} 
   elseif ($shrsb_plugopts['shareaholic-javascript'] != '1') {
@@ -670,13 +781,13 @@ function shrsb_publicScripts() {
     $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
 
     //Beta script
-    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin() && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
         wp_enqueue_script('shareaholic-publishers-js', SHRSB_PLUGPATH.$spritegen.'/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
         wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => SHRSB_PLUGPATH.$spritegen,'perfoption'=> $shrsb_plugopts['perfoption']));
     } else {
     // If any javascript dependent options are selected, load the scripts
-    if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+    if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && $post && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
       // If custom mods is selected, pull files from new location
       if($shrsb_plugopts['custom-mods'] == 'yes') {
         $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
@@ -702,9 +813,9 @@ function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    echo '<script type="text/javascript">SHRSB_Settings = ';
+    echo '<script type="text/javascript">var SHRSB_Settings = ';
     echo json_encode($shrsb_js_params);
-    echo '</script>';
+    echo ';</script>';
   }
 }
 

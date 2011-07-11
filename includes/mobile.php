@@ -33,7 +33,11 @@ function shrsb_is_bot() {
 
 //Checking for mobile browsers
 function shrsb_is_mobile() {
-	$op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
+    if (isset($_SERVER['HTTP_X_OPERAMINI_PHONE'])){
+	    $op = strtolower($_SERVER['HTTP_X_OPERAMINI_PHONE']);
+    } else {
+        $op = '';
+    }
 	$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 	$ac = strtolower($_SERVER['HTTP_ACCEPT']);
 	$isMobile = strpos($ac, 'application/vnd.wap.xhtml+xml') !== false
