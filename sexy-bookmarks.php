@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: SexyBookmarks adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.4.1
+Version: 4.0.4.2
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -11,8 +11,7 @@ Author URI: http://www.shareaholic.com
 
 */
 
-
-define('SHRSB_vNum','4.0.4.1');
+define('SHRSB_vNum','4.0.4.2');
 
 // Check for location modifications in wp-config
 // Then define accordingly
@@ -91,14 +90,28 @@ $shrsb_plugopts = array(
   'targetopt' => '_blank', // 'blank' or 'self'
   'perfoption' => '1', // performance script (GA)
   'showShareCount' => '1', // fb/twit share count
-  'fbLikeButton' => '0', // Include fb like button
-  'fbSendButton' => '0', // Include fb like button
+
+  'likeButtonSetTop' => '0', // Include like button below the Post Title
+  'fbLikeButtonTop' => '0', // Include fb like button
+  'fbSendButtonTop' => '0', // Include fb like button
+  'googlePlusOneButtonTop' => '0', // Include Google Plus One button
+  'likeButtonSetSizeTop' => "1", // Size of like buttons
+  'likeButtonSetCountTop' => "true", // Show count with +1 button
+  'likeButtonOrderTop' => $defaultLikeButtonOrder,
+  'likeButtonSetAlignmentTop' => '0', // Alignment 0 => left, 1 => right
+
+
+  'likeButtonSetBottom' => '1', // Include like button below the Post
+  'fbLikeButtonBottom' => '0', // Include fb like button
+  'fbSendButtonBottom' => '0', // Include fb like button
+  'googlePlusOneButtonBottom' => '0', // Include Google Plus One button
+  'likeButtonSetSizeBottom' => "1", // Size of like buttons
+  'likeButtonSetCountBottom' => "true", // Show count with +1 button
+  'likeButtonOrderBottom' => $defaultLikeButtonOrder,
+  'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
+    
+  
   'fbNameSpace' => '1',  // Add fb name space to the html
-  'googlePlusOneButton' => '0', // Include Google Plus One button
-  'likeButtonSetSize' => "1", // Size of like buttons
-  'likeButtonSetCount' => "true", // Show count with +1 button
-  'fbButtonPos' => 'bottom-right', // if fb like button is included. Include in bottom right by default
-  'likeButtonOrder' => $defaultLikeButtonOrder,
   'preventminify' => '1',  // prevent wp_minify from minifying the js
   'shrlink' => '1', // show promo link
   'bgimg-yes' => 'yes', // 'yes' or blank
@@ -136,6 +149,8 @@ add_option('SexyBookmarks', $shrsb_plugopts);
 add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
 add_option('SHRSB_DefaultSprite',true);
+
+
 //reload from database
 $shrsb_plugopts = get_option('SexyBookmarks');
 
@@ -147,27 +162,25 @@ if(!isset($shrsb_plugopts['designer_toolTips'])) {
     $shrsb_plugopts['tip_text_color'] = '#ffffff'; // tooltip text color
 }
 
-if(!isset($shrsb_plugopts['fbLikeButton'])) {
-    $shrsb_plugopts['fbLikeButton'] = '0'; // Include fb like button
-    $shrsb_plugopts['fbButtonPos'] = 'bottom-right'; // if fb like button is included. Include in bottom right by default
+if(!isset($shrsb_plugopts['likeButtonSetTop'])) {
+      $shrsb_plugopts['likeButtonSetTop'] = '0'; // Include fb like button
+      $shrsb_plugopts['fbLikeButtonTop'] = '0'; // if fb like button is included. Include in bottom right by default
+      $shrsb_plugopts['fbSendButtonTop' ] =  '0'; // Include fb like button
+      $shrsb_plugopts['googlePlusOneButtonTop' ] =  '0'; // Include Google Plus One button
+      $shrsb_plugopts['likeButtonSetSizeTop' ] =  "1"; // Size of like buttons
+      $shrsb_plugopts['likeButtonSetCountTop'] =  "true"; // Show count with +1 button
+      $shrsb_plugopts['likeButtonOrderTop' ] =  $defaultLikeButtonOrder;
+      $shrsb_plugopts['likeButtonSetAlignmentTop' ] =  '0'; // Alignment 0 => left, 1 => right
+      $shrsb_plugopts['likeButtonSetBottom'] = '1'; // Include fb like button
+      $shrsb_plugopts['fbLikeButtonBottom'] = '0'; // if fb like button is included. Include in bottom right by default
+      $shrsb_plugopts['fbSendButtonBottom' ] =  '0'; // Include fb like button
+      $shrsb_plugopts['googlePlusOneButtonBottom' ] =  '0'; // Include Google Plus One button
+      $shrsb_plugopts['likeButtonSetSizeBottom' ] =  "1"; // Size of like buttons
+      $shrsb_plugopts['likeButtonSetCountBottom'] =  "true"; // Show count with +1 button
+      $shrsb_plugopts['likeButtonOrderBottom' ] =  $defaultLikeButtonOrder;
+      $shrsb_plugopts['likeButtonSetAlignmentBottom' ] =  '0'; // Alignment 0 => left, 1 => right
 }
 
-if(!isset($shrsb_plugopts['fbSendButton'])) {
-    $shrsb_plugopts['fbSendButton'] = '0'; // Include fb like button
-}
-
-if(!isset($shrsb_plugopts['googlePlusOneButton'])) {
-    $shrsb_plugopts['googlePlusOneButton'] = '0'; // Include google plus one button
-}
-
-if(!isset($shrsb_plugopts['likeButtonSetSize'])) {
-    $shrsb_plugopts['likeButtonSetSize'] = "1";
-    $shrsb_plugopts['likeButtonSetCount'] = "true";
-}
-
-if(!isset($shrsb_plugopts['likeButtonOrder'])) {
-    $shrsb_plugopts['likeButtonOrder'] = $defaultLikeButtonOrder;
-}
 
 if(!isset($shrsb_plugopts['fbNameSpace'])) {
     $shrsb_plugopts['fbNameSpace'] = "1";
@@ -177,11 +190,11 @@ if(!isset($shrsb_plugopts['preventminify'])) {
     $shrsb_plugopts['preventminify'] = "1";
 }
 
+
+
 if($shrsb_plugopts['fbNameSpace'] == '1') {
-    add_filter('language_attributes', 'addFBNameSpace');
+    add_filter('language_attributes', 'shrsb_addFBNameSpace');
 }
-
-
 
 $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 
@@ -277,17 +290,19 @@ if(!is_writable(SHRSB_PLUGDIR.'spritegen')) {
 
 function shrsb_Upgrade() {
     global $shrsb_plugopts;
-    
-     // check if sprite files are not present, ask the user to re-save setting.
-     if($shrsb_plugopts['shareaholic-javascript'] == '1' ||
-             (!file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css'))) {
-         echo '
-          <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
-            <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-              '.sprintf(__('NOTICE: Shareaholic was just updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
-            </div>
-          </div>';
-     }
+
+    if (shrsb_get_current_user_role()=="Administrator"){
+         // check if sprite files are not present, ask the user to re-save setting.
+         if($shrsb_plugopts['shareaholic-javascript'] == '1' ||
+                 (!file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.css'))) {
+             echo '
+              <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
+                <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
+                  '.sprintf(__('NOTICE: Shareaholic was just updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+                </div>
+              </div>';
+         }
+    }
 }
 
 function shrsb_SpritegenNotice() {
@@ -339,8 +354,11 @@ function showUpdateNotice() {
 }
 
 function _add_meta_box_to_hide_sexy() {
-	add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'page', 'advanced', 'high' );
-	add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'post', 'advanced', 'high' );
+	if ( shrsb_get_current_user_role() ==  "Administrator"
+            || shrsb_get_current_user_role() ==  "Editor") {
+        add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'page', 'advanced', 'high' );
+        add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'post', 'advanced', 'high' );
+    }
 }
 
 add_action( 'admin_init', '_add_meta_box_to_hide_sexy' );
@@ -399,7 +417,208 @@ function exclude_from_minify_list() {
 
 }
 
-function addFBNameSpace($attr) {
+
+
+function likeButtonSetHTML($pos = 'Bottom') {   // $pos = Bottom/Top
+    global $shrsb_plugopts;
+    ?>
+
+    <table><tbody style ="display:none" class="likeButtonsAvailable<?php echo $pos;?>">
+            <tr class="tabForTr">
+                <td><span class="shrsb_option"><?php _e('Include Facebook Like Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                </td>
+                <td style="width:125px"><label><input <?php echo (($shrsb_plugopts["fbLikeButton$pos"] == "1")? 'checked="checked"' : ""); ?> name="fbLikeButton<?php echo $pos;?>" id="fbLikeButton<?php echo $pos;?>-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                </td><td><label><input <?php echo (($shrsb_plugopts["fbLikeButton$pos"] == "0")? 'checked="checked"' : ""); ?> name="fbLikeButton<?php echo $pos;?>" id="fbLikeButton<?php echo $pos;?>-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                </td>
+            </tr>
+
+            <tr class="tabForTr">
+                <td><span class="shrsb_option"><?php _e('Include Facebook Send Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                </td>
+                <td style="width:125px"><label><input <?php echo (($shrsb_plugopts["fbSendButton$pos"] == "1")? 'checked="checked"' : ""); ?> name="fbSendButton<?php echo $pos;?>" id="fbSendButton<?php echo $pos;?>-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                </td><td><label><input <?php echo (($shrsb_plugopts["fbSendButton$pos"] == "0")? 'checked="checked"' : ""); ?> name="fbSendButton<?php echo $pos;?>" id="fbSendButton<?php echo $pos;?>-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                </td>
+            </tr>
+
+            <tr class="tabForTr">
+                <td><span class="shrsb_option"><?php _e('Include Google +1 Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                </td>
+                <td style="width:125px"><label><input <?php echo (($shrsb_plugopts["googlePlusOneButton$pos"] == "1")? 'checked="checked"' : ""); ?> name="googlePlusOneButton<?php echo $pos;?>" id="googlePlusOneButton<?php echo $pos;?>-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                </td><td><label><input <?php echo (($shrsb_plugopts["googlePlusOneButton$pos"] == "0")? 'checked="checked"' : ""); ?> name="googlePlusOneButton<?php echo $pos;?>" id="googlePlusOneButton<?php echo $pos;?>-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                </td>
+            </tr>
+
+            <tr class="tabForTr likeButtonSetOptions<?php echo $pos;?>" id="likeButtonSetAlignment<?php echo $pos;?>" style="display:none">
+                <td>
+                    <span class="tab shrsb_option" style="display:block"><?php _e('Button Alignment (w.r.t post)', 'shrsb'); ?></span>
+                </td>
+                <td colspan="2">
+                    <select name="likeButtonSetAlignment<?php echo $pos;?>">
+                        <?php
+                            print shrsb_select_option_group(
+                                'likeButtonSetAlignment'.$pos, array(
+                                    '0'=>__('Left Aligned', 'shrsb'),
+                                    '1'=>__('Right Aligned', 'shrsb')
+                                )
+                            );
+                        ?>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr class ="tabForTr likeButtonSetOptions<?php echo $pos;?>" style="display:none">
+                <td>
+                    <span class="tab shrsb_option" style="display:block"><?php _e('Button Style', 'shrsb'); ?></span>
+                </td>
+                <td style="width:125px">
+                    <select name="likeButtonSetSize<?php echo $pos;?>">
+                        <?php
+                            print shrsb_select_option_group(
+                                "likeButtonSetSize$pos", array(
+                                    '0'=>__('Standard', 'shrsb'),
+                                    '1'=>__('Buttons', 'shrsb'),
+                                    '2'=>__('Box', 'shrsb'),
+                                )
+                            );
+                        ?>
+                    </select>
+                </td>
+
+            </tr>
+
+            <tr class ="tabForTr likeButtonSetOptions<?php echo $pos;?>" style="display:none">
+                <td>
+                    <span class="tab shrsb_option" style="display:block"><?php _e('Show counter for +1 Button:', 'shrsb'); ?></span>
+                </td>
+                <td style="width:125px">
+                    <select name="likeButtonSetCount<?php echo $pos;?>">
+                        <?php
+                            print shrsb_select_option_group(
+                                "likeButtonSetCount$pos", array(
+                                    'true'=>__('Yes', 'shrsb'),
+                                    'false'=>__('No', 'shrsb'),
+                                )
+                            );
+                        ?>
+                    </select>
+                </td>
+
+            </tr>
+
+            <tr class ="tabForTr likeButtonSetOptions<?php echo $pos;?>" style="display:none">
+                <td rowspan="4" colspan="3" >
+                    <small><?php _e('Drag to reorder.', 'shrsb'); ?></small>
+
+                    <div style="clear: both; min-height: 1px; height: 5px; width: 100%;"></div>
+                    <div id="buttonPreviews<?php echo $pos;?>" style="clear: both; max-height: 100px !important; max-width: 600px !important;"><ul>
+                        <?php
+                            $fbLikeHTML = '<li ><div style="display:none; cursor:move;" class="likebuttonpreview'.$pos.'">
+                                        <input name="likeButtonOrder'.$pos.'[]" type="hidden" value="shr-fb-like"/>
+                                    </div></li>';
+                            $plusOneHTML = '<li><div style=" display:none; cursor:move;" class="plusonepreview'.$pos.'">
+                                            <input name="likeButtonOrder'.$pos.'[]" type="hidden" value="shr-plus-one"/>
+                                    </div></li>';
+
+                            $fbSendHTML = '<li><div style = "display:none; cursor:move;" class="sendbuttonpreview'.$pos.' shr-fb-send">
+                                        <input name="likeButtonOrder'.$pos.'[]" type="hidden" value="shr-fb-send"/>
+                                    </div></li>';
+
+                            foreach($shrsb_plugopts['likeButtonOrder'.$pos] as $likeOption) {
+                                switch($likeOption) {
+                                    case "shr-fb-like":
+                                        echo $fbLikeHTML;
+                                        break;
+                                    case "shr-plus-one":
+                                        echo $plusOneHTML;
+                                        break;
+                                    case "shr-fb-send":
+                                        echo $fbSendHTML;
+                                        break;
+                                }
+                            }
+
+                        ?>
+                    </ul></div>
+
+                </td>
+
+
+            </tr>
+
+
+            <tr height="60px">
+                <script>
+                (function ($) {
+                    var renderPlusOnes = function () {
+                            var size = $('select[name$="likeButtonSetSize<?php echo $pos;?>"]').val();
+                            switch(size) {
+                                case '1':
+                                    size = "button";
+                                    break;
+                                case '2':
+                                    size = "box";
+                                    break;
+                                default:
+                                    size = "standard";
+                                    break;
+                            }
+                            var count = $('select[name$="likeButtonSetCount<?php echo $pos;?>"]').val();
+                            switch(count) {
+                                case 'false':
+                                    count = '';
+                                    break;
+                                default:
+                                    count = '-count';
+                                    break;
+                            }
+                            var classN = 'shr-plus-one-' + size + count;
+                            classN = "plusonepreview<?php echo $pos;?> "  + classN;
+                            $('.plusonepreview<?php echo $pos;?>').removeClass().addClass(classN);
+
+                    };
+                    $('select[name$="likeButtonSetCount<?php echo $pos;?>"],select[name$="likeButtonSetSize<?php echo $pos;?>"]').change(function () {
+                        renderPlusOnes();
+                    });
+
+                    renderPlusOnes();
+
+
+                    var renderLikeButtonPreview = function () {
+                        var layout = $('select[name$="likeButtonSetSize<?php echo $pos;?>"]').val();
+                        switch(layout) {
+                            case '1':
+                                layout = "button";
+                                break;
+                            case '2':
+                                layout = "box";
+                                break;
+                            default:
+                                layout = "standard";
+                                break;
+                        }
+                        var classN = 'shr-fb-like-' + layout;
+                        classN = "likebuttonpreview<?php echo $pos;?> "  + classN;
+                        $('.likebuttonpreview<?php echo $pos;?>').removeClass().addClass(classN);
+                    };
+
+                    $('select[name$="likeButtonSetSize<?php echo $pos;?>"]').change(function () {
+                        renderLikeButtonPreview();
+                    });
+                    renderLikeButtonPreview();
+                })(jQuery);
+            </script>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+
+
+        
+
+<?php
+}
+
+function shrsb_addFBNameSpace($attr) {
     $attr .= "\n xmlns:og=\"http://opengraphprotocol.org/schema/\"";
 	$attr .= "\n xmlns:fb=\"http://www.facebook.com/2008/fbml\"";
     return $attr;
@@ -486,16 +705,29 @@ function shrsb_settings_page() {
 			'targetopt' => '_blank', // 'blank' or 'self'
 			'perfoption' => '1', // performance script (GA)
 			'showShareCount' => '1', // fb/twit share count
-            'fbLikeButton' => '0', // Include fb like button
-            'fbSendButton' => '0', // Include fb Send button
-            'fbNameSpace' => '1',  // Add fb name space to the html
-            'likeButtonSetSize' => "1", // Size of like buttons
-            'likeButtonSetCount' => "true", // Show count with +1 button
-            'googlePlusOneButton' => '0', // Include Google Plus One button
-            'fbButtonPos' => 'bottom-right', // if fb like button is included. Include in bottom right by default
+
+            'likeButtonSetTop' => '0', // Include like button below the Post Title
+            'fbLikeButtonTop' => '0', // Include fb like button
+            'fbSendButtonTop' => '0', // Include fb like button
+            'googlePlusOneButtonTop' => '0', // Include Google Plus One button
+            'likeButtonSetSizeTop' => "1", // Size of like buttons
+            'likeButtonSetCountTop' => "true", // Show count with +1 button
+            'likeButtonOrderTop' => $defaultLikeButtonOrder,
+            'likeButtonSetAlignmentTop' => '0', // Alignment 0 => left, 1 => right
+
+
+            'likeButtonSetBottom' => '1', // Include like button below the Post
+            'fbLikeButtonBottom' => '0', // Include fb like button
+            'fbSendButtonBottom' => '0', // Include fb like button
+            'googlePlusOneButtonBottom' => '0', // Include Google Plus One button
+            'likeButtonSetSizeBottom' => "1", // Size of like buttons
+            'likeButtonSetCountBottom' => "true", // Show count with +1 button
+            'likeButtonOrderBottom' => $defaultLikeButtonOrder,
+            'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
+
+
             'preventminify' => '1',  // prevent wp_minify from minifying the js
-            'likeButtonOrder' => $defaultLikeButtonOrder,
-			'shrlink' => '1', // show promo link
+            'shrlink' => '1', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'caring', // default bg image
@@ -663,13 +895,20 @@ function shrsb_settings_page() {
 				}
 			}
 
+
         foreach (array(
             'position', 'reloption', 'targetopt', 'bookmark',
             'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
             'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
             'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
-            'fbLikeButton','fbSendButton','fbNameSpace','googlePlusOneButton','likeButtonSetSize','likeButtonSetCount',
-            'fbButtonPos', 'likeButtonOrder','designer_toolTips' , 'tip_bg_color',
+
+            'likeButtonSetTop','fbLikeButtonTop','fbSendButtonTop','googlePlusOneButtonTop','likeButtonSetSizeTop','likeButtonSetCountTop',
+            'likeButtonOrderTop','likeButtonSetAlignmentTop',
+
+            'likeButtonSetBottom','fbLikeButtonBottom','fbSendButtonBottom','googlePlusOneButtonBottom','likeButtonSetSizeBottom','likeButtonSetCountBottom',
+            'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
+
+            'fbNameSpace','designer_toolTips' , 'tip_bg_color',
             'tip_text_color' , 'preventminify', 'shrlink', 'perfoption', 'apikey'
         )as $field) {
             if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
@@ -918,198 +1157,39 @@ function shrsb_settings_page() {
                 <div class="box-mid-body" id="toggle2">
 					<div class="padding">
 						<div id="genopts">
-                            <table><tbody>
-                                    <tr>
-                                        <td><span class="shrsb_option"><?php _e('Include Facebook Like Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
-                                        </td>
-                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['fbLikeButton'] == "1")? 'checked="checked"' : ""); ?> name="fbLikeButton" id="fbLikeButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
-                                        </td><td><label><input <?php echo (($shrsb_plugopts['fbLikeButton'] == "0")? 'checked="checked"' : ""); ?> name="fbLikeButton" id="fbLikeButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
-                                        </td>
-                                    </tr>
+
+                                    <table><tbody>
 
                                     <tr>
-                                        <td><span class="shrsb_option"><?php _e('Include Facebook Send Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        <td><span class="shrsb_option"><?php _e('Include the like button-set just above the post?', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
-                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['fbSendButton'] == "1")? 'checked="checked"' : ""); ?> name="fbSendButton" id="fbSendButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
-                                        </td><td><label><input <?php echo (($shrsb_plugopts['fbSendButton'] == "0")? 'checked="checked"' : ""); ?> name="fbSendButton" id="fbSendButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['likeButtonSetTop'] == "1")? 'checked="checked"' : ""); ?> name="likeButtonSetTop" id="likeButtonSetTop-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_plugopts['likeButtonSetTop'] == "0")? 'checked="checked"' : ""); ?> name="likeButtonSetTop" id="likeButtonSetTop-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
                                     </tr>
+                                    </tbody></table>
+                                    <?php
+                                        likeButtonSetHTML('Top');
+                                    ?>
+
+                                    <table><tbody>
 
                                     <tr>
-                                        <td><span class="shrsb_option"><?php _e('Include Google +1 Button', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        <td><span class="shrsb_option"><?php _e('Include the like button-set below the post?', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
-                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['googlePlusOneButton'] == "1")? 'checked="checked"' : ""); ?> name="googlePlusOneButton" id="googlePlusOneButton-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
-                                        </td><td><label><input <?php echo (($shrsb_plugopts['googlePlusOneButton'] == "0")? 'checked="checked"' : ""); ?> name="googlePlusOneButton" id="googlePlusOneButton-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
-                                        </td>
-                                    </tr>
-
-                                    <tr class ="likeButtonSetOptions" style="display:none">
-                                        <td>
-                                            <span class="shrsb_option" style="display:block"><?php _e('Button Style', 'shrsb'); ?></span>
-                                        </td>
-                                        <td style="width:125px">
-                                            <select name="likeButtonSetSize">
-                                                <?php
-                                                    print shrsb_select_option_group(
-                                                        'likeButtonSetSize', array(
-                                                            '0'=>__('Standard', 'shrsb'),
-                                                            '1'=>__('Buttons', 'shrsb'),
-                                                            '2'=>__('Box', 'shrsb'),
-                                                        )
-                                                    );
-                                                ?>
-                                            </select>
-                                        </td>
-
-                                    </tr>
-
-                                    <tr class ="likeButtonSetOptions" style="display:none">
-                                        <td>
-                                            <span class="tab" style="display:block"><?php _e('Show counter for +1 Button:', 'shrsb'); ?></span>
-                                        </td>
-                                        <td style="width:125px">
-                                            <select name="likeButtonSetCount">
-                                                <?php
-                                                    print shrsb_select_option_group(
-                                                        'likeButtonSetCount', array(
-                                                            'true'=>__('Yes', 'shrsb'),
-                                                            'false'=>__('No', 'shrsb'),
-                                                        )
-                                                    );
-                                                ?>
-                                            </select>
-                                        </td>
-
-                                    </tr>
-
-                                    <tr class ="likeButtonSetOptions" style="display:none">
-                                        <td rowspan="4" colspan="3" >
-                                            <small><?php _e('Drag to reorder.', 'shrsb'); ?></small>
-                                            
-                                            <div style="clear: both; min-height: 1px; height: 5px; width: 100%;"></div>
-                                            <div id="buttonPreviews" style="clear: both; max-height: 100px !important; max-width: 600px !important;"><ul>
-                                                <?php
-                                                    $fbLikeHTML = '<li ><div style="display:none; cursor:move;" class="likebuttonpreview">
-                                                                <input name="likeButtonOrder[]" type="hidden" value="shr-fb-like"/>
-                                                            </div></li>';
-                                                    $plusOneHTML = '<li><div style=" display:none; cursor:move;" class="plusonepreview">
-                                                                    <input name="likeButtonOrder[]" type="hidden" value="shr-plus-one"/>
-                                                            </div></li>';
-
-                                                    $fbSendHTML = '<li><div style = "display:none; cursor:move;" class="sendbuttonpreview shr-fb-send">
-                                                                <input name="likeButtonOrder[]" type="hidden" value="shr-fb-send"/>
-                                                            </div></li>';
-
-                                                    foreach($shrsb_plugopts['likeButtonOrder'] as $likeOption) {
-                                                        switch($likeOption) {
-                                                            case "shr-fb-like":
-                                                                echo $fbLikeHTML;
-                                                                break;
-                                                            case "shr-plus-one":
-                                                                echo $plusOneHTML;
-                                                                break;
-                                                            case "shr-fb-send":
-                                                                echo $fbSendHTML;
-                                                                break;
-                                                        }
-                                                    }
-
-                                                ?>
-                                            </ul></div>
-                                            
-                                        </td>
-                                        
-                                        
-                                    </tr>
-
-
-                                    <tr height="60px">
-                                        <script>
-                                        (function ($) {
-                                            var renderPlusOnes = function () {
-                                                    var size = $('select[name$="likeButtonSetSize"]').val();
-                                                    switch(size) {
-                                                        case '1':
-                                                            size = "button";
-                                                            break;
-                                                        case '2':
-                                                            size = "box";
-                                                            break;
-                                                        default:
-                                                            size = "standard";
-                                                            break;
-                                                    }
-                                                    var count = $('select[name$="likeButtonSetCount"]').val();
-                                                    switch(count) {
-                                                        case 'false':
-                                                            count = '';
-                                                            break;
-                                                        default:
-                                                            count = '-count';
-                                                            break;
-                                                    }
-                                                    var classN = 'shr-plus-one-' + size + count;
-                                                    classN = "plusonepreview "  + classN;
-                                                    $('.plusonepreview').removeClass().addClass(classN);
-                                                
-                                            };
-                                            $('select[name$="likeButtonSetCount"],select[name$="likeButtonSetSize"]').change(function () {
-                                                renderPlusOnes();
-                                            });
-
-                                            renderPlusOnes();
-
-
-                                            var renderLikeButtonPreview = function () {
-                                                var layout = $('select[name$="likeButtonSetSize"]').val();
-                                                switch(layout) {
-                                                    case '1':
-                                                        layout = "button";
-                                                        break;
-                                                    case '2':
-                                                        layout = "box";
-                                                        break;
-                                                    default:
-                                                        layout = "standard";
-                                                        break;
-                                                }
-                                                var classN = 'shr-fb-like-' + layout;
-                                                classN = "likebuttonpreview "  + classN;
-                                                $('.likebuttonpreview').removeClass().addClass(classN);
-                                            };
-
-                                            $('select[name$="likeButtonSetSize"]').change(function () {
-                                                renderLikeButtonPreview();
-                                            });
-                                            renderLikeButtonPreview();
-                                        
-
-                                        })(jQuery);
-                                    </script>
-                                    </tr>
-                                    <tr></tr>
-                                    <tr></tr>
-
-                                    <tr id="fbButtonPos" style="display:none">
-                                        <td>
-                                            <span class="shrsb_option" style="display:block"><?php _e('Placement Location:', 'shrsb'); ?></span>
-                                        </td>
-                                        <td colspan="2">
-                                            <select name="fbButtonPos">
-                                                <?php
-                                                    print shrsb_select_option_group(
-                                                        'fbButtonPos', array(
-                                                            'top-left'=>__('Above bookmarks to the Left', 'shrsb'),
-                                                            'top-right'=>__('Above bookmarks to the Right', 'shrsb'),
-                                                            'bottom-left'=>__('Below bookmarks to the Left', 'shrsb'),
-                                                            'bottom-right'=>__('Below bookmarks to the Right', 'shrsb'),
-                                                        )
-                                                    );
-                                                ?>
-                                            </select>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['likeButtonSetBottom'] == "1")? 'checked="checked"' : ""); ?> name="likeButtonSetBottom" id="likeButtonSetBottom-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_plugopts['likeButtonSetBottom'] == "0")? 'checked="checked"' : ""); ?> name="likeButtonSetBottom" id="likeButtonSetBottom-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
                                     </tr>
-                                </tbody></table>
+                                    <?php
+                                        likeButtonSetHTML('Bottom');
+                                    ?>
+
+                                    </tbody></table>
+
+
+
+                            
                                 
                                 <br />
                                 

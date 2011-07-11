@@ -302,6 +302,8 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 /* Functionality options Styles*/
 #genopts td:first-child {min-width: 380px;}
 .tab{margin-left: 30px !important; }
+
+.tabForTr td:first-child{padding-left: 30px !important; }
 /* End of functionality options Styles*/
 /*------------------------------------------------------------------------------------------*/
 .shr-fb-like-standard {background-image:url(../images/fbplusone.png);background-position:0 -5px; width: 60px !important; height: 35px !important;}
@@ -337,4 +339,4 @@ div.box-right-body ul.langs li a{text-decoration:none;}
             background-image: none !important;
 }
 
-#buttonPreviews li {margin:0px 10px !important; padding:0px !important; float:left;}
+#buttonPreviewsTop li,#buttonPreviewsBottom li {margin:0px 10px !important; padding:0px !important; float:left;}

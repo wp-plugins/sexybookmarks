@@ -344,10 +344,10 @@ function shrsb_position_menu($post_content) {
 	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
-    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-      $config = shrsb_get_publisher_config($post->ID);
-      $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
-    }
+        if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+              $config = shrsb_get_publisher_config($post->ID);
+              $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+        }
 		return $post_content;
 	}
 
@@ -356,98 +356,19 @@ function shrsb_position_menu($post_content) {
 		return $post_content;
 	}
 
+
+    $output = "";
+    $likeButtonSetTop = "";
+    $likeButtonSetBottom = "";
+
 	// Decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || (is_feed() && !empty($shrsb_plugopts['feed']))) { 
     // socials should be generated and added
     if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
       if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-        $href = urlencode(get_permalink($post->ID));
-        $output = "";
-        $float = "none";
-
-        if(strpos($shrsb_plugopts['fbButtonPos'],'right')) {
-            $float = "right";
-        }
-
-        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['fbSendButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
-
-            $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
-            $like_layout = $shrsb_plugopts['likeButtonSetSize'];
-            $height = "";
-            switch($like_layout) {
-                case '2':
-                    $height = "height:60px";
-                    break;
-                default:
-                    $height = "height:30px";
-                    break;
-            }
-            $output .= "<div class='shareaholic-like-buttonset' style='float:$float;$height;'>";
-            $plusOneHTML = "";
-            $fbLikeHTML = "";
-            $fbSendHTML = "";
-            
-            if($shrsb_plugopts['googlePlusOneButton'] == '1') {
-                $plusoneSize = $shrsb_plugopts['likeButtonSetSize'];
-                switch($plusoneSize) {
-                    case '1':
-                        $plusoneSize = "medium";
-                        break;
-                    case '2':
-                        $plusoneSize = "tall";
-                        break;
-                    default:
-                        $plusoneSize = "standard";
-                        break;
-                }
-                $plusoneCount = $shrsb_plugopts['likeButtonSetCount'];
-                $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href'></a>";
-            }
-            if($shrsb_plugopts['fbLikeButton'] == '1') {
-                $like_layout = $shrsb_plugopts['likeButtonSetSize'];
-                switch($like_layout) {
-                    case '1':
-                        $like_layout = "button_count";
-                        break;
-                    case '2':
-                        $like_layout = "box_count";
-                        break;
-                    default:
-                        $like_layout = "standard";
-                        break;
-                }
-                $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href'></a>";
-            }
-
-            if($shrsb_plugopts['fbSendButton'] == '1') {
-                $fbSendHTML = "<a class='shareaholic-fbsend' shr_href='$href'></a>";
-            }
-
-            foreach($shrsb_plugopts['likeButtonOrder'] as $likeOption) {
-                switch($likeOption) {
-                    case "shr-fb-like":
-                        $output .= $fbLikeHTML;
-                        break;
-                    case "shr-plus-one":
-                        $output .= $plusOneHTML;
-                        break;
-                    case "shr-fb-send":
-                        $output .= $fbSendHTML;
-                        break;
-                }
-            }
-            
-            $output .= '</div>';
-
-            if(strpos($shrsb_plugopts['fbButtonPos'],'bottom') === 0) {
-                $output = '<div class="shr-publisher-'.$post->ID.'"></div>'.$spacer.$output;
-            } else {
-                $output .= $spacer.'<div class="shr-publisher-'.$post->ID.'"></div>';
-            }
-        } else {
-            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
-        }
-        
+        $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
+        $likeButtonSetTop = get_shr_like_buttonset('Top');
+        $likeButtonSetBottom = get_shr_like_buttonset('Bottom');
         $config = shrsb_get_publisher_config($post->ID);
 
         $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
@@ -474,29 +395,30 @@ function shrsb_position_menu($post_content) {
       default:
         error_log(__('An unknown error occurred in SexyBookmarks','shrsb'));
     }
+
+    $r = $likeButtonSetTop.$r.$likeButtonSetBottom;
   }
 
   return $r;
 } // End shrsb_position_menu...
 
 
-function get_sexy() {
-	global $shrsb_plugopts, $wp_query, $post;
-	$spost = $wp_query->post;
+function get_shr_like_buttonset($pos = 'Bottom') { // $pos = 'Bottom'/'Top' Case sensitive
+        global $shrsb_plugopts, $post;
 
-
-    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
         $href = urlencode(get_permalink($post->ID));
         $output = "";
         $float = "none";
 
-        if(strpos($shrsb_plugopts['fbButtonPos'],'right')) {
+        if($shrsb_plugopts['likeButtonSetAlignment'.$pos] == '1') {
             $float = "right";
         }
 
-        if($shrsb_plugopts['fbLikeButton'] == '1' || $shrsb_plugopts['fbSendButton'] == '1' || $shrsb_plugopts['googlePlusOneButton'] == '1') {
+        if($shrsb_plugopts['likeButtonSet'.$pos] &&
+                ($shrsb_plugopts['fbLikeButton'.$pos] == '1' || $shrsb_plugopts['fbSendButton'.$pos] == '1' || $shrsb_plugopts['googlePlusOneButton'.$pos] == '1')) {
+
             $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
-            $like_layout = $shrsb_plugopts['likeButtonSetSize'];
+            $like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
             $height = "";
             switch($like_layout) {
                 case '2':
@@ -511,8 +433,8 @@ function get_sexy() {
             $fbLikeHTML = "";
             $fbSendHTML = "";
 
-            if($shrsb_plugopts['googlePlusOneButton'] == '1') {
-                $plusoneSize = $shrsb_plugopts['likeButtonSetSize'];
+            if($shrsb_plugopts['googlePlusOneButton'.$pos] == '1') {
+                $plusoneSize = $like_layout;
                 switch($plusoneSize) {
                     case '1':
                         $plusoneSize = "medium";
@@ -524,11 +446,11 @@ function get_sexy() {
                         $plusoneSize = "standard";
                         break;
                 }
-                $plusoneCount = $shrsb_plugopts['likeButtonSetCount'];
+                $plusoneCount = $shrsb_plugopts['likeButtonSetCount'.$pos];
                 $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href'></a>";
             }
-            if($shrsb_plugopts['fbLikeButton'] == '1') {
-                $like_layout = $shrsb_plugopts['likeButtonSetSize'];
+            if($shrsb_plugopts['fbLikeButton'.$pos] == '1') {
+                //$like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
                 switch($like_layout) {
                     case '1':
                         $like_layout = "button_count";
@@ -543,12 +465,11 @@ function get_sexy() {
                 $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href'></a>";
             }
 
-
-            if($shrsb_plugopts['fbSendButton'] == '1') {
+            if($shrsb_plugopts['fbSendButton'.$pos] == '1') {
                 $fbSendHTML = "<a class='shareaholic-fbsend' shr_href='$href'></a>";
             }
 
-            foreach($shrsb_plugopts['likeButtonOrder'] as $likeOption) {
+            foreach($shrsb_plugopts['likeButtonOrder'.$pos] as $likeOption) {
                 switch($likeOption) {
                     case "shr-fb-like":
                         $output .= $fbLikeHTML;
@@ -563,17 +484,22 @@ function get_sexy() {
             }
 
             $output .= '</div>';
-
-            if(strpos($shrsb_plugopts['fbButtonPos'],'bottom') === 0) {
-                $output = '<div class="shr-publisher-'.$post->ID.'"></div>'.$spacer.$output;
-            } else {
-                $output .= $spacer.'<div class="shr-publisher-'.$post->ID.'"></div>';
-            }
-        }else {
-            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
+            $output = $spacer.$output.$spacer;
         }
+        $output = "<!-- Start LikeButtonSet$pos -->".$output."<!-- End LikeButtonSet$pos -->";
 
         return $output;
+}
+
+
+function get_sexy() {
+	global $shrsb_plugopts, $wp_query, $post;
+	$spost = $wp_query->post;
+
+
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
+            return $output;
     }
 
 	if($shrsb_plugopts['position'] == 'manual') {
@@ -887,9 +813,9 @@ function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    echo '<script type="text/javascript">SHRSB_Settings = ';
+    echo '<script type="text/javascript">var SHRSB_Settings = ';
     echo json_encode($shrsb_js_params);
-    echo '</script>';
+    echo ';</script>';
   }
 }
 

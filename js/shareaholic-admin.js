@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 	});
 
 
-    jQuery('#buttonPreviews').sortable({
+    jQuery('#buttonPreviewsTop,#buttonPreviewsBottom').sortable({
 		delay:        250,
 		cursor:      'move',
 		scroll:       true,
@@ -29,6 +29,8 @@ jQuery(document).ready(function() {
         forcePlaceholderSize: true,
         items: 'li'
 	});
+
+
 	//Select all icons upon clicking
 	jQuery('#sel-all').click(function() {
 		jQuery('#shrsb-networks').each(function() {
@@ -143,55 +145,120 @@ jQuery(document).ready(function() {
 			jQuery('#shortyapidiv-supr').fadeOut('fast');
 		}
 	});
+
+
+    jQuery('#likeButtonSetTop-yes').click(function() {
+        if (this.checked) {
+			jQuery('.likeButtonsAvailableTop').fadeIn('fast');
+		}
+    });
+    jQuery('#likeButtonSetTop-no').click(function() {
+        if (this.checked) {
+			jQuery('.likeButtonsAvailableTop').fadeOut('fast');
+		}
+    });
+
+    jQuery('#likeButtonSetBottom-yes').click(function() {
+        if (this.checked) {
+			jQuery('.likeButtonsAvailableBottom').fadeIn('fast');
+		}
+    });
+    jQuery('#likeButtonSetBottom-no').click(function() {
+        if (this.checked) {
+			jQuery('.likeButtonsAvailableBottom').fadeOut('fast');
+		}
+    });
+
+
+
+    jQuery('#fbLikeButtonTop-yes').click(function() {
+        if (this.checked) {
+			jQuery('.likebuttonpreviewTop').fadeIn('fast');
+		}
+    });
+    jQuery('#fbLikeButtonBottom-yes').click(function() {
+        if (this.checked) {
+			jQuery('.likebuttonpreviewBottom').fadeIn('fast');
+		}
+    });
+
+    jQuery('#fbLikeButtonTop-no').click(function() {
+        if (this.checked) {
+			jQuery('.likebuttonpreviewTop').fadeOut('fast');
+		}
+    });
+    jQuery('#fbLikeButtonBottom-no').click(function() {
+        if (this.checked) {
+			jQuery('.likebuttonpreviewBottom').fadeOut('fast');
+		}
+    });
+
+    jQuery('#fbSendButtonBottom-yes').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreviewBottom').fadeIn('fast');
+		}
+    });
+    jQuery('#fbSendButtonTop-yes').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreviewTop').fadeIn('fast');
+		}
+    });
+
+    jQuery('#fbSendButtonTop-no').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreviewTop').fadeOut('fast');
+		}
+    });
+    jQuery('#fbSendButtonBottom-no').click(function() {
+        if (this.checked) {
+			jQuery('.sendbuttonpreviewBottom').fadeOut('fast');
+		}
+    });
+
+    jQuery('#googlePlusOneButtonTop-yes').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreviewTop').fadeIn('fast');
+		}
+    });
+
+    jQuery('#googlePlusOneButtonTop-no').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreviewTop').fadeOut('fast');
+		}
+    });
+    jQuery('#googlePlusOneButtonBottom-yes').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreviewBottom').fadeIn('fast');
+		}
+    });
+
+    jQuery('#googlePlusOneButtonBottom-no').click(function() {
+        if (this.checked) {
+			jQuery('.plusonepreviewBottom').fadeOut('fast');
+		}
+    });
     
-    jQuery('#fbLikeButton-yes').click(function() {
+    jQuery('#fbLikeButtonTop-yes,#googlePlusOneButtonTop-yes,#fbSendButtonTop-yes').click(function() {
         if (this.checked) {
-			jQuery('.likebuttonpreview').fadeIn('fast');
+            jQuery('.likeButtonSetOptionsTop').fadeIn('fast');
 		}
-    });
-
-    jQuery('#fbLikeButton-no').click(function() {
+	});
+    jQuery('#fbLikeButtonBottom-yes,#googlePlusOneButtonBottom-yes,#fbSendButtonBottom-yes').click(function() {
         if (this.checked) {
-			jQuery('.likebuttonpreview').fadeOut('fast');
-		}
-    });
-
-    jQuery('#fbSendButton-yes').click(function() {
-        if (this.checked) {
-			jQuery('.sendbuttonpreview').fadeIn('fast');
-		}
-    });
-
-    jQuery('#fbSendButton-no').click(function() {
-        if (this.checked) {
-			jQuery('.sendbuttonpreview').fadeOut('fast');
-		}
-    });
-
-    jQuery('#googlePlusOneButton-yes').click(function() {
-        if (this.checked) {
-			jQuery('.plusonepreview').fadeIn('fast');
-		}
-    });
-
-    jQuery('#googlePlusOneButton-no').click(function() {
-        if (this.checked) {
-			jQuery('.plusonepreview').fadeOut('fast');
-		}
-    });
-    
-    jQuery('#fbLikeButton-yes,#googlePlusOneButton-yes,#fbSendButton-yes').click(function() {
-        if (this.checked) {
-			jQuery('#fbButtonPos').fadeIn('fast');
-            jQuery('.likeButtonSetOptions').fadeIn('fast');
+            jQuery('.likeButtonSetOptionsBottom').fadeIn('fast');
 		}
 	});
 
-    jQuery('#fbLikeButton-no,#googlePlusOneButton-no,#fbSendButton-no').click(function() {
-        if(jQuery('#fbLikeButton-no').get(0).checked && jQuery('#googlePlusOneButton-no').get(0).checked
-                && jQuery('#fbSendButton-no').get(0).checked) {
-        	jQuery('#fbButtonPos').fadeOut('fast');
-            jQuery('.likeButtonSetOptions').fadeOut('fast');
+    jQuery('#fbLikeButtonTop-no,#googlePlusOneButtonTop-no,#fbSendButtonTop-no').click(function() {
+        if(jQuery('#fbLikeButtonTop-no').get(0).checked && jQuery('#googlePlusOneButtonTop-no').get(0).checked
+                && jQuery('#fbSendButtonTop-no').get(0).checked) {
+            jQuery('.likeButtonSetOptionsTop').fadeOut('fast');
+		}
+	});
+    jQuery('#fbLikeButtonBottom-no,#googlePlusOneButtonBottom-no,#fbSendButtonBottom-no').click(function() {
+        if(jQuery('#fbLikeButtonBottom-no').get(0).checked && jQuery('#googlePlusOneButtonBottom-no').get(0).checked
+                && jQuery('#fbSendButtonBottom-no').get(0).checked) {
+            jQuery('.likeButtonSetOptionsBottom').fadeOut('fast');
 		}
 	});
 
@@ -309,26 +376,56 @@ jQuery(document).ready(function() {
 
 	});
     // Check if like button is included and show the position prefs
-    var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked || jQuery('#googlePlusOneButton-yes').get(0).checked || jQuery('#fbSendButton-yes').get(0).checked;
+    
+    //var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked || jQuery('#googlePlusOneButton-yes').get(0).checked || jQuery('#fbSendButton-yes').get(0).checked;
 
-    if(likeBtnChecked) {
-        jQuery('.likeButtonSetOptions').fadeIn('fast');
-        jQuery('#fbButtonPos').fadeIn('fast');
+
+
+    if (jQuery('#likeButtonSetTop-yes').get(0).checked) {
+        jQuery('.likeButtonsAvailableTop').fadeIn('fast');
     }
 
-    var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked;
-    if(likeBtnChecked) {
-        jQuery('.likebuttonpreview').fadeIn('fast');
+    if (jQuery('#likeButtonSetBottom-yes').get(0).checked) {
+        jQuery('.likeButtonsAvailableBottom').fadeIn('fast');
     }
 
-    var sendBtnChecked = jQuery('#fbSendButton-yes').get(0).checked;
-    if(sendBtnChecked) {
-        jQuery('.sendbuttonpreview').fadeIn('fast');
+    
+
+
+
+
+    if(jQuery('#fbLikeButtonTop-yes').get(0).checked
+            || jQuery('#googlePlusOneButtonTop-yes').get(0).checked
+            || jQuery('#fbSendButtonTop-yes').get(0).checked) {
+        jQuery('.likeButtonSetOptionsTop').fadeIn('fast');
     }
 
-    var plusoneButtonChecked = jQuery('#googlePlusOneButton-yes').get(0).checked;
-    if(plusoneButtonChecked) {
-        jQuery('.plusonepreview').fadeIn('fast');
+    if(jQuery('#fbLikeButtonBottom-yes').get(0).checked
+            || jQuery('#googlePlusOneButtonBottom-yes').get(0).checked
+            || jQuery('#fbSendButtonBottom-yes').get(0).checked) {
+        jQuery('.likeButtonSetOptionsBottom').fadeIn('fast');
+    }
+
+    if(jQuery('#fbLikeButtonTop-yes').get(0).checked) {
+        jQuery('.likebuttonpreviewTop').fadeIn('fast');
+    }
+    if(jQuery('#fbLikeButtonBottom-yes').get(0).checked) {
+        jQuery('.likebuttonpreviewBottom').fadeIn('fast');
+    }
+
+    if(jQuery('#fbSendButtonTop-yes').get(0).checked) {
+        jQuery('.sendbuttonpreviewTop').fadeIn('fast');
+    }
+    if(jQuery('#fbSendButtonBottom-yes').get(0).checked) {
+        jQuery('.sendbuttonpreviewBottom').fadeIn('fast');
+    }
+
+    if(jQuery('#googlePlusOneButtonTop-yes').get(0).checked) {
+        jQuery('.plusonepreviewTop').fadeIn('fast');
+    }
+
+    if(jQuery('#googlePlusOneButtonBottom-yes').get(0).checked) {
+        jQuery('.plusonepreviewBottom').fadeIn('fast');
     }
 
 
