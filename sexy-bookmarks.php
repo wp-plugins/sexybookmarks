@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.5.1
+Version: 4.0.5.2
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -11,7 +11,7 @@ Author URI: http://www.shareaholic.com
 
 */
 
-define('SHRSB_vNum','4.0.5.1');
+define('SHRSB_vNum','4.0.5.2');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -68,22 +68,22 @@ if ( !defined('WP_CONTENT_URL') ) {
 
 /*
 *   @author Ankur Agarwal
-*   @desc Setting path for Shareaholic WP Upload directory
+*   @desc Setting path for Shareaholic WP Upload directory - a) check u
 */
 
 if ( !function_exists('wp_upload_dir') ) {
-        define('SHRSB_UPLOADPATH_DEFAULT',get_option('siteurl').'/wp-content/uploads/shareaholic/');
-        define('SHRSB_UPLOADDIR_DEFAULT', ABSPATH.'/wp-content/uploads/shareaholic/');
+        define('SHRSB_UPLOADPATH_DEFAULT', shrb_addTrailingChar(get_option('siteurl'),"/").'wp-content/uploads/shareaholic/');
+        define('SHRSB_UPLOADDIR_DEFAULT', shrb_addTrailingChar(ABSPATH,"/").'wp-content/uploads/shareaholic/');
     } else {
         $upload_path  = wp_upload_dir();
         if(!$upload_path["error"]){
             define('SHRSB_UPLOADPATH_DEFAULT',shrb_addTrailingChar($upload_path['baseurl'],"/").'shareaholic/');
             define('SHRSB_UPLOADDIR_DEFAULT',shrb_addTrailingChar($upload_path['basedir'],"/").'shareaholic/');
-        }else{
-            @error_log("wp_upload_dir() is not working properly");
-        }
-    }
-    
+        }else {
+            define('SHRSB_UPLOADPATH_DEFAULT',SHRSB_PLUGPATH);
+            define('SHRSB_UPLOADDIR_DEFAULT',SHRSB_PLUGDIR);
+      }
+}
     
 $shrsb_most_popular = array (
     'shr-printfriendly',
@@ -158,7 +158,7 @@ $shrsb_plugopts = array(
   'tip_text_color' => '#ffffff', // tooltip text color
   // comma delimited list of service ids for publisher javascript
   'service' => '',
-  'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
+  'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
 );
 
 //add to database
@@ -767,7 +767,7 @@ function shrsb_settings_page() {
             'likeButtonOrderBottom' => $defaultLikeButtonOrder,
             'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
 
-
+            'fbNameSpace' => '1',  // Add fb name space to the html
             'preventminify' => '1',  // prevent wp_minify from minifying the js
             'shrlink' => '1', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
@@ -791,7 +791,7 @@ function shrsb_settings_page() {
             'designer_toolTips' => '1',
             'tip_bg_color' => '#000000',  // tooltip background color
             'tip_text_color' => '#ffffff', // tooltip text color
-            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
+            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
         );
         
 
