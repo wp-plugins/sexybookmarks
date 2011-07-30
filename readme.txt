@@ -1,9 +1,9 @@
 === SexyBookmarks | email, bookmark, and share buttons ===
 Contributors: shareaholic
-Tags: sexybookmarks,sexy bookmarks,sexy,shareaholic,social bookmarking,social,bookmarks menu,bookmarking,share,goo.gl,googl,url shortener,bit.ly,bitly,sharethis,addtoany,sharedaddy,sociable,sharing,saving,posting,sharing is sexy,google,google buzz,buzz it,button, digg,delicious,diigo,myspace,twitter,facebook,gmail,LinkedIn,Instapaper,notebook,blogger,print,stats,seo,analytics,social media,share counts,sharecount,tinyurl,hubspot,plaxo,read it later, readitlater,instapaper,buzzfeed,pinboard,translate,yammer,supr,myspace,orkut,techmeme,email,e-mail,technorati,reddit,stumbleupon,yahoo,wpmu
+Tags: Facebook, Twitter, LinkedIn, URL Shortener, URL Shortner, Bit.ly, Bitly, Supr, Su.pr, Goo.gl, Googl, Google +1, Google Plus, Google 1, +1, Google, Google +, Instapaper, Amazon Wish List, Digg, Google Buzz, Buzz It, Google Apps, Google Gmail, Gmail, Google Notebook, Google Reader, SideWiki, WordPress, Blogger, Translate, TypePad, LiveJournal, Posterous, Soup.io, Tumblr, AIM, Yahoo Messenger, Delicious, Google Bookmarks, StumbleUpon, Dwellicious, Bebo, Mister Wong, Evernote, Netvibes, Stumpedia, Twine, Connotea, Diigo, Folkd, Simpy, addthis, addtoany, sharethis, sharedaddy, jetpack, sociable, share and follow, Hotmail, Share Button, AOL Mail, Outlook, Eudora, Thunderbird, Mail, Buzzster, Yahoo Buzz, Yahoo, Yahoo Mail, Reddit, Techmeme, YC Hacker News, Y Combinator, TechStars, Tweetmeme, SmakNews, Tipd, Care2, Current, YouTube, Hootsuite, Social Media Dashboard, Tweet Button, Fark, Khabbr, Xmarks, Foxmarks, Mixx, Readability, NewsTrust, Marginize, NowPublic, Brizzly, Propeller, Slashdot, Boxee, Kaboodle, Sphinn, MySpace, Orkut, Plurk, Identi.ca, Mozillaca, FriendFeed, Hyves, Netlog, Amplify, Plaxo, Tweetie, Technorati, Klout, Peerindex, Hub.tm, Hubspot, Is.gd, j.mp, TinyURL, Tr.im, WeHeartIt, Yandex, Clicky.me, Su.pr, Print, PrintFriendly, Print, Read It Later, ReadItLater, Yammer, Google Translate, Box.net, Pinboard, BuzzFeed, Shareaholic, Shareholic, Sexybookmarks, Sexy Bookmarks, Sexy, Bookmarks, Social, E-mail, Email, Email Button, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Sharing is Sexy, Sharing is Caring, Share and Enjoy, Sharecount, Share Count, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU
 Requires at least: 2.7
-Tested up to: 3.1.1
-Stable tag: 3.3.11
+Tested up to: 3.2.1
+Stable tag: 4.0.5.3
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -13,13 +13,15 @@ Though the name may be a little "edgy" for some, SexyBookmarks has proven time a
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates =
-* URL shortening now 100% faster, better, smarter -- we moved the shortening function to the Share API for much improved reliability
+* Facebook Like Button, Facebook Send, Google +1
+* Analytics: meet the people who spread your content the most
+* Share Counters for Twitter and Facebook
+* Official support for Google's URL shortener (goo.gl)
 * Switched over to use the Share API (http://shareapi.com)
-* Share Counters for Twitter and Facebook! (beta exclusive)
 * Fix for Arras theme
-* Adds official support for Google's URL shortener (goo.gl)
-* Fixes slow page load issue
+* Fixed slow page load issue
 * Loads of behind the scenes performance improvements
+* Localized in 15+ languages
 
 = Recently Added Sites =
 * Yahoo! Mail
@@ -96,6 +98,13 @@ If you would like to insert the menu manually, simply choose "Manual Mode" from 
 
 `<?php if(function_exists('selfserv_shareaholic')) { selfserv_shareaholic(); } ?>`
 
+Like/+1 Button Set:
+
+`<?php if(function_exists('get_shr_like_buttonset')) { get_shr_like_buttonset('Top'); } ?>`
+
+`<?php if(function_exists('get_shr_like_buttonset')) { get_shr_like_buttonset('Bottom'); } ?>`
+
+
 You can still configure the other options available when inserting manually and they will be passed to the function. This is for those of you who have requested to be able to place the menu anywhere you choose... Enjoy!
 
 
@@ -108,6 +117,60 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 4.0.5.3 =
+* Small bug fix affecting very few
+
+= 4.0.5.2 =
+* Fixes path issues with previous release (critical update if you upgraded to v4.0.5.1)
+
+= 4.0.5.1 =
+* Lots of performance upgrades
+* No longer need to re-CHMOD directories on upgrade!
+* Can now specify custom directory to store Shareaholic custom files
+
+= 4.0.4.2 =
+* Super charged options for Like/Send/+1 Button set
+* Quick bug fixes affecting some themes
+* Ability to disable SexyBookmarks from specific pages now limited to site Editors and Admins only.
+
+= 4.0.4.1 =
+* Bug fixes (highly recommended update)
+
+= 4.0.3 =
+* Quick bug fix affecting some themes
+
+= 4.0.2 =
+* Lots of performance enhancements
+* Now includes Google's +1 Button
+* Now includes Facebook's Send Button
+* Updated translations:
+  * French (by [Maitre Mo](http://maitremo.fr))
+  * Greek (by Daphne Christoforidou)
+  * Estonian (by Cristo Pajust)
+  * German (by Michael S.)
+  * Dutch (by Arend & Adriaan)
+  * Lithuanian (by Aukse)
+  * Bulgarian (by Mladen Gradev)
+  * Hungarian (by Murvai-Buzogány László)
+  * Spanish (by Diego)
+  * Portuguese - Brazil (by Oscar)
+  * Farsi - Persian (by Mohammad)
+* Fix for cases of misaligned Designer Tooltips
+* Fix for potential conflict with Featured Content Gallery plugin
+* Ability to disable SexyBookmarks from specific pages (ex. password protected pages)
+
+= 4.0.1 =
+* Facebook Like Button
+* Plugin Health Status Monitor
+* Designer Tooltips
+* Analytics: meet the people who spread your content the most
+* Faster Twitter loading
+
+= 3.3.12 =
+* Added "Share Count" support for Google Buzz
+* Cleaned up folder structure
+* Tweaks for mobile browsers (iphone, ipod, etc)
 
 = 3.3.11 =
 * Google hosted jQuery now only loads if not already present on page (plugin needs jQuery 1.4.4+)
