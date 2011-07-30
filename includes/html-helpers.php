@@ -2,7 +2,7 @@
 //list all bookmarks in the plugin options page
 function shrsb_network_input_select($name, $hint) {
 	global $shrsb_plugopts;
-	return sprintf('<label class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</label>',
+	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
 		$name,
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
@@ -66,7 +66,7 @@ function shrsb_is_mobile_browser() {
 function bookmark_list_item($name, $opts=array()) {
 	global $shrsb_plugopts, $shrsb_bookmarks_data, $post;
     $onclick = "";
-  $post_info = shrsb_get_params($post->id);
+  $post_info = shrsb_get_params($post->ID);
   // If Twitter, check for custom tweet configuration and modify tweet accordingly
   if($name == 'shr-twitter') {
 
@@ -85,8 +85,8 @@ function bookmark_list_item($name, $opts=array()) {
             SHR_config["shortener_key"] ="'.$post_info['shortener_key'].'";
             SHR_config["apikey"] = "'.$shrsb_plugopts['apikey'].'";
             SHR_config["twitter_template"] = "'.$shrsb_plugopts['tweetconfig'].'";
-            SHR_config["link"] = "'.PERMALINK.'";
-            SHR_config["title"] = "'.TITLE.'";
+            SHR_config["link"] = "PERMALINK";
+            SHR_config["title"] = "TITLE";
             SHR_config["short_link"] = "'.$post_info['short_link'].'";
 
             if(!window.SHR || !window.SHR.Servicelet) {
@@ -94,7 +94,7 @@ function bookmark_list_item($name, $opts=array()) {
                 var s=d.createElement("script");
                 s.setAttribute("language","javascript");
                 s.id="shr-servicelet";
-                s.setAttribute("src", "'.$shrsb_plugopts['shrbase'].'" + "/media/js/servicelet.js");
+                s.setAttribute("src", "'.$shrsb_plugopts['shrbase'].'" + "/media/js/servicelet.min.js");
                 d.body.appendChild(s);
             } else{
                 SHR.Servicelet.show();
@@ -149,18 +149,15 @@ function bookmark_list_item($name, $opts=array()) {
 																			));
   }
 
-
-	if($name == 'shr-facebook') {
-		$onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
-	}
-  else {
-    if($shrsb_plugopts['targetopt'] == '_blank') {
-      $topt = ' class="external"';
+    $topt = '';
+    if($name == 'shr-facebook') {
+        $onclick = " onclick=\"window.open(this.href,'sharer','toolbar=0,status=0,width=626,height=436'); return false;\"";
     }
     else {
-      $topt = '';
+        if($shrsb_plugopts['targetopt'] == '_blank') {
+            $topt = ' class="external"';
+        }
     }
-  }
 	foreach ($opts as $key=>$value) {
 		$url=str_replace(strtoupper($key), $value, preg_replace('/\s+/', '%20', $url));
 	}
