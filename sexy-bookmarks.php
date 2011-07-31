@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.5.3
+Version: 4.0.5.4
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -11,18 +11,18 @@ Author URI: http://www.shareaholic.com
 
 */
 
-define('SHRSB_vNum','4.0.5.3');
+define('SHRSB_vNum','4.0.5.4');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
 */
 
-require_once 'includes/bookmarks-data.php'; // contains all bookmark templates.
-require_once 'includes/html-helpers.php'; // helper functions for html output.
-require_once 'includes/helper-functions.php'; // helper functions for backend
+require_once 'includes/bookmarks-data.php';     // contains all bookmark templates.
+require_once 'includes/html-helpers.php';       // helper functions for html output.
+require_once 'includes/helper-functions.php';   // helper functions for backend
 
 /*
-*   @note Create Text Domain For Translations
+*   @desc Create Text Domain For Translations
 */
 
 load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
@@ -68,7 +68,7 @@ if ( !defined('WP_CONTENT_URL') ) {
 
 /*
 *   @author Ankur Agarwal
-*   @desc Setting path for Shareaholic WP Upload directory - a) check u
+*   @desc Setting path for Shareaholic Upload directory (local WP)
 */
 
 if ( !function_exists('wp_upload_dir') ) {
@@ -84,19 +84,24 @@ if ( !function_exists('wp_upload_dir') ) {
             define('SHRSB_UPLOADDIR_DEFAULT',SHRSB_PLUGDIR);
       }
 }
-    
+
+/*
+*   @desc Most Popular Services List
+*   @note To change the most popular list also change the "Most Popular" link click handler in shareaholic-admin.js
+*/
+
 $shrsb_most_popular = array (
-    'shr-printfriendly',
-    'shr-reddit',
+    'shr-facebook',
+    'shr-twitter',
+    'shr-linkedin',
+    'shr-googlebookmarks',
     'shr-delicious',
     'shr-stumbleupon',
-    'shr-linkedin',
-    'shr-twitter',
-    'shr-googlebuzz',
-    'shr-facebook',
+    'shr-reddit',
     'shr-gmail',
-    'shr-mail'
-); // To change the most popular list we need to also change the "Most Popular" link click handler in admin page
+    'shr-mail',
+    'shr-printfriendly'
+);
 
 $defaultLikeButtonOrder = array(
     'shr-fb-like',
@@ -160,6 +165,8 @@ $shrsb_plugopts = array(
   'service' => '',
   'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
 );
+
+
 
 //add to database
 $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
@@ -890,29 +897,6 @@ function shrsb_settings_page() {
 		}
 
 
-        /** MoveID:1 Start**/
-        foreach (array(
-                'position', 'reloption', 'targetopt', 'bookmark',
-                'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
-                'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
-                'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
-
-                'likeButtonSetTop','fbLikeButtonTop','fbSendButtonTop','googlePlusOneButtonTop','likeButtonSetSizeTop','likeButtonSetCountTop',
-                'likeButtonOrderTop','likeButtonSetAlignmentTop',
-
-                'likeButtonSetBottom','fbLikeButtonBottom','fbSendButtonBottom','googlePlusOneButtonBottom','likeButtonSetSizeBottom','likeButtonSetCountBottom',
-                'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
-
-                'fbNameSpace','designer_toolTips' , 'tip_bg_color',
-                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey'
-            )as $field) {
-                if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
-                    $shrsb_plugopts[$field] = $_POST[$field];
-                } else {
-                    $shrsb_plugopts[$field] = NULL;
-                }
-          }
-
           // Stupid wordpress autoescapes (and escaping for wordpress means addslashes) all post data. So this is a workaround for that
           $shrsb_plugopts['tweetconfig'] = stripslashes($shrsb_plugopts['tweetconfig']);
 
@@ -926,9 +910,10 @@ function shrsb_settings_page() {
             $shrsb_plugopts['service'] = implode(',', $service_ids);
             shrsb_refresh_cache();
             _shrsb_copy_file(SHRSB_UPLOADDIR.'index.php', SHRSB_PLUGDIR.'spritegen_default/index.php');
-            _shrsb_copy_file(SHRSB_UPLOADDIR.'spritegen/index.php', SHRSB_PLUGDIR.'spritegen_default/index.php');
+            _shrsb_copy_file(SHRSB_UPLOADDIR.'spritegen/index.php', SHRSB_PLUGDIR.'spritegen_default/index.php');        
 
-        /** MoveID:1 Close**/
+          }
+          
 
 		if (!$error_message) {
 			//generate a new sprite, to reduce the size of the image
@@ -984,9 +969,27 @@ function shrsb_settings_page() {
                 }
             }
 
-           /** Code Moved from here with MoveID:1*/
-           /*Search in the code with "MoveID:1"  Reason: Unwanted Warning comming in the flow*/
+           
+        foreach (array(
+                'position', 'reloption', 'targetopt', 'bookmark',
+                'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
+                'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
+                'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
 
+                'likeButtonSetTop','fbLikeButtonTop','fbSendButtonTop','googlePlusOneButtonTop','likeButtonSetSizeTop','likeButtonSetCountTop',
+                'likeButtonOrderTop','likeButtonSetAlignmentTop',
+
+                'likeButtonSetBottom','fbLikeButtonBottom','fbSendButtonBottom','googlePlusOneButtonBottom','likeButtonSetSizeBottom','likeButtonSetCountBottom',
+                'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
+
+                'fbNameSpace','designer_toolTips' , 'tip_bg_color',
+                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey'
+            )as $field) {
+                if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
+                    $shrsb_plugopts[$field] = $_POST[$field];
+                } else {
+                    $shrsb_plugopts[$field] = NULL;
+                }
           }
 
           /* Short URLs */
@@ -1641,6 +1644,7 @@ function shrsb_settings_page() {
 
 }//closing brace for function "shrsb_settings_page"
 
+
 if(strnatcmp(phpversion(),'5.0') < 0) {
     //add_action('admin_notices', 'php_version_uncompatible', 12);
     // Since we have the health status we dont need php upgrade notice
@@ -1697,8 +1701,6 @@ function shrsb_account_page() {
     shrsb_authentication_page($bAuth ? $apikey : null);
 }
 
-
-
 function shrsb_authenticate_user($api_key = null) {
     $shr_pub_class = SHR_PUB_PRO::getInstance();
     $auth = $shr_pub_class->set_api_key($api_key);
@@ -1750,7 +1752,6 @@ function shrsb_admin_scripts() {
 			</noscript>
 			<!-- End of Yahoo! Web Analytics -->';
 }
-
 
 //Change the directory path to webpath
 function shr_dir_to_path($dir){

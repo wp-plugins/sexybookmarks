@@ -51,16 +51,16 @@ jQuery(document).ready(function() {
 			jQuery('#shrsb-networks input').removeAttr('checked');
 		});
 		jQuery('#shrsb-networks').each(function() {
-			jQuery('#shr-printfriendly').attr('checked', 'checked');
-			jQuery('#shr-reddit').attr('checked', 'checked');
+			jQuery('#shr-facebook').attr('checked', 'checked');
+			jQuery('#shr-twitter').attr('checked', 'checked');
+			jQuery('#shr-linkedin').attr('checked', 'checked');
+			jQuery('#shr-googlebookmarks').attr('checked', 'checked');
 			jQuery('#shr-delicious').attr('checked', 'checked');
 			jQuery('#shr-stumbleupon').attr('checked', 'checked');
-			jQuery('#shr-linkedin').attr('checked', 'checked');
-			jQuery('#shr-twitter').attr('checked', 'checked');
-			jQuery('#shr-googlebuzz').attr('checked', 'checked');
-			jQuery('#shr-facebook').attr('checked', 'checked');
+			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-gmail').attr('checked', 'checked');
 			jQuery('#shr-mail').attr('checked', 'checked');
+			jQuery('#shr-printfriendly').attr('checked', 'checked');
 		});
 	});
 
