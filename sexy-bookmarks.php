@@ -3,7 +3,7 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.5.4
+Version: 4.0.5.5
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 
@@ -11,7 +11,7 @@ Author URI: http://www.shareaholic.com
 
 */
 
-define('SHRSB_vNum','4.0.5.4');
+define('SHRSB_vNum','4.0.5.5');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -26,6 +26,7 @@ require_once 'includes/helper-functions.php';   // helper functions for backend
 */
 
 load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
+
 
 /*
  * Newer versions of WordPress include this class already
@@ -80,8 +81,8 @@ if ( !function_exists('wp_upload_dir') ) {
             define('SHRSB_UPLOADPATH_DEFAULT',shrb_addTrailingChar($upload_path['baseurl'],"/").'shareaholic/');
             define('SHRSB_UPLOADDIR_DEFAULT',shrb_addTrailingChar($upload_path['basedir'],"/").'shareaholic/');
         }else {
-            define('SHRSB_UPLOADPATH_DEFAULT',SHRSB_PLUGPATH);
-            define('SHRSB_UPLOADDIR_DEFAULT',SHRSB_PLUGDIR);
+            define('SHRSB_UPLOADPATH_DEFAULT',shrb_addTrailingChar(SHRSB_PLUGPATH),"/");
+            define('SHRSB_UPLOADDIR_DEFAULT',shrb_addTrailingChar(SHRSB_PLUGDIR),"/");
       }
 }
 
@@ -195,7 +196,7 @@ if(isset($_POST['save_changes']) ){
     //Define the default path for Spritegen Directory
     if(isset($_POST['spritegen_path']) && $_POST['spritegen_path'] !=  SHRSB_UPLOADDIR_DEFAULT){
         //Create the Directory
-        $p = shrb_addTrailingChar($_POST['spritegen_path'],"/");
+        $p = shrb_addTrailingChar(stripslashes($_POST['spritegen_path']),"/");
 
         define('SHRSB_UPLOADDIR', $p);
         define('SHRSB_UPLOADPATH', shr_dir_to_path($p));
@@ -209,7 +210,7 @@ if(isset($_POST['save_changes']) ){
         define('SHRSB_UPLOADDIR', SHRSB_UPLOADDIR_DEFAULT);
         define('SHRSB_UPLOADPATH', SHRSB_UPLOADPATH_DEFAULT);
     }else{
-        $p = shrb_addTrailingChar($shrsb_plugopts['spritegen_path'],"/");
+        $p = shrb_addTrailingChar(stripslashes($shrsb_plugopts['spritegen_path']),"/");
         define('SHRSB_UPLOADDIR', $p);
         define('SHRSB_UPLOADPATH', shr_dir_to_path($p));
     }
@@ -275,7 +276,7 @@ if($shrsb_plugopts['shrbase'] != 'http://www.shareaholic.com'){
 
 // Reset depreciated url shorteners
 if($shrsb_plugopts['shorty'] == 'slly' || $shrsb_plugopts['shorty'] == 'cligs' || $shrsb_plugopts['shorty'] == 'snip' || $shrsb_plugopts['shorty'] == 'tinyarrow' || $shrsb_plugopts['shorty'] == 'b2l' || $shrsb_plugopts['shorty'] == 'trim' || $shrsb_plugopts['shorty'] == 'e7t')  {
-    
+
     $shrsb_plugopts['shortyapi']['snip']['user'] = '';
     $shrsb_plugopts['shortyapi']['snip']['key'] = '';
     $shrsb_plugopts['shortyapi']['trim']['chk'] = '';
@@ -300,7 +301,7 @@ if($shrsb_plugopts['shorty'] == 'googl') {
 }
 
 /*
-*   @desc Fix short URLs corrupt value 
+*   @desc Fix short URLs corrupt value
 */
 
 if(isset($shrsb_plugopts['shortyapi'])){
@@ -326,7 +327,7 @@ if(isset($shrsb_plugopts['shortyapi'])){
     if(strpos($shrsb_plugopts['shortyapi']['supr']['key'],"sexybookmarks/sexy-bookmarks.php") ) {
         $shrsb_plugopts['shortyapi']['supr']['key'] = "";
     }
-    
+
 }/* Short URLs End */
 
 
@@ -729,14 +730,14 @@ function shrsb_settings_page() {
     // Add all the global varaible declarations for the $shrsb_plugopts default options e.g. $shrsb_most_popular,$defaultLikeButtonOrder
 
 	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Settings</h2></div>';
-    
-    
+
+
     //Defaults - set if not present
     if (!isset($_POST['reset_all_options'])){$_POST['reset_all_options'] = '1';}
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
-    if (!isset($_POST['custom-mods'])){$_POST['custom-mods'] = 'no';}        
-        
-    
+    if (!isset($_POST['custom-mods'])){$_POST['custom-mods'] = 'no';}
+
+
 	if($_POST['reset_all_options'] == '0') {
 		echo '
 		<div id="shrsbresetallwarn" class="dialog-box-warning" style="float:none;width:97%;">
@@ -806,7 +807,7 @@ function shrsb_settings_page() {
             'tip_text_color' => '#ffffff', // tooltip text color
             'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
         );
-        
+
 
         $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
         if($shrsb_plugopts['preventminify'] == '1') {
@@ -899,6 +900,7 @@ function shrsb_settings_page() {
 
           // Stupid wordpress autoescapes (and escaping for wordpress means addslashes) all post data. So this is a workaround for that
           $shrsb_plugopts['tweetconfig'] = stripslashes($shrsb_plugopts['tweetconfig']);
+          $shrsb_plugopts['spritegen_path'] = shrb_addTrailingChar(stripslashes($shrsb_plugopts['spritegen_path']),'/');
 
           if ( isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 && $shrsb_plugopts['shareaholic-javascript'] == '1') {
             $service_ids = array();
@@ -969,7 +971,7 @@ function shrsb_settings_page() {
                 }
             }
 
-           
+
         foreach (array(
                 'position', 'reloption', 'targetopt', 'bookmark',
                 'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
@@ -1072,7 +1074,7 @@ function shrsb_settings_page() {
                                     <td style="min-width: 240px;"><span class=""><?php _e('Directory Permissions', 'shrsb'); ?></span></td>
                                     <td>
                                         <?php
-                                            echo $chmod_required ? sprintf(__('To Fix: Please appropriately 
+                                            echo $chmod_required ? sprintf(__('To Fix: Please appropriately
                                                                         %sCHMOD%s your /spritegen directory.', 'shrsb'),
                                                                     '<a href="http://sexybookmarks.shareaholic.com/documentation/usage-installation#chmodinfo"
                                                                         target = "_blank" style="color:#ca0c01">', '</a>') : "";
@@ -1083,12 +1085,12 @@ function shrsb_settings_page() {
                                 <tr>
                                     <td class="" style="width: 22px;"><img class="shrsb_health_icon" src=
                                         <?php
-                                            $color = $resave_required ? "red":"green";
+                                            $color = $resave_required ? "yellow":"green";
                                             echo SHRSB_PLUGPATH."images/circle_$color.png";
                                         ?>
                                     ></td>
                                     <td><span class=""><?php _e('Load Time Optimized', 'shrsb'); ?></span></td>
-                                    <td><?php 
+                                    <td><?php
                                         echo $resave_required ? "To Fix: Simply re-save your SB settings." : "";
                                         ?>
                                     </td>
@@ -1128,10 +1130,10 @@ function shrsb_settings_page() {
                                     $parse = parse_url(get_bloginfo('url'));
                                     $share_url = "http://www.shareaholic.com/api/data/".$parse['host']."/sharecount/30";
                                     $top_users_url =  "http://www.shareaholic.com/api/data/".$parse['host']."/topusers/16/";
-                                    
+
                                     echo sprintf(__('<b style="font-size:14px;line-height:22px;">Did you know that content from this website has been shared <span style="color:#CC1100;"><span id="bonusShareCount"></span> time(s)</span> in the past <span id="bonusShareTimeFrame"></span> day(s)?</b>', 'shrsb'));
                                 ?>
-                                
+
                                 <script type ="text/javascript">
                                     (function($){
                                         $(document).ready( function () {
@@ -1156,7 +1158,7 @@ function shrsb_settings_page() {
                                                     return v;
                                                 };
                                                 obj = shuffle(obj);
-                                                
+
                                                 $('#bonusShareTopUser').show();
                                                 var face_ul = $('<ul id="bonusShareFacesUL"/>');
                                                 for(var i=0; i<obj.length; ++i) {
@@ -1165,26 +1167,26 @@ function shrsb_settings_page() {
                                                         $("<li class='bonusShareLi'>").append("<a target='_blank' href="+shr_profile_url+"><img class='bonusShareFaces' title=" + obj[i].username + " src=" + obj[i].picture_url + "></img></a>")
                                                     );
                                                 }
-                                                
+
                                                 $('#bonusShareTopUser').append(face_ul);
-                                                
+
                                             }
                                         };
                                     })(jQuery);
                                 </script>
                                 <br/><br/>
                                 <div id="bonusShareTopUser" style="display:none"><b><?php _e('Meet the people who spread your content the most:', 'shrsb'); ?></b></div>
-                                
+
                                 <br />
                                 <div style="background: url(http://www.shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
-                                <br />                          
+                                <br />
                                   <?php  echo sprintf(__('What are you waiting for? <b>Access detailed %ssocial engagement analytics%s about your website for FREE right now!</b><br><br>You have been selected to preview the upcoming premium analytics add-on for SexyBookmarks for FREE for a limited time - so hurry before it is too late! These analytics are designed to help you grow your traffic and referrals.', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
                                 ?>
-                                
+
                         </div>
                 </div>
             </li>
-            
+
 			<li>
 				<div class="box-mid-head" id="iconator">
 					<h2 class="fugue f-globe-plus"><?php _e('Enabled Networks', 'shrsb'); ?></h2>
@@ -1192,11 +1194,11 @@ function shrsb_settings_page() {
 				<div class="box-mid-body iconator" id="toggle1">
 					<div class="padding">
 						<p><?php _e('Select the Networks to display. Drag to reorder.', 'shrsb'); ?></p>
-						<ul class="multi-selection"> 
-							<li><?php _e('Select', 'shrsb'); ?>:&nbsp;</li> 
-							<li><a id="sel-all" href="javascript:void(0);"><?php _e('All', 'shrsb'); ?></a>&nbsp;|&nbsp;</li> 
-							<li><a id="sel-none" href="javascript:void(0);"><?php _e('None', 'shrsb'); ?></a>&nbsp;|&nbsp;</li> 
-							<li><a id="sel-pop" href="javascript:void(0);"><?php _e('Most Popular', 'shrsb'); ?></a>&nbsp;</li> 
+						<ul class="multi-selection">
+							<li><?php _e('Select', 'shrsb'); ?>:&nbsp;</li>
+							<li><a id="sel-all" href="javascript:void(0);"><?php _e('All', 'shrsb'); ?></a>&nbsp;|&nbsp;</li>
+							<li><a id="sel-none" href="javascript:void(0);"><?php _e('None', 'shrsb'); ?></a>&nbsp;|&nbsp;</li>
+							<li><a id="sel-pop" href="javascript:void(0);"><?php _e('Most Popular', 'shrsb'); ?></a>&nbsp;</li>
 		        </ul>
 						<div id="shrsb-networks"><ul>
 							<?php
@@ -1249,19 +1251,19 @@ function shrsb_settings_page() {
 
 
 
-                            
-                                
+
+
                                 <br />
-                                
+
                                 <span style="display:block;"><?php echo sprintf(__('Check out %sour blog%s for additional customization options.', 'shrsb'), '<a target="_blank" href="http://blog.shareaholic.com/?p=1917">', '</a>'); ?></span><br />
     							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode below to enable these exclusive features', 'shrsb'); ?></span></span>
-    							
+
                         </div>
                     </div>
                 </div>
 
             </li>
-            
+
 			<li>
 				<div class="box-mid-head">
 					<h2 class="fugue f-wrench"><?php _e('Functionality Settings', 'shrsb'); ?></h2>
@@ -1269,7 +1271,7 @@ function shrsb_settings_page() {
 				<div class="box-mid-body" id="toggle2">
 					<div class="padding">
 						<div id="genopts">
-                            <table><tbody>              
+                            <table><tbody>
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Show Share Counters', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                             <span style="display:block;"><?php _e('For Facebook, Twitter, Google Buzz and Delicious', 'shrsb'); ?></span>
@@ -1278,7 +1280,7 @@ function shrsb_settings_page() {
                                     </td><td><label><input <?php echo (($shrsb_plugopts['showShareCount'] == "0")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Use Designer Tooltips', 'shrsb'); ?> <span style="color:red;">*</span></span></td>
                                         <td><label><input <?php echo (($shrsb_plugopts['designer_toolTips'] == "1")? 'checked="checked"' : ""); ?> name="designer_toolTips" id="designer_toolTips-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label></td>
@@ -1312,7 +1314,7 @@ function shrsb_settings_page() {
                                             </td><td><label><input <?php echo (($shrsb_plugopts['perfoption'] == "0")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                             </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Add Nofollow to Links', 'shrsb'); ?></span></td>
                                         <td><label><input <?php echo (($shrsb_plugopts['reloption'] == "nofollow")? 'checked="checked"' : ""); ?> name="reloption" id="reloption-yes" type="radio" value="nofollow" /> <?php _e('Yes', 'shrsb'); ?></label>
@@ -1325,7 +1327,7 @@ function shrsb_settings_page() {
                                         <td><label><input <?php echo (($shrsb_plugopts['targetopt'] == "_blank")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-blank" type="radio" value="_blank" /> <?php _e('Yes', 'shrsb'); ?></label>
                                         </td><td><label><input <?php echo (($shrsb_plugopts['targetopt'] == "_self")? 'checked="checked"' : ""); ?> name="targetopt" id="targetopt-self" type="radio" value="_self" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
-                                    </tr>          
+                                    </tr>
 
                                     <tr>
                                         <td>
@@ -1339,12 +1341,12 @@ function shrsb_settings_page() {
                             </tbody></table>
 							<br />
 							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode below to enable these exclusive features', 'shrsb'); ?></span></span>
-                            
+
                         </div>
 					</div>
 				</div>
 			</li>
-			
+
 			<li>
                 <div class="box-mid-head">
                     <h2 class="fugue f-status"><?php _e('Shareaholic for Publishers [BETA]', 'shrsb'); ?></h2>
@@ -1362,14 +1364,14 @@ function shrsb_settings_page() {
                             </p>
                 </div>
             </li>
-			
+
 			<li id="twitter-defaults" <?php if(!in_array('shr-twitter', $shrsb_plugopts['bookmark'])) { ?> class="hide"<?php } ?>>
 				<div class="box-mid-head" id="iconator">
 					<h2><img src="<?php echo SHRSB_PLUGPATH; ?>images/twitter-16x16.png" alt="Twitter!" align="absmiddle"  style="margin-right: 8px;" /><?php _e('Twitter Options', 'shrsb'); ?></h2>
 				</div>
 				<div class="box-mid-body" id="toggle6">
 					<div class="padding">
-					
+
 					    <p id="tweetinstructions">
                             <strong><?php _e('Configuration Instructions:', 'shrsb'); ?></strong><br />
                             <?php echo sprintf(__('Using the strings %s and %s you can fully customize your tweet output.', 'shrsb'), '<strong>${title}</strong>', '<strong>${short_link}</strong>'); ?><br /><br />
@@ -1383,7 +1385,7 @@ function shrsb_settings_page() {
                             <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo $shrsb_plugopts['tweetconfig']; } else { echo '${title} - ${short_link} via @Shareaholic'; } ?></textarea>
                           </div>
                           <p id="tweetoutput"><strong><?php _e('Example Tweet Output:', 'shrsb'); ?></strong><br /><span></span></p>
-				    
+
 				        <label for="shorty"><?php _e('Which URL Shortener?', 'shrsb'); ?></label><br />
 						<select name="shorty" id="shorty">
 							<?php
@@ -1399,7 +1401,7 @@ function shrsb_settings_page() {
 									'yourls'    =>  'YOURLS WP Plugin'
 								));
 							?>
-							
+
 						</select>
 						<div id="shortyapimdiv-bitly"<?php if($shrsb_plugopts['shorty'] != "bitly") { ?> class="hidden"<?php } ?>>
 							<div id="shortyapidiv-bitly">
@@ -1433,11 +1435,11 @@ function shrsb_settings_page() {
 							</div>
 						</div>
 						<div class="clearbig"></div>
-				    
+
 					</div>
 				</div>
 			</li>
-			
+
 			<li>
 				<div class="box-mid-head">
 					<h2 class="fugue f-pallette"><?php _e('Plugin Aesthetics', 'shrsb'); ?></h2>
@@ -1494,7 +1496,7 @@ function shrsb_settings_page() {
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "2")? 'checked="checked"' : ""); ?> name="autocenter" id="autospace-yes" type="radio" value="2" /><?php _e('Space', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "1")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-yes" type="radio" value="1" /><?php _e('Center', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['autocenter'] == "0")? 'checked="checked"' : ""); ?> name="autocenter" id="autocenter-no" type="radio" value="0" /><?php _e('No', 'shrsb'); ?></label>
-						
+
 						<span class="shrsb_option">
 							<?php _e('Use a background image?', 'shrsb'); ?> <input <?php echo (($shrsb_plugopts['bgimg-yes'] == "yes")? 'checked' : ""); ?> name="bgimg-yes" id="bgimg-yes" type="checkbox" value="yes" />
 						</span>
@@ -1557,7 +1559,7 @@ function shrsb_settings_page() {
                     </div>
                 </div>
             </li>
-            			
+
 			<li>
 				<div class="box-mid-head">
 					<h2 class="fugue f-footer"><?php _e('Menu Placement', 'shrsb'); ?></h2>
@@ -1614,7 +1616,7 @@ function shrsb_settings_page() {
 	</form>
 </div>
 <div id="shrsb-col-right">
-    
+
     <h2 class="sh-logo"></h2>
 
 	<div class="box-right">
@@ -1631,14 +1633,14 @@ function shrsb_settings_page() {
 					<li><a href="http://www.shareaholic.com/tools/wordpress/translations" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
 					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
 					<li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
-				</ul>				
+				</ul>
 			</div>
 		</div>
 	</div>
-	
+
 	<div style="padding:15px;"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe>
 	</div>
-	
+
 </div>
 <?php
 
@@ -1656,7 +1658,7 @@ if(strnatcmp(phpversion(),'5.0') < 0) {
 function php_version_uncompatible() {
     //Show message to only Admins
     if (shrsb_get_current_user_role()=="Administrator"){
-        
+
     echo '<div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
         <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
           '.sprintf(__('NOTICE: We have noticed that you are using an old version of PHP. It is highly recommended that you upgrade to PHP 5 or higher to avail certain advanced Shareaholic features.  Also, if you do not upgrade to PHP 5 you will not be able to run WordPress 3.2+', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
@@ -1717,18 +1719,18 @@ function shrsb_menu_link() {
 	if (function_exists('add_menu_page')) {
 		$shrsb_admin_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ),
 		    'administrator', basename(__FILE__), 'shrsb_settings_page', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
-		            
+
 		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ),
     		'administrator', basename(__FILE__), 'shrsb_settings_page' );
-    		
+
     	/*
     	$shrsb_analytics_page = add_submenu_page( basename(__FILE__), __( 'Social Analytics' ), __( 'Social Analytics', 'shrsb' ),
     		'administrator', 'shareaholic_analytics.php', 'shrsb_analytics_page' );
-    	
+
         $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
     		'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
         */
-        
+
 		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
         //add_action( "admin_print_styles-$shrsb_account_page", 'shrsb_admin_styles' );
@@ -1752,6 +1754,7 @@ function shrsb_admin_scripts() {
 			</noscript>
 			<!-- End of Yahoo! Web Analytics -->';
 }
+
 
 //Change the directory path to webpath
 function shr_dir_to_path($dir){

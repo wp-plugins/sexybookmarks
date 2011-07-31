@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: Facebook, Twitter, LinkedIn, URL Shortener, URL Shortner, Bit.ly, Bitly, Supr, Su.pr, Goo.gl, Googl, Google +1, Google Plus, Google 1, +1, Google, Google +, Instapaper, Amazon Wish List, Digg, Google Buzz, Buzz It, Google Apps, Google Gmail, Gmail, Google Notebook, Google Reader, SideWiki, WordPress, Blogger, Translate, TypePad, LiveJournal, Posterous, Soup.io, Tumblr, AIM, Yahoo Messenger, Delicious, Google Bookmarks, StumbleUpon, Dwellicious, Bebo, Mister Wong, Evernote, Netvibes, Stumpedia, Twine, Connotea, Diigo, Folkd, Simpy, addthis, addtoany, sharethis, sharedaddy, jetpack, sociable, share and follow, Hotmail, Share Button, AOL Mail, Outlook, Eudora, Thunderbird, Mail, Buzzster, Yahoo Buzz, Yahoo, Yahoo Mail, Reddit, Techmeme, YC Hacker News, Y Combinator, TechStars, Tweetmeme, SmakNews, Tipd, Care2, Current, YouTube, Hootsuite, Social Media Dashboard, Tweet Button, Fark, Khabbr, Xmarks, Foxmarks, Mixx, Readability, NewsTrust, Marginize, NowPublic, Brizzly, Propeller, Slashdot, Boxee, Kaboodle, Sphinn, MySpace, Orkut, Plurk, Identi.ca, Mozillaca, FriendFeed, Hyves, Netlog, Amplify, Plaxo, Tweetie, Technorati, Klout, Peerindex, Hub.tm, Hubspot, Is.gd, j.mp, TinyURL, Tr.im, WeHeartIt, Yandex, Clicky.me, Su.pr, Print, PrintFriendly, Print, Read It Later, ReadItLater, Yammer, Google Translate, Box.net, Pinboard, BuzzFeed, Shareaholic, Shareholic, Sexybookmarks, Sexy Bookmarks, Sexy, Bookmarks, Social, E-mail, Email, Email Button, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Sharing is Sexy, Sharing is Caring, Share and Enjoy, Sharecount, Share Count, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU
 Requires at least: 2.7
 Tested up to: 3.2.1
-Stable tag: 4.0.5.4
+Stable tag: 4.0.5.5
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -98,9 +98,11 @@ If you would like to insert the menu manually, simply choose "Manual Mode" from 
 
 `<?php if(function_exists('selfserv_shareaholic')) { selfserv_shareaholic(); } ?>`
 
-Like/+1 Button Set:
+For Like/+1 Button Set:
+
 
 `<?php if(function_exists('get_shr_like_buttonset')) { get_shr_like_buttonset('Top'); } ?>`
+
 
 `<?php if(function_exists('get_shr_like_buttonset')) { get_shr_like_buttonset('Bottom'); } ?>`
 
@@ -117,6 +119,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 4.0.5.5 =
+* Updated for handling Window Server related paths
 
 = 4.0.5.4 =
 * Fix for certain settings not being saves in previous release

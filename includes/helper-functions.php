@@ -14,11 +14,34 @@ function shrsb_get_current_user_role() {
 	return isset($wp_roles->role_names[$role]) ? translate_user_role($wp_roles->role_names[$role] ) : false;
 }
 
+/**
+ * Warning : Please go through the code first before reusing the function
+ * Append the character at the end of the string.
+ * For Windows Servers, replace backward slashes to forward
+ * 
+ * @param <type> $string
+ * @param <type> $char
+ * @return <type> string
+ */
 function shrb_addTrailingChar($string, $char){
+    // For window based servers
+    if($char == '/'){
+        $string = shrb_convertBackToForwardSlash($string);
+    }
+    
+    //Appending the charachter at end if it already deoes not exist.
     if(substr($string, -1) != $char){
         $string .= $char;
     }
     return $string;
+}
+
+function shrb_convertBackToForwardSlash($string){
+
+    $exp = array('\\','\\/', '\\\\','///');
+    $str = str_replace($exp, '/', $string);
+
+    return $str;
 }
 
 /* Adds FB Namespace */
