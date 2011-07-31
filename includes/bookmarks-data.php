@@ -1,22 +1,22 @@
 <?php
 
-// dynamic mister wong link generator
-$wong_id = 6;
+/*
+*   @desc Dynamic mister wong link generator
+*/
 
-if(WPLANG == 'de_DE')
-	$wong_id = 298;
+$wong_id = 6; //default service id
 
-elseif(WPLANG == 'zh_CN' || WPLANG == 'zh_HK' || WPLANG == 'zh_TW')
+if(WPLANG == 'de_DE'){
+    $wong_id = 298;
+}elseif(WPLANG == 'zh_CN' || WPLANG == 'zh_HK' || WPLANG == 'zh_TW'){
 	$wong_id = 299;
-
-elseif(WPLANG == 'es_CL'  || WPLANG == 'es_ES' || WPLANG == 'es_PE' || WPLANG == 'es_VE')
+}elseif(WPLANG == 'es_CL'  || WPLANG == 'es_ES' || WPLANG == 'es_PE' || WPLANG == 'es_VE'){
 	$wong_id = 300;
-
-elseif(WPLANG == 'fr_FR' || WPLANG == 'fr_BE')
+}elseif(WPLANG == 'fr_FR' || WPLANG == 'fr_BE'){
 	$wong_id = 301;
-
-elseif(WPLANG =='ru_RU' || WPLANG == 'ru_MA')
+}elseif(WPLANG =='ru_RU' || WPLANG == 'ru_MA'){
 	$wong_id = 302;
+}
 
 $checkthis_text = __('Check this box to include %s in your bookmarking menu', 'shrsb');
 
@@ -103,6 +103,7 @@ $shrsb_bookmarks_data=array(
 		'share'=>__('Suggest this article to ', 'shrsb').'ToMuse'
 	),
 	'shr-comfeed'=>array(
+        'id' => NULL,
 		'check'=>sprintf($checkthis_text, __("a 'Subscribe to Comments' link", 'shrsb')),
 		'share'=>__('Subscribe to the comments for this post?', 'shrsb'),
 		'baseUrl'=>'PERMALINK',
