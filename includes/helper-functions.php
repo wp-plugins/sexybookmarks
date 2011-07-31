@@ -14,11 +14,46 @@ function shrsb_get_current_user_role() {
 	return isset($wp_roles->role_names[$role]) ? translate_user_role($wp_roles->role_names[$role] ) : false;
 }
 
+/**
+ * Warning : Please go through the code first before reusing the function
+ * Append the character at the end of the string.
+ * For Windows Servers, replace backward slashes to forward
+ * 
+ * @param <type> $string
+ * @param <type> $char
+ * @return <type> string
+ */
+function shrb_addTrailingChar($string, $char){
+    // For window based servers
+    if($char == '/'){
+        $string = shrb_convertBackToForwardSlash($string);
+    }
+    
+    //Appending the charachter at end if it already deoes not exist.
+    if(substr($string, -1) != $char){
+        $string .= $char;
+    }
+    return $string;
+}
 
+function shrb_convertBackToForwardSlash($string){
+
+    $exp = array('\\','\\/', '\\\\','///');
+    $str = str_replace($exp, '/', $string);
+
+    return $str;
+}
+
+/* Adds FB Namespace */
+function shrsb_addFBNameSpace($attr) {
+    $attr .= "\n xmlns:og=\"http://opengraphprotocol.org/schema/\"";
+	$attr .= "\n xmlns:fb=\"http://www.facebook.com/2008/fbml\"";
+    return $attr;
+}
 
 function shrsb_preFlight_Checks() {
 	global $shrsb_plugopts;
-	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SHRSB_PLUGDIR.'spritegen') && is_writable(SHRSB_PLUGDIR.'spritegen')) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 )) && !$shrsb_plugopts['custom-mods'] ) {
+	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SHRSB_UPLOADDIR) && is_writable(SHRSB_UPLOADDIR)) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 )) && !$shrsb_plugopts['custom-mods'] ) {
 		return true;
 	}
 	else {
@@ -28,15 +63,14 @@ function shrsb_preFlight_Checks() {
 
 function get_sprite_file($opts, $type) {
   global $shrsb_plugopts;
-
   $shrbase = $shrsb_plugopts['shrbase']?$shrsb_plugopts['shrbase']:'http://www.shareaholic.com';
   $spritegen = $shrbase.'/api/sprite/?v=1&apikey=8afa39428933be41f8afdb8ea21a495c&imageset=60'.$opts.'&apitype='.$type;
-  $filename = SHRSB_PLUGDIR.'spritegen/shr-custom-sprite.'.$type;
+  $filename = SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.'.$type;
   $content = FALSE;
 
-  if (!is_writable(SHRSB_PLUGDIR.'spritegen')) {
+  if (!is_writable(SHRSB_UPLOADDIR.'spritegen')) {
         // the spritegen folder isn't writable. Try changing it to writable
-      @chmod(SHRSB_PLUGDIR.'spritegen', 0775);
+      @chmod(SHRSB_UPLOADDIR.'spritegen', 0775);
       // may or may not work
   }
   if ( $type == 'png' ) {
@@ -145,7 +179,7 @@ function _shrsb_fetch_content($url, $path, $clearcache=false) {
     $path = rtrim($url_parts[0], '/');
   }
 
-  $base_path = path_join(SHRSB_PLUGDIR, 'spritegen');
+  $base_path = path_join(SHRSB_UPLOADDIR, 'spritegen');
   $abs_path = $base_path.$path;
 
   if ($clearcache || !($retval = _shrsb_read_file($abs_path))) {
@@ -202,4 +236,11 @@ function _shrsb_read_file($path) {
   }
 
   return $content;
+}
+
+//Copy the file in to the requested folder
+function _shrsb_copy_file($des , $src){
+    if(!$des || !$src )
+        return false;
+    return _shrsb_write_file($des ,_shrsb_read_file($src));
 }
