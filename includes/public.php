@@ -357,19 +357,18 @@ function shrsb_position_menu($post_content) {
 		return $post_content;
 	}
 
-
     $output = "";
     $likeButtonSetTop = "";
     $likeButtonSetBottom = "";
-
+    
 	// Decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || (is_feed() && !empty($shrsb_plugopts['feed']))) { 
     // socials should be generated and added
     if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
       if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
         $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
-        $likeButtonSetTop = get_shr_like_buttonset('Top');
-        $likeButtonSetBottom = get_shr_like_buttonset('Bottom');
+        $likeButtonSetTop = get_shr_like_buttonset('Top', 1);
+        $likeButtonSetBottom = get_shr_like_buttonset('Bottom', 1);
         $config = shrsb_get_publisher_config($post->ID);
 
         $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
@@ -404,7 +403,7 @@ function shrsb_position_menu($post_content) {
 } // End shrsb_position_menu...
 
 
-function get_shr_like_buttonset($pos = 'Bottom') { // $pos = 'Bottom'/'Top' Case sensitive
+function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos = 'Bottom'/'Top' Case sensitive
         global $shrsb_plugopts, $post;
 
         $href = urlencode(get_permalink($post->ID));
@@ -418,7 +417,7 @@ function get_shr_like_buttonset($pos = 'Bottom') { // $pos = 'Bottom'/'Top' Case
         if($shrsb_plugopts['likeButtonSet'.$pos] &&
                 ($shrsb_plugopts['fbLikeButton'.$pos] == '1' || $shrsb_plugopts['fbSendButton'.$pos] == '1' || $shrsb_plugopts['googlePlusOneButton'.$pos] == '1')) {
 
-            $spacer = '<div style="clear: both; min-height: 1px; height: 2px; width: 100%;"></div>';
+            $spacer = '<div style="clear: both; min-height: 1px; height: 3px; width: 100%;"></div>';
             $like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
             $height = "";
             switch($like_layout) {
@@ -487,9 +486,13 @@ function get_shr_like_buttonset($pos = 'Bottom') { // $pos = 'Bottom'/'Top' Case
             $output .= '</div>';
             $output = $spacer.$output.$spacer;
         }
-        $output = "<!-- Start LikeButtonSet$pos -->".$output."<!-- End LikeButtonSet$pos -->";
-
-        return $output;
+        $output = "<!-- Start Shareaholic LikeButtonSet$pos -->".$output."<!-- End Shareaholic LikeButtonSet$pos -->";
+        
+        if ($return_type == 1){
+            return $output;
+        }else{
+            echo $output;
+        }
 }
 
 

@@ -5,13 +5,14 @@
  * no role for the current blog, it returns false.
  *
  * @return string The name of the current role
+ * @notes older versions of WP return "Administrator|User role" which we strip down to "Administrator"
  **/
 function shrsb_get_current_user_role() {
 	global $wp_roles;
 	$current_user = wp_get_current_user();
 	$roles = $current_user->roles;
 	$role = array_shift($roles);
-	return isset($wp_roles->role_names[$role]) ? translate_user_role($wp_roles->role_names[$role] ) : false;
+	return isset($wp_roles->role_names[$role]) ? preg_replace("/\|User role$/","",$wp_roles->role_names[$role]) : false;
 }
 
 /**
@@ -39,9 +40,9 @@ function shrb_addTrailingChar($string, $char){
 function shrb_convertBackToForwardSlash($string){
 
     $exp = array('\\','\\/', '\\\\','///');
-    $str = str_replace($exp, '/', $string);
+    $string = str_replace($exp, '/', $string);
 
-    return $str;
+    return $string;
 }
 
 /* Adds FB Namespace */
@@ -53,7 +54,22 @@ function shrsb_addFBNameSpace($attr) {
 
 function shrsb_preFlight_Checks() {
 	global $shrsb_plugopts;
-	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents')) && (is_dir(SHRSB_UPLOADDIR) && is_writable(SHRSB_UPLOADDIR)) && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 )) && !$shrsb_plugopts['custom-mods'] ) {
+
+    //Check for the directory exists or not
+    if(!wp_mkdir_p(SHRSB_UPLOADDIR.'spritegen/')) {
+        @error_log("Failed to create path ".dirname($path));
+    }
+    if (!is_writable(SHRSB_UPLOADDIR.'spritegen')) {
+        // the spritegen folder isn't writable. Try changing it to writable
+      @chmod(SHRSB_UPLOADDIR.'spritegen/', 0775);
+      // may or may not work
+  }
+  
+	if( ((function_exists('curl_init') && function_exists('curl_exec')) || function_exists('file_get_contents'))
+            && (is_dir(SHRSB_UPLOADDIR) && is_writable(SHRSB_UPLOADDIR))
+            && ((isset($_POST['bookmark']) && is_array($_POST['bookmark']) && sizeof($_POST['bookmark']) > 0 ) || (isset($shrsb_plugopts['bookmark']) && is_array($shrsb_plugopts['bookmark']) && sizeof($shrsb_plugopts['bookmark']) > 0 ))
+            && (!isset($shrsb_plugopts['custom-mods']) ||  isset($shrsb_plugopts['custom-mods']) && $shrsb_plugopts['custom-mods'] !== 'yes') ) {
+
 		return true;
 	}
 	else {
