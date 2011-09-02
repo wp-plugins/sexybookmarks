@@ -15,7 +15,15 @@ define('SHRSB_vNum','4.0.5.6');
 *  @ For Debugging Purpose
 */
 if(isset($_GET['sb_debug']) || isset($_POST['sb_debug'])){
-	$data =	get_option('SexyBookmarks');
+	$data = array(
+		"siteurl" 		 => 	get_option('siteurl'),
+		"version"		 => 	get_option('SHRSBvNum'),
+		"apikey" 		 => 	get_option('SHRSB_apikey'),
+		"custom_sprite" 	 => 	get_option('SHRSB_CustomSprite'),
+		"default_spritegen" 	 => 	get_option('SHRSB_DefaultSprite'),
+		"plugopts"		 =>	get_option('SexyBookmarks')
+	);
+
 	if( (isset($_POST['dump_type']) && $_POST['dump_type'] == "json") || ((isset($_GET['dump_type']) && $_GET['dump_type'] == "json"))){
 		echo json_encode($data);	
 	}else{
@@ -54,7 +62,7 @@ if ( !class_exists('SERVICES_JSON') ) {
 			} else {
 				$json = new Services_JSON;
 			}
-			return $json->decode($content);
+				return $json->decode($content);
 		}
 	}
 	if ( !function_exists('json_encode') ){
