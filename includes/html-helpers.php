@@ -196,3 +196,33 @@ function bookmark_list_item($name, $opts=array()) {
 	}
 }
 
+// Displays a multi-dimensional array as a HTML List (Tree structure).
+function shrsb_displayTree($var) {
+     $newline = "\n";
+     $output = "";
+     foreach($var as $key => $value) {
+         if (is_array($value) || is_object($value)) {
+             $value = $newline . "<ul>" . shrsb_displayTree($value) . "</ul>";
+         }
+
+         if (is_array($var)) {
+             if (!stripos($value, "<li class=")) {
+                $output .= "<li class=\"file\">" ."$key = $value" . "</li>" . $newline;
+             }
+             else {
+                $output .= "$key = $value" . $newline;
+             }
+         
+         }
+         else { // is_object
+            if (!stripos($value, "<li class=")) {
+               $value = "<ul><li class=\"file\">" . $value . "</li></ul>" . $newline;
+            } 
+            
+            $output .= "<li class=\"folder\">" . $key . $value . "</li>" . $newline;
+         }
+         
+     }
+     
+     return $output;
+}

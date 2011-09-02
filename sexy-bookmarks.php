@@ -11,6 +11,17 @@ Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 
 define('SHRSB_vNum','4.0.5.6');
 
+ 
+/*
+*   @note Make sure to include files first as there may be dependencies
+*/
+
+require_once 'includes/bookmarks-data.php';     // contains all bookmark templates
+require_once 'includes/html-helpers.php';       // helper functions for html output
+require_once 'includes/helper-functions.php';   // helper functions for backend
+//require_once 'includes/widget.php';   // widget
+
+
 /*
 *  @ For Debugging Purpose
 */
@@ -23,23 +34,27 @@ if(true && (isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
 		"default_spritegen" 	 => 	get_option('SHRSB_DefaultSprite'),
 		"plugopts"		 =>	get_option('SexyBookmarks')
 	);
-
-	if( (isset($_POST['dump_type']) && $_POST['dump_type'] == "json") || ((isset($_GET['dump_type']) && $_GET['dump_type'] == "json"))){
-		echo json_encode($data);	
-	}else{
-		var_dump($data);
-	}
+    $dump_type = "php";
+    if( isset($_POST['dump_type'])){
+        $dump_type = $_POST['dump_type'];
+    }
+        
+    if(isset($_GET['dump_type'])){
+        $dump_type = $_GET['dump_type'];
+    }
+    switch($dump_type){
+        case "json":
+            echo json_encode($data);	
+            break;
+        case "tree":
+            echo shrsb_displayTree($data);
+            break;
+        default :
+            var_export($data);    
+    }
 	die();
 }
-	
-/*
-*   @note Make sure to include files first as there may be dependencies
-*/
 
-require_once 'includes/bookmarks-data.php';     // contains all bookmark templates
-require_once 'includes/html-helpers.php';       // helper functions for html output
-require_once 'includes/helper-functions.php';   // helper functions for backend
-//require_once 'includes/widget.php';   // widget
 
 /*
 *   @desc Create Text Domain For Translations
