@@ -1749,6 +1749,7 @@ function shrsb_menu_link() {
 //styles and scripts for admin area
 function shrsb_admin_scripts() {
 	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
+    
 	echo '<!-- Yahoo! Web Analytics -->
 			<script type="text/javascript" src="http://d.yimg.com/mi/eu/ywa.js"></script>
 			<script type="text/javascript">
@@ -1761,8 +1762,18 @@ function shrsb_admin_scripts() {
 				<div><img src="http://s.analytics.yahoo.com/p.pl?a=10001081871123&amp;js=no" width="1" height="1" alt="" /></div>
 			</noscript>
 			<!-- End of Yahoo! Web Analytics -->';
+    get_extension_promo_js();
 }
 
+/*
+*   @desc Add promotions for browser extensions
+*/
+function shrsb_show_promotions(){
+    if (shrsb_get_current_user_role() && (shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor")) {
+        wp_enqueue_script('shareaholic-promotions-js', SHRSB_PLUGPATH.'js/shareaholic-promotions.js', array('jquery'), SHRSB_vNum, true);
+    }
+}
+add_action('set_current_user', 'shrsb_show_promotions');
 
 //Change the directory path to webpath
 function shr_dir_to_path($dir){
@@ -1777,27 +1788,30 @@ function shr_dir_to_path($dir){
     return $path;
 }
 
+function shrsb_first_image() {
+  global $post, $posts;
+  $og_first_img = '';
+  ob_start();
+  ob_end_clean();
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  if(isset($matches) && isset($matches[1]) && isset($matches[1][0]) ){
+      $og_first_img = $matches[1][0];
+  }
+  if(empty($og_first_img)){ // return false if nothing there, makes life easier
+    return false;
+  }
+  return $og_first_img;
+}
+
 //For Adding the Og tags to each post
 function shrsb_add_ogtags_head() {
 	global $post,$shrsb_plugopts;
+    
 	// check to see if ogtags are enabled or not
 	if (!isset($shrsb_plugopts['ogtags']) || empty($shrsb_plugopts['ogtags'])) {
         echo "\n\n".'<!-- '.__('SexyBookmarks OgTags has been disabled', 'shrsb').' -->'."\n\n";
-		//echo "\n\t<!-- Facebook Open Graph protocol plugin NEEDS an admin or app ID to work, please visit the plugin settings page! -->\n\n";
 	}else{
         echo "\n\n".'<!-- '.__('Start Shareaholic OgTags ', 'shrsb').' -->'."\n\n";
-		//echo "\n\t<!-- WordPress Facebook Open Graph protocol plugin (WPFBOGP v".WPFBOGP_VERSION.") http://rynoweb.com/wordpress-plugins/ -->\n";
-		
-		// do fb verification fields
-//		if (isset($options['wpfbogp_admin_ids']) && $options['wpfbogp_admin_ids'] != '') {
-//			echo "\t<meta property='fb:admins' content='".esc_attr($options['wpfbogp_admin_ids'])."' />\n";
-//		}
-//		if (isset($options['wpfbogp_app_id']) && $options['wpfbogp_app_id'] != '') {
-//			echo "\t<meta property='fb:app_id' content='".esc_attr($options['wpfbogp_app_id'])."' />\n";
-//		}
-//		if (isset($options['wpfbogp_page_id']) && $options['wpfbogp_page_id'] != '') {
-//			echo "\t<meta property='fb:page_id' content='".esc_attr($options['wpfbogp_page_id'])."' />\n";
-//		}
 		
 		// do url stuff
 		if (is_home() || is_front_page() ) {
@@ -1845,8 +1859,8 @@ function shrsb_add_ogtags_head() {
 			if ((function_exists('has_post_thumbnail')) && (has_post_thumbnail())) {
 				$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
 				echo "\t<meta property='og:image' content='".esc_attr($thumbnail_src[0])."' />\n";
-			}elseif (( wpfbogp_first_image() !== false ) && (is_singular())) {
-				echo "\t<meta property='og:image' content='".wpfbogp_first_image()."' />\n";
+			}elseif (( shrsb_first_image() !== false ) && (is_singular())) {
+				echo "\t<meta property='og:image' content='".shrsb_first_image()."' />\n";
 			}else{
                 echo "\n\n".'<!-- '.__('There is not an image here as you haven\'t set a default image', 'shrsb').' -->'."\n\n";
 			}
