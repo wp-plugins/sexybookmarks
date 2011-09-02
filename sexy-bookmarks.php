@@ -1785,7 +1785,7 @@ function shrsb_admin_scripts() {
 */
 function shrsb_show_promotions(){
     if (shrsb_get_current_user_role() && (shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor")) {
-        wp_enqueue_script('shareaholic-promotions-js', SHRSB_PLUGPATH.'js/shareaholic-promotions.js', array('jquery'), SHRSB_vNum, true);
+        wp_enqueue_script('shareaholic-promotions-js', SHRSB_PLUGPATH.'js/shareaholic-promotions.min.js', array('jquery'), SHRSB_vNum, true);
     }
 }
 add_action('set_current_user', 'shrsb_show_promotions');
