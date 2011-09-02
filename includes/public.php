@@ -452,7 +452,7 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
                         break;
                 }
                 $plusoneCount = $shrsb_plugopts['likeButtonSetCount'.$pos];
-                $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href' shr_title='$title'></a>";
+                $plusOneHTML = "<a class='shareaholic-googleplusone' data-shr_size='$plusoneSize' data-shr_count='$plusoneCount' data-shr_href='$href' data-shr_title='$title'></a>";
             }
             if($shrsb_plugopts['fbLikeButton'.$pos] == '1') {
                 //$like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
@@ -467,11 +467,11 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
                         $like_layout = "standard";
                         break;
                 }
-                $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href' shr_title='$title'></a>";
+                $fbLikeHTML = "<a class='shareaholic-fblike' data-shr_layout='$like_layout' data-shr_showfaces='false' data-shr_href='$href' data-shr_title='$title'></a>";
             }
 
             if($shrsb_plugopts['fbSendButton'.$pos] == '1') {
-                $fbSendHTML = "<a class='shareaholic-fbsend' shr_href='$href'></a>";
+                $fbSendHTML = "<a class='shareaholic-fbsend' data-shr_href='$href'></a>";
             }
 
             foreach($shrsb_plugopts['likeButtonOrder'.$pos] as $likeOption) {
