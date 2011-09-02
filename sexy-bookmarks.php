@@ -1777,7 +1777,6 @@ function shrsb_admin_scripts() {
 				<div><img src="http://s.analytics.yahoo.com/p.pl?a=10001081871123&amp;js=no" width="1" height="1" alt="" /></div>
 			</noscript>
 			<!-- End of Yahoo! Web Analytics -->';
-    get_extension_promo_js();
 }
 
 /*
