@@ -11,15 +11,15 @@ class ShareaholicWidget extends WP_Widget{
         parent::WP_Widget(false,$name = "Shareaholic Analytics");
     }
     
-    function top_sharers(){
-        echo '<script type="text/javascript" src="//shareaholic.com/media/js/topsharers.js?domain=google.com"></script>';
+    function top_sharers($domain){
+        echo '<script type="text/javascript" src="//shareaholic.com/media/js/topsharers.js?domain='.$domain.'"></script>';
     }
     
     function widget($args,$instance){
         //Output the Widget Contet
         extract($args);
-        echo '<script type="text/javascript" src="//shareaholic.com/media/js/topsharers.js?domain=google.com"></script>';
-        //top_sharers();
+        $this->top_sharers($this->get_domain());
+        
     }
     
     function update($new_instance, $old_instance){
@@ -31,6 +31,14 @@ class ShareaholicWidget extends WP_Widget{
         //Output the Options for admin
     }
     
+    function get_domain(){
+        $site_url = get_option("siteurl");
+        preg_match("/^(http?:\/\/)?([^\/]+)/i",$site_url , $matches);
+        $host = $matches[2];
+        echo $host;
+        return $host;
+
+    }
 
 
 }
