@@ -163,7 +163,8 @@ $shrsb_plugopts = array(
   'tip_text_color' => '#ffffff', // tooltip text color
   // comma delimited list of service ids for publisher javascript
   'service' => '',
-  'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
+  'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
+  'ogtags' => '1'
 );
 
 //add to database
@@ -238,6 +239,10 @@ if(!isset($shrsb_plugopts['likeButtonSetTop'])) {
       $shrsb_plugopts['likeButtonSetCountBottom'] =  "true"; // Show count with +1 button
       $shrsb_plugopts['likeButtonOrderBottom' ] =  $defaultLikeButtonOrder;
       $shrsb_plugopts['likeButtonSetAlignmentBottom' ] =  '0'; // Alignment 0 => left, 1 => right
+}
+
+if(!isset($shrsb_plugopts['ogtags'])) {
+    $shrsb_plugopts['ogtags'] = "1";
 }
 
 if(!isset($shrsb_plugopts['fbNameSpace'])) {
@@ -782,7 +787,8 @@ function shrsb_settings_page() {
             'designer_toolTips' => '1',
             'tip_bg_color' => '#000000',  // tooltip background color
             'tip_text_color' => '#ffffff', // tooltip text color
-            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT
+            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
+            'ogtags' => '1'  //OgTags
         );
 
         $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
@@ -1740,6 +1746,88 @@ function shr_dir_to_path($dir){
     $path .= substr($dir , strlen(ABSPATH));
     return $path;
 }
+
+//For Adding the Og tags to each post
+function shrsb_add_ogtags_head() {
+	global $post,$shrsb_plugopts;
+	// check to see if ogtags are enabled or not
+	if (!isset($shrsb_plugopts['ogtags']) || empty($shrsb_plugopts['ogtags'])) {
+        echo "\n\n".'<!-- '.__('SexyBookmarks OgTags has been disabled', 'shrsb').' -->'."\n\n";
+		//echo "\n\t<!-- Facebook Open Graph protocol plugin NEEDS an admin or app ID to work, please visit the plugin settings page! -->\n\n";
+	}else{
+        echo "\n\n".'<!-- '.__('Start Shareaholic OgTags ', 'shrsb').' -->'."\n\n";
+		//echo "\n\t<!-- WordPress Facebook Open Graph protocol plugin (WPFBOGP v".WPFBOGP_VERSION.") http://rynoweb.com/wordpress-plugins/ -->\n";
+		
+		// do fb verification fields
+//		if (isset($options['wpfbogp_admin_ids']) && $options['wpfbogp_admin_ids'] != '') {
+//			echo "\t<meta property='fb:admins' content='".esc_attr($options['wpfbogp_admin_ids'])."' />\n";
+//		}
+//		if (isset($options['wpfbogp_app_id']) && $options['wpfbogp_app_id'] != '') {
+//			echo "\t<meta property='fb:app_id' content='".esc_attr($options['wpfbogp_app_id'])."' />\n";
+//		}
+//		if (isset($options['wpfbogp_page_id']) && $options['wpfbogp_page_id'] != '') {
+//			echo "\t<meta property='fb:page_id' content='".esc_attr($options['wpfbogp_page_id'])."' />\n";
+//		}
+		
+		// do url stuff
+		if (is_home() || is_front_page() ) {
+			echo "\t<meta property='og:url' content='".get_bloginfo('url')."' />\n";
+		}else{
+			echo "\t<meta property='og:url' content='".get_permalink($post->ID)."' />\n";
+		}
+		
+		// do title stuff
+		if (is_home() || is_front_page() ) {
+			echo "\t<meta property='og:title' content='".get_bloginfo('name')."' />\n";
+		}else{
+			echo "\t<meta property='og:title' content='".get_the_title()."' />\n";
+		}
+		
+		// do additional randoms
+		echo "\t<meta property='og:site_name' content='".get_bloginfo('name')."' />\n";
+		
+		// do descriptions
+		if (is_singular('post')) {
+			if (has_excerpt($post->ID)) {
+				echo "\t<meta property='og:description' content='".esc_attr(strip_tags(get_the_excerpt($post->ID)))."' />\n";
+			}else{
+				echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
+			}
+		}else{
+			echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
+		}
+		
+		// do ogp type
+		if (is_singular('post')) {
+			echo "\t<meta property='og:type' content='article' />\n";
+		}else{
+			echo "\t<meta property='og:type' content='website' />\n";
+		}
+		
+		// do image tricks
+		if (is_home()) {
+			if (isset($options['wpfbogp_fallback_img']) && $options['wpfbogp_fallback_img'] != '') {
+				echo "\t<meta property='og:image' content='".$options['wpfbogp_fallback_img']."' />\n";
+			}else{
+				echo "\t<!-- There is not an image here as you haven't set a default image in the plugin settings! -->\n"; 
+			}
+		} else {
+			if ((function_exists('has_post_thumbnail')) && (has_post_thumbnail())) {
+				$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
+				echo "\t<meta property='og:image' content='".esc_attr($thumbnail_src[0])."' />\n";
+			}elseif (( wpfbogp_first_image() !== false ) && (is_singular())) {
+				echo "\t<meta property='og:image' content='".wpfbogp_first_image()."' />\n";
+			}else{
+                echo "\n\n".'<!-- '.__('There is not an image here as you haven\'t set a default image', 'shrsb').' -->'."\n\n";
+			}
+		}
+		echo "\n\n<!-- End Shareaholic OgTags -->\n\n";
+    }
+
+} // end function
+
+
+add_action('wp_head','shrsb_add_ogtags_head',10);
 
 function shrsb_admin_styles() {
 	global $shrsb_plugopts;
