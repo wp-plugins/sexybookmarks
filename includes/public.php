@@ -103,9 +103,9 @@ function shrsb_post_info($post) {
  * Returns array of values that should be used in shareaholic-publishers.js
  */
 function shrsb_get_publisher_config($post_id) {
-    global $default_spritegen;
-    $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
-    $spritegen_basepath = $default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH;
+  global $default_spritegen;
+  $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
+  $spritegen_basepath = shrsb_correct_protocol($default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH);
     
   $r = shrsb_get_params($post_id);
   

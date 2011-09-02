@@ -1,4 +1,15 @@
 <?php
+
+// Converts http to https iff current page is being accessed over https.
+function shrsb_correct_protocol($url) {
+  if (is_ssl()) {
+    return preg_replace('#^http://#', 'https://', $url);
+  }
+  else {
+    return $url;
+  }
+}
+
 //list all bookmarks in the plugin options page
 function shrsb_network_input_select($name, $hint) {
 	global $shrsb_plugopts;

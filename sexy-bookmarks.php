@@ -56,12 +56,15 @@ if ( !class_exists('SERVICES_JSON') ) {
 *   @desc Setting path for Shareaholic WP Plugin directory
 */
 
-if ( !defined('WP_CONTENT_URL') ) {
-	define('SHRSB_PLUGPATH',get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+// Because we load assets via javascript, we can't rely on the Wordpress HTTPS plugin to do our http => https URL conversions.
+// Consequently, we check here if this is an https (ssl) page load. If it is, we use the https prefix instead of http.
+if ( !defined('WP_CONTENT_URL') ) {  
+  define('SHRSB_PLUGPATH', shrsb_correct_protocol(get_option('siteurl').'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/'));
 	define('SHRSB_PLUGDIR', ABSPATH.'/wp-content/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-} else {
-	define('SHRSB_PLUGPATH',WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
-	define('SHRSB_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
+} 
+else {
+  define('SHRSB_PLUGPATH', shrsb_correct_protocol(WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)).'/'));
+  define('SHRSB_PLUGDIR',WP_CONTENT_DIR.'/plugins/'.plugin_basename(dirname(__FILE__)).'/');
 }
 
 /*

@@ -121,6 +121,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 == Changelog ==
 
 = 4.0.5.7 =
+* Fixed SSL compatibility (all assets now loaded over https when a page is served over https).
 * Fixed Google +1 count issue
 * Fixed Google +1 shared link titles showing properly on Shareaholic.com User Dashboard
 * Fixed jQuery IE bug (will be much more stable in IE)
