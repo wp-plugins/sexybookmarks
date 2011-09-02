@@ -125,6 +125,8 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Fixed Google +1 count issue
 * Fixed Google +1 shared link titles showing properly on Shareaholic.com User Dashboard
 * Fixed jQuery IE bug (will be much more stable in IE)
+* FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
+* Usage & Installation guide moved to http://www.spreadaholic.com/tools/wordpress/usage-installation
 
 = 4.0.5.6 =
 * Many cross platform compatibility enhancements
