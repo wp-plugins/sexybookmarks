@@ -120,6 +120,11 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 == Changelog ==
 
+= 4.0.5.7 =
+* Fixed Google +1 count issue
+* Fixed Google +1 shared link titles showing properly on Shareaholic.com User Dashboard
+* Fixed jQuery IE bug (will be much more stable in IE)
+
 = 4.0.5.6 =
 * Many cross platform compatibility enhancements
 * Fixed +1/Like not working in manual mode

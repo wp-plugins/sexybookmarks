@@ -74,7 +74,8 @@ function shrsb_post_info($post) {
   $isemptytitle = empty($post->post_title);
   if($ismanual || ($ishome && $isemptytitle)) {
 
-    $r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+    //$r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+    $r['link'] = trim('http://' . get_option('siteurl') . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
     $r['title'] = get_bloginfo('name') . wp_title('-', false);
     $r['feed_permalink'] = strtolower('http://' . $_SERVER['SERVER_NAME'] .  $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
     $r['mail_subject'] = urlencode(get_bloginfo('name') . wp_title('-', false));
@@ -407,6 +408,10 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
         global $shrsb_plugopts, $post;
 
         $href = urlencode(get_permalink($post->ID));
+        $title = urlencode($post->post_title);
+        if(empty($title)) {
+            $title = get_bloginfo('name') . wp_title('-', false);
+        }
         $output = "";
         $float = "none";
 
@@ -447,7 +452,7 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
                         break;
                 }
                 $plusoneCount = $shrsb_plugopts['likeButtonSetCount'.$pos];
-                $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href'></a>";
+                $plusOneHTML = "<a class='shareaholic-googleplusone' shr_size='$plusoneSize' shr_count='$plusoneCount' shr_href='$href' shr_title='$title'></a>";
             }
             if($shrsb_plugopts['fbLikeButton'.$pos] == '1') {
                 //$like_layout = $shrsb_plugopts['likeButtonSetSize'.$pos];
@@ -462,7 +467,7 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
                         $like_layout = "standard";
                         break;
                 }
-                $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href'></a>";
+                $fbLikeHTML = "<a class='shareaholic-fblike' shr_layout='$like_layout' shr_showfaces='false' shr_href='$href' shr_title='$title'></a>";
             }
 
             if($shrsb_plugopts['fbSendButton'.$pos] == '1') {
