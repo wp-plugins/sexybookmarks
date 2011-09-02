@@ -793,8 +793,8 @@ function shrsb_publicScripts() {
     //Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-        wp_enqueue_script('shareaholic-publishers-js', $spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js', null, SHRSB_vNum, $infooter);
-        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => $spritegen_basepath.$spritegen,'perfoption'=> $shrsb_plugopts['perfoption']));
+        wp_enqueue_script('shareaholic-publishers-js', shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js'), null, SHRSB_vNum, $infooter);
+        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption']));
     } else {
     // If any javascript dependent options are selected, load the scripts
     if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && $post && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
