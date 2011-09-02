@@ -14,7 +14,7 @@ define('SHRSB_vNum','4.0.5.6');
 /*
 *  @ For Debugging Purpose
 */
-if( shrsb_get_current_user_role() ==  "Administrator" && (isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
+if(true && (isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
 	$data = array(
 		"siteurl" 		 => 	get_option('siteurl'),
 		"version"		 => 	get_option('SHRSBvNum'),
