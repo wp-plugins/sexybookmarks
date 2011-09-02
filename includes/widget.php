@@ -35,7 +35,6 @@ class ShareaholicWidget extends WP_Widget{
         $site_url = get_option("siteurl");
         preg_match("/^(http?:\/\/)?([^\/]+)/i",$site_url , $matches);
         $host = $matches[2];
-        echo $host;
         return $host;
 
     }
