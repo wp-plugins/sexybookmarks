@@ -19,6 +19,7 @@ require_once 'includes/bookmarks-data.php';     // contains all bookmark templat
 require_once 'includes/html-helpers.php';       // helper functions for html output
 require_once 'includes/helper-functions.php';   // helper functions for backend
 
+
 /*
 *   @desc Create Text Domain For Translations
 */
@@ -1626,7 +1627,7 @@ function shrsb_settings_page() {
 </div>
 <?php
 
-echo get_user_voice();
+echo get_snapengage();
 
 }//closing brace for function "shrsb_settings_page"
 

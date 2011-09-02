@@ -269,30 +269,8 @@ function _shrsb_copy_file($des , $src){
  * @author Jay Meattle
  **/
  
-function get_user_voice() {
-	$user_voice_code = <<<EOD
-		<script type="text/javascript">
-		var uservoiceOptions = {
-		  /* required */
-		  key: 'shareaholic',
-		  host: 'feedback.shareaholic.com',
-		  forum: '6944',
-		  showTab: true,
-		  /* optional */
-		  alignment: 'right',
-		  background_color:'#454b4c',
-		  text_color: 'white',
-		  hover_color: '#06C',
-		  lang: 'en'
-		};
-		function _loadUserVoice() {
-		  var s = document.createElement('script');
-		  s.setAttribute('type', 'text/javascript');
-		  s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
-		  document.getElementsByTagName('head')[0].appendChild(s);
-		}
-		_loadSuper = window.onload;
-		window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); }; </script>
+function get_snapengage() {
+	$snapengage = <<<EOD
 <!-- SnapEngage -->
 <script type="text/javascript">
 document.write(unescape("%3Cscript src='" + ((document.location.protocol=="https:")?"https://snapabug.appspot.com":"http://www.snapengage.com") + "/snapabug.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">
@@ -301,5 +279,5 @@ SnapABug.addButton("62fa2e8b-38a9-4304-ba5c-86503444d30c","1","65%");
 </script>
 <!-- SnapEngage End -->
 EOD;
-	return $user_voice_code;
+	return $snapengage;
 }
