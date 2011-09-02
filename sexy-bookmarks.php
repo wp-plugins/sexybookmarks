@@ -956,7 +956,7 @@ function shrsb_settings_page() {
                 'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
 
                 'fbNameSpace','designer_toolTips' , 'tip_bg_color',
-                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey'
+                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey','ogtags'
             )as $field) {
                 if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
                     $shrsb_plugopts[$field] = $_POST[$field];
@@ -1197,7 +1197,13 @@ function shrsb_settings_page() {
 						<div id="genopts">
 
                                     <table><tbody>
-
+                                    <tr>
+                                        <td><span class="shrsb_option"><?php _e('Include the Open Graph Tags?', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        </td>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['ogtags'] == "1")? 'checked="checked"' : ""); ?> name="ogtags" id="ogtags-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_plugopts['ogtags'] == "0")? 'checked="checked"' : ""); ?> name="ogtags" id="ogtags-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Include the like button-set just above the post?', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
