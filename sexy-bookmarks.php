@@ -1626,6 +1626,8 @@ function shrsb_settings_page() {
 </div>
 <?php
 
+echo get_user_voice();
+
 }//closing brace for function "shrsb_settings_page"
 
 
