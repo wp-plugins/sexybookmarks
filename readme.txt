@@ -130,6 +130,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
 * Usage & Installation guide moved to http://www.spreadaholic.com/tools/wordpress/usage-installation
 * Added browser extension promotions
+* Added Support for Open Graph Tags, Featured Image or First Image in post will be selected for OG Tag
 
 
 = 4.0.5.6 =
