@@ -34,7 +34,6 @@ document.cookie.split(";");for(b=0;b<a.length;b++)if(e=jQuery.trim(a[b]),e.subst
 
 var code = "";
 var ua = getBrowser();
-console.log(ua);
 
 switch(ua){
     case  "Firefox": 
