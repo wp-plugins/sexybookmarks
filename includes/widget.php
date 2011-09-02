@@ -8,7 +8,7 @@ class ShareaholicWidget extends WP_Widget{
     
     function ShareaholicWidget(){
         //Actula Widget Code goes here
-        parent::WP_Widget(false,$name = "Shareaholic Analytics");
+        parent::WP_Widget(false,$name = "Shareaholic");
     }
     
     function top_sharers($domain){
@@ -32,10 +32,18 @@ class ShareaholicWidget extends WP_Widget{
     }
     
     function get_domain(){
+        
         $site_url = get_option("siteurl");
         preg_match("/^(http?:\/\/)?([^\/]+)/i",$site_url , $matches);
         $host = $matches[2];
-        return $host;
+        $new_url = ereg_replace('www\.','',$host);
+        $domain = parse_url($new_url);
+        if(!empty($domain["host"])){
+            return $domain["host"];
+        }else{
+            return $domain["path"];
+        }        
+        return $domain;
 
     }
 
