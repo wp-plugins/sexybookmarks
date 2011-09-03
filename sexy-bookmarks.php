@@ -3,13 +3,13 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.5.6
+Version: 4.0.5.8
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','4.0.5.6');
+define('SHRSB_vNum','4.0.5.8');
 
  
 /*

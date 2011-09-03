@@ -119,6 +119,8 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+= 4.0.5.8 =
+* Fix typo/version number
 
 = 4.0.5.7 =
 * Fixed SSL compatibility (all assets now loaded over https when a page is served over https).
@@ -128,7 +130,7 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Custom sprite generation certified compatible with Wordpress Multisite
 * Shareaholic's proprietary data attributes are now HTML5-compliant.
 * FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
-* Usage & Installation guide moved to http://www.spreadaholic.com/tools/wordpress/usage-installation
+* Usage & Installation guide moved to http://www.shareaholic.com/tools/wordpress/usage-installation
 * Added browser extension promotions
 * Added Support for Open Graph Tags, Featured Image or First Image in post will be selected for OG Tag
 * Added SnapEngage Support for Sexybookmark Admin panel
