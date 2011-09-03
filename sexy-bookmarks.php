@@ -1783,8 +1783,9 @@ function shrsb_admin_scripts() {
 *   @desc Add promo bar for browser extensions
 */
 function shrsb_show_promo(){
-    if (shrsb_get_current_user_role() && (shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor")) {
+    if (is_admin()) {
         wp_enqueue_script('shareaholic-promo-js', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, true);
+        wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
     }
 }
 add_action('set_current_user', 'shrsb_show_promo');
