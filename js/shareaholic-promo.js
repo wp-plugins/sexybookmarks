@@ -5,7 +5,7 @@
 * 
 */
 
-var cdn_root = "https://dtym7iokkjlif.cloudfront.net";
+var shr_cdn_root = "https://dtym7iokkjlif.cloudfront.net";
 
 function getBrowser() {
     var sUA = navigator.userAgent;
@@ -38,10 +38,10 @@ var ua = getBrowser();
 
 switch(ua){
     case  "Firefox": 
-        code = '<div id="ext-promo-prompt" class="fs_a fs_c_midgrey2"><img src="' + cdn_root + '/media/images/firefox_32x32.png" height=24 width=24 align="absmiddle" style="margin: -4px 8px 0 8px;" />Get the <a href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">shareaholic firefox extension</a> - It is the best way to <a href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">share, discover, and connect with the Best of the Web</a>! <a class="install rounded_5" href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">Install</a> <a class="close" href="javascript:ext_promo_noThanks();">x</a></div>'; 
+        code = '<div id="ext-promo-prompt" class="fs_a fs_c_midgrey2"><img src="' + shr_cdn_root + '/media/images/firefox_32x32.png" height=24 width=24 align="absmiddle" style="margin: -4px 8px 0 8px;" />Get the <a href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">shareaholic firefox extension</a> - It is the best way to <a href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">share, discover, and connect with the Best of the Web</a>! <a class="install rounded_5" href="https://addons.mozilla.org/en-US/firefox/addon/5457/" target="_new">Install</a> <a class="close" href="javascript:ext_promo_noThanks();">x</a></div>'; 
         break;
     case "Google Chrome": 
-        code = '<div id="ext-promo-prompt" class="fs_a fs_c_midgrey2"><img src="' + cdn_root + '/media/images/chrome_32x32.png" height=24 width=24 align="absmiddle" style="margin: -4px 8px 0 8px;" />Get the <a href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">shareaholic chrome extension</a> - It is the best way to <a href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">share, discover, and connect with the Best of the Web</a>! <a class="install rounded_5" href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">Install</a> <a class="close" href="javascript:ext_promo_noThanks();">x</a></div>';
+        code = '<div id="ext-promo-prompt" class="fs_a fs_c_midgrey2"><img src="' + shr_cdn_root + '/media/images/chrome_32x32.png" height=24 width=24 align="absmiddle" style="margin: -4px 8px 0 8px;" />Get the <a href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">shareaholic chrome extension</a> - It is the best way to <a href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">share, discover, and connect with the Best of the Web</a>! <a class="install rounded_5" href="https://chrome.google.com/webstore/detail/kbmipnjdeifmobkhgogdnomkihhgojep" target="_new">Install</a> <a class="close" href="javascript:ext_promo_noThanks();">x</a></div>';
         break;
     default:
 }
