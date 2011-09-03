@@ -1807,14 +1807,18 @@ function shrsb_first_image() {
   $og_first_img = '';
   ob_start();
   ob_end_clean();
-  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-  if(isset($matches) && isset($matches[1]) && isset($matches[1][0]) ){
-      $og_first_img = $matches[1][0];
-  }
-  if(empty($og_first_img)){ // return false if nothing there, makes life easier
+  if ($post == null)
     return false;
+  else {
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+    if(isset($matches) && isset($matches[1]) && isset($matches[1][0]) ){
+        $og_first_img = $matches[1][0];
+    }
+    if(empty($og_first_img)){ // return false if nothing there, makes life easier
+      return false;
+    }
+    return $og_first_img;
   }
-  return $og_first_img;
 }
 
 //For Adding the Og tags to each post
@@ -1831,7 +1835,8 @@ function shrsb_add_ogtags_head() {
 		if (is_home() || is_front_page() ) {
 			echo "\t<meta property='og:url' content='".get_bloginfo('url')."' />\n";
 		}else{
-			echo "\t<meta property='og:url' content='".get_permalink($post->ID)."' />\n";
+		  if ($post != null)
+  			echo "\t<meta property='og:url' content='".get_permalink($post->ID)."' />\n";
 		}
 		
 		// do title stuff
