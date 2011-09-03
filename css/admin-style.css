@@ -295,48 +295,37 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 /* Stats */
 #bonusShareFacesUL{height:35px !important;padding-top:1px !important;margin-top:8px !important;}
 .bonusShareLi{display:inline !important;float:left !important;margin:0px 1px 0px 1px !important;}
-.bonusShareFaces{width:38px !important;height:38px !important; border:solid transparent;}
-.bonusShareFaces:hover{width:38px !important;height:38px !important; border:solid grey;}
+.bonusShareFaces{width:38px !important;height:38px !important;border:solid transparent;}
+.bonusShareFaces:hover{width:38px !important;height:38px !important;border:solid grey;}
 /* End Stats Styles */
 /*------------------------------------------------------------------------------------------*/
 /* Functionality options Styles*/
-#genopts td:first-child {min-width: 380px;}
-.tab{margin-left: 30px !important; }
-
-.tabForTr td:first-child{padding-left: 30px !important; }
+#genopts td:first-child{min-width:380px;}
+.tab{margin-left:30px !important;}
+.tabForTr td:first-child{padding-left:30px !important;}
 /* End of functionality options Styles*/
 /*------------------------------------------------------------------------------------------*/
-.shr-fb-like-standard {background-image:url(../images/fbplusone.png);background-position:0 -5px; width: 60px !important; height: 35px !important;}
-.shr-fb-like-button {background-image:url(../images/fbplusone.png);background-position:0 -37px; width: 100px !important; height: 30px !important;}
-.shr-fb-like-box {background-image:url(../images/fbplusone.png);background-position:0 -72px;width: 60px !important; height: 70px !important;}
-
-.shr-plus-one-button {background-image:url(../images/fbplusone.png);background-position:-230px -12px; width:35px !important; height: 30px !important;}
-.shr-plus-one-button-count {background-image:url(../images/fbplusone.png);background-position:-120px -12px; width: 85px !important; height: 30px !important;}
-
-.shr-plus-one-standard {background-image:url(../images/fbplusone.png);background-position:-230px -52px; width: 40px !important; height: 30px !important;}
-.shr-plus-one-standard-count {background-image:url(../images/fbplusone.png);background-position:-120px -52px; width: 95px !important; height: 30px !important;}
-
-.shr-plus-one-box-count{background-image:url(../images/fbplusone.png);background-position:-120px -90px; width: 60px !important; height: 70px !important;}
-.shr-plus-one-box{background-image:url(../images/fbplusone.png);background-position:-120px -90px; width: 60px !important; height: 70px !important;}
-.shr-fb-send {background-image:url(../images/fbplusone.png);background-position:-195px -93px; width: 65px !important; height: 32px !important;}
-
-.dropzone {  border: 1px dashed #999; background: #e3e3e3;
-            -moz-border-radius: 4px;
-            -khtml-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            border-radius: 4px;
-            background-image: none !important;
-}
-
-.dropzoneNetworks {  border: 1px dashed #999; background: #e3e3e3;
-            -moz-border-radius: 2px;
-            -khtml-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            width: 58px !important;
-            height: 43px !important;
-            margin: 10px 0px !important;
-            border-radius: 2px;
-            background-image: none !important;
-}
-
-#buttonPreviewsTop li,#buttonPreviewsBottom li {margin:0px 10px !important; padding:0px !important; float:left;}
+.shr-fb-like-standard{background-image:url(../images/fbplusone.png);background-position:0 -5px;width:60px !important;height:35px !important;}
+.shr-fb-like-button{background-image:url(../images/fbplusone.png);background-position:0 -37px;width:100px !important;height:30px !important;}
+.shr-fb-like-box{background-image:url(../images/fbplusone.png);background-position:0 -72px;width:60px !important;height:70px !important;}
+.shr-plus-one-button{background-image:url(../images/fbplusone.png);background-position:-230px -12px;width:35px !important;height:30px !important;}
+.shr-plus-one-button-count{background-image:url(../images/fbplusone.png);background-position:-120px -12px;width:85px !important;height:30px !important;}
+.shr-plus-one-standard{background-image:url(../images/fbplusone.png);background-position:-230px -52px;width:40px !important;height:30px !important;}
+.shr-plus-one-standard-count{background-image:url(../images/fbplusone.png);background-position:-120px -52px;width:95px !important;height:30px !important;}
+.shr-plus-one-box-count{background-image:url(../images/fbplusone.png);background-position:-120px -90px;width:60px !important;height:70px !important;}
+.shr-plus-one-box{background-image:url(../images/fbplusone.png);background-position:-120px -90px;width:60px !important;height:70px !important;}
+.shr-fb-send{background-image:url(../images/fbplusone.png);background-position:-195px -93px;width:65px !important;height:32px !important;}
+.dropzone{border:1px dashed #999;background:#e3e3e3;-moz-border-radius:4px;-khtml-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-image:none !important;}
+.dropzoneNetworks{border:1px dashed #999;background:#e3e3e3;-moz-border-radius:2px;-khtml-border-radius:2px;-webkit-border-radius:2px;width:58px !important;height:43px !important;margin:10px 0px !important;border-radius:2px;background-image:none !important;}
+#buttonPreviewsTop li,#buttonPreviewsBottom li{margin:0px 10px !important;padding:0px !important;float:left;}
+/*------------------------------------------------------------------------------------------*/
+/* Start Ext Promo */
+#ext-promo-prompt{display:none;line-height: 31px;height: 31px;font-size: 14px; background:#ffefc6 url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-bg.png) repeat-x scroll 0 0;}
+#ext-promo-prompt a{text-decoration: none;color:#0076A6;}
+#ext-promo-prompt a:hover{color:#017FD6;}
+#ext-promo-prompt a.close{position: absolute;display: none;right: 5px;width: 20px;height: 20px;top: 5px;text-indent: -9999px;background: transparent url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-x.png) no-repeat scroll 0 0;}
+#ext-promo-prompt a.close:hover{background-position:0 -20px;}
+#ext-promo-prompt a.install{display:none;width: 75px;position: absolute;right: 30px;top: 4px;color: black;text-align: center;line-height:19px; border:1px solid rgba(100,100,100,.4);background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.25,#bdbdbd),color-stop(0.6,#d9d9d9),color-stop(0.99,#e0dcdf)); background: -moz-linear-gradient(top,  #bdbdbd,  #e0dcdf);}
+#ext-promo-prompt a.install:hover{border:1px solid rgba(100,100,100,.9);}
+/* End of functionality options Styles*/
+/*------------------------------------------------------------------------------------------*/

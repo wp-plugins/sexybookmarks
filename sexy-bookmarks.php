@@ -3,13 +3,13 @@
 Plugin Name: SexyBookmarks (by Shareaholic)
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.5.8
+Version: 4.0.5.9
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','4.0.5.8');
+define('SHRSB_vNum','4.0.5.9');
 
  
 /*
@@ -1780,14 +1780,14 @@ function shrsb_admin_scripts() {
 }
 
 /*
-*   @desc Add promotions for browser extensions
+*   @desc Add promo bar for browser extensions
 */
-function shrsb_show_promotions(){
+function shrsb_show_promo(){
     if (shrsb_get_current_user_role() && (shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor")) {
-        wp_enqueue_script('shareaholic-promotions-js', SHRSB_PLUGPATH.'js/shareaholic-promotions.min.js', array('jquery'), SHRSB_vNum, true);
+        wp_enqueue_script('shareaholic-promo-js', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, true);
     }
 }
-add_action('set_current_user', 'shrsb_show_promotions');
+add_action('set_current_user', 'shrsb_show_promo');
 
 //Change the directory path to webpath
 function shr_dir_to_path($dir){

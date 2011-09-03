@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: Facebook, Twitter, LinkedIn, URL Shortener, URL Shortner, Bit.ly, Bitly, Supr, Su.pr, Goo.gl, Googl, Google +1, Google Plus, Google 1, +1, Google, Google +, Instapaper, Amazon Wish List, Digg, Google Buzz, Buzz It, Google Apps, Google Gmail, Gmail, Google Notebook, Google Reader, SideWiki, WordPress, Blogger, Translate, TypePad, LiveJournal, Posterous, Soup.io, Tumblr, AIM, Yahoo Messenger, Delicious, Google Bookmarks, StumbleUpon, Dwellicious, Bebo, Mister Wong, Evernote, Netvibes, Stumpedia, Twine, Connotea, Diigo, Folkd, Simpy, addthis, addtoany, sharethis, sharedaddy, jetpack, sociable, share and follow, Hotmail, Share Button, AOL Mail, Outlook, Eudora, Thunderbird, Mail, Buzzster, Yahoo Buzz, Yahoo, Yahoo Mail, Reddit, Techmeme, YC Hacker News, Y Combinator, TechStars, Tweetmeme, SmakNews, Tipd, Care2, Current, YouTube, Hootsuite, Social Media Dashboard, Tweet Button, Fark, Khabbr, Xmarks, Foxmarks, Mixx, Readability, NewsTrust, Marginize, NowPublic, Brizzly, Propeller, Slashdot, Boxee, Kaboodle, Sphinn, MySpace, Orkut, Plurk, Identi.ca, Mozillaca, FriendFeed, Hyves, Netlog, Amplify, Plaxo, Tweetie, Technorati, Klout, Peerindex, Hub.tm, Hubspot, Is.gd, j.mp, TinyURL, Tr.im, WeHeartIt, Yandex, Clicky.me, Su.pr, Print, PrintFriendly, Print, Read It Later, ReadItLater, Yammer, Google Translate, Box.net, Pinboard, BuzzFeed, Shareaholic, Shareholic, Sexybookmarks, Sexy Bookmarks, Sexy, Bookmarks, Social, E-mail, Email, Email Button, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Sharing is Sexy, Sharing is Caring, Share and Enjoy, Sharecount, Share Count, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU
 Requires at least: 2.7
 Tested up to: 3.2.1
-Stable tag: 4.0.5.7
+Stable tag: 4.0.5.9
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -119,6 +119,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 
 == Changelog ==
+
+= 4.0.5.9 =
+* Fix css
+
 = 4.0.5.8 =
 * Fix typo/version number
 
@@ -131,9 +135,9 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Shareaholic's proprietary data attributes are now HTML5-compliant.
 * FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
 * Usage & Installation guide moved to http://www.shareaholic.com/tools/wordpress/usage-installation
-* Added browser extension promotions
-* Added Support for Open Graph Tags, Featured Image or First Image in post will be selected for OG Tag
-* Added SnapEngage Support for Sexybookmark Admin panel
+* Added browser extension promo
+* Added Support for Open Graph Tags (for Facebook and Google +1 sharing) - Featured Image or First Gallery Image in post will be selected for Open Graph Tag
+* Added links to live support in admin panel
 
 = 4.0.5.6 =
 * Many cross platform compatibility enhancements
