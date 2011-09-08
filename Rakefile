@@ -23,3 +23,8 @@ file "compiler/compiler.jar" do
   sh "rm compiler-latest.zip"
   cd "../"
 end
+
+desc 'Copy latest files from production'
+task :fromprod do
+  sh "curl http://www.shareaholic.com/media/js/jquery.shareaholic-publishers-sb.min.js > spritegen_default/jquery.shareaholic-publishers-sb.min.js"
+end
