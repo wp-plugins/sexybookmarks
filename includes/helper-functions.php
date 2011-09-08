@@ -263,7 +263,7 @@ function _shrsb_copy_file($des , $src){
 
 
 /**
- * Returns the UserVoice Feedback tab JS
+ * Return SnapEngage Help Tab
  *
  * @return string
  * @author Jay Meattle
@@ -275,7 +275,7 @@ function get_snapengage() {
 <script type="text/javascript">
 document.write(unescape("%3Cscript src='" + ((document.location.protocol=="https:")?"https://snapabug.appspot.com":"http://www.snapengage.com") + "/snapabug.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">
 SnapABug.setDomain('shareaholic.com');
-SnapABug.addButton("62fa2e8b-38a9-4304-ba5c-86503444d30c","1","65%");
+SnapABug.addButton("62fa2e8b-38a9-4304-ba5c-86503444d30c","1","85%");
 </script>
 <!-- SnapEngage End -->
 EOD;
