@@ -1803,7 +1803,9 @@ function shrsb_first_image() {
   }
 }
 
-//For Adding the Og tags to each post
+/*
+*   @desc For Adding the Og tags to each post
+*/
 function shrsb_add_ogtags_head() {
 	global $post,$shrsb_plugopts;
     
@@ -1814,42 +1816,42 @@ function shrsb_add_ogtags_head() {
         echo "\n\n".'<!-- '.__('Start Shareaholic OgTags ', 'shrsb').' -->'."\n\n";
 		
 		// do url stuff
-		if (is_home() || is_front_page() ) {
-			echo "\t<meta property='og:url' content='".get_bloginfo('url')."' />\n";
-		}else{
-		  if ($post != null)
-  			echo "\t<meta property='og:url' content='".get_permalink($post->ID)."' />\n";
-		}
+//		if (is_home() || is_front_page() ) {
+//			echo "\t<meta property='og:url' content='".get_bloginfo('url')."' />\n";
+//		}else{
+//		  if ($post != null)
+//  			echo "\t<meta property='og:url' content='".get_permalink($post->ID)."' />\n";
+//		}
 		
 		// do title stuff
-		if (is_home() || is_front_page() ) {
-			echo "\t<meta property='og:title' content='".get_bloginfo('name')."' />\n";
-		}else{
-			echo "\t<meta property='og:title' content='".get_the_title()."' />\n";
-		}
+//		if (is_home() || is_front_page() ) {
+//			echo "\t<meta property='og:title' content='".get_bloginfo('name')."' />\n";
+//		}else{
+//			echo "\t<meta property='og:title' content='".get_the_title()."' />\n";
+//		}
 		
 		// do additional randoms
-		echo "\t<meta property='og:site_name' content='".get_bloginfo('name')."' />\n";
+//		echo "\t<meta property='og:site_name' content='".get_bloginfo('name')."' />\n";
 		
 		// do descriptions
-		if (is_singular('post')) {
-			if (has_excerpt($post->ID)) {
-				echo "\t<meta property='og:description' content='".esc_attr(strip_tags(get_the_excerpt($post->ID)))."' />\n";
-			}else{
-				echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
-			}
-		}else{
-			echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
-		}
+//		if (is_singular('post')) {
+//			if (has_excerpt($post->ID)) {
+//				echo "\t<meta property='og:description' content='".esc_attr(strip_tags(get_the_excerpt($post->ID)))."' />\n";
+//			}else{
+//				echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
+//			}
+//		}else{
+//			echo "\t<meta property='og:description' content='".get_bloginfo('description')."' />\n";
+//		}
 		
 		// do ogp type
-		if (is_singular('post')) {
-			echo "\t<meta property='og:type' content='article' />\n";
-		}else{
-			echo "\t<meta property='og:type' content='website' />\n";
-		}
+//		if (is_singular('post')) {
+//			echo "\t<meta property='og:type' content='article' />\n";
+//		}else{
+//			echo "\t<meta property='og:type' content='website' />\n";
+//		}
 		
-		// do image tricks
+		// og Image Tag
 		if (is_home()) {
 			if (isset($options['wpfbogp_fallback_img']) && $options['wpfbogp_fallback_img'] != '') {
 				echo "\t<meta property='og:image' content='".$options['wpfbogp_fallback_img']."' />\n";
