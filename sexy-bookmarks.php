@@ -463,7 +463,7 @@ function _hide_options_meta_box_content() {
 	echo '<p><label for="hide_sexy"><input name="hide_sexy" id="hide_sexy" value="1"' . $hide_sexy . ' type="checkbox"> ' . __( 'Disable SexyBookmarks Buttons on this page.', 'shrsb' ) . '</label></p>';
     
     //For Hiding the OG tags for specific posts
-    echo '<p><label for="hide_ogtags"><input name="hide_ogtags" id="hide_ogtags" value="1"' . $hide_ogtags . ' type="checkbox"> ' . __( 'Disable Open Graph Tags on this page.', 'shrsb' ) . '</label></p>';
+    echo '<p><label for="hide_ogtags"><input name="hide_ogtags" id="hide_ogtags" value="1"' . $hide_ogtags . ' type="checkbox"> ' . __( 'Disable Open Graph Tags on this page.', 'shrsb' ) . '(<a href="http://www.shareaholic.com/tools/wordpress/faq/#open_graph_image" target="_blank">?</a>)</label></p>';
 }
 
 function _hide_options_meta_box_save( $post_id ) {
