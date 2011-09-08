@@ -51,14 +51,15 @@ setTimeout(function() {
             //if wp admin bar not present
             jQuery("body").prepend(code);
         }else{
-            // jQuery("body").prepend(code);
+            //wp admin bar present - do something special
+            //jQuery("#wpwrap").before(code);
         }
         jQuery('div#ext-promo-prompt').slideDown();
         jQuery('div#ext-promo-prompt a.install').slideDown();
         jQuery('div#ext-promo-prompt a.close').slideDown();
     }		
     }
-}, 1000);
+}, 500);
 });
 
 function ext_promo_noThanks() {

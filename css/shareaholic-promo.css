@@ -1,6 +1,6 @@
 /*------------------------------------------------------------------------------------------*/
 /* Start Ext Promo */
-#ext-promo-prompt{display:none;line-height: 31px;height: 31px;font-size: 14px; background:#ffefc6 url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-bg.png) repeat-x scroll 0 0;}
+#ext-promo-prompt{display:none;width:100%;line-height: 31px;height: 31px;font-size: 14px; background:#ffefc6 url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-bg.png) repeat-x scroll 0 0;z-index:2147483647;}
 #ext-promo-prompt a{text-decoration: none;color:#0076A6;}
 #ext-promo-prompt a:hover{color:#017FD6;}
 #ext-promo-prompt a.close{position: absolute;display: none;right: 5px;width: 20px;height: 20px;top: 5px;text-indent: -9999px;background: transparent url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-x.png) no-repeat scroll 0 0;}
