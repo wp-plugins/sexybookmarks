@@ -1,3 +1,7 @@
+/**
+* @preserve Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved. 
+*/
+
 jQuery(document).ready(function() {
 	if (jQuery('#iconator')) jQuery('#shrsb-networks').sortable({ 
 		delay:        250,

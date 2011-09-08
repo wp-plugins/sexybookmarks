@@ -1,8 +1,5 @@
 /**
-* Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved.
-* 
-* @Author Ankur Agarwal
-* 
+* @preserve Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved. 
 */
 
 var shr_cdn_root = "https://dtym7iokkjlif.cloudfront.net";
@@ -58,6 +55,7 @@ setTimeout(function() {
     }
 }, 1000);
 });
+
 function ext_promo_noThanks() {
     jQuery.cookie('no_cp', '1', { expires: 30, path: '/' });
     jQuery('div#ext-promo-prompt a.install').slideUp('fast', function() { jQuery(this).remove(); });
