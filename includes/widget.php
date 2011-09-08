@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Creating the widget for the Wordpress Dashboard
+ * Creating the widget for the WordPress Dashboard
  */
 
 class ShareaholicWidget extends WP_Widget{
@@ -19,7 +19,6 @@ class ShareaholicWidget extends WP_Widget{
         //Output the Widget Contet
         extract($args);
         $this->top_sharers($this->get_domain());
-        
     }
     
     function update($new_instance, $old_instance){
@@ -32,7 +31,6 @@ class ShareaholicWidget extends WP_Widget{
     }
     
     function get_domain(){
-        
         $site_url = get_option("siteurl");
         preg_match("/^(http?:\/\/)?([^\/]+)/i",$site_url , $matches);
         $host = $matches[2];
@@ -44,13 +42,8 @@ class ShareaholicWidget extends WP_Widget{
             return $domain["path"];
         }        
         return $domain;
-
     }
-
-
 }
-
-
 
 function shrsb_register_widget() {
     register_widget('ShareaholicWidget');
@@ -58,5 +51,3 @@ function shrsb_register_widget() {
 
 add_action( 'widgets_init', 'shrsb_register_widget' );
 ?>
-
-

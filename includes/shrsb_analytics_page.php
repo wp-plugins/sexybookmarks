@@ -75,8 +75,5 @@ function shrsb_analytics_page() {
 
     </div>
 <?php
-
     }
-
-
 ?>

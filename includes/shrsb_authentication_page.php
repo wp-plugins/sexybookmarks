@@ -141,5 +141,4 @@ function shrsb_authentication_page($apikey = null) {
     </div>
 	<?php
 }
-
 ?>
