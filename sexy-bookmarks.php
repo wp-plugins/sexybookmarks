@@ -196,6 +196,20 @@ add_option('SHRSB_DefaultSprite',true);
 $shrsb_plugopts = get_option('SexyBookmarks');
 
 
+//Remove the propeller Service
+if(isset ($shrsb_plugopts) && isset($shrsb_plugopts['service'])){
+   $services = explode(',', $shrsb_plugopts['service']);
+
+   if(!empty($services)){
+       foreach ($services as $k => $v){
+           if($v == '77'){
+               unset ($services[$k]);
+           }
+       }
+       $shrsb_plugopts['service'] = implode(',', $services );
+   }
+}
+
 /*
 *   @note Make sure spritegen_path is defined
 */
