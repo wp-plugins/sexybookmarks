@@ -11,7 +11,6 @@ Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 
 define('SHRSB_vNum','4.0.5.9');
 
- 
 /*
 *   @note Make sure to include files first as there may be dependencies
 */
@@ -25,36 +24,18 @@ require_once 'includes/helper-functions.php';   // helper functions for backend
 /*
 *  @ For Debugging Purpose
 */
-if(true && (isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
-	$data = array(
-		"siteurl" 		 => 	get_option('siteurl'),
-		"version"		 => 	get_option('SHRSBvNum'),
-		"apikey" 		 => 	get_option('SHRSB_apikey'),
-		"custom_sprite" 	 => 	get_option('SHRSB_CustomSprite'),
-		"default_spritegen" 	 => 	get_option('SHRSB_DefaultSprite'),
-		"plugopts"		 =>	get_option('SexyBookmarks')
-	);
-    $dump_type = "php";
-    if( isset($_POST['dump_type'])){
-        $dump_type = $_POST['dump_type'];
-    }
-        
-    if(isset($_GET['dump_type'])){
-        $dump_type = $_GET['dump_type'];
-    }
-    switch($dump_type){
-        case "json":
-            echo json_encode($data);	
-            break;
-        case "tree":
-            echo shrsb_displayTree($data);
-            break;
-        default :
-            var_export($data);    
-    }
-	die();
+if((isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
+	
+    //Global Debugging Variable
+    $shrsb_debug = array();
+    $method =  isset($_GET)? "get" : "post"; //true for get, false for post
+    $shrsb_debug['dump_type'] = shrsb_get_value($method, "dump_type");
+    $shrsb_debug['dump_type'] = shrsb_get_value($method, "sb_dump");
+    $shrsb_debug['sb_script'] = shrsb_get_value($method, "sb_script", false);
+    $shrsb_debug['sb_die'] = shrsb_get_value($method, "sb_die", false);
+    
+    shrsb_dump_settings();
 }
-
 
 /*
 *   @desc Create Text Domain For Translations

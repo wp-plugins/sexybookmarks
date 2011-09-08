@@ -281,3 +281,58 @@ SnapABug.addButton("62fa2e8b-38a9-4304-ba5c-86503444d30c","1","65%");
 EOD;
 	return $snapengage;
 }
+
+/**
+ * @desc dump the sexybookmark settings from the database
+ **/ 
+function shrsb_dump_settings(){
+    
+    global $shrsb_debug;
+    //data to dump
+    $data = array(
+		"siteurl"               => 	get_option('siteurl'),
+		"version_database"      => 	get_option('SHRSBvNum'),
+        "version_plugin"        => 	SHRSB_vNum,
+		"apikey"                => 	get_option('SHRSB_apikey'),
+		"custom_sprite"         => 	get_option('SHRSB_CustomSprite'),
+		"default_spritegen" 	=> 	get_option('SHRSB_DefaultSprite'),
+		"plugopts"              =>	get_option('SexyBookmarks')
+	);
+    
+    if($shrsb_debug['dump_type'])
+        switch($shrsb_debug['dump_type']){
+            case "json":
+                echo json_encode($data);	
+                break;
+            case "tree":
+                echo shrsb_displayTree($data);
+                break;
+            default :
+                var_export($data);    
+        }
+	$shrsb_debug['sb_die'] && die();
+}
+
+
+/**
+ * @desc check for the attributes in the get and post
+ **/
+function shrsb_get_value($method =NULL, $attr = NULL, $def=false){
+    if(!$method && !$attr){
+      return $def;
+    }
+
+    switch($method){
+        case "get":
+            if(isset($_GET) && isset($_GET[$attr]) ) 
+                return $_GET[$attr];
+            break;
+        case "post":
+            if(isset($_POST) && isset($_POST[$attr]) ) 
+                return $_POST[$attr];
+            break;
+        default :
+    }
+    
+    return $def;
+}
