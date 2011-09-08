@@ -802,7 +802,7 @@ function shrsb_publicScripts() {
       if($shrsb_plugopts['custom-mods'] == 'yes') {
         $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
      } else {
-        $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.js';
+        $surl = SHRSB_PLUGPATH.'js/sexy-bookmarks-public.min.js';
      }
       // If jQuery compatibility fix is not selected, go ahead and load jQuery
       $jquery = ($shrsb_plugopts['doNotIncludeJQuery'] != '1') ? array('jquery') : array();
@@ -815,7 +815,7 @@ function shrsb_publicScripts() {
   if (($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '' && !is_admin())
           && $shrsb_plugopts['shareaholic-javascript'] !== '1'){
       //include code
-      wp_enqueue_script('shareaholic-perf-js', SHRSB_PLUGPATH.'js/shareaholic-perf.js', null, SHRSB_vNum, false);
+      wp_enqueue_script('shareaholic-perf-js', SHRSB_PLUGPATH.'js/shareaholic-perf.min.js', null, SHRSB_vNum, false);
     }
 }
 

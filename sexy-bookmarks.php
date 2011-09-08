@@ -1761,7 +1761,7 @@ function shrsb_menu_link() {
 
 //styles and scripts for admin area
 function shrsb_admin_scripts() {
-	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
+	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
     
 	echo '<!-- Yahoo! Web Analytics -->
 			<script type="text/javascript" src="http://d.yimg.com/mi/eu/ywa.js"></script>
