@@ -434,29 +434,39 @@ function showUpdateNotice() {
   }
 }
 /*
-*   @desc Adds "Hide SexyBookmarks" option on each post
+*   @desc Adds "SexyBookmarks" options on each post
 */
-function _add_meta_box_to_hide_sexy() {
-	if ( shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor") {
-        add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'page', 'advanced', 'high' );
-        add_meta_box( 'hide_sexy_meta', __( 'Shareaholic', 'shrsb' ), '_hide_sexy_meta_box_content', 'post', 'advanced', 'high' );
+function _add_meta_box_options() {
+	
+    if( shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor") {
+        //"Hide options on each post
+        add_meta_box( 'hide_options_meta', __( 'Shareaholic', 'shrsb' ), '_hide_options_meta_box_content', 'page', 'advanced', 'high' );
+        add_meta_box( 'hide_options_meta', __( 'Shareaholic', 'shrsb' ), '_hide_options_meta_box_content', 'post', 'advanced', 'high' );
     }
 }
+add_action( 'admin_init', '_add_meta_box_options' );
 
-add_action( 'admin_init', '_add_meta_box_to_hide_sexy' );
-
-function _hide_sexy_meta_box_content() {
+function _hide_options_meta_box_content() {
     global $post;
     $hide_sexy = get_post_meta( $post->ID, 'Hide SexyBookmarks',true);
+    $hide_ogtags = get_post_meta( $post->ID, 'Hide OgTags',true);
 	if ( isset( $hide_sexy ) && $hide_sexy == 1 )
 		$hide_sexy = ' checked="checked"';
 	else
 		$hide_sexy = '';
-
+    if ( isset( $hide_ogtags ) && $hide_ogtags == 1 )
+		$hide_ogtags = ' checked="checked"';
+	else
+		$hide_ogtags = '';
+    
+    //"Hide SexyBookmarks" option on each post
 	echo '<p><label for="hide_sexy"><input name="hide_sexy" id="hide_sexy" value="1"' . $hide_sexy . ' type="checkbox"> ' . __( 'Disable SexyBookmarks Buttons on this page.', 'shrsb' ) . '</label></p>';
+    
+    //For Hiding the OG tags for specific posts
+    echo '<p><label for="hide_ogtags"><input name="hide_ogtags" id="hide_ogtags" value="1"' . $hide_ogtags . ' type="checkbox"> ' . __( 'Disable Open Graph Tags on this page.', 'shrsb' ) . '</label></p>';
 }
 
-function _hide_sexy_meta_box_save( $post_id ) {
+function _hide_options_meta_box_save( $post_id ) {
 	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 		return $post_id;
 
@@ -469,13 +479,20 @@ function _hide_sexy_meta_box_save( $post_id ) {
             else {
                 delete_post_meta( $post_id, 'Hide SexyBookmarks' );
             }
+            
+            if ( isset( $_POST['hide_ogtags'] ) ) {
+                update_post_meta( $post_id, 'Hide OgTags', 1 );
+            }
+            else {
+                delete_post_meta( $post_id, 'Hide OgTags' );
+            }
 		}
 	}
 
   return $post_id;
 }
 
-add_action( 'save_post', '_hide_sexy_meta_box_save' );
+add_action( 'save_post', '_hide_options_meta_box_save' );
 add_action('admin_notices', 'showUpdateNotice', 12);
 
 /*
@@ -1811,10 +1828,18 @@ function shrsb_add_ogtags_head() {
     
 	// check to see if ogtags are enabled or not
 	if (!isset($shrsb_plugopts['ogtags']) || empty($shrsb_plugopts['ogtags'])) {
-        echo "\n\n".'<!-- '.__('SexyBookmarks OgTags has been disabled', 'shrsb').' -->'."\n\n";
+        echo "\n\n".'<!-- '.__('SexyBookmarks OgTags disabled for all post', 'shrsb').' -->'."\n\n";
 	}else{
+        //Check whther OG Tags enabled for this post
+        if(get_post_meta($post->ID, 'Hide OgTags')) {
+            echo "\n\n".'<!-- '.__('SexyBookmarks OgTags disabled for this post', 'shrsb').' -->'."\n\n";
+           return;
+        }
+        
         echo "\n\n".'<!-- '.__('Start Shareaholic OgTags ', 'shrsb').' -->'."\n\n";
 		
+        
+        
 		// do url stuff
 //		if (is_home() || is_front_page() ) {
 //			echo "\t<meta property='og:url' content='".get_bloginfo('url')."' />\n";
@@ -1872,7 +1897,6 @@ function shrsb_add_ogtags_head() {
     }
 
 } // end function
-
 
 add_action('wp_head','shrsb_add_ogtags_head',10);
 
