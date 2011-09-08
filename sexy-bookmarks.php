@@ -471,7 +471,7 @@ function _hide_options_meta_box_save( $post_id ) {
 		return $post_id;
 
 	// Record sharing disable
-	if ( 'post' == $_POST['post_type'] || 'page' == $_POST['post_type'] ) {
+	if (isset($_POST['post_type']) && ('post' == $_POST['post_type'] || 'page' == $_POST['post_type'] )) {
 		if ( current_user_can( 'edit_post', $post_id ) ) {
             if ( isset( $_POST['hide_sexy'] ) ) {
                 update_post_meta( $post_id, 'Hide SexyBookmarks', 1 );
