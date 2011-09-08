@@ -1762,19 +1762,7 @@ function shrsb_menu_link() {
 //styles and scripts for admin area
 function shrsb_admin_scripts() {
 	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
-    
-	echo '<!-- Yahoo! Web Analytics -->
-			<script type="text/javascript" src="http://d.yimg.com/mi/eu/ywa.js"></script>
-			<script type="text/javascript">
-				/*globals YWA*/
-				var YWATracker = YWA.getTracker("10001081871123");
-				YWATracker.setDocumentGroup("SB-WPAdmin");
-				YWATracker.submit();
-			</script>
-			<noscript>
-				<div><img src="http://s.analytics.yahoo.com/p.pl?a=10001081871123&amp;js=no" width="1" height="1" alt="" /></div>
-			</noscript>
-			<!-- End of Yahoo! Web Analytics -->';
+	echo get_googleanalytics();
 }
 
 /*
