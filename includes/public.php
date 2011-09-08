@@ -75,7 +75,7 @@ function shrsb_post_info($post) {
   if($ismanual || ($ishome && $isemptytitle)) {
 
     //$r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
-    $r['link'] = trim('http://' . get_option('siteurl') . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+    $r['link'] = trim(get_option('siteurl') . $_SERVER['REQUEST_URL'] . $_SERVER['QUERY_STRING']);
     $r['title'] = get_bloginfo('name') . wp_title('-', false);
     $r['feed_permalink'] = strtolower('http://' . $_SERVER['SERVER_NAME'] .  $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
     $r['mail_subject'] = urlencode(get_bloginfo('name') . wp_title('-', false));
