@@ -1782,8 +1782,8 @@ function shrsb_admin_scripts() {
 */
 function shrsb_show_promo(){
     if (is_admin()) {
-        wp_enqueue_script('shareaholic-promo-js', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, true);
-        wp_enqueue_style('shareaholic-promo-css', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
+        wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
+        wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
     }
 }
 add_action('set_current_user', 'shrsb_show_promo');

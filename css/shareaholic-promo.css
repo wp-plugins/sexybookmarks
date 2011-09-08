@@ -9,3 +9,7 @@
 #ext-promo-prompt a.install:hover{border:1px solid rgba(100,100,100,.9);}
 /* End of functionality options Styles*/
 /*------------------------------------------------------------------------------------------*/
+.fs_a{font-family:Arial,Helvetica,Geneva,sans-serif;}
+.fs_c_midgrey2{color:#555555}
+.rounded_5{webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+/*------------------------------------------------------------------------------------------*/
