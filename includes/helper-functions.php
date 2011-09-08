@@ -360,3 +360,13 @@ function shrsb_get_value($method =NULL, $attr = NULL, $def=false){
     
     return $def;
 }
+
+/**
+ * @desc log the message if logging is enabled
+ **/
+function shrsb_log($msg){
+    global $shrsb_debug;
+    if(isset($shrsb_debug) && isset($shrsb_debug['sb_log']) && $shrsb_debug['sb_log'] !== false){
+            echo '<!-- log:start --><span style=color:red>'.$msg.'</span><br><!-- log:end -->';
+    }
+}

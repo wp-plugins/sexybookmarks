@@ -29,10 +29,11 @@ if((isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
     //Global Debugging Variable
     $shrsb_debug = array();
     $method =  isset($_GET)? "get" : "post"; //true for get, false for post
-    $shrsb_debug['dump_type'] = shrsb_get_value($method, "dump_type");
     $shrsb_debug['dump_type'] = shrsb_get_value($method, "sb_dump");
+    $shrsb_debug['dump_type'] = shrsb_get_value($method, "dump_type");
     $shrsb_debug['sb_script'] = shrsb_get_value($method, "sb_script", false);
     $shrsb_debug['sb_die'] = shrsb_get_value($method, "sb_die", false);
+    $shrsb_debug['sb_log'] = shrsb_get_value($method, "sb_log", false);
     
     shrsb_dump_settings();
 }
@@ -491,14 +492,16 @@ function _hide_options_meta_box_save( $post_id ) {
                 update_post_meta( $post_id, 'Hide SexyBookmarks', 1 );
             }
             else {
-                delete_post_meta( $post_id, 'Hide SexyBookmarks' );
+                //delete_post_meta( $post_id, 'Hide SexyBookmarks' );
+                update_post_meta( $post_id, 'Hide SexyBookmarks', 0 );
             }
             
             if ( isset( $_POST['hide_ogtags'] ) ) {
                 update_post_meta( $post_id, 'Hide OgTags', 1 );
             }
             else {
-                delete_post_meta( $post_id, 'Hide OgTags' );
+                //delete_post_meta( $post_id, 'Hide OgTags' );
+                update_post_meta( $post_id, 'Hide OgTags', 0 );
             }
 		}
 	}
@@ -1833,7 +1836,7 @@ function shrsb_add_ogtags_head() {
         echo "\n\n".'<!-- Shareaholic Notice: OgTags disabled for all posts -->'."\n\n";
 	}else{
         //Check whther OG Tags enabled for this post
-        if(get_post_meta($post->ID, 'Hide OgTags')) {
+        if(($ogtags_meta = get_post_meta($post->ID, 'Hide OgTags',true)) == 1)  {
             echo "\n\n".'<!-- Shareaholic Notice: OgTags disabled for this post -->'."\n\n";
            return;
         }

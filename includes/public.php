@@ -73,17 +73,37 @@ function shrsb_post_info($post) {
       false!==strpos($shrsb_plugopts['pageorpost'],"index");
   $isemptytitle = empty($post->post_title);
   if($ismanual || ($ishome && $isemptytitle)) {
-
-    //$r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
-    $r['link'] = trim(get_option('siteurl') . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+  
+    if(!in_the_loop()) {
+        $link= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        //$link="";
+    }
+    //Otherwise, it must be inside the loop
+    else {
+        if(($link = get_permalink($post->ID)) == false){
+            $link = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        }
+    }
+    $link = trim($link);
+    shrsb_log('Manual: Link Generation '.$link);
+    $r['link'] = $link;
     $r['title'] = get_bloginfo('name') . wp_title('-', false);
-    $r['feed_permalink'] = strtolower('http://' . $_SERVER['SERVER_NAME'] .  $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+    $r['feed_permalink'] = strtolower('http://' . $_SERVER['SERVER_NAME'] .  $_SERVER['REQUEST_URI']);
     $r['mail_subject'] = urlencode(get_bloginfo('name') . wp_title('-', false));
 
 	}
   //We are "in the loop"
   else {
-		$r['link'] = trim(get_permalink($post->ID));
+        
+      if(!in_the_loop()){
+            $r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
+            shrsb_log("Not in loop: ".$r['link']);
+        }else{
+            $r['link'] = trim(get_permalink($post->ID));
+            shrsb_log("In loop: ".$r['link']);
+        }
+        
+        shrsb_log("Loop mode Link Generation ".$r['link']);
 		$r['title'] = $post->post_title;
 		$r['feed_permalink'] = strtolower($r['link']);
 		$r['mail_subject'] = urlencode($post->post_title);
@@ -163,6 +183,7 @@ function shrsb_get_publisher_config($post_id) {
  * Returns array of all relevant information about the current post for sexy
  */
 function shrsb_get_params($post_id) {
+  shrsb_log("get_params start");
   global $shrsb_plugopts, $shrsb_bgimg_map;
   $post = get_post($post_id);
 
@@ -282,12 +303,13 @@ function shrsb_get_params($post_id) {
   else {
     $r['include_comfeed'] = FALSE;
   }
-
+  shrsb_log("get_params completed");
 	return $r;
 }
 
 
 function shrsb_get_fetch_url() {
+    shrsb_log("get_fetch_url start");
 	global $post, $shrsb_plugopts, $wp_query; //globals
 	
 	//get link but first check if inside or outside loop and what page it's on
@@ -296,7 +318,7 @@ function shrsb_get_fetch_url() {
 	if($shrsb_plugopts['position'] == 'manual') {
 		//Check if outside the loop
 		if(empty($post->post_title)) {
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		}
 		//Otherwise, it must be inside the loop
 		else {
@@ -307,7 +329,7 @@ function shrsb_get_fetch_url() {
 	elseif(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) {
 		//Check if outside the loop
 		if(empty($post->post_title)) {
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ;
 		}
 		//Otherwise, it must be inside the loop
 		else {
@@ -319,7 +341,7 @@ function shrsb_get_fetch_url() {
 		$perms = get_permalink($post->ID);
 	}
 	$perms = trim($perms);
-	
+	shrsb_log("URL ".$perms);
 	//if is post, and post is not published then return permalink and go back
 	if($post && get_post_status($post->ID) != 'publish') {
 		return $perms;
@@ -338,12 +360,14 @@ function shrsb_get_fetch_url() {
 	if (!empty($fetch_url)) {
 	    return $fetch_url;
     }
+    shrsb_log("get_fetch_url start completed");
 }
 
 
 // Create an auto-insertion function
 function shrsb_position_menu($post_content) {
 	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
+    shrsb_log("Content Analysis started");
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
         if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
@@ -365,7 +389,7 @@ function shrsb_position_menu($post_content) {
 	// Decide whether or not to generate the bookmarks.
 	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || (is_feed() && !empty($shrsb_plugopts['feed']))) { 
     // socials should be generated and added
-    if(!get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+    if( ($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true))  != 1 ){
       if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
         $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
         $likeButtonSetTop = get_shr_like_buttonset('Top', 1);
@@ -399,7 +423,7 @@ function shrsb_position_menu($post_content) {
 
     $r = $likeButtonSetTop.$r.$likeButtonSetBottom;
   }
-
+  shrsb_log("Content Analysis Completed");
   return $r;
 } // End shrsb_position_menu...
 
@@ -502,48 +526,57 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
 
 
 function get_sexy() {
+    shrsb_log("get_sexy started");
 	global $shrsb_plugopts, $wp_query, $post;
 	$spost = $wp_query->post;
 
     $output = "";
     if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
             $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
+            shrsb_log("get_sexy new mode found, returning ");
             return $output;
     }
 
 	if($shrsb_plugopts['position'] == 'manual') {
 
 		//Check if outside the loop
-		if(empty($post->post_title)) {
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+		if(!in_the_loop()) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ;
+            //$perms = "";
+            shrsb_log("Manual:Not in Loop: ".$perms);
 			$title = get_bloginfo('name') . wp_title('-', false);
-			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
 			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 		}
 
 		//Otherwise, it must be inside the loop
 		else {
 			$perms = get_permalink($post->ID);
+            shrsb_log("Manual:In Loop: ".$perms);
 			$title = $post->post_title;
 			$feedperms = strtolower($perms);
 			$mail_subject = urlencode($post->post_title);
 		}
-	}
+    
+	}//manual mode
 
 	//Check if index page...
 	elseif(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) {
 
 		//Check if outside the loop
-		if(empty($post->post_title)) {
-			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING'];
+		if(!in_the_loop()) {
+			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+            //$perms= "";
+            shrsb_log("NotManualqqqq:Not in Loop: ".$perms);
 			$title = get_bloginfo('name') . wp_title('-', false);
-			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']);
+			$feedperms = strtolower('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] );
 			$mail_subject = urlencode(get_bloginfo('name') . wp_title('-', false));
 		}
 
 		//Otherwise, it must be inside the loop
 		else {
 			$perms = get_permalink($post->ID);
+            shrsb_log("NotManual:In Loop: ".$perms);
 			$title = $post->post_title;
 			$feedperms = strtolower($perms);
 			$mail_subject = urlencode($post->post_title);
@@ -552,6 +585,7 @@ function get_sexy() {
 	//Apparently isn't on index page...
 	else {
 		$perms = get_permalink($post->ID);
+        shrsb_log("Dont know in loop or not: ".$perms);
 		$title = $post->post_title;
 		$feedperms = strtolower($perms);
 		$mail_subject = urlencode($post->post_title);
@@ -737,20 +771,21 @@ function get_sexy() {
 	}
 	$socials.= '<div style="clear: both;"></div></div>';
 	$socials.="\n\n";
+    shrsb_log("get_sexy completed");
 	return $socials;
 }
 
 // This function is what allows people to insert the menu wherever they please rather than above/below a post... (depreciated)
 function selfserv_sexy() {
 	global $post;
-	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
+	if(($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )
 		echo get_sexy();
 }
 
 //Same as above function, just a diff name
 function selfserv_shareaholic() {
 	global $post;
-	if(!get_post_meta($post->ID, 'Hide SexyBookmarks'))
+		if(($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )
 		echo get_sexy();
 }
 
@@ -759,7 +794,7 @@ function shrsb_publicStyles() {
 	global $shrsb_plugopts, $post, $shrsb_custom_sprite;
 
 	// If custom field is set, do not display sexybookmarks
-	if ($post && get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+	if ($post && ($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) == 1) {
 		echo "\n\n".'<!-- '.__('SexyBookmarks has been disabled on this page', 'shrsb').' -->'."\n\n";
 	} 
   elseif ($shrsb_plugopts['shareaholic-javascript'] != '1') {
@@ -797,7 +832,7 @@ function shrsb_publicScripts() {
         wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption']));
     } else {
     // If any javascript dependent options are selected, load the scripts
-    if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && $post && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
+    if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && $post && (($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )) {
       // If custom mods is selected, pull files from new location
       if($shrsb_plugopts['custom-mods'] == 'yes') {
         $surl = WP_CONTENT_URL.'/sexy-mods/js/sexy-bookmarks-public.js';
