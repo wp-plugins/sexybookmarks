@@ -1,5 +1,11 @@
 # Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved.
 
+desc 'Get ready for releasing'
+task :makerelease do
+    Rake::Task['min'].invoke
+    Rake::Task['fromprod'].invoke
+end
+
 desc 'Minify scripts using closure compiler'
 task :min => "compiler/compiler.jar" do
   files = %w(shareaholic-promo sexy-bookmarks-public shareaholic-perf shareaholic-admin)
