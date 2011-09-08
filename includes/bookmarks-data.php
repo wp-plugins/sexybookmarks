@@ -313,11 +313,6 @@ $shrsb_bookmarks_data=array(
 		'check'=>sprintf($checkthis_text,'Squidoo'),
 		'share'=>__('Add to a lense on ', 'shrsb').'Squidoo'
 	),
-	'shr-propeller'=>array(
-		'id'=>77,
-		'check'=>sprintf($checkthis_text,'Propeller'),
-		'share'=>__('Submit this story to ', 'shrsb').'Propeller'
-	),
 	'shr-faqpal'=>array(
 		'id'=>287,
 		'check'=>sprintf($checkthis_text,'FAQpal'),

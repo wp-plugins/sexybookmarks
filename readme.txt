@@ -123,6 +123,8 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 = 4.0.6.1
 * Fixed "headers already sent" error
 * Refinements to Open Graph Tags (can now disable on individual posts)
+* Provide the accessibility support for SexyBookmark sharing icons
+* Remove Propeller from service list
 
 = 4.0.5.9 =
 * Fix css
