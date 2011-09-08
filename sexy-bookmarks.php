@@ -1821,24 +1821,22 @@ function shrsb_first_image() {
 }
 
 /*
-*   @desc For Adding the Og tags to each post
+*   @desc For adding Open Graph tags to each post (http://ogp.me/)
 */
 function shrsb_add_ogtags_head() {
 	global $post,$shrsb_plugopts;
     
 	// check to see if ogtags are enabled or not
 	if (!isset($shrsb_plugopts['ogtags']) || empty($shrsb_plugopts['ogtags'])) {
-        echo "\n\n".'<!-- '.__('SexyBookmarks OgTags disabled for all post', 'shrsb').' -->'."\n\n";
+        echo "\n\n".'<!-- Shareaholic Notice: OgTags disabled for all posts -->'."\n\n";
 	}else{
         //Check whther OG Tags enabled for this post
         if(get_post_meta($post->ID, 'Hide OgTags')) {
-            echo "\n\n".'<!-- '.__('SexyBookmarks OgTags disabled for this post', 'shrsb').' -->'."\n\n";
+            echo "\n\n".'<!-- Shareaholic Notice: OgTags disabled for this post -->'."\n\n";
            return;
         }
         
-        echo "\n\n".'<!-- '.__('Start Shareaholic OgTags ', 'shrsb').' -->'."\n\n";
-		
-        
+        echo "\n\n".'<!-- Start Shareaholic OgTags -->'."\n\n";
         
 		// do url stuff
 //		if (is_home() || is_front_page() ) {
@@ -1881,7 +1879,7 @@ function shrsb_add_ogtags_head() {
 			if (isset($options['wpfbogp_fallback_img']) && $options['wpfbogp_fallback_img'] != '') {
 				echo "\t<meta property='og:image' content='".$options['wpfbogp_fallback_img']."' />\n";
 			}else{
-				echo "\t<!-- There is not an image here as you haven't set a default image in the plugin settings! -->\n"; 
+				echo "\t<!-- Shareaholic Notice: There is no featured image set -->\n"; 
 			}
 		} else {
 			if ((function_exists('has_post_thumbnail')) && (has_post_thumbnail())) {
@@ -1890,10 +1888,10 @@ function shrsb_add_ogtags_head() {
 			}elseif (( shrsb_first_image() !== false ) && (is_singular())) {
 				echo "\t<meta property='og:image' content='".shrsb_first_image()."' />\n";
 			}else{
-                echo "\n\n".'<!-- '.__('There is not an image here as you haven\'t set a default image', 'shrsb').' -->'."\n\n";
+                echo "\t".'<!-- Shareaholic Notice: There is neither a featured nor gallery image set -->'."\n";
 			}
 		}
-		echo "\n\n<!-- End Shareaholic OgTags -->\n\n";
+		echo "\n<!-- End Shareaholic OgTags -->\n\n";
     }
 
 } // end function
