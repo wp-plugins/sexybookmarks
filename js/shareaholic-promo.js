@@ -47,12 +47,10 @@ setTimeout(function() {
     if(jQuery('.extLives').length == 0) {
     var extpromoPrompt = jQuery.cookie("no_cp");
     if(extpromoPrompt != 1) {
-        if(jQuery('#wpadminbar').length == 0) {
-            //if wp admin bar not present
-            jQuery("body").prepend(code);
-        }else{
-            //wp admin bar present - do something special
-            //jQuery("#wpwrap").before(code);
+        jQuery("body").prepend(code);
+        // Margin out the admin bar by its exact height if the admin bar is present.
+        if(jQuery('#wpadminbar').length != 0) {
+            jQuery("#ext-promo-prompt").css("margin-top", jQuery("#wpadminbar").css("height"));
         }
         jQuery('div#ext-promo-prompt').slideDown();
         jQuery('div#ext-promo-prompt a.install').slideDown();
