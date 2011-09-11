@@ -850,7 +850,7 @@ function shrsb_publicScripts() {
   if (($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '' && !is_admin())
           && $shrsb_plugopts['shareaholic-javascript'] !== '1'){
       //include code
-      wp_enqueue_script('shareaholic-perf-js', SHRSB_PLUGPATH.'js/shareaholic-perf.min.js', null, SHRSB_vNum, false);
+      wp_enqueue_script('shareaholic-perf', SHRSB_PLUGPATH.'js/shareaholic-perf.min.js', null, SHRSB_vNum, false);
     }
 }
 
