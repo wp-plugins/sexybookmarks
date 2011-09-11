@@ -45,7 +45,8 @@ jQuery(window).load(function() {
     setTimeout(function() {
         if(jQuery('.extLives').length == 0) {
             var extpromoPrompt = jQuery.cookie("no_cp");
-            if(extpromoPrompt != 1) {
+            var inFrame = (window != window.top)
+            if((extpromoPrompt != 1) && !inFrame) {
                 jQuery("body").prepend(code);
                 // Margin out the admin bar by its exact height if the admin bar is present.
                 if(jQuery('#wpadminbar').length != 0) {
