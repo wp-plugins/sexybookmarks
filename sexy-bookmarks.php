@@ -164,7 +164,7 @@ $shrsb_plugopts = array(
   'mobile-hide' => '', // 'yes' or blank
   'bgimg' => 'caring', // default bg image
   'shorty' => 'google', // default shortener
-  'pageorpost' => 'postpageindex',
+  'pageorpost' => 'postpageindexcategory',
   'bookmark' => $shrsb_most_popular,//array_keys($shrsb_bookmarks_data), // pulled from bookmarks-data.php
   'feed' => '0', // 1 or 0
   'expand' => '1',
@@ -822,7 +822,7 @@ function shrsb_settings_page() {
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'caring', // default bg image
 			'shorty' => 'google', // default shortener
-			'pageorpost' => 'postpageindex',
+			'pageorpost' => 'postpageindexcategory',
 			'bookmark' => $shrsb_most_popular ,//array_keys($shrsb_bookmarks_data),
 			'feed' => '0', // 1 or 0
 			'expand' => '1',
@@ -907,7 +907,7 @@ function shrsb_settings_page() {
     if(isset($_POST['bookmark']['shr-fleck'])) {
       unset($_POST['bookmark']['shr-fleck']);
     }
-
+        $_POST['pageorpost'] = shrsb_set_content_type();
 		// Set success message
 		$status_message = __('Your changes have been saved successfully!', 'shrsb');
 
@@ -1613,22 +1613,15 @@ function shrsb_settings_page() {
 						<label><input <?php echo (($shrsb_plugopts['position'] == "below")? 'checked="checked"' : ""); ?> name="position" id="position-below" type="radio" value="below" /> <?php _e('Below Content', 'shrsb'); ?></label>
             <label><input <?php echo (($shrsb_plugopts['position'] == "both")? 'checked="checked"' : ""); ?> name="position" id="position-both" type="radio" value="both" /> <?php _e('Above & Below Content', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['position'] == "manual")? 'checked="checked"' : ""); ?> name="position" id="position-manual" type="radio" value="manual" /> <?php _e('Manual Mode', 'shrsb'); ?></label>
-						<span class="shrsb_option"><?php _e('Posts, pages, or the whole shebang?', 'shrsb'); ?></span>
-						<select name="pageorpost" id="pageorpost">
-							<?php
-								print shrsb_select_option_group(
-								    'pageorpost', array(
-									    'post'=>__('Posts Only', 'shrsb'),
-									    'page'=>__('Pages Only', 'shrsb'),
-									    'index'=>__('Index Only', 'shrsb'),
-									    'pagepost'=>__('Posts &amp; Pages', 'shrsb'),
-									    'postindex'=>__('Posts &amp; Index', 'shrsb'),
-									    'pageindex'=>__('Pages &amp; Index', 'shrsb'),
-									    'postpageindex'=>__('Posts, Pages, &amp; Index', 'shrsb'),
-								    )
-								);
-							?>
-						</select><span class="shebang-info fugue f-question" title="<?php _e('Click here for help with this option', 'shrsb'); ?>"> </span>
+						
+                        <span class="shrsb_option"><?php _e('Posts, pages,categories or the whole shebang?', 'shrsb'); ?></span>
+                        <input type="checkbox" id="type_post" name="content_type[]"  value="post" <?php echo (false!==strpos($shrsb_plugopts['pageorpost'],"post"))? 'checked' : ""; ?>/><label for="type_post" class="padding"><?php _e('posts', 'shrsb'); ?></label><br>
+                        <input type="checkbox" id="type_page" name="content_type[]"  value="page" <?php echo (false!==strpos($shrsb_plugopts['pageorpost'],"page"))? 'checked' : ""; ?>/><label for="type_page" class="padding"><?php _e('pages', 'shrsb'); ?></label><br>
+                        <input type="checkbox" id="type_index" name="content_type[]"  value="index" <?php echo (false!==strpos($shrsb_plugopts['pageorpost'],"index"))? 'checked' : ""; ?>/><label for="type_index"  class="padding"><?php _e('main index', 'shrsb'); ?></label><br>
+                        <input type="checkbox" id="type_category" name="content_type[]"  value="category" <?php echo (false!==strpos($shrsb_plugopts['pageorpost'],"category"))? 'checked' : ""; ?>/><label for="type_category" class="padding"><?php _e('category index', 'shrsb'); ?></label><br>
+                       
+                        
+                        <span class="shebang-info fugue f-question" title="<?php _e('Click here for help with this option', 'shrsb'); ?>"> </span>
 						<span class="shrsb_option"><?php _e('Show in RSS feed?', 'shrsb'); ?></span>
 						<label><input <?php echo (($shrsb_plugopts['feed'] == "1")? 'checked="checked"' : ""); ?> name="feed" id="feed-show" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
 						<label><input <?php echo (($shrsb_plugopts['feed'] == "0" || empty($shrsb_plugopts['feed']))? 'checked="checked"' : ""); ?> name="feed" id="feed-hide" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
@@ -1823,6 +1816,23 @@ function shrsb_first_image() {
     }
     return $og_first_img;
   }
+}
+
+/*
+*   @desc For setting the content type which are enablled
+*/
+function shrsb_set_content_type() {
+    $type  = "";
+    $content = $_POST['content_type'];
+    if(empty ($content)){
+        $type  = "postpageindexcategory";
+    }else{
+        $n = count($content);
+        for($i = 0; $i < $n; $i++){
+            $type .= $content[$i];
+        }
+    }
+    return $type;
 }
 
 /*

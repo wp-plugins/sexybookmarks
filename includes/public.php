@@ -374,55 +374,64 @@ function shrsb_position_menu($post_content) {
               $config = shrsb_get_publisher_config($post->ID);
               $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
         }
+        shrsb_log("Manual:Content Analysis returning ");
 		return $post_content;
 	}
 
 	// If user selected hide from mobile and is mobile, get out.
 	elseif ($shrsb_plugopts['mobile-hide']=='yes' && false!==$shrsb_is_mobile || $shrsb_plugopts['mobile-hide']=='yes' && false!==$shrsb_is_bot) {
-		return $post_content;
+		shrsb_log("Not Manual:Content Analysis returning");
+        return $post_content;
 	}
-
+    
     $output = "";
     $likeButtonSetTop = "";
     $likeButtonSetBottom = "";
     
 	// Decide whether or not to generate the bookmarks.
-	if ((is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || (is_feed() && !empty($shrsb_plugopts['feed']))) { 
+	if (    (is_single() && false!==strpos($shrsb_plugopts['pageorpost'],"post")) || 
+            (is_page() && false!==strpos($shrsb_plugopts['pageorpost'],"page")) || 
+            (is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) || 
+            (is_category() && false!==strpos($shrsb_plugopts['pageorpost'],"category") ) || 
+            (is_feed() && !empty($shrsb_plugopts['feed']))) { 
+    
     // socials should be generated and added
-    if( ($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true))  != 1 ){
-      if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-        $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
-        $likeButtonSetTop = get_shr_like_buttonset('Top', 1);
-        $likeButtonSetBottom = get_shr_like_buttonset('Bottom', 1);
-        $config = shrsb_get_publisher_config($post->ID);
+        if( ($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true))  != 1 ){
+            if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+                $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
+                $likeButtonSetTop = get_shr_like_buttonset('Top', 1);
+                $likeButtonSetBottom = get_shr_like_buttonset('Bottom', 1);
+                $config = shrsb_get_publisher_config($post->ID);
 
-        $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
-      }
-      else {
-        $output=get_sexy();
-      }
+                $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+            }
+            else {
+                $output=get_sexy();
+            }
+        }
     }
-  }
-
+shrsb_log("came here".$output);
 	// Place of bookmarks and return w/ post content.
   $r = $post_content;
 	if (!empty($output)) {
-    switch($shrsb_plugopts['position']) {
-      case 'above':
-        $r = $output.$post_content;
-        break;
-      case 'both':
-        $r = $output.$post_content.$output;
-        break;
-      case 'below':
-        $r = $post_content.$output;
-        break;
-      default:
-        error_log(__('An unknown error occurred in SexyBookmarks','shrsb'));
-    }
+        
+        switch($shrsb_plugopts['position']) {
+          case 'above':
+            $r = $output.$post_content;
+            break;
+          case 'both':
+            $r = $output.$post_content.$output;
+            break;
+          case 'below':
+            $r = $post_content.$output;
+            break;
+          default:
+            error_log(__('An unknown error occurred in SexyBookmarks','shrsb'));
+        }
 
-    $r = $likeButtonSetTop.$r.$likeButtonSetBottom;
+        $r = $likeButtonSetTop.$r.$likeButtonSetBottom;
   }
+  
   shrsb_log("Content Analysis Completed");
   return $r;
 } // End shrsb_position_menu...
