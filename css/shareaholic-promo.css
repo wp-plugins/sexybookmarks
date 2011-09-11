@@ -9,7 +9,6 @@
   font-size: 14px;
   background:#ffefc6 url(https://dtym7iokkjlif.cloudfront.net/media/images/ext-promo-bg.png) repeat-x scroll 0 0;
   z-index:99998; /*Admin bar is 99999*/
-  margin-bottom: -31px;
 }
 #ext-promo-prompt a{text-decoration: none;color:#0076A6;}
 #ext-promo-prompt a:hover{color:#017FD6;}

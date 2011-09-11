@@ -50,6 +50,9 @@ jQuery(window).load(function() {
                 // Margin out the admin bar by its exact height if the admin bar is present.
                 if(jQuery('#wpadminbar').length != 0) {
                     jQuery("#ext-promo-prompt").css("margin-top", jQuery("#wpadminbar").css("height"));
+                    
+                    // Also, remove the dead whitespace.
+                    jQuery("#ext-promo-prompt").css("margin-bottom", "-" + jQuery("#ext-promo-prompt").css("height"));
                 }
                 jQuery('div#ext-promo-prompt').show();
             }
