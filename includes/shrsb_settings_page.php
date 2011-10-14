@@ -229,7 +229,8 @@ function shrsb_likeButtonSetHTML($pos = 'Bottom') {   // $pos = Bottom/Top
             <tr></tr>
 
 
-<?php
+<?php 
+
 }
 
 
@@ -487,5 +488,92 @@ function shrsb_addFBNameSpace($attr) {
 	$attr .= "\n xmlns:fb=\"http://www.facebook.com/2008/fbml\"";
     return $attr;
 }
+
+//list all bookmarks in the plugin options page
+function shrsb_network_input_select($name, $hint) {
+	global $shrsb_plugopts;
+	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
+		$name,
+		$hint,
+		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
+		$name,
+		$name,
+		shrsb_truncate_text(end(explode('-', $name)), 9)
+	);
+}
+
+function shrsb_truncate_text($text, $nbrChar, $append='..') {
+     if(strlen($text) > $nbrChar) {
+          $text = substr($text, 0, $nbrChar);
+          $text .= $append;
+     }
+     return $text;
+}
+
+// returns the option tag for a form select element
+// $opts array expecting keys: field, value, text
+function shrsb_form_select_option($opts) {
+	global $shrsb_plugopts;
+	$opts=array_merge(
+		array(
+			'field'=>'',
+			'value'=>'',
+			'text'=>'',
+		),
+		$opts
+	);
+	return sprintf('<option%s value="%s">%s</option>',
+		($shrsb_plugopts[$opts['field']]==$opts['value'])?' selected="selected"':"",
+		$opts['value'],
+		$opts['text']
+	);
+}
+
+// given an array $options of data and $field to feed into shrsb_form_select_option
+function shrsb_select_option_group($field, $options) {
+	$h='';
+	foreach ($options as $value=>$text) {
+		$h.=shrsb_form_select_option(array(
+			'field'=>$field,
+			'value'=>$value,
+			'text'=>$text,
+		));
+	}
+	return $h;
+}
+
+function shrsb_right_side_menu(){
+    ?>
+
+    <div id="shrsb-col-right">
+
+    <h2 class="sh-logo"></h2>
+
+	<div class="box-right">
+		<div class="box-right-head">
+			<h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'shrsb'); ?></h3>
+		</div>
+		<div class="box-right-body">
+			<div class="padding">
+				<ul class="infolinks">
+					<li><a href="http://www.shareaholic.com/tools/wordpress/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/wordpress/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
+					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/wordpress/translations" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
+					<li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div style="padding:15px;"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe></div>
+
+    </div>
+
+    <?php
+}
+
 
 ?>
