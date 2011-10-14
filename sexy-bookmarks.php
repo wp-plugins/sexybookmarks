@@ -183,7 +183,8 @@ $shrsb_plugopts = array(
   // comma delimited list of service ids for publisher javascript
   'service' => '',
   'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
-  'ogtags' => '1'
+  'ogtags' => '1',
+  'promo' => '1'
 );
 
 //add to database
@@ -276,6 +277,10 @@ if(!isset($shrsb_plugopts['likeButtonSetTop'])) {
 
 if(!isset($shrsb_plugopts['ogtags'])) {
     $shrsb_plugopts['ogtags'] = "1";
+}
+
+if(!isset($shrsb_plugopts['promo'])) {
+    $shrsb_plugopts['promo'] = "1";
 }
 
 if(!isset($shrsb_plugopts['fbNameSpace'])) {
@@ -840,7 +845,8 @@ function shrsb_settings_page() {
             'tip_bg_color' => '#000000',  // tooltip background color
             'tip_text_color' => '#ffffff', // tooltip text color
             'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
-            'ogtags' => '1'  //OgTags
+            'ogtags' => '1',  //OgTags
+            'promo' => '1'
         );
 
         $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
@@ -1008,7 +1014,7 @@ function shrsb_settings_page() {
                 'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
 
                 'fbNameSpace','designer_toolTips' , 'tip_bg_color',
-                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey','ogtags'
+                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey','ogtags','promo'
             )as $field) {
                 if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
                     $shrsb_plugopts[$field] = $_POST[$field];
@@ -1392,7 +1398,13 @@ function shrsb_settings_page() {
 							<span class="shrsb_option"><?php _e('Use new version?', 'shrsb'); ?></span>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] == "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] != "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
-							<br><em><?php _e('You can switch back at any time.', 'shrsb'); ?></em>
+							<br>
+                            <em><?php _e('You can switch back at any time.', 'shrsb'); ?></em>
+                            <span class="shrsb_option"><?php _e('Want to know about new products?', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['promo'] == "1")? 'checked="checked"' : ""); ?> name="promo" id="promo-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['promo'] != "1")? 'checked="checked"' : ""); ?> name="promo" id="promo-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
+                            <br><em><?php _e('Save and Refresh the page', 'shrsb'); ?></em>
+							
                             <input type="hidden" name="shrbase" value="<?php echo $shrsb_plugopts['shrbase'] ?>"/>
                             <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
                             </p>
@@ -1779,7 +1791,8 @@ function shrsb_admin_scripts() {
 *   @desc Add promo bar for browser extensions
 */
 function shrsb_show_promo(){
-    if (is_admin()) {
+    global $shrsb_plugopts;
+    if (is_admin() && $shrsb_plugopts['promo'] == 1) {
         wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
         wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
     }
