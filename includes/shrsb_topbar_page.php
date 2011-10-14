@@ -130,73 +130,6 @@ function shrsb_tb_settings_page() {
 		<ul id="shrsb-sortables">
             
             <li>
-                <div class="box-mid-head">
-                    <h2 class="fugue f-status"><?php _e('Shareaholic Social Engagement Analytics', 'shrsb'); ?></h2>
-                </div>
-				<div class="box-mid-body">
-                        <div style="padding:8px;background:#FDF6E5;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" />
-                                <?php
-                                    $parse = parse_url(get_bloginfo('url'));
-                                    $share_url = "http://www.shareaholic.com/api/data/".$parse['host']."/sharecount/30";
-                                    $top_users_url =  "http://www.shareaholic.com/api/data/".$parse['host']."/topusers/16/";
-
-                                    echo sprintf(__('<b style="font-size:14px;line-height:22px;">Did you know that content from this website has been shared <span style="color:#CC1100;"><span id="bonusShareCount"></span> time(s)</span> in the past <span id="bonusShareTimeFrame"></span> day(s)?</b>', 'shrsb'));
-                                ?>
-
-                                <script type ="text/javascript">
-                                    (function($){
-                                        $(document).ready( function () {
-                                            var url = <?php echo "'".$share_url."'";?>;
-                                            var top_users_url  = <?php echo "'".$top_users_url."'";?>;
-                                            $.getJSON(url+'?callback=?', function (obj) {
-                                                $('#bonusShareCount').text(obj.sharecount);
-                                                $('#bonusShareTimeFrame').text(obj.timeframe);
-                                            });
-
-                                            $.getJSON(top_users_url+'?callback=?', function (obj) {
-                                                add_faces(obj);
-                                            });
-                                        });
-
-                                        var add_faces = function(obj) {
-                                            if(obj && obj.length) {
-                                                var shuffle = function(v){
-                                                    //+ Jonas Raoni Soares Silva
-                                                    //@ http://jsfromhell.com/array/shuffle [rev. #1]
-                                                    for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
-                                                    return v;
-                                                };
-                                                obj = shuffle(obj);
-
-                                                $('#bonusShareTopUser').show();
-                                                var face_ul = $('<ul id="bonusShareFacesUL"/>');
-                                                for(var i=0; i<obj.length; ++i) {
-                                                    var shr_profile_url = "http://www.shareaholic.com/" + obj[i].username;
-                                                    face_ul.append(
-                                                        $("<li class='bonusShareLi'>").append("<a target='_blank' href="+shr_profile_url+"><img class='bonusShareFaces' title=" + obj[i].username + " src=" + obj[i].picture_url + "></img></a>")
-                                                    );
-                                                }
-
-                                                $('#bonusShareTopUser').append(face_ul);
-
-                                            }
-                                        };
-                                    })(jQuery);
-                                </script>
-                                <br/><br/>
-                                <div id="bonusShareTopUser" style="display:none"><b><?php _e('Meet the people who spread your content the most:', 'shrsb'); ?></b></div>
-
-                                <br />
-                                <div style="background: url(http://www.shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
-                                <br />
-                                  <?php  echo sprintf(__('What are you waiting for? <b>Access detailed %ssocial engagement analytics%s about your website for FREE right now!</b><br><br>You have been selected to preview the upcoming premium analytics add-on for SexyBookmarks for FREE for a limited time - so hurry before it is too late! These analytics are designed to help you grow your traffic and referrals.', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
-                                ?>
-
-                        </div>
-                </div>
-            </li>
-            
-            <li>
 				<div class="box-mid-head">
 					<h2 class="fugue f-globe-plus"><?php _e('Top Sharing Bar [BETA]', 'shrsb'); ?></h2>
 				</div>
@@ -273,35 +206,12 @@ function shrsb_tb_settings_page() {
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
 	</form>
 </div>
-<div id="shrsb-col-right">
 
-    <h2 class="sh-logo"></h2>
-
-	<div class="box-right">
-		<div class="box-right-head">
-			<h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'shrsb'); ?></h3>
-		</div>
-		<div class="box-right-body">
-			<div class="padding">
-				<ul class="infolinks">
-					<li><a href="http://www.shareaholic.com/tools/wordpress/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/translations" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div style="padding:15px;"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe>
-	</div>
-
-</div>
 <?php
 
+//Right Side helpful links
+echo shrsb_right_side_menu();
+//Snap Engage
 echo get_snapengage();
 
 }//closing brace for function "shrsb_settings_page"
