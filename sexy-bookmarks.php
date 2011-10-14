@@ -1792,7 +1792,7 @@ function shrsb_admin_scripts() {
 */
 function shrsb_show_promo(){
     global $shrsb_plugopts;
-    if (is_admin() && $shrsb_plugopts['promo'] == 1) {
+    if (is_admin() && $shrsb_plugopts['promo'] == "1") {
         wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
         wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
     }
