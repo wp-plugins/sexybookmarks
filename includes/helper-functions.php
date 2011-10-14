@@ -306,6 +306,19 @@ EOD;
 	return $snapengage;
 }
 
+//Change the directory path to webpath
+function shr_dir_to_path($dir){
+    if(!$dir){
+        return false;
+    }
+    $path = get_option("siteurl");
+    if(substr($path, -1) != '/'){
+        $path .= '/';
+    }
+    $path .= substr($dir , strlen(ABSPATH));
+    return $path;
+}
+
 /**
  * @desc dump the sexybookmark settings from the database
  **/ 
