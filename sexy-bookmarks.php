@@ -18,6 +18,7 @@ define('SHRSB_vNum','4.0.6.2');
 require_once 'includes/bookmarks-data.php';     // contains all bookmark templates
 require_once 'includes/html-helpers.php';       // helper functions for html output
 require_once 'includes/helper-functions.php';   // helper functions for backend
+require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
 //require_once 'includes/widget.php';   // widget
 
 
