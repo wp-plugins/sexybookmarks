@@ -738,7 +738,8 @@ function _make_params($params) {
 function shrsb_refresh_cache() {
   global $shrsb_plugopts, $shrsb_bgimg_map, $default_spritegen;
 
-  $script = _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
+  $script_sb = _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
+  $script_tb = _shrsb_fetch_content('/media/js/shareaholic-share-buttons.js', '/shareaholic-share-buttons.js', true);
 
   // Sort services to make request more cacheable.
   $services = explode(',', $shrsb_plugopts['service']);
@@ -757,7 +758,7 @@ function shrsb_refresh_cache() {
   $sprite_opts['apitype'] = 'png';
   $png = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
 
-  if(!$script || !$css || !$png) {
+  if(!$script_sb || $script_tb || !$css || !$png) {
     update_option('SHRSB_DefaultSprite',true);
     $default_spritegen = true;
   } else {
