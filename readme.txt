@@ -122,7 +122,12 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 = 4.0.6.3 =
 * Fixed potential bug for category pages & manual mode 
-* Added support to manage top bar
+* Added a topbar with sharing options
+* Added support to manage topbar
+* Optimize for performance
+* Add the tweet button in the like buttons set
+* Fix bugs related to manual mode
+* Fix bugs related to category pages
 
 = 4.0.6.2 =
 * Fixes to changelog formatting
