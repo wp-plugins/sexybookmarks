@@ -864,7 +864,10 @@ function shrsb_publicScripts() {
     //Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-        wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);    
+        wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
+        if($shrsb_plugopts['topbar'] == '1'){
+            wp_enqueue_script('shareaholic-share-buttons-js', shrsb_correct_protocol($spritegen_basepath.$spritegen.'/shareaholic-share-buttons.js') , null, SHRSB_vNum, $infooter);    
+        }
         wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption']));
     } else {
     // If any javascript dependent options are selected, load the scripts
