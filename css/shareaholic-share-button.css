@@ -1,0 +1,147 @@
+/* 
+    Document   : shareaholic-share-button
+    Created on : 14 Jun, 2011, 3:43:37 PM
+    Author     : sharad, Ankur Agarwal
+    Description:
+        For shareaholic share buttons
+*/
+
+/*Parent -Container*/
+#shareaholic-bar {
+    position: fixed !important;
+    top: 0px !important;
+/*    margin-left: -8px;*/
+    left: 0px;
+    width: 100% !important;
+    height: 35px!important;
+    z-index: 100000;
+    min-width: 140px;  /* 2x LC width + RC width */
+}
+
+#shareaholic-bar .column{
+    float: left;
+}
+
+/*Button Container -left*/
+#showHideToolBar {
+    float: left;
+    width: 26px !important;
+    cursor: pointer;
+    height: 35px !important;
+    z-index: 100000 !important;
+    position: relative;
+    margin-left: -100%;
+/*    right: 0px !important;*/
+}
+
+/*Toolbar content container -center*/
+#shareToolBar{ 
+    float: left;
+    width:100%;
+    position: relative;
+    height: 35px;
+/*    margin-left: -8px;*/
+}
+
+
+/*Advertisement container -right*/
+#shareToolBarAddv { 
+    float: left;
+    position: relative;
+    width:88px;
+    margin-right: -88px
+}
+
+#shareToolBarHeader {
+    clear: both;
+/*    height: 5px;*/
+}
+#shareToolBarFooter {
+    clear: both;
+    position: relative;
+    height: 5px;
+}
+
+/*contents of the content container*/
+.shareaholic-like-buttonset{
+    height:30px;
+    float: left;
+    padding-top: 7px
+}
+#shareaholic-services{ 
+    height: 30px;
+    float: left;
+}
+
+#shareaholic-bar .shr-toolbox{
+    position: relative !important;
+    left:20% !important;
+}
+#shareaholic-bar .shr-toolbox li {margin-left: 15px 2px !important; width: 120 px !important; float: left !important; list-style-type: none !important; font-size: 11px !important;}
+#shareaholic-bar .shr-toolbox li a{ text-decoration: none !important; }
+#shareaholic-bar .shr-toolbox li:hover { }
+.shr-toolbox ul { list-style-type :none !important;padding: 0; margin: 0; }
+
+.shareToolBarButton {margin:5px; font-size: 0px; line-height: 0%; height: 0px !important; width: 0px !important; border-left: 8px solid transparent; border-right: 8px solid transparent;}
+.shareToolBarHideButton {border-bottom: 20px solid #77c;}
+.shareToolBarShowButton {border-top: 20px solid #77c;}
+
+#shareaholic-bar .shr-icon{
+        cursor: pointer;
+        margin: 6px 0 0 9px;
+        padding: 0;
+        background-image: url(http://www.spreadaholic.com/media/images/shareaholic-share-button.gif);
+        height: 24px;
+        width: 24px;
+        float: left !important;
+}
+#shareaholic-bar .shr-text{
+        cursor: pointer;
+        margin: 6px 0 0 9px;
+        padding: 0;
+        float: left !important;
+        width: 65px;
+}
+
+#shareaholic-bar .shr-5 .shr-icon{
+        background-position: 0px 0px;
+}
+#shareaholic-bar .shr-5:hover .shr-icon{
+        background-position: 0px -24px;
+}
+
+#shareaholic-bar .shr-7 .shr-icon{
+    background-position: 0px -48px;
+}
+#shareaholic-bar .shr-7:hover .shr-icon{
+    background-position: 0px -72px;
+}
+#shareaholic-bar .shr-201 .shr-icon {
+    background-position: 0px -96px;
+}
+#shareaholic-bar .shr-201:hover .shr-icon{
+    background-position: 0px -120px;
+}
+
+div.shr-count{font:9px bold,arial !important;position: relative !important;}
+div.shr-count-outline{position: absolute !important;color: white !important;}
+div.shr-count-center{position: absolute !important;color: blue !important;}
+
+
+.shr-toolbox .shareaholic-mini a{float:left;margin-right:15px;}
+.shr-toolbox .shareaholic-mini div,.shr-toolbox .shareaholic-mini a{font-size:11px;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;}
+/*Facebook*/
+.shareaholic-mini .shr-5-count{height:53px;width:57px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") no-repeat scroll;background-position:0px -80px;color:black;cursor:pointer;text-decoration:none;display:block;}
+.shareaholic-mini .shr-5-count-compact,.shareaholic-mini .shr-5{height:23px;width:63px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") no-repeat scroll;background-position:0px -50px;color:black;cursor:pointer;text-decoration:none;display:block;}
+/*Twitter*/
+.shareaholic-mini .shr-7-count{height:53px;width:57px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") no-repeat scroll;background-position:-57px -80px;color:black;cursor:pointer;text-decoration:none;display:block;}
+.shareaholic-mini .shr-7-count-compact,.shareaholic-mini .shr-7{height:14px;width:55px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") -228px -79px no-repeat;color:black;cursor:pointer;text-decoration:none;display:block;}
+/*email*/
+.shr_btn_email_count{height:53px;width:57px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") no-repeat scroll;background-position:-114px -80px;color:black;cursor:pointer;text-decoration:none;display:block;}
+.shr_btn_email{height:23px;width:57px;font-weight:bold;font-size:14px;padding-top:7px;text-align:center;background:transparent url("http://www.shareaholic.com/media/images/shareaholic-publishers-mini.png") no-repeat scroll;background-position:-114px -112px;color:black;cursor:pointer;text-decoration:none;display:block;}
+/*right-count*/
+.shareaholic-mini .shr_compact_div{background:#EFEFEF;border:1px solid #C1C1C1;float:left;font-weight:normal;height:14px;margin-left:1px;min-width:15px;padding:1px 2px 1px 2px;text-align:center;font-size:11px;display:block;margin-top:2px;margin-right:15px;}
+.shareaholic-mini .shr_compact_tick{float:left;position:relative;z-index:2;width:5px;top:5px;left:2px;border-collapse:separate;border-spacing:2px 2px;margin-top:2px;}
+.shareaholic-mini .shr_compact_tick i{left:2px;top:-6px;border-right-color:#EFEFEF;font-style:italic;}
+.shareaholic-mini .shr_compact_tick s{text-decoration:line-through;text-align:left;}
+.shareaholic-mini .shr_compact_tick s,i{border:solid transparent;border-right-color:#C7C7C7;display:block;position:relative;border-width:5px 5px 0 0;}
