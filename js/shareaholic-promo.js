@@ -62,6 +62,6 @@ jQuery(window).load(function() {
 });
 
 function ext_promo_noThanks() {
-    jQuery.cookie('no_cp', '1', { expires: 30, path: '/' });
+    jQuery.cookie('no_cp', '1', { expires: 60, path: '/' });
     jQuery('div#ext-promo-prompt').hide();
 }
