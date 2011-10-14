@@ -758,9 +758,10 @@ function shrsb_refresh_cache() {
   $css_tb = _shrsb_fetch_content('/media/css/shareaholic-share-button.css', '/shareaholic-share-button.css', true);
   
   $sprite_opts['apitype'] = 'png';
-  $png = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
+  $png_sb = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
+  $png_tb = _shrsb_fetch_content('/media/images/shareaholic-publishers-mini.png', '/shareaholic-publishers-mini.png', true);
 
-  if(!$script_sb || !$script_tb || !$css_sb || !$css_tb || !$png) {
+  if(!$script_sb || !$script_tb || !$css_sb || !$css_tb || !$png_sb || !$png_tb) {
     update_option('SHRSB_DefaultSprite',true);
     $default_spritegen = true;
   } else {
