@@ -72,11 +72,10 @@ function shrsb_post_info($post) {
   $ishome = is_home() &&
       false!==strpos($shrsb_plugopts['pageorpost'],"index");
   $isemptytitle = empty($post->post_title);
-  if($ismanual || ($ishome && $isemptytitle)) {
+  if($ismanual || ($ishome && $isemptytitle) || !in_the_loop()) {
   
     if(!in_the_loop()) {
         $link= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-        //$link="";
     }
     //Otherwise, it must be inside the loop
     else {
@@ -94,15 +93,7 @@ function shrsb_post_info($post) {
 	}
   //We are "in the loop"
   else {
-        
-      if(!in_the_loop()){
-            $r['link'] = trim('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
-            shrsb_log("Not in loop: ".$r['link']);
-        }else{
-            $r['link'] = trim(get_permalink($post->ID));
-            shrsb_log("In loop: ".$r['link']);
-        }
-        
+        $r['link'] = trim(get_permalink($post->ID));
         shrsb_log("Loop mode Link Generation ".$r['link']);
 		$r['title'] = $post->post_title;
 		$r['feed_permalink'] = strtolower($r['link']);
@@ -123,6 +114,7 @@ function shrsb_post_info($post) {
  * Returns array of values that should be used in shareaholic-publishers.js
  */
 function shrsb_get_publisher_config($post_id) {
+  shrsb_log("get_publisher_config started");
   global $default_spritegen;
   $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
   $spritegen_basepath = shrsb_correct_protocol($default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH);
@@ -175,7 +167,7 @@ function shrsb_get_publisher_config($post_id) {
       ),
     );
   }
-
+  shrsb_log("get_publisher_config completed");
   return array_filter($params);
 }
 
@@ -185,7 +177,15 @@ function shrsb_get_publisher_config($post_id) {
 function shrsb_get_params($post_id) {
   shrsb_log("get_params start");
   global $shrsb_plugopts, $shrsb_bgimg_map;
-  $post = get_post($post_id);
+  
+  
+  if($post_id >= 0){
+    $post = get_post($post_id);  
+  }else{
+      //For handling the (manual mode && outside the loop)
+      $post = "";
+  }
+    
 
   // response parameters
   $post_info = shrsb_post_info($post);
@@ -196,33 +196,35 @@ function shrsb_get_params($post_id) {
   $r['shortener'] = $r['shorty'];
   $r['shortener_key'] = '';
 
-  if (isset($shortener)){
-      switch($shortener) {
-      case 'bitly':
-        case 'jmp':
-        case 'supr':
-            $user = $post_info['shortyapi'][$r['shorty']]['user'];
-            $api = $post_info['shortyapi'][$r['shorty']]['key'];
-            $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
-            break;
-        default:
+    if (isset($shortener)){
+        switch($shortener) {
+            case 'bitly':
+            case 'jmp':
+            case 'supr':
+                $user = $post_info['shortyapi'][$r['shorty']]['user'];
+                $api = $post_info['shortyapi'][$r['shorty']]['key'];
+                $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
+                break;
+            default:
+        }
     }
-  }
+    if($post_id >= 0){
+        $r['post_summary'] = urlencode(strip_tags(
+        strip_shortcodes($post->post_excerpt)));
 
-  $r['post_summary'] = urlencode(strip_tags(
-  strip_shortcodes($post->post_excerpt)));
-  
-  if ($r['post_summary'] == "") {
-    $r['post_summary'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
-  }
+        if ($r['post_summary'] == "") {
+            $r['post_summary'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
+        }
 
-  $r['shrsb_content'] = urlencode(strip_tags(strip_shortcodes($post->post_excerpt)));
-  if ($r['shrsb_content'] == "") {
-    $r['shrsb_content'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
-  }
+        $r['shrsb_content'] = urlencode(strip_tags(strip_shortcodes($post->post_excerpt)));
+        if ($r['shrsb_content'] == "") {
+            $r['shrsb_content'] = urlencode(substr(strip_tags(strip_shortcodes($post->post_content)),0,300));
+        }
+        $r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
+        $r['post_summary'] = stripslashes(str_replace('+','%20',$r['post_summary']));
+    }
+    
   
-  $r['shrsb_content']	= str_replace('+','%20',$r['shrsb_content']);
-  $r['post_summary'] = stripslashes(str_replace('+','%20',$r['post_summary']));
   $r['site_name'] = get_bloginfo('name');
   $r['mail_subject'] = str_replace("&#8217;","'",str_replace('+','%20',$r['mail_subject']));
 
@@ -257,6 +259,7 @@ function shrsb_get_params($post_id) {
 	}
   $r['feed_link'] = $r['feed_permalink'].$r['feed_structure'];
 
+ if($post_id >= 0){
 	// Compatibility fix for NextGen Gallery Plugin...
 	if( (strpos($r['post_summary'], '[') || strpos($r['post_summary'], ']')) ) {
 		$r['post_summary'] = "";
@@ -264,13 +267,13 @@ function shrsb_get_params($post_id) {
 	if((strpos($r['shrsb_content'], '[') || strpos($r['shrsb_content'],']'))) {
 		$r['shrsb_content'] = "";
 	}
-
+ }
   $r['bgimg-url'] = '';
 	if(isset($shrsb_plugopts['bgimg-yes'])) {
     $r['bgimg-url'] = $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['url'];
     $r['bgimg-padding'] = $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding'];
   }
-
+ 
 	// Select the background image
   $bclasses = array('shr-bookmarks');
 	if (isset($shrsb_plugopts['bgimg-yes'])) {
@@ -287,8 +290,12 @@ function shrsb_get_params($post_id) {
 		$bclasses[] = 'shr-bookmarks-spaced';
 	}
   $r['bookmarks-class'] = implode(' ', $bclasses);
-  $r['notes'] = $r['post_summary'];
-
+  
+  if($post_id >= 0){
+        $r['notes'] = $r['post_summary'];
+  }else{
+        $r['notes'] = "";
+  }
   // see if we need comfeed
   $position = array_search('shr-comfeed', $shrsb_plugopts['bookmark']);
   if (is_numeric($position)) {
@@ -317,7 +324,7 @@ function shrsb_get_fetch_url() {
 
 	if($shrsb_plugopts['position'] == 'manual') {
 		//Check if outside the loop
-		if(empty($post->post_title)) {
+		if(!in_the_loop()) {
 			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		}
 		//Otherwise, it must be inside the loop
@@ -328,7 +335,7 @@ function shrsb_get_fetch_url() {
 	//Check if index page...
 	elseif(is_home() && false!==strpos($shrsb_plugopts['pageorpost'],"index")) {
 		//Check if outside the loop
-		if(empty($post->post_title)) {
+		if(!in_the_loop()) {
 			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ;
 		}
 		//Otherwise, it must be inside the loop
@@ -371,8 +378,15 @@ function shrsb_position_menu($post_content) {
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
         if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-              $config = shrsb_get_publisher_config($post->ID);
-              $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+            
+            
+              if(in_the_loop()){
+                    $config = shrsb_get_publisher_config($post->ID);
+                    $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
+              }else{
+                  shrsb_log("Error: the function should not be called outside the loop");
+              }
+              
         }
         shrsb_log("Manual:Content Analysis returning ");
 		return $post_content;
@@ -410,7 +424,6 @@ function shrsb_position_menu($post_content) {
             }
         }
     }
-shrsb_log("came here".$output);
 	// Place of bookmarks and return w/ post content.
   $r = $post_content;
 	if (!empty($output)) {
@@ -541,11 +554,19 @@ function get_sexy() {
 
     $output = "";
     if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-            $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
-            shrsb_log("get_sexy new mode found, returning ");
-            return $output;
+        
+            if(in_the_loop()){
+                $output .= '<div class="shr-publisher-'.$post->ID.'"></div>';
+                shrsb_log("Loop:get_sexy new mode found,  returning ");
+                return $output;
+            }else{
+                $output .= '<div class="shr_class shareaholic-show-on-load"></div>';
+                shrsb_log("Not Loop:get_sexy new mode found, returning ");
+                return $output;
+            }
     }
-
+   
+    //For Old Mode Only
 	if($shrsb_plugopts['position'] == 'manual') {
 
 		//Check if outside the loop
@@ -794,8 +815,14 @@ function selfserv_sexy() {
 //Same as above function, just a diff name
 function selfserv_shareaholic() {
 	global $post;
-		if(($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )
+    
+    if(in_the_loop()){
+        if(($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )
 		echo get_sexy();
+    }else{
+        echo get_sexy();
+    }
+		
 }
 
 // Write the <head> code only on pages that the menu is set to display
@@ -865,6 +892,11 @@ function shrsb_publicScripts() {
 
 function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
+  
+    //For manual mode, when no config is defined
+    if($shrsb_plugopts['position'] == 'manual' && !in_the_loop()){
+        $shrsb_js_params['shr_class'] = shrsb_get_publisher_config(-1);
+    }
 
   if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
     echo '<script type="text/javascript">var SHRSB_Settings = ';
