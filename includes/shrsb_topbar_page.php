@@ -17,7 +17,7 @@ function shrsb_tb_set_options($action = NULL){
         'useSbSettings' => '1',
         'tb_bg_color' => '#000000',
         'tb_button_color' => '#7777cc',
-        'advert' => '1'
+        'addv' => '1'
     );
     
     //Return default settings 
@@ -87,7 +87,7 @@ function shrsb_tb_settings_page() {
 		$status_message = __('Your changes have been saved successfully!', 'shrsb');
 
         foreach (array(
-                'topbar', 'useSbSettings' , 'tb_bg_color' ,'tb_button_color', 'advert'
+                'topbar', 'useSbSettings' , 'tb_bg_color' ,'tb_button_color', 'addv'
             )as $field) {
                 if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
                     $shrsb_tb_plugopts[$field] = $_POST[$field];
@@ -177,8 +177,8 @@ function shrsb_tb_settings_page() {
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Show Message?', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
-                                        <td style="width:125px"><label><input <?php echo (($shrsb_tb_plugopts['advert'] == "1")? 'checked="checked"' : ""); ?> name="advert" id="advert-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
-                                        </td><td><label><input <?php echo (($shrsb_tb_plugopts['advert'] == "0")? 'checked="checked"' : ""); ?> name="advert" id="advert-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
+                                        <td style="width:125px"><label><input <?php echo (($shrsb_tb_plugopts['addv'] == "1")? 'checked="checked"' : ""); ?> name="addv" id="addv-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+                                        </td><td><label><input <?php echo (($shrsb_tb_plugopts['addv'] == "0")? 'checked="checked"' : ""); ?> name="addv" id="addv-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                         </td>
                                     </tr>
                                     
