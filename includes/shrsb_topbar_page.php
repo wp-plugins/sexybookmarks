@@ -29,10 +29,21 @@ function shrsb_tb_set_options($action = NULL){
     //Get the settings from the database
     $database_Settings =  get_option('ShareaholicTopbar');
     if($database_Settings){
+        $need_to_update = false;
+            
+            //Check whether all the settings are present or not
+            foreach($shrsb_tb_plugopts_default as $k => $v){
+                //echo "$k => $v <br/>";
+                if( !isset( $database_Settings[$k] )) {
+                    $database_Settings[$k] = $v;
+                    $need_to_update = true;
+                }
+            }
+            if($need_to_update) update_option("ShareaholicTopbar",$database_Settings);
         return $database_Settings;
     }else{
         //Add the settings
-        add_option($shrsb_tb_plugopts_default);
+        add_option('ShareaholicTopbar',$shrsb_tb_plugopts_default);
         return $shrsb_tb_plugopts_default;
     }
 }

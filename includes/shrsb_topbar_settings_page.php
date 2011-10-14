@@ -5,7 +5,7 @@
 */
 
 /* 
- * @desc Topbar Settings Page main function
+ * @desc Topbar Settings page
 */
 function shrsb_tb_settings_page() {
 	global $shrsb_tb_plugopts;
