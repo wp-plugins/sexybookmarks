@@ -7,18 +7,18 @@
 
 
 //write settings page
-function shrsb_settings_page() {
-	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite,$shrsb_most_popular,$defaultLikeButtonOrder;
-    // Add all the global varaible declarations for the $shrsb_plugopts default options e.g. $shrsb_most_popular,$defaultLikeButtonOrder
+function shrsb_sb_settings_page() {
+	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite;
+    // Add all the global varaible declarations for the $shrsb_plugopts default options e.g.,
 
 	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Settings</h2></div>';
 
     //Defaults - set if not present
-    if (!isset($_POST['reset_all_options'])){$_POST['reset_all_options'] = '1';}
+    if (!isset($_POST['reset_all_options_sb'])){$_POST['reset_all_options_sb'] = '1';}
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
     if (!isset($_POST['custom-mods'])  || $shrsb_plugopts['custom-mods'] == ""){$_POST['custom-mods'] = 'no';}
 
-	if($_POST['reset_all_options'] == '0') {
+	if($_POST['reset_all_options_sb'] == '0') {
 		echo '
 		<div id="shrsbresetallwarn" class="dialog-box-warning" style="float:none;width:97%;">
 			<div class="dialog-left fugue f-warn">
@@ -34,61 +34,10 @@ function shrsb_settings_page() {
 
 	//Reset all options to default settings if user clicks the reset button
 	if($_POST['shrsbresetallwarn-choice'] == "yes") { //check for reset button click
-		delete_option('SexyBookmarks');
-		$shrsb_plugopts = array(
-			'position' => 'below', // below, above, or manual
-			'reloption' => 'nofollow', // 'nofollow', or ''
-			'targetopt' => '_blank', // 'blank' or 'self'
-			'perfoption' => '1', // performance script (GA)
-			'showShareCount' => '1', // fb/twit share count
+		//delete_option('SexyBookmarks');
+		$shrsb_plugopts = shrsb_sb_set_options("reset");
 
-            'likeButtonSetTop' => '0', // Include like button below the Post Title
-            'fbLikeButtonTop' => '0', // Include fb like button
-            'fbSendButtonTop' => '0', // Include fb like button
-            'googlePlusOneButtonTop' => '0', // Include Google Plus One button
-            'likeButtonSetSizeTop' => "1", // Size of like buttons
-            'likeButtonSetCountTop' => "true", // Show count with +1 button
-            'likeButtonOrderTop' => $defaultLikeButtonOrder,
-            'likeButtonSetAlignmentTop' => '0', // Alignment 0 => left, 1 => right
-
-            'likeButtonSetBottom' => '1', // Include like button below the Post
-            'fbLikeButtonBottom' => '0', // Include fb like button
-            'fbSendButtonBottom' => '0', // Include fb like button
-            'googlePlusOneButtonBottom' => '0', // Include Google Plus One button
-            'likeButtonSetSizeBottom' => "1", // Size of like buttons
-            'likeButtonSetCountBottom' => "true", // Show count with +1 button
-            'likeButtonOrderBottom' => $defaultLikeButtonOrder,
-            'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
-
-            'fbNameSpace' => '1',  // Add fb name space to the html
-            'preventminify' => '1',  // prevent wp_minify from minifying the js
-            'shrlink' => '1', // show promo link
-			'bgimg-yes' => 'yes', // 'yes' or blank
-			'mobile-hide' => '', // 'yes' or blank
-			'bgimg' => 'caring', // default bg image
-			'shorty' => 'google', // default shortener
-			'pageorpost' => 'postpageindexcategory',
-			'bookmark' => $shrsb_most_popular ,//array_keys($shrsb_bookmarks_data),
-			'feed' => '0', // 1 or 0
-			'expand' => '1',
-			'autocenter' => '1',
-			'tweetconfig' => '${title} - ${short_link} via @Shareaholic', // Custom configuration of tweet
-		    'warn-choice' => '',
-			'doNotIncludeJQuery' => '',
-			'custom-mods' => '',
-			'scriptInFooter' => '',
-            'shareaholic-javascript' => '1',
-            'shrbase' => 'http://www.shareaholic.com',
-            'apikey' => get_option('SHRSB_apikey'),
-            'service' => '',
-            'designer_toolTips' => '1',
-            'tip_bg_color' => '#000000',  // tooltip background color
-            'tip_text_color' => '#ffffff', // tooltip text color
-            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
-            'ogtags' => '1'  //OgTags
-        );
-
-        $shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
+        //$shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
         
         if($shrsb_plugopts['preventminify'] == '1') {
             exclude_from_minify_list();
@@ -147,7 +96,7 @@ function shrsb_settings_page() {
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
-	if(isset($_POST['save_changes'])) {
+	if(isset($_POST['save_changes_sb'])) {
 
     if(isset($_POST['bookmark']['shr-fleck'])) {
       unset($_POST['bookmark']['shr-fleck']);
@@ -247,13 +196,13 @@ function shrsb_settings_page() {
                 'shorty', 'pageorpost', 'tweetconfig', 'bgimg-yes', 'mobile-hide', 'bgimg',
                 'feed', 'expand', 'doNotIncludeJQuery', 'autocenter', 'custom-mods',
                 'scriptInFooter', 'shareaholic-javascript', 'shrbase', 'showShareCount',
-                'likeButtonSetTop','fbLikeButtonTop','fbSendButtonTop','googlePlusOneButtonTop','likeButtonSetSizeTop','likeButtonSetCountTop',
+                'likeButtonSetTop','fbLikeButtonTop','fbSendButtonTop','googlePlusOneButtonTop','tweetButtonTop','likeButtonSetSizeTop','likeButtonSetCountTop',
                 'likeButtonOrderTop','likeButtonSetAlignmentTop',
-                'likeButtonSetBottom','fbLikeButtonBottom','fbSendButtonBottom','googlePlusOneButtonBottom','likeButtonSetSizeBottom','likeButtonSetCountBottom',
+                'likeButtonSetBottom','fbLikeButtonBottom','fbSendButtonBottom','googlePlusOneButtonBottom','tweetButtonBottom','likeButtonSetSizeBottom','likeButtonSetCountBottom',
                 'likeButtonOrderBottom','likeButtonSetAlignmentBottom',
 
                 'fbNameSpace','designer_toolTips' , 'tip_bg_color',
-                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey','ogtags'
+                'tip_text_color' , 'preventminify', 'shrlink', 'perfoption','spritegen_path', 'apikey','ogtags' , 'promo'
             )as $field) {
                 if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
                     $shrsb_plugopts[$field] = $_POST[$field];
@@ -261,7 +210,6 @@ function shrsb_settings_page() {
                     $shrsb_plugopts[$field] = NULL;
                 }
           }
-          
           /*
           *   @note WordPress autoescapes (= adds slashes) to all post data. This is a workaround for that.
           */
@@ -510,7 +458,7 @@ function shrsb_settings_page() {
                                     </tr>
                                     </tbody></table>
                                     <?php
-                                        shrsb_likeButtonSetHTML('Top');
+                                        shrsb_likeButtonSetHTML($shrsb_plugopts,'Top');
                                     ?>
 
                                     <table><tbody>
@@ -523,7 +471,7 @@ function shrsb_settings_page() {
                                         </td>
                                     </tr>
                                     <?php
-                                        shrsb_likeButtonSetHTML('Bottom');
+                                        shrsb_likeButtonSetHTML($shrsb_plugopts,'Bottom');
                                     ?>
 
                                     </tbody></table>
@@ -639,6 +587,12 @@ function shrsb_settings_page() {
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] == "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
 							<label><input <?php echo (($shrsb_plugopts['shareaholic-javascript'] != "1")? 'checked="checked"' : ""); ?> name="shareaholic-javascript" id="shareaholic-javascript-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
 							<br><em><?php _e('You can switch back at any time.', 'shrsb'); ?></em>
+                            
+                            <span class="shrsb_option"><?php _e('Want to know about new products?', 'shrsb'); ?></span>
+							<label><input <?php echo (($shrsb_plugopts['promo'] == "1")? 'checked="checked"' : ""); ?> name="promo" id="promo-1" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
+							<label><input <?php echo (($shrsb_plugopts['promo'] != "1")? 'checked="checked"' : ""); ?> name="promo" id="promo-0" type="radio" value="" /> <?php _e('No', 'shrsb'); ?></label>
+                            <br><em><?php _e('Save and Refresh the page', 'shrsb'); ?></em>
+                            
                             <input type="hidden" name="shrbase" value="<?php echo $shrsb_plugopts['shrbase'] ?>"/>
                             <input type="hidden" name="apikey" value="<?php echo $shrsb_plugopts['apikey']?$shrsb_plugopts['apikey']:'8afa39428933be41f8afdb8ea21a495c' ?>"/>
                             </p>
@@ -662,7 +616,7 @@ function shrsb_settings_page() {
                           </p>
                           <div style="position:relative;width:80%;">
                             <label for="tweetconfig"><?php _e('Configure Custom Tweet Template:', 'shrsb'); ?></label><small id="tweetcounter"><?php _e('Characters:', 'shrsb'); ?> <span></span></small><br />
-                            <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo $shrsb_plugopts['tweetconfig']; } else { echo '${title} - ${short_link} via @Shareaholic'; } ?></textarea>
+                            <textarea id="tweetconfig" name="tweetconfig"><?php if(!empty($shrsb_plugopts['tweetconfig'])) { echo urldecode($shrsb_plugopts['tweetconfig']); } else { echo '${title} - ${short_link} via @Shareaholic'; } ?></textarea>
                           </div>
                           <p id="tweetoutput"><strong><?php _e('Example Tweet Output:', 'shrsb'); ?></strong><br /><span></span></p>
 
@@ -670,16 +624,19 @@ function shrsb_settings_page() {
 						<select name="shorty" id="shorty">
 							<?php
 								// output shorty select options
-								print shrsb_select_option_group('shorty', array(
-									'none'      =>__("Don't use a shortener", 'shrsb'),
-									'bitly'     =>  'bit.ly',
-									'jmp'       =>  'j.mp',
-									'google'    =>  'Google (goo.gl)',
-									'supr'      =>  'StumbleUpon (su.pr)',
-									'tinyurl'   =>  'tinyurl',
-									'tflp'      =>  'Twitter Friendly Links WP Plugin',
-									'yourls'    =>  'YOURLS WP Plugin'
-								));
+								print shrsb_select_option_group('shorty', 
+                                        array(
+                                            'none'      =>__("Don't use a shortener", 'shrsb'),
+                                            'bitly'     =>  'bit.ly',
+                                            'jmp'       =>  'j.mp',
+                                            'google'    =>  'Google (goo.gl)',
+                                            'supr'      =>  'StumbleUpon (su.pr)',
+                                            'tinyurl'   =>  'tinyurl',
+                                            'tflp'      =>  'Twitter Friendly Links WP Plugin',
+                                            'yourls'    =>  'YOURLS WP Plugin'
+                                        ), 
+                                        $shrsb_plugopts
+                                );
 							?>
 
 						</select>
@@ -835,6 +792,7 @@ function shrsb_settings_page() {
                         <span class="shrsb_option"><?php _e('Custom Path to Shareaholic Resources', 'shrsb'); ?></span>
                         <label for="spritegen_path"><?php _e("Set Custom Path:", "shrsb"); ?>
                             <input style="margin-top:7px; width: 500px" type="text" id="spritegen_path" name="spritegen_path"  value="<?php echo shrb_addTrailingChar(stripslashes($shrsb_plugopts['spritegen_path']), '/'); ?>" /></label>
+                        <label><?php _e("Symbolic links are also supported", "shrsb");?> </label>
                         <p><?php _e("Default Path: ", "shrsb"); echo SHRSB_UPLOADDIR_DEFAULT; ?> </p>
                     </div>
                 </div>
@@ -880,11 +838,11 @@ function shrsb_settings_page() {
 			</li>
 		</ul>
 		<div style="clear:both;"></div>
-		<input type="hidden" name="save_changes" value="1" />
-        <div class="shrsbsubmit"><input type="submit" id="save_changes" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
+		<input type="hidden" name="save_changes_sb" value="1" />
+        <div class="shrsbsubmit"><input type="submit" id="save_changes_sb" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
 	</form>
 	<form action="" method="post">
-		<input type="hidden" name="reset_all_options" id="reset_all_options" value="0" />
+		<input type="hidden" name="reset_all_options_sb" id="reset_all_options_sb" value="0" />
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
 	</form>
 </div>
@@ -896,5 +854,129 @@ echo shrsb_right_side_menu();
 echo get_snapengage();
 
 }//closing brace for function "shrsb_settings_page"
+
+
+/*
+*   @desc Checks to see if wp-minify is installed, if so, whitelist our files
+*/
+function exclude_from_minify_list() {
+    $minify_opts = get_option("wp_minify");
+
+    if(is_array($minify_opts) && is_array($minify_opts["js_exclude"])) {
+        $sbfound = false;
+        $tbfound = false;
+        foreach($minify_opts["js_exclude"] as $url) {
+            if($url == 'jquery.shareaholic-publishers-sb.min.js') {
+                $sbfound = true;
+            }
+            if($url == 'jquery.shareaholic-share-buttons.min.js') {
+                $tbfound = true;
+            }
+        }
+        if(!$sbfound) {
+            array_push($minify_opts["js_exclude"],'jquery.shareaholic-publishers-sb.min.js');
+        }
+        if(!$tbfound) {
+            array_push($minify_opts["js_exclude"],'jquery.shareaholic-share-buttons.min.js');
+        }
+        update_option("wp_minify", $minify_opts);
+    }
+}
+
+function _make_params($params) {
+  $pairs = array();
+  foreach ($params as $k => $v) {
+    $pairs[] = implode('=', array(urlencode($k), urlencode($v)));
+  }
+  return implode('&', $pairs);
+}
+
+
+
+/**
+ * Make a local copy of all shareaholic resources
+ */
+function shrsb_refresh_cache() {
+  global $shrsb_plugopts, $shrsb_bgimg_map, $default_spritegen;
+
+  $script_sb = _shrsb_fetch_content('/media/js/jquery.shareaholic-publishers-sb.min.js', '/jquery.shareaholic-publishers-sb.min.js', true);
+  $script_tb = _shrsb_fetch_content('/media/js/jquery.shareaholic-share-buttons.min.js', '/jquery.shareaholic-share-buttons.min.js', true);
+
+  // Sort services to make request more cacheable.
+  $services = explode(',', $shrsb_plugopts['service']);
+  sort($services, SORT_NUMERIC);
+  $services = implode(',', $services);
+
+  $sprite_opts = array(
+    'v' => 2,
+    'apikey' => $shrsb_plugopts['apikey'],
+    'service' => $services,
+    'bgimg' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['url'],
+    'bgimg_padding' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding']
+  );
+  // save as css so mime types work on normal servers
+  $css_sb = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
+  $css_tb = _shrsb_fetch_content('/media/css/shareaholic-share-button.css', '/shareaholic-share-button.css', true);
+  
+  $sprite_opts['apitype'] = 'png';
+  $png_sb = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
+  $png_tb = _shrsb_fetch_content('/media/images/styles/tb/shareaholic-publishers-mini.png', '/shareaholic-publishers-mini.png', true);
+  $png_tb_arrow_up = _shrsb_fetch_content('/media/images/styles/tb/arrow_up.png', '/arrow_up.png', true);
+  $png_tb_arrow_down = _shrsb_fetch_content('/media/images/styles/tb/arrow_down.png', '/arrow_down.png', true);
+
+  if(!$script_sb || !$script_tb || !$css_sb || !$css_tb || !$png_sb || !$png_tb || !$png_tb_arrow_up || !$png_tb_arrow_down) {
+    update_option('SHRSB_DefaultSprite',true);
+    $default_spritegen = true;
+  } else {
+    update_option('SHRSB_DefaultSprite',false);
+    $default_spritegen = false;
+  }
+}
+
+
+function shrsb_requires_resave() {
+        global $shrsb_plugopts,$default_spritegen;
+        $resave_required = false;
+        if(($shrsb_plugopts['shareaholic-javascript'] == '1'  //new mode
+                    && $default_spritegen)
+                || ($shrsb_plugopts['shareaholic-javascript'] != '1'      //old mode
+                    && !(file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.png')
+                            && file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.css')
+                        )
+                    )
+        ){
+            $resave_required = true;
+        }
+
+        return $resave_required;
+}
+/*
+*   @desc Check for chmod for new-custom and old-custom mode only
+*/
+function shrsb_requires_chmod($mode = NULL) {
+    return !(is_writable(SHRSB_UPLOADDIR.'spritegen'));
+}
+
+function shrsb_requires_phpupdate() {
+    return (strnatcmp(phpversion(),'5.0') < 0);
+}
+
+
+/*
+*   @desc For setting the content type which are enabled
+*/
+function shrsb_set_content_type() {
+    $type  = "";
+    $content = $_POST['content_type'];
+    if(empty ($content)){
+        $type  = "postpageindexcategory";
+    }else{
+        $n = count($content);
+        for($i = 0; $i < $n; $i++){
+            $type .= $content[$i];
+        }
+    }
+    return $type;
+}
 
 ?>

@@ -11,18 +11,36 @@ $shrsb_tb_plugopts = shrsb_tb_set_options();
  */
 function shrsb_tb_set_options($action = NULL){
     
+    $defaultLikeButtonOrder = array(
+        'shr-fb-like',
+        'shr-fb-send',
+        'shr-plus-one',
+        'shr-tw-button'
+    );
+    
     //Default Settigs array
-    $shrsb_tb_plugopts_default = array(
-        'topbar' => '1',
+    $shrsb_tb_plugopts_default = array(         
+        'topbar' => '0',
         'useSbSettings' => '1',
         'tb_bg_color' => '#000000',
-        'tb_button_color' => '#7777cc',
-        'addv' => '1'
+        'tb_border_color' => '#000000',//#343434'
+        'addv' => '1',
+        
+        'likeButtonSetTop' => '1', // Include like button below the Post Title
+        'fbLikeButtonTop' => '1', // Include fb like button
+        'fbSendButtonTop' => '1', // Include fb like button
+        'googlePlusOneButtonTop' => '1', // Include Google Plus One button
+        'tweetButtonTop' => '1', // Include Tweet button
+        'likeButtonSetSizeTop' => "1", // Size of like buttons
+        'likeButtonSetCountTop' => "true", // Show count with +1 button
+        'likeButtonOrderTop' => $defaultLikeButtonOrder,
+        'likeButtonSetAlignmentTop' => '0' // Alignment 0 => left, 1 => rights
     );
     
     //Return default settings 
     if($action == "reset"){
-        update_option("ShareaholicTopbar",$shrsb_tb_plugopts_default);
+        delete_option("ShareaholicTopbar");
+        add_option("ShareaholicTopbar",$shrsb_tb_plugopts_default);
         return $shrsb_tb_plugopts_default;
     }
     

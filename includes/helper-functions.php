@@ -82,7 +82,8 @@ function shrsb_dump_settings(){
 		"apikey"                => 	get_option('SHRSB_apikey'),
 		"custom_sprite"         => 	get_option('SHRSB_CustomSprite'),
 		"default_spritegen" 	=> 	get_option('SHRSB_DefaultSprite'),
-		"plugopts"              =>	get_option('SexyBookmarks')
+		"sb_plugopts"           =>	get_option('SexyBookmarks'),
+        "tb_plugopts"           =>  get_option('ShareaholicTopbar')
 	);
     
     if($shrsb_debug['dump_type'])
@@ -99,6 +100,20 @@ function shrsb_dump_settings(){
 	$shrsb_debug['sb_die'] && die();
 }
 
+//Change the directory path to webpath
+function shr_dir_to_path($dir){
+    if(!$dir){
+        return false;
+    }
+    //If its is a symlink, it will be resolved to origonal dir path
+    $dir = shrb_addTrailingChar(realpath($dir), '/' );
+    $path = get_option("siteurl");
+    if(substr($path, -1) != '/'){
+        $path .= '/';
+    }
+    $path .= substr($dir , strlen(ABSPATH));
+    return $path;
+}
 
 /**
  * @desc check for the attributes in the get and post

@@ -33,4 +33,5 @@ end
 desc 'Copy latest files from production'
 task :fromprod do
   sh "curl http://www.shareaholic.com/media/js/jquery.shareaholic-publishers-sb.min.js > spritegen_default/jquery.shareaholic-publishers-sb.min.js"
+  sh "curl http://www.shareaholic.com/media/js/jquery.shareaholic-share-buttons.min.js > spritegen_default/jquery.shareaholic-share-buttons.min.js"
 end

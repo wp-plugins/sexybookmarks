@@ -241,26 +241,48 @@ jQuery(document).ready(function() {
 			jQuery('.plusonepreviewBottom').fadeOut('fast');
 		}
     });
+    jQuery('#tweetButtonTop-yes').click(function() {
+        if (this.checked) {
+			jQuery('.tweetbuttonpreviewTop').fadeIn('fast');
+		}
+    });
+
+    jQuery('#tweetButtonTop-no').click(function() {
+        if (this.checked) {
+			jQuery('.tweetbuttonpreviewTop').fadeOut('fast');
+		}
+    });
+    jQuery('#tweetButtonBottom-yes').click(function() {
+        if (this.checked) {
+			jQuery('.tweetbuttonpreviewBottom').fadeIn('fast');
+		}
+    });
+
+    jQuery('#tweetButtonBottom-no').click(function() {
+        if (this.checked) {
+			jQuery('.tweetbuttonpreviewBottom').fadeOut('fast');
+		}
+    });
     
-    jQuery('#fbLikeButtonTop-yes,#googlePlusOneButtonTop-yes,#fbSendButtonTop-yes').click(function() {
+    jQuery('#fbLikeButtonTop-yes,#googlePlusOneButtonTop-yes,#fbSendButtonTop-yes,,#tweetButtonTop-yes').click(function() {
         if (this.checked) {
             jQuery('.likeButtonSetOptionsTop').fadeIn('fast');
 		}
 	});
-    jQuery('#fbLikeButtonBottom-yes,#googlePlusOneButtonBottom-yes,#fbSendButtonBottom-yes').click(function() {
+    jQuery('#fbLikeButtonBottom-yes,#googlePlusOneButtonBottom-yes,#fbSendButtonBottom-yes,,#tweetButtonBottom-yes').click(function() {
         if (this.checked) {
             jQuery('.likeButtonSetOptionsBottom').fadeIn('fast');
 		}
 	});
 
-    jQuery('#fbLikeButtonTop-no,#googlePlusOneButtonTop-no,#fbSendButtonTop-no').click(function() {
-        if(jQuery('#fbLikeButtonTop-no').get(0).checked && jQuery('#googlePlusOneButtonTop-no').get(0).checked
+    jQuery('#fbLikeButtonTop-no,#googlePlusOneButtonTop-no,#fbSendButtonTop-no,#tweetButtonTop-no').click(function() {
+        if(jQuery('#fbLikeButtonTop-no').get(0).checked && jQuery('#googlePlusOneButtonTop-no').get(0).checked && jQuery('#tweetButtonTop-no').get(0).checked
                 && jQuery('#fbSendButtonTop-no').get(0).checked) {
             jQuery('.likeButtonSetOptionsTop').fadeOut('fast');
 		}
 	});
-    jQuery('#fbLikeButtonBottom-no,#googlePlusOneButtonBottom-no,#fbSendButtonBottom-no').click(function() {
-        if(jQuery('#fbLikeButtonBottom-no').get(0).checked && jQuery('#googlePlusOneButtonBottom-no').get(0).checked
+    jQuery('#fbLikeButtonBottom-no,#googlePlusOneButtonBottom-no,#fbSendButtonBottom-no,#tweetButtonBottom-no').click(function() {
+        if(jQuery('#fbLikeButtonBottom-no').get(0).checked && jQuery('#googlePlusOneButtonBottom-no').get(0).checked && jQuery('#tweetButtonBottom-no').get(0).checked
                 && jQuery('#fbSendButtonBottom-no').get(0).checked) {
             jQuery('.likeButtonSetOptionsBottom').fadeOut('fast');
 		}
@@ -276,7 +298,16 @@ jQuery(document).ready(function() {
 			jQuery('.designer_toolTip_prefs').fadeOut('fast');
 		}
 	});
-
+    jQuery('#useSbSettings-yes').click(function() {
+		if (this.checked) {
+			jQuery('.topbar_prefs').fadeOut('fast');
+		}
+	});
+    jQuery('#useSbSettings-no').click(function() {
+		if (this.checked) {
+			jQuery('.topbar_prefs').fadeIn('fast');
+		}
+	});
 
 	jQuery('#position-above').click(function() {
 		if (jQuery('#info-manual').is(':visible')) {
@@ -323,203 +354,304 @@ jQuery(document).ready(function() {
 	var dfaultload = 0;
 	var dfaulttitle = 8;
 	var dfaulturl = 13;
-	if(jQuery("#tweetconfig").val().indexOf('${title}')!=-1) {
-		dfaultload = Math.floor(dfaultload + dfaulttitle);
-	}
-	if(jQuery("#tweetconfig").val().indexOf('${short_link}')!=-1) {
-		dfaultload = Math.floor(dfaultload + dfaulturl);
-	}
-	var mathdoneload = Math.floor(jQuery('#tweetconfig').val().length - dfaultload);
-	if(mathdoneload >= 50) {
-		jQuery('#tweetcounter span').addClass('error');
-	}
-	else {
-		jQuery('#tweetcounter span').removeClass();
-	}
-	jQuery('#tweetcounter span').html(mathdoneload);
-	var endvalueload = jQuery('#tweetconfig').val();
-	endvalueload = endvalueload.replace('${title}', 'Some fancy post title');
-	endvalueload = endvalueload.replace('${short_link}', 'http://goo.gl/dbqlx');
-	var endtweetload = endvalueload;
-	jQuery('#tweetoutput span').html(endtweetload);
+    if(typeof(jQuery("#tweetconfig")) != "undefined" && jQuery("#tweetconfig").length > 0 ) {
+        if(jQuery("#tweetconfig").val().indexOf('${title}')!=-1) {
+            dfaultload = Math.floor(dfaultload + dfaulttitle);
+        }
+        if(jQuery("#tweetconfig").val().indexOf('${short_link}')!=-1) {
+            dfaultload = Math.floor(dfaultload + dfaulturl);
+        }
+        var mathdoneload = Math.floor(jQuery('#tweetconfig').val().length - dfaultload);
+        if(mathdoneload >= 50) {
+            jQuery('#tweetcounter span').addClass('error');
+        }
+        else {
+            jQuery('#tweetcounter span').removeClass();
+        }
+        jQuery('#tweetcounter span').html(mathdoneload);
+        var endvalueload = jQuery('#tweetconfig').val();
+        endvalueload = endvalueload.replace('${title}', 'Some fancy post title');
+        endvalueload = endvalueload.replace('${short_link}', 'http://goo.gl/dbqlx');
+        var endtweetload = endvalueload;
+        jQuery('#tweetoutput span').html(endtweetload);
 
 
 
-	jQuery('#tweetconfig').keyup(function() {
-		var dfaults = 0;
-		var title = 8;
-		var url = 13;
+        jQuery('#tweetconfig').keyup(function() {
+            var dfaults = 0;
+            var title = 8;
+            var url = 13;
 
-		if(jQuery("#tweetconfig").val().indexOf('${title}')!=-1) {
-			dfaults = Math.floor(dfaults + title);
-		}
-		if(jQuery("#tweetconfig").val().indexOf('${short_link}')!=-1) {
-			dfaults = Math.floor(dfaults + url);
-		}
+            if(jQuery("#tweetconfig").val().indexOf('${title}')!=-1) {
+                dfaults = Math.floor(dfaults + title);
+            }
+            if(jQuery("#tweetconfig").val().indexOf('${short_link}')!=-1) {
+                dfaults = Math.floor(dfaults + url);
+            }
 
-		var mathdone = Math.floor(jQuery(this).val().length - dfaults);
+            var mathdone = Math.floor(jQuery(this).val().length - dfaults);
 
-		if(mathdone >= 50) {
-			jQuery('#tweetcounter span').addClass('error');
-			alert("You need to leave room for the short URL and/or post title...");
-			return false;
-		}
-		else {
-			jQuery('#tweetcounter span').removeClass();
-		}
-		jQuery('#tweetcounter span').html(mathdone);
-		
-		var endvalue = jQuery(this).val();
+            if(mathdone >= 50) {
+                jQuery('#tweetcounter span').addClass('error');
+                alert("You need to leave room for the short URL and/or post title...");
+                return false;
+            }
+            else {
+                jQuery('#tweetcounter span').removeClass();
+            }
+            jQuery('#tweetcounter span').html(mathdone);
 
-		endvalue = endvalue.replace('${title}', 'Some fancy post title');
-		endvalue = endvalue.replace('${short_link}', 'http://goo.gl/dbqlx');
+            var endvalue = jQuery(this).val();
 
-		var endtweet = endvalue;
+            endvalue = endvalue.replace('${title}', 'Some fancy post title');
+            endvalue = endvalue.replace('${short_link}', 'http://goo.gl/dbqlx');
 
-		jQuery('#tweetoutput span').html(endtweet);
+            var endtweet = endvalue;
 
-	});
+            jQuery('#tweetoutput span').html(endtweet);
+
+        });
+    }
     // Check if like button is included and show the position prefs
     
     //var likeBtnChecked = jQuery('#fbLikeButton-yes').get(0).checked || jQuery('#googlePlusOneButton-yes').get(0).checked || jQuery('#fbSendButton-yes').get(0).checked;
 
 
+    if(typeof(jQuery('#likeButtonSetTop-yes')) != "undefined" && jQuery('#likeButtonSetTop-yes').length >0 ){
+        if (jQuery('#likeButtonSetTop-yes').get(0).checked) {
+            jQuery('.likeButtonsAvailableTop').fadeIn('fast');
+        }
 
-    if (jQuery('#likeButtonSetTop-yes').get(0).checked) {
-        jQuery('.likeButtonsAvailableTop').fadeIn('fast');
+
+        if(jQuery('#fbLikeButtonTop-yes').get(0).checked
+                || jQuery('#googlePlusOneButtonTop-yes').get(0).checked
+                || jQuery('#tweetButtonTop-yes').get(0).checked    
+                || jQuery('#fbSendButtonTop-yes').get(0).checked) {
+            jQuery('.likeButtonSetOptionsTop').fadeIn('fast');
+        }
+
+        if(jQuery('#fbLikeButtonTop-yes').get(0).checked) {
+            jQuery('.likebuttonpreviewTop').fadeIn('fast');
+        }
+
+        if(jQuery('#fbSendButtonTop-yes').get(0).checked) {
+            jQuery('.sendbuttonpreviewTop').fadeIn('fast');
+        }
+
+        if(jQuery('#googlePlusOneButtonTop-yes').get(0).checked) {
+            jQuery('.plusonepreviewTop').fadeIn('fast');
+        }
+
+        if(jQuery('#tweetButtonTop-yes').get(0).checked) {
+            jQuery('.tweetbuttonpreviewTop').fadeIn('fast');
+        }
     }
 
-    if (jQuery('#likeButtonSetBottom-yes').get(0).checked) {
-        jQuery('.likeButtonsAvailableBottom').fadeIn('fast');
+    if(typeof(jQuery('#likeButtonSetBottom-yes')) != "undefined" && jQuery('#likeButtonSetBottom-yes').length >0 ){
+        if (jQuery('#likeButtonSetBottom-yes').get(0).checked) {
+            jQuery('.likeButtonsAvailableBottom').fadeIn('fast');
+        }
+        
+        if(jQuery('#fbLikeButtonBottom-yes').get(0).checked
+                || jQuery('#googlePlusOneButtonBottom-yes').get(0).checked
+                || jQuery('#tweetButtonBottom-yes').get(0).checked
+                || jQuery('#fbSendButtonBottom-yes').get(0).checked) {
+            jQuery('.likeButtonSetOptionsBottom').fadeIn('fast');
+        }
+        
+        if(jQuery('#fbLikeButtonBottom-yes').get(0).checked) {
+            jQuery('.likebuttonpreviewBottom').fadeIn('fast');
+        }
+
+        if(jQuery('#fbSendButtonBottom-yes').get(0).checked) {
+            jQuery('.sendbuttonpreviewBottom').fadeIn('fast');
+        }
+
+        if(jQuery('#googlePlusOneButtonBottom-yes').get(0).checked) {
+            jQuery('.plusonepreviewBottom').fadeIn('fast');
+        }
+        if(jQuery('#tweetButtonBottom-yes').get(0).checked) {
+            jQuery('.tweetbuttonpreviewBottom').fadeIn('fast');
+        }
+
     }
-
-    
-
-
-
-
-    if(jQuery('#fbLikeButtonTop-yes').get(0).checked
-            || jQuery('#googlePlusOneButtonTop-yes').get(0).checked
-            || jQuery('#fbSendButtonTop-yes').get(0).checked) {
-        jQuery('.likeButtonSetOptionsTop').fadeIn('fast');
-    }
-
-    if(jQuery('#fbLikeButtonBottom-yes').get(0).checked
-            || jQuery('#googlePlusOneButtonBottom-yes').get(0).checked
-            || jQuery('#fbSendButtonBottom-yes').get(0).checked) {
-        jQuery('.likeButtonSetOptionsBottom').fadeIn('fast');
-    }
-
-    if(jQuery('#fbLikeButtonTop-yes').get(0).checked) {
-        jQuery('.likebuttonpreviewTop').fadeIn('fast');
-    }
-    if(jQuery('#fbLikeButtonBottom-yes').get(0).checked) {
-        jQuery('.likebuttonpreviewBottom').fadeIn('fast');
-    }
-
-    if(jQuery('#fbSendButtonTop-yes').get(0).checked) {
-        jQuery('.sendbuttonpreviewTop').fadeIn('fast');
-    }
-    if(jQuery('#fbSendButtonBottom-yes').get(0).checked) {
-        jQuery('.sendbuttonpreviewBottom').fadeIn('fast');
-    }
-
-    if(jQuery('#googlePlusOneButtonTop-yes').get(0).checked) {
-        jQuery('.plusonepreviewTop').fadeIn('fast');
-    }
-
-    if(jQuery('#googlePlusOneButtonBottom-yes').get(0).checked) {
-        jQuery('.plusonepreviewBottom').fadeIn('fast');
-    }
-
-
 
     // Check if designer tooltips are included and show the color prefs
-    var designerToolTipsChecked = jQuery('#designer_toolTips-yes').get(0).checked;
-    if (designerToolTipsChecked) {
-        jQuery('.designer_toolTip_prefs').fadeIn('fast');
+    if(typeof(jQuery('#designer_toolTips-yes')) != "undefined" && jQuery('#designer_toolTips-yes').length >0 ){
+        var designerToolTipsChecked = jQuery('#designer_toolTips-yes').get(0).checked;
+        if (designerToolTipsChecked) {
+            jQuery('.designer_toolTip_prefs').fadeIn('fast');
+        }
+
+        jQuery('#tip_bg_color_picker_holder').ColorPicker({
+                flat: true,
+                color: jQuery("#tip_bg_color").val(),
+                onChange : function(hsb, hex, rgb, el) {
+                    jQuery("#tip_bg_color").val('#' + hex);
+                    jQuery('#tip_bg_color_picker div').css('backgroundColor', '#' + hex);
+                },
+                onSubmit: function(hsb, hex, rgb, el) {
+                    jQuery("#tip_bg_color").val('#' + hex);
+                    jQuery('#tip_bg_color_picker div').css('backgroundColor', '#' + hex);
+                    jQuery('#tip_bg_color_picker_holder').toggle();
+                }
+        });
+
+        // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
+        jQuery('#tip_bg_color_picker_holder').find('input').each(function(index) {
+            jQuery(this).attr("maxlength","50") ;
+        });
+
+        jQuery('#tip_bg_color_picker div').bind('click', function() {
+            jQuery('#tip_bg_color_picker_holder').toggle();
+            jQuery('#tip_bg_color_picker_holder').ColorPickerSetColor(jQuery("#tip_bg_color").val());
+            // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
+            jQuery('body').trigger('click');
+            if(jQuery('#tip_bg_color_picker_holder').is(':visible')) {
+                jQuery('body').bind("click",function () {
+                                                jQuery('#tip_bg_color_picker_holder').hide();
+                                                jQuery('body').unbind("click");
+                                            });
+            }
+            return false;
+        });
+
+        jQuery('#tip_bg_color_reset').bind('click', function() {
+            jQuery("#tip_bg_color").val('#000000');
+            jQuery('#tip_bg_color_picker div').css('backgroundColor', '#000000');
+        });
+        // Prevent the body click handler from firing if the click is inside the color picker
+        jQuery('#tip_bg_color_picker_holder').click(function() { return false;});
+
+        jQuery('#tip_text_color_picker_holder').ColorPicker({
+                flat: true,
+                color: jQuery("#tip_text_color").val(),
+                onChange : function(hsb, hex, rgb, el) {
+                    jQuery("#tip_text_color").val('#' + hex);
+                    jQuery('#tip_text_color_picker div').css('backgroundColor', '#' + hex);
+                },
+                onSubmit: function(hsb, hex, rgb, el) {
+                    jQuery("#tip_text_color").val('#' + hex);
+                    jQuery('#tip_text_color_picker div').css('backgroundColor', '#' + hex);
+                    jQuery('#tip_text_color_picker_holder').toggle();
+                }
+        });
+        // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
+        jQuery('#tip_text_color_picker_holder').find('input').each(function(index) {
+            jQuery(this).attr("maxlength","50") ;
+        });
+
+        jQuery('#tip_text_color_picker div').bind('click', function() {
+            jQuery('#tip_text_color_picker_holder').toggle();
+            jQuery('#tip_text_color_picker_holder').ColorPickerSetColor(jQuery("#tip_text_color").val());
+            // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
+            jQuery('body').trigger('click');
+            if(jQuery('#tip_text_color_picker_holder').is(':visible')) {
+                jQuery('body').bind("click",function () {
+                                                jQuery('#tip_text_color_picker_holder').hide();
+                                                jQuery('body').unbind("click");
+                                            });
+            }
+            return false;
+        });
+       // Prevent the body click handler from firing if the click is inside the color picker
+        jQuery('#tip_text_color_picker_holder').click(function() { return false;});
+
+        jQuery('#tip_text_color_reset').bind('click', function() {
+            jQuery("#tip_text_color").val('#ffffff');
+            jQuery('#tip_text_color_picker div').css('backgroundColor', '#ffffff');
+        });
+
     }
-
-    jQuery('#tip_bg_color_picker_holder').ColorPicker({
-            flat: true,
-            color: jQuery("#tip_bg_color").val(),
-            onChange : function(hsb, hex, rgb, el) {
-                jQuery("#tip_bg_color").val('#' + hex);
-                jQuery('#tip_bg_color_picker div').css('backgroundColor', '#' + hex);
-            },
-            onSubmit: function(hsb, hex, rgb, el) {
-                jQuery("#tip_bg_color").val('#' + hex);
-                jQuery('#tip_bg_color_picker div').css('backgroundColor', '#' + hex);
-                jQuery('#tip_bg_color_picker_holder').toggle();
-            }
-    });
-
-    // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
-    jQuery('#tip_bg_color_picker_holder').find('input').each(function(index) {
-        jQuery(this).attr("maxlength","50") ;
-    });
-
-    jQuery('#tip_bg_color_picker div').bind('click', function() {
-        jQuery('#tip_bg_color_picker_holder').toggle();
-        jQuery('#tip_bg_color_picker_holder').ColorPickerSetColor(jQuery("#tip_bg_color").val());
-        // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
-        jQuery('body').trigger('click');
-        if(jQuery('#tip_bg_color_picker_holder').is(':visible')) {
-            jQuery('body').bind("click",function () {
-                                            jQuery('#tip_bg_color_picker_holder').hide();
-                                            jQuery('body').unbind("click");
-                                        });
+    //For the Top Sharebar custom background color option
+    if(typeof(jQuery('#useSbSettings-no')) != "undefined" && jQuery('#useSbSettings-no').length >0 ){
+        var useSbSettingsChecked = jQuery('#useSbSettings-no').get(0).checked;
+        if (useSbSettingsChecked) {
+            jQuery('.topbar_prefs').fadeIn('fast');
         }
-        return false;
-    });
 
-    jQuery('#tip_bg_color_reset').bind('click', function() {
-        jQuery("#tip_bg_color").val('#000000');
-        jQuery('#tip_bg_color_picker div').css('backgroundColor', '#000000');
-    });
-    // Prevent the body click handler from firing if the click is inside the color picker
-    jQuery('#tip_bg_color_picker_holder').click(function() { return false;});
+        jQuery('#tb_bg_color_picker_holder').ColorPicker({
+                flat: true,
+                color: jQuery("#tb_bg_color").val(),
+                onChange : function(hsb, hex, rgb, el) {
+                    jQuery("#tb_bg_color").val('#' + hex);
+                    jQuery('#tb_bg_color_picker div').css('backgroundColor', '#' + hex);
+                },
+                onSubmit: function(hsb, hex, rgb, el) {
+                    jQuery("#tb_bg_color").val('#' + hex);
+                    jQuery('#tb_bg_color_picker div').css('backgroundColor', '#' + hex);
+                    jQuery('#tb_bg_color_picker_holder').toggle();
+                }
+        });
 
-    jQuery('#tip_text_color_picker_holder').ColorPicker({
-            flat: true,
-            color: jQuery("#tip_text_color").val(),
-            onChange : function(hsb, hex, rgb, el) {
-                jQuery("#tip_text_color").val('#' + hex);
-                jQuery('#tip_text_color_picker div').css('backgroundColor', '#' + hex);
-            },
-            onSubmit: function(hsb, hex, rgb, el) {
-                jQuery("#tip_text_color").val('#' + hex);
-                jQuery('#tip_text_color_picker div').css('backgroundColor', '#' + hex);
-                jQuery('#tip_text_color_picker_holder').toggle();
+        // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
+        jQuery('#tb_bg_color_picker_holder').find('input').each(function(index) {
+            jQuery(this).attr("maxlength","50") ;
+        });
+
+        jQuery('#tb_bg_color_picker div').bind('click', function() {
+            jQuery('#tb_bg_color_picker_holder').toggle();
+            jQuery('#tb_bg_color_picker_holder').ColorPickerSetColor(jQuery("#tb_bg_color").val());
+            // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
+            jQuery('body').trigger('click');
+            if(jQuery('#tb_bg_color_picker_holder').is(':visible')) {
+                jQuery('body').bind("click",function () {
+                                                jQuery('#tb_bg_color_picker_holder').hide();
+                                                jQuery('body').unbind("click");
+                                            });
             }
-    });
-    // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
-    jQuery('#tip_text_color_picker_holder').find('input').each(function(index) {
-        jQuery(this).attr("maxlength","50") ;
-    });
+            return false;
+        });
 
-    jQuery('#tip_text_color_picker div').bind('click', function() {
-        jQuery('#tip_text_color_picker_holder').toggle();
-        jQuery('#tip_text_color_picker_holder').ColorPickerSetColor(jQuery("#tip_text_color").val());
-        // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
-        jQuery('body').trigger('click');
-        if(jQuery('#tip_text_color_picker_holder').is(':visible')) {
-            jQuery('body').bind("click",function () {
-                                            jQuery('#tip_text_color_picker_holder').hide();
-                                            jQuery('body').unbind("click");
-                                        });
-        }
-        return false;
-    });
-   // Prevent the body click handler from firing if the click is inside the color picker
-    jQuery('#tip_text_color_picker_holder').click(function() { return false;});
-    
-    jQuery('#tip_text_color_reset').bind('click', function() {
-        jQuery("#tip_text_color").val('#ffffff');
-        jQuery('#tip_text_color_picker div').css('backgroundColor', '#ffffff');
-    });
+        jQuery('#tb_bg_color_reset').bind('click', function() {
+            jQuery("#tb_bg_color").val('#000000');
+            jQuery('#tb_bg_color_picker div').css('backgroundColor', '#000000');
+        });
+        // Prevent the body click handler from firing if the click is inside the color picker
+        jQuery('#tb_bg_color_picker_holder').click(function() { return false;});
 
+        //For the Show/Hide Button color on the toolbar
+        jQuery('#tb_border_color_picker_holder').ColorPicker({
+                flat: true,
+                color: jQuery("#tb_border_color").val(),
+                onChange : function(hsb, hex, rgb, el) {
+                    jQuery("#tb_border_color").val('#' + hex);
+                    jQuery('#tb_border_color_picker div').css('backgroundColor', '#' + hex);
+                },
+                onSubmit: function(hsb, hex, rgb, el) {
+                    jQuery("#tb_border_color").val('#' + hex);
+                    jQuery('#tb_border_color_picker div').css('backgroundColor', '#' + hex);
+                    jQuery('#tb_border_color_picker_holder').toggle();
+                }
+        });
 
+        // The below lines are to prevent a nasty input form control not focussable error in chrome/safari
+        jQuery('#tb_border_color_picker_holder').find('input').each(function(index) {
+            jQuery(this).attr("maxlength","50") ;
+        });
+
+        jQuery('#tb_border_color_picker div').bind('click', function() {
+            jQuery('#tb_border_color_picker_holder').toggle();
+            jQuery('#tb_border_color_picker_holder').ColorPickerSetColor(jQuery("#tb_border_color").val());
+            // Attach click handler to the body to hide the color picker (if visible) for clicks outside the color picker
+            jQuery('body').trigger('click');
+            if(jQuery('#tb_border_color_picker_holder').is(':visible')) {
+                jQuery('body').bind("click",function () {
+                                                jQuery('#tb_border_color_picker_holder').hide();
+                                                jQuery('body').unbind("click");
+                                            });
+            }
+            return false;
+        });
+
+        jQuery('#tb_border_color_reset').bind('click', function() {
+            jQuery("#tb_border_color").val('#000000');
+            jQuery('#tb_border_color_picker div').css('backgroundColor', '#000000');
+        });
+        // Prevent the body click handler from firing if the click is inside the color picker
+        jQuery('#tb_border_color_picker_holder').click(function() { return false;});
+
+    }
 }});
 
 

@@ -307,6 +307,9 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 .shr-fb-like-standard{background-image:url(../images/fbplusone.png);background-position:0 -5px;width:60px !important;height:35px !important;}
 .shr-fb-like-button{background-image:url(../images/fbplusone.png);background-position:0 -37px;width:100px !important;height:30px !important;}
 .shr-fb-like-box{background-image:url(../images/fbplusone.png);background-position:0 -72px;width:60px !important;height:70px !important;}
+.shr-tw-button-button,.shr-tw-button-standard{background-image:url(../images/tweetn.png);background-position:0 0;width:55px !important;height:20px !important;margin-top: 6px}
+.shr-tw-button-button-count,.shr-tw-button-standard-count{background-image:url(../images/tweeth.png);width:108px !important;height:20px !important;background-position:-0px -0px;background-repeat:no-repeat;margin-top: 7px}
+.shr-tw-button-box,.shr-tw-button-box-count{background-image:url(../images/tweetv.png);background-position:0 0;width:55px !important;height:63px !important;margin-top: 6px;}
 .shr-plus-one-button{background-image:url(../images/fbplusone.png);background-position:-230px -12px;width:35px !important;height:30px !important;}
 .shr-plus-one-button-count{background-image:url(../images/fbplusone.png);background-position:-120px -12px;width:85px !important;height:30px !important;}
 .shr-plus-one-standard{background-image:url(../images/fbplusone.png);background-position:-230px -52px;width:40px !important;height:30px !important;}
