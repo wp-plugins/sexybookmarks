@@ -131,7 +131,7 @@ function shrsb_settings_page() {
 			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/images');
 			wp_mkdir_p(WP_CONTENT_DIR.'/sexy-mods/js');
 
-			copy($shrsb_oldloc.'css/style-dev.css', $shrsb_newloc.'css/style.css');
+			copy($shrsb_oldloc.'css/style.dev.css', $shrsb_newloc.'css/style.css');
 			copy($shrsb_oldloc.'js/sexy-bookmarks-public.js', $shrsb_newloc.'js/sexy-bookmarks-public.js');
 			copy($shrsb_oldloc.'images/shr-sprite.png', $shrsb_newloc.'images/shr-sprite.png');
 			copy($shrsb_oldloc.'images/share-enjoy.png', $shrsb_newloc.'images/share-enjoy.png');
