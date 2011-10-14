@@ -411,12 +411,13 @@ function shrsb_position_menu($post_content) {
     
     // socials should be generated and added
         if( ($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true))  != 1 ){
+            // Checking for new Mode
             if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
                 $output = '<div class="shr-publisher-'.$post->ID.'"></div>';
                 $likeButtonSetTop = get_shr_like_buttonset('Top', 1);
                 $likeButtonSetBottom = get_shr_like_buttonset('Bottom', 1);
                 $config = shrsb_get_publisher_config($post->ID);
-
+                
                 $shrsb_js_params['shr-publisher-'.$post->ID] = $config;
             }
             else {
@@ -546,6 +547,39 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL) { // $pos 
         }
 }
 
+function selfserv_topbar(){
+    global $post;
+		//if(($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )
+		echo shrsb_get_topbar();
+}
+
+function shrsb_get_topbar(){
+    shrsb_log("get_topbar started");
+    global $shrsb_plugopts;
+    $output = '<!-- Start Shareaholic TopSharingBar -->';
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
+        
+        $html = <<<EOH
+        <div class="shr-toolbox" shr_form_factor="shareaholic-top-bar" style="z-index:999">
+            <div class="shareaholic-like-buttonset" style="float:none;height:30px; width: 300px">
+                <a class="shareaholic-fblike" data-shr_layout="button_count" data-shr_showfaces="false" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
+                <a class="shareaholic-fbsend" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1"></a>
+                <a class="shareaholic-googleplusone" data-shr_size="medium" data-shr_count="true" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
+            </div>
+            <div style="clear: both; min-height: 1px; height: 3px; width: 100%;"></div>
+            <div id="shareaholic_services" >
+                <a data-shr_showCount = "true" data-shr_service = "Twitter" />
+            </div>
+        </div>
+EOH;
+        $output .= $html;
+    }
+    
+    $output .= '<!-- End Shareaholic TopSharingBar -->';
+    
+    shrsb_log("get_topbar completed");
+    return $output;
+}
 
 function get_sexy() {
     shrsb_log("get_sexy started");
@@ -912,3 +946,4 @@ add_action('wp_print_styles', 'shrsb_publicStyles');
 add_action('wp_print_scripts', 'shrsb_publicScripts');
 add_filter('the_content', 'shrsb_position_menu');
 add_action('wp_footer', 'shrsb_write_js_params');
+add_action('wp_footer', 'selfserv_topbar');
