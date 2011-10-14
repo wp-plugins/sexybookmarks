@@ -120,6 +120,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 
 == Changelog ==
 
+= 4.0.6.3 =
+* Fixed potential bug for category pages & manual mode 
+* Added support to manage top bar
+
 = 4.0.6.2 =
 * Fixes to changelog formatting
 * Enhancements for screen reader accessibility
