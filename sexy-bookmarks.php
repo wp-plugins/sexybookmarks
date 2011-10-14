@@ -754,11 +754,13 @@ function shrsb_refresh_cache() {
     'bgimg_padding' => $shrsb_bgimg_map[$shrsb_plugopts['bgimg']]['padding']
   );
   // save as css so mime types work on normal servers
-  $css = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
+  $css_sb = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.css', true);
+  $css_tb = _shrsb_fetch_content('/media/css/shareaholic-share-button.css', '/shareaholic-share-button.css', true);
+  
   $sprite_opts['apitype'] = 'png';
   $png = _shrsb_fetch_content('/api/sprite/?'._make_params($sprite_opts), '/sprite.png', true);
 
-  if(!$script_sb || $script_tb || !$css || !$png) {
+  if(!$script_sb || !$script_tb || !$css_sb || !$css_tb || !$png) {
     update_option('SHRSB_DefaultSprite',true);
     $default_spritegen = true;
   } else {
