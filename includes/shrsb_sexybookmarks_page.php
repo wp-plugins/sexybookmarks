@@ -117,6 +117,10 @@ function shrsb_sb_set_options($action = NULL){
                     $need_to_update = true;
                 }
             }
+            //Check for the tweetbutton in likebutton set
+            if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderTop"]) ) array_push($database_Settings["likeButtonOrderTop"],"shr-tw-button");
+            if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderBottom"]) ) array_push($database_Settings["likeButtonOrderBottom"],"shr-tw-button");
+            
             if($need_to_update) update_option("SexyBookmarks",$database_Settings);
             
             return $database_Settings;
