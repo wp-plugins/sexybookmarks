@@ -51,8 +51,7 @@ function shrsb_tb_set_options($action = NULL){
             
             //Check whether all the settings are present or not
             foreach($shrsb_tb_plugopts_default as $k => $v){
-                //echo "$k => $v <br/>";
-                if( !isset( $database_Settings[$k] )) {
+                if( !array_key_exists( $k, $database_Settings)) {
                     $database_Settings[$k] = $v;
                     $need_to_update = true;
                 }
