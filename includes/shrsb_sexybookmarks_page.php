@@ -25,7 +25,6 @@ function shrsb_sb_set_options($action = NULL){
         'shr-twitter',
         'shr-linkedin',
         'shr-googlebookmarks',
-        'shr-delicious',
         'shr-stumbleupon',
         'shr-reddit',
         'shr-gmail',

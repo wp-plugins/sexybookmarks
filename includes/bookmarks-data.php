@@ -452,6 +452,10 @@ $shrsb_bookmarks_data=array(
 		'id'=>1,
 		'check'=>sprintf($checkthis_text,'Buzzster!'),
 		'share'=>__('Share this via ', 'shrsb').'Buzzster!'
+	),'shr-pinterest'=>array(
+		'id'=>309,
+		'check'=>sprintf($checkthis_text,'Pinterest!'),
+		'share'=>__('Pin this to ', 'shrsb').'Pinterest'
 	),
 );
 ksort($shrsb_bookmarks_data, SORT_STRING); //sort array by keys

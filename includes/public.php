@@ -140,7 +140,7 @@ function shrsb_get_publisher_config($post_id) {
     'expand' => $r['expand'] ? true : 'false',
     'src' => $spritegen_basepath.$spritegen,
     'localize' => true,
-    'share_src' => $r['shrbase'],
+    'share_src' => shrsb_correct_protocol($r['shrbase']),
     'rel' => $r['reloption'],
     'target' => $r['targetopt'] == '_blank' ? '_blank' : '_top',
     'bgimg' => $r['bgimg-url'],
@@ -196,14 +196,14 @@ function shrsb_get_params($post_id) {
   $r['short_link'] = shrsb_get_fetch_url();
   $r['shortener'] = $r['shorty'];
   $r['shortener_key'] = '';
-
-    if (isset($shortener)){
-        switch($shortener) {
+    if (isset($r['shorty'])){
+        switch($r['shorty']) {
             case 'bitly':
+            case 'awesm':
             case 'jmp':
             case 'supr':
-                $user = $post_info['shortyapi'][$r['shorty']]['user'];
-                $api = $post_info['shortyapi'][$r['shorty']]['key'];
+                $user = $r['shortyapi'][$r['shorty']]['user'];
+                $api = $r['shortyapi'][$r['shorty']]['key'];
                 $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
                 break;
             default:
@@ -424,7 +424,7 @@ function shrsb_position_menu($post_content) {
             else {
                 $output=get_sexy();
             }
-            shrsb_log("<!-- ".$output.$likeButtonSetTop.$likeButtonSetBottom." -->");
+            shrsb_log("Sexybookmark HTML here <!-- ".$output.$likeButtonSetTop.$likeButtonSetBottom."--> Inspect me check the html");
         }
     }
 	// Place of bookmarks and return w/ post content.
@@ -460,9 +460,15 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL, $settings 
         
         $usage = "Manual";
         if($return_type) $usage = "Automatic";
-
-        $href = urlencode(get_permalink($post->ID));
-        $title = urlencode($post->post_title);
+        
+        if(in_the_loop()){
+            $href = urlencode(get_permalink($post->ID));
+            $title = urlencode($post->post_title);
+        }else{
+            $href = urlencode('http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
+            $title = urlencode(get_bloginfo('name') . wp_title('-', false));
+        }
+        
         if(empty($title)) {
             $title = urlencode(get_bloginfo('name') . wp_title('-', false));
         }
@@ -509,6 +515,30 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL, $settings 
                 $plusoneCount = $settings['likeButtonSetCount'.$pos];
                 $plusOneHTML = "<a class='shareaholic-googleplusone' data-shr_size='$plusoneSize' data-shr_count='$plusoneCount' data-shr_href='$href' data-shr_title='$title'></a>";
             }
+            
+            if($settings['tweetButton'.$pos] == '1'){
+                $tweetButtonSize = $like_layout;
+                $tweetButtonCount = $settings['likeButtonSetCount'.$pos];
+                
+                switch($tweetButtonSize) {
+                    case '1':
+                        $tweetButtonSize = "horizontal";
+                        if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "horizontal";
+                        break;
+                    case '2':
+                        $tweetButtonSize = "vertical";
+                        break;
+                    default:
+                        $tweetButtonSize = "none";
+                        if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "horizontal";
+                        break;
+                }
+                
+                if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "none";
+                
+                $tweetButtonHTML = "<a class='shareaholic-tweetbutton' data-shr_count='$tweetButtonSize' data-shr_href='$href' data-shr_title='$title'></a>";
+            }
+            
             if($settings['fbLikeButton'.$pos] == '1') {
                 //$like_layout = $settings['likeButtonSetSize'.$pos];
                 switch($like_layout) {
@@ -529,29 +559,6 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL, $settings 
                 $fbSendHTML = "<a class='shareaholic-fbsend' data-shr_href='$href'></a>";
             }
             
-            if($settings['tweetButton'.$pos] == '1'){
-                $tweetButtonSize = $like_layout;
-                $tweetButtonCount = $settings['likeButtonSetCount'.$pos];
-                
-                switch($tweetButtonSize) {
-                    case '1':
-                        $tweetButtonSize = "none";
-                        if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "horizontal";
-                        break;
-                    case '2':
-                        $tweetButtonSize = "vertical";
-                        break;
-                    default:
-                        $tweetButtonSize = "none";
-                        if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "horizontal";
-                        break;
-                }
-                
-                if(!$tweetButtonCount && $tweetButtonCount != "false") $tweetButtonSize = "none";
-                
-                $tweetButtonHTML = "<a class='shareaholic-tweetbutton' data-shr_count='$tweetButtonSize' data-shr_href='$href' data-shr_title='$title'></a>";
-            }
-
             foreach($settings['likeButtonOrder'.$pos] as $likeOption) {
                 switch($likeOption) {
                     case "shr-fb-like":
@@ -571,7 +578,7 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL, $settings 
             $output .= '</div>';
             $output = $spacer.$output.$spacer;
         }
-        shrsb_log("<!-- Ankur $output -->");
+        shrsb_log("<!-- $output -->");
         $output = "<!-- Start Shareaholic LikeButtonSet$pos $usage -->".$output."<!-- End Shareaholic LikeButtonSet$pos $usage -->";
         
         if ($return_type == 1){
@@ -613,8 +620,8 @@ function shrsb_get_topbar($usage = NULL){
         </div>
 EOH;
     }
+    shrsb_log("Topbar HTML here <!-- $html --> Inspect me check the html");
     $output = "<!-- Start Shareaholic TopSharingBar $usage -->$html<!-- End Shareaholic TopSharingBar $usage -->";
-    
     shrsb_log("get_topbar completed");
     echo $output;
 }
@@ -1013,7 +1020,6 @@ function shrsb_tb_write_js_params() {
         echo ';</script>';
   }
 }
-
 
 add_action('wp_print_styles', 'shrsb_publicStyles');
 add_action('wp_print_scripts', 'shrsb_publicScripts');

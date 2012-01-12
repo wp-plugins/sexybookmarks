@@ -64,5 +64,4 @@ function shrsb_tb_set_options($action = NULL){
         return $shrsb_tb_plugopts_default;
     }
 }
-
 ?>

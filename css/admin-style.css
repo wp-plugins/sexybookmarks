@@ -184,7 +184,7 @@ div.box-mid-head a:hover{border:medium none;}
 div.box-mid-head input{border:1px solid #ccc;}
 div.box-mid-body{background:#fff url('../images/white-pix.jpg') repeat-x center top;border:1px solid #dbdbdb;border-top:0 none;display:table;width:100%;}
 div.box-mid-body h3{display:block;font-size:18px;font-weight:bold;margin:8px 0;}
-div#shrsb-col-right{clear:none;float:left;margin:5px 0 0;position:absolute;right:1.3%;width:256px;}
+div#shrsb-col-right{clear:none;float:left;margin:5px 10px 0;position:absolute;right:1.3%;width:256px;}
 div.box-right{float:left;margin-bottom:20px;}
 div.box-right-head{background:transparent url('../images/flo-head.jpg') repeat-x 0 0;border:1px solid #dbdbdb;float:left;height:27px;width:256px;}
 div.box-right-head h3{color:#21759b;float:left;font-family:Georgia,"Times New Roman","Bitstream Charter",Times,serif;font-size:14px;font-style:normal;font-weight:normal;height:24px;line-height:20px;margin:0;padding:3px 0 0 10px;text-align:left;}

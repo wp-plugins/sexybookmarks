@@ -46,6 +46,8 @@ function shrsb_sb_settings_page() {
         /* Short URLs */
         $shrsb_plugopts['shortyapi']['bitly']['user'] = "";
         $shrsb_plugopts['shortyapi']['bitly']['key'] = "";
+        $shrsb_plugopts['shortyapi']['awesm']['user'] = "";
+        $shrsb_plugopts['shortyapi']['awesm']['key'] = "";
         $shrsb_plugopts['shortyapi']['jmp']['user'] = "";
         $shrsb_plugopts['shortyapi']['jmp']['key'] = "";
         $shrsb_plugopts['shortyapi']['supr']['chk'] = "0";
@@ -223,6 +225,8 @@ function shrsb_sb_settings_page() {
 
           $shrsb_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
+          $shrsb_plugopts['shortyapi']['awesm']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-awesm'], ENT_QUOTES));
+          $shrsb_plugopts['shortyapi']['awesm']['key'] = trim(htmlspecialchars($_POST['shortyapikey-awesm'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['jmp']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-jmp'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['jmp']['key'] = trim(htmlspecialchars($_POST['shortyapikey-jmp'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'][0], ENT_QUOTES);
@@ -476,10 +480,6 @@ function shrsb_sb_settings_page() {
 
                                     </tbody></table>
 
-
-
-
-
                                 <br />
 
                                 <span style="display:block;"><?php echo sprintf(__('Check out %sour blog%s for additional customization options.', 'shrsb'), '<a target="_blank" href="http://blog.shareaholic.com/?p=1917">', '</a>'); ?></span><br />
@@ -627,7 +627,8 @@ function shrsb_sb_settings_page() {
 								print shrsb_select_option_group('shorty', 
                                         array(
                                             'none'      =>__("Don't use a shortener", 'shrsb'),
-                                            'bitly'     =>  'bit.ly',
+                                            'awesm'     =>  'awe.sm',
+											'bitly'     =>  'bit.ly',
                                             'jmp'       =>  'j.mp',
                                             'google'    =>  'Google (goo.gl)',
                                             'supr'      =>  'StumbleUpon (su.pr)',
@@ -646,6 +647,15 @@ function shrsb_sb_settings_page() {
 								<input type="text" id="shortyapiuser-bitly" name="shortyapiuser-bitly" value="<?php echo $shrsb_plugopts['shortyapi']['bitly']['user']; ?>" />
 								<label for="shortyapikey-bitly"><?php _e('API Key:', 'shrsb'); ?></label>
 								<input type="text" id="shortyapikey-bitly" name="shortyapikey-bitly" value="<?php echo $shrsb_plugopts['shortyapi']['bitly']['key']; ?>" />
+							</div>
+						</div>
+                        
+                        <div id="shortyapimdiv-awesm"<?php if($shrsb_plugopts['shorty'] != "awesm") { ?> class="hidden"<?php } ?>>
+							<div id="shortyapidiv-awesm">
+								<label for="shortyapiuser-awesm"><?php _e('Tool:', 'shrsb'); ?></label>
+								<input type="text" id="shortyapiuser-awesm" name="shortyapiuser-awesm" value="<?php echo $shrsb_plugopts['shortyapi']['awesm']['user']; ?>" />
+								<label for="shortyapikey-awesm"><?php _e('API Key:', 'shrsb'); ?></label>
+								<input type="text" id="shortyapikey-awesm" name="shortyapikey-awesm" value="<?php echo $shrsb_plugopts['shortyapi']['awesm']['key']; ?>" />
 							</div>
 						</div>
 
@@ -961,7 +971,6 @@ function shrsb_requires_phpupdate() {
     return (strnatcmp(phpversion(),'5.0') < 0);
 }
 
-
 /*
 *   @desc For setting the content type which are enabled
 */
@@ -978,5 +987,4 @@ function shrsb_set_content_type() {
     }
     return $type;
 }
-
 ?>
