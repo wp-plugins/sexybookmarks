@@ -1,11 +1,6 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
 *   @desc Set default options
 */
 
@@ -25,7 +20,6 @@ function shrsb_sb_set_options($action = NULL){
         'shr-twitter',
         'shr-linkedin',
         'shr-googlebookmarks',
-        'shr-delicious',
         'shr-stumbleupon',
         'shr-reddit',
         'shr-gmail',
@@ -108,20 +102,24 @@ function shrsb_sb_set_options($action = NULL){
         
         if($database_Settings){//got the settings in the database
             
-            $need_to_update = false;
-            
-            //Check whether all the settings are present or not
-            foreach($shrsb_sb_plugopts_default as $k => $v){
-                if( !array_key_exists( $k, $database_Settings)) {
-                    $database_Settings[$k] = $v;
-                    $need_to_update = true;
+            // Check only when upgrading
+            if(SHRSB_UPGRADING) {
+                $need_to_update = false;
+
+                //Check whether all the settings are present or not
+                foreach($shrsb_sb_plugopts_default as $k => $v){
+                    if( !array_key_exists( $k, $database_Settings)) {
+                        $database_Settings[$k] = $v;
+                        $need_to_update = true;
+                    }
                 }
+                //Check for the tweetbutton in likebutton set
+                if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderTop"]) ) array_push($database_Settings["likeButtonOrderTop"],"shr-tw-button");
+                if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderBottom"]) ) array_push($database_Settings["likeButtonOrderBottom"],"shr-tw-button");
+
+                if($need_to_update) update_option("SexyBookmarks",$database_Settings);
+
             }
-            //Check for the tweetbutton in likebutton set
-            if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderTop"]) ) array_push($database_Settings["likeButtonOrderTop"],"shr-tw-button");
-            if(!in_array("shr-tw-button", $database_Settings["likeButtonOrderBottom"]) ) array_push($database_Settings["likeButtonOrderBottom"],"shr-tw-button");
-            
-            if($need_to_update) update_option("SexyBookmarks",$database_Settings);
             
             return $database_Settings;
             
@@ -141,22 +139,22 @@ add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
 add_option('SHRSB_DefaultSprite',true);
 
+// If plugin is upgrading
+if(SHRSB_UPGRADING == TRUE) {
+    
 
+    //Remove the Disabled Services
+    if(isset ($shrsb_plugopts) && isset($shrsb_plugopts['service'])){
+       $services = explode(',', $shrsb_plugopts['service']);
 
-//Remove the propeller Service
-if(isset ($shrsb_plugopts) && isset($shrsb_plugopts['service'])){
-   $services = explode(',', $shrsb_plugopts['service']);
-
-   if(!empty($services)){
-       foreach ($services as $k => $v){
-           if($v == '77'){
-               unset ($services[$k]);
-           }
+       if(!empty($services)){
+           // Removing blocked services from sb services list
+           $disable_services = array( '4', '12', '68', '77', '159', '185', '186', '195', '207', '237', '257' );
+           $services = array_diff($services, $disable_services);
+           $shrsb_plugopts['service'] = implode(',', $services );
        }
-       $shrsb_plugopts['service'] = implode(',', $services );
-   }
+    }
 }
-
 
 /*
 *   @note Make sure spritegen_path is defined

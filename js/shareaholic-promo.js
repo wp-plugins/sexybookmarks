@@ -1,7 +1,3 @@
-/**
-* @preserve Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved. 
-*/
-
 var shr_cdn_root = "https://dtym7iokkjlif.cloudfront.net";
 
 function getBrowser() {

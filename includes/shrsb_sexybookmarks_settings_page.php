@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 //write settings page
 function shrsb_sb_settings_page() {
 	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite;
@@ -46,6 +40,8 @@ function shrsb_sb_settings_page() {
         /* Short URLs */
         $shrsb_plugopts['shortyapi']['bitly']['user'] = "";
         $shrsb_plugopts['shortyapi']['bitly']['key'] = "";
+        $shrsb_plugopts['shortyapi']['awesm']['user'] = "";
+        $shrsb_plugopts['shortyapi']['awesm']['key'] = "";
         $shrsb_plugopts['shortyapi']['jmp']['user'] = "";
         $shrsb_plugopts['shortyapi']['jmp']['key'] = "";
         $shrsb_plugopts['shortyapi']['supr']['chk'] = "0";
@@ -223,6 +219,8 @@ function shrsb_sb_settings_page() {
 
           $shrsb_plugopts['shortyapi']['bitly']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-bitly'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['bitly']['key'] = trim(htmlspecialchars($_POST['shortyapikey-bitly'], ENT_QUOTES));
+          $shrsb_plugopts['shortyapi']['awesm']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-awesm'], ENT_QUOTES));
+          $shrsb_plugopts['shortyapi']['awesm']['key'] = trim(htmlspecialchars($_POST['shortyapikey-awesm'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['jmp']['user'] = trim(htmlspecialchars($_POST['shortyapiuser-jmp'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['jmp']['key'] = trim(htmlspecialchars($_POST['shortyapikey-jmp'], ENT_QUOTES));
           $shrsb_plugopts['shortyapi']['supr']['chk'] = htmlspecialchars($_POST['shortyapichk-supr'][0], ENT_QUOTES);
@@ -343,7 +341,7 @@ function shrsb_sb_settings_page() {
 
             <li>
                 <div class="box-mid-head">
-                    <h2 class="fugue f-status"><?php _e('Shareaholic Social Engagement Analytics', 'shrsb'); ?></h2>
+                    <h2 class="fugue f-status"><?php _e('Shareaholic Social Engagement Analytics - Grow Your Traffic and Referrals', 'shrsb'); ?></h2>
                 </div>
 				<div class="box-mid-body">
                         <div style="padding:8px;background:#FDF6E5;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" />
@@ -401,7 +399,7 @@ function shrsb_sb_settings_page() {
                                 <br />
                                 <div style="background: url(http://www.shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
                                 <br />
-                                  <?php  echo sprintf(__('What are you waiting for? <b>Access detailed %ssocial engagement analytics%s about your website for FREE right now!</b><br><br>You have been selected to preview the upcoming premium analytics add-on for SexyBookmarks for FREE for a limited time - so hurry before it is too late! These analytics are designed to help you grow your traffic and referrals.', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
+                                  <?php  echo sprintf(__('What are you waiting for? <b>Access detailed %ssocial engagement analytics%s about your website right now for FREE!</b><br><br>Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
                                 ?>
 
                         </div>
@@ -423,9 +421,9 @@ function shrsb_sb_settings_page() {
 		        </ul>
 						<div id="shrsb-networks"><ul>
 							<?php
-								foreach ($shrsb_plugopts['bookmark'] as $name){if(array_key_exists($name, $shrsb_bookmarks_data)) {print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);}}
+								foreach ($shrsb_plugopts['bookmark'] as $name){if(array_key_exists($name, $shrsb_bookmarks_data)) {print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['id'], $shrsb_bookmarks_data[$name]['check']);}}
 								$unused_networks=array_diff(array_keys($shrsb_bookmarks_data), $shrsb_plugopts['bookmark']);
-								foreach ($unused_networks as $name) print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['check']);
+								foreach ($unused_networks as $name) print shrsb_network_input_select($name, $shrsb_bookmarks_data[$name]['id'], $shrsb_bookmarks_data[$name]['check']);
 							?>
 						</ul></div>
 					</div>
@@ -443,7 +441,7 @@ function shrsb_sb_settings_page() {
 
                                     <table><tbody>
                                     <tr>
-                                        <td><span class="shrsb_option"><?php _e('Include the Open Graph Tags?', 'shrsb'); ?> <span style="color:red;">*</span></span>
+                                        <td><span class="shrsb_option"><?php _e('Include Open Graph Tags?', 'shrsb'); ?> <span style="color:red;">*</span></span>
                                         </td>
                                         <td style="width:125px"><label><input <?php echo (($shrsb_plugopts['ogtags'] == "1")? 'checked="checked"' : ""); ?> name="ogtags" id="ogtags-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
                                         </td><td><label><input <?php echo (($shrsb_plugopts['ogtags'] == "0")? 'checked="checked"' : ""); ?> name="ogtags" id="ogtags-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
@@ -476,10 +474,6 @@ function shrsb_sb_settings_page() {
 
                                     </tbody></table>
 
-
-
-
-
                                 <br />
 
                                 <span style="display:block;"><?php echo sprintf(__('Check out %sour blog%s for additional customization options.', 'shrsb'), '<a target="_blank" href="http://blog.shareaholic.com/?p=1917">', '</a>'); ?></span><br />
@@ -501,7 +495,7 @@ function shrsb_sb_settings_page() {
                             <table><tbody>
                                     <tr>
                                         <td><span class="shrsb_option"><?php _e('Show Share Counters', 'shrsb'); ?> <span style="color:red;">*</span></span>
-                                            <span style="display:block;"><?php _e('For Facebook, Twitter, Google Buzz and Delicious', 'shrsb'); ?></span>
+                                            <span style="display:block; font-size: 11px; color: #666666;"><?php _e('For Facebook, Twitter and Delicious', 'shrsb'); ?></span>
                                         </td>
                                             <td><label><input <?php echo (($shrsb_plugopts['showShareCount'] == "1")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label>
                                     </td><td><label><input <?php echo (($shrsb_plugopts['showShareCount'] == "0")? 'checked="checked"' : ""); ?> name="showShareCount" id="showShareCount-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
@@ -536,7 +530,8 @@ function shrsb_sb_settings_page() {
                                     </tr>
 
                                     <tr>
-                                            <td><span class="shrsb_option"><?php _e('Track Performance', 'shrsb'); ?></span></td>
+                                            <td><span class="shrsb_option"><?php _e('Track Performance', 'shrsb'); ?></span>
+											</td>
                                             <td><label><input <?php echo (($shrsb_plugopts['perfoption'] == "1")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-yes" type="radio" value="1" /> <?php _e('Yes (recommended)', 'shrsb'); ?></label>
                                             </td><td><label><input <?php echo (($shrsb_plugopts['perfoption'] == "0")? 'checked="checked"' : ""); ?> name="perfoption" id="perfoption-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label>
                                             </td>
@@ -568,7 +563,10 @@ function shrsb_sb_settings_page() {
                             </tbody></table>
 							<br />
 							<span style="display:block;"><span style="color:red;">* <?php _e('switch on "new" mode below to enable these exclusive features', 'shrsb'); ?></span></span>
-
+							<br />
+							
+							<span style="display:block; font-size: 11px; color: #666666;">Note: The analytics portion of Shareaholic may use trusted 3rd party services to enhance its data. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In fact, it's one of the fastest analytics  system, hosted or not hosted, that you can use.</span>
+							
                         </div>
 					</div>
 				</div>
@@ -627,7 +625,8 @@ function shrsb_sb_settings_page() {
 								print shrsb_select_option_group('shorty', 
                                         array(
                                             'none'      =>__("Don't use a shortener", 'shrsb'),
-                                            'bitly'     =>  'bit.ly',
+                                            'awesm'     =>  'awe.sm',
+											'bitly'     =>  'bit.ly',
                                             'jmp'       =>  'j.mp',
                                             'google'    =>  'Google (goo.gl)',
                                             'supr'      =>  'StumbleUpon (su.pr)',
@@ -646,6 +645,15 @@ function shrsb_sb_settings_page() {
 								<input type="text" id="shortyapiuser-bitly" name="shortyapiuser-bitly" value="<?php echo $shrsb_plugopts['shortyapi']['bitly']['user']; ?>" />
 								<label for="shortyapikey-bitly"><?php _e('API Key:', 'shrsb'); ?></label>
 								<input type="text" id="shortyapikey-bitly" name="shortyapikey-bitly" value="<?php echo $shrsb_plugopts['shortyapi']['bitly']['key']; ?>" />
+							</div>
+						</div>
+                        
+                        <div id="shortyapimdiv-awesm"<?php if($shrsb_plugopts['shorty'] != "awesm") { ?> class="hidden"<?php } ?>>
+							<div id="shortyapidiv-awesm">
+								<label for="shortyapiuser-awesm"><?php _e('Tool:', 'shrsb'); ?></label>
+								<input type="text" id="shortyapiuser-awesm" name="shortyapiuser-awesm" value="<?php echo $shrsb_plugopts['shortyapi']['awesm']['user']; ?>" />
+								<label for="shortyapikey-awesm"><?php _e('API Key:', 'shrsb'); ?></label>
+								<input type="text" id="shortyapikey-awesm" name="shortyapikey-awesm" value="<?php echo $shrsb_plugopts['shortyapi']['awesm']['key']; ?>" />
 							</div>
 						</div>
 
@@ -845,7 +853,12 @@ function shrsb_sb_settings_page() {
 		<input type="hidden" name="reset_all_options_sb" id="reset_all_options_sb" value="0" />
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
 	</form>
+	
+	<?php echo shrsb_getfooter(); ?>
+	
 </div>
+
+
 <?php
 
 //Right Side helpful links
@@ -865,6 +878,7 @@ function exclude_from_minify_list() {
     if(is_array($minify_opts) && is_array($minify_opts["js_exclude"])) {
         $sbfound = false;
         $tbfound = false;
+        $shr_dough_recipe = false;
         foreach($minify_opts["js_exclude"] as $url) {
             if($url == 'jquery.shareaholic-publishers-sb.min.js') {
                 $sbfound = true;
@@ -872,12 +886,18 @@ function exclude_from_minify_list() {
             if($url == 'jquery.shareaholic-share-buttons.min.js') {
                 $tbfound = true;
             }
+            if($url == 'recipe.js') {
+                $shr_dough_recipe = true;
+            }
         }
         if(!$sbfound) {
             array_push($minify_opts["js_exclude"],'jquery.shareaholic-publishers-sb.min.js');
         }
         if(!$tbfound) {
             array_push($minify_opts["js_exclude"],'jquery.shareaholic-share-buttons.min.js');
+        }
+        if(!$shr_dough_recipe) {
+            array_push($minify_opts["js_exclude"],'recipe.js');
         }
         update_option("wp_minify", $minify_opts);
     }
@@ -961,7 +981,6 @@ function shrsb_requires_phpupdate() {
     return (strnatcmp(phpversion(),'5.0') < 0);
 }
 
-
 /*
 *   @desc For setting the content type which are enabled
 */
@@ -978,5 +997,4 @@ function shrsb_set_content_type() {
     }
     return $type;
 }
-
 ?>
