@@ -246,7 +246,7 @@ function shrsb_get_params($post_id) {
   $isphp = false !== strpos($r['feed_permalink'],'.php',
   max(0,strlen($r['feed_permalink']) - 4));
 	if ($hasquery || $isphp) {
-		$r['feed_structure'] = '&amp;feed=comments-rss2';
+		$r['feed_structure'] = '&feed=comments-rss2';
 	} 
   else {
     $endsinslash = '/' ==
@@ -741,7 +741,7 @@ function get_sexy() {
 
 	// Check permalink setup for proper feed link
 	if (false !== strpos($feedperms,'?') || false !== strpos($feedperms,'.php', max(0,strlen($feedperms) - 4))) {
-		$feedstructure = '&amp;feed=comments-rss2';
+		$feedstructure = '&feed=comments-rss2';
 	} 
   else {
 		if ('/' == $feedperms[strlen($feedperms) - 1]) {
@@ -969,12 +969,10 @@ function shrsb_publicScripts() {
     }
   }
   
-  // Perf tracking
-  if ($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == ''){
-    if (!is_admin() && $shrsb_plugopts['shareaholic-javascript'] !== '1') {
+  // Perf tracking for old mode only.For New mode tracking is moved to javascript
+  if ( ($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '') && (!is_admin() && $shrsb_plugopts['shareaholic-javascript'] !== '1') ) {
       wp_enqueue_script('shareaholic-perf', SHRSB_PLUGPATH.'js/shareaholic-perf.min.js', null, SHRSB_vNum, false);
-    }
-    wp_enqueue_script("shr_dough_recipe", shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/dough/1.0/recipe.js"), null, null);
+      wp_enqueue_script("shr_dough_recipe", shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/dough/1.0/recipe.js"), null, null);
   }
 }
 

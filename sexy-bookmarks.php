@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Shareaholic | email, bookmark, and share
+Plugin Name: Shareaholic | email, bookmark, share
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.6.5
+Version: 4.0.6.6
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','4.0.6.5');
+define('SHRSB_vNum','4.0.6.6');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -105,17 +105,23 @@ if ( !function_exists('wp_upload_dir') ) {
       }
 }
 
-//Including the Shareaholic global settings
-require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
-require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
-
 //Get the current Version from the database
 $shrsb_version = get_option('SHRSBvNum');
 // if the version number is set and is not the latest, then call the upgrade function
 if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
    update_option('SHRSB_DefaultSprite',true);
    add_action('admin_notices', 'shrsb_Upgrade', 12);
+   
+   // Added global variable to track the updating state
+   define('SHRSB_UPGRADING', TRUE);
+}else{
+   define('SHRSB_UPGRADING', FALSE);
 }
+
+
+//Including the Shareaholic global settings
+require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
+require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
 
 $default_spritegen = get_option('SHRSB_DefaultSprite');
 

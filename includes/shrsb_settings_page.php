@@ -271,15 +271,18 @@ function shrsb_right_side_menu(){
                 </div>
             </div>
         </div>
-
-        <div style="padding:15px;"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe></div>
+		
+		<div style="clear:both;"></div>
+		
+        <div style="padding:15px; margin-bottom: 20px;">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe>
+		</div>
 
         <div id="shrsb-updates">
             <div id="shrsb-updates-container"></div>
              <script async="true" type="text/javascript" src="//dtym7iokkjlif.cloudfront.net/media/js/platforms/wordpress/wordpress-admin.js"></script>
         </div>
-    
-        
+
     </div>
 
     <?php
@@ -307,6 +310,16 @@ EOD;
 	return $snapengage;
 }
 
+function shrsb_getfooter(){
+
+?>
+	<div style="clear:both;"></div>
+	<div class="footer">
+		<a href="http://www.shareaholic.com/" target="_blank">Shareaholic for WordPress <?php echo SHRSB_vNum; ?></a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/privacy/" target="_blank">Privacy Policy</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/terms/" target="_blank">Terms of Service</a> <span class="grey_light">|</span> <a href="http://support.shareaholic.com/" target="_blank">Support</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/api" target="_blank">API</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/siteinfo/<?php $parse = parse_url(get_bloginfo('url')); echo $parse['host']; ?>" target="_blank">Social Analytics</a> <br /> If you like this plugin and find it useful, please consider showing your support by <a href="http://wordpress.org/extend/plugins/shareaholic/" target="_blank">giving us a good rating</a> on WordPress.org
+	</div>
+
+<?php
+}
 
 /**
  * Gets the contents of a url on www.shareaholic.com.  We use shrbase as the
@@ -528,10 +541,10 @@ function shrsb_addFBNameSpace($attr) {
 }
 
 //list all bookmarks in the plugin options page
-function shrsb_network_input_select($name, $hint) {
+function shrsb_network_input_select($name, $id, $hint) {
 	global $shrsb_plugopts;
 	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
-		$name,
+		"shr-$id",
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
 		$name,
