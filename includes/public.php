@@ -172,6 +172,30 @@ function shrsb_get_publisher_config($post_id) {
   return array_filter($params);
 }
 
+
+function shrsb_get_shortener_settings(){
+    global $shrsb_plugopts;
+    
+    $shorty = $shrsb_plugopts['shorty'];
+    $shortyapi = $shrsb_plugopts['shortyapi'];
+    $shortener_key = '';
+
+    if (isset( $shorty ) ){
+        switch( $shorty ) {
+            case 'bitly':
+            case 'awesm':
+            case 'jmp':
+            case 'supr':
+                $user = $shortyapi[$shorty]['user'];
+                $api = $shortyapi[$shorty]['key'];
+                $shortener_key  =  $user ? ($user.'|'.$api) : '';
+                break;
+            default:
+        }
+    }
+    
+    return $shortener_key;
+}
 /**
  * Returns array of all relevant information about the current post for sexy
  */
@@ -191,24 +215,12 @@ function shrsb_get_params($post_id) {
   // response parameters
   $post_info = shrsb_post_info($post);
   $r = array_merge($shrsb_plugopts, $post_info);
-
+  
   // Grab the short URL
   $r['short_link'] = shrsb_get_fetch_url();
   $r['shortener'] = $r['shorty'];
-  $r['shortener_key'] = '';
-    if (isset($r['shorty'])){
-        switch($r['shorty']) {
-            case 'bitly':
-            case 'awesm':
-            case 'jmp':
-            case 'supr':
-                $user = $r['shortyapi'][$r['shorty']]['user'];
-                $api = $r['shortyapi'][$r['shorty']]['key'];
-                $r['shortener_key'] =  $user ? ($user.'|'.$api) : '';
-                break;
-            default:
-        }
-    }
+  $r['shortener_key'] = shrsb_get_shortener_settings();
+    
     if($post_id >= 0){
         $r['post_summary'] = urlencode(strip_tags(
         strip_shortcodes($post->post_excerpt)));
@@ -949,7 +961,13 @@ function shrsb_publicScripts() {
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
         wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
-        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption'], 'twitter_template' => $shrsb_plugopts['tweetconfig'] ));
+        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array(
+            'src' => shrsb_correct_protocol($spritegen_basepath.$spritegen)
+            , 'perfoption'=> $shrsb_plugopts['perfoption']
+            , 'twitter_template' => $shrsb_plugopts['tweetconfig']
+            , 'shortener' => $shrsb_plugopts['shorty']
+            , 'shortener_key' => shrsb_get_shortener_settings()
+        ));
         if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
             wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
         }
@@ -979,7 +997,7 @@ function shrsb_publicScripts() {
 /*
  * @desc Populate javascript settings in the footer for sexybookmark
  */
-function shrsb_write_js_params() { 
+function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
   
     //For manual mode, when no config is defined

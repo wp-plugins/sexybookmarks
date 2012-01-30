@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 4.0.6.9
+Stable tag: 4.0.6.10
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -129,8 +129,9 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 
 == Changelog ==
 
-= 4.0.6.9 =
+= 4.0.6.10 =
 * Custom Twitter template is now used universally by all Tweet buttons
+* URL shortener settings now used universally
 * Cleaned up un-used code for greater efficiency
 
 = 4.0.6.8 =

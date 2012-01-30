@@ -130,11 +130,6 @@ function shrsb_sb_set_options($action = NULL){
         }
 }
 
-
-
-//add to database
-//$shrsb_plugopts['tweetconfig'] = urlencode($shrsb_plugopts['tweetconfig']);
-
 add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
 add_option('SHRSB_DefaultSprite',true);
@@ -159,13 +154,6 @@ if(SHRSB_UPGRADING == TRUE) {
 /*
 *   @note Make sure spritegen_path is defined
 */
-
-//if(!isset($shrsb_plugopts['spritegen_path'])) {
-//    $shrsb_plugopts['spritegen_path'] = SHRSB_UPLOADDIR_DEFAULT;
-//}else{
-//    if($shrsb_plugopts['spritegen_path'] == 'SHRSB_UPLOADDIR_DEFAULT')
-//       $shrsb_plugopts['spritegen_path'] = SHRSB_UPLOADDIR_DEFAULT;
-//}
 
 //Check for POST
 if(isset($_POST['save_changes_sb']) ){
@@ -192,123 +180,12 @@ if(isset($_POST['save_changes_sb']) ){
     }
 }
 
-
-// Some new default options may not be present in the database.
-// Add them if they aren't.
-//if(!isset($shrsb_plugopts['designer_toolTips'])) {
-//    $shrsb_plugopts['designer_toolTips'] = '1';
-//    $shrsb_plugopts['tip_bg_color'] = '#000000';  // tooltip background color
-//    $shrsb_plugopts['tip_text_color'] = '#ffffff'; // tooltip text color
-//}
-
-//if(!isset($shrsb_plugopts['likeButtonSetTop'])) {
-//      $shrsb_plugopts['likeButtonSetTop'] = '0'; // Include fb like button
-//      $shrsb_plugopts['fbLikeButtonTop'] = '0'; // if fb like button is included. Include in bottom right by default
-//      $shrsb_plugopts['fbSendButtonTop' ] =  '0'; // Include fb like button
-//      $shrsb_plugopts['googlePlusOneButtonTop' ] =  '0'; // Include Google Plus One button
-//      $shrsb_plugopts['likeButtonSetSizeTop' ] =  "1"; // Size of like buttons
-//      $shrsb_plugopts['likeButtonSetCountTop'] =  "true"; // Show count with +1 button
-//      $shrsb_plugopts['likeButtonOrderTop' ] =  $defaultLikeButtonOrder;
-//      $shrsb_plugopts['likeButtonSetAlignmentTop' ] =  '0'; // Alignment 0 => left, 1 => right
-//      $shrsb_plugopts['likeButtonSetBottom'] = '1'; // Include fb like button
-//      $shrsb_plugopts['fbLikeButtonBottom'] = '0'; // if fb like button is included. Include in bottom right by default
-//      $shrsb_plugopts['fbSendButtonBottom' ] =  '0'; // Include fb like button
-//      $shrsb_plugopts['googlePlusOneButtonBottom' ] =  '0'; // Include Google Plus One button
-//      $shrsb_plugopts['likeButtonSetSizeBottom' ] =  "1"; // Size of like buttons
-//      $shrsb_plugopts['likeButtonSetCountBottom'] =  "true"; // Show count with +1 button
-//      $shrsb_plugopts['likeButtonOrderBottom' ] =  $defaultLikeButtonOrder;
-//      $shrsb_plugopts['likeButtonSetAlignmentBottom' ] =  '0'; // Alignment 0 => left, 1 => right
-//}
-
-//if(!isset($shrsb_plugopts['ogtags'])) {
-//    $shrsb_plugopts['ogtags'] = "1";
-//}
-
-//if(!isset($shrsb_plugopts['fbNameSpace'])) {
-//    $shrsb_plugopts['fbNameSpace'] = "1";
-//}
-
-//if(!isset($shrsb_plugopts['preventminify'])) {
-//    $shrsb_plugopts['preventminify'] = "1";
-//}
-
-//if($shrsb_plugopts['fbNameSpace'] == '1') {
-//    add_filter('language_attributes', 'shrsb_addFBNameSpace');
-//}
-
-//$shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
-
 $shrsb_plugopts['apikey'] = get_option('SHRSB_apikey');
 $shrsb_custom_sprite = get_option('SHRSB_CustomSprite');
-
-
-// code to remove redundant data fields from the database
-//if(isset($shrsb_plugopts['twittcat'])) {
-//    $shrsb_plugopts['ybuzzcat'] = '';
-//    $shrsb_plugopts['ybuzzmed'] = '';
-//    $shrsb_plugopts['twittcat'] = '';
-//    $shrsb_plugopts['defaulttags'] = '';
-//}
 
 // Some databases got corrupted. This will set things in place.
 if($shrsb_plugopts['shrbase'] != 'http://www.shareaholic.com'){
     $shrsb_plugopts['shrbase'] = 'http://www.shareaholic.com';
 }
-
-// Reset depreciated url shorteners
-//if($shrsb_plugopts['shorty'] == 'slly' || $shrsb_plugopts['shorty'] == 'cligs' || $shrsb_plugopts['shorty'] == 'snip' || $shrsb_plugopts['shorty'] == 'tinyarrow' || $shrsb_plugopts['shorty'] == 'b2l' || $shrsb_plugopts['shorty'] == 'trim' || $shrsb_plugopts['shorty'] == 'e7t')  {
-//
-//    $shrsb_plugopts['shortyapi']['snip']['user'] = '';
-//    $shrsb_plugopts['shortyapi']['snip']['key'] = '';
-//    $shrsb_plugopts['shortyapi']['trim']['chk'] = '';
-//    $shrsb_plugopts['shortyapi']['trim']['user'] = '';
-//    $shrsb_plugopts['shortyapi']['trim']['pass'] = '';
-//    $shrsb_plugopts['shortyapi']['tinyarrow']['chk'] = '';
-//    $shrsb_plugopts['shortyapi']['tinyarrow']['user'] = '';
-//    $shrsb_plugopts['shortyapi']['cligs']['chk'] = '';
-//    $shrsb_plugopts['shortyapi']['cligs']['key'] = '';
-//}
-
-/*
-*   @desc Re-name values
-*/
-
-//if($shrsb_plugopts['shorty'] == 'tiny') {
-//    $shrsb_plugopts['shorty'] = 'tinyurl';
-//}
-//
-//if($shrsb_plugopts['shorty'] == 'googl') {
-//    $shrsb_plugopts['shorty'] = 'google';
-//}
-
-/*
-*   @desc Fix short URLs corrupt value
-*/
-
-//if(isset($shrsb_plugopts['shortyapi'])){
-//
-//    if(strpos($shrsb_plugopts['shortyapi']['bitly']['user'],"sexybookmarks/sexy-bookmarks.php")) {
-//        $shrsb_plugopts['shortyapi']['bitly']['user'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['bitly']['key'],"sexybookmarks/sexy-bookmarks.php")) {
-//        $shrsb_plugopts['shortyapi']['bitly']['key'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['jmp']['user'],"sexybookmarks/sexy-bookmarks.php")) {
-//        $shrsb_plugopts['shortyapi']['jmp']['user'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['jmp']['key'],"sexybookmarks/sexy-bookmarks.php") ) {
-//        $shrsb_plugopts['shortyapi']['jmp']['key'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['supr']['chk'],"sexybookmarks/sexy-bookmarks.php") ) {
-//        $shrsb_plugopts['shortyapi']['supr']['chk'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['supr']['user'],"sexybookmarks/sexy-bookmarks.php") ) {
-//        $shrsb_plugopts['shortyapi']['supr']['user'] = "";
-//    }
-//    if(strpos($shrsb_plugopts['shortyapi']['supr']['key'],"sexybookmarks/sexy-bookmarks.php") ) {
-//        $shrsb_plugopts['shortyapi']['supr']['key'] = "";
-//    }
-//
-//}/* Short URLs End */
 
 ?>
