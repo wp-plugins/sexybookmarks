@@ -3,13 +3,13 @@
 Plugin Name: Shareaholic | email, bookmark, share
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.6.7
+Version: 4.0.6.8
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','4.0.6.7');
+define('SHRSB_vNum','4.0.6.8');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -436,8 +436,8 @@ function shrsb_add_ogtags_head() {
 		
 		// og Image Tag
 		if (is_home()) {
-			if (isset($options['wpfbogp_fallback_img']) && $options['wpfbogp_fallback_img'] != '') {
-				echo "\t<meta property='og:image' content='".$options['wpfbogp_fallback_img']."' />\n";
+			if (isset($shrsb_plugopts['shrsb_fallback_img']) && $shrsb_plugopts['shrsb_fallback_img'] != '') {
+				echo "\t<meta property='og:image' content='".$shrsb_plugopts['shrsb_fallback_img']."' />\n";
 			}else{
 				echo "\t<!-- Shareaholic Notice: There is no featured image set -->\n"; 
 			}
