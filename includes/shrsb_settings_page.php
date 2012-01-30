@@ -251,28 +251,37 @@ function shrsb_right_side_menu(){
 
     <div id="shrsb-col-right">
 
-    <h2 class="sh-logo"></h2>
+        <h2 class="sh-logo"></h2>
 
-	<div class="box-right">
-		<div class="box-right-head">
-			<h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'shrsb'); ?></h3>
+        <div class="box-right">
+            <div class="box-right-head">
+                <h3 class="fugue f-info-frame"><?php _e('Helpful Plugin Links', 'shrsb'); ?></h3>
+            </div>
+            <div class="box-right-body">
+                <div class="padding">
+                    <ul class="infolinks">
+                        <li><a href="http://www.shareaholic.com/tools/wordpress/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
+                        <li><a href="http://www.shareaholic.com/tools/wordpress/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
+                        <li><a href="http://sexybookmarks.shareaholic.com/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
+                        <li><a href="http://sexybookmarks.shareaholic.com/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
+                        <li><a href="http://www.shareaholic.com/tools/wordpress/translations" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
+                        <li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
+                        <li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		
+		<div style="clear:both;"></div>
+		
+        <div style="padding:15px; margin-bottom: 20px;">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe>
 		</div>
-		<div class="box-right-body">
-			<div class="padding">
-				<ul class="infolinks">
-					<li><a href="http://www.shareaholic.com/tools/wordpress/usage-installation" target="_blank"><?php _e('Installation &amp; Usage Guide', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/faq" target="_blank"><?php _e('Frequently Asked Questions', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/bug-form" target="_blank"><?php _e('Bug Submission Form', 'shrsb'); ?></a></li>
-					<li><a href="http://sexybookmarks.shareaholic.com/contact-forms/feature-request" target="_blank"><?php _e('Feature Request Form', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/translations" target="_blank"><?php _e('Submit a Translation', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/browser/" target="_blank"><?php _e('Shareaholic Browsers Add-ons', 'shrsb'); ?></a></li>
-					<li><a href="http://www.shareaholic.com/tools/wordpress/credits" target="_blank"><?php _e('Thanks &amp; Credits', 'shrsb'); ?></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
 
-	<div style="padding:15px;"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FShareaholic&amp;layout=standard&amp;show_faces=true&amp;width=240&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:80px;" allowTransparency="true"></iframe></div>
+        <div id="shrsb-updates">
+            <div id="shrsb-updates-container"></div>
+             <script async="true" type="text/javascript" src="//dtym7iokkjlif.cloudfront.net/media/js/platforms/wordpress/wordpress-admin.js"></script>
+        </div>
 
     </div>
 
@@ -301,6 +310,16 @@ EOD;
 	return $snapengage;
 }
 
+function shrsb_getfooter(){
+
+?>
+	<div style="clear:both;"></div>
+	<div class="footer">
+		<a href="http://www.shareaholic.com/" target="_blank">Shareaholic for WordPress <?php echo SHRSB_vNum; ?></a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/privacy/" target="_blank">Privacy Policy</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/terms/" target="_blank">Terms of Service</a> <span class="grey_light">|</span> <a href="http://support.shareaholic.com/" target="_blank">Support</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/api" target="_blank">API</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/siteinfo/<?php $parse = parse_url(get_bloginfo('url')); echo $parse['host']; ?>" target="_blank">Social Analytics</a> <br /> If you like this plugin and find it useful, please consider showing your support by <a href="http://wordpress.org/extend/plugins/shareaholic/" target="_blank">giving us a good rating</a> on WordPress.org
+	</div>
+
+<?php
+}
 
 /**
  * Gets the contents of a url on www.shareaholic.com.  We use shrbase as the
@@ -522,10 +541,10 @@ function shrsb_addFBNameSpace($attr) {
 }
 
 //list all bookmarks in the plugin options page
-function shrsb_network_input_select($name, $hint) {
+function shrsb_network_input_select($name, $id, $hint) {
 	global $shrsb_plugopts;
 	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
-		$name,
+		"shr-$id",
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",
 		$name,
@@ -579,6 +598,5 @@ function shrsb_select_option_group($field, $options,$settings = NULL) {
 	}
 	return $h;
 }
-
 
 ?>

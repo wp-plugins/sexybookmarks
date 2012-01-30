@@ -1,7 +1,3 @@
-/**
-* @preserve Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved. 
-*/
-
 jQuery(document).ready(function () {
     jQuery(".shr-bookmarks a.external").attr("target", "_blank");
 	

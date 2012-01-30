@@ -1,7 +1,3 @@
-/**
-* @preserve Copyright Shareaholic, Inc. (www.shareaholic.com).  All Rights Reserved. 
-*/
-
 jQuery(document).ready(function() {
 	if (jQuery('#iconator')) jQuery('#shrsb-networks').sortable({ 
 		delay:        250,
@@ -59,7 +55,6 @@ jQuery(document).ready(function() {
 			jQuery('#shr-twitter').attr('checked', 'checked');
 			jQuery('#shr-linkedin').attr('checked', 'checked');
 			jQuery('#shr-googlebookmarks').attr('checked', 'checked');
-			jQuery('#shr-delicious').attr('checked', 'checked');
 			jQuery('#shr-stumbleupon').attr('checked', 'checked');
 			jQuery('#shr-reddit').attr('checked', 'checked');
 			jQuery('#shr-gmail').attr('checked', 'checked');
@@ -128,12 +123,14 @@ jQuery(document).ready(function() {
 
 	jQuery('#shorty').change(function() {
 		jQuery('#shortyapimdiv-bitly').fadeOut('fast');
-		jQuery('#shortyapimdiv-supr').fadeOut('fast');
+		jQuery('#shortyapimdiv-awesm').fadeOut('fast');
+        jQuery('#shortyapimdiv-supr').fadeOut('fast');
         jQuery('#shortyapimdiv-jmp').fadeOut('fast');
 		if(this.value=='bitly'){
 			jQuery('#shortyapimdiv-bitly').fadeIn('fast');
-		}
-		else if(this.value=='supr'){
+		}else if(this.value=='awesm'){
+			jQuery('#shortyapimdiv-awesm').fadeIn('fast');
+		}else if(this.value=='supr'){
 			jQuery('#shortyapimdiv-supr').fadeIn('fast');
 		} else if(this.value=='jmp'){
 			jQuery('#shortyapimdiv-jmp').fadeIn('fast');
