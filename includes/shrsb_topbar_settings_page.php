@@ -215,6 +215,9 @@ function shrsb_tb_settings_page() {
 		<input type="hidden" name="reset_all_options_tb" id="reset_all_options_tb" value="0" />
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
 	</form>
+	
+	<?php echo shrsb_getfooter(); ?>
+	
 </div>
 
 <?php
