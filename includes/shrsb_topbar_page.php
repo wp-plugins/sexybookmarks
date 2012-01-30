@@ -1,4 +1,5 @@
 <?php
+
 /* 
  * @desc All Topbar functions and values which are used on every page load
 */

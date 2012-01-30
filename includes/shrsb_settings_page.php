@@ -1,14 +1,9 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/*
  * @desc Like button Set Settings
  */
+
 function shrsb_likeButtonSetHTML($settings,$pos = 'Bottom') {   // $pos = Bottom/Top
 
     ?>

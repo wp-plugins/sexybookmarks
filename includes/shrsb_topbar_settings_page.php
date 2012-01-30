@@ -1,12 +1,9 @@
 <?php
 
 /* 
- * @desc Only Topbar Functions and values which are used on settings page
-*/
-
-/* 
  * @desc Topbar Settings page
 */
+
 function shrsb_tb_settings_page() {
 	global $shrsb_tb_plugopts;
     // Add all the global varaible declarations for the $shrsb_tb_plugopts

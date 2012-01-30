@@ -949,7 +949,7 @@ function shrsb_publicScripts() {
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
         wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
-        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption']));
+        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array('src' => shrsb_correct_protocol($spritegen_basepath.$spritegen),'perfoption'=> $shrsb_plugopts['perfoption'], 'twitter_template' => $shrsb_plugopts['tweetconfig'] ));
         if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
             wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
         }
