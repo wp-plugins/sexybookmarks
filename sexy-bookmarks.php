@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: SexyBookmarks (by Shareaholic)
+Plugin Name: Shareaholic | email, bookmark, share
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 4.0.6.4
+Version: 4.0.6.10
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','4.0.6.4');
+define('SHRSB_vNum','4.0.6.10');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -105,17 +105,23 @@ if ( !function_exists('wp_upload_dir') ) {
       }
 }
 
-//Including the Shareaholic global settings
-require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
-require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
-
 //Get the current Version from the database
 $shrsb_version = get_option('SHRSBvNum');
 // if the version number is set and is not the latest, then call the upgrade function
 if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
    update_option('SHRSB_DefaultSprite',true);
    add_action('admin_notices', 'shrsb_Upgrade', 12);
+   
+   // Added global variable to track the updating state
+   define('SHRSB_UPGRADING', TRUE);
+}else{
+   define('SHRSB_UPGRADING', FALSE);
 }
+
+
+//Including the Shareaholic global settings
+require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
+require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
 
 $default_spritegen = get_option('SHRSB_DefaultSprite');
 
@@ -323,7 +329,7 @@ function shrsb_menu_link() {
 		$shrsb_admin_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ),
 		    'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
 
-		add_submenu_page( basename(__FILE__), __( 'Sharing Widget' ), __( 'Sharing Widget', 'shrsb' ),
+		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ),
     		'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings' );
 
     	/*
@@ -345,23 +351,15 @@ function shrsb_menu_link() {
 
 //styles and scripts for admin area
 function shrsb_admin_scripts() {
-	wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
-	echo get_googleanalytics();
-}
-
-/*
-*   @desc Add promo bar for browser extensions
-*/
-function shrsb_show_promo(){
     global $shrsb_plugopts;
-    if (is_admin() && $shrsb_plugopts['promo'] == "1") {
+    wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
+
+    //Add promo bar for browser extensions
+    if ($shrsb_plugopts['promo'] == "1") {
         wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
-        wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
     }
+    echo get_googleanalytics();
 }
-add_action('set_current_user', 'shrsb_show_promo');
-
-
 
 function shrsb_first_image() {
   global $post, $posts;
@@ -438,8 +436,8 @@ function shrsb_add_ogtags_head() {
 		
 		// og Image Tag
 		if (is_home()) {
-			if (isset($options['wpfbogp_fallback_img']) && $options['wpfbogp_fallback_img'] != '') {
-				echo "\t<meta property='og:image' content='".$options['wpfbogp_fallback_img']."' />\n";
+			if (isset($shrsb_plugopts['shrsb_fallback_img']) && $shrsb_plugopts['shrsb_fallback_img'] != '') {
+				echo "\t<meta property='og:image' content='".$shrsb_plugopts['shrsb_fallback_img']."' />\n";
 			}else{
 				echo "\t<!-- Shareaholic Notice: There is no featured image set -->\n"; 
 			}
@@ -463,10 +461,14 @@ add_action('wp_head','shrsb_add_ogtags_head',10);
 function shrsb_admin_styles() {
 	global $shrsb_plugopts;
 
-	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
-		wp_enqueue_style('ie-old-sexy-bookmarks', SHRSB_PLUGPATH.'css/ie7-admin-style.css', false, SHRSB_vNum);
-	}
-	wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
+    if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 7') !== false)) {
+        wp_enqueue_style('ie-old-sexy-bookmarks', SHRSB_PLUGPATH.'css/ie7-admin-style.css', false, SHRSB_vNum);
+    }
+    //Add promo bar for browser extensions
+    if ($shrsb_plugopts['promo'] == "1") {
+        wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
+    }
+    wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
 }
 
 // Add the 'Settings' link to the plugin page, taken from yourls plugin by ozh

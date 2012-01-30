@@ -1,8 +1,5 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 function shrsb_authentication_page($apikey = null) {
     global $shrsb_plugopts;
     ?>

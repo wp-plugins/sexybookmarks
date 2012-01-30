@@ -1,4 +1,5 @@
 <?php
+
 /* 
  * @desc All Topbar functions and values which are used on every page load
 */
@@ -64,5 +65,4 @@ function shrsb_tb_set_options($action = NULL){
         return $shrsb_tb_plugopts_default;
     }
 }
-
 ?>

@@ -1,12 +1,9 @@
 <?php
 
 /* 
- * @desc Only Topbar Functions and values which are used on settings page
-*/
-
-/* 
  * @desc Topbar Settings page
 */
+
 function shrsb_tb_settings_page() {
 	global $shrsb_tb_plugopts;
     // Add all the global varaible declarations for the $shrsb_tb_plugopts
@@ -215,6 +212,9 @@ function shrsb_tb_settings_page() {
 		<input type="hidden" name="reset_all_options_tb" id="reset_all_options_tb" value="0" />
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
 	</form>
+	
+	<?php echo shrsb_getfooter(); ?>
+	
 </div>
 
 <?php

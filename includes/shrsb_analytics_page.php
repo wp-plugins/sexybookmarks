@@ -1,5 +1,8 @@
 <?php
-// UI and stuff o the analytics page
+
+/*
+ * @desc Analytics Settings
+ */
 
 
 function shrsb_analytics_page() {
