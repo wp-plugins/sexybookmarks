@@ -1,36 +1,45 @@
-=== SexyBookmarks | email, bookmark, and share buttons ===
+=== SexyBookmarks | email, bookmark, share buttons ===
 Contributors: shareaholic
-Tags: Facebook, Twitter, LinkedIn, URL Shortener, URL Shortner, Bit.ly, Bitly, Supr, Su.pr, Goo.gl, Googl, Google +1, Google Plus, Google 1, +1, Google, Google +, Instapaper, Amazon Wish List, Digg, Google Buzz, Buzz It, Google Apps, Google Gmail, Gmail, Google Notebook, Google Reader, SideWiki, WordPress, Blogger, Translate, TypePad, LiveJournal, Posterous, Soup.io, Tumblr, AIM, Yahoo Messenger, Delicious, Google Bookmarks, StumbleUpon, Dwellicious, Bebo, Mister Wong, Evernote, Netvibes, Stumpedia, Twine, Connotea, Diigo, Folkd, Simpy, addthis, addtoany, sharethis, sharedaddy, jetpack, sociable, share and follow, Hotmail, Share Button, AOL Mail, Outlook, Eudora, Thunderbird, Mail, Buzzster, Yahoo Buzz, Yahoo, Yahoo Mail, Reddit, Techmeme, YC Hacker News, Y Combinator, TechStars, Tweetmeme, SmakNews, Tipd, Care2, Current, YouTube, Hootsuite, Social Media Dashboard, Tweet Button, Fark, Khabbr, Xmarks, Foxmarks, Mixx, Readability, NewsTrust, Marginize, NowPublic, Brizzly, Propeller, Slashdot, Boxee, Kaboodle, Sphinn, MySpace, Orkut, Plurk, Identi.ca, Mozillaca, FriendFeed, Hyves, Netlog, Amplify, Plaxo, Tweetie, Technorati, Klout, Peerindex, Hub.tm, Hubspot, Is.gd, j.mp, TinyURL, Tr.im, WeHeartIt, Yandex, Clicky.me, Su.pr, Print, PrintFriendly, Print, Read It Later, ReadItLater, Yammer, Google Translate, Box.net, Pinboard, BuzzFeed, Shareaholic, Shareholic, Sexybookmarks, Sexy Bookmarks, Sexy, Bookmarks, Social, E-mail, Email, Email Button, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Sharing is Sexy, Sharing is Caring, Share and Enjoy, Sharecount, Share Count, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU
+Tags: Facebook, Twitter, LinkedIn, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Tweet Button, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, Shareaholic, Shareholic, Bookmarks, Social, E-mail, Email, Email Button, Social Share, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Share Count, Share bar, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, WPMU
 Requires at least: 2.7
-Tested up to: 3.2.1
-Stable tag: 4.0.6.4
+Tested up to: 3.3.1
+Stable tag: 4.0.6.6
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
 == Description ==
-Though the name may be a little "edgy" for some, SexyBookmarks has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
+Shareaholic has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
 
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates =
+* Pinterest support!
 * Facebook Like Button, Facebook Send, Google +1
-* Analytics: meet the people who spread your content the most
+* Social Analytics - meet the people who spread your content the most
 * Share Counters for Twitter and Facebook
-* Official support for Google's URL shortener (goo.gl)
-* Switched over to use the Share API (http://shareapi.com)
+* Official support for Google's URL shortener (goo.gl) and Google Analytics
+* Switched over to use the [Share API](http://www.shareaholic.com/api/)
 * Fix for Arras theme
 * Fixed slow page load issue
 * Loads of behind the scenes performance improvements
 * Localized in 15+ languages
 
 = Recently Added Sites =
+* Pinterest
+* Google Plus
 * Yahoo! Mail
 * Google Gmail
 * Hotmail
-* Buzzster!
 
+= Social Analytics =
 
-[Support Forum](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy Promise](http://www.shareaholic.com/privacy/)
+Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.
+
+Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In fact, it's one of the fastest analytics system, hosted or not hosted, that you can use.
+
+Note: The analytics portion of Shareaholic may use trusted 3rd party services to enhance its data.
+
+[Support](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy](http://www.shareaholic.com/privacy/) | [Terms](http://www.shareaholic.com/terms/) | [API](http://www.shareaholic.com/api/) | [Social Analytics](http://www.shareaholic.com/siteinfo/)
 
 == Other Notes ==
 
@@ -87,7 +96,7 @@ Listed here are credits and special thanks to some of you who have helped us out
 
 1. Upload the extracted archive to `wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu
-3. Open the plugin settings page Settings -> SexyBookmarks
+3. Open the plugin settings page Settings -> Shareaholic
 4. Adjust settings to your liking
 4. Enjoy!
 
@@ -98,7 +107,7 @@ If you would like to insert the menu manually, simply choose "Manual Mode" from 
 
 `<?php if(function_exists('selfserv_shareaholic')) { selfserv_shareaholic(); } ?>`
 
-For Like/+1 Button Set:
+For FB Like/+1/Tweet Button style:
 
 
 `<?php if(function_exists('get_shr_like_buttonset')) { get_shr_like_buttonset('Top'); } ?>`
@@ -112,30 +121,43 @@ You can still configure the other options available when inserting manually and 
 
 == Frequently Asked Questions ==
 = Where can I find a detailed FAQ? =
-Please see here: [Frequently Asked Questions](http://sexybookmarks.shareaholic.com/documentation/faq)
+Please see here: [Frequently Asked Questions](http://www.shareaholic.com/tools/wordpress/faq)
 
 = Where can I get detailed Usage & Installation instructions? =
-Please see here: [Usage & Installation Instructions](http://sexybookmarks.shareaholic.com/documentation/usage-installation)
+Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/tools/wordpress/usage-installation)
 
 
 == Changelog ==
+
+= 4.0.6.6 =
+* Added support for Pinterest
+* Cleaned up directory listing
+* Performance improvements achieved by reducing the number of JavaScript calls
+* Cleaned up depreciated services: Mixx, Google Reader, Google Buzz, Netvibes
+
+= 4.0.6.5 =
+* Added support for Google Analytics Social Interaction Analytics
+* Added Awe.sm URL shortener support
+* Limited showing Shareaholic updates to the plugin's admin page
+* Fixed bug: Incorrect url used by TopBar on homepage
+* Fixed bug: Twitter counter in Like button set
+* Fixed bug: SSL conflicts
+* Fixed bug: Bit.ly bug
 
 = 4.0.6.4 =
 * Fixed bug where background image would appear even if it was disabled
 
 = 4.0.6.3 =
-* Fixed potential bug for category pages & manual mode 
 * Added a topbar with sharing options
-* Added support to manage topbar
-* Optimize for performance
-* Add the tweet button in the like buttons set
-* Fix bugs related to manual mode
-* Fix bugs related to category pages
-* symbolic dir path is supported as custom path
-* Fix the bug related to special characters in page title
+* Add Tweet button to the "like button" sharing set
+* Symbolic directory path is now supported as custom path
+* Fixed bug: related to manual mode
+* Fixed bug: related to category pages & manual mode 
+* Fixed bug: related to special characters in page title
+* Optimizations for performance
 
 = 4.0.6.2 =
-* Fixes to changelog formatting
+* Fixed changelog formatting
 * Enhancements for screen reader accessibility
 
 = 4.0.6.1 =
@@ -145,10 +167,10 @@ Please see here: [Usage & Installation Instructions](http://sexybookmarks.sharea
 * Removed Propeller from service list (depreciated service)
 
 = 4.0.5.9 =
-* Fix css
+* Fixed css
 
 = 4.0.5.8 =
-* Fix typo/version number
+* Fixed typo/version number
 
 = 4.0.5.7 =
 * Fixed SSL compatibility (all assets now loaded over https when a page is served over https).
