@@ -176,8 +176,9 @@ function shrsb_get_publisher_config($post_id) {
 function shrsb_get_shortener_settings(){
     global $shrsb_plugopts;
     
-    $shorty = $shrsb_plugopts['shorty'];
-    $shortyapi = $shrsb_plugopts['shortyapi'];
+    
+    $shorty = @$shrsb_plugopts['shorty'];
+    $shortyapi = @$shrsb_plugopts['shortyapi'];
     $shortener_key = '';
 
     if (isset( $shorty ) ){
@@ -200,6 +201,11 @@ function shrsb_get_shortener_settings(){
  * Returns array of all relevant information about the current post for sexy
  */
 function shrsb_get_params($post_id) {
+    
+  if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] != '1') {
+      return array();
+  }
+    
   shrsb_log("get_params start");
   global $shrsb_plugopts, $shrsb_bgimg_map;
   
@@ -387,6 +393,11 @@ function shrsb_get_fetch_url() {
 // Create an auto-insertion function
 function shrsb_position_menu($post_content) {
 	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
+    
+    if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] != '1') {
+        return $post_content;
+    }
+    
     shrsb_log("Content Analysis started");
 	// If user selected manual positioning, get out.
 	if ($shrsb_plugopts['position']=='manual') {
@@ -603,7 +614,17 @@ function get_shr_like_buttonset($pos = 'Bottom', $return_type = NULL, $settings 
 function selfserv_topbar(){
 		shrsb_get_topbar("Manual");
 }
-
+/*
+ * Sample Html
+ *      <div class="shr-toolbox" shr_form_factor="shareaholic-top-bar">
+ *           <div class="shareaholic-like-buttonset" >
+ *              <a class="shareaholic-fblike" data-shr_layout="button_count" data-shr_showfaces="false" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
+ *              <a class="shareaholic-fbsend" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1"></a>
+ *              <a class="shareaholic-googleplusone" data-shr_size="medium" data-shr_count="true" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
+ *              <a class="shareaholic-tweetbutton" data-shr_count="horizontal" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
+ *          </div>
+ *      </div>
+ */
 function shrsb_get_topbar($usage = NULL){
     
     if(empty($usage)) $usage = "Automatic";
@@ -613,37 +634,41 @@ function shrsb_get_topbar($usage = NULL){
     
     $output = "";
     $html = "";
-    
-    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1') {
-//        $html = <<<EOH
-//        <div class="shr-toolbox" shr_form_factor="shareaholic-top-bar">
-//            <div class="shareaholic-like-buttonset" >
-//                <a class="shareaholic-fblike" data-shr_layout="button_count" data-shr_showfaces="false" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
-//                <a class="shareaholic-fbsend" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1"></a>
-//                <a class="shareaholic-googleplusone" data-shr_size="medium" data-shr_count="true" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
-//                <a class="shareaholic-tweetbutton" data-shr_count="horizontal" data-shr_href="http%3A%2F%2Flocalhost%2Fwordpress%2F%3Fp%3D1" data-shr_title="Hello+world%21"></a>
-//            </div>
-//        </div>
-//EOH;
+    //Decide whether to display 
+	
+		if ($shrsb_plugopts['shareaholic-javascript'] == '1' && isset($shrsb_tb_plugopts['topbar']) && ($shrsb_tb_plugopts['topbar'] == '1') &&(is_single() && false!==strpos($shrsb_tb_plugopts['pageorpost'],"post")) || 
+		(is_page() && false!==strpos($shrsb_tb_plugopts['pageorpost'],"page")) || 
+		(is_home() && false!==strpos($shrsb_tb_plugopts['pageorpost'],"index")) || 
+		(is_category() && false!==strpos($shrsb_tb_plugopts['pageorpost'],"category") )) { 
         $likeButtonSet = get_shr_like_buttonset('Top', 1, $shrsb_tb_plugopts);
         $html = <<<EOH
         <div class="shr-toolbox" shr_form_factor="shareaholic-top-bar">
             $likeButtonSet
         </div>
 EOH;
-    }
+		
+	}
     shrsb_log("Topbar HTML here <!-- $html --> Inspect me check the html");
     $output = "<!-- Start Shareaholic TopSharingBar $usage -->$html<!-- End Shareaholic TopSharingBar $usage -->";
     shrsb_log("get_topbar completed");
     echo $output;
+		
 }
 
 function get_sexy() {
     shrsb_log("get_sexy started");
 	global $shrsb_plugopts, $wp_query, $post;
+    
+    $output = "";
+    
+    // If sexybookmark is disabled then return empty html
+    if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] != '1') {
+        return $output;
+    }
+    
 	$spost = $wp_query->post;
 
-    $output = "";
+    
     if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
         
             if(in_the_loop()){
@@ -952,7 +977,7 @@ function shrsb_publicStyles() {
   }
 }
 function shrsb_publicScripts() {
-	global $shrsb_plugopts, $post, $default_spritegen, $shrsb_debug,$shrsb_tb_plugopts;
+	global $shrsb_plugopts, $post, $default_spritegen, $shrsb_debug,$shrsb_tb_plugopts, $shrsb_analytics;
 
     $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
     $spritegen_basepath = $default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH;
@@ -960,17 +985,31 @@ function shrsb_publicScripts() {
     //Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
-        wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
-        wp_localize_script('shareaholic-publishers-js', 'SHRSB_Globals', array(
+        $localize_to = 'shareaholic-publishers-js';
+        
+        // Enqueue the sb script only if the sexybookmark is enabled
+        if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] == '1'){
+            wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
+        }
+        
+        // Enqueue the tb script only if the topbar is enabled
+        if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
+            wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
+            $localize_to = 'shareaholic-share-buttons-js';
+        }
+        
+        // Always Enqueue the global settings as it can be used by other formfactors
+        wp_localize_script($localize_to, 'SHRSB_Globals', array(
             'src' => shrsb_correct_protocol($spritegen_basepath.$spritegen)
             , 'perfoption'=> $shrsb_plugopts['perfoption']
             , 'twitter_template' => $shrsb_plugopts['tweetconfig']
+            , 'locale' => $shrsb_plugopts['locale']
             , 'shortener' => $shrsb_plugopts['shorty']
             , 'shortener_key' => shrsb_get_shortener_settings()
+            , 'pubGaSocial' => $shrsb_analytics['pubGaSocial']
+            , 'pubGaKey' => $shrsb_analytics['pubGaKey']
         ));
-        if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
-            wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
-        }
+                
     } else {
     // If any javascript dependent options are selected, load the scripts
     if (($shrsb_plugopts['expand'] || $shrsb_plugopts['autocenter'] || $shrsb_plugopts['targetopt']=='_blank') && $post && (($hide_sexy = get_post_meta($post->ID, 'Hide SexyBookmarks', true)) != 1 )) {
@@ -988,27 +1027,27 @@ function shrsb_publicScripts() {
   }
   
   // Perf tracking for old mode only.For New mode tracking is moved to javascript
-  if ( ($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '') && (!is_admin() && $shrsb_plugopts['shareaholic-javascript'] !== '1') ) {
+  if ( ($shrsb_plugopts['perfoption'] == '1' || $shrsb_plugopts['perfoption'] == '') && (!is_admin() && $shrsb_plugopts['shareaholic-javascript'] !== '1' )) {
       wp_enqueue_script('shareaholic-perf', SHRSB_PLUGPATH.'js/shareaholic-perf.min.js', null, SHRSB_vNum, false);
       wp_enqueue_script("shr_dough_recipe", shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/dough/1.0/recipe.js"), null, null);
   }
 }
 
 /*
- * @desc Populate javascript settings in the footer for sexybookmark
+ * @desc Populate javascript settings in the footer for Sexybookmarks
  */
 function shrsb_write_js_params() {
   global $shrsb_plugopts, $shrsb_js_params;
   
-    //For manual mode, when no config is defined
-    if($shrsb_plugopts['position'] == 'manual' && !in_the_loop()){
+  if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] == '1' && $shrsb_plugopts['shareaholic-javascript'] == '1') {
+        //For manual mode, when no config is defined
+        if($shrsb_plugopts['position'] == 'manual' && !in_the_loop()){
         $shrsb_js_params['shr_class'] = shrsb_get_publisher_config(-1);
-    }
+        }
 
-  if ($shrsb_plugopts['shareaholic-javascript'] == '1') {
-    echo '<script type="text/javascript">var SHRSB_Settings = ';
-    echo json_encode($shrsb_js_params);
-    echo ';</script>';
+        echo '<script type="text/javascript">var SHRSB_Settings = ';
+        echo json_encode($shrsb_js_params);
+        echo ';</script>';
   }
 }
 
@@ -1037,9 +1076,18 @@ function shrsb_tb_write_js_params() {
   }
 }
 
-add_action('wp_print_styles', 'shrsb_publicStyles');
+// Add the scripts and Global setting on the page
 add_action('wp_print_scripts', 'shrsb_publicScripts');
-add_filter('the_content', 'shrsb_position_menu');
-add_action('wp_footer', 'shrsb_get_topbar');
-add_action('wp_footer', 'shrsb_write_js_params');
-add_action('wp_footer', 'shrsb_tb_write_js_params');
+
+// Add the hook only when sexybokmark is enabled
+if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] == '1') {
+    add_filter('the_content', 'shrsb_position_menu');
+    add_action('wp_print_styles', 'shrsb_publicStyles');
+    add_action('wp_footer', 'shrsb_write_js_params');
+}
+
+// Add the hook only when topbar is enabled
+if(isset($shrsb_tb_plugopts['topbar']) && ($shrsb_tb_plugopts['topbar'] == '1')){
+    add_action('wp_footer', 'shrsb_get_topbar');
+    add_action('wp_footer', 'shrsb_tb_write_js_params');
+}

@@ -144,8 +144,6 @@ function bookmark_list_item($name, $opts=array()) {
 }
 
 
-
-
 // Displays a multi-dimensional array as a HTML List (Tree structure).
 function shrsb_displayTree($var) {
      $newline = "\n";

@@ -54,11 +54,11 @@ jQuery(document).ready(function() {
 			jQuery('#shr-facebook').attr('checked', 'checked');
 			jQuery('#shr-twitter').attr('checked', 'checked');
 			jQuery('#shr-linkedin').attr('checked', 'checked');
+			jQuery('#shr-googleplus').attr('checked', 'checked');
 			jQuery('#shr-googlebookmarks').attr('checked', 'checked');
 			jQuery('#shr-stumbleupon').attr('checked', 'checked');
-			jQuery('#shr-reddit').attr('checked', 'checked');
-			jQuery('#shr-gmail').attr('checked', 'checked');
-			jQuery('#shr-mail').attr('checked', 'checked');
+			jQuery('#shr-pinterest').attr('checked', 'checked');
+			jQuery('#shr-fastmail').attr('checked', 'checked');
 			jQuery('#shr-printfriendly').attr('checked', 'checked');
 		});
 	});
@@ -295,6 +295,18 @@ jQuery(document).ready(function() {
 			jQuery('.designer_toolTip_prefs').fadeOut('fast');
 		}
 	});
+    
+    jQuery('#pubGaSocial-yes').click(function() {
+		if (this.checked) {
+			jQuery('.pubGaSocial_prefs').fadeIn('fast');
+		}
+	});
+    jQuery('#pubGaSocial-no').click(function() {
+		if (this.checked) {
+			jQuery('.pubGaSocial_prefs').fadeOut('fast');
+		}
+	});
+    
     jQuery('#useSbSettings-yes').click(function() {
 		if (this.checked) {
 			jQuery('.topbar_prefs').fadeOut('fast');
@@ -472,7 +484,7 @@ jQuery(document).ready(function() {
         }
 
     }
-
+    
     // Check if designer tooltips are included and show the color prefs
     if(typeof(jQuery('#designer_toolTips-yes')) != "undefined" && jQuery('#designer_toolTips-yes').length >0 ){
         var designerToolTipsChecked = jQuery('#designer_toolTips-yes').get(0).checked;
@@ -560,6 +572,15 @@ jQuery(document).ready(function() {
         });
 
     }
+
+    // Check if social analytics is enabled or not, if enabled show the preferences
+    if(typeof(jQuery('#pubGaSocial-yes')) != "undefined" && jQuery('#pubGaSocial-yes').length >0 ){
+        var socialEnableChecked = jQuery('#pubGaSocial-yes').get(0).checked;
+        if (socialEnableChecked) {
+            jQuery('.pubGaSocial_prefs').fadeIn('fast');
+        }
+    }
+    
     //For the Top Sharebar custom background color option
     if(typeof(jQuery('#useSbSettings-no')) != "undefined" && jQuery('#useSbSettings-no').length >0 ){
         var useSbSettingsChecked = jQuery('#useSbSettings-no').get(0).checked;

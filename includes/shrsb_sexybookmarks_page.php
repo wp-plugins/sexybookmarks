@@ -19,25 +19,29 @@ function shrsb_sb_set_options($action = NULL){
         'shr-facebook',
         'shr-twitter',
         'shr-linkedin',
+		'shr-googleplus',
         'shr-googlebookmarks',
         'shr-stumbleupon',
-        'shr-reddit',
-        'shr-gmail',
-        'shr-mail',
+		'shr-fastmail',
         'shr-printfriendly'
     );
+    
     $defaultLikeButtonOrder = array(
         'shr-fb-like',
         'shr-fb-send',
         'shr-plus-one',
         'shr-tw-button'
     );
-    
+    			               
     $shrsb_sb_plugopts_default = array(
+			'sexybookmark' => '0',
+        
+            'firstrun' => '1',
+        
 			'position' => 'below', // below, above, or manual
 			'reloption' => 'nofollow', // 'nofollow', or ''
 			'targetopt' => '_blank', // 'blank' or 'self'
-			'perfoption' => '1', // performance script (GA)
+			'perfoption' => '1', // Third party Content
 			'showShareCount' => '1', // fb/twit share count
 
             'likeButtonSetTop' => '0', // Include like button below the Post Title
@@ -59,10 +63,10 @@ function shrsb_sb_set_options($action = NULL){
             'likeButtonSetCountBottom' => "true", // Show count with +1 button
             'likeButtonOrderBottom' => $defaultLikeButtonOrder,
             'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
-
+			'locale'=> '0', //Default locale set to 0
             'fbNameSpace' => '1',  // Add fb name space to the html
             'preventminify' => '1',  // prevent wp_minify from minifying the js
-            'shrlink' => '1', // show promo link
+            'shrlink' => '0', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'caring', // default bg image
@@ -105,6 +109,12 @@ function shrsb_sb_set_options($action = NULL){
             // Check only when upgrading
             if(SHRSB_UPGRADING) {
                 $need_to_update = false;
+        
+                if(!isset($database_Settings['sexybookmark']) ){
+                    $database_Settings['sexybookmark'] = '1';
+                    $database_Settings['firstrun'] = '0';
+                    $need_to_update = true;
+                }
 
                 //Check whether all the settings are present or not
                 foreach($shrsb_sb_plugopts_default as $k => $v){
@@ -126,9 +136,13 @@ function shrsb_sb_set_options($action = NULL){
         }else{
             //Add the settings
             add_option('SexyBookmarks',$shrsb_sb_plugopts_default);
+            
+            // Forcing the value for sexybookmark to be 1 for the first run
+            $shrsb_sb_plugopts_default['firstrun'] = '1';
             return $shrsb_sb_plugopts_default;
         }
 }
+
 
 add_option('SHRSB_apikey', $shrsb_plugopts['apikey']);
 add_option('SHRSB_CustomSprite', '');
@@ -148,6 +162,9 @@ if(SHRSB_UPGRADING == TRUE) {
            $services = array_diff($services, $disable_services);
            $shrsb_plugopts['service'] = implode(',', $services );
        }
+    }    
+    if(isset ($shrsb_plugopts) && isset($shrsb_plugopts['reloption']) && $shrsb_plugopts['reloption'] === "" ){
+        $shrsb_plugopts['reloption'] = '1';
     }
 }
 

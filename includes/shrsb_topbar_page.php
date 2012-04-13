@@ -26,7 +26,7 @@ function shrsb_tb_set_options($action = NULL){
         'tb_bg_color' => '#000000',
         'tb_border_color' => '#000000',//#343434'
         'addv' => '1',
-        
+        'pageorpost' => 'postpageindexcategory',
         'likeButtonSetTop' => '1', // Include like button below the Post Title
         'fbLikeButtonTop' => '1', // Include fb like button
         'fbSendButtonTop' => '1', // Include fb like button

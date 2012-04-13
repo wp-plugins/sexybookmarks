@@ -434,9 +434,19 @@ $shrsb_bookmarks_data=array(
 		'share'=>__('Share this via ', 'shrsb').'Buzzster!'
 	),'shr-pinterest'=>array(
 		'id'=>309,
-		'check'=>sprintf($checkthis_text,'Pinterest!'),
+		'check'=>sprintf($checkthis_text,'Pinterest'),
 		'share'=>__('Pin this to ', 'shrsb').'Pinterest'
 	),
+    'shr-googleplus'=>array(
+		'id'=>304,
+		'check'=>sprintf($checkthis_text, 'Google+'),
+		'share'=>__('Share this on ', 'shrsb').'Google+'
+	),
+	'shr-fastmail'=>array(
+		'id'=>313,
+		'check'=>sprintf($checkthis_text,'Email'),
+		'share'=>__('Send via ', 'shrsb').'Email'	
+	   ),
 );
 ksort($shrsb_bookmarks_data, SORT_STRING); //sort array by keys
 ?>

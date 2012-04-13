@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 4.0.6.10
+Stable tag: 5.0.0.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -24,20 +24,24 @@ Our sole aim was to stray away from the "in the box" thinking behind most social
 * Loads of behind the scenes performance improvements
 * Localized in 15+ languages
 
-= Recently Added Sites =
+= Recently Added Services =
 * Pinterest
 * Google Plus
 * Yahoo! Mail
 * Google Gmail
 * Hotmail
+* Shareaholic Email This
 
 = Social Analytics =
 
-Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.
+Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free!
 
-Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In fact, it's one of the fastest analytics system, hosted or not hosted, that you can use.
+Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it blazing fast. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use.
 
-Note: The analytics portion of Shareaholic may use trusted 3rd party services to enhance its data.
+Shareaholic is trusted by hundreds of thousands of publishers and touches almost 300 million people each month. Designed and built with all the love in the world in Cambridge, Massachusetts.
+
+Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. 
+
 
 [Support](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy](http://www.shareaholic.com/privacy/) | [Terms](http://www.shareaholic.com/terms/) | [API](http://www.shareaholic.com/api/) | [Social Analytics](http://www.shareaholic.com/siteinfo/)
 
@@ -129,10 +133,24 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 
 == Changelog ==
 
+= 5.0.0.1 =
+* MAJOR UPDATE!
+* Added Google Plus as a service to SexyBookmarks
+* Added support to show Topbar across different types of pages (posts, pages, index & category)
+* Added Share Counts for LinkedIn
+* Added functionality to enable/disable SexyBookmarks independently
+* Added brand new, much improved way to share posts via email!
+* Added support to enforce publisher specified language locale
+* Social Analytics are now also viewable by contributors, authors and editors (previously limited to admins)
+* Fixed bug: Twitter counter display position in Like Button Set
+* Fixed bug: Nofollow links in "new mode"
+* Numerous performance optimizations 
+
 = 4.0.6.10 =
-* Custom Twitter template is now used universally by all Tweet buttons
+* Custom Twitter template is now used universally
 * URL shortener settings now used universally
-* Cleaned up un-used code for greater efficiency
+* Cleaned up legacy code for greater efficiency
+* Added Google Analytics Social Tracking Feature
 
 = 4.0.6.8 =
 * Added support for Pinterest
@@ -183,7 +201,7 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Fixed Google +1 count issue
 * Fixed Google +1 shared link titles showing properly on Shareaholic.com User Dashboard
 * Fixed jQuery IE bug (will be much more stable in IE)
-* Custom sprite generation certified compatible with Wordpress Multisite
+* Custom sprite generation certified compatible with WordPress Multisite
 * Shareaholic's proprietary data attributes are now HTML5-compliant.
 * FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
 * Usage & Installation guide moved to http://www.shareaholic.com/tools/wordpress/usage-installation
@@ -527,7 +545,7 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Added TheWebBlend, Wykop, BlogEngage, Hyves, Pusha, Hatena Bookmarks, MyLinkVault, SlashDot, Squidoo, Propeller, FAQpal, Evernote, Meneame, Bitacoras, JumpTags, Bebo, N4G
 
 = 2.5.5.1 =
-* Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using Wordpress's built-in wp_enqueue_script functions, you're doing it wrong!
+* Undo the jQuery compatibility "fix" introduced in 2.5.5 which generated a ridiculous amount of bug reports. JQuery is now a dependency by default instead of the fix which made it optional. If other activated plugins or your theme is including JQuery and NOT using WordPress's built-in wp_enqueue_script functions, you're doing it wrong!
 
 = 2.5.5 =
 * SexyBookmarks now only loads it's CSS/JS if the menu is being displayed on a particular page/post
