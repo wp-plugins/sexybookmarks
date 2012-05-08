@@ -319,7 +319,7 @@ function shrsb_getfooter(){
 		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
 			<?php _e("<p>Note: The analytics portion of Shareaholic may at times use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it blazing fast. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use!</p/>"); ?>
 			<?php } ?>
-		<?php _e("<p>Shareaholic is trusted by hundreds of thousands of publishers and touches almost 300 million people each month.  Designed and built with all the love in the world in Cambridge, Massachusetts.</p>"); ?>
+		<?php _e("<p>Shareaholic is trusted by over 200 thousand publishers and touches almost 300 million people each month.  Designed and built with all the love in the world in Cambridge, Massachusetts.</p>"); ?>
 	</div>
 	
 	<div style="margin-top:20px;">
@@ -553,7 +553,7 @@ function shrsb_addFBNameSpace($attr) {
 //list all bookmarks in the plugin options page
 function shrsb_network_input_select($name, $id, $hint) {
 	global $shrsb_plugopts;
-	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
+	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><div style="margin-top:-8px;"></div>%s</li>',
 		$name,
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",

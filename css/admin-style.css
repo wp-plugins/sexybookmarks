@@ -80,7 +80,7 @@ img.del-x{cursor:pointer;margin-top:7px;}
 /*------------------------------------------------------------------------------------------*/
 /* Bookmarking Services Icons */
 #shrsb-networks li{background-image:url('../images/shr-sprite.png');background-repeat:no-repeat;cursor:move;float:left;height:45px;font-size:10px;margin:12px 2px !important;text-align:center;width:60px;}
-#shrsb-networks li input{margin-top:30px;}
+#shrsb-networks li input{margin-top:33px;}
 li.shr-newsvine{background-position:left top;}
 li.shr-linkedin{background-position:-70px top;}
 li.shr-googlebookmarks{background-position:-140px top;}
