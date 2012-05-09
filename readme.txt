@@ -1,9 +1,9 @@
 === SexyBookmarks | email, bookmark, share buttons ===
 Contributors: shareaholic
-Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
+Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, Pinterest, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
 Requires at least: 2.7
-Tested up to: 3.3.1
-Stable tag: 5.0.0.1
+Tested up to: 3.3.2
+Stable tag: 5.0.0.4
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -51,8 +51,9 @@ Note: The analytics portion of Shareaholic may use trusted 3rd party services li
 
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
-Listed here are credits and special thanks to some of you who have helped us out a great deal:  [Shareaholic.com](http://www.shareaholic.com/tools/wordpress/credits)
+Listed here are credits and special thanks to some of you who have helped us out a great deal:
 
+ [Complete credits on Shareaholic.com](http://www.shareaholic.com/tools/wordpress/credits)
 
 = Translations =
 * Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
@@ -72,23 +73,13 @@ Listed here are credits and special thanks to some of you who have helped us out
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 * Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
-* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portuguese
-* Credit goes to [Barukar](http://www.classinoiva.com.br) for translation to Portuguese (Brazil)
-
-= Thanks =
-* Thanks to [Saidmade Labs](http://labs.saidmade.com/) for the original plugin core
-* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/) for the original "Function Icon Set"
-* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Yuri Gribov](http://wp-ru.ru) for origianl i18n help.
-* Thanks to [Crey Design](http://creydesign.com) for the new background image.
-* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
-* Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
-* Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
-* Thanks to [Norman Yung](http://www.robotwithaheart.com/) for previous development help
-* Thanks to [Gautam Gupta](http://gaut.am/) for previous development help
-* Thanks to [Kerem Erkan](http://keremerkan.net) for the Dynamic Sprite Generator
-
+* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translating to Portuguese
+* Credit goes to [Barukar](http://www.classinoiva.com.br) for translating to Portuguese (Brazil)
+* Credit goes to [Alexander Ovsov](http://www.webhostinggeeks.com) for translating to Belarusian
+* Credit goes to Bartosz Chojnacki for translating to Polish
+* Credit goes to Joan Jordi Berdullas Segura for translating to Catalan
+* Credit goes to [Nikolay Nikolov](http://statiiki.com/) for translating to Bulgarian
+* Credit goes to [Nata Strazda](http://www.webhostinghub.com/) for translating to Lithuanian
 
 == Screenshots ==
 
@@ -133,8 +124,14 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 
 == Changelog ==
 
-= 5.0.0.1 =
+= 5.0.0.4 =
 * MAJOR UPDATE!
+* New translations!
+  -> Belarusian (by Alexander Ovsov)
+  -> Polish (by Bartosz Chojnacki)
+  -> Catalan (by Joan Jordi Berdullas Segura)
+  -> Bulgarian (by Nikolay Nikolov)
+  -> Lithuanian (by Nata Strazda)
 * Added Google Plus as a service to SexyBookmarks
 * Added support to show Topbar across different types of pages (posts, pages, index & category)
 * Added Share Counts for LinkedIn
@@ -144,9 +141,8 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Social Analytics are now also viewable by contributors, authors and editors (previously limited to admins)
 * Fixed bug: Twitter counter display position in Like Button Set
 * Fixed bug: Nofollow links in "new mode"
+* New activation page
 * Numerous performance optimizations 
-
-= 4.0.6.10 =
 * Custom Twitter template is now used universally
 * URL shortener settings now used universally
 * Cleaned up legacy code for greater efficiency
