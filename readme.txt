@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, Pinterest, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
 Requires at least: 2.7
 Tested up to: 3.3.2
-Stable tag: 5.0.0.3
+Stable tag: 5.0.0.4
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -124,19 +124,14 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 
 == Changelog ==
 
-= 5.0.0.3 =
-* New activation page
-
-= 5.0.0.2 =
+= 5.0.0.4 =
+* MAJOR UPDATE!
 * New translations!
   -> Belarusian (by Alexander Ovsov)
   -> Polish (by Bartosz Chojnacki)
   -> Catalan (by Joan Jordi Berdullas Segura)
   -> Bulgarian (by Nikolay Nikolov)
   -> Lithuanian (by Nata Strazda)
-
-= 5.0.0.1 =
-* MAJOR UPDATE!
 * Added Google Plus as a service to SexyBookmarks
 * Added support to show Topbar across different types of pages (posts, pages, index & category)
 * Added Share Counts for LinkedIn
@@ -146,9 +141,8 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Social Analytics are now also viewable by contributors, authors and editors (previously limited to admins)
 * Fixed bug: Twitter counter display position in Like Button Set
 * Fixed bug: Nofollow links in "new mode"
+* New activation page
 * Numerous performance optimizations 
-
-= 4.0.6.10 =
 * Custom Twitter template is now used universally
 * URL shortener settings now used universally
 * Cleaned up legacy code for greater efficiency

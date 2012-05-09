@@ -3,13 +3,13 @@
 Plugin Name: Shareaholic | email, bookmark, share buttons
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 5.0.0.3
+Version: 5.0.0.4
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','5.0.0.3');
+define('SHRSB_vNum','5.0.0.4');
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -344,7 +344,6 @@ function shrsb_analytics_settings(){
 }
 
 function shrsb_first_page(){
-  
   require_once 'includes/shrsb_activation_page.php';
   shrsb_display_activation();
 }
@@ -421,9 +420,12 @@ function shrsb_admin_scripts() {
     wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
     wp_enqueue_script('shareaholic-bootstrap', SHRSB_PLUGPATH.'js/bootstrap/bootstrap.min.js', array('jquery'), SHRSB_vNum, true);
     wp_enqueue_script('shareaholic-reveal', SHRSB_PLUGPATH.'js/reveal/jquery.reveal.min.js', array('jquery'), SHRSB_vNum, true);
-    //Add promo bar for browser extensions
+    
+		//Add promo bar for browser extensions
     if ($shrsb_plugopts['promo'] == "1") {
-        wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
+				if(shrsb_check_activation() === true){
+        	wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
+				}
     }
     if(shrsb_check_activation())
       echo get_googleanalytics();
@@ -500,7 +502,9 @@ function shrsb_admin_styles() {
     }
     //Add promo bar for browser extensions
     if ($shrsb_plugopts['promo'] == "1") {
+			if(shrsb_check_activation() === true){
         wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
+			}
     }
     wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
     wp_enqueue_style('shrsb-bootstrap', SHRSB_PLUGPATH.'css/bootstrap/bootstrap.min.css', false, SHRSB_vNum);
