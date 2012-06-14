@@ -1,9 +1,9 @@
 === SexyBookmarks | email, bookmark, share buttons ===
 Contributors: shareaholic
-Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, Pinterest, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
+Tags: Facebook, Twitter, LinkedIn, URL Shortener, Bitly, j.mp, TinyURL, Supr, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Google 1, Google, Instapaper, Wish List, Digg, Google Gmail, Google Notebook, Google Bookmarks, Translate, Posterous, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, Twine, Diigo, add this, addtoany, share this, share and follow, share and enjoy, sharing is sexy, sharing is caring, Mail, Yahoo, Reddit, Techmeme, Hacker News, Tweet Button, Twitter Button, Fark, Buffer, MySpace, Orkut, Plurk, Identi.ca, Hyves, Netlog, Hubspot,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, Google Translate, Pinboard, Shareaholic, Shareholic, Bookmarks, Social, Email Button, Social Share, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Share Count, Sharebar, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU, YAARP, nrelate, linkwithin, related content, recommendations
 Requires at least: 2.7
-Tested up to: 3.3.2
-Stable tag: 5.0.0.4
+Tested up to: 3.4
+Stable tag: 6.0.0.1
 
 Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
 
@@ -13,10 +13,10 @@ Shareaholic has proven time and time again to be an extremely useful and success
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates =
-* Pinterest support!
-* Facebook Like Button, Facebook Send, Google +1
+* Drive more engagement and traffic with Shareaholic Recommendations and Related Content!
 * Social Analytics - meet the people who spread your content the most
-* Share Counters for Twitter and Facebook
+* Facebook Like Button, Facebook Send, Google +1, Pinterest
+* Share Counters for Twitter, Facebook, LinkedIn
 * Official support for Google's URL shortener (goo.gl) and Google Analytics
 * Switched over to use the [Share API](http://www.shareaholic.com/api/)
 * Fix for Arras theme
@@ -40,10 +40,10 @@ Because all of the processing and collection runs on our servers and not yours, 
 
 Shareaholic is trusted by hundreds of thousands of publishers and touches almost 300 million people each month. Designed and built with all the love in the world in Cambridge, Massachusetts.
 
-Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. 
+Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics, AppNexus and DataXu to enhance its data. 
 
 
-[Support](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy](http://www.shareaholic.com/privacy/) | [Terms](http://www.shareaholic.com/terms/) | [API](http://www.shareaholic.com/api/) | [Social Analytics](http://www.shareaholic.com/siteinfo/)
+[Support](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy](http://www.shareaholic.com/privacy/) | [Terms](http://www.shareaholic.com/terms/) | [API](http://www.shareaholic.com/api/) | [Social Analytics](http://www.shareaholic.com/publishers/analytics/)
 
 == Other Notes ==
 
@@ -123,6 +123,12 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 
 
 == Changelog ==
+
+= 6.0.0.1 =
+* New feature: Recommendations - drive more pageviews and engagement by displaying per post Related Posts to your readers (enable via the admin panel)
+* New sharing style - Classic Bookmarks
+* Redesigned Dashboard
+* Cleaned up legacy code for greater efficiency
 
 = 5.0.0.4 =
 * MAJOR UPDATE!

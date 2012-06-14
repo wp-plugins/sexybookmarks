@@ -3,13 +3,20 @@
 Plugin Name: Shareaholic | email, bookmark, share buttons
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 5.0.0.4
+Version: 6.0.0.1
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','5.0.0.4');
+define('SHRSB_vNum','6.0.0.1');
+
+/*
+*   @desc Create Text Domain For Translations
+*/
+
+load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
+
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -33,17 +40,14 @@ if((isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
     $shrsb_debug['dump_type'] = shrsb_get_value($method, "dump_type");
     $shrsb_debug['sb_script'] = shrsb_get_value($method, "sb_script", false);
     $shrsb_debug['tb_script'] = shrsb_get_value($method, "tb_script", false);
+    $shrsb_debug['rd_script'] = shrsb_get_value($method, "rd_script", false);
+    $shrsb_debug['cb_script'] = shrsb_get_value($method, "cb_script", false);
     $shrsb_debug['sb_die'] = shrsb_get_value($method, "sb_die", false);
     $shrsb_debug['sb_log'] = shrsb_get_value($method, "sb_log", false);
     
     shrsb_dump_settings();
 }
 
-/*
-*   @desc Create Text Domain For Translations
-*/
-
-load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
 
 /*
  * Newer versions of WordPress include this class already
@@ -121,9 +125,11 @@ if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
 
 
 //Including the Shareaholic global settings
-require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
+require_once 'includes/shrsb_sexybookmarks_page.php';  // SexyBookmarks global Settings
 require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
 require_once 'includes/shrsb_analytics_page.php';  // Analytics global Settings
+require_once 'includes/shrsb_recommendations_page.php';  // Recommendations global Settings
+require_once 'includes/shrsb_classicbookmarks_page.php';  // Classic Bookmarks global Settings
 
 $default_spritegen = get_option('SHRSB_DefaultSprite');
 
@@ -149,7 +155,7 @@ function shrsb_Upgrade() {
                  (!file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.css'))) {
              echo '
               <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#FEB1B1;border:1px solid #FE9090;color:#820101;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;">
-                  '.sprintf(__('NOTICE: Shareaholic was just updated - Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+                  '.sprintf(__('NOTICE: Shareaholic was just updated - Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=shareaholic_sexybookmarks.php" style="color:#ca0c01">', '</a>').'
               </div>';
          }
     }
@@ -175,6 +181,8 @@ function shrsb_Activate() {
     delete_option('SexyCustomSprite');
     delete_option('SEXY_SPONSORS');
     delete_option('SHRSB_CustomSprite');
+    delete_option('ShareaholicRecommendations');
+    delete_option('ShareaholicClassicBookmarks');
   }
   if(!file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.css')) {
     delete_option('SHRSB_CustomSprite');
@@ -195,7 +203,7 @@ function showUpdateNotice() {
 
   if(!shrsb_check_activation()){
       // Don't show the connect notice on the shareaholic settings page.
-      if ( (false !== strpos( $_SERVER['QUERY_STRING'], 'page=sexy-bookmark' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_analytics' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_topbar' )))
+      if ( (false !== strpos( $_SERVER['QUERY_STRING'], 'page=sexy-bookmark' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_analytics' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_topbar' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_recommendations' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_classicbookmarks' )))
           return;
       echo '
       <div id="activate_shr" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#6aafcf;border:1px solid #2A8CBA;color:white;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;text-shadow: 0px 1px 1px 
@@ -311,9 +319,6 @@ function php_version_uncompatible() {
   }
 }
 
-//require_once 'includes/shrsb_authentication_page.php';
-//require_once 'includes/shrsb_analytics_page.php';
-//require_once 'includes/shrsb_topbar_page.php';
 
 
 function shrsb_account_page() {
@@ -343,6 +348,25 @@ function shrsb_analytics_settings(){
     }
 }
 
+function shrsb_recommendations_settings(){
+    require_once 'includes/shrsb_settings_page.php';
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_recommendations_settings_page.php';
+      shrsb_recommendations_settings_page();
+    }
+}
+function shrsb_cb_settings(){
+    require_once 'includes/shrsb_settings_page.php';
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_classicbookmarks_settings_page.php';
+      shrsb_cb_settings_page();
+    }
+}
+
 function shrsb_first_page(){
   require_once 'includes/shrsb_activation_page.php';
   shrsb_display_activation();
@@ -361,6 +385,16 @@ function shrsb_check_activation(){
   }
   else
     return true;
+}
+
+function shrsb_landing(){
+  require_once 'includes/shrsb_settings_page.php';
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_landing_page.php';
+      shrsb_landing_page();
+    }
 }
 
 function shrsb_sexybookmarks_settings(){
@@ -388,30 +422,41 @@ add_action('admin_menu', 'shrsb_menu_link');
 */
 function shrsb_menu_link() {
 	if (function_exists('add_menu_page')) {
-		$shrsb_admin_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ),
-		    'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
 
-		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ),
-    		'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings' );
+    $shrsb_landing_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ), 'administrator', basename(__FILE__), 'shrsb_landing', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
+    $shrsb_landing_page = add_submenu_page( basename(__FILE__), __( 'Dashboard' ), __( 'Dashboard', 'shrsb' ), 'administrator', basename(__FILE__), 'shrsb_landing' );
+		$shrsb_sexybookmarks_page = add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ), 'administrator', 'shareaholic_sexybookmarks.php', 'shrsb_sexybookmarks_settings' );
 
-        /*
-        $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
-    		'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
-        */
-        
-        $shrsb_topbar_page = add_submenu_page( basename(__FILE__), __( 'Top Bar' ), __( 'Top Bar', 'shrsb' ),
-    		'administrator', 'shareaholic_topbar.php', 'shrsb_topbar_settings' );
-        
-        $shrsb_analytics_page = add_submenu_page( basename(__FILE__), __( 'Social Analytics' ), __( 'Social Analytics', 'shrsb' ),
-    		'edit_posts', 'shareaholic_analytics.php', 'shrsb_analytics_settings' );
+    /*
+    $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
+    'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
+    */
 
-		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
-		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
+    $shrsb_topbar_page = add_submenu_page( basename(__FILE__), __( 'Top Bar' ), __( 'Top Bar', 'shrsb' ), 'administrator', 'shareaholic_topbar.php', 'shrsb_topbar_settings' );
+    $shrsb_cb_page = add_submenu_page( basename(__FILE__), __( 'ClassicBookmarks' ), __( 'ClassicBookmarks', 'shrsb' ), 'administrator', 'shareaholic_classicbookmarks.php', 'shrsb_cb_settings' );
+    $shrsb_recommendations_page = add_submenu_page( basename(__FILE__), __( 'Recommendations' ), __( 'Recommendations', 'shrsb' ), 'administrator', 'shareaholic_recommendations.php', 'shrsb_recommendations_settings' );
+    $shrsb_analytics_page = add_submenu_page( basename(__FILE__), __( 'Social Analytics' ), __( 'Social Analytics', 'shrsb' ), 'edit_posts', 'shareaholic_analytics.php', 'shrsb_analytics_settings' );
+
+
+		add_action( "admin_print_scripts-$shrsb_landing_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_landing_page", 'shrsb_admin_styles' );
+    
+    add_action( "admin_print_scripts-$shrsb_sexybookmarks_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_sexybookmarks_page", 'shrsb_admin_styles' );
+    
+    
     add_action( "admin_print_scripts-$shrsb_topbar_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_topbar_page", 'shrsb_admin_styles' );
+    
     add_action( "admin_print_scripts-$shrsb_analytics_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_analytics_page", 'shrsb_admin_styles' );
-    }
+    
+    add_action( "admin_print_scripts-$shrsb_recommendations_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_recommendations_page", 'shrsb_admin_styles' );
+    
+    add_action( "admin_print_scripts-$shrsb_cb_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_cb_page", 'shrsb_admin_styles' );
+  }
 }
 
 //styles and scripts for admin area

@@ -8,6 +8,8 @@ $shrsb_is_bot = shrsb_is_bot();
 // Written in the footer if shareaholic-javascript is on
 $shrsb_js_params = array();
 $shrsb_tb_js_params = array();
+$shrsb_rd_js_params = array();
+$shrsb_cb_js_params = array();
 
 $shrsb_bgimg_map = array(
   'shr' => array(
@@ -109,6 +111,42 @@ function shrsb_post_info($post) {
 		$r['short_title'] = urlencode($r['title']);
 	}
   return $r;
+}
+
+/**
+ * Returns array of values that should be used in recommendations js
+ */
+function shrsb_get_rd_config($post_id) {
+  
+  global $shrsb_recommendations;
+  
+  $r = shrsb_get_params($post_id);
+  
+  $params = array(
+    'link' => $r['link'],
+    'apikey' => $r['apikey'] ? $r['apikey'] : '8afa39428933be41f8afdb8ea21a495c',
+    'number' => $shrsb_recommendations['num'],
+		'style' =>	$shrsb_recommendations['style']
+  );
+
+  return array_filter($params);
+}
+/**
+ * Returns array of values that should be used in classicbookmarks js
+ */
+function shrsb_get_cb_config($post_id) {
+  
+  global $shrsb_cb;
+  
+  $r = shrsb_get_params($post_id);
+  
+  $params = array(
+    'link' => $r['link'],
+    'apikey' => $r['apikey'] ? $r['apikey'] : '8afa39428933be41f8afdb8ea21a495c',
+    'size' => $shrsb_cb['size']
+  );
+
+  return array_filter($params);
 }
 
 /**
@@ -392,7 +430,7 @@ function shrsb_get_fetch_url() {
 
 // Create an auto-insertion function
 function shrsb_position_menu($post_content) {
-	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params;
+	global $post, $shrsb_plugopts, $shrsb_is_mobile, $shrsb_is_bot, $shrsb_js_params, $shrsb_rd_js_params, $shrsb_cb_js_params;
     
     if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] != '1') {
         return $post_content;
@@ -654,6 +692,76 @@ EOH;
     echo $output;
 		
 }
+
+function shrsb_get_recommendations($post_content){
+    
+    if(empty($usage)) $usage = "Automatic";
+    
+    shrsb_log("get_recommendations started");
+    global $shrsb_plugopts,$shrsb_recommendations,$post, $shrsb_rd_js_params;
+    
+    $output = "";
+    $html = "";
+    //Decide whether to display 
+	
+		if ($shrsb_plugopts['shareaholic-javascript'] == '1' && isset($shrsb_recommendations['recommendations']) && ($shrsb_recommendations['recommendations'] == '1') &&(is_single() && false!==strpos($shrsb_recommendations['pageorpost'],"post")) || 
+		(is_page() && false!==strpos($shrsb_recommendations['pageorpost'],"page")) || 
+		(is_home() && false!==strpos($shrsb_recommendations['pageorpost'],"index")) || 
+		(is_category() && false!==strpos($shrsb_recommendations['pageorpost'],"category") )) {
+      
+      if(in_the_loop()){
+          $shrsb_rd_js_params['shr_rd-'.$post->ID] = shrsb_get_rd_config($post->ID);
+          $shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          $html .= '<div class="shr_rd-'.$post->ID.'"></div>';
+          shrsb_log("Loop:get_sexy new mode found,  returning ");
+      }else{
+          $shrsb_rd_js_params['shr_rd-'.$post->ID] = shrsb_get_rd_config($post->ID);
+          $html .= '<div class="shr_rd"></div>';
+          shrsb_log("Not Loop:get_sexy new mode found, returning ");
+      }
+      
+    }
+    shrsb_log("Recommendations HTML here <!-- $html --> Inspect me check the html");
+    $output = "<!-- Start Shareaholic Recommendations $usage -->$html<!-- End Shareaholic Recommendations $usage -->";
+
+    return $post_content.$output;
+}
+function shrsb_get_cb($post_content){
+    
+    if(empty($usage)) $usage = "Automatic";
+    
+    shrsb_log("get_cb started");
+    global $shrsb_plugopts,$shrsb_cb,$post, $shrsb_cb_js_params;
+    
+    $output = "";
+    $html = "";
+    //Decide whether to display 
+	
+		if ($shrsb_plugopts['shareaholic-javascript'] == '1' && isset($shrsb_cb['cb']) && ($shrsb_cb['cb'] == '1') &&(is_single() && false!==strpos($shrsb_cb['pageorpost'],"post")) || 
+		(is_page() && false!==strpos($shrsb_cb['pageorpost'],"page")) || 
+		(is_home() && false!==strpos($shrsb_cb['pageorpost'],"index")) || 
+		(is_category() && false!==strpos($shrsb_cb['pageorpost'],"category") )) {
+
+      $html .= "<div style='clear:both'></div>" ;
+      if(in_the_loop()){
+          $shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          $html .= '<div class="shr_cb-'.$post->ID.'"></div>';
+          shrsb_log("Loop:get_cb new mode found,  returning ");
+      }else{
+          $shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          $html .= '<div class="shr_cb"></div>';
+          shrsb_log("Not Loop:get_cb new mode found, returning ");
+      }
+      $html .= "<div style='clear:both'></div>" ;
+
+      
+    }
+    shrsb_log("Classic Bookmarks HTML here <!-- $html --> Inspect me check the html");
+    $output = "<!-- Start Shareaholic ClassicBookmarks $usage -->$html<!-- End Shareaholic ClassicBookmarks $usage -->";
+
+    return $post_content.$output;
+}
+
 
 function get_sexy() {
     shrsb_log("get_sexy started");
@@ -977,7 +1085,7 @@ function shrsb_publicStyles() {
   }
 }
 function shrsb_publicScripts() {
-	global $shrsb_plugopts, $post, $default_spritegen, $shrsb_debug,$shrsb_tb_plugopts, $shrsb_analytics;
+	global $shrsb_plugopts, $post, $default_spritegen, $shrsb_debug,$shrsb_tb_plugopts, $shrsb_analytics, $shrsb_recommendations, $shrsb_cb;
 
     $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
     $spritegen_basepath = $default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH;
@@ -996,6 +1104,18 @@ function shrsb_publicScripts() {
         if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
             wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
             $localize_to = 'shareaholic-share-buttons-js';
+        }
+        
+        // Enqueue the recommendations script only if the recommendations is enabled
+        if(isset($shrsb_recommendations) && isset($shrsb_recommendations['recommendations']) && $shrsb_recommendations['recommendations'] == '1'){
+            wp_enqueue_script('shareaholic-recommendations-js',(empty($shrsb_debug['rd_script'])) ? shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-rd.min.js"): $shrsb_debug['rd_script'], null, SHRSB_vNum, $infooter);    
+            $localize_to = 'shareaholic-recommendations-js';
+        }
+        
+        // Enqueue the classicbookmarks script only if the recommendations is enabled
+        if(isset($shrsb_cb) && isset($shrsb_cb['cb']) && $shrsb_cb['cb'] == '1'){
+            wp_enqueue_script('shareaholic-cb-js',(empty($shrsb_debug['cb_script'])) ? shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-cb.min.js"): $shrsb_debug['cb_script'], null, SHRSB_vNum, $infooter);    
+            $localize_to = 'shareaholic-cb-js';
         }
         
         // Always Enqueue the global settings as it can be used by other formfactors
@@ -1076,6 +1196,43 @@ function shrsb_tb_write_js_params() {
   }
 }
 
+/*
+ * @desc Populate javascript settings in the footer for recommendations
+ */
+function shrsb_rd_write_js_params() {
+    global $shrsb_plugopts, $shrsb_rd_js_params,$shrsb_recommendations;
+    
+    
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && $shrsb_recommendations['recommendations'] == '1') {
+
+        $js = 'var SHRRD_Settings = '.json_encode($shrsb_rd_js_params);
+
+  
+        echo '<script type="text/javascript">';
+        echo $js;
+        echo ';</script>';
+  }
+}
+
+/*
+ * @desc Populate javascript settings in the footer for classicbookmarks
+ */
+function shrsb_cb_write_js_params() {
+    global $shrsb_plugopts, $shrsb_cb_js_params,$shrsb_cb;
+    
+    
+    if ($shrsb_plugopts['shareaholic-javascript'] == '1' && $shrsb_cb['cb'] == '1') {
+
+        $js = 'var SHRCB_Settings = '.json_encode($shrsb_cb_js_params);
+
+  
+        echo '<script type="text/javascript">';
+        echo $js;
+        echo ';</script>';
+  }
+}
+
+
 // Add the scripts and Global setting on the page
 add_action('wp_print_scripts', 'shrsb_publicScripts');
 
@@ -1090,4 +1247,15 @@ if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] == 
 if(isset($shrsb_tb_plugopts['topbar']) && ($shrsb_tb_plugopts['topbar'] == '1')){
     add_action('wp_footer', 'shrsb_get_topbar');
     add_action('wp_footer', 'shrsb_tb_write_js_params');
+}
+
+// Add the hook only when recommendations is enabled
+if(isset($shrsb_recommendations['recommendations']) && ($shrsb_recommendations['recommendations'] == '1')){
+    add_filter('the_content', 'shrsb_get_recommendations');
+    add_action('wp_footer', 'shrsb_rd_write_js_params');
+}
+
+if(isset($shrsb_cb['cb']) && ($shrsb_cb['cb'] == '1')){
+    add_filter('the_content', 'shrsb_get_cb');
+    add_action('wp_footer', 'shrsb_cb_write_js_params');
 }

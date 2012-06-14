@@ -19,6 +19,7 @@ ul#shrsb-sortables div.padding h1,ul#shrsb-sortables div.padding h2,ul#shrsb-sor
 .footer a{text-decoration:none; color: #21759B;}
 .footer a:hover {text-decoration:underline;}
 .grey_light{color: #CCC;}
+.fs_c_lightgrey{color:#777777}
 .shrsb_health_icon{height:16px;width:16px;}
 /* End General Styles */
 /*------------------------------------------------------------------------------------------*/
@@ -29,7 +30,7 @@ ul#shrsb-sortables div.padding h1,ul#shrsb-sortables div.padding h2,ul#shrsb-sor
 .floright{clear:none;float:right;margin:0 0 0 10px;}
 .floleft{clear:none;float:left;margin:0 10px 0 0;}
 .padding{padding:10px;overflow:hidden;}
-.shrsb_option{display:block;font-weight:bold;margin-top:12px;color:#444;}
+.shrsb_option{display:block;font-weight:bold;margin-top:10px;color:#444;}
 .hide{display:none;}
 /* End Custom Classes */
 /*------------------------------------------------------------------------------------------*/
@@ -46,7 +47,7 @@ ul#shrsb-sortables div.padding h1,ul#shrsb-sortables div.padding h2,ul#shrsb-sor
 /* End Background Images Section */
 /*------------------------------------------------------------------------------------------*/
 /* Top Status Messages */
-div.shrsb-success,div.shrsb-error,div.shrsb-warning,div.shrsb-information{border-width:1px;border-style:solid;font-size:10px;font-weight:bold;height:auto;overflow:hidden;margin:35px 0 0;padding:4px 10px 6px;width:97%;}
+div.shrsb-success,div.shrsb-error,div.shrsb-warning,div.shrsb-information{border-width:1px;border-style:solid;font-size:14px;font-weight:bold;height:auto;overflow:hidden;margin:30px 15px 15px 0px;padding:4px 10px 6px;width:97%;line-height:30px;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;}
 div.shrsb-success{background:#b4efab;border-color:#8be57e;color:#337129;}
 div.shrsb-error{background:#feb1b1;border-color:#fe9090;color:#820101;}
 div.shrsb-information{background:#a3d0ff;border-color:#6ab3ff;color:#004185;}
@@ -250,7 +251,7 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 .fugue{background:url('../images/custom-fugue-sprite.png') no-repeat;padding-left:22px;}
 .fugue.f-info{background-position:0 2px;margin:2px 10px 0 0;}
 .fugue.f-warn{background-position:0 -83px;margin:2px 10px 0 0;}
-.fugue.f-success{background-position:0 -178px;margin:2px 10px 0 0;}
+.fugue.f-success{background-position:0 -178px;margin:7px 10px 0 0;}
 .fugue.f-question{background-position:0 -295px;margin:2px 10px 0 0;width:16px;border:0;padding:0;display:inline-block;}
 .fugue.f-info-frame{background-position:0 -411px;height:16px;line-height:16px;padding:0;position:relative;top:6px;left:10px;text-indent:25px;}
 .fugue.f-error{background-position:0 -525px;margin:2px 10px 0 0;}
@@ -339,4 +340,16 @@ div.box-right-body ul.langs li a{text-decoration:none;}
 #wpbody-content .hidden{display: none;visibility: visible;}
 ul#shrsb-sortables li.reveal-modal{left: 25%;padding: 0;position: fixed;top:100px;}
 #third-party-modal {top:0px !important;visibility: visible !important;}
+/* End Adjustments for Bootstrap*/
+/*------------------------------------------------------------------------------------------*/
+/* Landing Page */
+.select_product{background-color: #fff;display: block;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;border: 1px solid #DEDEDE;margin-bottom: 25px;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);overflow: auto;padding-top: 10px;padding-bottom: 10px;padding-left: 20px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; max-width: 800px;-webkit-transition-duration: .4s;-moz-transition-duration: .4s;}
+.select_product h1 {padding-top: 3px;}
+.select_product div{display: inline-block}
+.shr-landing-product-icon{float: left; min-width: 90px;}
+.shr-landing-product-name{float: left; width: auto;}
+.shr-landing-product-name h2{margin-top:14px;margin-bottom: 2px;font-size: 18px;}
+.shr-landing-product-desc {font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;color: #505961;font-size: 12px;}
+.shr-landing-product-configure{float: right; padding: 20px 20px 0px 10px;}
+/* End Landing Page Styles */
 /*------------------------------------------------------------------------------------------*/

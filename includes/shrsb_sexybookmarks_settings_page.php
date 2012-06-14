@@ -5,7 +5,7 @@ function shrsb_sb_settings_page() {
 	global $shrsb_plugopts, $shrsb_bookmarks_data, $wpdb, $shrsb_custom_sprite,$shrsb_analytics;
     // Add all the global varaible declarations for the $shrsb_plugopts default options e.g.,
 
-	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Settings</h2></div>';
+	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>SexyBookmarks Settings</h2></div>';
 
     //Defaults - set if not present
     if (!isset($_POST['reset_all_options_sb'])){$_POST['reset_all_options_sb'] = '1';}
@@ -348,7 +348,7 @@ function shrsb_sb_settings_page() {
                             </div>
                             <div id="genopts">
                             <table><tbody>
-                                    <tr>
+                                    <tr class="alert-success">
                                         <td><span class="shrsb_option"><?php _e('Enable the Sexybookmarks Sharing Bar?', 'shrsb'); ?> </span>
                                         </td>
                                         <td><label><input <?php echo (( @$shrsb_plugopts['firstrun'] == '1' || @$shrsb_plugopts['sexybookmark'] == "1") ? 'checked="checked"' : ""); ?> name="sexybookmark" id="sexybookmark-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
@@ -387,7 +387,7 @@ function shrsb_sb_settings_page() {
                                         <td><span class="tab" style="display:block; font-size: 11px; color: #666666;"><?php _e('Shareaholic Social Analytics', 'shrsb'); ?></span></td>
                                         <td><div class="icon-ok"></div></td>
                                         <td><div class="icon-remove"></div></td>
-                                        <td><a target="_blank" href="http://www.shareaholic.com/siteinfo/<?= $parse['host']?>">Preview</a></td>
+                                        <td><a target="_blank" href="http://www.shareaholic.com/publishers/analytics/<?= $parse['host']?>">Preview</a></td>
                                     </tr>
                                     
                                     <tr>
@@ -398,12 +398,7 @@ function shrsb_sb_settings_page() {
                                     </tr>
 
                             </tbody></table>
-                        </div>
-
-						<br />
-
-						<span style="display:block; font-size: 11px; color: #666666;">Note: The analytics portion of Shareaholic may at times use trusted 3rd party services like Google Analytics, Facebook, Twitter, Delicious, Quantcast, AppNexus or DataXu to enhance its data.</span>
-						
+                        </div>					
 					</div>	
 				</div>	
 			</li>
