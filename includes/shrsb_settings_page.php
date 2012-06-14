@@ -309,22 +309,17 @@ function shrsb_getfooter(){
 
 ?>
 <div style="clear:both;"></div>
-<ul id="shrsb-sortables" style="width:96%">
-	<li>
+<ul id="shrsb-sortables" style="width:96%;">
+	<li style="margin:0px;">
 	<div class="footer">
-		<a href="http://www.shareaholic.com/?src=wp_admin" target="_blank">Shareaholic for WordPress <?php echo SHRSB_vNum; ?></a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/privacy/?src=wp_admin" target="_blank">Privacy Policy</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/terms/?src=wp_admin" target="_blank">Terms of Service</a> <span class="grey_light">|</span> <a href="http://support.shareaholic.com/" target="_blank">Support</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/api/?src=wp_admin" target="_blank">API</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/siteinfo/<?php $parse = parse_url(get_bloginfo('url')); echo $parse['host']; ?>" target="_blank">Social Analytics</a> <br /> If you like this plugin and find it useful, please consider showing your support by <a href="http://wordpress.org/extend/plugins/shareaholic/" target="_blank" style="font-weight:bold;">giving us a good rating</a> on WordPress.org!
+		<a href="http://www.shareaholic.com/?src=wp_admin" target="_blank">Shareaholic for WordPress <?php echo SHRSB_vNum; ?></a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/privacy/?src=wp_admin" target="_blank">Privacy Policy</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/terms/?src=wp_admin" target="_blank">Terms of Service</a> <span class="grey_light">|</span> <a href="http://support.shareaholic.com/" target="_blank">Support</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/api/?src=wp_admin" target="_blank">API</a> <span class="grey_light">|</span> <a href="http://www.shareaholic.com/publishers/analytics/<?php $parse = parse_url(get_bloginfo('url')); echo $parse['host']; ?>" target="_blank">Social Analytics</a> <br /> If you like this plugin and find it useful, please consider showing your support by <a href="http://wordpress.org/extend/plugins/shareaholic/" target="_blank" style="font-weight:bold;">giving us a good rating</a> on WordPress.org.  Thank you for using <a href="">Shareaholic</a>.
 	</div>
 	<br />
 	<div style="display:block; font-size: 11px; color: #777777;">
 		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
-			<?php _e("<p>Note: The analytics portion of Shareaholic may at times use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it blazing fast. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use!</p/>"); ?>
+			<?php _e("<p>Note: The analytics portion of Shareaholic may at times use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it blazing fast. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use.</p/>"); ?>
 			<?php } ?>
-		<?php _e("<p>Shareaholic is trusted by hundreds of thousands of publishers and touches almost 300 million people each month.  Designed and built with all the love in the world in Cambridge, Massachusetts.</p>"); ?>
-	</div>
-	
-	<div style="margin-top:20px;">
-		<img src="<?php echo SHRSB_PLUGPATH; ?>/images/google_analytics_logo.png" style="float:left;" alt="Powered by Google Analytics" />
-		<img src="<?php echo SHRSB_PLUGPATH; ?>/images/amazon_logo.png" style="float:left; margin-left:25px;" alt="Powered by Amazon Web Services" />
+		<?php _e("Shareaholic is trusted by over 200 thousand publishers and touches almost 300 million people each month.  Designed and built with all the love in the world in Cambridge, Massachusetts."); ?>
 	</div>
 	</li>
 </ul>
@@ -553,7 +548,7 @@ function shrsb_addFBNameSpace($attr) {
 //list all bookmarks in the plugin options page
 function shrsb_network_input_select($name, $id, $hint) {
 	global $shrsb_plugopts;
-	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><br />%s</li>',
+	return sprintf('<li class="%s" title="%s"><input %sname="bookmark[]" type="checkbox" value="%s"  id="%s" /><div style="margin-top:-8px;"></div>%s</li>',
 		$name,
 		$hint,
 		@in_array($name, $shrsb_plugopts['bookmark'])?'checked="checked" ':"",

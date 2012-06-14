@@ -306,6 +306,42 @@ jQuery(document).ready(function() {
 			jQuery('.pubGaSocial_prefs').fadeOut('fast');
 		}
 	});
+  
+  jQuery('#recommendations-yes').click(function() {
+		if (this.checked) {
+			jQuery('.recommendations_prefs-1').fadeIn('fast');
+			var thumbEnableChecked = jQuery('#recommendations-style-image').get(0).checked;
+						if (thumbEnableChecked) {
+            jQuery('.recommendations_prefs-2').fadeIn('fast');
+						}
+		}
+	});
+    jQuery('#recommendations-no').click(function() {
+		if (this.checked) {
+			jQuery('.recommendations_prefs-1').fadeOut('fast');
+			jQuery('.recommendations_prefs-2').fadeOut('fast');
+		}
+	});
+	 jQuery('#recommendations-style-image').click(function() {
+		if (this.checked) {
+			jQuery('.recommendations_prefs-2').fadeIn('fast');
+		}
+	});
+    jQuery('#recommendations-style-text').click(function() {
+		if (this.checked) {
+			jQuery('.recommendations_prefs-2').fadeOut('fast');
+		}
+	});
+  jQuery('#cb-yes').click(function() {
+		if (this.checked) {
+			jQuery('.cb_prefs').fadeIn('fast');
+		}
+	});
+    jQuery('#cb-no').click(function() {
+		if (this.checked) {
+			jQuery('.cb_prefs').fadeOut('fast');
+		}
+	});
     
     jQuery('#useSbSettings-yes').click(function() {
 		if (this.checked) {
@@ -578,6 +614,26 @@ jQuery(document).ready(function() {
         var socialEnableChecked = jQuery('#pubGaSocial-yes').get(0).checked;
         if (socialEnableChecked) {
             jQuery('.pubGaSocial_prefs').fadeIn('fast');
+        }
+    }
+    
+    // Check if social analytics is enabled or not, if enabled show the preferences
+    if(typeof(jQuery('#recommendations-yes')) != "undefined" && jQuery('#recommendations-yes').length >0 ){
+        var socialEnableChecked = jQuery('#recommendations-yes').get(0).checked;
+        if (socialEnableChecked) {
+            jQuery('.recommendations_prefs-1').fadeIn('fast');
+						var thumbEnableChecked = jQuery('#recommendations-style-image').get(0).checked;
+						if (thumbEnableChecked) {
+            jQuery('.recommendations_prefs-2').fadeIn('fast');
+        }
+        }
+    }
+    
+    // Check if classic bookmarks is enabled or not, if enabled show the preferences
+    if(typeof(jQuery('#cb-yes')) != "undefined" && jQuery('#cb-yes').length >0 ){
+        var socialEnableChecked = jQuery('#cb-yes').get(0).checked;
+        if (socialEnableChecked) {
+            jQuery('.cb_prefs').fadeIn('fast');
         }
     }
     
