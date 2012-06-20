@@ -3,13 +3,13 @@
 Plugin Name: Shareaholic | email, bookmark, share buttons
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 6.0.0.2
+Version: 6.0.0.3
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','6.0.0.2');
+define('SHRSB_vNum','6.0.0.3');
 
 /*
 *   @desc Create Text Domain For Translations
