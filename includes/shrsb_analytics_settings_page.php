@@ -7,7 +7,7 @@
 function shrsb_analytics_settings_page() {
 	global $shrsb_analytics;
     // Add all the global varaible declarations for the $shrsb_tb_plugopts
-	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>'.__('Shareaholic Analytics Settings', 'shrsb').'</h2></div>';
+	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>'.__('Social Analytics Settings', 'shrsb').'</h2></div>';
     //Defaults - set if not present
     if (!isset($_POST['reset_all_options_analytics'])){$_POST['reset_all_options_analytics'] = '1';}
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
@@ -46,7 +46,7 @@ function shrsb_analytics_settings_page() {
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
-	if(isset($_POST['save_changes_tb'])) {
+	if(isset($_POST['save_changes_sa'])) {
 
     // Set success message
     $status_message = __('Your changes have been saved successfully!', 'shrsb');
@@ -155,7 +155,7 @@ function shrsb_analytics_settings_page() {
                                 <br />
                                 <div style="background: url(http://www.shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
                                 <br />
-                                  <?php  echo sprintf(__('<span style="font-size: 12px;">Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.</span> <br><br> <b><span style="color:#CC1100;">What are you waiting for?</span> You can access detailed %ssocial engagement analytics%s about your website right now.</b>', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
+                                  <?php  echo sprintf(__('<span style="font-size: 12px;">Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.</span> <br><br> <b><span style="color:#CC1100;">What are you waiting for?</span> You can access detailed %ssocial engagement analytics%s about your website right now.</b>', 'shrsb'), '<a href="http://www.shareaholic.com/publishers/analytics/'.$parse['host'].'">', '</a>');
                                 ?>
 
                         </div>
@@ -196,12 +196,12 @@ function shrsb_analytics_settings_page() {
 		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
 			
 			<div style="clear:both;"></div>
-			<input type="hidden" name="save_changes_tb" value="1" />
-        	<div class="shrsbsubmit"><input type="submit" id="save_changes_tb" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
+			<input type="hidden" name="save_changes_sa" value="1" />
+        	<div class="shrsbsubmit"><input type="submit" id="save_changes_sa" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
 		</form>
 		<form action="" method="post">
 			<input type="hidden" name="reset_all_options_analytics" id="reset_all_options_analytics" value="0" />
-			<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
+			<!-- <div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div> -->
 		</form>
 		
 	<?php } ?>	

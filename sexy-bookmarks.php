@@ -3,13 +3,20 @@
 Plugin Name: Shareaholic | email, bookmark, share buttons
 Plugin URI: http://www.shareaholic.com/tools/wordpress/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 5.0.0.1
+Version: 6.0.0.3
 Author: Shareaholic
 Author URI: http://www.shareaholic.com
 Credits & Thanks: http://www.shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','5.0.0.1');
+define('SHRSB_vNum','6.0.0.3');
+
+/*
+*   @desc Create Text Domain For Translations
+*/
+
+load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
+
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -33,17 +40,14 @@ if((isset($_GET['sb_debug']) || isset($_POST['sb_debug']) ) ){
     $shrsb_debug['dump_type'] = shrsb_get_value($method, "dump_type");
     $shrsb_debug['sb_script'] = shrsb_get_value($method, "sb_script", false);
     $shrsb_debug['tb_script'] = shrsb_get_value($method, "tb_script", false);
+    $shrsb_debug['rd_script'] = shrsb_get_value($method, "rd_script", false);
+    $shrsb_debug['cb_script'] = shrsb_get_value($method, "cb_script", false);
     $shrsb_debug['sb_die'] = shrsb_get_value($method, "sb_die", false);
     $shrsb_debug['sb_log'] = shrsb_get_value($method, "sb_log", false);
     
     shrsb_dump_settings();
 }
 
-/*
-*   @desc Create Text Domain For Translations
-*/
-
-load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
 
 /*
  * Newer versions of WordPress include this class already
@@ -121,9 +125,11 @@ if(false !== $shrsb_version &&  $shrsb_version !== SHRSB_vNum ) {
 
 
 //Including the Shareaholic global settings
-require_once 'includes/shrsb_sexybookmarks_page.php';  // Topbar global Settings
+require_once 'includes/shrsb_sexybookmarks_page.php';  // SexyBookmarks global Settings
 require_once 'includes/shrsb_topbar_page.php';  // Topbar global Settings
 require_once 'includes/shrsb_analytics_page.php';  // Analytics global Settings
+require_once 'includes/shrsb_recommendations_page.php';  // Recommendations global Settings
+require_once 'includes/shrsb_classicbookmarks_page.php';  // Classic Bookmarks global Settings
 
 $default_spritegen = get_option('SHRSB_DefaultSprite');
 
@@ -148,10 +154,8 @@ function shrsb_Upgrade() {
          if($shrsb_plugopts['shareaholic-javascript'] == '1' ||
                  (!file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.css'))) {
              echo '
-              <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
-                <div style="background:url('.SHRSB_UPLOADPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-                  '.sprintf(__('NOTICE: Shareaholic was just updated... Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
-                </div>
+              <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#FEB1B1;border:1px solid #FE9090;color:#820101;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;">
+                  '.sprintf(__('NOTICE: Shareaholic was just updated - Please visit the %sPlugin Options Page%s and re-save your preferences.', 'shrsb'), '<a href="admin.php?page=shareaholic_sexybookmarks.php" style="color:#ca0c01">', '</a>').'
               </div>';
          }
     }
@@ -162,7 +166,7 @@ function shrsb_SpritegenNotice() {
              echo '
               <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
                 <div style="background:url('.SHRSB_UPLOADPATH.'custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-                  '.sprintf(__('NOTICE: Your spritegen directory isn\'t writable... Please %sCHMOD%s your spritegen directory to ensure that Shareaholic remains working like a charm...', 'shrsb'), '<a href="http://www.shareaholic.com/tools/wordpress/usage-installation#chmodinfo" target = "_blank" style="color:#ca0c01">', '</a>').'
+                  '.sprintf(__('NOTICE: Your spritegen directory isn\'t writable - Please %sCHMOD%s your spritegen directory to ensure that Shareaholic remains working like a charm...', 'shrsb'), '<a href="http://www.shareaholic.com/tools/wordpress/usage-installation#chmodinfo" target = "_blank" style="color:#ca0c01">', '</a>').'
                 </div>
               </div>';
     }
@@ -177,6 +181,8 @@ function shrsb_Activate() {
     delete_option('SexyCustomSprite');
     delete_option('SEXY_SPONSORS');
     delete_option('SHRSB_CustomSprite');
+    delete_option('ShareaholicRecommendations');
+    delete_option('ShareaholicClassicBookmarks');
   }
   if(!file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.png') || !file_exists(SHRSB_UPLOADDIR.'spritegen/shr-custom-sprite.css')) {
     delete_option('SHRSB_CustomSprite');
@@ -194,14 +200,40 @@ register_deactivation_hook( __FILE__, 'shrsb_deActivate' );
 
 //add update notice to the main dashboard area so it's visible throughout
 function showUpdateNotice() {
-  //If the option doesn't exist yet, it means the old naming scheme was found and scrubbed... Let's alert the user to update their settings
-  if(!get_option('SHRSBvNum') || get_option('SHRSBvNum') == '') {
-    echo '
-      <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
-        <div style="background:url('.SHRSB_UPLOADPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-          '.sprintf(__('NOTICE: Shareaholic needs to be configured... Please visit the %sPlugin Options Page%s and set your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
-        </div>
+
+  if(!shrsb_check_activation()){
+      // Don't show the connect notice on the shareaholic settings page.
+      if ( (false !== strpos( $_SERVER['QUERY_STRING'], 'page=sexy-bookmark' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_analytics' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_topbar' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_recommendations' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_classicbookmarks' )))
+          return;
+      echo '
+      <div id="activate_shr" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#6aafcf;border:1px solid #2A8CBA;color:white;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;text-shadow: 0px 1px 1px 
+				rgba(0, 0, 0, 0.4);">
+          '.sprintf(__('NOTICE: Shareaholic Plugin is almost ready – %sPlease visit the Plugin Options Page to activate%s', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="
+					-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+					-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+					box-shadow:inset 0px 1px 0px 0px #fce2c1;
+					background-color:#ffc477;
+					-moz-border-radius:6px;
+					-webkit-border-radius:6px;
+					border-radius:6px;
+					border:1px solid #eeb44f;
+					display:inline-block;
+					color:#ffffff;
+					font-family:arial;
+					font-size:15px;
+					font-weight:bold;
+					padding:2px 14px;
+					text-decoration:none;">', '</a>').'
       </div>';
+    }
+    else{
+    //If the option doesn't exist yet, it means the old naming scheme was found and scrubbed... Let's alert the user to update their settings
+    if(!get_option('SHRSBvNum') || get_option('SHRSBvNum') == '') {
+      echo '
+        <div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#FEB1B1;border:1px solid #FE9090;color:#820101;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;">
+            '.sprintf(__('NOTICE: Shareaholic Plugin needs to be configured - please visit the %sPlugin Options Page%s to set your preferences.', 'shrsb'), '<a href="admin.php?page=sexy-bookmarks.php" style="color:#ca0c01">', '</a>').'
+        </div>';
+    }
   }
 }
 
@@ -287,9 +319,6 @@ function php_version_uncompatible() {
   }
 }
 
-//require_once 'includes/shrsb_authentication_page.php';
-//require_once 'includes/shrsb_analytics_page.php';
-//require_once 'includes/shrsb_topbar_page.php';
 
 
 function shrsb_account_page() {
@@ -300,21 +329,83 @@ function shrsb_account_page() {
 }
 
 function shrsb_topbar_settings(){
-    require_once 'includes/shrsb_settings_page.php';
-    require_once 'includes/shrsb_topbar_settings_page.php';
-    shrsb_tb_settings_page();
+    require_once 'includes/shrsb_settings_page.php';  
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_topbar_settings_page.php';
+      shrsb_tb_settings_page();
+    }
 }
 
 function shrsb_analytics_settings(){
+    require_once 'includes/shrsb_settings_page.php';  
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_analytics_settings_page.php';
+      shrsb_analytics_settings_page();
+    }
+}
+
+function shrsb_recommendations_settings(){
     require_once 'includes/shrsb_settings_page.php';
-    require_once 'includes/shrsb_analytics_settings_page.php';
-    shrsb_analytics_settings_page();
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_recommendations_settings_page.php';
+      shrsb_recommendations_settings_page();
+    }
+}
+function shrsb_cb_settings(){
+    require_once 'includes/shrsb_settings_page.php';
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_classicbookmarks_settings_page.php';
+      shrsb_cb_settings_page();
+    }
+}
+
+function shrsb_first_page(){
+  require_once 'includes/shrsb_activation_page.php';
+  shrsb_display_activation();
+}
+
+function shrsb_check_activation(){
+  
+  $activated = get_option('SHR_activate');
+  if($activated == 0 || $activated === false){
+    if($_POST['activate'] == 1){
+      update_option("SHR_activate",1);
+      return true;
+    }
+    else
+      return false;
+  }
+  else
+    return true;
+}
+
+function shrsb_landing(){
+  require_once 'includes/shrsb_settings_page.php';
+    if(!shrsb_check_activation())
+      shrsb_first_page();
+    else{
+      require_once 'includes/shrsb_landing_page.php';
+      shrsb_landing_page();
+    }
 }
 
 function shrsb_sexybookmarks_settings(){
-    require_once 'includes/shrsb_settings_page.php';
+  
+  require_once 'includes/shrsb_settings_page.php';  
+  if(!shrsb_check_activation())
+    shrsb_first_page();
+  else{
     require_once 'includes/shrsb_sexybookmarks_settings_page.php';
     shrsb_sb_settings_page();
+  }
 }
 
 function shrsb_authenticate_user($api_key = null) {
@@ -331,30 +422,41 @@ add_action('admin_menu', 'shrsb_menu_link');
 */
 function shrsb_menu_link() {
 	if (function_exists('add_menu_page')) {
-		$shrsb_admin_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ),
-		    'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
 
-		add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ),
-    		'administrator', basename(__FILE__), 'shrsb_sexybookmarks_settings' );
+    $shrsb_landing_page = add_menu_page( __( 'Shareaholic for Publishers', 'shrsb' ), __( 'Shareaholic', 'shrsb' ), 'administrator', basename(__FILE__), 'shrsb_landing', SHRSB_PLUGPATH.'images/shareaholic_16x16.png');
+    $shrsb_landing_page = add_submenu_page( basename(__FILE__), __( 'Dashboard' ), __( 'Dashboard', 'shrsb' ), 'administrator', basename(__FILE__), 'shrsb_landing' );
+		$shrsb_sexybookmarks_page = add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ), 'administrator', 'shareaholic_sexybookmarks.php', 'shrsb_sexybookmarks_settings' );
 
-        /*
-        $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
-    		'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
-        */
-        
-        $shrsb_topbar_page = add_submenu_page( basename(__FILE__), __( 'Top Bar' ), __( 'Top Bar', 'shrsb' ),
-    		'administrator', 'shareaholic_topbar.php', 'shrsb_topbar_settings' );
-        
-        $shrsb_analytics_page = add_submenu_page( basename(__FILE__), __( 'Social Analytics' ), __( 'Social Analytics', 'shrsb' ),
-    		'edit_posts', 'shareaholic_analytics.php', 'shrsb_analytics_settings' );
+    /*
+    $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
+    'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
+    */
 
-		add_action( "admin_print_scripts-$shrsb_admin_page", 'shrsb_admin_scripts' );
-		add_action( "admin_print_styles-$shrsb_admin_page", 'shrsb_admin_styles' );
-        add_action( "admin_print_scripts-$shrsb_topbar_page", 'shrsb_admin_scripts' );
+    $shrsb_topbar_page = add_submenu_page( basename(__FILE__), __( 'Top Bar' ), __( 'Top Bar', 'shrsb' ), 'administrator', 'shareaholic_topbar.php', 'shrsb_topbar_settings' );
+    $shrsb_cb_page = add_submenu_page( basename(__FILE__), __( 'ClassicBookmarks' ), __( 'ClassicBookmarks', 'shrsb' ), 'administrator', 'shareaholic_classicbookmarks.php', 'shrsb_cb_settings' );
+    $shrsb_recommendations_page = add_submenu_page( basename(__FILE__), __( 'Recommendations' ), __( 'Recommendations', 'shrsb' ), 'administrator', 'shareaholic_recommendations.php', 'shrsb_recommendations_settings' );
+    $shrsb_analytics_page = add_submenu_page( basename(__FILE__), __( 'Social Analytics' ), __( 'Social Analytics', 'shrsb' ), 'edit_posts', 'shareaholic_analytics.php', 'shrsb_analytics_settings' );
+
+
+		add_action( "admin_print_scripts-$shrsb_landing_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_landing_page", 'shrsb_admin_styles' );
+    
+    add_action( "admin_print_scripts-$shrsb_sexybookmarks_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_sexybookmarks_page", 'shrsb_admin_styles' );
+    
+    
+    add_action( "admin_print_scripts-$shrsb_topbar_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_topbar_page", 'shrsb_admin_styles' );
-        add_action( "admin_print_scripts-$shrsb_analytics_page", 'shrsb_admin_scripts' );
+    
+    add_action( "admin_print_scripts-$shrsb_analytics_page", 'shrsb_admin_scripts' );
 		add_action( "admin_print_styles-$shrsb_analytics_page", 'shrsb_admin_styles' );
-    }
+    
+    add_action( "admin_print_scripts-$shrsb_recommendations_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_recommendations_page", 'shrsb_admin_styles' );
+    
+    add_action( "admin_print_scripts-$shrsb_cb_page", 'shrsb_admin_scripts' );
+		add_action( "admin_print_styles-$shrsb_cb_page", 'shrsb_admin_styles' );
+  }
 }
 
 //styles and scripts for admin area
@@ -363,11 +465,15 @@ function shrsb_admin_scripts() {
     wp_enqueue_script('shareaholic-admin-js', SHRSB_PLUGPATH.'js/shareaholic-admin.min.js', array('jquery','jquery-ui-sortable'), SHRSB_vNum, true);
     wp_enqueue_script('shareaholic-bootstrap', SHRSB_PLUGPATH.'js/bootstrap/bootstrap.min.js', array('jquery'), SHRSB_vNum, true);
     wp_enqueue_script('shareaholic-reveal', SHRSB_PLUGPATH.'js/reveal/jquery.reveal.min.js', array('jquery'), SHRSB_vNum, true);
-    //Add promo bar for browser extensions
+    
+		//Add promo bar for browser extensions
     if ($shrsb_plugopts['promo'] == "1") {
-        wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
+				if(shrsb_check_activation() === true){
+        	wp_enqueue_script('shareaholic-promo', SHRSB_PLUGPATH.'js/shareaholic-promo.min.js', array('jquery'), SHRSB_vNum, false);
+				}
     }
-    echo get_googleanalytics();
+    if(shrsb_check_activation())
+      echo get_googleanalytics();
 }
 
 function shrsb_first_image() {
@@ -441,7 +547,9 @@ function shrsb_admin_styles() {
     }
     //Add promo bar for browser extensions
     if ($shrsb_plugopts['promo'] == "1") {
+			if(shrsb_check_activation() === true){
         wp_enqueue_style('shareaholic-promo', SHRSB_PLUGPATH.'css/shareaholic-promo.css', false, SHRSB_vNum);
+			}
     }
     wp_enqueue_style('sexy-bookmarks', SHRSB_PLUGPATH.'css/admin-style.css', false, SHRSB_vNum);
     wp_enqueue_style('shrsb-bootstrap', SHRSB_PLUGPATH.'css/bootstrap/bootstrap.min.css', false, SHRSB_vNum);
