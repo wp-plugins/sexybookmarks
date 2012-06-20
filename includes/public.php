@@ -139,9 +139,9 @@ function shrsb_get_cb_config($post_id) {
   global $shrsb_cb;
   
   $r = shrsb_get_params($post_id);
-  
   $params = array(
     'link' => $r['link'],
+    'title' => $r['title'],
     'apikey' => $r['apikey'] ? $r['apikey'] : '8afa39428933be41f8afdb8ea21a495c',
     'size' => $shrsb_cb['size']
   );
@@ -744,11 +744,13 @@ function shrsb_get_cb($post_content){
 
       $html .= "<div style='clear:both'></div>" ;
       if(in_the_loop()){
-          $shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
-          $html .= '<div class="shr_cb-'.$post->ID.'"></div>';
+          //$shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          $shrsb_cb_js_params[$post->ID] = shrsb_get_cb_config($post->ID);
+          $html .= '<div class="shr_cb" data-shrpub_options_timestamp = '. $post->ID .'></div>';
           shrsb_log("Loop:get_cb new mode found,  returning ");
       }else{
-          $shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          //$shrsb_cb_js_params['shr_cb-'.$post->ID] = shrsb_get_cb_config($post->ID);
+          $shrsb_cb_js_params[$post->ID] = shrsb_get_cb_config($post->ID);
           $html .= '<div class="shr_cb"></div>';
           shrsb_log("Not Loop:get_cb new mode found, returning ");
       }
@@ -1114,7 +1116,8 @@ function shrsb_publicScripts() {
         
         // Enqueue the classicbookmarks script only if the recommendations is enabled
         if(isset($shrsb_cb) && isset($shrsb_cb['cb']) && $shrsb_cb['cb'] == '1'){
-            wp_enqueue_script('shareaholic-cb-js',(empty($shrsb_debug['cb_script'])) ? shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-cb.min.js"): $shrsb_debug['cb_script'], null, SHRSB_vNum, $infooter);    
+            //wp_enqueue_script('shareaholic-cb-js',(empty($shrsb_debug['cb_script'])) ? shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-cb.min.js"): $shrsb_debug['cb_script'], null, SHRSB_vNum, $infooter);    
+            wp_enqueue_script('shareaholic-cb-js',(empty($shrsb_debug['cb_script'])) ? shrsb_correct_protocol("http://dtym7iokkjlif.cloudfront.net/media/js/formfactors_cb.js"): $shrsb_debug['cb_script'], null, SHRSB_vNum, $infooter);    
             $localize_to = 'shareaholic-cb-js';
         }
         
@@ -1223,7 +1226,22 @@ function shrsb_cb_write_js_params() {
     
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && $shrsb_cb['cb'] == '1') {
 
-        $js = 'var SHRCB_Settings = '.json_encode($shrsb_cb_js_params);
+        $js = "var _shr = _shr || [];";
+        foreach($shrsb_cb_js_params as $key => $val){
+          
+          $js .= '_shr.push(["SHR_CB_Settings",{
+                                              options: {
+                                                          timestamp:' . $key .',
+                                                          size:' . $val['size'] .',
+                                                          link:"'. $val['link'] .'",
+                                                          title:"'. $val['title'] .'",
+                                                          apikey:"'. $val['apikey'] .'"                                                          
+                                                       }
+                                            }
+                      ]);';
+        }
+
+        //$js = 'var SHRCB_Settings = '.json_encode($shrsb_cb_js_params);
 
   
         echo '<script type="text/javascript">';
