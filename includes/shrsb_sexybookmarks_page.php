@@ -16,57 +16,53 @@ function shrsb_sb_set_options($action = NULL){
     *   @note To change the most popular list also change the "Most Popular" link click handler in shareaholic-admin.js
     */
     $shrsb_most_popular = array (
-        'shr-facebook',
-        'shr-twitter',
-        'shr-linkedin',
-		'shr-googleplus',
-        'shr-googlebookmarks',
-        'shr-stumbleupon',
-		'shr-fastmail',
-        'shr-printfriendly'
+			'shr-facebook',
+			'shr-twitter',
+			'shr-linkedin',
+			'shr-googleplus',
+			'shr-googlebookmarks',
+			'shr-stumbleupon',
+			'shr-fastmail',
+			'shr-printfriendly'
     );
     
     $defaultLikeButtonOrder = array(
-        'shr-fb-like',
-        'shr-fb-send',
-        'shr-plus-one',
-        'shr-tw-button'
+			'shr-fb-like',
+			'shr-fb-send',
+			'shr-plus-one',
+			'shr-tw-button'
     );
     			               
     $shrsb_sb_plugopts_default = array(
 			'sexybookmark' => '0',
-        
-            'firstrun' => '1',
-        
+			'firstrun' => '1',  
 			'position' => 'below', // below, above, or manual
 			'reloption' => 'nofollow', // 'nofollow', or ''
 			'targetopt' => '_blank', // 'blank' or 'self'
 			'perfoption' => '1', // Third party Content
 			'showShareCount' => '1', // fb/twit share count
-
-            'likeButtonSetTop' => '0', // Include like button below the Post Title
-            'fbLikeButtonTop' => '0', // Include fb like button
-            'fbSendButtonTop' => '0', // Include fb like button
-            'googlePlusOneButtonTop' => '0', // Include Google Plus One button
-            'tweetButtonTop' => '0', // Include Tweet button
-            'likeButtonSetSizeTop' => "1", // Size of like buttons
-            'likeButtonSetCountTop' => "true", // Show count with +1 button
-            'likeButtonOrderTop' => $defaultLikeButtonOrder,
-            'likeButtonSetAlignmentTop' => '0', // Alignment 0 => left, 1 => right
-
-            'likeButtonSetBottom' => '1', // Include like button below the Post
-            'fbLikeButtonBottom' => '0', // Include fb like button
-            'fbSendButtonBottom' => '0', // Include fb like button
-            'googlePlusOneButtonBottom' => '0', // Include Google Plus One button
-            'tweetButtonBottom' => '0', // Include Tweet button
-            'likeButtonSetSizeBottom' => "1", // Size of like buttons
-            'likeButtonSetCountBottom' => "true", // Show count with +1 button
-            'likeButtonOrderBottom' => $defaultLikeButtonOrder,
-            'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
+			'likeButtonSetTop' => '0', // Include like button below the Post Title
+			'fbLikeButtonTop' => '0', // Include fb like button
+			'fbSendButtonTop' => '0', // Include fb like button
+			'googlePlusOneButtonTop' => '0', // Include Google Plus One button
+			'tweetButtonTop' => '0', // Include Tweet button
+			'likeButtonSetSizeTop' => "1", // Size of like buttons
+			'likeButtonSetCountTop' => "true", // Show count with +1 button
+			'likeButtonOrderTop' => $defaultLikeButtonOrder,
+			'likeButtonSetAlignmentTop' => '0', // Alignment 0 => left, 1 => right
+			'likeButtonSetBottom' => '1', // Include like button below the Post
+			'fbLikeButtonBottom' => '0', // Include fb like button
+			'fbSendButtonBottom' => '0', // Include fb like button
+			'googlePlusOneButtonBottom' => '0', // Include Google Plus One button
+			'tweetButtonBottom' => '0', // Include Tweet button
+			'likeButtonSetSizeBottom' => "1", // Size of like buttons
+			'likeButtonSetCountBottom' => "true", // Show count with +1 button
+			'likeButtonOrderBottom' => $defaultLikeButtonOrder,
+			'likeButtonSetAlignmentBottom' => '0', // Alignment 0 => left, 1 => right
 			'locale'=> '0', //Default locale set to 0
-            'fbNameSpace' => '1',  // Add fb name space to the html
-            'preventminify' => '1',  // prevent wp_minify from minifying the js
-            'shrlink' => '0', // show promo link
+			'fbNameSpace' => '1',  // Add fb name space to the html
+			'preventminify' => '1',  // prevent wp_minify from minifying the js
+			'shrlink' => '0', // show promo link
 			'bgimg-yes' => 'yes', // 'yes' or blank
 			'mobile-hide' => '', // 'yes' or blank
 			'bgimg' => 'caring', // default bg image
@@ -77,21 +73,21 @@ function shrsb_sb_set_options($action = NULL){
 			'expand' => '1',
 			'autocenter' => '1',
 			'tweetconfig' => urlencode('${title} - ${short_link} via @Shareaholic'), // Custom configuration of tweet
-		    'warn-choice' => '',
+		  'warn-choice' => '',
 			'doNotIncludeJQuery' => '',
 			'custom-mods' => '',
 			'scriptInFooter' => '',
-            'shareaholic-javascript' => '1',
-            'shrbase' => 'http://www.shareaholic.com',
-            'apikey' => '8afa39428933be41f8afdb8ea21a495c',
-            'service' => '',
-            'designer_toolTips' => '1',
-            'tip_bg_color' => '#000000',  // tooltip background color
-            'tip_text_color' => '#ffffff', // tooltip text color
-            'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
-            'ogtags' => '1',  //OgTags
-            'promo' => '1'
-        );
+      'shareaholic-javascript' => '1',
+      'shrbase' => 'http://www.shareaholic.com',
+      'apikey' => '8afa39428933be41f8afdb8ea21a495c',
+      'service' => '',
+      'designer_toolTips' => '1',
+      'tip_bg_color' => '#000000',  // tooltip background color
+      'tip_text_color' => '#ffffff', // tooltip text color
+      'spritegen_path' => SHRSB_UPLOADDIR_DEFAULT,
+      'ogtags' => '1',  //Open Graph Tags
+      'promo' => '1'
+		);
     
         //Return default settings 
         if($action == "reset"){
@@ -115,6 +111,8 @@ function shrsb_sb_set_options($action = NULL){
                     $database_Settings['firstrun'] = '0';
                     $need_to_update = true;
                 }
+                //For first time activation
+                update_option("SHR_activate",1);
 
                 //Check whether all the settings are present or not
                 foreach($shrsb_sb_plugopts_default as $k => $v){
