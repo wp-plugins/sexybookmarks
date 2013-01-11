@@ -148,7 +148,6 @@ add_option('SHRSB_DefaultSprite',true);
 
 // If plugin is upgrading
 if(SHRSB_UPGRADING == TRUE) {
-    
 
     //Remove the Disabled Services
     if(isset ($shrsb_plugopts) && isset($shrsb_plugopts['service'])){
