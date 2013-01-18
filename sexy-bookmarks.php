@@ -3,20 +3,19 @@
 Plugin Name: Shareaholic | share buttons, analytics, related content
 Plugin URI: https://shareaholic.com/publishers/
 Description: Shareaholic adds a (X)HTML compliant list of social bookmarking icons to each of your posts. See <a href="admin.php?page=sexy-bookmarks.php">configuration panel</a> for more settings.
-Version: 6.1.0.0
+Version: 6.1.1.0
 Author: Shareaholic
 Author URI: https://shareaholic.com
 Credits & Thanks: https://shareaholic.com/tools/wordpress/credits
 */
 
-define('SHRSB_vNum','6.1.0.0');
+define('SHRSB_vNum','6.1.1.0');
 
 /*
 *   @desc Create Text Domain For Translations
 */
 
 load_plugin_textdomain('shrsb', false, basename(dirname(__FILE__)) . '/languages/');
-
 
 /*
 *   @note Make sure to include files first as there may be dependencies
@@ -243,7 +242,7 @@ function showUpdateNotice() {
 function _add_meta_box_options() {
 	
     if( shrsb_get_current_user_role() ==  "Administrator" || shrsb_get_current_user_role() ==  "Editor") {
-        //"Hide options on each post
+        // Hide options on each post
         add_meta_box( 'hide_options_meta', __( 'Shareaholic', 'shrsb' ), '_hide_options_meta_box_content', 'page', 'advanced', 'high' );
         add_meta_box( 'hide_options_meta', __( 'Shareaholic', 'shrsb' ), '_hide_options_meta_box_content', 'post', 'advanced', 'high' );
     }
@@ -319,8 +318,6 @@ function php_version_uncompatible() {
   }
 }
 
-
-
 function shrsb_account_page() {
     global $shrsb_plugopts;
     $apikey = $_POST['apikey'] ? $_POST['apikey'] : $shrsb_plugopts['apikey'] ;
@@ -373,7 +370,6 @@ function shrsb_first_page(){
 }
 
 function shrsb_check_activation(){
-  
   $activated = get_option('SHR_activate');
   if($activated == 0 || $activated === false){
     if($_POST['activate'] == 1){
@@ -543,7 +539,7 @@ function shrsb_add_ogtags_head() {
            return;
         }
         
-        echo "\n\n".'<!-- Start SHR Open Graph Tags -->'."\n\n";
+        echo "\n\n".'<!-- Shareaholic - Open Graph Tags -->'."\n\n";
 
 		if (is_home()) {
 			if (isset($shrsb_plugopts['shrsb_fallback_img']) && $shrsb_plugopts['shrsb_fallback_img'] != '') {
@@ -561,7 +557,7 @@ function shrsb_add_ogtags_head() {
                 echo "\t".'<!-- Shareaholic Notice: There is neither a featured nor gallery image set -->'."\n";
 			}
 		}
-		echo "\n<!-- / Shareaholic - Facebook Open Graph Tags -->\n\n";
+		echo "\n<!-- / Shareaholic - Open Graph Tags -->\n\n";
     }
 } // end function
 

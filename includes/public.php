@@ -191,19 +191,7 @@ function shrsb_get_publisher_config($post_id) {
 	'dontShowShareCount' => $r['showShareCount'] == "0",
 	'shrlink'	=> $r['shrlink'],
   );
-  /*
-  if ($r['include_comfeed']) {
-    // Shareaholic doesn't support comment rss feeds, so we add it as a custom link.
-    $params['custom_link'] = array(
-      $r['comfeed_position'] => array(
-        'li_class' => 'custom-comfeed',
-        'link' => $r['feed_link'],
-        'tooltip' => __('Subscribe to the comments for this post?', 'shrsb'),
-        'style' => 'background-image:url('.SHRSB_PLUGPATH.'images/comfeed.png);',
-      ),
-    );
-  }
-  */
+
   shrsb_log("get_publisher_config completed");
   return array_filter($params);
 }
@@ -211,8 +199,6 @@ function shrsb_get_publisher_config($post_id) {
 
 function shrsb_get_shortener_settings(){
     global $shrsb_plugopts;
-    
-    
     $shorty = @$shrsb_plugopts['shorty'];
     $shortyapi = @$shrsb_plugopts['shortyapi'];
     $shortener_key = '';
@@ -230,9 +216,9 @@ function shrsb_get_shortener_settings(){
             default:
         }
     }
-    
     return $shortener_key;
 }
+
 /**
  * Returns array of all relevant information about the current post for sexy
  */
@@ -951,21 +937,6 @@ function get_sexy() {
 					'title'=>$title,
 				));
 				break;
-			case 'shr-yahoobuzz':
-				$socials.=bookmark_list_item($name, array(
-					'permalink'=>$perms,
-					'title'=>$title,
-					'yahooteaser'=>$shrsb_content,
-				));
-				break;
-			case 'shr-twittley':
-				$socials.=bookmark_list_item($name, array(
-					'permalink'=>urlencode($perms),
-					'title'=>$title,
-					'post_summary'=>$post_summary,
-					'default_tags'=>$d_tags,
-				));
-				break;
 			case 'shr-tumblr':
 				$socials.=bookmark_list_item($name, array(
 					'permalink'=>urlencode($perms),
@@ -1047,19 +1018,19 @@ function shrsb_publicScripts() {
     $spritegen = $default_spritegen ? 'spritegen_default' : 'spritegen';
     $spritegen_basepath = $default_spritegen ? SHRSB_PLUGPATH : SHRSB_UPLOADPATH;
     
-    //Beta script
+    // Beta script
     if ($shrsb_plugopts['shareaholic-javascript'] == '1' && !is_admin()){// && !get_post_meta($post->ID, 'Hide SexyBookmarks')) {
         $infooter = ($shrsb_plugopts['scriptInFooter'] == '1')?true:false;
         $localize_to = 'shareaholic-publishers-js';
         
-        // Enqueue the sb script only if the sexybookmark is enabled
+        // Enqueue the sb script only if sexybookmarks share buttons is enabled
         if(isset($shrsb_plugopts['sexybookmark']) && $shrsb_plugopts['sexybookmark'] == '1'){
-            wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
+            wp_enqueue_script('shareaholic-publishers-js', (empty($shrsb_debug['sb_script'])) ? shrsb_correct_protocol('http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-sb.min.js') : $shrsb_debug['sb_script'], null, SHRSB_vNum, $infooter);
         }
         
-        // Enqueue the tb script only if the topbar is enabled
+        // Enqueue the tb script only if the Top Bar is enabled
         if(isset($shrsb_tb_plugopts) && isset($shrsb_tb_plugopts['topbar']) && $shrsb_tb_plugopts['topbar'] == '1'){
-            wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol($spritegen_basepath.$spritegen.'/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
+            wp_enqueue_script('shareaholic-share-buttons-js',(empty($shrsb_debug['tb_script'])) ? shrsb_correct_protocol('http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-share-buttons.min.js'): $shrsb_debug['tb_script'], null, SHRSB_vNum, $infooter);    
             $localize_to = 'shareaholic-share-buttons-js';
         }
         

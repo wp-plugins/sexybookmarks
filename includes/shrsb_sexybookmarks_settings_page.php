@@ -51,7 +51,7 @@ function shrsb_sb_settings_page() {
         /* Short URLs End */
 		
 		update_option('SexyBookmarks', $shrsb_plugopts);
-        $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
+    $shrsb_plugopts['tweetconfig'] = urldecode($shrsb_plugopts['tweetconfig']);
 		delete_option('SHRSB_CustomSprite');
 		
 		echo '
