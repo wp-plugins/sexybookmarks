@@ -1,49 +1,46 @@
-=== SexyBookmarks | email, bookmark, share buttons ===
+=== Shareaholic | email, bookmark, share buttons ===
 Contributors: shareaholic
-Tags: Facebook, Facebook Like, Facebook Recommend, Twitter, Tweet Button, LinkedIn, URL Shortener, Bitly, TinyURL, Goo.gl, Googl, Google +1, Google Analytics, Google Plus, Wish List, Digg, Google Gmail, Google Bookmarks, Google Translate, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, add this, share this, sharing is sexy, sharing is caring, Reddit, Orkut, Netlog,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, shareaholic, shareholic, bookmarks, social, e-mail, email, Email Button, Social Share, Bookmark Button, share button, social bookmarking, bookmarks menu, bookmarking, share, share count, share bar, social media, seo, Analytics, Stats, Sharing, Saving, Posting, WPMU
+Tags: SexyBookmarks, SexyBookmark, Facebook, Twitter, LinkedIn, URL Shortener, Bitly, TinyURL, Supr, Goo.gl, Google +1, Google Analytics, Google Plus, Google, Instapaper, Wish List, Digg, Google Gmail, Google Notebook, Google Bookmarks, Translate, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, Bebo, Mister Wong, Evernote, Twine, Diigo, add this, addtoany, share this, share and follow, share and enjoy, sharing is sexy, sharing is caring, Mail, Yahoo, Reddit, Techmeme, Hacker News, Tweet Button, Twitter Button, Fark, Buffer, MySpace, Orkut, Plurk, Identi.ca, Hyves, Netlog, HubSpot,  WeHeartIt, Yandex, PrintFriendly, Print, ReadItLater, Yammer, Pinterest, Google Translate, Pinboard, Shareaholic, Shareholic, Bookmarks, Social, Email Button, Social Share, Bookmark Button, Share Button, Social Bookmarking, Bookmarks Menu, Bookmarking, Share, Share Count, Sharebar, Social Media, SEO, Analytics, Stats, Sharing, Saving, Posting, Facebook Like, Facebook Recommend, Facebook Send, WPMU, nrelate, outbrain, linkwithin, Related Content, Related Posts, Thumbnails, Recommendations
 Requires at least: 2.7
-Tested up to: 3.3.1
-Stable tag: 5.0.0.1
+Tested up to: 3.5.1
+Stable tag: 6.1.3.1
 
-Adds an attractive social bookmarking menu to your posts, pages, index, or any combination of the three.
+Adds an attractive social bookmarking menu and related content widget to your posts, pages, index, or any combination of the three.
 
 == Description ==
-Shareaholic has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **submit your articles** to numerous social bookmarking sites. 
+Shareaholic has proven time and time again to be an extremely useful and successful tool in getting your readers to actually **discover** and **submit your articles** to numerous social bookmarking sites.
 
 Our sole aim was to stray away from the "in the box" thinking behind most social bookmarking plugins, and add a little flair that would entice your readers, rather than deterring them with microscopic icons that get lost in pages heavy laden with content.
 
 = Recent Updates =
-* Pinterest support!
-* Facebook Like Button, Facebook Send, Google +1
-* Social Analytics - meet the people who spread your content the most
-* Share Counters for Twitter and Facebook
+* Recommendations & Related Content - Increase reader engagement and pageviews by highlighting related content from across your site
+* Social Analytics - Actionable and easy to understand
+* Classic Bookmarks - Classic Bookmarks offer a clean-cut and professional look for your blog
+* Full support for Facebook Like Button, Facebook Send, Google Plus, Pinterest
+* Share Counters for Twitter, Facebook, LinkedIn, etc
 * Official support for Google's URL shortener (goo.gl) and Google Analytics
-* Switched over to use the [Share API](http://www.shareaholic.com/api/)
-* Fix for Arras theme
-* Fixed slow page load issue
-* Loads of behind the scenes performance improvements
+* Utilizes the [Share API](https://shareaholic.com/api/)
 * Localized in 15+ languages
 
 = Recently Added Services =
 * Pinterest
 * Google Plus
-* Yahoo! Mail
-* Google Gmail
-* Hotmail
 * Shareaholic Email This
 
 = Social Analytics =
 
-Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free!
+Shareaholic reports all of your important actionable social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors.
 
-Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it blazing fast. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use.
+= Performance =
 
-Shareaholic is trusted by hundreds of thousands of publishers and touches almost 300 million people each month. Designed and built with all the love in the world in Cambridge, Massachusetts.
+We use industry best practices to make our code as fast and unobtrusive as possible, meaning - for example - that the performance impact is comparable to adding Google Analytics to your site. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it as blazing fast and reliable as possible. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use.
 
-Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics, Quantcast, AppNexus and DataXu to enhance its data. 
+Shareaholic is used and trusted by hundreds of thousands of publishers and touches almost 300 million people each month.  Designed and built with all the love in the world in Cambridge, Massachusetts.
+
+Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics and AppNexus to enhance its data. 
 
 
-[Support](http://getsatisfaction.com/shareaholic/products/shareaholic_shareaholic_for_wordpress_sexybookmarks) | [Privacy](http://www.shareaholic.com/privacy/) | [Terms](http://www.shareaholic.com/terms/) | [API](http://www.shareaholic.com/api/) | [Social Analytics](http://www.shareaholic.com/siteinfo/)
+[Support](http://support.shareaholic.com/) | [Privacy](https://shareaholic.com/privacy/) | [Terms](https://shareaholic.com/terms/) | [API](https://shareaholic.com/api/) | [Social Analytics](https://shareaholic.com/publishers/analytics/)
 
 == Other Notes ==
 
@@ -51,8 +48,9 @@ Note: The analytics portion of Shareaholic may use trusted 3rd party services li
 
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
-Listed here are credits and special thanks to some of you who have helped us out a great deal:  [Shareaholic.com](http://www.shareaholic.com/tools/wordpress/credits)
+Listed here are credits and special thanks to some of you who have helped us out a great deal:
 
+ [Complete credits on Shareaholic.com](https://shareaholic.com/tools/wordpress/credits)
 
 = Translations =
 * Credit goes to [Maitre Mo](http://maitremo.fr) for translating to French
@@ -72,29 +70,23 @@ Listed here are credits and special thanks to some of you who have helped us out
 * Credit goes to [Magnus Th&ouml;rnblad](http://www.th&ouml;rnblad.se) for translating to Swedish
 * Credit goes to [Kerem Erkan](http://keremerkan.net) for updating the Turkish translation
 * Credit goes to [Nick Mouratidis](http://www.kepik.gr) for translating to Greek
-* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translation to Portuguese
-* Credit goes to [Barukar](http://www.classinoiva.com.br) for translation to Portuguese (Brazil)
-
-= Thanks =
-* Thanks to [Saidmade Labs](http://labs.saidmade.com/) for the original plugin core
-* Thanks to [Liam McKay](http://wefunction.com/2008/07/function-free-icon-set/) for the original "Function Icon Set"
-* Thanks to [Kieran Smith](http://www.kieransmith.net/) for additional development help.
-* Thanks to [Yuri Gribov](http://wp-ru.ru) for origianl i18n help.
-* Thanks to [Crey Design](http://creydesign.com) for the new background image.
-* Thanks to [Sascha Carlin](http://itst.net/) for the patch to make the plugin work with single instance of menu
-* Thanks to [Artem Russakovskii](http://beerpla.net) for help with restricting location of scripts and styles
-* Thanks to [Konstantin Kovshenin](http://kovshenin.com/) for help with the bit.ly bug
-* Thanks to [Alison Barrett](http://alisothegeek.com/2009/10/fugue-sprite-css/) for the idea of making a fugue icon sprite
-* Thanks to [Norman Yung](http://www.robotwithaheart.com/) for previous development help
-* Thanks to [Gautam Gupta](http://gaut.am/) for previous development help
-* Thanks to [Kerem Erkan](http://keremerkan.net) for the Dynamic Sprite Generator
-
+* Credit goes to [Manuel In&aacute;cio](http://minacio.com/blog) for translating to Portuguese
+* Credit goes to [Barukar](http://www.classinoiva.com.br) for translating to Portuguese (Brazil)
+* Credit goes to [Alexander Ovsov](http://www.webhostinggeeks.com) for translating to Belarusian
+* Credit goes to Bartosz Chojnacki for translating to Polish
+* Credit goes to Joan Jordi Berdullas Segura for translating to Catalan
+* Credit goes to [Nikolay Nikolov](http://statiiki.com/) for translating to Bulgarian
+* Credit goes to [Nata Strazda](http://www.webhostinghub.com/) for translating to Lithuanian
 
 == Screenshots ==
 
-1. A quick preview of the final outcome (excess hidden)
-2. Another preview of the final outcome with excess networks displayed upon hover
-3. A preview of the admin panel associated with the plugin
+1. Sexy Share Buttons - A quick preview of the final outcome (excess hidden)
+2. Sexy Share Buttons - Another preview of the final outcome with excess networks displayed upon hover
+3. Classic Share Buttons - Classic Bookmarks offer a clean-cut and professional look for your blog
+4. Recommendations - Drive pageviews and increase time on site with this related content widget
+5. Top Bar - Drive more shares to your content with this additional call-to-action
+6. An 100% integrated and customizable approach - It all comes together nicely in one place!
+
 
 == Installation ==
 
@@ -125,16 +117,58 @@ You can still configure the other options available when inserting manually and 
 
 == Frequently Asked Questions ==
 = Where can I find a detailed FAQ? =
-Please see here: [Frequently Asked Questions](http://www.shareaholic.com/tools/wordpress/faq)
+Please see here: [Frequently Asked Questions](https://shareaholic.com/tools/wordpress/faq)
 
 = Where can I get detailed Usage & Installation instructions? =
-Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/tools/wordpress/usage-installation)
+Please see here: [Usage & Installation Instructions](https://shareaholic.com/tools/wordpress/usage-installation)
 
 
 == Changelog ==
 
-= 5.0.0.1 =
+= 6.1.3.1 =
+* Bug fixes & event reporting
+
+= 6.1.3.0 =
+* Fixed Bitly not picking up custom credentials
+* Fixed links to Help Center docs
+* Fixed Twitter template not getting picked up by Like Button Sets, Classic Bookmarks
+* Deprecated Squidoo, Posterous (can no longer share to these services)
+* Deprecated Awe.sm, Su.pr
+
+= 6.1.2.0 =
+* Fix for Facebook Like button error (Facebook now requires non-encoded URL's to be passed)
+
+= 6.1.1.0 =
+* JavaScript is now hosted on Amazon's CDN to make everything blazing fast!
+* Removed Strands, FAQPal, Tipd, Sphinn, Twittley (services have shut down)
+* Removed Technorati, Ning (can no longer share to these services)
+
+= 6.1.0.0 =
+* Fixed syntax error caught by latest jQuery
+* Fixed encoding errors
+* Support for Shareaholic Content Tags - shareaholic:image and shareaholic:site_name
+* Update links to new analytics
+* Admin panel code optimizations
+* Load time optimization by reducing # of Twitter API calls
+* Deprecated "comment feed" service
+
+= 6.0.0.3 =
+* Updated screenshots
+
+= 6.0.0.1 =
+* New feature: Recommendations - drive more pageviews and engagement by displaying per post Related Posts to your readers (enable via the admin panel)
+* New sharing style - Classic Bookmarks
+* Redesigned Dashboard
+* Cleaned up legacy code for greater efficiency
+
+= 5.0.0.4 =
 * MAJOR UPDATE!
+* New translations!
+  -> Belarusian (by Alexander Ovsov)
+  -> Polish (by Bartosz Chojnacki)
+  -> Catalan (by Joan Jordi Berdullas Segura)
+  -> Bulgarian (by Nikolay Nikolov)
+  -> Lithuanian (by Nata Strazda)
 * Added Google Plus as a service to SexyBookmarks
 * Added support to show Topbar across different types of pages (posts, pages, index & category)
 * Added Share Counts for LinkedIn
@@ -144,9 +178,8 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Social Analytics are now also viewable by contributors, authors and editors (previously limited to admins)
 * Fixed bug: Twitter counter display position in Like Button Set
 * Fixed bug: Nofollow links in "new mode"
+* New activation page
 * Numerous performance optimizations 
-
-= 4.0.6.10 =
 * Custom Twitter template is now used universally
 * URL shortener settings now used universally
 * Cleaned up legacy code for greater efficiency
@@ -203,8 +236,8 @@ Please see here: [Usage & Installation Instructions](http://www.shareaholic.com/
 * Fixed jQuery IE bug (will be much more stable in IE)
 * Custom sprite generation certified compatible with WordPress Multisite
 * Shareaholic's proprietary data attributes are now HTML5-compliant.
-* FAQ moved to http://www.shareaholic.com/tools/wordpress/faq
-* Usage & Installation guide moved to http://www.shareaholic.com/tools/wordpress/usage-installation
+* FAQ moved to https://shareaholic.com/tools/wordpress/faq
+* Usage & Installation guide moved to https://shareaholic.com/tools/wordpress/usage-installation
 * Added browser extension promo
 * Added Support for Open Graph Tags (for Facebook and Google +1 sharing) - Featured Image or First Gallery Image in post will be selected for Open Graph Tag
 * Added links to live support in admin panel

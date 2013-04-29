@@ -85,17 +85,15 @@ function bookmark_list_item($name, $opts=array()) {
     																		'ctype='
     																		));
   }
-  else if($name == 'shr-comfeed') {// Otherwise, use default baseUrl format
-      $url=$shrsb_bookmarks_data[$name]['baseUrl'];
-  }
+
   else {
 	 $url = shrsb_correct_protocol($shrsb_plugopts['shrbase']).'/api/share/?'.implode('&amp;',array(	
 																			'title=TITLE',
 																			'link=PERMALINK',
 																			'notes='.$post_info['notes'],
 																			'short_link='.$post_info['short_link'],
-                                                                            'shortener='.$post_info['shortener'],
-                                                                            'shortener_key='.$post_info['shortener_key'],
+                                      'shortener='.$post_info['shortener'],
+                                      'shortener_key='.$post_info['shortener_key'],
 																			'v=1',
 																			'apitype=1',
 																			'apikey='.$shrsb_plugopts['apikey'],
