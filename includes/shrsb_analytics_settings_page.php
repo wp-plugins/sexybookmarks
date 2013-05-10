@@ -7,7 +7,7 @@
 function shrsb_analytics_settings_page() {
 	global $shrsb_analytics;
     // Add all the global varaible declarations for the $shrsb_tb_plugopts
-	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>'.__('Shareaholic Analytics Settings', 'shrsb').'</h2></div>';
+	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>'.__('Social Analytics Settings', 'shrsb').'</h2></div>';
     //Defaults - set if not present
     if (!isset($_POST['reset_all_options_analytics'])){$_POST['reset_all_options_analytics'] = '1';}
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
@@ -46,7 +46,7 @@ function shrsb_analytics_settings_page() {
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
-	if(isset($_POST['save_changes_tb'])) {
+	if(isset($_POST['save_changes_sa'])) {
 
     // Set success message
     $status_message = __('Your changes have been saved successfully!', 'shrsb');
@@ -55,7 +55,11 @@ function shrsb_analytics_settings_page() {
         'pubGaSocial', 'pubGaKey'
     )as $field) {
         if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
-            $shrsb_analytics[$field] = $_POST[$field];
+			$fieldval = $_POST[$field];
+			if($field == 'pubGaSocial' && $fieldval != $shrsb_analytics[$field]) {
+				shr_sendTrackingEvent('FeatureToggle', array('f_updated' => 'f_analytics', 'enabled' => ($fieldval == '0' ? 'true' : 'false')));
+			}
+            $shrsb_analytics[$field] = $fieldval;
         } else {
             $shrsb_analytics[$field] = NULL;
         }
@@ -99,7 +103,7 @@ function shrsb_analytics_settings_page() {
                     <h2 class="fugue f-status"><?php _e('Shareaholic Social Analytics - Grow Your Traffic and Referrals', 'shrsb'); ?></h2>
                 </div>
 				<div class="box-mid-body">
-                        <div style="padding:8px;background:#FDF6E5;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/line-chart.png" align="right" alt="New!" />
+                        <div style="padding:8px;background:#FDF6E5;"><img src="<?php echo SHRSB_PLUGPATH; ?>images/chart.png" align="right" alt="New!" />
                                 <?php
 
 									$parse = parse_url(get_bloginfo('url'));
@@ -137,7 +141,7 @@ function shrsb_analytics_settings_page() {
                                                 $('#bonusShareTopUser').show();
                                                 var face_ul = $('<ul id="bonusShareFacesUL"/>');
                                                 for(var i=0; i<obj.length; ++i) {
-                                                    var shr_profile_url = "http://www.shareaholic.com/" + obj[i].username;
+                                                    var shr_profile_url = "https://shareaholic.com/" + obj[i].username;
                                                     face_ul.append(
                                                         $("<li class='bonusShareLi'>").append("<a target='_blank' href="+shr_profile_url+"><img class='bonusShareFaces' title=" + obj[i].username + " src=" + obj[i].picture_url + "></img></a>")
                                                     );
@@ -153,14 +157,15 @@ function shrsb_analytics_settings_page() {
                                 <div id="bonusShareTopUser" style="display:none"><b><?php _e('Meet who spreads your content the most:', 'shrsb'); ?></b></div>
 
                                 <br />
-                                <div style="background: url(http://www.shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
+                                <div style="background: url(https://shareaholic.com/media/images/border_hr.png) repeat-x scroll left top; height: 2px;"></div>
                                 <br />
-                                  <?php  echo sprintf(__('<span style="font-size: 12px;">Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.</span> <br><br> <b><span style="color:#CC1100;">What are you waiting for?</span> You can access detailed %ssocial engagement analytics%s about your website right now.</b>', 'shrsb'), '<a href="http://www.shareaholic.com/siteinfo/'.$parse['host'].'">', '</a>');
+                                  <?php  echo sprintf(__('<span style="font-size: 12px;">Shareaholic reports all of your important social media metrics including popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors for free.</span> <br><br> <b><span style="color:#CC1100;">What are you waiting for?</span> You can access detailed %ssocial engagement analytics%s about your website right now.</b>', 'shrsb'), '<a href="https://shareaholic.com/publishers/analytics/'.$parse['host'].'/">', '</a>');
                                 ?>
 
                         </div>
                 </div>
             </li>
+
 
        <?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
 	
@@ -172,19 +177,21 @@ function shrsb_analytics_settings_page() {
 
                 <div class="padding">
                     <div id="genopts">
-                        <table><tbody>
+                        <table>
+                          <tbody>
                                 <tr>
                                     <td><span class="shrsb_option"><?php _e('Enable Google Analytics Social Tracking', 'shrsb'); ?> (<a href="http://code.google.com/apis/analytics/docs/tracking/gaTrackingSocial.html" target="_blank">?</a>)</span></td>
                                     <td WIDTH="120"><label><input <?php echo ((@$shrsb_analytics['pubGaSocial'] == "1")? 'checked="checked"' : ""); ?> name="pubGaSocial" id="pubGaSocial-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label></td>
                                     <td WIDTH="120"><label><input <?php echo ((@$shrsb_analytics['pubGaSocial'] == "0")? 'checked="checked"' : ""); ?> name="pubGaSocial" id="pubGaSocial-no" type="radio" value="0" /> <?php _e('No', 'shrsb'); ?></label></td>
                                 </tr>
 
-
-                                <tr class="pubGaSocial_prefs" style="display:none">
-                                            <td><label class="tab" for="pubGaKey" style="margin-top:7px;"><?php _e('Your Google Analytics Property ID:', 'shrsb'); ?></label></td>
-                                            <td colspan="2"><input style="margin-top:7px;" type="text" id="pubGaKey" name="pubGaKey" size="35" placeholder="ex. UA-XXXXXXXX-X" value="<?php echo @$shrsb_analytics['pubGaKey']; ?>" /></td>
+                                <tr class="pubGaSocial_prefs" style="display:none;">
+                                    <td><label class="tab" for="pubGaKey" style="margin-top:7px;"><?php _e('Your Google Analytics Property ID:', 'shrsb'); ?></label></td>
+                                    <td colspan="2"><input style="margin-top:7px;" type="text" id="pubGaKey" name="pubGaKey" size="35" placeholder="ex. UA-XXXXXXXX-X" value="<?php echo @$shrsb_analytics['pubGaKey']; ?>" /></td>
                                 </tr>
-                        </tbody></table>
+                                
+                        </tbody>
+                      </table>
                     </div>
                 </div>
             </li>
@@ -196,12 +203,12 @@ function shrsb_analytics_settings_page() {
 		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
 			
 			<div style="clear:both;"></div>
-			<input type="hidden" name="save_changes_tb" value="1" />
-        	<div class="shrsbsubmit"><input type="submit" id="save_changes_tb" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
+			<input type="hidden" name="save_changes_sa" value="1" />
+        	<div class="shrsbsubmit"><input type="submit" id="save_changes_sa" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
 		</form>
 		<form action="" method="post">
 			<input type="hidden" name="reset_all_options_analytics" id="reset_all_options_analytics" value="0" />
-			<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
+			<!-- <div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div> -->
 		</form>
 		
 	<?php } ?>	
@@ -241,7 +248,7 @@ function shrsb_analytics_page() {
                                 <br><br>
                                 <?php _e('Register your account today to recieve update info via email.', 'shrsb'); ?>
                                 <div class="shrsbsubmit">
-                                    <input type="button" onclick ="window.open('http://www.shareaholic.com/publishers_apps/new_publishers_app')" value="<?php _e('Get Share Pro', 'shrsb'); ?>" />
+                                    <input type="button" onclick ="window.open('https://shareaholic.com/publishers_apps/new_publishers_app')" value="<?php _e('Get Share Pro', 'shrsb'); ?>" />
                                 </div>
                             </p>
                         </div>
