@@ -28,11 +28,10 @@ function shrsb_analytics_set_options( $action = NULL ) {
     //Get the settings from the database
     $database_Settings =  get_option($option_name);
 
-
     if( $database_Settings ) {//got the settings in the database
 
         // Check only when upgrading
-        if( SHRSB_UPGRADING ) {
+        if( SHRSB_UPGRADING == TRUE ) {
             $need_to_update = false;
 
             //Check whether all the settings are present or not
@@ -42,11 +41,8 @@ function shrsb_analytics_set_options( $action = NULL ) {
                     $need_to_update = true;
                 }
             }
-            
             if( $need_to_update ) update_option( $option_name, $database_Settings );
-
         }
-
         return $database_Settings;
 
     } else {

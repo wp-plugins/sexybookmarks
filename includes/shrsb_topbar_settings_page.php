@@ -7,7 +7,7 @@
 function shrsb_tb_settings_page() {
 	global $shrsb_tb_plugopts;
     // Add all the global varaible declarations for the $shrsb_tb_plugopts
-	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Top Bar Settings</h2></div>';
+	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Share Buttons: Top Bar Settings</h2></div>';
     //Defaults - set if not present
     if (!isset($_POST['reset_all_options_tb'])){$_POST['reset_all_options_tb'] = '1';}
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
@@ -107,7 +107,7 @@ function shrsb_tb_settings_page() {
 						<div id="genopts">
 
                                     <table><tbody>
-                                    <tr>
+                                    <tr class="alert-success">
                                         <td><span class="shrsb_option"><?php _e('Enable the Top Sharing Bar?', 'shrsb'); ?> </span>
                                         </td>
                                         <td style="width:125px"><label><input <?php echo (($shrsb_tb_plugopts['topbar'] == "1")? 'checked="checked"' : ""); ?> name="topbar" id="topbar-yes" type="radio" value="1" /> <?php _e('Yes', 'shrsb'); ?></label>
