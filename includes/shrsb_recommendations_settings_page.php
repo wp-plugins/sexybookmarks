@@ -108,7 +108,7 @@ function shrsb_recommendations_settings_page() {
     <div id="shrsb-col-left" style="width:100%">
 		<ul id="shrsb-sortables">
 
-		   <?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+		   <?php if (current_user_can('manage_options')){ ?>
 	
           <li>
             <div class="box-mid-head">
@@ -175,8 +175,8 @@ function shrsb_recommendations_settings_page() {
 		<?php } ?>
 				
 		</ul>
-		
-		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+
+		<?php if (current_user_can('manage_options')){ ?>
 			
 			<div style="clear:both;"></div>
 			<input type="hidden" name="save_changes_rd" value="1" />
