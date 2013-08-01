@@ -119,7 +119,7 @@ function shrsb_analytics_settings_page() {
             </li>
 
 
-       <?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+       <?php if (current_user_can('manage_options')){ ?>
 	
           <li>
             <div class="box-mid-head">
@@ -152,7 +152,7 @@ function shrsb_analytics_settings_page() {
 				
 		</ul>
 		
-		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+		<?php if (current_user_can('manage_options')){ ?>
 			
 			<div style="clear:both;"></div>
 			<input type="hidden" name="save_changes_sa" value="1" />
