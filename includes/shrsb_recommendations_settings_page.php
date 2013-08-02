@@ -9,47 +9,13 @@ function shrsb_recommendations_settings_page() {
   
     // Add all the global varaible declarations for the $shrsb_recommendations_plugopts
 	echo '<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>'.__('Recommendations: Related Content Settings', 'shrsb').'</h2></div>';
-    //Defaults - set if not present
-    if (!isset($_POST['reset_all_options_recommendations'])){$_POST['reset_all_options_recommendations'] = '1';}
-    if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
-    
-	if($_POST['reset_all_options_recommendations'] == '0') {
-		echo '
-		<div id="shrsbresetallwarn" class="dialog-box-warning" style="float:none;width:97%;margin-top:20px;">
-			<div class="dialog-left fugue f-warn">
-				'.__("WARNING: You are about to reset all plugin settings to their default state! Do you wish to continue?", "shrsb").'
-			</div>
-			<div class="dialog-right">
-				<form action="" method="post" id="resetalloptionsaccept">
-					<label><input name="shrsbresetallwarn-choice" id="shrsbresetallwarn-yes" type="radio" value="yes" />'.__('Yes', 'shrsb').'</label> &nbsp; <label><input name="shrsbresetallwarn-choice" id="shrsbresetallwarn-cancel" type="radio" value="cancel" />'.__('Cancel', 'shrsb').'</label>
-				</form>
-			</div>
-		</div>';
-	}
-
-	//Reset all options to default settings if user clicks the reset button
-	if($_POST['shrsbresetallwarn-choice'] == "yes") { //check for reset button click
-
-		$shrsb_recommendations = shrsb_recommendations_set_options('reset');
-        
-		//delete_option('SHRSB_CustomSprite');
-		echo '
-		<div id="statmessage" class="shrsb-success">
-			<div class="dialog-left fugue f-success">
-				'.__('All settings have been reset to their default values.', 'shrsb').'
-			</div>
-			<div class="dialog-right">
-				<img src="'.SHRSB_PLUGPATH.'images/success-delete.jpg" class="del-x" alt=""/>
-			</div>
-		</div>';
-	}
 
 	// processing form submission
 	$status_message = "";
 	$error_message = "";
 	$setting_changed = false;
 	
-	if(isset($_POST['save_changes_rd'])) {
+	if(isset($_POST['save_changes_rd']) && check_admin_referer('save-settings','shareaholic_nonce')) {
 
     // Set success message
     $status_message = __('Your changes have been saved successfully!', 'shrsb');
@@ -104,11 +70,11 @@ function shrsb_recommendations_settings_page() {
 	}
 ?>
 
-<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
+<form name="shareaholic-recommendations" id="shareaholic-recommendations" action="" method="post">
     <div id="shrsb-col-left" style="width:100%">
 		<ul id="shrsb-sortables">
 
-		   <?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+		   <?php if (current_user_can('manage_options')){ ?>
 	
           <li>
             <div class="box-mid-head">
@@ -175,16 +141,13 @@ function shrsb_recommendations_settings_page() {
 		<?php } ?>
 				
 		</ul>
-		
-		<?php if (shrsb_get_current_user_role()=="Administrator"){ ?>
+
+		<?php if (current_user_can('manage_options')){ ?>
 			
 			<div style="clear:both;"></div>
 			<input type="hidden" name="save_changes_rd" value="1" />
-        	<div class="shrsbsubmit"><input type="submit" id="save_changes_rd" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
-		</form>
-		<form action="" method="post">
-			<input type="hidden" name="reset_all_options_recommendations" id="reset_all_options_recommendations" value="0" />
-			<!-- <div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div> -->
+			<?php wp_nonce_field('save-settings','shareaholic_nonce'); ?>
+      <div class="shrsbsubmit"><input type="submit" id="save_changes_rd" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
 		</form>
 		
 	<?php } ?>	
