@@ -3,7 +3,7 @@ Contributors: shareaholic
 Tags: sexybookmarks, shareaholic, shareholic, facebook, twitter, linkedin, URL Shortener, bitly, tinyurl, Goo.gl, Google+1, Google Analytics, Google Plus, Google, Instapaper, Wish List, Digg, Gmail, Google Bookmarks, Translate, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, mister wong, evernote, add this, addtoany, share this, sharethis, share and follow, share and enjoy, sharing is sexy, sharing is caring, yahoo, reddit, hackernews, tweet button, twitter button, fark, buffer, myspace, orkut, netlog, hubspot, weheartit, printfriendly, yammer, pinterest, google translate, bookmarks, social, email button, social share, socialize, sociable, sharebar, bookmark button, share button, social bookmarking, bookmarks menu, bookmarking, share, seo, analytics, stats, sharing, facebook like, facebook recommend, WPMU, mutisite, shortcode, yaarp, yarpp, nrelate, outbrain, linkwithin, related content, related posts, related, popular posts, popular, thumbnails, recommendations
 Requires at least: 2.7
 Tested up to: 3.6
-Stable tag: 6.1.4.1
+Stable tag: 6.1.5.0
 
 Adds an attractive social bookmarking menu and related content widget to your posts, pages, index, or any combination of the three.
 
@@ -126,6 +126,9 @@ Please see here: [Frequently Asked Questions](https://shareaholic.com/tools/word
 Please see here: [Usage & Installation Instructions](https://shareaholic.com/tools/wordpress/usage-installation)
 
 == Changelog ==
+
+= 6.1.5.0 =
+* Fix for Cross-Site Request Forgery vulnerability. Upgrade immediately. Credits for finding and reporting the vulnerability go to Charlie Eriksen via Secunia SVCRP.
 
 = 6.1.4.1 = 
 * Shareaholic is 100% compatible with WordPress 3.6! Yay!
@@ -854,6 +857,9 @@ Please see here: [Usage & Installation Instructions](https://shareaholic.com/too
 * Initial release!
 
 == Upgrade Notice ==
+
+= 6.1.5.0 = 
+Fix for security vulnerability. Upgrade immediately.
 
 = 6.1.3.5 =
 Several bug fixes and performance improvements. This is a highly recommended upgrade!

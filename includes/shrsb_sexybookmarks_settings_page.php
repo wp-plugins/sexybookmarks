@@ -12,14 +12,14 @@ function shrsb_sb_settings_page() {
     if (!isset($_POST['shrsbresetallwarn-choice'])){$_POST['shrsbresetallwarn-choice'] = 'no';}
     if (!isset($_POST['custom-mods'])  || $shrsb_plugopts['custom-mods'] == ""){$_POST['custom-mods'] = 'no';}
 
-	if($_POST['reset_all_options_sb'] == '0') {
+	if(($_POST['reset_all_options_sb'] == '0') && check_admin_referer('reset-settings','shareaholic_nonce')) {
 		echo '
 		<div id="shrsbresetallwarn" class="dialog-box-warning" style="float:none;width:97%;">
 			<div class="dialog-left fugue f-warn">
 				'.__("WARNING: You are about to reset all settings to their default state! Do you wish to continue?", "shrsb").'
 			</div>
 			<div class="dialog-right">
-				<form action="" method="post" id="resetalloptionsaccept">
+				<form action="" method="post" id="resetalloptionsaccept">'. wp_nonce_field('reset-settings','shareaholic_nonce') .'
 					<label><input name="shrsbresetallwarn-choice" id="shrsbresetallwarn-yes" type="radio" value="yes" />'.__('Yes', 'shrsb').'</label> &nbsp; <label><input name="shrsbresetallwarn-choice" id="shrsbresetallwarn-cancel" type="radio" value="cancel" />'.__('Cancel', 'shrsb').'</label>
 				</form>
 			</div>
@@ -95,7 +95,7 @@ function shrsb_sb_settings_page() {
 	$error_message = "";
 	$setting_changed = false;
 	
-	if(isset($_POST['save_changes_sb'])) {
+	if(isset($_POST['save_changes_sb']) && check_admin_referer('save-settings','shareaholic_nonce')) {
 
     if(isset($_POST['bookmark']['shr-fleck'])) {
       unset($_POST['bookmark']['shr-fleck']);
@@ -833,12 +833,13 @@ function shrsb_sb_settings_page() {
 		</ul>
 		<div style="clear:both;"></div>
 		<input type="hidden" name="save_changes_sb" value="1" />
+		<?php wp_nonce_field('save-settings','shareaholic_nonce'); ?>
         <div class="shrsbsubmit"><input type="submit" id="save_changes_sb" value="<?php _e('Save Changes', 'shrsb'); ?>" /></div>
 	</form>
 	<form action="" method="post">
 		<input type="hidden" name="reset_all_options_sb" id="reset_all_options_sb" value="0" />
+		<?php wp_nonce_field('reset-settings','shareaholic_nonce'); ?>
 		<div class="shrsbreset"><input type="submit" value="<?php _e('Reset Settings', 'shrsb'); ?>" /></div>
-        
 	</form>
 
 <div id="third-party-submit-modal" class="reveal-modal" style="width: 520px;">

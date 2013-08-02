@@ -3,7 +3,7 @@
 Plugin Name: Shareaholic | share buttons, analytics, related posts
 Plugin URI: https://shareaholic.com/publishers/
 Description: Whether you want to get people sharing, grow your fans, make money, or know who's reading your content, Shareaholic will help you get it done. See <a href="admin.php?page=shareaholic.php">configuration panel</a> for more settings.
-Version: 6.1.4.0
+Version: 6.1.5.0
 Author: Shareaholic
 Author URI: https://shareaholic.com
 Credits & Thanks: https://shareaholic.com/tools/wordpress/credits
@@ -14,7 +14,7 @@ Credits & Thanks: https://shareaholic.com/tools/wordpress/credits
 *   @desc Define Plugin version
 */
 
-define('SHRSB_vNum','6.1.4.0');
+define('SHRSB_vNum','6.1.5.0');
 
 /*
 *   @desc Create Text Domain For Translations
@@ -337,7 +337,7 @@ function showUpdateNotice() {
 
   if(!shrsb_check_activation()){
       // Don't show the connect notice on the shareaholic settings page.
-      if ( (false !== strpos( $_SERVER['QUERY_STRING'], 'page=sexy-bookmark' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_sexybookmarks' )) ||  (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_analytics' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_topbar' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_recommendations' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_classicbookmarks' )))
+      if ( (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic.php' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_sexybookmarks' )) ||  (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_analytics' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_topbar' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_recommendations' )) || (false !== strpos( $_SERVER['QUERY_STRING'], 'page=shareaholic_classicbookmarks' )))
           return;
       echo '
       <div id="activate_shr" onclick="location.href=\'admin.php?page=shareaholic.php\';" style="cursor: pointer;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#6aafcf;border:1px solid #2A8CBA;color:white;font-size:14px;font-weight:bold;height:auto;margin:30px 15px 15px 0px;overflow:hidden;padding:4px 10px 6px;line-height:30px;text-shadow: 0px 1px 1px 
@@ -432,33 +432,6 @@ function _hide_options_meta_box_save( $post_id ) {
 
 add_action('admin_notices', 'showUpdateNotice', 12);
 
-if(strnatcmp(phpversion(),'5.0') < 0) {
-    //add_action('admin_notices', 'php_version_uncompatible', 12);
-    // Since we have the health status we dont need php upgrade notice
-} else {
-    // shareaholic professional features authentication class
-    require_once 'includes/shr_pub_pro.php';
-}
-
-function php_version_uncompatible() {
-    //Show message to only Admins
-    if (current_user_can('activate_plugins')){
-
-    echo '<div id="update_sb" style="border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background:#feb1b1;border:1px solid #fe9090;color:#820101;font-size:10px;font-weight:bold;height:auto;margin:35px 15px 0 0;overflow:hidden;padding:4px 10px 6px;">
-        <div style="background:url('.SHRSB_PLUGPATH.'images/custom-fugue-sprite.png) no-repeat 0 -525px;margin:2px 10px 0 0;float:left;line-height:18px;padding-left:22px;">
-          '.sprintf(__('NOTICE: We have noticed that you are using an old version of PHP. It is highly recommended that you upgrade to PHP 5 or higher to avail certain advanced Shareaholic features.  Also, if you do not upgrade to PHP 5 you will not be able to run WordPress 3.2+', 'shrsb'), '<a href="admin.php?page=shareaholic.php" style="color:#ca0c01">', '</a>').'
-        </div>
-      </div>';
-  }
-}
-
-function shrsb_account_page() {
-    global $shrsb_plugopts;
-    $apikey = $_POST['apikey'] ? $_POST['apikey'] : $shrsb_plugopts['apikey'] ;
-    $bAuth = shrsb_authenticate_user($apikey);
-    shrsb_authentication_page($bAuth ? $apikey : null);
-}
-
 function shrsb_topbar_settings(){
     require_once 'includes/shrsb_settings_page.php';  
     if(!shrsb_check_activation())
@@ -502,11 +475,11 @@ function shrsb_first_page(){
   require_once 'includes/shrsb_activation_page.php';
   shrsb_display_activation();
 }
-
+  
 function shrsb_check_activation(){
   $activated = get_option('SHR_activate');
   if($activated == 0 || $activated === false){ 
-    if(isset($_POST['activate']) && $_POST['activate'] == 1){
+    if(isset($_POST['activate']) && $_POST['activate'] == 1 && check_admin_referer('save-settings','shareaholic_nonce')){
       update_option("SHR_activate",1);
       return true;
     }
@@ -538,11 +511,6 @@ function shrsb_sexybookmarks_settings(){
   }
 }
 
-function shrsb_authenticate_user($api_key = null) {
-    $shr_pub_class = SHR_PUB_PRO::getInstance();
-    $auth = $shr_pub_class->set_api_key($api_key);
-    return $auth;
-}
 
 //add sidebar link to settings page
 add_action('admin_menu', 'shrsb_menu_link');
@@ -559,11 +527,6 @@ function shrsb_menu_link() {
     $shrsb_recommendations_page = add_submenu_page( basename(__FILE__), __( 'Related Content' ), __( 'Related Content', 'shrsb' ), 'administrator', 'shareaholic_recommendations.php', 'shrsb_recommendations_settings' );
     
 		$shrsb_sexybookmarks_page = add_submenu_page( basename(__FILE__), __( 'SexyBookmarks' ), __( 'SexyBookmarks', 'shrsb' ), 'administrator', 'shareaholic_sexybookmarks.php', 'shrsb_sexybookmarks_settings' );
-
-    /*
-    $shrsb_account_page = add_submenu_page( basename(__FILE__), __( 'My Account' ), __( 'My Account', 'shrsb' ),
-    'administrator', 'shareaholic_account.php', 'shrsb_account_page' );
-    */
     
     $shrsb_cb_page = add_submenu_page( basename(__FILE__), __( 'ClassicBookmarks' ), __( 'ClassicBookmarks', 'shrsb' ), 'administrator', 'shareaholic_classicbookmarks.php', 'shrsb_cb_settings' );
     $shrsb_topbar_page = add_submenu_page( basename(__FILE__), __( 'Top Bar' ), __( 'Top Bar', 'shrsb' ), 'administrator', 'shareaholic_topbar.php', 'shrsb_topbar_settings' );
