@@ -21,7 +21,7 @@ function shrsb_recommendations_settings_page() {
     $status_message = __('Your changes have been saved successfully!', 'shrsb');
     $_POST['pageorpost'] = shrsb_set_content_type();
     foreach (array(
-        'recommendations', 'num', 'pageorpost','style'
+        'recommendations', 'pageorpost','style'
     )as $field) {
         if(isset($_POST[$field])) { // this is to prevent warning if $_POST[$field] is not defined
 			    $fieldval = $_POST[$field];
@@ -33,9 +33,6 @@ function shrsb_recommendations_settings_page() {
             $shrsb_recommendations[$field] = NULL;
         }
     }
-		
-		if($shrsb_recommendations['style']=='text')
-			$shrsb_recommendations['num']=5;
 
     update_option('ShareaholicRecommendations',$shrsb_recommendations);
     
@@ -97,12 +94,6 @@ function shrsb_recommendations_settings_page() {
                                             <td WIDTH="120"><label><input <?php echo ((@$shrsb_recommendations['style'] == "text")? 'checked="checked"' : ""); ?> name="style" id="recommendations-style-text" type="radio" value="text" /> <?php _e('No', 'shrsb'); ?></label></td>
 <!--                                            <td colspan="2"><input style="margin-top:7px;" type="text" id="num" name="num" size="35" placeholder="ex. UA-XXXXXXXX-X" value="<?php echo @$shrsb_recommendations['style']; ?>" /></td>-->
 
-                                </tr>		
-
-                                <tr class="recommendations_prefs-2" style="display:none;">
-																	<td><label class="tab" for="num" style="margin-top:7px;"><?php _e('Number of recommendations displayed:', 'shrsb'); ?></label></td>
-                                  <td WIDTH="120"><label><input <?php echo ((@$shrsb_recommendations['num'] == "3")? 'checked="checked"' : ""); ?> name="num" id="recommendations-yes" type="radio" value="3" /> <?php _e('3', 'shrsb'); ?></label></td>
-                                  <td WIDTH="120"><label><input <?php echo ((@$shrsb_recommendations['num'] == "4")? 'checked="checked"' : ""); ?> name="num" id="recommendations-no" type="radio" value="4" /> <?php _e('4', 'shrsb'); ?></label></td>
                                 </tr>
                                 
 																<tr>

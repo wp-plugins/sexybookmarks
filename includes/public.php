@@ -122,7 +122,6 @@ function shrsb_get_rd_config($post_id) {
   $params = array(
     'link' => $r['link'],
     'apikey' => $r['apikey'] ? $r['apikey'] : '8afa39428933be41f8afdb8ea21a495c',
-    'number' => $shrsb_recommendations['num'],
 		'style' =>	$shrsb_recommendations['style']
   );
 
