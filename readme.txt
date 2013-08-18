@@ -2,8 +2,8 @@
 Contributors: shareaholic
 Tags: sexybookmarks, shareaholic, shareholic, facebook, twitter, linkedin, URL Shortener, bitly, tinyurl, Goo.gl, Google+1, Google Analytics, Google Plus, Google, Instapaper, Wish List, Digg, Gmail, Google Bookmarks, Translate, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, mister wong, evernote, add this, addtoany, share this, sharethis, share and follow, share and enjoy, sharing is sexy, sharing is caring, yahoo, reddit, hackernews, tweet button, twitter button, fark, buffer, myspace, orkut, netlog, hubspot, weheartit, printfriendly, yammer, pinterest, google translate, bookmarks, social, email button, social share, socialize, sociable, sharebar, bookmark button, share button, social bookmarking, bookmarks menu, bookmarking, share, seo, analytics, stats, sharing, facebook like, facebook recommend, WPMU, mutisite, shortcode, yaarp, yarpp, nrelate, outbrain, linkwithin, related content, related posts, related, popular posts, popular, thumbnails, recommendations
 Requires at least: 2.7
-Tested up to: 3.5.1
-Stable tag: 6.1.3.8
+Tested up to: 3.6
+Stable tag: 6.1.5.1
 
 Adds an attractive social bookmarking menu and related content widget to your posts, pages, index, or any combination of the three.
 
@@ -126,6 +126,20 @@ Please see here: [Frequently Asked Questions](https://shareaholic.com/tools/word
 Please see here: [Usage & Installation Instructions](https://shareaholic.com/tools/wordpress/usage-installation)
 
 == Changelog ==
+= 6.1.5.1 =
+* Recommendations / Related Content are now 100% responsive (aka "mobile-ready")! This means they will now adapt to the screen size or device (iPhone, iPad, Android, tablet, laptop, etc) of your visitors automagically for the best, most seamless discovery experience.
+
+= 6.1.5.0 =
+* Fix for Cross-Site Request Forgery vulnerability. Upgrade immediately. Credits for finding and reporting the vulnerability go to Charlie Eriksen via Secunia SVCRP.
+
+= 6.1.4.1 = 
+* Shareaholic is 100% compatible with WordPress 3.6! Yay!
+
+= 6.1.4.0 = 
+* Bugfix: Related Content settings page now loads for multisite install. Updated how Shareaholic reads user permissions. Now using in-built WordPress functions.
+* Bugfix: Facebook Debugger will no longer show "Parser Mismatched Metadata" warnings
+* Updated primary plugin file to "shareaholic.php"
+* Cleaned up assets directory, as a result the plugin install file is now a lot smaller
 
 = 6.1.3.8 =
 * Bugfix: fixed "Cannot use object of type WP_Error"
@@ -845,6 +859,12 @@ Please see here: [Usage & Installation Instructions](https://shareaholic.com/too
 * Initial release!
 
 == Upgrade Notice ==
+
+= 6.1.5.1 = 
+* Recommendations / Related Content are now 100% responsive (aka "mobile-ready")! This means they will now adapt to the screen size or device (iPhone, iPad, Android, tablet, laptop, etc) of your visitors automagically for the best, most seamless discovery experience.
+
+= 6.1.5.0 = 
+Fix for security vulnerability. Upgrade immediately.
 
 = 6.1.3.5 =
 Several bug fixes and performance improvements. This is a highly recommended upgrade!

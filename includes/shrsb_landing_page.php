@@ -1,7 +1,5 @@
 <?php function shrsb_landing_page() { ?>
 
-<form name="sexy-bookmarks" id="sexy-bookmarks" action="" method="post">
-
 		<div class="wrap""><div class="icon32" id="icon-options-general"><br></div><h2>Shareaholic Dashboard</h2></div>
 
     <div id="shrsb-col-left" style="width:100%;">
@@ -57,8 +55,6 @@
 		
 	<?php echo shrsb_getfooter(); ?>
   </div>
-
-</form>
 
 <?php
 
