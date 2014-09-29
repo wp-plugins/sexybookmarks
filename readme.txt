@@ -1,22 +1,24 @@
-=== Shareaholic | share buttons & related posts ===
+=== Shareaholic | share buttons, related posts, social analytics & more ===
 Contributors: shareaholic
-Tags: sexybookmarks, shareaholic, shareholic, facebook, twitter, linkedin, URL Shortener, bitly, tinyurl, Goo.gl, Google+1, Google Analytics, Google Plus, Google, Instapaper, Wish List, Digg, Gmail, Google Bookmarks, Translate, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, mister wong, evernote, add this, addtoany, share this, sharethis, share and follow, share and enjoy, sharing is sexy, sharing is caring, yahoo, reddit, hackernews, tweet button, twitter button, fark, buffer, myspace, orkut, netlog, hubspot, weheartit, printfriendly, yammer, wanelo, pinterest, google translate, bookmarks, social, email button, social share, socialize, sociable, sharebar, bookmark button, share button, social bookmarking, bookmarks menu, bookmarking, share, seo, analytics, stats, sharing, facebook like, facebook recommend, WPMU, mutisite, sumome, shortcode, yaarp, yarpp, nrelate, outbrain, linkwithin, related content, related posts, related, popular posts, popular, thumbnails, recommendations
+Tags: sexybookmarks, shareaholic, shareholic, facebook, twitter, linkedin, URL Shortener, bitly, tinyurl, Goo.gl, Google+1, Google Analytics, Google Plus, Google, Instapaper, Wish List, Digg, Gmail, Google Bookmarks, Translate, Tumblr, AIM, Yahoo Messenger, Delicious, StumbleUpon, mister wong, evernote, add this, addtoany, share this, sharethis, share and follow, share and enjoy, sharing is sexy, sharing is caring, yahoo, reddit, hackernews, houzz, yummly, tweet button, twitter button, fark, buffer, myspace, orkut, netlog, hubspot, weheartit, printfriendly, yammer, wanelo, pinterest, google translate, bookmarks, social, email button, social share, socialize, sociable, sharebar, bookmark button, share button, social bookmarking, bookmarks menu, bookmarking, share, seo, analytics, stats, sharing, facebook like, facebook recommend, WPMU, mutisite, sumome, shortcode, yaarp, yarpp, nrelate, outbrain, linkwithin, related content, related posts, related, popular posts, popular, thumbnails, recommendations
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 7.6.0.1
+Stable tag: 7.6.0.2
 
 The easiest, most effective way to grow your website traffic, effectively engage your audience, monetize, and gain insights for free.
 
 == Description ==
 
-Shareaholic is an **all-in-one content amplification platform**, which includes related content recommendations, promoted content, social sharing, following, site monetization apps such as affiliate linking, and social analytics. Our platform makes it a snap for any website — big or small — to engage and grow their traffic, market their content, gain insights, and monetize their traffic, all from one powerful but easy-to-use dashboard.
+Shareaholic is an **all-in-one content amplification and monetization platform**, that includes related content recommendations, promoted content, social sharing, following, site monetization apps such as affiliate linking, and social analytics. This module makes it a snap for any website — big or small — to engage and grow their traffic, market their content, gain insights, and monetize their traffic, all from one powerful but easy-to-use dashboard.
 
 = Recent Updates =
 
-* [Post-Share Follow Buttons](https://blog.shareaholic.com/post-share-follow-buttons/)
+* [Promoted Content](http://support.shareaholic.com/hc/en-us/articles/202657036)
 * [Affiliate Linking](http://support.shareaholic.com/hc/en-us/articles/202938373-How-does-the-Affiliate-Links-app-work-) - earn revenue from your existing product links with zero additional effort
+* [Post-Share Follow Buttons](https://blog.shareaholic.com/post-share-follow-buttons/)
 * [Floating Share Buttons](https://blog.shareaholic.com/floating-share-buttons/)
 * [Shareable Images](https://blog.shareaholic.com/image-share-buttons/) (Pinterest "pin it" button for images)
+* Bonus: [EU / UK Cookie Compliance Banner App](https://blog.shareaholic.com/cookie-consent-banner-app/)
 * Localized in 15+ languages
 * Related Content support for post keywords specified in "All in One SEO Pack", "WordPress SEO by Yoast", etc plugins
 
@@ -50,11 +52,13 @@ Provides you with important actionable metrics including insights into popular p
 * **Generate Revenue** - Make money with minimal effort while retaining full control at all times.
 * **Fast & Secure** - We use industry best practices to make our code as fast and unobtrusive as possible, meaning - for example - that the performance impact is comparable to adding Google Analytics to your site. Because all of the processing and collection runs on our servers and not yours, it doesn't cause any additional load on your hosting account. In addition, our JavaScript is hosted on Amazon's CDN to make fetching it as blazing fast and reliable as possible. In fact, it's one of the fastest proven analytics system, hosted or not hosted, that you can use.
 
+= You're in Great Company =
+
+Shareaholic is used and trusted by hundreds of thousands of websites like yours and touches over 400 million people each month. Designed and built with all the love in the world in Boston, Massachusetts.
+
 = Support =
 
 Need help? Visit our [Support Center](http://support.shareaholic.com/). Rest easy knowing real people are ready to help you. Everyone on our Customer Care team is an experienced Shareaholic user.
-
-Shareaholic is used and trusted by hundreds of thousands of websites like yours and touches over 400 million people each month. Designed and built with all the love in the world in Boston, Massachusetts.
 
 Note: The analytics portion of Shareaholic may use trusted 3rd party services like Google Analytics and AppNexus to enhance its data.
 
@@ -170,6 +174,10 @@ Please see here: [Shareaholic Helpdesk](http://support.shareaholic.com/hc/en-us)
 Please see here: [Usage & Installation Instructions](http://support.shareaholic.com/hc/en-us/categories/200101476-WordPress-Plugin)
 
 == Changelog ==
+
+= 7.6.0.2 =
+* New Monetization section added to the App Manager! Configure your monetization settings from one place, including Promoted Content, Affiliate Links App, etc.
+* Introducing [Promoted Content](http://support.shareaholic.com/hc/en-us/articles/202657036)
 
 = 7.6.0.1 =
 * Universal metabox options support
@@ -1155,6 +1163,10 @@ Please see here: [Usage & Installation Instructions](http://support.shareaholic.
 * Initial release!
 
 == Upgrade Notice ==
+
+= 7.6.0.2 =
+
+New Monetization section added to the App Manager! Configure your monetization settings from one place, including Promoted Content, Affiliate Links App, etc.
 
 = 7.6.0.1 =
 
