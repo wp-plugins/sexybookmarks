@@ -9,7 +9,8 @@ World's leading all-in-one Content Amplification Platform that helps grow your s
 
 == Description ==
 
-Shareaholic is the world's leading **all-in-one Content Amplification Platform**, which includes related content recommendations, social sharing, following, social analytics and site monetization apps such as promoted content, native ads and affiliate links. This module makes it a snap for any website — big or small — to engage and grow their traffic, market their content, gain insights, and monetize their audience, all from one powerful but easy-to-use dashboard.
+Shareaholic is the world's leading **all-in-one Content Amplification Platform**, which includes related content recommendations, social sharing, following, social analytics and site monetization apps such as promoted content, native ads and affiliate links. This module makes it a snap for any website — big or small — to engage and grow their traffic, market their content, gain insights, and monetize their audience, all from one powerful but easy-to-use dashboard. All our Apps are designed to work well together, on any website.
+
 
 = Recent Updates =
 
@@ -22,7 +23,7 @@ Shareaholic is the world's leading **all-in-one Content Amplification Platform**
 > <strong>Support</strong><br>
 > One on one email support is available. Visit our [Support Center](http://support.shareaholic.com/). Rest easy knowing real people are ready to help you. Everyone on our Customer Care team is an experienced Shareaholic user.
 
-= [Share Buttons](https://shareaholic.com/publishers/sharing/) =
+= Share Buttons =
 
 Make it 1-click easy for your visitors to share your content with their friends with Shareaholic's award winning Share Buttons.
 
@@ -36,15 +37,19 @@ Make it 1-click easy for your visitors to share your content with their friends 
 
 [Share Buttons](https://shareaholic.com/publishers/sharing/) (demo)
 
-= [Share Buttons for Images](https://blog.shareaholic.com/image-share-buttons/) (Pinterest "pin it" button for images) =
+= Share Buttons for Images (Pinterest "pin it" button for images) =
 
 Get more shares and viral traffic by adding smart share buttons to the images on your website and making them easy to share.
 
-= [Floating Share Buttons](https://blog.shareaholic.com/floating-share-buttons/) =
+[Learn more](https://blog.shareaholic.com/image-share-buttons/)
+
+= Floating Share Buttons =
 
 Increase sharing engagement by 2x or more by Share Buttons that hover on the side of the page, rather than in the page content.
 
-= [Related Content](https://shareaholic.com/publishers/recommendations) =
+[Learn more](https://blog.shareaholic.com/floating-share-buttons/)
+
+= Related Content =
 
 Increases pageviews, engagement and time on site by highlighting relevant content that may not otherwise be discovered from across your site. Shareaholic is not just yet another related posts content plugin. It involves a simple installation that's easy to update and tweak. You'll be using well-engineered and optimized code that won't slow or block your pages from loading.
 
@@ -58,15 +63,21 @@ Increases pageviews, engagement and time on site by highlighting relevant conten
 
 Provides you with important actionable metrics including insights into popular pages on your website, referral channels, and who are making referrals and spreading your webpages on the internet on your behalf bringing you back more traffic and new visitors.
 
-= [Affiliate Links](http://support.shareaholic.com/hc/en-us/articles/202938373-How-does-the-Affiliate-Links-app-work-) =
+[Learn more](https://shareaholic.com/publishers/analytics)
+
+= Affiliate Links =
 
 Automagically turn your site’s existing links into rewards. Clicks that turn into purchases from our ever-expanding universe of 35,000+ retailers, turn into commissions for you with zero additional effort.
+
+[Learn more](http://support.shareaholic.com/hc/en-us/articles/202938373-How-does-the-Affiliate-Links-app-work-)
 
 = Follow Buttons =
 
 Will help you get more followers and grow your social influence on Facebook, Twitter, Pinterest, Instagram and many other social networks. 
 
-Supported services include: Facebook, Twitter, Vine, Pinterest, YouTube, Google+, LinkedIn, SlideShare, Instagram, VK, RSS feed, Github, Stackoverflow, Dribbble, Behance, 500px, iTunes, Houzz, Flickr, Foursquare, Yelp, Bloglovin, Etsy, TripAdvisor, About.me, Polyvore, Soundcloud, eBay, Better Business Bureau (BBB), Skype
+Supported services include: Facebook, Twitter, Vine, Pinterest, YouTube, Google+, LinkedIn, SlideShare, Instagram, VK, RSS feed, Github, Stackoverflow, Dribbble, Behance, 500px, iTunes, Houzz, Flickr, Foursquare, Yelp, Bloglovin, Etsy, TripAdvisor, About.me, Polyvore, Soundcloud, eBay, Better Business Bureau (BBB), Skype, Zillow, Disqus, Spotify, Feedly, LiveJournal
+
+[Learn more](https://shareaholic.com/publishers)
 
 = Additional features =
 
@@ -84,9 +95,7 @@ Note: The analytics portion of Shareaholic may use trusted 3rd party services li
 
 [Support](http://support.shareaholic.com/) | [Privacy](https://shareaholic.com/privacy/) | [Terms](https://shareaholic.com/terms/) | [API](https://shareaholic.com/api/) | [Social Analytics](https://shareaholic.com/publishers/analytics/)
 
-== Other Notes ==
-
-= Special Thanks & Credits =
+== Special Thanks & Credits ==
 
 The plugin wouldn't be half of what it is today if it weren't for people like you who take the time to help it grow! Whether it be by submitting bug reports, translations, or maybe even a little development help. 
 
@@ -94,7 +103,7 @@ Listed here are credits and special thanks to some of you who have helped us out
 
  [Complete credits on Shareaholic.com](https://shareaholic.com/tools/wordpress/credits)
 
-= Shareaholic in Your Language =
+== Shareaholic in Your Language ==
 
 Shareaholic is used all over the world. Our goal is to support Shareaholic in the native language of all our users and people who want to use our products. Shareaholic for WordPress is currently localized in the following languages:
 
