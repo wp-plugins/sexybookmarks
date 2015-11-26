@@ -1073,7 +1073,7 @@ class ShareaholicUtilities {
    */
   public static function add_header_xua($headers) {
       if(!isset($headers['X-UA-Compatible'])) {
-        $headers['X-UA-Compatible'] = 'IE=edge,chrome=1';
+        $headers['X-UA-Compatible'] = 'IE=edge';
       }
       return $headers;
   }
@@ -1083,7 +1083,7 @@ class ShareaholicUtilities {
    *
    */
   public static function draw_meta_xua() {
-    echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
+    echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
   }
   
   /**
